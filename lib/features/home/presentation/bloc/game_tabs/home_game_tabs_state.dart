@@ -9,7 +9,6 @@ enum _HomeGameTabsState {
   TInitial,
   @object
   TLoading,
-  @generic
   @Data(fields: [
     DataField<GameTypesEntity>('types'),
   ])

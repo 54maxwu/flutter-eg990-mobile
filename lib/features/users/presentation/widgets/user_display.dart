@@ -1,9 +1,13 @@
+import 'package:flui/flui.dart' show FLToast;
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/hex_color.dart';
 import 'package:flutter_ty_mobile/features/users/domain/entity/user_entity.dart';
-import 'package:flutter_ty_mobile/features/users/presentation/user_data.dart';
-
-import '../../../../injection_container.dart' show sl;
+import 'package:flutter_ty_mobile/features/widget_res_export.dart'
+    show
+        HexColor,
+        RouterNavigate,
+        RouterPageInfo,
+        getRouteUserStreams,
+        localeStr;
 
 ///@author H.C.CHIANG
 ///@version 2020/1/15
@@ -15,11 +19,21 @@ class UserDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sl.get<UserData>().login(user);
-    print('test user data: ${sl.get<UserData>().toString()}');
-    return Container(
-      color: bgColor,
-      child: Text(user.toString(), style: TextStyle(color: Colors.black87)),
-    );
+    getRouteUserStreams.updateUser(user);
+    Future.delayed(Duration(milliseconds: 200)).then((_) {
+      var dismiss = FLToast.showLoading(
+        text: localeStr.messageWelcomeUser(user.account),
+      );
+      Future.delayed(Duration(milliseconds: 1500)).whenComplete(() {
+        dismiss();
+        RouterNavigate.navigateToPage(RouterPageInfo.member);
+      });
+    });
+    return SizedBox.shrink();
+//    return Container(
+//      color: bgColor,
+//      constraints: BoxConstraints.tightFor(width: Global.device.width - 16),
+//      child: Text(user.toString(), style: TextStyle(color: Colors.black87)),
+//    );
   }
 }

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_ty_mobile/core/data/hive_adapters.dart';
+import 'package:flutter_ty_mobile/features/home/domain/entity/marquee_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/usecase/get_marquee.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
 import 'package:meta/meta.dart' show required;
 import 'package:super_enum/super_enum.dart';
 

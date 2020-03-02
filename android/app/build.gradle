@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -36,22 +36,72 @@ android {
         disable 'InvalidPackage'
     }
 
+//    splits {
+//        // Configures multiple APKs based on ABI.
+//        abi {
+//            // Enables building multiple APKs per ABI.
+//            enable true
+//
+//            // By default all ABIs are included, so use reset() and include to specify that we only
+//            // want APKs for x86 and x86_64.
+//
+//            // Resets the list of ABIs that Gradle should create APKs for to none.
+//            reset()
+//            // Specifies a list of ABIs that Gradle should create APKs for.
+//            include "x86_64", "armeabi-v7a", "arm64-v8a"
+//            // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+//            universalApk true
+//        }
+//    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.op.tymobile"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            v1SigningEnabled true
+            v2SigningEnabled true
+            readKeystoreProperties()
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+//            versionNameSuffix 'R'
+//            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
         }
+    }
+}
+
+def readKeystoreProperties() {
+    def propsFile = rootProject.file('keystore.properties')
+    def configName = 'release'
+
+    if (propsFile.exists() && android.signingConfigs.hasProperty(configName)) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        println "===== load keystore success ====="
+        // sign.release.* like `sign.release.storeFile` etc. are defined in `keystore.properties` file
+        android.signingConfigs[configName].storeFile = rootProject.file(props['storeFile'])
+        android.signingConfigs[configName].storePassword = props['storePassword']
+        android.signingConfigs[configName].keyAlias = props['keyAlias']
+        android.signingConfigs[configName].keyPassword = props['keyPassword']
+        //keyAlias keystoreProperties['keyAlias']
+        //keyPassword keystoreProperties['keyPassword']
+        //storeFile rootProject.file(keystoreProperties['storeFile'])
+        //storePassword keystoreProperties['storePassword']
+        println "===== read keystore properties success ====="
     }
 }
 
@@ -62,6 +112,6 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

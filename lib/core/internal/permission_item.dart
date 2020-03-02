@@ -12,15 +12,15 @@ class PermissionItem {
   PermissionItem(this.group, this.status);
 
   @override
-  String toString() {
-    return _$PermissionItemToString(this);
-  }
+  String toString() => _$PermissionItemToString(this);
 }
 
 extension RequestListPermission on List<PermissionItem> {
+  /// Check if all needed [PermissionItem] is granted
   Future requestPermission() async {
     List<PermissionGroup> groupList = List();
     forEach((item) {
+      // status denied means the permission can be requested
       if (item.status == PermissionStatus.denied) groupList.add(item.group);
     });
     if (groupList.isNotEmpty) {

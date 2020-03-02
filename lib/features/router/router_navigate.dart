@@ -2,53 +2,92 @@ import 'dart:async';
 
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
+import 'package:flutter_ty_mobile/features/general/data/user/user_data.dart';
+import 'package:flutter_ty_mobile/features/users/domain/entity/user_entity.dart';
 import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:generic_enum/generic_enum.dart';
 import 'package:meta/meta.dart' show required;
+import 'package:to_string/to_string.dart';
 
 import '../../injection_container.dart' show sl;
 import 'router.gr.dart';
+import 'screen_router.gr.dart';
 
+part 'route_user_streams.dart';
+part 'router_navigate.g.dart';
 part 'router_page.dart';
-part 'router_widget_streams.dart';
 
 class RouterNavigate {
-  static final routerStreams = getRouterStreams;
+  static final routerStreams = getRouteUserStreams;
 
-  static final String _tag = 'Router';
+  static final String _tag = 'RouterNavigate';
+  static int screenIndex = 0;
   static String _currentRoute = '/';
   static String _previousRoute = '/';
 
-  static get current => _currentRoute;
+  static String get current => _currentRoute;
 
-  static _setPath(String route, {String parentRoute = ''}) {
-    _previousRoute = parentRoute.isEmpty ? _currentRoute : parentRoute;
-    _currentRoute = route;
+  static StreamController<RouteInfo> _routeInfo =
+      StreamController<RouteInfo>.broadcast();
+
+  static Stream<RouteInfo> get routeStream => _routeInfo.stream;
+
+  static dispose() {
+    MyLogger.warn(msg: 'disposing router stream!!', tag: _tag);
+    _routeInfo.close();
   }
 
-  static _updateAppBar(RouterPage page) {
-    print('updating app bar...page: $page');
-    var info = page.info;
-    routerStreams.updateTitle(info.title, hideActions: info.hideAppbarActions);
-    routerStreams.updateLeading(!(info.isFeature));
+  static switchScreen({bool web = false, Object webArg}) {
+    try {
+      if (web) {
+        ScreenRouter.navigator.pushNamedAndRemoveUntil(
+          ScreenRouter.webGameScreen,
+          (route) =>
+              route.settings.name == ScreenRouter.featureScreen ||
+              route.settings.name == ScreenRouter.webGameScreen,
+          arguments: webArg,
+        );
+        screenIndex = 1;
+      } else {
+        ScreenRouter.navigator.pushNamedAndRemoveUntil(
+          ScreenRouter.featureScreen,
+          (route) =>
+              route.settings.name == ScreenRouter.featureScreen ||
+              route.settings.name == ScreenRouter.webGameScreen,
+        );
+        screenIndex = 0;
+      }
+    } catch (e) {
+      MyLogger.error(
+          msg:
+              'navigate to screen has exception!! Router current: $_currentRoute, previous: $_previousRoute',
+          error: e,
+          tag: _tag);
+    }
   }
 
-  static navigateToPage(RouterPage page, {bool cleanStack = true}) {
-    var info = page.info;
-    if (info.route == Router.homeRoute) {
+  static navigateToPage(RouterPageInfo page,
+      {bool cleanStack = true, Object arg}) {
+    if (page.page == _currentRoute) return;
+    if (page.page == Router.homeRoute) {
       navigateClean();
       return;
     }
     try {
-      if ((_currentRoute != Router.homeRoute && info.isFeature)) {
-        print('navigate feature, from:$_currentRoute to:${info.route}');
+      if ((_currentRoute != Router.homeRoute && page.isFeature)) {
+        print('navigate feature, from:$_currentRoute to:${page.page}');
         Router.navigator.pushNamedAndRemoveUntil(
-            Router.homeRoute,
-            (route) =>
-                route.settings.name == info.route ||
-                route.settings.name == Router.homeRoute);
+          page.page,
+          (route) =>
+              route.settings.name == page.page ||
+              route.settings.name == Router.homeRoute,
+          arguments: arg,
+        );
+        _setPath(page.page, parentRoute: page.pageRoot);
       } else {
-        print('navigate page, from:$_currentRoute to:${info.route}');
-        Router.navigator.pushNamed(info.route);
+        print('navigate page, from:$_currentRoute to:${page.page}');
+        Router.navigator.pushNamed(page.page, arguments: arg);
+        _setPath(page.page);
       }
     } catch (e) {
       MyLogger.error(
@@ -57,14 +96,7 @@ class RouterNavigate {
           error: e,
           tag: _tag);
     }
-
-    if (cleanStack)
-      _setPath(info.route, parentRoute: info.parentRoute);
-    else
-      _setPath(info.route);
-
-    routerStreams.updateTitle(info.title, hideActions: info.hideAppbarActions);
-    routerStreams.updateLeading(!(info.isFeature));
+    _routeInfo.sink.add(page.value);
   }
 
   static navigateBack() {
@@ -85,11 +117,9 @@ class RouterNavigate {
       // TODO restart app when router fails.
     }
 
-    _setPath(_previousRoute, parentRoute: Router.homeRoute);
-
-    var info = _previousRoute.toRouteInfo;
-    routerStreams.updateTitle(info.title, hideActions: info.hideAppbarActions);
-    routerStreams.updateLeading(!(info.isFeature));
+    var page = _previousRoute.toRouteInfo;
+    _setPath(page.page, parentRoute: page.pageRoot);
+    _routeInfo.sink.add(page.value);
   }
 
   static navigateClean() {
@@ -97,9 +127,11 @@ class RouterNavigate {
     if (_currentRoute != Router.homeRoute) {
       try {
 //        Router.navigator.pushNamedAndRemoveUntil(Router.homeRoute, (route) => false);
-        Router.navigator
-            .popUntil((route) => route.settings.name == Router.homeRoute);
-        routerStreams.updateUser(true);
+        Router.navigator.pushNamedAndRemoveUntil(
+          Router.homeRoute,
+          (route) => route.settings.name == Router.homeRoute,
+        );
+        routerStreams.setCheck(true);
       } catch (e) {
         MyLogger.error(
             msg:
@@ -110,8 +142,19 @@ class RouterNavigate {
     }
     _setPath(Router.homeRoute, parentRoute: Router.homeRoute);
     print('update home app bar on clean');
-    _updateAppBar(RouterPage.HomeRoute);
+    _routeInfo.sink.add(RouterPageInfo.home.value);
   }
 
-  static resetCheckUser() => routerStreams.updateUser(false);
+  static _setPath(String route, {String parentRoute = ''}) {
+    _previousRoute = parentRoute.isEmpty ? _currentRoute : parentRoute;
+    _currentRoute = route;
+  }
+
+  static resetCheckUser() => routerStreams.setCheck(false);
+
+  static testNavigate(RouterPageInfo page) {
+    print('test navigate...page: ${page.value}');
+    _setPath(page.page, parentRoute: page.pageRoot);
+    _routeInfo.sink.add(page.value);
+  }
 }

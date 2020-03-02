@@ -16,7 +16,21 @@ abstract class UserLoginEvent extends Equatable {
   final _UserLoginEvent _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>({@required R Function(GetUserEvent) getUserEvent}) {
+    assert(() {
+      if (getUserEvent == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _UserLoginEvent.GetUserEvent:
+        return getUserEvent(this as GetUserEvent);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(GetUserEvent) getUserEvent}) {
     assert(() {
       if (getUserEvent == null) {
@@ -30,7 +44,24 @@ abstract class UserLoginEvent extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GetUserEvent) getUserEvent,
+      @required R Function(UserLoginEvent) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _UserLoginEvent.GetUserEvent:
+        if (getUserEvent == null) break;
+        return getUserEvent(this as GetUserEvent);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GetUserEvent) getUserEvent,
       @required FutureOr<R> Function(UserLoginEvent) orElse}) {
     assert(() {
@@ -47,7 +78,8 @@ abstract class UserLoginEvent extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GetUserEvent) getUserEvent}) {
     assert(() {
       if (getUserEvent == null) {

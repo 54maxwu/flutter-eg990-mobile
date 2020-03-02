@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_ty_mobile/core/base/usecase.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/banner_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/repository/home_repository.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner.dart';
+import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner_data.dart';
 import 'package:hive/src/hive_impl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:path/path.dart' as path;

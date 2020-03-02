@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_category_model.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/game_platform_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/game_types_entity.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/mylogger.dart';
 
 import '../../../../widget_res_export.dart' show FontSize, Global, Themes;
 import 'game_display_page.dart';
 import 'game_display_tab_ctrl.dart';
 
-///
+/// Main view of the game area
+/// Creates a [TabBar] widget to switch between each game category
+/// Creates a [ConstrainedBox] to contain tab's page view
 ///@author H.C.CHIANG
 ///@version 2020/1/14
 class GameDisplayTab extends StatefulWidget {
@@ -51,6 +53,17 @@ class _GameDisplayTabState extends State<GameDisplayTab>
     _tabController.addListener(_setActiveTabIndex);
   }
 
+  @override
+  void dispose() {
+    try {
+      if (_tabController != null) _tabController.dispose();
+    } catch (e) {
+      MyLogger.warn(msg: '${e.runtimeType}', tag: "GameDisplayTab", error: e);
+    }
+    super.dispose();
+  }
+
+  /// Map the platforms into separate list by game category
   void mapPlatforms() {
     final all = widget.tabsData.platforms;
     _platformMap = new HashMap();
@@ -63,16 +76,7 @@ class _GameDisplayTabState extends State<GameDisplayTab>
 //        MyLogger.print(msg: '$key: ${_platformMap[key]}', tag: 'PlatformMap'));
   }
 
-  @override
-  void dispose() {
-    try {
-      if (_tabController != null) _tabController.dispose();
-    } catch (e) {
-      MyLogger.warn(msg: '${e.runtimeType}', tag: "GameDisplayTab", error: e);
-    }
-    super.dispose();
-  }
-
+  /// Set [_currentType] to change tab bar item color
   void _setActiveTabIndex() {
     // set state to change tab's image color
     setState(() {
@@ -89,7 +93,7 @@ class _GameDisplayTabState extends State<GameDisplayTab>
       children: <Widget>[
         /// category tab bar
         Padding(
-          padding: const EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsets.only(right: 10.0, top: 6.0),
           child: Material(
             color: Colors.black54,
             borderRadius: BorderRadius.circular(6.0),
@@ -97,9 +101,9 @@ class _GameDisplayTabState extends State<GameDisplayTab>
               /* Tab bar constraints */
               constraints: BoxConstraints(
                 minHeight: Global.device.height / 3,
-                maxHeight: Global.device.height / 2.25,
+                maxHeight: Global.device.height / 1.75,
                 minWidth: Global.device.width / 3 - 24,
-                maxWidth: Global.device.width / 3 - 8,
+                maxWidth: Global.device.width / 3 - 18,
               ),
               /* Rotate to vertical */
               child: RotatedBox(
@@ -107,8 +111,8 @@ class _GameDisplayTabState extends State<GameDisplayTab>
                 child: TabBar(
                   unselectedLabelColor: Themes.defaultTextColor,
                   labelColor: Themes.defaultAccentColor,
-                  labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
-                  labelPadding: const EdgeInsets.only(top: 4.0),
+                  labelStyle: TextStyle(fontSize: FontSize.NORMAL.value + 1),
+                  labelPadding: const EdgeInsets.only(top: 2.0),
                   indicatorColor: Colors.transparent, // hide indicator
                   controller: _tabController,
                   /* Generate Category Tabs */
@@ -118,8 +122,7 @@ class _GameDisplayTabState extends State<GameDisplayTab>
                       child: Tab(
                         child: Container(
                           alignment: Alignment.center,
-                          padding: const EdgeInsets.only(
-                              bottom: 4.0, top: 3.0, left: 2.0),
+                          padding: const EdgeInsets.symmetric(vertical: 6.0),
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
@@ -131,15 +134,25 @@ class _GameDisplayTabState extends State<GameDisplayTab>
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               ExtendedImage.network(
-                                '${Global.TEST_BASE_URL}${data.getIconUrl()}',
+                                '${Global.CURRENT_SERVICE}${data.getIconUrl()}',
                                 scale: 3.0,
                                 color: data.type == _currentType
                                     ? Themes.defaultAccentColor
                                     : Themes.defaultTextColor,
+                                loadStateChanged: (ExtendedImageState state) {
+                                  switch (state.extendedImageLoadState) {
+                                    case LoadState.completed:
+                                      return state.completedWidget;
+                                    case LoadState.failed:
+                                      return Icon(Icons.broken_image,
+                                          color: Themes.iconColorDark);
+                                    default:
+                                      return null;
+                                  }
+                                },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 4.0, bottom: 2.0),
+                                padding: const EdgeInsets.only(bottom: 2.0),
                                 child: Text(data.getLabel()),
                               ),
                             ],
@@ -161,9 +174,9 @@ class _GameDisplayTabState extends State<GameDisplayTab>
         ConstrainedBox(
           constraints: BoxConstraints(
             minWidth: Global.device.width * 0.6,
-            maxWidth: Global.device.width / 3 * 2 - 18,
+            maxWidth: Global.device.width / 3 * 2 - 6,
             minHeight: Global.device.height / 2.75,
-            maxHeight: Global.device.height / 1.25,
+            maxHeight: Global.device.height / 1.75,
           ),
           child: Row(
             children: <Widget>[

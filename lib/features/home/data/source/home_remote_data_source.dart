@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/data/data_request_handler.dart'
+import 'package:flutter_ty_mobile/core/network/handler/data_request_handler.dart'
     show requestList, requestData;
 import 'package:flutter_ty_mobile/core/network/dio_api_service.dart';
 import 'package:flutter_ty_mobile/features/home/data/form/platform_game_form.dart';

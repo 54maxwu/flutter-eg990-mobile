@@ -21,7 +21,34 @@ abstract class UserLoginState extends Equatable {
   final _UserLoginState _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>(
+      {@required R Function(UInitial) uInitial,
+      @required R Function(ULoading) uLoading,
+      @required R Function(ULoaded) uLoaded,
+      @required R Function(UError) uError}) {
+    assert(() {
+      if (uInitial == null ||
+          uLoading == null ||
+          uLoaded == null ||
+          uError == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _UserLoginState.UInitial:
+        return uInitial(this as UInitial);
+      case _UserLoginState.ULoading:
+        return uLoading(this as ULoading);
+      case _UserLoginState.ULoaded:
+        return uLoaded(this as ULoaded);
+      case _UserLoginState.UError:
+        return uError(this as UError);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(UInitial) uInitial,
       @required FutureOr<R> Function(ULoading) uLoading,
       @required FutureOr<R> Function(ULoaded) uLoaded,
@@ -47,7 +74,36 @@ abstract class UserLoginState extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(UInitial) uInitial,
+      R Function(ULoading) uLoading,
+      R Function(ULoaded) uLoaded,
+      R Function(UError) uError,
+      @required R Function(UserLoginState) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _UserLoginState.UInitial:
+        if (uInitial == null) break;
+        return uInitial(this as UInitial);
+      case _UserLoginState.ULoading:
+        if (uLoading == null) break;
+        return uLoading(this as ULoading);
+      case _UserLoginState.ULoaded:
+        if (uLoaded == null) break;
+        return uLoaded(this as ULoaded);
+      case _UserLoginState.UError:
+        if (uError == null) break;
+        return uError(this as UError);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(UInitial) uInitial,
       FutureOr<R> Function(ULoading) uLoading,
       FutureOr<R> Function(ULoaded) uLoaded,
@@ -76,7 +132,8 @@ abstract class UserLoginState extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(UInitial) uInitial,
       FutureOr<void> Function(ULoading) uLoading,
       FutureOr<void> Function(ULoaded) uLoaded,
@@ -115,7 +172,7 @@ class UInitial extends UserLoginState {
   const UInitial._() : super(_UserLoginState.UInitial);
 
   factory UInitial() {
-    _instance ??= UInitial._();
+    _instance ??= const UInitial._();
     return _instance;
   }
 
@@ -127,7 +184,7 @@ class ULoading extends UserLoginState {
   const ULoading._() : super(_UserLoginState.ULoading);
 
   factory ULoading() {
-    _instance ??= ULoading._();
+    _instance ??= const ULoading._();
     return _instance;
   }
 

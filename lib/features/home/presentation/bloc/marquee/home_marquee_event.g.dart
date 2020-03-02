@@ -15,7 +15,21 @@ abstract class HomeMarqueeEvent extends Equatable {
   final _HomeMarqueeEvent _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>({@required R Function(GetMarqueeEvent) getMarqueeEvent}) {
+    assert(() {
+      if (getMarqueeEvent == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeMarqueeEvent.GetMarqueeEvent:
+        return getMarqueeEvent(this as GetMarqueeEvent);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(GetMarqueeEvent) getMarqueeEvent}) {
     assert(() {
       if (getMarqueeEvent == null) {
@@ -29,7 +43,24 @@ abstract class HomeMarqueeEvent extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GetMarqueeEvent) getMarqueeEvent,
+      @required R Function(HomeMarqueeEvent) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeMarqueeEvent.GetMarqueeEvent:
+        if (getMarqueeEvent == null) break;
+        return getMarqueeEvent(this as GetMarqueeEvent);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GetMarqueeEvent) getMarqueeEvent,
       @required FutureOr<R> Function(HomeMarqueeEvent) orElse}) {
     assert(() {
@@ -46,7 +77,8 @@ abstract class HomeMarqueeEvent extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GetMarqueeEvent) getMarqueeEvent}) {
     assert(() {
       if (getMarqueeEvent == null) {
@@ -70,7 +102,7 @@ class GetMarqueeEvent extends HomeMarqueeEvent {
   const GetMarqueeEvent._() : super(_HomeMarqueeEvent.GetMarqueeEvent);
 
   factory GetMarqueeEvent() {
-    _instance ??= GetMarqueeEvent._();
+    _instance ??= const GetMarqueeEvent._();
     return _instance;
   }
 

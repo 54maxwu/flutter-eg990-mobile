@@ -15,7 +15,21 @@ abstract class HomeGameTabsEvent extends Equatable {
   final _HomeGameTabsEvent _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>({@required R Function(GetGameTypesEvent) getGameTypesEvent}) {
+    assert(() {
+      if (getGameTypesEvent == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameTabsEvent.GetGameTypesEvent:
+        return getGameTypesEvent(this as GetGameTypesEvent);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(GetGameTypesEvent) getGameTypesEvent}) {
     assert(() {
       if (getGameTypesEvent == null) {
@@ -29,7 +43,24 @@ abstract class HomeGameTabsEvent extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GetGameTypesEvent) getGameTypesEvent,
+      @required R Function(HomeGameTabsEvent) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameTabsEvent.GetGameTypesEvent:
+        if (getGameTypesEvent == null) break;
+        return getGameTypesEvent(this as GetGameTypesEvent);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GetGameTypesEvent) getGameTypesEvent,
       @required FutureOr<R> Function(HomeGameTabsEvent) orElse}) {
     assert(() {
@@ -46,7 +77,8 @@ abstract class HomeGameTabsEvent extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GetGameTypesEvent) getGameTypesEvent}) {
     assert(() {
       if (getGameTypesEvent == null) {
@@ -70,7 +102,7 @@ class GetGameTypesEvent extends HomeGameTabsEvent {
   const GetGameTypesEvent._() : super(_HomeGameTabsEvent.GetGameTypesEvent);
 
   factory GetGameTypesEvent() {
-    _instance ??= GetGameTypesEvent._();
+    _instance ??= const GetGameTypesEvent._();
     return _instance;
   }
 

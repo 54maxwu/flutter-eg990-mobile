@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/features/users/presentation/user_data.dart';
+import 'package:flutter_ty_mobile/features/general/data/user/user_data.dart';
 import 'package:flutter_ty_mobile/utils/string_util.dart';
 
 import '../../../widget_res_export.dart'
@@ -9,11 +8,13 @@ import '../../../widget_res_export.dart'
         Global,
         Res,
         RouterNavigate,
-        RouterPage,
+        RouterPageInfo,
         Themes,
+        getRouteUserStreams,
         localeStr,
-        sl;
+        networkImageBuilder;
 
+/// Creates a widget to show member info under Marquee
 ///@author H.C.CHIANG
 ///@version 2020/2/13
 class MemberWidget extends StatefulWidget {
@@ -24,18 +25,20 @@ class MemberWidget extends StatefulWidget {
 }
 
 class MemberWidgetState extends State<MemberWidget> {
+  double _areaHeight;
   UserData _userData;
 
   void updateUser() {
     print('updating member area data...');
     setState(() {
-      _userData = sl.get<UserData>();
+      _userData = getRouteUserStreams.currentUser;
     });
   }
 
   @override
   void initState() {
-    _userData = sl.get<UserData>();
+    _areaHeight = Global.device.height / 10.5;
+    _userData = getRouteUserStreams.currentUser;
     super.initState();
   }
 
@@ -52,50 +55,52 @@ class MemberWidgetState extends State<MemberWidget> {
             width: 2.0,
             style: BorderStyle.solid,
           ),
+          color: Themes.defaultAppbarColor,
         ),
         /* Area frame */
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Themes.defaultAccentColor,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(4.0),
-                      ),
-                    ),
-                    /* Area title message */
-                    child: Padding(
+            Expanded(
+              flex: 2,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Themes.defaultAccentColor,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(4.0),
+                  ),
+                ),
+                /* Area title message */
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 2.0, 12.0, 6.0),
                       child: Text(
                         (_userData.isLoggedIn)
                             ? localeStr.homeHintWelcome
                             : localeStr.homeHintWelcomeLogin,
-                        style: TextStyle(color: Themes.defaultTextColorBlack),
+                        style: TextStyle(
+                            color: Themes.defaultTextColorBlack,
+                            fontSize: (Global.device.height > 700)
+                                ? FontSize.NORMAL.value + 1
+                                : FontSize.NORMAL.value),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  /* Area Content */
-                  child: Container(
-                    height: Themes.homeMemberAreaHeight,
-                    decoration: BoxDecoration(
-                      color: Themes.defaultAppbarColor,
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(6.0),
-                      ),
-                    ),
-                    child: _buildMemberArea(),
+            Expanded(
+              flex: 5,
+              /* Area Content */
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(6.0),
                   ),
                 ),
-              ],
+                child: _buildMemberArea(),
+              ),
             ),
           ],
         ),
@@ -133,21 +138,20 @@ class MemberWidgetState extends State<MemberWidget> {
                     children: <Widget>[
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          minWidth: Themes.homeMemberAreaHeight * 0.9,
-                          maxWidth: Themes.homeMemberAreaHeight * 1.5,
+                          minWidth: _areaHeight * 0.9,
+                          maxWidth: _areaHeight * 1.5,
                         ),
                         child: Text(
                           _userData.user.account,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: FontSize.NORMAL.value - 2,
+                            fontSize: FontSize.NORMAL.value,
                             color: Themes.defaultAccentColor,
                           ),
                         ),
                       ),
                       Text(localeStr.homeHintWelcome,
-                          style:
-                              TextStyle(fontSize: FontSize.NORMAL.value - 2)),
+                          style: TextStyle(fontSize: FontSize.NORMAL.value)),
                     ],
                   ),
                   Row(
@@ -155,14 +159,14 @@ class MemberWidgetState extends State<MemberWidget> {
                     children: <Widget>[
                       Text(
                         localeStr.homeHintMemberCreditLeft,
-                        style: TextStyle(fontSize: FontSize.NORMAL.value - 2),
+                        style: TextStyle(fontSize: FontSize.NORMAL.value),
                       ),
                       Text(
                         _userData.user.credit
                             .trimValue(floorIfInt: true, creditSign: true),
                         overflow: TextOverflow.visible,
                         style: TextStyle(
-                          fontSize: FontSize.NORMAL.value - 2,
+                          fontSize: FontSize.NORMAL.value,
                           color: Themes.defaultAccentColor,
                         ),
                       ),
@@ -175,7 +179,10 @@ class MemberWidgetState extends State<MemberWidget> {
               /// if not logged in, show a login button
               child: Text(
                 localeStr.pageTitleLogin2,
-                style: TextStyle(color: Themes.defaultAccentColor),
+                style: TextStyle(
+                  color: Themes.defaultAccentColor,
+                  fontSize: FontSize.NORMAL.value,
+                ),
               ),
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: Themes.defaultAccentColor),
@@ -183,7 +190,7 @@ class MemberWidgetState extends State<MemberWidget> {
               ),
               color: Themes.defaultAppbarColor,
               onPressed: () =>
-                  RouterNavigate.navigateToPage(RouterPage.LoginRoute),
+                  RouterNavigate.navigateToPage(RouterPageInfo.login),
             ),
     );
   }
@@ -191,8 +198,9 @@ class MemberWidgetState extends State<MemberWidget> {
   Widget _buildRightContent() {
     return Expanded(
       child: Container(
+        alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
+          padding: const EdgeInsets.only(top: 6.0, bottom: 2.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -218,14 +226,15 @@ class MemberWidgetState extends State<MemberWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           ConstrainedBox(
-            constraints: BoxConstraints.tightFor(height: 30),
-            child: Image.network('${Global.TEST_BASE_URL}$urlIconName'),
+            constraints:
+                BoxConstraints.tightFor(height: (_areaHeight > 70) ? 30 : 24),
+            child: networkImageBuilder(urlIconName),
           ),
           Text(
             label,
             style: TextStyle(
                 color: Themes.defaultTextColor,
-                fontSize: FontSize.NORMAL.value - 2),
+                fontSize: FontSize.NORMAL.value),
           ),
         ],
       ),

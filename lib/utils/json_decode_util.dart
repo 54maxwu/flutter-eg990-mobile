@@ -1,24 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
+import 'package:flutter_ty_mobile/utils/string_util.dart';
 
 class JsonDecodeUtil {
-  static bool isHtmlFormat(String str) {
-    final htmlRegex = RegExp(
-      '<\s*html.*?>.*?<\s*/\s*html.*?>',
-    );
-    return htmlRegex.hasMatch(str);
-  }
-
+  /// trim json [str] to prevent data error while decoding
   static String trimJson(dynamic str) {
     final trimRegex = RegExp(r"\s+\b|\b\s|\n|\r\n|\r|\s|\t");
 
     String strBody = """$str""".replaceAll(trimRegex, "");
 //    print("trimmed: $strBody");
-    if (isHtmlFormat(strBody)) throw LocationException();
+    if (strBody.isHtmlFormat) throw LocationException();
     return strBody;
   }
 
+  /// Decode json array [str] into List
   static List<dynamic> decodeArray(dynamic str) {
     final jsonString = trimJson(str);
     try {

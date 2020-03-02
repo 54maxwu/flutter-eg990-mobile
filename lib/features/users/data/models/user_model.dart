@@ -14,9 +14,6 @@ class UserModel extends UserEntity {
   @override
   List<Object> get props => [account, credit, status, vip, vipName];
 
-  UserEntity get parent =>
-      UserEntity(account: account, credit: credit, vip: vip, vipName: vipName);
-
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       account: json['accountcode'],
@@ -39,6 +36,11 @@ class UserModel extends UserEntity {
 
   @override
   String toString() => props.toString();
+
+  bool get isValid => status == 'success';
+
+  UserEntity get entity =>
+      UserEntity(account: account, credit: credit, vip: vip, vipName: vipName);
 
   static UserModel jsonToUserModel(Map<String, dynamic> jsonMap) =>
       UserModel.fromJson(jsonMap);

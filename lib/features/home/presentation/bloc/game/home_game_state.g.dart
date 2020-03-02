@@ -14,14 +14,41 @@ abstract class HomeGameState extends Equatable {
 
   factory HomeGameState.gLoading() = GLoading;
 
-  factory HomeGameState.gLoaded({@required List tabsData}) = GLoaded;
+  factory HomeGameState.gLoaded({@required List<dynamic> tabsData}) = GLoaded;
 
   factory HomeGameState.gError({@required String message}) = GError;
 
   final _HomeGameState _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>(
+      {@required R Function(GInitial) gInitial,
+      @required R Function(GLoading) gLoading,
+      @required R Function(GLoaded) gLoaded,
+      @required R Function(GError) gError}) {
+    assert(() {
+      if (gInitial == null ||
+          gLoading == null ||
+          gLoaded == null ||
+          gError == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameState.GInitial:
+        return gInitial(this as GInitial);
+      case _HomeGameState.GLoading:
+        return gLoading(this as GLoading);
+      case _HomeGameState.GLoaded:
+        return gLoaded(this as GLoaded);
+      case _HomeGameState.GError:
+        return gError(this as GError);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(GInitial) gInitial,
       @required FutureOr<R> Function(GLoading) gLoading,
       @required FutureOr<R> Function(GLoaded) gLoaded,
@@ -47,7 +74,36 @@ abstract class HomeGameState extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GInitial) gInitial,
+      R Function(GLoading) gLoading,
+      R Function(GLoaded) gLoaded,
+      R Function(GError) gError,
+      @required R Function(HomeGameState) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameState.GInitial:
+        if (gInitial == null) break;
+        return gInitial(this as GInitial);
+      case _HomeGameState.GLoading:
+        if (gLoading == null) break;
+        return gLoading(this as GLoading);
+      case _HomeGameState.GLoaded:
+        if (gLoaded == null) break;
+        return gLoaded(this as GLoaded);
+      case _HomeGameState.GError:
+        if (gError == null) break;
+        return gError(this as GError);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GInitial) gInitial,
       FutureOr<R> Function(GLoading) gLoading,
       FutureOr<R> Function(GLoaded) gLoaded,
@@ -76,7 +132,8 @@ abstract class HomeGameState extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GInitial) gInitial,
       FutureOr<void> Function(GLoading) gLoading,
       FutureOr<void> Function(GLoaded) gLoaded,
@@ -115,7 +172,7 @@ class GInitial extends HomeGameState {
   const GInitial._() : super(_HomeGameState.GInitial);
 
   factory GInitial() {
-    _instance ??= GInitial._();
+    _instance ??= const GInitial._();
     return _instance;
   }
 
@@ -127,7 +184,7 @@ class GLoading extends HomeGameState {
   const GLoading._() : super(_HomeGameState.GLoading);
 
   factory GLoading() {
-    _instance ??= GLoading._();
+    _instance ??= const GLoading._();
     return _instance;
   }
 
@@ -138,7 +195,7 @@ class GLoading extends HomeGameState {
 class GLoaded extends HomeGameState {
   const GLoaded({@required this.tabsData}) : super(_HomeGameState.GLoaded);
 
-  final List tabsData;
+  final List<dynamic> tabsData;
 
   @override
   String toString() => 'GLoaded(tabsData:${this.tabsData})';

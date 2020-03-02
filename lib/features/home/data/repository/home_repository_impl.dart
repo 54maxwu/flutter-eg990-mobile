@@ -1,17 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter_ty_mobile/core/data/data_request_handler.dart'
-    show handleResponse;
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
-import 'package:flutter_ty_mobile/core/error/failures.dart';
-import 'package:flutter_ty_mobile/core/network/util/network_info.dart';
+import 'package:flutter_ty_mobile/core/repository_export.dart';
 import 'package:flutter_ty_mobile/features/home/data/form/platform_game_form.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/models.dart';
 import 'package:flutter_ty_mobile/features/home/data/source/home_local_data_source.dart';
 import 'package:flutter_ty_mobile/features/home/data/source/home_remote_data_source.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/entities.dart';
 import 'package:flutter_ty_mobile/features/home/domain/repository/home_repository.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
-import 'package:meta/meta.dart' show required;
 
 class HomeRepositoryImpl implements HomeRepository {
   final tag = 'HomeRepository';
@@ -29,17 +23,17 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, List<BannerEntity>>> getBanners() async {
     final connected = await networkInfo.isConnected;
     print('network connected: $connected');
-    if (!connected) {
-      final test = networkInfo.checkType;
-      print('network type: $test');
-    }
+//    if (!connected) {
+//      final test = networkInfo.checkType;
+//      print('network type: $test');
+//    }
     if (connected) {
       final result = await handleResponse<List<BannerModel>>(
           remoteDataSource.getBanners());
       print('test response type: ${result.runtimeType}');
       return result.fold(
         (failure) {
-          if (failure.runtimeType == NetworkFailure)
+          if (failure.typeIndex == 0)
             return getCachedBanners();
           else
             return Left(failure);
@@ -67,12 +61,13 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<BannerEntity>>> getCachedBanners() async {
     try {
+      print('accessing local data source...');
       var cached = await localDataSource.getCachedBanners();
       print('data from cached source: $cached');
       if (cached.isNotEmpty)
         return Right(cached);
       else
-        return Left(NetworkFailure());
+        return Left(Failure.network());
     } on HiveDataException {
       MyLogger.debug(msg: 'no cached banner', tag: tag);
       return Right(new List<BannerEntity>(0));
@@ -92,7 +87,8 @@ class HomeRepositoryImpl implements HomeRepository {
         (model) => Right(transformMarqueeModelList(model.marquees)),
       );
     }
-    return getCachedMarquees();
+//    return getCachedMarquees();
+    return Future.value(Left(Failure.network()));
   }
 
   List<MarqueeEntity> transformMarqueeModelList(List<MarqueeModel> data) {
@@ -113,7 +109,7 @@ class HomeRepositoryImpl implements HomeRepository {
       if (cached.isNotEmpty)
         return Right(cached);
       else
-        return Left(NetworkFailure());
+        return Left(Failure.network());
     } on HiveDataException {
       MyLogger.debug(msg: 'no cached marquee', tag: tag);
       return Right(new List<MarqueeEntity>(0));
@@ -162,7 +158,7 @@ class HomeRepositoryImpl implements HomeRepository {
           cached.platforms.isNotEmpty)
         return Right(cached);
       else
-        return Left(NetworkFailure());
+        return Left(Failure.network());
     } on HiveDataException {
       MyLogger.debug(msg: 'no cached game-types', tag: tag);
       return Right(new GameTypesEntity(categories: [], platforms: []));
@@ -182,7 +178,7 @@ class HomeRepositoryImpl implements HomeRepository {
         (list) => Right(transformGamesModel(list)),
       );
     }
-    return Left(NetworkFailure());
+    return Left(Failure.network());
   }
 
   List<GameEntity> transformGamesModel(List<GameModel> data) {

@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/marquee_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/repository/home_repository.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
 
 class GetHomeMarqueeData implements UseCase<List<MarqueeEntity>, NoParams> {
   final HomeRepository homeRepository;

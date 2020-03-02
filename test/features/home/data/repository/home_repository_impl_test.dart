@@ -126,7 +126,7 @@ void main() {
         // assert
         verify(mockNetworkInfo.isConnected);
         expect(result.length(), equals(0));
-        expect(result, equals(Left(NetworkFailure())));
+        expect(result, equals(Left(Failure.network())));
       });
     });
   });
@@ -198,7 +198,7 @@ void main() {
         // assert
         verify(mockNetworkInfo.isConnected);
         expect(result.length(), equals(0));
-        expect(result, equals(Left(NetworkFailure())));
+        expect(result, equals(Left(Failure.network())));
       });
     });
   });
@@ -278,7 +278,7 @@ void main() {
         final result = await repository.getGameTypes();
         // assert
         verify(mockNetworkInfo.isConnected);
-        expect(result, equals(Left(NetworkFailure())));
+        expect(result, equals(Left(Failure.network())));
       });
     });
   });

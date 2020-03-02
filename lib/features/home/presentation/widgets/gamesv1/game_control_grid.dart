@@ -4,7 +4,7 @@ import 'package:flutter_ty_mobile/features/home/data/form/platform_game_form.dar
 import 'package:flutter_ty_mobile/features/home/presentation/bloc/bloc_game.dart';
 import 'package:meta/meta.dart' show required;
 
-///
+/// Get games data through [HomeGameBloc], request info is wrapped in [PlatformGameForm]
 /// @author H.C.CHIANG
 /// @version 2020/01/15
 class GameControlGrid extends StatefulWidget {
@@ -26,6 +26,6 @@ class _GameControlGridState extends State<GameControlGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SizedBox.shrink();
   }
 }

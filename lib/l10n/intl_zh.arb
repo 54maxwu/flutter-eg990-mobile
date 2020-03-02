@@ -156,6 +156,10 @@
   "@btnBack": {
     "type": "text"
   },
+  "btnRefresh": "刷新",
+  "@btnRefresh": {
+    "type": "text"
+  },
   "btnLogin": "登入",
   "@btnLogin": {
     "type": "text"
@@ -484,7 +488,11 @@
   "@messageErrorInternal": {
     "type": "text"
   },
-  "messageErrorData": "用户数据错误",
+  "messageErrorCachedFile": "缓存数据错误，请稍候再重试或联系客服",
+  "@messageErrorCachedFile": {
+    "type": "text"
+  },
+  "messageErrorData": "用户数据错误，请重新登入或联系客服",
   "@messageErrorData": {
     "type": "text"
   },
@@ -677,8 +685,8 @@
   "@memberGridTitleWithdraw": {
     "type": "text"
   },
-  "memberGridTitlePlatform": "平台馀额",
-  "@memberGridTitlePlatform": {
+  "memberGridTitleBalance": "平台馀额",
+  "@memberGridTitleBalance": {
     "type": "text"
   },
   "memberGridTitleWallet": "免转钱包",

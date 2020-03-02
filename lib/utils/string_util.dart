@@ -1,5 +1,5 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/mylogger.dart';
 
 extension IntValueExtension on int {
   String valueToString({bool creditSign = false}) =>
@@ -11,8 +11,20 @@ extension DoubleValueExtension on double {
       this.toString().trimValue(floorValue: floorValue, creditSign: creditSign);
 }
 
+final _htmlRegex = RegExp(
+  '<\s*html.*?>.*?<\s*/\s*html.*?>',
+);
+
+extension StringVerifyExtension on String {
+  bool get isUrl => Uri.parse(this).isAbsolute;
+
+  bool get isEmail => EmailValidator.validate(this);
+
+  bool get isHtmlFormat => _htmlRegex.hasMatch(this);
+}
+
 extension ValueStringExtension on String {
-  int get strToInt {
+  int get valueToInt {
     try {
       if (this == null) return -1;
       if (contains('.'))
@@ -25,7 +37,7 @@ extension ValueStringExtension on String {
     }
   }
 
-  double get strToDouble {
+  double get valueToDouble {
     try {
       if (this == null) return double.parse('-1');
       return double.parse(this.replaceAll('￥', '').trim());
@@ -35,34 +47,45 @@ extension ValueStringExtension on String {
     }
   }
 
-  bool isEqual(String secondString) {
-    return this.strToDouble - secondString.strToDouble == 0.0;
+  bool valueIsEqual(String secondString) {
+    return this.valueToDouble - secondString.valueToDouble == 0.0;
   }
 
+  /// [floorValue] floor value to int
+  /// [floorIfInt] floor value to int if value is not double
+  /// [creditSign] add a credit sign as string prefix
   String trimValue(
-      {bool floorValue = false, bool floorIfInt, bool creditSign = false}) {
+      {bool floorValue = false,
+      bool floorIfInt = false,
+      bool creditSign = false}) {
+//    print('floor: $floorValue, floorInt: $floorIfInt, creditSign: $creditSign');
+//    print('value: $this');
     try {
       var value = '';
-      if (floorValue) // 50
-        value = this.strToInt.toString();
-      else if (floorIfInt && contains('.')) {
-        // 50
-        var endValue = this.split('.')[1];
-        if (endValue.strToInt == 0) value = this.strToInt.toString();
-      } else // 50.00
-        value = this.strToDouble.toStringAsFixed(2);
+      if (floorValue) {
+        value = this.valueToInt.toString(); // 50
+      } else if (floorIfInt) {
+        if (contains('.')) {
+          var endValue = this.split('.')[1];
+          if (endValue.valueToInt == 0)
+            value = this.valueToInt.toString(); // 50
+          else
+            value = this.valueToDouble.toStringAsFixed(2); // 50.50
+        } else {
+          value = this.valueToInt.toString(); // 50
+        }
+      } else {
+        value = this.valueToDouble.toStringAsFixed(2); // 50.00
+      }
 
       if (creditSign)
-        return '￥ $value';
+        return '\uffe5$value';
       else
         return value;
     } catch (e) {
       MyLogger.warn(msg: 'trim value has exception', tag: 'trimValue');
+      print('trim value exception: $e');
       return this;
     }
   }
-
-  bool get isUrl => Uri.parse(this).isAbsolute;
-
-  bool get isEmail => EmailValidator.validate(this);
 }

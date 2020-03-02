@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ty_mobile/features/general/widgets/text_input_widget.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/widgets.dart';
+import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
+import 'package:flutter_ty_mobile/features/general/bloc_widget_export.dart'
+    show LoadingWidget, ToastError, TextInputWidget;
 import 'package:flutter_ty_mobile/features/users/data/form/login_form.dart';
 import 'package:flutter_ty_mobile/features/users/presentation/bloc/bloc_user.dart';
 import 'package:flutter_ty_mobile/features/users/presentation/widgets/user_display.dart';
-import 'package:flutter_ty_mobile/temp/blank_widget.dart';
 import 'package:flutter_ty_mobile/utils/value_range.dart';
 
 import '../../widget_res_export.dart' show Themes, localeStr, sl;
 
-///
+/// Main View of [Router.loginRoute]
 ///@author H.C.CHIANG
 ///@version 2020/1/17
 class LoginRoute extends StatefulWidget {
@@ -22,7 +22,7 @@ class _LoginRouteState extends State<LoginRoute> {
   UserLoginBloc _bloc;
   final TextEditingController _usernameController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _username = "";
   String _password = "";
   bool _hidePassword = true;
@@ -73,14 +73,7 @@ class _LoginRouteState extends State<LoginRoute> {
               SizedBox(height: 12.0),
               _buildTextFields(),
               _buildButtons(),
-              Row(
-                children: <Widget>[
-                  new Container(
-                    padding: EdgeInsets.only(top: 16),
-                    child: _testLogin(context),
-                  ),
-                ],
-              ),
+              _testLogin(context),
             ],
           ),
         ),
@@ -142,7 +135,7 @@ class _LoginRouteState extends State<LoginRoute> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4.0),
                   ),
-                  onPressed: _loginPressed,
+                  onPressed: () => _loginPressed(context),
                 ),
               ),
               SizedBox(width: 8.0),
@@ -164,8 +157,14 @@ class _LoginRouteState extends State<LoginRoute> {
     );
   }
 
-  void _loginPressed() {
+  void _loginPressed(BuildContext context) {
     if (_formKey.currentState.validate()) {
+      // hide keyboard
+      try {
+        FocusScope.of(context).unfocus();
+      } catch (e) {
+        MyLogger.warn(msg: 'hide keyboard exception:', error: e);
+      }
       //   If all data are correct then call save() to trigger Form's onSave method
       _formKey.currentState.save();
 //      print('The user wants to login with $_username and $_password');
@@ -189,18 +188,25 @@ class _LoginRouteState extends State<LoginRoute> {
     if (_bloc == null) _bloc = sl<UserLoginBloc>();
     return BlocProvider(
       create: (_) => _bloc,
-      child: Expanded(
-        child: Container(
-          child: BlocBuilder<UserLoginBloc, UserLoginState>(
-            builder: (context, state) {
-              return state.when(
-                uInitial: (_) => BlankWidget(),
-                uLoading: (_) => LoadingWidget(),
-                uLoaded: (_) => UserDisplay(user: state.props.first),
-                uError: (_) => MessageDisplay(message: state.props.first),
-              );
-            },
-          ),
+      child: Container(
+        padding: const EdgeInsets.only(top: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              child: BlocBuilder<UserLoginBloc, UserLoginState>(
+                builder: (context, state) {
+                  return state.when(
+                    uInitial: (_) => SizedBox.shrink(),
+                    uLoading: (_) => LoadingWidget(heightFactor: 4),
+                    uLoaded: (_) => UserDisplay(user: state.props.first),
+                    uError: (_) => ToastError(message: state.props.first),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

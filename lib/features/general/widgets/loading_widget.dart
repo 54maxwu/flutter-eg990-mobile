@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class LoadingWidget extends StatelessWidget {
   final double heightFactor;
 
+  /// Widget's container height is screen height divided by [heightFactor]
+  /// [heightFactor]'s default value is 2
   const LoadingWidget({Key key, this.heightFactor = 2}) : super(key: key);
 
   @override

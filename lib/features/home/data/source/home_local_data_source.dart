@@ -68,8 +68,16 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
 
   @override
   Future<List<BannerEntity>> getCachedBanners() async {
-    var box = await _getHiveBox(HomeBox.Banner);
-    return box.getData<BannerEntity>(identifier: 'banner');
+    try {
+      var box = await _getHiveBox(HomeBox.Banner);
+      return box.getData<BannerEntity>(logKeyword: 'banner');
+    } on HiveDataException {
+      return [];
+    } catch (e) {
+      MyLogger.error(
+          msg: 'box get data has exception: $e', error: e, stackTrace: e);
+      return [];
+    }
   }
 
   @override
@@ -88,8 +96,16 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
 
   @override
   Future<List<MarqueeEntity>> getCachedMarquees() async {
-    var box = await _getHiveBox(HomeBox.Marquee);
-    return box.getData<MarqueeEntity>(identifier: 'marquee');
+    try {
+      var box = await _getHiveBox(HomeBox.Marquee);
+      return box.getData<MarqueeEntity>(logKeyword: 'marquee');
+    } on HiveDataException {
+      return [];
+    } catch (e) {
+      MyLogger.error(
+          msg: 'box get data has exception: $e', error: e, stackTrace: e);
+      return [];
+    }
   }
 
   @override
@@ -108,13 +124,21 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
 
   @override
   Future<GameTypesEntity> getCachedGameTypes() async {
-    var box1 = await _getHiveBox(HomeBox.Category);
-    final categories =
-        box1.getData<GameCategoryModel>(identifier: 'type-category');
-    var box2 = await _getHiveBox(HomeBox.Platform);
-    final platforms =
-        box2.getData<GamePlatformEntity>(identifier: 'type-platform');
-    return GameTypesEntity(categories: categories, platforms: platforms);
+    try {
+      var box1 = await _getHiveBox(HomeBox.Category);
+      final categories =
+          box1.getData<GameCategoryModel>(logKeyword: 'type-category');
+      var box2 = await _getHiveBox(HomeBox.Platform);
+      final platforms =
+          box2.getData<GamePlatformEntity>(logKeyword: 'type-platform');
+      return GameTypesEntity(categories: categories, platforms: platforms);
+    } on HiveDataException {
+      return GameTypesEntity(categories: [], platforms: []);
+    } catch (e) {
+      MyLogger.error(
+          msg: 'box get data has exception: $e', error: e, stackTrace: e);
+      return GameTypesEntity(categories: [], platforms: []);
+    }
   }
 
   @override

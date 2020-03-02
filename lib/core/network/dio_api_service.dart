@@ -1,3 +1,5 @@
+import 'dart:io' show Cookie;
+
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -9,10 +11,10 @@ import 'package:flutter_ty_mobile/mylogger.dart';
 
 class DioApiService {
   static DioApiService _instance;
+  static CookieJar _cookieJar;
 
   Dio _dio;
   BaseOptions _options;
-  CookieJar _cookieJar;
   CancelToken _downloadToken = new CancelToken();
   static const TAG = 'DioApiService';
 
@@ -21,8 +23,10 @@ class DioApiService {
     return _instance;
   }
 
+  static List<Cookie> loadCookies(Uri uri) => _cookieJar.loadForRequest(uri);
+
   DioApiService() {
-    _options = createOptions(Global.TEST_BASE_URL);
+    _options = createOptions(Global.CURRENT_SERVICE);
     _dio = new Dio(_options);
     _dio.transformer = FlutterTransformer(); // replace dio default transformer
     _dio.interceptors.add(DioLoggerInterceptor());
@@ -97,7 +101,7 @@ class DioApiService {
       {data, options, cancelToken, String userToken}) async {
     try {
       if (userToken != null)
-        return await _dio.get(url,
+        return await _dio.post(url,
             queryParameters: data,
             options: Options(headers: {
               'JWT-TOKEN': userToken,

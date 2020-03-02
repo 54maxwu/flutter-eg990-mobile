@@ -16,7 +16,21 @@ abstract class HomeGameEvent extends Equatable {
   final _HomeGameEvent _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>({@required R Function(GetGamesEvent) getGamesEvent}) {
+    assert(() {
+      if (getGamesEvent == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameEvent.GetGamesEvent:
+        return getGamesEvent(this as GetGamesEvent);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required FutureOr<R> Function(GetGamesEvent) getGamesEvent}) {
     assert(() {
       if (getGamesEvent == null) {
@@ -30,7 +44,24 @@ abstract class HomeGameEvent extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GetGamesEvent) getGamesEvent,
+      @required R Function(HomeGameEvent) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameEvent.GetGamesEvent:
+        if (getGamesEvent == null) break;
+        return getGamesEvent(this as GetGamesEvent);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GetGamesEvent) getGamesEvent,
       @required FutureOr<R> Function(HomeGameEvent) orElse}) {
     assert(() {
@@ -47,7 +78,8 @@ abstract class HomeGameEvent extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GetGamesEvent) getGamesEvent}) {
     assert(() {
       if (getGamesEvent == null) {

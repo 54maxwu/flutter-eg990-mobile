@@ -6,7 +6,7 @@ import 'package:flutter_ty_mobile/features/home/domain/entity/entities.dart';
 import 'package:flutter_ty_mobile/mylogger.dart';
 import 'package:meta/meta.dart' show required;
 
-///
+/// Creates a [FLMarqueeLabel] widget to display a list of texts
 /// @author H.C.CHIANG
 /// @version 2020/01/10
 class MarqueeDisplay extends StatelessWidget {
@@ -28,7 +28,7 @@ class MarqueeDisplay extends StatelessWidget {
             !snapshot.hasError) {
           return FLMarqueeLabel(
             text: snapshot.data,
-            style: new TextStyle(fontSize: FontSize.NORMAL.value - 2),
+            style: new TextStyle(fontSize: FontSize.NORMAL.value),
             loop: true,
             velocity: 0.6,
             height: 26,

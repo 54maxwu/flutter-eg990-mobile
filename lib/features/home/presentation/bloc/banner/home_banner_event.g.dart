@@ -17,7 +17,25 @@ abstract class HomeBannerEvent extends Equatable {
   final _HomeBannerEvent _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
+  R when<R>(
+      {@required R Function(GetBannerEvent) getBannerEvent,
+      @required R Function(GetBannerImageEvent) getBannerImageEvent}) {
+    assert(() {
+      if (getBannerEvent == null || getBannerImageEvent == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeBannerEvent.GetBannerEvent:
+        return getBannerEvent(this as GetBannerEvent);
+      case _HomeBannerEvent.GetBannerImageEvent:
+        return getBannerImageEvent(this as GetBannerImageEvent);
+    }
+  }
+
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
       {@required
           FutureOr<R> Function(GetBannerEvent) getBannerEvent,
       @required
@@ -36,7 +54,28 @@ abstract class HomeBannerEvent extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
+  R whenOrElse<R>(
+      {R Function(GetBannerEvent) getBannerEvent,
+      R Function(GetBannerImageEvent) getBannerImageEvent,
+      @required R Function(HomeBannerEvent) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeBannerEvent.GetBannerEvent:
+        if (getBannerEvent == null) break;
+        return getBannerEvent(this as GetBannerEvent);
+      case _HomeBannerEvent.GetBannerImageEvent:
+        if (getBannerImageEvent == null) break;
+        return getBannerImageEvent(this as GetBannerImageEvent);
+    }
+    return orElse(this);
+  }
+
+  Future<R> asyncWhenOrElse<R>(
       {FutureOr<R> Function(GetBannerEvent) getBannerEvent,
       FutureOr<R> Function(GetBannerImageEvent) getBannerImageEvent,
       @required FutureOr<R> Function(HomeBannerEvent) orElse}) {
@@ -57,7 +96,8 @@ abstract class HomeBannerEvent extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
+//ignore: missing_return
+  Future<void> whenPartial(
       {FutureOr<void> Function(GetBannerEvent) getBannerEvent,
       FutureOr<void> Function(GetBannerImageEvent) getBannerImageEvent}) {
     assert(() {
@@ -85,7 +125,7 @@ class GetBannerEvent extends HomeBannerEvent {
   const GetBannerEvent._() : super(_HomeBannerEvent.GetBannerEvent);
 
   factory GetBannerEvent() {
-    _instance ??= GetBannerEvent._();
+    _instance ??= const GetBannerEvent._();
     return _instance;
   }
 
@@ -97,7 +137,7 @@ class GetBannerImageEvent extends HomeBannerEvent {
   const GetBannerImageEvent._() : super(_HomeBannerEvent.GetBannerImageEvent);
 
   factory GetBannerImageEvent() {
-    _instance ??= GetBannerImageEvent._();
+    _instance ??= const GetBannerImageEvent._();
     return _instance;
   }
 

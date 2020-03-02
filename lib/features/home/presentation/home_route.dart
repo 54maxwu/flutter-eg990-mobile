@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/bloc/bloc_route.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/member_widget.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/widgets.dart';
-import 'package:flutter_ty_mobile/features/users/presentation/user_data.dart';
+import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_widgets_export.dart';
 
 import '../../widget_res_export.dart'
     show FontSize, Global, RouterNavigate, Themes, localeStr, sl;
 
+/// Main View of [Router.homeRoute]
 ///@author H.C.CHIANG
 ///@version 2020/2/12
 class HomeRoute extends StatefulWidget {
@@ -19,10 +17,18 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute> {
-  final ScrollController _scrollViewController = ScrollController();
   final GlobalKey<MemberWidgetState> _memberWidgetKey =
-      new GlobalKey<MemberWidgetState>();
+      GlobalKey<MemberWidgetState>();
+  Widget _homeWidget;
   MemberWidget _memberWidget;
+
+  Key _key = UniqueKey();
+
+  void restartHome() {
+    setState(() {
+      _key = new UniqueKey();
+    });
+  }
 
   @override
   void initState() {
@@ -40,89 +46,82 @@ class _HomeRouteState extends State<HomeRoute> {
   void didChangeDependencies() {
     print('home changed');
     super.didChangeDependencies();
-  }
-
-  void testUpdate() {
-    print('test update');
+    if (_memberWidget != null) restartHome();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('home user data: ${sl.get<UserData>().toString()}');
-    return Scaffold(
-      backgroundColor: Themes.defaultBackgroundColor,
-      body: NestedScrollView(
-        controller: _scrollViewController,
-        headerSliverBuilder: (context, boxIsScrolled) {
-          return <Widget>[
-            SliverToBoxAdapter(
-              child: Row(
-                children: <Widget>[
-                  _buildBannerBody(context),
-                ],
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Row(
-                children: <Widget>[
-                  _buildMarqueeDecorLeft(),
-                  _buildMarqueeBody(context),
-                  _buildMarqueeDecorRight(),
-                ],
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: StreamBuilder<bool>(
-                stream: RouterNavigate.routerStreams.userStream,
-                initialData: false,
-                builder: (context, snapshot) {
-                  print('checking member widget...');
-                  if (_memberWidget == null) {
-                    _memberWidget = MemberWidget(key: _memberWidgetKey);
-                  } else if (snapshot.data) {
-                    _memberWidgetKey.currentState.updateUser();
-                    RouterNavigate.resetCheckUser();
-                  }
-                  return _memberWidget;
-                },
-              ),
-            ),
-          ];
-        },
-        body: Row(
+    _homeWidget ??= KeyedSubtree(
+      key: _key,
+      child: Scaffold(
+        backgroundColor: Themes.defaultBackgroundColor,
+        body: Column(
           children: <Widget>[
-            _buildGameContainer(context),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 4,
+                    child: _buildBannerBody(),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: <Widget>[
+                        _buildMarqueeDecorLeft(),
+                        _buildMarqueeBody(),
+                        _buildMarqueeDecorRight(),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: StreamBuilder<bool>(
+                      stream: RouterNavigate.routerStreams.recheckUserStream,
+                      initialData: false,
+                      builder: (context, snapshot) {
+//                      print('checking member widget: ${getUserData.toString()}');
+                        if (_memberWidget == null) {
+                          _memberWidget = MemberWidget(key: _memberWidgetKey);
+                        } else if (snapshot.data) {
+                          _memberWidgetKey.currentState.updateUser();
+                          RouterNavigate.resetCheckUser();
+                        }
+                        return _memberWidget;
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: _buildGameContainer(),
+            ),
           ],
         ),
       ),
     );
+    return _homeWidget;
   }
 
-  BlocProvider<HomeBannerBloc> _buildBannerBody(BuildContext context) {
+  BlocProvider<HomeBannerBloc> _buildBannerBody() {
     return BlocProvider(
       create: (_) => sl<HomeBannerBloc>(),
-      child: Expanded(
-        child: Container(
-          child: AspectRatio(
-            aspectRatio: 16 / 6.15,
-            child: ClipRect(
-              child: BlocBuilder<HomeBannerBloc, HomeBannerState>(
-                builder: (context, state) {
-                  return state.when(
-                    bInitial: (_) => BannerControl(),
-                    bLoading: (_) => LoadingWidget(),
-                    bCaching: (_) {
-                      print('banner state props: ${state.props.first}');
-                      return BannerCached(banners: state.props.first);
-                    },
-                    bLoaded: (_) => BannerDisplay(images: state.props.first),
-                    bError: (_) => Icon(Icons.broken_image,
-                        color: Themes.defaultTextColor),
-                  );
-                },
-              ),
-            ),
-          ),
+      child: ClipRect(
+        child: BlocBuilder<HomeBannerBloc, HomeBannerState>(
+          builder: (context, state) {
+            return state.when(
+              bInitial: (_) => BannerControl(),
+              bLoading: (_) => LoadingWidget(),
+              bCaching: (_) {
+                print('banner state props: ${state.props.first}');
+                return BannerCached(banners: state.props.first);
+              },
+              bLoaded: (_) => BannerDisplay(images: state.props.first),
+              bError: (_) =>
+                  Icon(Icons.broken_image, color: Themes.defaultTextColor),
+            );
+          },
         ),
       ),
     );
@@ -131,7 +130,7 @@ class _HomeRouteState extends State<HomeRoute> {
   Expanded _buildMarqueeDecorLeft() {
     return Expanded(
       child: new Padding(
-        padding: EdgeInsets.only(left: 3.0),
+        padding: EdgeInsets.only(left: 6.0),
         child: Icon(IconData(0xf027, fontFamily: 'FontAwesome'),
             color: Themes.accentLightColor),
       ),
@@ -142,18 +141,18 @@ class _HomeRouteState extends State<HomeRoute> {
     return Expanded(
       flex: 3,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
         child: ButtonTheme(
           shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: RaisedButton(
             color: Themes.defaultAccentColor,
-            child: new Text(
+            child: Text(
               localeStr.pageTitleMarquee,
               style: TextStyle(
-                  fontSize: FontSize.NORMAL.value - 2,
+                  fontSize: FontSize.NORMAL.value,
                   color: Themes.defaultTextColorBlack),
             ),
             visualDensity: VisualDensity(horizontal: -4.0, vertical: -3.0),
@@ -164,7 +163,7 @@ class _HomeRouteState extends State<HomeRoute> {
     );
   }
 
-  BlocProvider<HomeMarqueeBloc> _buildMarqueeBody(BuildContext context) {
+  BlocProvider<HomeMarqueeBloc> _buildMarqueeBody() {
     return BlocProvider(
       create: (_) => sl<HomeMarqueeBloc>(),
       child: Expanded(
@@ -173,10 +172,16 @@ class _HomeRouteState extends State<HomeRoute> {
           builder: (context, state) {
             return state.when(
               mInitial: (_) => MarqueeControl(),
-              mLoading: (_) => Container(),
+              mLoading: (_) => SizedBox.shrink(),
               mLoaded: (_) => MarqueeDisplay(marquees: state.props.first),
-              mError: (_) => MessageDisplay(
-                message: state.props.first,
+              mError: (_) => Padding(
+                padding: const EdgeInsets.only(left: 48.0, right: 16.0),
+                child: MessageDisplay(
+                  message: state.props.first,
+                  smallText: Global.device.width <= 360,
+                  highlight: true,
+                  widthFactor: 2,
+                ),
               ),
             );
           },
@@ -185,7 +190,7 @@ class _HomeRouteState extends State<HomeRoute> {
     );
   }
 
-  BlocProvider<HomeGameTabsBloc> _buildGameContainer(BuildContext context) {
+  BlocProvider<HomeGameTabsBloc> _buildGameContainer() {
     return BlocProvider(
       create: (_) => sl<HomeGameTabsBloc>(),
       child: ConstrainedBox(
@@ -193,7 +198,7 @@ class _HomeRouteState extends State<HomeRoute> {
           width: Global.device.width,
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(6.0, 8.0, 2.0, 4.0),
+          padding: const EdgeInsets.fromLTRB(6.0, 0.0, 2.0, 4.0),
           child: BlocBuilder<HomeGameTabsBloc, HomeGameTabsState>(
             builder: (context, state) {
               return state.when(

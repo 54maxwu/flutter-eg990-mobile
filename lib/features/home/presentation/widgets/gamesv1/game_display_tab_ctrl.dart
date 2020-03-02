@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+/// Keeps controller instance and creates a [PageView] widget to control tabs page
 class GameDisplayTabCtrl extends StatefulWidget {
   const GameDisplayTabCtrl({
     Key key,

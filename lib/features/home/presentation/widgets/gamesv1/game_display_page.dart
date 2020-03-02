@@ -1,22 +1,21 @@
-import 'dart:io' show File;
-
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ty_mobile/core/data/cached_image_file.dart';
+import 'package:flutter_ty_mobile/core/error/exceptions.dart';
+import 'package:flutter_ty_mobile/features/general/bloc_widget_export.dart'
+    show LoadingWidget, MessageDisplay;
 import 'package:flutter_ty_mobile/features/home/data/form/platform_game_form.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/game_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/game_platform_entity.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/bloc/bloc_game.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/widgets.dart';
 import 'package:flutter_ty_mobile/mylogger.dart';
 
-import '../../../../widget_res_export.dart' show FontSize, Global, sl;
+import '../../../../widget_res_export.dart'
+    show FontSize, sl, networkImageWidget;
 import 'game_control_grid.dart';
 
-///
+/// Create Platforms and Games [GridView]
 ///@author H.C.CHIANG
-///@version 2020/1/15
+///@version 2020/2/10
 class GameDisplayPage extends StatefulWidget {
   final List<GamePlatformEntity> platforms;
 
@@ -45,20 +44,25 @@ class _GameDisplayPageState extends State<GameDisplayPage>
     });
   }
 
+  /// Pass in a [itemData] on grid item tap or back button pressed.
+  /// [itemData] should be [GamePlatformEntity] or [GameEntity]
+  /// else throw [UnknownConditionException].
   void _onItemTap(dynamic itemData) {
     if (itemData is GamePlatformEntity) {
       if (_isGameGrid) {
-        print('clicked back');
+//        print('clicked back');
         _setContent(_createPlatformGrid());
       } else if (itemData.hasGames) {
-        print('clicked platform: ${itemData.className}, data: $itemData');
+//        print('clicked platform: ${itemData.className}, data: $itemData');
         _setContent(_createGamesView(itemData));
-      } else
+      } else {
         print('clicked game: ${itemData.gameUrl}');
+      }
     } else if (itemData is GameEntity) {
       print('clicked game: ${itemData.gameUrl}');
     } else {
       MyLogger.warn(msg: 'tapped item unknown, data: $itemData', tag: tag);
+      throw UnknownConditionException();
     }
   }
 
@@ -92,7 +96,7 @@ class _GameDisplayPageState extends State<GameDisplayPage>
       physics: ClampingScrollPhysics(),
       crossAxisCount: 2,
       crossAxisSpacing: 4.0,
-      childAspectRatio: 0.85,
+      childAspectRatio: 0.95,
       shrinkWrap: true,
       children:
           widget.platforms.map((entity) => _createGridItem(entity)).toList(),
@@ -109,7 +113,8 @@ class _GameDisplayPageState extends State<GameDisplayPage>
           Row(
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                visualDensity: VisualDensity.compact,
+                icon: Icon(Icons.arrow_back_ios, size: 20),
                 onPressed: () => _onItemTap(platform),
               ),
               FutureBuilder(
@@ -128,7 +133,7 @@ class _GameDisplayPageState extends State<GameDisplayPage>
               SizedBox(width: 12.0),
               Text(
                 platform.getLabel(),
-                style: TextStyle(fontSize: FontSize.TITLE.value),
+                style: TextStyle(fontSize: FontSize.SUBTITLE.value),
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -162,7 +167,7 @@ class _GameDisplayPageState extends State<GameDisplayPage>
     return new GridView.count(
       physics: ClampingScrollPhysics(),
       crossAxisCount: 3,
-      childAspectRatio: 0.63,
+      childAspectRatio: 0.7,
       shrinkWrap: true,
       children: games.map((entity) => _createGridItem(entity)).toList(),
     );
@@ -172,8 +177,13 @@ class _GameDisplayPageState extends State<GameDisplayPage>
   /// Returns a [Stack] widget with image and name
   Widget _createGridItem(dynamic entity) {
     var label = (entity is GameEntity) ? entity.cname : entity.getLabel();
+    double textMargin;
+    if (!_isGameGrid)
+      textMargin = 4;
+    else
+      textMargin = 0;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4.0),
+      padding: const EdgeInsets.only(bottom: 2.0),
       child: GestureDetector(
         onTap: () => _onItemTap(entity),
         child: Stack(
@@ -181,28 +191,30 @@ class _GameDisplayPageState extends State<GameDisplayPage>
           overflow: Overflow.visible,
           children: <Widget>[
             FutureBuilder(
-                future: _imageWidget(entity.imageUrl,
-                    isGame: (entity is GameEntity)),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done &&
-                      !snapshot.hasError) {
-                    return snapshot.data;
-                  } else if (snapshot.hasError) {
-                    MyLogger.warn(
-                        msg: 'snapshot error: ${snapshot.error}', tag: tag);
-                    return Icon(Icons.broken_image);
-                  } else {
-                    return Container();
-                  }
-                }),
+              future:
+                  _imageWidget(entity.imageUrl, isGame: (entity is GameEntity)),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    !snapshot.hasError) {
+                  return snapshot.data;
+                } else if (snapshot.hasError) {
+                  MyLogger.warn(
+                      msg: 'snapshot error: ${snapshot.error}', tag: tag);
+                  return Center(child: Icon(Icons.broken_image));
+                } else {
+                  return SizedBox.shrink();
+                }
+              },
+            ),
             Positioned(
               // stack align at bottom
-              bottom: (label.length > 4 || !_isGameGrid) ? 0 : 8,
+              bottom: textMargin,
               child: ConstrainedBox(
                 constraints: BoxConstraints.tightFor(
-                  width: 80,
-                  height:
-                      FontSize.NORMAL.value * 3, // preserved height for text
+                  width: FontSize.NORMAL.value * 5,
+                  height: (!_isGameGrid)
+                      ? FontSize.NORMAL.value * 2
+                      : FontSize.NORMAL.value * 3, // preserved height for text
                 ),
                 child: Align(
                   alignment: Alignment.center,
@@ -211,6 +223,10 @@ class _GameDisplayPageState extends State<GameDisplayPage>
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: (_isGameGrid)
+                            ? FontSize.NORMAL.value
+                            : FontSize.SUBTITLE.value),
                   ),
                 ),
               ),
@@ -221,52 +237,28 @@ class _GameDisplayPageState extends State<GameDisplayPage>
     );
   }
 
-  ///
   /// Provide image's [url] to create network image
   /// set [isIconSize] to true to return preferred size image
   /// set [isGame] to true to scale down the image to 0.9
   Future<Widget> _imageWidget(String url,
       {bool isIconSize = false, bool isGame = false}) async {
-    String imageUrl = '${Global.TEST_BASE_URL}$url';
-    final image = await Future.value(checkCachedImage(imageUrl)).then((item) {
-      if (item is File) {
-        return Image.file(
-          item,
-          fit: isIconSize ? BoxFit.contain : BoxFit.fill,
-        );
-      } else {
-        return ExtendedImage.network(
-          imageUrl,
-          fit: isIconSize ? BoxFit.contain : BoxFit.fill,
-          loadStateChanged: (ExtendedImageState state) {
-            switch (state.extendedImageLoadState) {
-              case LoadState.completed:
-                return state.completedWidget;
-              case LoadState.failed:
-                return Icon(Icons.broken_image, color: Colors.grey[400]);
-              default:
-                return null;
-            }
-          },
-        );
-      }
-    });
-
+    final image = await networkImageWidget(url, fillContainer: !isIconSize);
     if (!isIconSize) {
       if (!isGame) {
         // platform image
         return AspectRatio(
           aspectRatio: 16 / 15,
-          child: image,
+          child: Transform.scale(scale: 0.9, child: image),
         );
       } else {
         // game image (scale value needs to consider grid's childAspectRatio)
-        return Transform.scale(scale: 0.9, child: image);
+        return Transform.scale(scale: 0.8, child: image);
       }
     } else {
       // game platform icon
       return ConstrainedBox(
-        constraints: BoxConstraints.tightFor(height: 32),
+        constraints:
+            BoxConstraints.tightFor(height: FontSize.SUBTITLE.value * 1.5),
         child: image,
       );
     }

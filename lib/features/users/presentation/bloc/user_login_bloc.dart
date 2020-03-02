@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
+import 'package:flutter_ty_mobile/features/general/data/model/request_status_model.dart';
 import 'package:flutter_ty_mobile/features/users/domain/usecase/get_user.dart';
 import 'package:meta/meta.dart' show required;
 import 'package:super_enum/super_enum.dart';
@@ -46,8 +47,17 @@ class UserLoginBloc extends Bloc<UserLoginEvent, UserLoginState> {
   Stream<UserLoginState> streamUserDataState(GetUserEvent event) async* {
     final failureOrData = await getUserData(DataParams(event.form));
     yield failureOrData.fold(
-      // TODO add failure alert
-      (failure) => UserLoginState.uError(message: failure.message),
+      (failure) {
+        var message = '';
+        if (failure.props.isNotEmpty) {
+          var failureData = failure.props.first;
+          // show the message from the model
+          if (failureData is RequestStatusModel) message = failureData.msg;
+        }
+        // else show failure's message
+        if (message.isEmpty) message = failure.message;
+        return UserLoginState.uError(message: message);
+      },
       (data) => UserLoginState.uLoaded(user: data),
     );
   }

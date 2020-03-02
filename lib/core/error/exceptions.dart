@@ -1,3 +1,5 @@
+import 'package:flutter_ty_mobile/features/general/data/model/request_status_model.dart';
+
 class NetworkException implements Exception {}
 
 class LocationException implements Exception {}
@@ -18,9 +20,19 @@ class RequestCanceledException implements ServerException {}
 
 class ResponseException implements ServerException {}
 
+class DownloadException implements ServerException {}
+
 class UnknownException implements ServerException {}
 
-class DownloadException implements ServerException {}
+class LoginException implements Exception {
+  final RequestStatusModel data;
+  LoginException({this.data});
+  @override
+  String toString() {
+    if (data != null) return super.toString();
+    return 'LoginException!! data:$data';
+  }
+}
 
 class JsonFormatException implements Exception {
   final String json;

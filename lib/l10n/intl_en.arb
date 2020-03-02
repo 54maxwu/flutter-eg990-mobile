@@ -156,6 +156,10 @@
   "@btnBack": {
     "type": "text"
   },
+  "btnRefresh": "Refresh",
+  "@btnRefresh": {
+    "type": "text"
+  },
   "btnLogin": "Login",
   "@btnLogin": {
     "type": "text"
@@ -484,6 +488,10 @@
   "@messageErrorInternal": {
     "type": "text"
   },
+  "messageErrorCachedFile": "Cached file error, please try again later or contact customer service",
+  "@messageErrorCachedFile": {
+    "type": "text"
+  },
   "messageErrorData": "User data error",
   "@messageErrorData": {
     "type": "text"
@@ -677,8 +685,8 @@
   "@memberGridTitleWithdraw": {
     "type": "text"
   },
-  "memberGridTitlePlatform": "Platform balance",
-  "@memberGridTitlePlatform": {
+  "memberGridTitleBalance": "Platform balance",
+  "@memberGridTitleBalance": {
     "type": "text"
   },
   "memberGridTitleWallet": "Transfer Wallet",

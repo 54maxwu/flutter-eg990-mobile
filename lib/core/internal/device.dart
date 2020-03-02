@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show MediaQueryData, Orientation;
 
 class Device {
   MediaQueryData _mediaQueryData;
@@ -14,6 +14,18 @@ class Device {
     return 'width=$_screenWidth height=$_screenHeight';
   }
 
-  dynamic get width => _screenWidth;
-  dynamic get height => _screenHeight;
+  /// device's current orientation
+  Orientation get orientation => _mediaQueryData.orientation;
+
+  /// screen's ratio = width / height
+  double get ratio => _mediaQueryData.size.aspectRatio;
+
+  /// screen's ratio = height / width
+  double get ratioHor => _mediaQueryData.size.flipped.aspectRatio;
+
+  /// device's width
+  double get width => _screenWidth;
+
+  /// device's height
+  double get height => _screenHeight;
 }

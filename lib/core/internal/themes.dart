@@ -10,7 +10,7 @@ class Themes {
   static final defaultWidgetColor = Color(0xffb5b5b5);
   static final defaultWidgetBgColor = Color(0xff383838);
   static final defaultDisabledColor = Color(0xff575757);
-  static final defaultErrorColor = Color(0xffd32f2f);
+  static final defaultErrorColor = Color(0xffe53935);
 
   static final accentLightColor = Color(0xffeace98);
   static final dialogBgColor = Color(0xff424242);
@@ -34,7 +34,9 @@ class Themes {
   static final fieldInputBgColor = Color(0xff4e4e4e);
   static final fieldInputHintColor = Color(0xffececec);
 
-  static final homeMemberAreaHeight = 76.0;
+  static final linearAccentColor1 = Color(0xffbb904d);
+  static final linearAccentColor2 = Color(0xffe3b977);
+  static final linearAccentColor3 = Color(0xffca9a51);
 
   final defaultTheme = ThemeData.dark().copyWith(
     primaryColor: defaultAppbarColor,
@@ -88,17 +90,17 @@ class Themes {
       subtitle1: TextStyle(
           color: defaultTextColorWhite, fontSize: FontSize.MESSAGE.value),
       subtitle2:
-          TextStyle(color: defaultHintColor, fontSize: FontSize.MESSAGE.value),
+          TextStyle(color: defaultHintColor, fontSize: FontSize.SUBTITLE.value),
       bodyText1:
-          TextStyle(color: defaultTextColor, fontSize: FontSize.NORMAL.value),
+          TextStyle(color: defaultTextColor, fontSize: FontSize.SUBTITLE.value),
       bodyText2: TextStyle(
           color: defaultTextColorWhite, fontSize: FontSize.NORMAL.value),
       button: TextStyle(
           color: defaultTextColorBlack, fontSize: FontSize.NORMAL.value),
       caption: TextStyle(
-          color: defaultMessageColor, fontSize: FontSize.NORMAL.value - 2),
+          color: defaultMessageColor, fontSize: FontSize.NORMAL.value - 1),
       overline: TextStyle(
-          color: accentLightColor, fontSize: FontSize.NORMAL.value - 4),
+          color: accentLightColor, fontSize: FontSize.NORMAL.value - 2),
     ),
     /* Input-Field Theme */
     inputDecorationTheme: InputDecorationTheme(
@@ -108,9 +110,9 @@ class Themes {
       focusedErrorBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
-      filled: true,
+      filled: true, // filled the field with color
       fillColor: fieldInputBgColor,
-      isDense: true,
+      isDense: true, // used less vertical space
       labelStyle: TextStyle(
         color: defaultHintColor,
         fontSize: FontSize.NORMAL.value,

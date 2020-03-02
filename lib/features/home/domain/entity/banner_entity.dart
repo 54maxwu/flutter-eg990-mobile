@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_ty_mobile/core/data/data_operator.dart';
+import 'package:flutter_ty_mobile/core/base/data_operator.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
 import 'package:to_string/to_string.dart';

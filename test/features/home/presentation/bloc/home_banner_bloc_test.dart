@@ -2,12 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_ty_mobile/core/base/usecase.dart';
-import 'package:flutter_ty_mobile/core/error/failure_messages.dart';
 import 'package:flutter_ty_mobile/core/error/failures.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/banner_entity.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner_image_info.dart';
+import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner_data.dart';
+import 'package:flutter_ty_mobile/features/home/domain/usecase/get_banner_image.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/bloc/bloc_banner.dart';
 import 'package:mockito/mockito.dart';
 
@@ -43,7 +42,7 @@ void main() {
     sort: 8,
   );
 
-  final String bannerUrl = Global.TEST_BASE_URL + bannerInfo.picMobile;
+  final String bannerUrl = Global.CURRENT_SERVICE + bannerInfo.picMobile;
 
   test('initialState should be Empty', () {
     // assert
@@ -99,7 +98,7 @@ void main() {
       () async {
         // arrange
         when(mockGetHomeBanner(any))
-            .thenAnswer((_) async => Left(ServerFailure()));
+            .thenAnswer((_) async => Left(Failure.server()));
         // assert later
         // act
         bloc.add(GetBannerEvent());
@@ -109,7 +108,7 @@ void main() {
         // assert
         await Future.delayed(Duration(milliseconds: 200));
         expect(bloc.state,
-            HomeBannerState.bError(message: SERVER_FAILURE_MESSAGE));
+            HomeBannerState.bError(message: Failure.server().message));
       },
     );
   });
@@ -125,7 +124,7 @@ void main() {
 
     blocTest(
       'emits [initial] when nothing is added',
-      build: () => bloc,
+      build: () async => bloc,
       expect: [HomeBannerState.bInitial()],
     );
 

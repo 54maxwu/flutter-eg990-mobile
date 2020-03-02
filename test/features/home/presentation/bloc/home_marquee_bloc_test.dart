@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_ty_mobile/core/base/usecase.dart';
-import 'package:flutter_ty_mobile/core/error/failure_messages.dart';
 import 'package:flutter_ty_mobile/core/error/failures.dart';
 import 'package:flutter_ty_mobile/features/home/domain/entity/marquee_entity.dart';
 import 'package:flutter_ty_mobile/features/home/domain/usecase/get_marquee.dart';
@@ -76,7 +75,7 @@ void main() {
       () async {
         // arrange
         when(mockGetHomeMarquee(any))
-            .thenAnswer((_) async => Left(ServerFailure()));
+            .thenAnswer((_) async => Left(Failure.server()));
         // assert later
         // act
         bloc.add(GetMarqueeEvent());
@@ -86,7 +85,7 @@ void main() {
         // assert
         await Future.delayed(Duration(milliseconds: 200));
         expect(bloc.state,
-            HomeMarqueeState.mError(message: SERVER_FAILURE_MESSAGE));
+            HomeMarqueeState.mError(message: Failure.server().message));
       },
     );
   });
@@ -94,7 +93,7 @@ void main() {
   group('test home banner bloc state', () {
     blocTest(
       'emits [initial] when nothing is added',
-      build: () => bloc,
+      build: () async => bloc,
       expect: [HomeMarqueeState.mInitial()],
     );
 

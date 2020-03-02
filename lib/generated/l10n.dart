@@ -362,6 +362,15 @@ class S {
     );
   }
 
+  String get btnRefresh {
+    return Intl.message(
+      'Refresh',
+      name: 'btnRefresh',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get btnLogin {
     return Intl.message(
       'Login',
@@ -938,6 +947,15 @@ class S {
     );
   }
 
+  String get messageErrorCachedFile {
+    return Intl.message(
+      'Cached file error, please try again later or contact customer service',
+      name: 'messageErrorCachedFile',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get messageErrorData {
     return Intl.message(
       'User data error',
@@ -1361,10 +1379,10 @@ class S {
     );
   }
 
-  String get memberGridTitlePlatform {
+  String get memberGridTitleBalance {
     return Intl.message(
       'Platform balance',
-      name: 'memberGridTitlePlatform',
+      name: 'memberGridTitleBalance',
       desc: '',
       args: [],
     );

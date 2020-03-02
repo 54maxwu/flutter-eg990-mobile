@@ -7,26 +7,26 @@ part of 'home_game_tabs_state.dart';
 // **************************************************************************
 
 @immutable
-abstract class HomeGameTabsState<T> extends Equatable {
+abstract class HomeGameTabsState extends Equatable {
   const HomeGameTabsState(this._type);
 
-  factory HomeGameTabsState.tInitial() = TInitial<T>;
+  factory HomeGameTabsState.tInitial() = TInitial;
 
-  factory HomeGameTabsState.tLoading() = TLoading<T>;
+  factory HomeGameTabsState.tLoading() = TLoading;
 
   factory HomeGameTabsState.tLoaded({@required GameTypesEntity types}) =
-      TLoaded<T>;
+      TLoaded;
 
-  factory HomeGameTabsState.tError({@required String message}) = TError<T>;
+  factory HomeGameTabsState.tError({@required String message}) = TError;
 
   final _HomeGameTabsState _type;
 
 //ignore: missing_return
-  FutureOr<R> when<R>(
-      {@required FutureOr<R> Function(TInitial<T>) tInitial,
-      @required FutureOr<R> Function(TLoading<T>) tLoading,
-      @required FutureOr<R> Function(TLoaded<T>) tLoaded,
-      @required FutureOr<R> Function(TError<T>) tError}) {
+  R when<R>(
+      {@required R Function(TInitial) tInitial,
+      @required R Function(TLoading) tLoading,
+      @required R Function(TLoaded) tLoaded,
+      @required R Function(TError) tError}) {
     assert(() {
       if (tInitial == null ||
           tLoading == null ||
@@ -48,12 +48,39 @@ abstract class HomeGameTabsState<T> extends Equatable {
     }
   }
 
-  FutureOr<R> whenOrElse<R>(
-      {FutureOr<R> Function(TInitial<T>) tInitial,
-      FutureOr<R> Function(TLoading<T>) tLoading,
-      FutureOr<R> Function(TLoaded<T>) tLoaded,
-      FutureOr<R> Function(TError<T>) tError,
-      @required FutureOr<R> Function(HomeGameTabsState<T>) orElse}) {
+//ignore: missing_return
+  Future<R> asyncWhen<R>(
+      {@required FutureOr<R> Function(TInitial) tInitial,
+      @required FutureOr<R> Function(TLoading) tLoading,
+      @required FutureOr<R> Function(TLoaded) tLoaded,
+      @required FutureOr<R> Function(TError) tError}) {
+    assert(() {
+      if (tInitial == null ||
+          tLoading == null ||
+          tLoaded == null ||
+          tError == null) {
+        throw 'check for all possible cases';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameTabsState.TInitial:
+        return tInitial(this as TInitial);
+      case _HomeGameTabsState.TLoading:
+        return tLoading(this as TLoading);
+      case _HomeGameTabsState.TLoaded:
+        return tLoaded(this as TLoaded);
+      case _HomeGameTabsState.TError:
+        return tError(this as TError);
+    }
+  }
+
+  R whenOrElse<R>(
+      {R Function(TInitial) tInitial,
+      R Function(TLoading) tLoading,
+      R Function(TLoaded) tLoaded,
+      R Function(TError) tError,
+      @required R Function(HomeGameTabsState) orElse}) {
     assert(() {
       if (orElse == null) {
         throw 'Missing orElse case';
@@ -77,11 +104,41 @@ abstract class HomeGameTabsState<T> extends Equatable {
     return orElse(this);
   }
 
-  FutureOr<void> whenPartial(
-      {FutureOr<void> Function(TInitial<T>) tInitial,
-      FutureOr<void> Function(TLoading<T>) tLoading,
-      FutureOr<void> Function(TLoaded<T>) tLoaded,
-      FutureOr<void> Function(TError<T>) tError}) {
+  Future<R> asyncWhenOrElse<R>(
+      {FutureOr<R> Function(TInitial) tInitial,
+      FutureOr<R> Function(TLoading) tLoading,
+      FutureOr<R> Function(TLoaded) tLoaded,
+      FutureOr<R> Function(TError) tError,
+      @required FutureOr<R> Function(HomeGameTabsState) orElse}) {
+    assert(() {
+      if (orElse == null) {
+        throw 'Missing orElse case';
+      }
+      return true;
+    }());
+    switch (this._type) {
+      case _HomeGameTabsState.TInitial:
+        if (tInitial == null) break;
+        return tInitial(this as TInitial);
+      case _HomeGameTabsState.TLoading:
+        if (tLoading == null) break;
+        return tLoading(this as TLoading);
+      case _HomeGameTabsState.TLoaded:
+        if (tLoaded == null) break;
+        return tLoaded(this as TLoaded);
+      case _HomeGameTabsState.TError:
+        if (tError == null) break;
+        return tError(this as TError);
+    }
+    return orElse(this);
+  }
+
+//ignore: missing_return
+  Future<void> whenPartial(
+      {FutureOr<void> Function(TInitial) tInitial,
+      FutureOr<void> Function(TLoading) tLoading,
+      FutureOr<void> Function(TLoaded) tLoaded,
+      FutureOr<void> Function(TError) tError}) {
     assert(() {
       if (tInitial == null &&
           tLoading == null &&
@@ -112,11 +169,11 @@ abstract class HomeGameTabsState<T> extends Equatable {
 }
 
 @immutable
-class TInitial<T> extends HomeGameTabsState<T> {
+class TInitial extends HomeGameTabsState {
   const TInitial._() : super(_HomeGameTabsState.TInitial);
 
   factory TInitial() {
-    _instance ??= TInitial._();
+    _instance ??= const TInitial._();
     return _instance;
   }
 
@@ -124,11 +181,11 @@ class TInitial<T> extends HomeGameTabsState<T> {
 }
 
 @immutable
-class TLoading<T> extends HomeGameTabsState<T> {
+class TLoading extends HomeGameTabsState {
   const TLoading._() : super(_HomeGameTabsState.TLoading);
 
   factory TLoading() {
-    _instance ??= TLoading._();
+    _instance ??= const TLoading._();
     return _instance;
   }
 
@@ -136,7 +193,7 @@ class TLoading<T> extends HomeGameTabsState<T> {
 }
 
 @immutable
-class TLoaded<T> extends HomeGameTabsState<T> {
+class TLoaded extends HomeGameTabsState {
   const TLoaded({@required this.types}) : super(_HomeGameTabsState.TLoaded);
 
   final GameTypesEntity types;
@@ -148,7 +205,7 @@ class TLoaded<T> extends HomeGameTabsState<T> {
 }
 
 @immutable
-class TError<T> extends HomeGameTabsState<T> {
+class TError extends HomeGameTabsState {
   const TError({@required this.message}) : super(_HomeGameTabsState.TError);
 
   final String message;

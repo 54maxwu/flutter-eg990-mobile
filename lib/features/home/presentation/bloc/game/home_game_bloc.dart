@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_ty_mobile/features/home/domain/usecase/get_games.dart';
-import 'package:flutter_ty_mobile/features/home/domain/usecase/usecase_export.dart';
+import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
 import 'package:meta/meta.dart' show required;
 import 'package:super_enum/super_enum.dart';
 
