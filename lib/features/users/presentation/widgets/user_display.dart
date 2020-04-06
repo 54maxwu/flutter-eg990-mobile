@@ -1,32 +1,32 @@
 import 'package:flui/flui.dart' show FLToast;
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/features/users/domain/entity/user_entity.dart';
-import 'package:flutter_ty_mobile/features/widget_res_export.dart'
-    show
-        HexColor,
-        RouterNavigate,
-        RouterPageInfo,
-        getRouteUserStreams,
-        localeStr;
+import 'package:flutter_ty_mobile/features/users/data/models/user_freezed.dart';
+
+import '../../../resource_export.dart' show HexColor;
+import '../../../route_page_export.dart';
 
 ///@author H.C.CHIANG
 ///@version 2020/1/15
 class UserDisplay extends StatelessWidget {
   final UserEntity user;
+  final bool isDialog;
   final Color bgColor = HexColor.fromHex('#e8e8e8');
 
-  UserDisplay({Key key, @required this.user}) : super(key: key);
+  UserDisplay({Key key, @required this.user, this.isDialog = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    getRouteUserStreams.updateUser(user);
+    getRouteUserStreams
+        .updateUser(LoginStatus(loggedIn: true, currentUser: user));
     Future.delayed(Duration(milliseconds: 200)).then((_) {
       var dismiss = FLToast.showLoading(
         text: localeStr.messageWelcomeUser(user.account),
       );
       Future.delayed(Duration(milliseconds: 1500)).whenComplete(() {
         dismiss();
-        RouterNavigate.navigateToPage(RouterPageInfo.member);
+        RouterNavigate.navigateToPage(RoutePage.member);
+        if (isDialog) Navigator.pop(context);
       });
     });
     return SizedBox.shrink();

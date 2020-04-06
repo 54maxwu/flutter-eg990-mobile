@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/features/general/data/user/user_data.dart';
-import 'package:flutter_ty_mobile/utils/string_util.dart';
+import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
+import 'package:flutter_ty_mobile/features/users/data/models/user_freezed.dart'
+    show LoginStatus;
+import 'package:flutter_ty_mobile/features/users/presentation/login_dialog.dart';
 
-import '../../../widget_res_export.dart'
-    show
-        FontSize,
-        Global,
-        Res,
-        RouterNavigate,
-        RouterPageInfo,
-        Themes,
-        getRouteUserStreams,
-        localeStr,
-        networkImageBuilder;
+import '../../../resource_export.dart';
+import '../../../route_page_export.dart';
 
 /// Creates a widget to show member info under Marquee
 ///@author H.C.CHIANG
@@ -26,19 +19,21 @@ class MemberWidget extends StatefulWidget {
 
 class MemberWidgetState extends State<MemberWidget> {
   double _areaHeight;
-  UserData _userData;
+  LoginStatus _userData;
 
   void updateUser() {
     print('updating member area data...');
+    print('streamed user: ${getRouteUserStreams.userStream.toList()}');
     setState(() {
-      _userData = getRouteUserStreams.currentUser;
+      _userData = getRouteUserStreams.lastUser;
+      print('member area user: $_userData');
     });
   }
 
   @override
   void initState() {
     _areaHeight = Global.device.height / 10.5;
-    _userData = getRouteUserStreams.currentUser;
+    _userData = getRouteUserStreams.lastUser;
     super.initState();
   }
 
@@ -76,7 +71,7 @@ class MemberWidgetState extends State<MemberWidget> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 2.0, 12.0, 6.0),
                       child: Text(
-                        (_userData.isLoggedIn)
+                        (_userData.loggedIn)
                             ? localeStr.homeHintWelcome
                             : localeStr.homeHintWelcomeLogin,
                         style: TextStyle(
@@ -124,7 +119,7 @@ class MemberWidgetState extends State<MemberWidget> {
   Widget _buildLeftContent() {
     return Container(
       padding: EdgeInsets.only(left: 10.0, right: 4.0),
-      child: (_userData.isLoggedIn)
+      child: (_userData.loggedIn)
           ? Padding(
               /// if logged in, show member info
               padding: EdgeInsets.only(left: 4.0),
@@ -142,7 +137,7 @@ class MemberWidgetState extends State<MemberWidget> {
                           maxWidth: _areaHeight * 1.5,
                         ),
                         child: Text(
-                          _userData.user.account,
+                          _userData.currentUser.account,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: FontSize.NORMAL.value,
@@ -162,7 +157,7 @@ class MemberWidgetState extends State<MemberWidget> {
                         style: TextStyle(fontSize: FontSize.NORMAL.value),
                       ),
                       Text(
-                        _userData.user.credit
+                        _userData.currentUser.credit
                             .trimValue(floorIfInt: true, creditSign: true),
                         overflow: TextOverflow.visible,
                         style: TextStyle(
@@ -189,8 +184,7 @@ class MemberWidgetState extends State<MemberWidget> {
                 borderRadius: BorderRadius.circular(4.0),
               ),
               color: Themes.defaultAppbarColor,
-              onPressed: () =>
-                  RouterNavigate.navigateToPage(RouterPageInfo.login),
+              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login),
             ),
     );
   }
@@ -205,13 +199,34 @@ class MemberWidgetState extends State<MemberWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              _createIconButton(Res.homeMemberAreaIconDeposit,
-                  localeStr.pageTitleDeposit, () => {}),
-              _createIconButton(Res.homeMemberAreaIconWithdraw,
-                  localeStr.pageTitleMemberWithdraw, () => {}),
-              _createIconButton(Res.homeMemberAreaIconTransfer,
-                  localeStr.pageTitleMemberTransfer, () => {}),
-              _createIconButton(Res.homeMemberAreaIconVip, 'VIP', () => {}),
+              _createIconButton(
+                Res.homeMemberAreaIconDeposit,
+                localeStr.pageTitleDeposit,
+                () {
+                  (_userData.loggedIn)
+                      ? RouterNavigate.navigateToPage(RoutePage.deposit)
+                      : showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (context) => new LoginDialog(),
+                        );
+                },
+              ),
+              _createIconButton(
+                Res.homeMemberAreaIconWithdraw,
+                localeStr.pageTitleMemberWithdraw,
+                () => FLToast.showInfo(text: localeStr.workInProgress),
+              ),
+              _createIconButton(
+                Res.homeMemberAreaIconTransfer,
+                localeStr.pageTitleMemberTransfer,
+                () => FLToast.showInfo(text: localeStr.workInProgress),
+              ),
+              _createIconButton(
+                Res.homeMemberAreaIconVip,
+                'VIP',
+                () => FLToast.showInfo(text: localeStr.workInProgress),
+              ),
             ],
           ),
         ),

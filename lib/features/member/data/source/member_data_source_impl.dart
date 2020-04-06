@@ -28,7 +28,7 @@ class MemberRemoteDataSourceImpl implements MemberRemoteDataSource {
     return await _checkToken(account).then((_) {
       return requestData<AccountLimitModel>(
         request: dioApiService.get(MemberApi.GET_CREDIT, userToken: token),
-        jsonToModel: AccountLimitModel.jsonToCreditModel,
+        jsonToModel: AccountLimitModel.jsonToAccountLimitModel,
         tag: 'remote-MEMBER',
       );
     });

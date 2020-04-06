@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
-import 'package:flutter_ty_mobile/features/general/data/model/request_status_model.dart';
-import 'package:flutter_ty_mobile/features/users/domain/usecase/get_user.dart';
+import 'package:flutter_ty_mobile/core/network/handler/request_status_freezed.dart' show RequestStatusModel;
 import 'package:meta/meta.dart' show required;
 import 'package:super_enum/super_enum.dart';
 
+import '../usecase/get_user.dart';
 import 'user_login_event.dart';
 import 'user_login_state.dart';
 

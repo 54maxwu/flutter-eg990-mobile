@@ -19,14 +19,14 @@ mixin _$MemberCreditStore on _MemberCreditStore, Store {
   final _$_userFutureAtom = Atom(name: '_MemberCreditStore._userFuture');
 
   @override
-  ObservableFuture<UserData> get _userFuture {
+  ObservableFuture<LoginStatus> get _userFuture {
     _$_userFutureAtom.context.enforceReadPolicy(_$_userFutureAtom);
     _$_userFutureAtom.reportObserved();
     return super._userFuture;
   }
 
   @override
-  set _userFuture(ObservableFuture<UserData> value) {
+  set _userFuture(ObservableFuture<LoginStatus> value) {
     _$_userFutureAtom.context.conditionallyRunInAction(() {
       super._userFuture = value;
       _$_userFutureAtom.reportChanged();

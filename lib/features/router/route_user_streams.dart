@@ -1,21 +1,32 @@
-part of 'router_navigate.dart';
+import 'dart:async' show StreamController, Stream;
+
+import 'package:flutter_ty_mobile/features/users/data/models/user_freezed.dart'
+    show LoginStatus;
+import 'package:flutter_ty_mobile/mylogger.dart';
+
+import '../../injection_container.dart' show sl;
 
 RouteUserStreams get getRouteUserStreams => sl.get<RouteUserStreams>();
 
+///
+/// Stream user [LoginStatus] through out the app to control UI state
+///
 class RouteUserStreams {
-  final StreamController<UserData> _userControl =
-      StreamController<UserData>.broadcast();
+  final StreamController<LoginStatus> _userControl =
+      StreamController<LoginStatus>.broadcast();
 
   final StreamController<bool> _recheckControl =
       StreamController<bool>.broadcast();
 
-  Stream<UserData> get userStream => _userControl.stream;
+  Stream<LoginStatus> get userStream => _userControl.stream;
 
   Stream<bool> get recheckUserStream => _recheckControl.stream;
 
-  UserData _user = UserData(isLoggedIn: false);
+  LoginStatus _user = LoginStatus(loggedIn: false);
 
-  UserData get currentUser => _user;
+  LoginStatus get lastUser => _user;
+
+  bool get hasUser => _user.loggedIn;
 
   RouteUserStreams() {
     _userControl.stream.listen((event) {
@@ -24,11 +35,8 @@ class RouteUserStreams {
     });
   }
 
-  updateUser(UserEntity user) {
-    _userControl.sink.add(UserData(
-      isLoggedIn: user != null,
-      user: user,
-    ));
+  updateUser(LoginStatus user) {
+    _userControl.sink.add(user);
   }
 
   setCheck(bool recheck) {

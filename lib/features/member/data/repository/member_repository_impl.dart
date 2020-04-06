@@ -1,8 +1,6 @@
 import 'package:flutter_ty_mobile/core/repository_export.dart';
 import 'package:flutter_ty_mobile/features/member/data/models/account_limit_model.dart';
 import 'package:flutter_ty_mobile/features/member/data/source/member_data_source.dart';
-import 'package:flutter_ty_mobile/features/router/router_navigate.dart'
-    show getRouteUserStreams;
 
 import 'member_repository.dart';
 
@@ -23,11 +21,7 @@ class MemberRepositoryImpl implements MemberRepository {
     if (connected) {
       final result = await handleResponse<AccountLimitModel>(
           remoteDataSource.updateCredit(account));
-      return result.fold((failure) => 'NaN', (model) {
-        var oldData = getRouteUserStreams.currentUser;
-        getRouteUserStreams.updateUser(oldData.updateCredit(model.credit));
-        return model.credit;
-      });
+      return result.fold((failure) => 'NaN', (model) => model.credit);
     }
     return 'NaN';
   }

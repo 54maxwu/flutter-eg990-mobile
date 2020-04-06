@@ -8,6 +8,7 @@ import 'package:hive/hive.dart' show Box;
 import '../../../../mylogger.dart';
 
 /// Store user token in [Hive}
+///
 ///@author H.C.CHIANG
 ///@version 2020/2/18
 class UserTokenStorage {
@@ -22,7 +23,7 @@ class UserTokenStorage {
 //    }
     var tokenCookie =
         cookies.singleWhere((element) => element.name == 'token_mobile');
-    print('cookie token: ${tokenCookie.value}');
+    print('cookie token length: ${tokenCookie.value.length}');
     try {
       // TODO: Need to check if saving token to hive is necessary or the RAM cookie will suffice
       box.put(account, HiveCookieEntity(account: account, cookie: tokenCookie));

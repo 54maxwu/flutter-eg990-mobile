@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/features/general/data/model/request_status_model.dart';
+import 'package:flutter_ty_mobile/core/network/handler/request_status_freezed.dart' show RequestStatusModel;
 
 class NetworkException implements Exception {}
 
