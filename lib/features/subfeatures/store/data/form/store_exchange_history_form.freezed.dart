@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'store_exchange_history_form.dart';
 
@@ -12,12 +12,14 @@ T _$identity<T>(T value) => value;
 class _$StoreExchangeHistoryFormTearOff {
   const _$StoreExchangeHistoryFormTearOff();
 
+// ignore: unused_element
   StoreExchangeHistoryInit call({int page}) {
     return StoreExchangeHistoryInit(
       page: page,
     );
   }
 
+// ignore: unused_element
   StoreExchangeHistoryQuery query({int page, int perPage, String search}) {
     return StoreExchangeHistoryQuery(
       page: page,

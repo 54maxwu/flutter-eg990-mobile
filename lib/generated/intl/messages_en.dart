@@ -85,27 +85,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m32(name) => "Welcome, ${name}";
 
-  static m33(value) => "Address: ${value}";
+  static m33(value) => "Pay ${value} Store Points";
 
-  static m34(from, to, total) => "showing No.${from} to ${to} results，total is ${total}";
+  static m34(value) => "Address: ${value}";
 
-  static m35(value) => "Name: ${value}";
+  static m35(from, to, total) => "showing No.${from} to ${to} results，total is ${total}";
 
-  static m36(value) => "Phone: ${value}";
+  static m36(value) => "Name: ${value}";
 
-  static m37(value) => "PostCode: ${value}";
+  static m37(value) => "Phone: ${value}";
 
-  static m38(value) => "Each platform ${value}";
+  static m38(value) => "PostCode: ${value}";
 
-  static m39(value) => "${value} points";
+  static m39(value) => "Each platform ${value}";
 
-  static m40(value) => "￥ ${value}";
+  static m40(value) => "${value} points";
 
-  static m41(separator) => "Request${separator}Code";
+  static m41(value) => "￥ ${value}";
 
-  static m42(msg) => "No records found for ${msg}";
+  static m42(separator) => "Request${separator}Code";
 
-  static m43(num) => "Cumulative Lucky Draw: ${num} times";
+  static m43(msg) => "No records found for ${msg}";
+
+  static m44(num) => "Cumulative Lucky Draw: ${num} times";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -367,6 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberGridTitleWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "messageActionFailed" : MessageLookupByLibrary.simpleMessage("Invalid Action"),
     "messageActionFillForm" : MessageLookupByLibrary.simpleMessage("Please fill the form"),
+    "messageActionTooFrequent" : MessageLookupByLibrary.simpleMessage("Too many action in a short time"),
     "messageClearDataRestart" : MessageLookupByLibrary.simpleMessage("Language changed, clearing data, restarting later"),
     "messageCopy" : MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
     "messageCopyError" : MessageLookupByLibrary.simpleMessage("Copy failed"),
@@ -421,6 +424,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageTaskCanceled" : m29,
     "messageTaskFailed" : m30,
     "messageTaskSuccess" : m31,
+    "messageVerifySuccess" : MessageLookupByLibrary.simpleMessage("Verify Success"),
     "messageWait" : MessageLookupByLibrary.simpleMessage("Please wait while processing the request ..."),
     "messageWaitComplete" : MessageLookupByLibrary.simpleMessage("Don\'t exit while processing a request"),
     "messageWarnLoadingGame" : MessageLookupByLibrary.simpleMessage("Please wait while loading the game ..."),
@@ -431,6 +435,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageWarnUsingCellular" : MessageLookupByLibrary.simpleMessage("You are using a mobile network"),
     "messageWelcome" : MessageLookupByLibrary.simpleMessage("Welcome, please login / register"),
     "messageWelcomeUser" : m32,
+    "movieCategoryLabelBuy" : MessageLookupByLibrary.simpleMessage("Buy"),
+    "movieCategoryLabelCollect" : MessageLookupByLibrary.simpleMessage("Collection"),
+    "movieCategoryLabelExpand" : MessageLookupByLibrary.simpleMessage("Expand"),
+    "movieCategoryLabelFold" : MessageLookupByLibrary.simpleMessage("Fold"),
+    "movieDialogButtonPayPoint" : m33,
+    "movieDialogButtonWatchFree" : MessageLookupByLibrary.simpleMessage("Watch Free"),
+    "movieDialogTextFreeTimes" : MessageLookupByLibrary.simpleMessage("Watch-Free Remain: "),
+    "movieDialogTextStorePoints" : MessageLookupByLibrary.simpleMessage("Current Store Point: "),
+    "movieDialogTitlePay" : MessageLookupByLibrary.simpleMessage("Buy this movie"),
+    "movieHintTextFree" : MessageLookupByLibrary.simpleMessage("Free Today"),
+    "movieHintTextNotPurchased" : MessageLookupByLibrary.simpleMessage("Unpurchased"),
+    "movieHintTextPurchased" : MessageLookupByLibrary.simpleMessage("Purchased"),
+    "movieListHintLoad" : MessageLookupByLibrary.simpleMessage("Load More"),
+    "movieListHintLoadFailed" : MessageLookupByLibrary.simpleMessage("Load Failed"),
+    "movieListHintLoadNoMore" : MessageLookupByLibrary.simpleMessage("No More"),
+    "movieListHintLoadReady" : MessageLookupByLibrary.simpleMessage("Requesting..."),
+    "movieListHintLoadSuccess" : MessageLookupByLibrary.simpleMessage("Load Success"),
+    "movieListHintLoading" : MessageLookupByLibrary.simpleMessage("Loading..."),
+    "movieSeparatorTextHot" : MessageLookupByLibrary.simpleMessage("Others are watching"),
+    "movieTextBuyNow" : MessageLookupByLibrary.simpleMessage("Buy Now"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("General Message"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("Maintenance Notification"),
     "pageTitleCollect" : MessageLookupByLibrary.simpleMessage("Word Collect"),
@@ -455,6 +479,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageTitleMemberWallet" : MessageLookupByLibrary.simpleMessage("No Wallet"),
     "pageTitleMemberWithdraw" : MessageLookupByLibrary.simpleMessage("Withdraw"),
     "pageTitleMore" : MessageLookupByLibrary.simpleMessage("More"),
+    "pageTitleMovie" : MessageLookupByLibrary.simpleMessage("New Movie"),
+    "pageTitleMovieEG" : MessageLookupByLibrary.simpleMessage("EG Movie"),
     "pageTitleNotice" : MessageLookupByLibrary.simpleMessage("Announcement"),
     "pageTitlePromo" : MessageLookupByLibrary.simpleMessage("Offer"),
     "pageTitleRank" : MessageLookupByLibrary.simpleMessage("Vip Tier"),
@@ -509,11 +535,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRecordFieldHint" : MessageLookupByLibrary.simpleMessage("Please enter a product name"),
     "storeRecordSpinnerTitle1" : MessageLookupByLibrary.simpleMessage("Show"),
     "storeRecordSpinnerTitle2" : MessageLookupByLibrary.simpleMessage("item"),
-    "storeRecordTableDetailAddress" : m33,
-    "storeRecordTableDetailItem" : m34,
-    "storeRecordTableDetailName" : m35,
-    "storeRecordTableDetailPhone" : m36,
-    "storeRecordTableDetailPostCode" : m37,
+    "storeRecordTableDetailAddress" : m34,
+    "storeRecordTableDetailItem" : m35,
+    "storeRecordTableDetailName" : m36,
+    "storeRecordTableDetailPhone" : m37,
+    "storeRecordTableDetailPostCode" : m38,
     "storeRecordTableStatusPending" : MessageLookupByLibrary.simpleMessage("Pending"),
     "storeRecordTableTitleDate" : MessageLookupByLibrary.simpleMessage("Date"),
     "storeRecordTableTitleNo" : MessageLookupByLibrary.simpleMessage("Order Number"),
@@ -526,22 +552,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRequestWindowFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("Phone"),
     "storeRequestWindowFieldTitlePostno" : MessageLookupByLibrary.simpleMessage("Postcode"),
     "storeRequestWindowHint" : MessageLookupByLibrary.simpleMessage("Recipient"),
-    "storeRequestWindowPoints" : MessageLookupByLibrary.simpleMessage("Points："),
+    "storeRequestWindowPoints" : MessageLookupByLibrary.simpleMessage("Points:"),
     "storeRequestWindowSpinnerHint" : MessageLookupByLibrary.simpleMessage("Please select"),
     "storeRequestWindowTextPoint" : MessageLookupByLibrary.simpleMessage("Accumulated Points:"),
     "storeRequestWindowTitle" : MessageLookupByLibrary.simpleMessage("Contact Information"),
     "storeRuleTableHeader" : MessageLookupByLibrary.simpleMessage("You can get a points table for every 100 yuan of valid bets"),
-    "storeRuleTableTitle" : m38,
+    "storeRuleTableTitle" : m39,
     "storeTextItemButton" : MessageLookupByLibrary.simpleMessage("Redeem Now"),
     "storeTextItemButtonDisabled" : MessageLookupByLibrary.simpleMessage("Not enough points"),
     "storeTextItemHint" : MessageLookupByLibrary.simpleMessage("Limited to a limited number"),
-    "storeTextItemPoint" : m39,
+    "storeTextItemPoint" : m40,
     "storeTextTitlePoint" : MessageLookupByLibrary.simpleMessage("Member Points:"),
     "storeTextTitleProduct" : MessageLookupByLibrary.simpleMessage("Redeem Product"),
     "storeTextTitleRecord" : MessageLookupByLibrary.simpleMessage("Point Record"),
     "storeTextTitleRule" : MessageLookupByLibrary.simpleMessage("Exchange Rules"),
     "title" : MessageLookupByLibrary.simpleMessage("TY International V1"),
-    "toolBarMemberCredit" : m40,
+    "toolBarMemberCredit" : m41,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("Amount"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("Date"),
     "transactionHeaderDesc" : MessageLookupByLibrary.simpleMessage("Description"),
@@ -566,7 +592,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPwdFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("Password Confirmation:"),
     "userPwdFieldTitleNew" : MessageLookupByLibrary.simpleMessage("New Password:"),
     "userPwdFieldTitleOld" : MessageLookupByLibrary.simpleMessage("Old Password:"),
-    "userVerifyButtonText" : m41,
+    "userVerifyButtonText" : m42,
     "userVerifyFieldHint" : MessageLookupByLibrary.simpleMessage("enter verify code"),
     "userVerifyFieldInfo" : MessageLookupByLibrary.simpleMessage("You can only request once in 24 hrs"),
     "userVerifyFieldTitle" : MessageLookupByLibrary.simpleMessage("Verify:"),
@@ -596,8 +622,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "wheelRecordTableTextCount" : MessageLookupByLibrary.simpleMessage("Number of times"),
     "wheelRecordTableTextOperate" : MessageLookupByLibrary.simpleMessage("Operation"),
     "wheelRecordTableTextTime" : MessageLookupByLibrary.simpleMessage("Time"),
-    "wheelTableMessageEmpty" : m42,
-    "wheelTextTitleCount" : m43,
+    "wheelTableMessageEmpty" : m43,
+    "wheelTextTitleCount" : m44,
     "wheelTextTitleGet" : MessageLookupByLibrary.simpleMessage("Get spins"),
     "wheelTextTitlePrize" : MessageLookupByLibrary.simpleMessage("Winning History"),
     "wheelTextTitleRecord" : MessageLookupByLibrary.simpleMessage("Operation Record"),

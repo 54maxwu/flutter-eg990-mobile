@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'payment_raw.dart';
 
@@ -23,6 +23,7 @@ PaymentRaw _$PaymentRawFromJson(Map<String, dynamic> json) {
 class _$PaymentRawTearOff {
   const _$PaymentRawTearOff();
 
+// ignore: unused_element
   _PaymentRaw call(
       {@JsonKey(name: '1', defaultValue: '') dynamic bankJson,
       @JsonKey(name: '2', defaultValue: '') dynamic onlineJson,
@@ -42,6 +43,7 @@ class _$PaymentRawTearOff {
     );
   }
 
+// ignore: unused_element
   _PaymentRawNamed named(
       {@JsonKey(name: 'localbank', defaultValue: '') dynamic bankJson,
       @JsonKey(name: 'onlinepay', defaultValue: '') dynamic onlineJson,

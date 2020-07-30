@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'deals_model.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$DealsModelTearOff {
   const _$DealsModelTearOff();
 
+// ignore: unused_element
   _DealsModel call(
       {@JsonKey(name: 'current_page') int currentPage,
       @JsonKey(name: 'last_page') int lastPage,
@@ -299,6 +300,7 @@ abstract class _DealsModel implements DealsModel {
 class _$DealsDataTearOff {
   const _$DealsDataTearOff();
 
+// ignore: unused_element
   _DealsData call(
       {String amount,
       @JsonKey(name: 'ledgerdatetime') String date,

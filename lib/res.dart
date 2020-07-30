@@ -47,4 +47,7 @@ class Res {
   static const String roller_top = "assets/images/roller/top_bg.jpg";
   static const String roller_wheel_8 = "assets/images/roller/wheel8.png";
   static const String roller_btn_go = "assets/images/roller/go.png";
+
+  static const String movie_eg_base = "assets/images/movie_eg/";
+  static const String movie_eg_dark_base = "assets/images/movie_eg_dark/";
 }

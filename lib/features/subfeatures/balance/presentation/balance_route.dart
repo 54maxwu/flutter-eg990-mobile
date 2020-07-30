@@ -25,7 +25,6 @@ class _BalanceRouteState extends State<BalanceRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

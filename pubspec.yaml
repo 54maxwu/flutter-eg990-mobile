@@ -11,7 +11,7 @@ description: New version of TY mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.6.1+3
+version: 0.7.0
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -25,7 +25,7 @@ dependencies:
   json_annotation: ^3.0.1
 
   # Service Locators (Object Injectors) https://pub.dev/packages/get_it
-  get_it: ^4.0.2
+  get_it: ^4.0.4
   # Widget State Management (Object Provider) https://pub.dev/packages/provider
 #  provider: ^4.0.1
   # MobX https://pub.dev/packages/mobx
@@ -56,8 +56,8 @@ dependencies:
   # Dart class to String https://pub.dev/packages/to_string
 #  to_string: ^1.2.1
   # Email Validate https://pub.dev/packages/email_validator
-  email_validator: ^1.0.4
-  # Datetime format
+  email_validator: ^1.0.5
+  # Localization & Datetime format
   intl: ^0.16.1
   # Debug Logger https://pub.dev/packages/logger
   logging: ^0.11.4
@@ -106,7 +106,7 @@ dependencies:
   # HTML as Text https://pub.dev/packages/flutter_html:
   flutter_html: ^1.0.0
   # Launch Url https://pub.dev/packages/url_launcher
-  url_launcher: ^5.4.11
+  url_launcher: ^5.5.0
   # QR Code generator https://pub.dev/packages/qr_flutter
   qr_flutter: ^3.2.0
   # Configurable Expansion List Tile https://pub.dev/packages/configurable_expansion_tile
@@ -115,6 +115,10 @@ dependencies:
   share_extend: ^1.1.9
   # Icon Badge https://pub.dev/packages/badges
   badges: ^1.1.1
+  # Scroller Load & Refresh https://pub.dev/packages/flutter_easyrefresh
+  flutter_easyrefresh: ^2.1.1
+  # Stream video player https://pub.dev/packages/flutter_vlc_player
+  flutter_vlc_player: ^3.0.3
 
 
 dev_dependencies:
@@ -129,14 +133,16 @@ dev_dependencies:
   mockito: ^4.1.1
   flutter_vector_icons: ^0.2.1
   auto_route_generator: ^0.5.0
-  freezed: ^0.11.2
+  freezed: ^0.11.4
   dataclass_generator: ^0.4.0
   super_enum_generator: ^0.5.0
 
 dependency_overrides:
-  dartx: ^0.4.2
+  dartx: ^0.5.0
   path: ^1.7.0
   build: ^1.3.0
+# dependency for flutter_html 1.0.0
+  flutter_svg: ^0.17.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -158,6 +164,8 @@ flutter:
     - assets/images/index/
     - assets/images/roller/
     - assets/images/example/
+    - assets/images/movie_eg/
+    - assets/images/movie_eg_dark/
     - config/app_config.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

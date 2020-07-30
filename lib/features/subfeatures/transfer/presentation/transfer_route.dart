@@ -26,7 +26,6 @@ class _TransferRouteState extends State<TransferRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

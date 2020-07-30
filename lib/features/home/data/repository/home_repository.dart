@@ -4,19 +4,19 @@ import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/repository_export.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
-import 'package:flutter_ty_mobile/utils/regex_util.dart';
 import 'package:flutter_ty_mobile/features/member/data/repository/member_jwt_interface.dart';
+import 'package:flutter_ty_mobile/utils/regex_util.dart';
 
-import '../repository/home_local_storage.dart';
 import '../entity/banner_entity.dart';
 import '../entity/game_entity.dart';
 import '../entity/marquee_entity.dart';
 import '../form/platform_game_form.dart';
 import '../models/banner_model.dart';
-import '../models/game_types.dart';
 import '../models/game_model.dart';
+import '../models/game_types.dart';
 import '../models/marquee_model.dart';
 import '../models/marquee_model_list.dart';
+import '../repository/home_local_storage.dart';
 
 class HomeApi {
   static const String GET_LIMIT = "api/get_account/creditlimit";
@@ -298,7 +298,8 @@ class HomeRepositoryImpl implements HomeRepository {
 
     return result.fold(
       (failure) => Left(failure),
-      (data) => (data.isUrl) ? Right(data) : Left(Failure.server()),
+      (data) =>
+          (data.isUrl) ? Right(data) : Left(Failure.errorMessage(msg: data)),
     );
   }
 

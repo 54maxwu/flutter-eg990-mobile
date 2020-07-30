@@ -149,6 +149,13 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getGameUrlAsyncAction.run(() => super.getGameUrl(param));
   }
 
+  final _$getCreditAsyncAction = AsyncAction('_HomeStore.getCredit');
+
+  @override
+  Future<void> getCredit() {
+    return _$getCreditAsyncAction.run(() => super.getCredit());
+  }
+
   @override
   String toString() {
     return '''

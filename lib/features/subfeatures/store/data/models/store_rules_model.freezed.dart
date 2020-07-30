@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'store_rules_model.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$StoreRulesModelTearOff {
   const _$StoreRulesModelTearOff();
 
+// ignore: unused_element
   _StoreRulesModel call(
       {List<StorePlatformDollar> platformRules, List<StoreRuleData> rules}) {
     return _StoreRulesModel(
@@ -146,6 +147,7 @@ abstract class _StoreRulesModel implements StoreRulesModel {
 class _$StoreRuleDataTearOff {
   const _$StoreRuleDataTearOff();
 
+// ignore: unused_element
   _StoreRuleData call(
       {@JsonKey(name: 'rule_id') int ruleId,
       String title,
@@ -320,6 +322,7 @@ abstract class _StoreRuleData implements StoreRuleData {
 class _$StorePlatformDollarTearOff {
   const _$StorePlatformDollarTearOff();
 
+// ignore: unused_element
   _StorePlatformDollar call(
       {@JsonKey(name: 'ch') String platform,
       @JsonKey(name: 'doller') num dollar}) {

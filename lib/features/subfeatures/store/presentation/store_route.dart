@@ -30,7 +30,6 @@ class _StoreRouteState extends State<StoreRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

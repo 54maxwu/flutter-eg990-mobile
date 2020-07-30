@@ -32,7 +32,6 @@ class _LoginRouteState extends State<LoginRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

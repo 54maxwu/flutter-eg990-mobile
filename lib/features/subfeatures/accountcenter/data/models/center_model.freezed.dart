@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'center_model.dart';
 
@@ -8,13 +8,11 @@ part of 'center_model.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-CenterModel _$CenterModelFromJson(Map<String, dynamic> json) {
-  return _CenterModel.fromJson(json);
-}
 
 class _$CenterModelTearOff {
   const _$CenterModelTearOff();
 
+// ignore: unused_element
   _CenterModel call(
       {@JsonKey(name: 'accountcode', defaultValue: '') String accountCode,
       @JsonKey(name: 'accountid', defaultValue: -1) int accountId,
@@ -27,7 +25,7 @@ class _$CenterModelTearOff {
       @JsonKey(name: 'auto_transfer', defaultValue: '-1') String autoTransfer,
       @JsonKey(name: 'cGP_wallet', defaultValue: '') String cgpWallet,
       @JsonKey(name: 'cPW_wallet', defaultValue: '') String cpwWallet,
-      @JsonKey(name: 'address', fromJson: _jsonList) List<dynamic> lotto,
+      @JsonKey(name: 'address', fromJson: _jsonList) dynamic lotto,
       @JsonKey(name: 'allgame') int allGame,
       @JsonKey(name: 'allgame_level') int allGameLevel,
       @JsonKey(name: 'allgame_value') int allGameValue,
@@ -49,8 +47,8 @@ class _$CenterModelTearOff {
       @JsonKey(name: 'sportgame') int sportGame,
       @JsonKey(name: 'sportgame_level') int sportGameLevel,
       @JsonKey(name: 'sportgame_value') int sportGameValue,
-      @JsonKey(name: 'vip_option') dynamic vipOption,
-      @JsonKey(name: 'vip_setting') dynamic vipSetting}) {
+      @JsonKey(name: 'vip_option') var vipOption,
+      @JsonKey(name: 'vip_setting') var vipSetting}) {
     return _CenterModel(
       accountCode: accountCode,
       accountId: accountId,
@@ -115,7 +113,7 @@ mixin _$CenterModel {
   @JsonKey(name: 'cPW_wallet', defaultValue: '')
   String get cpwWallet;
   @JsonKey(name: 'address', fromJson: _jsonList)
-  List<dynamic> get lotto;
+  dynamic get lotto;
   @JsonKey(name: 'allgame')
   int get allGame;
   @JsonKey(name: 'allgame_level')
@@ -163,7 +161,6 @@ mixin _$CenterModel {
   @JsonKey(name: 'vip_setting')
   dynamic get vipSetting;
 
-  Map<String, dynamic> toJson();
   $CenterModelCopyWith<CenterModel> get copyWith;
 }
 
@@ -183,7 +180,7 @@ abstract class $CenterModelCopyWith<$Res> {
       @JsonKey(name: 'auto_transfer', defaultValue: '-1') String autoTransfer,
       @JsonKey(name: 'cGP_wallet', defaultValue: '') String cgpWallet,
       @JsonKey(name: 'cPW_wallet', defaultValue: '') String cpwWallet,
-      @JsonKey(name: 'address', fromJson: _jsonList) List<dynamic> lotto,
+      @JsonKey(name: 'address', fromJson: _jsonList) dynamic lotto,
       @JsonKey(name: 'allgame') int allGame,
       @JsonKey(name: 'allgame_level') int allGameLevel,
       @JsonKey(name: 'allgame_value') int allGameValue,
@@ -205,8 +202,8 @@ abstract class $CenterModelCopyWith<$Res> {
       @JsonKey(name: 'sportgame') int sportGame,
       @JsonKey(name: 'sportgame_level') int sportGameLevel,
       @JsonKey(name: 'sportgame_value') int sportGameValue,
-      @JsonKey(name: 'vip_option') dynamic vipOption,
-      @JsonKey(name: 'vip_setting') dynamic vipSetting});
+      @JsonKey(name: 'vip_option') var vipOption,
+      @JsonKey(name: 'vip_setting') var vipSetting});
 }
 
 class _$CenterModelCopyWithImpl<$Res> implements $CenterModelCopyWith<$Res> {
@@ -269,7 +266,7 @@ class _$CenterModelCopyWithImpl<$Res> implements $CenterModelCopyWith<$Res> {
           : autoTransfer as String,
       cgpWallet: cgpWallet == freezed ? _value.cgpWallet : cgpWallet as String,
       cpwWallet: cpwWallet == freezed ? _value.cpwWallet : cpwWallet as String,
-      lotto: lotto == freezed ? _value.lotto : lotto as List<dynamic>,
+      lotto: lotto == freezed ? _value.lotto : lotto as dynamic,
       allGame: allGame == freezed ? _value.allGame : allGame as int,
       allGameLevel:
           allGameLevel == freezed ? _value.allGameLevel : allGameLevel as int,
@@ -318,9 +315,8 @@ class _$CenterModelCopyWithImpl<$Res> implements $CenterModelCopyWith<$Res> {
       sportGameValue: sportGameValue == freezed
           ? _value.sportGameValue
           : sportGameValue as int,
-      vipOption: vipOption == freezed ? _value.vipOption : vipOption as dynamic,
-      vipSetting:
-          vipSetting == freezed ? _value.vipSetting : vipSetting as dynamic,
+      vipOption: vipOption == freezed ? _value.vipOption : vipOption,
+      vipSetting: vipSetting == freezed ? _value.vipSetting : vipSetting,
     ));
   }
 }
@@ -343,7 +339,7 @@ abstract class _$CenterModelCopyWith<$Res>
       @JsonKey(name: 'auto_transfer', defaultValue: '-1') String autoTransfer,
       @JsonKey(name: 'cGP_wallet', defaultValue: '') String cgpWallet,
       @JsonKey(name: 'cPW_wallet', defaultValue: '') String cpwWallet,
-      @JsonKey(name: 'address', fromJson: _jsonList) List<dynamic> lotto,
+      @JsonKey(name: 'address', fromJson: _jsonList) dynamic lotto,
       @JsonKey(name: 'allgame') int allGame,
       @JsonKey(name: 'allgame_level') int allGameLevel,
       @JsonKey(name: 'allgame_value') int allGameValue,
@@ -365,8 +361,8 @@ abstract class _$CenterModelCopyWith<$Res>
       @JsonKey(name: 'sportgame') int sportGame,
       @JsonKey(name: 'sportgame_level') int sportGameLevel,
       @JsonKey(name: 'sportgame_value') int sportGameValue,
-      @JsonKey(name: 'vip_option') dynamic vipOption,
-      @JsonKey(name: 'vip_setting') dynamic vipSetting});
+      @JsonKey(name: 'vip_option') var vipOption,
+      @JsonKey(name: 'vip_setting') var vipSetting});
 }
 
 class __$CenterModelCopyWithImpl<$Res> extends _$CenterModelCopyWithImpl<$Res>
@@ -480,14 +476,12 @@ class __$CenterModelCopyWithImpl<$Res> extends _$CenterModelCopyWithImpl<$Res>
       sportGameValue: sportGameValue == freezed
           ? _value.sportGameValue
           : sportGameValue as int,
-      vipOption: vipOption == freezed ? _value.vipOption : vipOption as dynamic,
-      vipSetting:
-          vipSetting == freezed ? _value.vipSetting : vipSetting as dynamic,
+      vipOption: vipOption == freezed ? _value.vipOption : vipOption,
+      vipSetting: vipSetting == freezed ? _value.vipSetting : vipSetting,
     ));
   }
 }
 
-@JsonSerializable()
 class _$_CenterModel implements _CenterModel {
   const _$_CenterModel(
       {@JsonKey(name: 'accountcode', defaultValue: '') this.accountCode,
@@ -529,9 +523,6 @@ class _$_CenterModel implements _CenterModel {
         assert(email != null),
         assert(wechat != null);
 
-  factory _$_CenterModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_CenterModelFromJson(json);
-
   @override
   @JsonKey(name: 'accountcode', defaultValue: '')
   final String accountCode;
@@ -567,7 +558,7 @@ class _$_CenterModel implements _CenterModel {
   final String cpwWallet;
   @override
   @JsonKey(name: 'address', fromJson: _jsonList)
-  final List<dynamic> lotto;
+  final dynamic lotto;
   @override
   @JsonKey(name: 'allgame')
   final int allGame;
@@ -769,11 +760,6 @@ class _$_CenterModel implements _CenterModel {
   @override
   _$CenterModelCopyWith<_CenterModel> get copyWith =>
       __$CenterModelCopyWithImpl<_CenterModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_CenterModelToJson(this);
-  }
 }
 
 abstract class _CenterModel implements CenterModel {
@@ -789,7 +775,7 @@ abstract class _CenterModel implements CenterModel {
       @JsonKey(name: 'auto_transfer', defaultValue: '-1') String autoTransfer,
       @JsonKey(name: 'cGP_wallet', defaultValue: '') String cgpWallet,
       @JsonKey(name: 'cPW_wallet', defaultValue: '') String cpwWallet,
-      @JsonKey(name: 'address', fromJson: _jsonList) List<dynamic> lotto,
+      @JsonKey(name: 'address', fromJson: _jsonList) dynamic lotto,
       @JsonKey(name: 'allgame') int allGame,
       @JsonKey(name: 'allgame_level') int allGameLevel,
       @JsonKey(name: 'allgame_value') int allGameValue,
@@ -811,11 +797,8 @@ abstract class _CenterModel implements CenterModel {
       @JsonKey(name: 'sportgame') int sportGame,
       @JsonKey(name: 'sportgame_level') int sportGameLevel,
       @JsonKey(name: 'sportgame_value') int sportGameValue,
-      @JsonKey(name: 'vip_option') dynamic vipOption,
-      @JsonKey(name: 'vip_setting') dynamic vipSetting}) = _$_CenterModel;
-
-  factory _CenterModel.fromJson(Map<String, dynamic> json) =
-      _$_CenterModel.fromJson;
+      @JsonKey(name: 'vip_option') var vipOption,
+      @JsonKey(name: 'vip_setting') var vipSetting}) = _$_CenterModel;
 
   @override
   @JsonKey(name: 'accountcode', defaultValue: '')
@@ -849,7 +832,7 @@ abstract class _CenterModel implements CenterModel {
   String get cpwWallet;
   @override
   @JsonKey(name: 'address', fromJson: _jsonList)
-  List<dynamic> get lotto;
+  dynamic get lotto;
   @override
   @JsonKey(name: 'allgame')
   int get allGame;

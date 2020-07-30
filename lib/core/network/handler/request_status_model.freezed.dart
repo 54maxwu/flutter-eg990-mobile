@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'request_status_model.dart';
 
@@ -15,6 +15,7 @@ RequestStatusModel _$RequestStatusModelFromJson(Map<String, dynamic> json) {
 class _$RequestStatusModelTearOff {
   const _$RequestStatusModelTearOff();
 
+// ignore: unused_element
   _RequestStatusModel call(
       {@required String status,
       @JsonKey(fromJson: JsonUtil.getRawJson, required: false) String msg}) {
@@ -180,6 +181,7 @@ abstract class _RequestStatusModel implements RequestStatusModel {
 class _$DataRequestResultTearOff {
   const _$DataRequestResultTearOff();
 
+// ignore: unused_element
   _DataRequestResult call({dynamic data, RequestStatusModel failedData}) {
     return _DataRequestResult(
       data: data,

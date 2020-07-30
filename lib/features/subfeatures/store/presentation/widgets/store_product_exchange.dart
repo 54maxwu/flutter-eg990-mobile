@@ -104,7 +104,6 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

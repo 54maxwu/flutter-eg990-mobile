@@ -24,7 +24,6 @@ class _MessageRouteState extends State<MessageRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

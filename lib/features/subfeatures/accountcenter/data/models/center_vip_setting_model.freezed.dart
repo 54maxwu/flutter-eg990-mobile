@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'center_vip_setting_model.dart';
 
@@ -24,6 +24,7 @@ CenterVipSettingModel _$CenterVipSettingModelFromJson(
 class _$CenterVipSettingModelTearOff {
   const _$CenterVipSettingModelTearOff();
 
+// ignore: unused_element
   CenterVipSetting model(
       {@JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
           CenterVipSettingItem item,
@@ -34,6 +35,7 @@ class _$CenterVipSettingModelTearOff {
     );
   }
 
+// ignore: unused_element
   CenterVipSettingItem content(
       {String allgame,
       String slotgame,

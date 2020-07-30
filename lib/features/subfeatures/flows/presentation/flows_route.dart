@@ -31,7 +31,6 @@ class _FlowsRouteState extends State<FlowsRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

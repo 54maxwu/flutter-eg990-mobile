@@ -23,7 +23,6 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

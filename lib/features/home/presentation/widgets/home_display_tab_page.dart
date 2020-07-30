@@ -98,8 +98,11 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
 //        print('clicked platform: ${itemData.className}, data: $itemData');
         _setContent(_buildGamesView(itemData));
       } else {
-        print('clicked game: ${itemData.gameUrl}');
-        return itemData.gameUrl;
+        print('clicked game platform: ${itemData.gameUrl}');
+        if (itemData.gameUrl == 'funky/lottery/0')
+          _setContent(_buildGamesView(itemData));
+        else
+          return itemData.gameUrl;
       }
     } else if (itemData is GameEntity) {
       print('clicked game: ${itemData.gameUrl}');

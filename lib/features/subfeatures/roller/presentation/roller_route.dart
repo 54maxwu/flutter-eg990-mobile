@@ -23,7 +23,6 @@ class _RollerRouteState extends State<RollerRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

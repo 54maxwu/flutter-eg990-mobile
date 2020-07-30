@@ -2,11 +2,10 @@ import 'package:flutter_ty_mobile/core/error/exceptions.dart'
     show UnknownConditionException;
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart'
     show localeStr;
+import 'package:vnum/vnum.dart';
 
 import 'route_info.dart';
 import 'router.gr.dart';
-
-import 'package:vnum/vnum.dart';
 
 @VnumDefinition
 class RoutePage extends Vnum<RouteInfo> {
@@ -23,6 +22,16 @@ class RoutePage extends Vnum<RouteInfo> {
   static RoutePage login = RoutePage.define(RouteInfo(
     route: Routes.loginRoute,
     title: localeStr.pageTitleLogin,
+  ));
+
+  static RoutePage movieEg = RoutePage.define(RouteInfo(
+    route: Routes.movieRoute,
+    title: localeStr.pageTitleMovieEG,
+  ));
+
+  static RoutePage movieNew = RoutePage.define(RouteInfo(
+    route: Routes.movieRoute,
+    title: localeStr.pageTitleMovie,
   ));
 
   static RoutePage register = RoutePage.define(RouteInfo(

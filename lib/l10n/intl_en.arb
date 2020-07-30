@@ -11,6 +11,14 @@
   "@pageTitleHome": {
     "type": "text"
   },
+  "pageTitleMovieEG":"EG Movie",
+  "@pageTitleMovieEG": {
+    "type": "text"
+  },
+  "pageTitleMovie":"New Movie",
+  "@pageTitleMovie": {
+    "type": "text"
+  },
   "pageTitleDownload": "APP Download",
   "@pageTitleDownload": {
     "type": "text"
@@ -407,8 +415,16 @@
       }
     }
   },
+  "messageActionTooFrequent": "Too many action in a short time",
+  "@messageActionTooFrequent": {
+    "type": "text"
+  },
   "messageNoEvent": "No activity currently",
   "@messageNoEvent": {
+    "type": "text"
+  },
+  "messageVerifySuccess": "Verify Success",
+  "@messageVerifySuccess": {
     "type": "text"
   },
   "messageTaskSuccess": "{msg} success",
@@ -2176,7 +2192,7 @@
   "@storeRequestWindowTitle": {
     "type": "text"
   },
-  "storeRequestWindowPoints": "Points：",
+  "storeRequestWindowPoints": "Points:",
   "@storeRequestWindowPoints": {
     "type": "text"
   },
@@ -2256,5 +2272,90 @@
   "eventButtonSignUpFailed": "Sign in failed!!",
   "@eventButtonSignUpFailed": {
     "type": "text"
+  },
+  "movieCategoryLabelCollect": "Collection",
+  "@movieCategoryLabelCollect": {
+    "type": "text"
+  },
+  "movieCategoryLabelBuy": "Buy",
+  "@movieCategoryLabelBuy": {
+    "type": "text"
+  },
+  "movieCategoryLabelExpand": "Expand",
+  "@movieCategoryLabelExpand": {
+    "type": "text"
+  },
+  "movieCategoryLabelFold": "Fold",
+  "@movieCategoryLabelFold": {
+    "type": "text"
+  },
+  "movieSeparatorTextHot": "Others are watching",
+  "@movieSeparatorTextHot": {
+    "type": "text"
+  },
+  "movieTextBuyNow": "Buy Now",
+  "@movieTextBuyNow": {
+    "type": "text"
+  },
+  "movieHintTextFree": "Free Today",
+  "@movieHintTextFree": {
+    "type": "text"
+  },
+  "movieHintTextPurchased": "Purchased",
+  "@movieHintTextPurchased": {
+    "type": "text"
+  },
+  "movieHintTextNotPurchased": "Unpurchased",
+  "@movieHintTextNotPurchased": {
+    "type": "text"
+  },
+  "movieListHintLoad": "Load More",
+  "@movieListHintLoad": {
+    "type": "text"
+  },
+  "movieListHintLoadReady": "Requesting...",
+  "@movieListHintLoadReady": {
+    "type": "text"
+  },
+  "movieListHintLoading": "Loading...",
+  "@movieListHintLoading": {
+    "type": "text"
+  },
+  "movieListHintLoadSuccess": "Load Success",
+  "@movieListHintLoadSuccess": {
+    "type": "text"
+  },
+  "movieListHintLoadFailed": "Load Failed",
+  "@movieListHintLoadFailed": {
+    "type": "text"
+  },
+  "movieListHintLoadNoMore": "No More",
+  "@movieListHintLoadNoMore": {
+    "type": "text"
+  },
+  "movieDialogTitlePay": "Buy this movie",
+  "@movieDialogTitlePay": {
+    "type": "text"
+  },
+  "movieDialogTextFreeTimes": "Watch-Free Remain: ",
+  "@movieDialogTextFreeTimes": {
+    "type": "text"
+  },
+  "movieDialogTextStorePoints": "Current Store Point: ",
+  "@movieDialogTextStorePoints": {
+    "type": "text"
+  },
+  "movieDialogButtonWatchFree": "Watch Free",
+  "@movieDialogButtonWatchFree": {
+    "type": "text"
+  },
+  "movieDialogButtonPayPoint": "Pay {value} Store Points",
+  "@movieDialogButtonPayPoint": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "10"
+      }
+    }
   }
 }

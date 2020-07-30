@@ -83,6 +83,7 @@ android {
 //            versionNameSuffix 'R'
             debuggable false
             minifyEnabled true
+            useProguard true // set to true for VLC player
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             zipAlignEnabled true
@@ -92,6 +93,8 @@ android {
         debug {
             debuggable true
             minifyEnabled true
+            useProguard true // set to true for VLC player
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "EG990 V2 Test"
             versionNameSuffix "T"
             applicationIdSuffix ".debug"

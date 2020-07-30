@@ -10,6 +10,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/home_route.dart';
 import 'package:flutter_ty_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/register/presentation/register_route.dart';
+import 'package:flutter_ty_mobile/features/movie/presentation/movie_route.dart';
+import 'package:flutter_ty_mobile/features/movie/presentation/data/movie_route_form.dart';
 import 'package:flutter_ty_mobile/features/web/web_route.dart';
 import 'package:flutter_ty_mobile/features/member/presentation/member_route.dart';
 import 'package:flutter_ty_mobile/features/promo/presentation/promo_route.dart';
@@ -39,6 +41,7 @@ abstract class Routes {
   static const homeRoute = '/';
   static const loginRoute = '/login-route';
   static const registerRoute = '/register-route';
+  static const movieRoute = '/movie-route';
   static const serviceRoute = '/service-route';
   static const memberRoute = '/member-route';
   static const promoRoute = '/promo-route';
@@ -69,6 +72,7 @@ abstract class Routes {
     homeRoute,
     loginRoute,
     registerRoute,
+    movieRoute,
     serviceRoute,
     memberRoute,
     promoRoute,
@@ -129,6 +133,15 @@ class Router extends RouterBase {
       case Routes.registerRoute:
         return MaterialPageRoute<dynamic>(
           builder: (context) => RegisterRoute(),
+          settings: settings,
+        );
+      case Routes.movieRoute:
+        if (hasInvalidArgs<MovieRouteArguments>(args, isRequired: true)) {
+          return misTypedArgsRoute<MovieRouteArguments>(args);
+        }
+        final typedArgs = args as MovieRouteArguments;
+        return MaterialPageRoute<dynamic>(
+          builder: (context) => MovieRoute(typedArgs.form),
           settings: settings,
         );
       case Routes.serviceRoute:
@@ -318,6 +331,12 @@ class LoginRouteArguments {
   final bool isDialog;
   LoginRouteArguments(
       {this.returnHomeAfterLogin = false, this.isDialog = false});
+}
+
+//MovieRoute arguments holder class
+class MovieRouteArguments {
+  final MovieRouteForm form;
+  MovieRouteArguments({@required this.form});
 }
 
 //WebRoute arguments holder class

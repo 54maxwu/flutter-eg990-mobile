@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'promo_freezed.dart';
 
@@ -15,6 +15,7 @@ PromoModel _$PromoModelFromJson(Map<String, dynamic> json) {
 class _$PromoModelTearOff {
   const _$PromoModelTearOff();
 
+// ignore: unused_element
   _PromoModel call(
       {@required int id,
       @JsonKey(name: 'post_category_id') int postCategoryId,
@@ -499,6 +500,7 @@ abstract class _PromoModel implements PromoModel {
 class _$PromoEntityTearOff {
   const _$PromoEntityTearOff();
 
+// ignore: unused_element
   _PromoEntity call(
       {@required @HiveField(0) int id,
       @required @HiveField(1) String name,

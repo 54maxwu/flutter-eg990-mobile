@@ -85,27 +85,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m32(name) => "欢迎，${name}";
 
-  static m33(value) => "地址：${value}";
+  static m33(value) => "商城积分 ${value} 购买";
 
-  static m34(from, to, total) => "顯示第 ${from} 至 ${to} 項結果，共 ${total} 項";
+  static m34(value) => "地址：${value}";
 
-  static m35(value) => "姓名：${value}";
+  static m35(from, to, total) => "顯示第 ${from} 至 ${to} 項結果，共 ${total} 項";
 
-  static m36(value) => "电话：${value}";
+  static m36(value) => "姓名：${value}";
 
-  static m37(value) => "邮编：${value}";
+  static m37(value) => "电话：${value}";
 
-  static m38(value) => "各平台${value}";
+  static m38(value) => "邮编：${value}";
 
-  static m39(value) => "${value}积分";
+  static m39(value) => "各平台${value}";
 
-  static m40(value) => "￥ ${value}";
+  static m40(value) => "${value}积分";
 
-  static m41(separator) => "获取${separator}验证码";
+  static m41(value) => "￥ ${value}";
 
-  static m42(msg) => "查无${msg}纪录";
+  static m42(separator) => "获取${separator}验证码";
 
-  static m43(num) => "累积幸运轮抽奖次数:${num}次数";
+  static m43(msg) => "查无${msg}纪录";
+
+  static m44(num) => "累积幸运轮抽奖次数:${num}次数";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -367,6 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberGridTitleWithdraw" : MessageLookupByLibrary.simpleMessage("提现"),
     "messageActionFailed" : MessageLookupByLibrary.simpleMessage("操作无效"),
     "messageActionFillForm" : MessageLookupByLibrary.simpleMessage("请填写完整"),
+    "messageActionTooFrequent" : MessageLookupByLibrary.simpleMessage("请求过于频繁"),
     "messageClearDataRestart" : MessageLookupByLibrary.simpleMessage("语言已变更，清除数据中，稍后将重启"),
     "messageCopy" : MessageLookupByLibrary.simpleMessage("已复制到剪贴板"),
     "messageCopyError" : MessageLookupByLibrary.simpleMessage("复制失败"),
@@ -421,6 +424,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageTaskCanceled" : m29,
     "messageTaskFailed" : m30,
     "messageTaskSuccess" : m31,
+    "messageVerifySuccess" : MessageLookupByLibrary.simpleMessage("验证成功"),
     "messageWait" : MessageLookupByLibrary.simpleMessage("处理请求中，请稍候…"),
     "messageWaitComplete" : MessageLookupByLibrary.simpleMessage("处理请求中，请勿退出"),
     "messageWarnLoadingGame" : MessageLookupByLibrary.simpleMessage("加载游戏中，请稍候…"),
@@ -431,6 +435,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageWarnUsingCellular" : MessageLookupByLibrary.simpleMessage("您正在使用移动网络"),
     "messageWelcome" : MessageLookupByLibrary.simpleMessage("欢迎光临，请先登入/注册"),
     "messageWelcomeUser" : m32,
+    "movieCategoryLabelBuy" : MessageLookupByLibrary.simpleMessage("购买"),
+    "movieCategoryLabelCollect" : MessageLookupByLibrary.simpleMessage("收藏"),
+    "movieCategoryLabelExpand" : MessageLookupByLibrary.simpleMessage("展开分类"),
+    "movieCategoryLabelFold" : MessageLookupByLibrary.simpleMessage("收起分类"),
+    "movieDialogButtonPayPoint" : m33,
+    "movieDialogButtonWatchFree" : MessageLookupByLibrary.simpleMessage("免费次数观看"),
+    "movieDialogTextFreeTimes" : MessageLookupByLibrary.simpleMessage("剩余免费观看次数: "),
+    "movieDialogTextStorePoints" : MessageLookupByLibrary.simpleMessage("剩余商城绩分: "),
+    "movieDialogTitlePay" : MessageLookupByLibrary.simpleMessage("购买"),
+    "movieHintTextFree" : MessageLookupByLibrary.simpleMessage("当日免费"),
+    "movieHintTextNotPurchased" : MessageLookupByLibrary.simpleMessage("未购买"),
+    "movieHintTextPurchased" : MessageLookupByLibrary.simpleMessage("已购买"),
+    "movieListHintLoad" : MessageLookupByLibrary.simpleMessage("加载更多"),
+    "movieListHintLoadFailed" : MessageLookupByLibrary.simpleMessage("加载失败"),
+    "movieListHintLoadNoMore" : MessageLookupByLibrary.simpleMessage("已到底"),
+    "movieListHintLoadReady" : MessageLookupByLibrary.simpleMessage("处理中..."),
+    "movieListHintLoadSuccess" : MessageLookupByLibrary.simpleMessage("加载成功"),
+    "movieListHintLoading" : MessageLookupByLibrary.simpleMessage("加载中..."),
+    "movieSeparatorTextHot" : MessageLookupByLibrary.simpleMessage("其他人都在看"),
+    "movieTextBuyNow" : MessageLookupByLibrary.simpleMessage("立即购买"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("一般讯息"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("维护通知"),
     "pageTitleCollect" : MessageLookupByLibrary.simpleMessage("集字活动"),
@@ -455,6 +479,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageTitleMemberWallet" : MessageLookupByLibrary.simpleMessage("免转钱包"),
     "pageTitleMemberWithdraw" : MessageLookupByLibrary.simpleMessage("提现"),
     "pageTitleMore" : MessageLookupByLibrary.simpleMessage("更多"),
+    "pageTitleMovie" : MessageLookupByLibrary.simpleMessage("新影城"),
+    "pageTitleMovieEG" : MessageLookupByLibrary.simpleMessage("EG影城"),
     "pageTitleNotice" : MessageLookupByLibrary.simpleMessage("公告"),
     "pageTitlePromo" : MessageLookupByLibrary.simpleMessage("优惠"),
     "pageTitleRank" : MessageLookupByLibrary.simpleMessage("VIP阶层"),
@@ -476,11 +502,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "promoDetailText" : MessageLookupByLibrary.simpleMessage(">>活动细则"),
     "registerButtonTitleRefresh" : MessageLookupByLibrary.simpleMessage("点图刷新"),
     "registerButtonTitleRegister" : MessageLookupByLibrary.simpleMessage("注册"),
-    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("帐号:"),
-    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("确认密码:"),
-    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("密码:"),
-    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("手机号:"),
-    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("推荐码:"),
+    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("帐号："),
+    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("确认密码："),
+    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("密码："),
+    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("手机号："),
+    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("推荐码："),
     "registerHintAutoLogin" : MessageLookupByLibrary.simpleMessage("登入中，请稍候..."),
     "sideBtnBackHome" : MessageLookupByLibrary.simpleMessage("回首页"),
     "sideBtnLockRotate" : MessageLookupByLibrary.simpleMessage("锁定旋屏"),
@@ -507,11 +533,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRecordFieldHint" : MessageLookupByLibrary.simpleMessage("请输入商品名称"),
     "storeRecordSpinnerTitle1" : MessageLookupByLibrary.simpleMessage("显示"),
     "storeRecordSpinnerTitle2" : MessageLookupByLibrary.simpleMessage("项"),
-    "storeRecordTableDetailAddress" : m33,
-    "storeRecordTableDetailItem" : m34,
-    "storeRecordTableDetailName" : m35,
-    "storeRecordTableDetailPhone" : m36,
-    "storeRecordTableDetailPostCode" : m37,
+    "storeRecordTableDetailAddress" : m34,
+    "storeRecordTableDetailItem" : m35,
+    "storeRecordTableDetailName" : m36,
+    "storeRecordTableDetailPhone" : m37,
+    "storeRecordTableDetailPostCode" : m38,
     "storeRecordTableStatusPending" : MessageLookupByLibrary.simpleMessage("待出货"),
     "storeRecordTableTitleDate" : MessageLookupByLibrary.simpleMessage("日期"),
     "storeRecordTableTitleNo" : MessageLookupByLibrary.simpleMessage("订单号"),
@@ -528,17 +554,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRequestWindowTextPoint" : MessageLookupByLibrary.simpleMessage("累计积分："),
     "storeRequestWindowTitle" : MessageLookupByLibrary.simpleMessage("联络资讯"),
     "storeRuleTableHeader" : MessageLookupByLibrary.simpleMessage("每100元有效投注额即可获得积分表"),
-    "storeRuleTableTitle" : m38,
+    "storeRuleTableTitle" : m39,
     "storeTextItemButton" : MessageLookupByLibrary.simpleMessage("立即兑换"),
     "storeTextItemButtonDisabled" : MessageLookupByLibrary.simpleMessage("積分不足"),
     "storeTextItemHint" : MessageLookupByLibrary.simpleMessage("数量有限换完为止"),
-    "storeTextItemPoint" : m39,
+    "storeTextItemPoint" : m40,
     "storeTextTitlePoint" : MessageLookupByLibrary.simpleMessage("会员积分："),
     "storeTextTitleProduct" : MessageLookupByLibrary.simpleMessage("兑换商品"),
     "storeTextTitleRecord" : MessageLookupByLibrary.simpleMessage("积分记录"),
     "storeTextTitleRule" : MessageLookupByLibrary.simpleMessage("兑换规则"),
     "title" : MessageLookupByLibrary.simpleMessage("添运国际V1"),
-    "toolBarMemberCredit" : m40,
+    "toolBarMemberCredit" : m41,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("金额"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("日期"),
     "transactionHeaderDesc" : MessageLookupByLibrary.simpleMessage("说明"),
@@ -563,10 +589,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPwdFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("密码确认："),
     "userPwdFieldTitleNew" : MessageLookupByLibrary.simpleMessage("新密码："),
     "userPwdFieldTitleOld" : MessageLookupByLibrary.simpleMessage("旧密码："),
-    "userVerifyButtonText" : m41,
+    "userVerifyButtonText" : m42,
     "userVerifyFieldHint" : MessageLookupByLibrary.simpleMessage("请输入验证码"),
     "userVerifyFieldInfo" : MessageLookupByLibrary.simpleMessage("24小时内只能获取一组验证码"),
-    "userVerifyFieldTitle" : MessageLookupByLibrary.simpleMessage("验证码:"),
+    "userVerifyFieldTitle" : MessageLookupByLibrary.simpleMessage("验证码："),
     "walletViewButtonOneClick" : MessageLookupByLibrary.simpleMessage("一键归户"),
     "walletViewHintOneClick" : MessageLookupByLibrary.simpleMessage("所有平台额度转入主钱包"),
     "walletViewHintOneClickWait" : MessageLookupByLibrary.simpleMessage("归户中，请稍候..."),
@@ -593,8 +619,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "wheelRecordTableTextCount" : MessageLookupByLibrary.simpleMessage("次数"),
     "wheelRecordTableTextOperate" : MessageLookupByLibrary.simpleMessage("操作"),
     "wheelRecordTableTextTime" : MessageLookupByLibrary.simpleMessage("时间"),
-    "wheelTableMessageEmpty" : m42,
-    "wheelTextTitleCount" : m43,
+    "wheelTableMessageEmpty" : m43,
+    "wheelTextTitleCount" : m44,
     "wheelTextTitleGet" : MessageLookupByLibrary.simpleMessage("领取旋转次数"),
     "wheelTextTitlePrize" : MessageLookupByLibrary.simpleMessage("获奖纪录"),
     "wheelTextTitleRecord" : MessageLookupByLibrary.simpleMessage("操作纪录"),

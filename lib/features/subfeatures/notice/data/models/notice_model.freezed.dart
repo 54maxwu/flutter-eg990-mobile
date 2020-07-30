@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'notice_model.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$NoticeModelTearOff {
   const _$NoticeModelTearOff();
 
+// ignore: unused_element
   _NoticeModel call({String code, NoticeDataModel data, String msg}) {
     return _NoticeModel(
       code: code,
@@ -163,6 +164,7 @@ abstract class _NoticeModel implements NoticeModel {
 class _$NoticeDataModelTearOff {
   const _$NoticeDataModelTearOff();
 
+// ignore: unused_element
   _NoticeDataModel call(
       {List<NoticeData> maintenanceList, List<NoticeData> marqueeList}) {
     return _NoticeDataModel(
@@ -300,6 +302,7 @@ abstract class _NoticeDataModel implements NoticeDataModel {
 class _$NoticeDataTearOff {
   const _$NoticeDataTearOff();
 
+// ignore: unused_element
   _NoticeData call(
       {@JsonKey(name: 'content_cn') String content, String date, int sort}) {
     return _NoticeData(

@@ -55,7 +55,6 @@ class _TransactionRouteState extends State<TransactionRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

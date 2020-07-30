@@ -65,7 +65,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.centerTextTitlePhone,
-                      titleLetterSpacing: 8,
+                      titleLetterSpacing: 3,
                       suffixText: localeStr.userVerifyButtonText('\n'),
                       suffixLetterWidth: 3.6,
                       suffixAction: (input) {

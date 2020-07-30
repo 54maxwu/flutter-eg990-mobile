@@ -32,7 +32,6 @@ class _BankcardRouteState extends State<BankcardRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on error message changed */

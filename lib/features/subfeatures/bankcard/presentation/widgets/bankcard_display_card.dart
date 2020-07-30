@@ -74,7 +74,6 @@ class _BankcardDisplayCardState extends State<BankcardDisplayCard>
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

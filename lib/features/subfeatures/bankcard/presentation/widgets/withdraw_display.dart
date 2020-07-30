@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
-import 'package:flutter_ty_mobile/features/general/widgets/loading_widget.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/bankcard/data/models/withdraw_model.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/bankcard/presentation/widgets/bankcard_display_card.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/bankcard/presentation/widgets/withdraw_display_view.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
-import '../../../../../injection_container.dart' show sl;
 import '../../data/models/bankcard_model.dart';
-import '../state/withdraw_store.dart';
+import '../../data/models/withdraw_model.dart';
 import '../state/bankcard_store.dart';
+import '../state/withdraw_store.dart';
+import 'bankcard_display_card.dart';
+import 'withdraw_display_view.dart';
 
 class WithdrawDisplay extends StatefulWidget {
   final BankcardStore bankcardStore;
@@ -40,7 +34,6 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

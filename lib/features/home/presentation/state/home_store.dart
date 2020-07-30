@@ -295,10 +295,10 @@ abstract class _HomeStore with Store {
   }
 
   @computed
-  List<GameCategoryModel> get homeUserTabs =>
-      new List.from([recommendCategory, favoriteCategory] + homeTabs
+  List<GameCategoryModel> get homeUserTabs => new List.from(
+        [recommendCategory, favoriteCategory] + homeTabs + [movieEgCategory],
 //           + [movieEgCategory, movieNewCategory],
-          );
+      );
 
   void _processHomeContent() {
     homeTabs = new List.from(_gameTypes.categories, growable: true);

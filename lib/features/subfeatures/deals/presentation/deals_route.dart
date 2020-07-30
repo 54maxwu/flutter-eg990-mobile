@@ -72,7 +72,6 @@ class _DealsRouteState extends State<DealsRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

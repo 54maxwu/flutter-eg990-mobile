@@ -1,13 +1,12 @@
 import 'package:flutter_ty_mobile/utils/json_util.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_ty_mobile/utils/value_util.dart'
     show ValueUtilExtension;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../entity/center_account_entity.dart';
 import '../entity/center_vip_entity.dart';
 
 part 'center_model.freezed.dart';
-part 'center_model.g.dart';
 
 @freezed
 abstract class CenterModel with _$CenterModel {
@@ -45,15 +44,48 @@ abstract class CenterModel with _$CenterModel {
     @JsonKey(name: 'sportgame') int sportGame,
     @JsonKey(name: 'sportgame_level') int sportGameLevel,
     @JsonKey(name: 'sportgame_value') int sportGameValue,
-    @JsonKey(name: 'vip_option') dynamic vipOption,
-    @JsonKey(name: 'vip_setting') dynamic vipSetting,
+    @JsonKey(name: 'vip_option') var vipOption,
+    @JsonKey(name: 'vip_setting') var vipSetting,
   }) = _CenterModel;
 
-  factory CenterModel.fromJson(Map<String, dynamic> json) =>
-      _$CenterModelFromJson(json);
-
   static CenterModel jsonToCenterModel(Map<String, dynamic> jsonMap) =>
-      CenterModel.fromJson(jsonMap);
+      _$_CenterModel(
+        accountCode: jsonMap['accountcode'] as String ?? '',
+        accountId: jsonMap['accountid'] as int ?? -1,
+        birthDate: jsonMap['dob'] as String ?? '',
+        phone: jsonMap['mobileno'] as String ?? '',
+        gender: jsonMap['gender'] as String ?? '',
+        email: jsonMap['email'] as String ?? '',
+        wechat: jsonMap['wechat'] as String ?? '',
+        firstName: jsonMap['firstname'] as String ?? '',
+        autoTransfer: jsonMap['auto_transfer'] as String ?? '-1',
+        cgpWallet: jsonMap['cGP_wallet'] as String ?? '',
+        cpwWallet: jsonMap['cPW_wallet'] as String ?? '',
+        lotto: _jsonList(jsonMap['address']),
+        allGame: jsonMap['allgame'] as int,
+        allGameLevel: jsonMap['allgame_level'] as int,
+        allGameValue: jsonMap['allgame_value'] as int,
+        cardGame: jsonMap['cardgame'] as int,
+        cardGameLevel: jsonMap['cardgame_level'] as int,
+        cardGameValue: jsonMap['cardgame_value'] as int,
+        casinoGame: jsonMap['casinogame'] as int,
+        casinoGameLevel: jsonMap['casinogame_level'] as int,
+        casinoGameValue: jsonMap['casinogame_value'] as int,
+        fishGame: jsonMap['fishgame'] as int,
+        fishGameLevel: jsonMap['fishgame_level'] as int,
+        fishGameValue: jsonMap['fishgame_value'] as int,
+        lotteryGame: jsonMap['lotterygame'] as int,
+        lotteryGameLevel: jsonMap['lotterygame_level'] as int,
+        lotteryGameValue: jsonMap['lotterygame_value'] as int,
+        slotGame: jsonMap['slotgame'] as int,
+        slotGameLevel: jsonMap['slotgame_level'] as int,
+        slotGameValue: jsonMap['slotgame_value'] as int,
+        sportGame: jsonMap['sportgame'] as int,
+        sportGameLevel: jsonMap['sportgame_level'] as int,
+        sportGameValue: jsonMap['sportgame_value'] as int,
+        vipOption: jsonMap['vip_option'],
+        vipSetting: jsonMap['vip_setting'],
+      );
 }
 
 extension CenterModelExtension on CenterModel {

@@ -39,7 +39,6 @@ class _TemplateRouteState extends State<TemplateRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

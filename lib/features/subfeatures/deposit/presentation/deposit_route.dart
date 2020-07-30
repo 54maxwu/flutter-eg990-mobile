@@ -19,7 +19,6 @@ class _DepositRouteState extends State<DepositRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

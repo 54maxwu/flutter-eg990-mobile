@@ -25,7 +25,6 @@ class _BetRecordRouteState extends State<BetRecordRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

@@ -53,6 +53,26 @@ class S {
     );
   }
 
+  /// `EG Movie`
+  String get pageTitleMovieEG {
+    return Intl.message(
+      'EG Movie',
+      name: 'pageTitleMovieEG',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Movie`
+  String get pageTitleMovie {
+    return Intl.message(
+      'New Movie',
+      name: 'pageTitleMovie',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `APP Download`
   String get pageTitleDownload {
     return Intl.message(
@@ -993,11 +1013,31 @@ class S {
     );
   }
 
+  /// `Too many action in a short time`
+  String get messageActionTooFrequent {
+    return Intl.message(
+      'Too many action in a short time',
+      name: 'messageActionTooFrequent',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No activity currently`
   String get messageNoEvent {
     return Intl.message(
       'No activity currently',
       name: 'messageNoEvent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Success`
+  String get messageVerifySuccess {
+    return Intl.message(
+      'Verify Success',
+      name: 'messageVerifySuccess',
       desc: '',
       args: [],
     );
@@ -4873,10 +4913,10 @@ class S {
     );
   }
 
-  /// `Points：`
+  /// `Points:`
   String get storeRequestWindowPoints {
     return Intl.message(
-      'Points：',
+      'Points:',
       name: 'storeRequestWindowPoints',
       desc: '',
       args: [],
@@ -5060,6 +5100,206 @@ class S {
       name: 'eventButtonSignUpFailed',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Collection`
+  String get movieCategoryLabelCollect {
+    return Intl.message(
+      'Collection',
+      name: 'movieCategoryLabelCollect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy`
+  String get movieCategoryLabelBuy {
+    return Intl.message(
+      'Buy',
+      name: 'movieCategoryLabelBuy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expand`
+  String get movieCategoryLabelExpand {
+    return Intl.message(
+      'Expand',
+      name: 'movieCategoryLabelExpand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fold`
+  String get movieCategoryLabelFold {
+    return Intl.message(
+      'Fold',
+      name: 'movieCategoryLabelFold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Others are watching`
+  String get movieSeparatorTextHot {
+    return Intl.message(
+      'Others are watching',
+      name: 'movieSeparatorTextHot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy Now`
+  String get movieTextBuyNow {
+    return Intl.message(
+      'Buy Now',
+      name: 'movieTextBuyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free Today`
+  String get movieHintTextFree {
+    return Intl.message(
+      'Free Today',
+      name: 'movieHintTextFree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchased`
+  String get movieHintTextPurchased {
+    return Intl.message(
+      'Purchased',
+      name: 'movieHintTextPurchased',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unpurchased`
+  String get movieHintTextNotPurchased {
+    return Intl.message(
+      'Unpurchased',
+      name: 'movieHintTextNotPurchased',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Load More`
+  String get movieListHintLoad {
+    return Intl.message(
+      'Load More',
+      name: 'movieListHintLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requesting...`
+  String get movieListHintLoadReady {
+    return Intl.message(
+      'Requesting...',
+      name: 'movieListHintLoadReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get movieListHintLoading {
+    return Intl.message(
+      'Loading...',
+      name: 'movieListHintLoading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Load Success`
+  String get movieListHintLoadSuccess {
+    return Intl.message(
+      'Load Success',
+      name: 'movieListHintLoadSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Load Failed`
+  String get movieListHintLoadFailed {
+    return Intl.message(
+      'Load Failed',
+      name: 'movieListHintLoadFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No More`
+  String get movieListHintLoadNoMore {
+    return Intl.message(
+      'No More',
+      name: 'movieListHintLoadNoMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy this movie`
+  String get movieDialogTitlePay {
+    return Intl.message(
+      'Buy this movie',
+      name: 'movieDialogTitlePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch-Free Remain: `
+  String get movieDialogTextFreeTimes {
+    return Intl.message(
+      'Watch-Free Remain: ',
+      name: 'movieDialogTextFreeTimes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Store Point: `
+  String get movieDialogTextStorePoints {
+    return Intl.message(
+      'Current Store Point: ',
+      name: 'movieDialogTextStorePoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch Free`
+  String get movieDialogButtonWatchFree {
+    return Intl.message(
+      'Watch Free',
+      name: 'movieDialogButtonWatchFree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay {value} Store Points`
+  String movieDialogButtonPayPoint(Object value) {
+    return Intl.message(
+      'Pay $value Store Points',
+      name: 'movieDialogButtonPayPoint',
+      desc: '',
+      args: [value],
     );
   }
 }

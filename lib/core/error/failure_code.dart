@@ -1,5 +1,5 @@
-import 'package:vnum/vnum.dart';
 import 'package:dataclass/dataclass.dart';
+import 'package:vnum/vnum.dart';
 
 part 'failure_code.g.dart';
 
@@ -18,6 +18,7 @@ class FailureType extends Vnum<int> {
   static const FailureType REGISTER = const FailureType.define(0200);
   static const FailureType WEB = const FailureType.define(0500);
   static const FailureType WEB_URL = const FailureType.define(0600);
+  static const FailureType SERVICE = const FailureType.define(0900);
 
   static const FailureType HOME = const FailureType.define(1000);
   static const FailureType BANNER = const FailureType.define(1100);
@@ -25,9 +26,9 @@ class FailureType extends Vnum<int> {
   static const FailureType GAMES = const FailureType.define(1300);
   static const FailureType RECOMMENDS = const FailureType.define(1400);
   static const FailureType FAVORITE = const FailureType.define(1500);
-  static const FailureType MOVIE = const FailureType.define(1600);
-  static const FailureType PROMO = const FailureType.define(1700);
-  static const FailureType SERVICE = const FailureType.define(1800);
+  static const FailureType MOVIE_TAB = const FailureType.define(1600);
+  static const FailureType MOVIE = const FailureType.define(1700);
+  static const FailureType PROMO = const FailureType.define(1800);
   static const FailureType MORE = const FailureType.define(1900);
 
   static const FailureType MEMBER = const FailureType.define(2000);
@@ -53,6 +54,7 @@ class FailureType extends Vnum<int> {
   static const FailureType STORE = const FailureType.define(3500);
   static const FailureType ROLLER = const FailureType.define(3600);
 
+  static const FailureType INHERIT = const FailureType.define(7000);
   static const FailureType TASK = const FailureType.define(8000);
   static const FailureType JSON = const FailureType.define(8100);
   static const FailureType REPO = const FailureType.define(8200);

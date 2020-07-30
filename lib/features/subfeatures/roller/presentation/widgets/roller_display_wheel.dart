@@ -44,7 +44,6 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on wait prize result */

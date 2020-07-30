@@ -34,7 +34,6 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on page data changed */

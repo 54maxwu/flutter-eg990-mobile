@@ -4,20 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/tabs_page_control_widget.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_display_tab_favorite.dart';
-import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_display_tab_recommend.dart';
+import 'package:flutter_ty_mobile/features/movie/presentation/eg/movie_tab_eg_route.dart';
 
 import '../../data/models/game_category_model.dart';
 import '../state/home_store.dart';
 import 'home_display_size_calc.dart';
+import 'home_display_tab_favorite.dart';
 import 'home_display_tab_page.dart';
+import 'home_display_tab_recommend.dart';
 import 'home_store_inherit_widget.dart';
 
+///
 /// Main view of the game area
 /// Creates a [TabBar] widget to switch between each game category
 /// Creates a [ConstrainedBox] to contain tab's page view
 /// @author H.C.CHIANG
-/// @version 2020/6/19
+/// @version 2020/7/16
+///
 class HomeDisplayUserTabs extends StatefulWidget {
   final HomeDisplaySizeCalc sizeCalc;
   final List<GameCategoryModel> tabs;
@@ -211,7 +214,9 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                           );
                           break;
                         case GamePageType.Movie1:
-                          return Center(child: Text('${category.type}'));
+                          return new MovieTabEgRoute(
+                            displaySize: widget.sizeCalc,
+                          );
                           break;
                         case GamePageType.Movie2:
                           return Center(child: Text('${category.type}'));

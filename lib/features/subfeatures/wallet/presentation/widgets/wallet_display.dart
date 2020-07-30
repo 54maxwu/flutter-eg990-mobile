@@ -31,7 +31,6 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on transfer action */

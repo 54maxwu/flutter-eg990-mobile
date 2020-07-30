@@ -61,7 +61,6 @@ class _RegisterRouteState extends State<RegisterRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

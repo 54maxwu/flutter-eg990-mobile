@@ -25,7 +25,6 @@ class _AgentRouteState extends State<AgentRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

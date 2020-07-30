@@ -24,7 +24,6 @@ class _NoticeRouteState extends State<NoticeRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

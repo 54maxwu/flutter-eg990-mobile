@@ -11,6 +11,14 @@
   "@pageTitleHome": {
     "type": "text"
   },
+  "pageTitleMovieEG":"EG影城",
+  "@pageTitleMovieEG": {
+    "type": "text"
+  },
+  "pageTitleMovie":"新影城",
+  "@pageTitleMovie": {
+    "type": "text"
+  },
   "pageTitleDownload": "APP下载区",
   "@pageTitleDownload": {
     "type": "text"
@@ -407,8 +415,16 @@
       }
     }
   },
+  "messageActionTooFrequent": "请求过于频繁",
+  "@messageActionTooFrequent": {
+    "type": "text"
+  },
   "messageNoEvent": "当前没有活动",
   "@messageNoEvent": {
+    "type": "text"
+  },
+  "messageVerifySuccess": "验证成功",
+  "@messageVerifySuccess": {
     "type": "text"
   },
   "messageTaskSuccess": "{msg}成功",
@@ -725,7 +741,7 @@
   "@userPwdButtonTitle": {
     "type": "text"
   },
-  "userVerifyFieldTitle": "验证码:",
+  "userVerifyFieldTitle": "验证码：",
   "@userVerifyFieldTitle": {
     "type": "text"
   },
@@ -746,23 +762,23 @@
       }
     }
   },
-  "registerFieldTitleAccount": "帐号:",
+  "registerFieldTitleAccount": "帐号：",
   "@registerFieldTitleAccount": {
     "type": "text"
   },
-  "registerFieldTitlePassword": "密码:",
+  "registerFieldTitlePassword": "密码：",
   "@registerFieldTitlePassword": {
     "type": "text"
   },
-  "registerFieldTitleConfirm": "确认密码:",
+  "registerFieldTitleConfirm": "确认密码：",
   "@registerFieldTitleConfirm": {
     "type": "text"
   },
-  "registerFieldTitlePhone": "手机号:",
+  "registerFieldTitlePhone": "手机号：",
   "@registerFieldTitlePhone": {
     "type": "text"
   },
-  "registerFieldTitleRecommend": "推荐码:",
+  "registerFieldTitleRecommend": "推荐码：",
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
@@ -2243,5 +2259,90 @@
   "eventButtonSignUpFailed": "签到失败!!",
   "@eventButtonSignUpFailed": {
     "type": "text"
+  },
+  "movieCategoryLabelCollect": "收藏",
+  "@movieCategoryLabelCollect": {
+    "type": "text"
+  },
+  "movieCategoryLabelBuy": "购买",
+  "@movieCategoryLabelBuy": {
+    "type": "text"
+  },
+  "movieCategoryLabelExpand": "展开分类",
+  "@movieCategoryLabelExpand": {
+    "type": "text"
+  },
+  "movieCategoryLabelFold": "收起分类",
+  "@movieCategoryLabelFold": {
+    "type": "text"
+  },
+  "movieSeparatorTextHot": "其他人都在看",
+  "@movieSeparatorTextHot": {
+    "type": "text"
+  },
+  "movieTextBuyNow": "立即购买",
+  "@movieTextBuyNow": {
+    "type": "text"
+  },
+  "movieHintTextFree": "当日免费",
+  "@movieHintTextFree": {
+    "type": "text"
+  },
+  "movieHintTextPurchased": "已购买",
+  "@movieHintTextPurchased": {
+    "type": "text"
+  },
+  "movieHintTextNotPurchased": "未购买",
+  "@movieHintTextNotPurchased": {
+    "type": "text"
+  },
+  "movieListHintLoad": "加载更多",
+  "@movieListHintLoad": {
+    "type": "text"
+  },
+  "movieListHintLoadReady": "处理中...",
+  "@movieListHintLoadReady": {
+    "type": "text"
+  },
+  "movieListHintLoading": "加载中...",
+  "@movieListHintLoading": {
+    "type": "text"
+  },
+  "movieListHintLoadSuccess": "加载成功",
+  "@movieListHintLoadSuccess": {
+    "type": "text"
+  },
+  "movieListHintLoadFailed": "加载失败",
+  "@movieListHintLoadFailed": {
+    "type": "text"
+  },
+  "movieListHintLoadNoMore": "已到底",
+  "@movieListHintLoadNoMore": {
+    "type": "text"
+  },
+  "movieDialogTitlePay": "购买",
+  "@movieDialogTitlePay": {
+    "type": "text"
+  },
+  "movieDialogTextFreeTimes": "剩余免费观看次数: ",
+  "@movieDialogTextFreeTimes": {
+    "type": "text"
+  },
+  "movieDialogTextStorePoints": "剩余商城绩分: ",
+  "@movieDialogTextStorePoints": {
+    "type": "text"
+  },
+  "movieDialogButtonWatchFree": "免费次数观看",
+  "@movieDialogButtonWatchFree": {
+    "type": "text"
+  },
+  "movieDialogButtonPayPoint": "商城积分 {value} 购买",
+  "@movieDialogButtonPayPoint": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "10"
+      }
+    }
   }
 }

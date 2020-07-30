@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/core/internal/font_size.dart';
 
-export 'hex_color.dart';
 export 'font_size.dart';
+export 'hex_color.dart';
 
 final appTheme = Themes();
 
@@ -211,29 +211,30 @@ class Themes {
       ),
     ),
     /* Slider Theme */
-//    sliderTheme: SliderThemeData(
-//      activeTrackColor: Color(0xffeace98),
-//      inactiveTrackColor: Color(0x3d212121),
-//      disabledActiveTrackColor: Color(0xff888888),
-//      disabledInactiveTrackColor: Color(0x1f000000),
-//      activeTickMarkColor: Color(0x8a9e9e9e),
-//      inactiveTickMarkColor: Color(0x8a212121),
-//      disabledActiveTickMarkColor: Color(0x1f9e9e9e),
-//      disabledInactiveTickMarkColor: Color(0x1f000000),
-//      thumbColor: Color(0xffe7c080),
-//      disabledThumbColor: Color(0xff888888),
-//      thumbShape: RoundSliderThumbShape(),
-//      overlayColor: Color(0x29212121),
-//      valueIndicatorColor: Color(0xff575757),
-//      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-//      showValueIndicator: ShowValueIndicator.onlyForDiscrete,
-//      valueIndicatorTextStyle: TextStyle(
-//        color: Color(0xdd000000),
-//        fontSize: 14.0,
-//        fontWeight: FontWeight.w400,
-//        fontStyle: FontStyle.normal,
-//      ),
-//    ),
+    sliderTheme: SliderThemeData(
+      trackHeight: 3.0,
+      activeTrackColor: Colors.white,
+      inactiveTrackColor: Colors.white38,
+      disabledActiveTrackColor: Color(0xff888888),
+      disabledInactiveTrackColor: Color(0x1f000000),
+      activeTickMarkColor: Color(0x8a9e9e9e),
+      inactiveTickMarkColor: Color(0x8a212121),
+      disabledActiveTickMarkColor: Color(0x1f9e9e9e),
+      disabledInactiveTickMarkColor: Color(0x1f000000),
+      thumbColor: Colors.white,
+      disabledThumbColor: Color(0xff888888),
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
+      overlayColor: Color(0x29212121),
+      valueIndicatorColor: Color(0xff575757),
+      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+      showValueIndicator: ShowValueIndicator.onlyForDiscrete,
+      valueIndicatorTextStyle: TextStyle(
+        color: Color(0xdd000000),
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+      ),
+    ),
   );
 }
 

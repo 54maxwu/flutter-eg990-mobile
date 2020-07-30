@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'bet_record_model.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$BetRecordModelTearOff {
   const _$BetRecordModelTearOff();
 
+// ignore: unused_element
   _BetRecordModel call(
       {@JsonKey(name: 'current_page') int currentPage,
       @JsonKey(name: 'last_page') int lastPage,
@@ -302,6 +303,7 @@ abstract class _BetRecordModel implements BetRecordModel {
 class _$BetRecordDataTearOff {
   const _$BetRecordDataTearOff();
 
+// ignore: unused_element
   _BetRecordData call(
       {@JsonKey(name: 'activebet') String activeBet,
       String bet,
@@ -555,6 +557,7 @@ abstract class _BetRecordData implements BetRecordData {
 class _$BetRecordDataAllPlatformTearOff {
   const _$BetRecordDataAllPlatformTearOff();
 
+// ignore: unused_element
   _BetRecordDataAllPlatform call({num bet, num payout, dynamic key}) {
     return _BetRecordDataAllPlatform(
       bet: bet,

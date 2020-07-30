@@ -40,6 +40,7 @@ class Device {
         'width scale=$_screenWidthScale\n'
         'height=$_screenHeight\n'
         'height scale=$_screenHeightScale\n'
+        'ratio=$ratio, hor=$ratioHor\n'
         'inset=$_screenBottomInset\n'
         'button=$_screenButtonHeight';
   }

@@ -1,31 +1,32 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/roller/presentation/roller_route.dart';
 import 'package:flutter_ty_mobile/template/mobx/presentation/template_route.dart';
 
 import '../home/presentation/home_route.dart';
 import '../member/presentation/member_route.dart';
+import '../movie/presentation/movie_route.dart';
 import '../promo/presentation/promo_route.dart';
+import '../subfeatures/accountcenter/presentation/center_route.dart';
+import '../subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
+import '../subfeatures/agent/presentation/agent_route.dart';
+import '../subfeatures/balance/presentation/balance_route.dart';
 import '../subfeatures/bankcard/presentation/bankcard_route.dart';
+import '../subfeatures/betrecord/presentation/bet_record_route.dart';
+import '../subfeatures/deals/presentation/deals_route.dart';
 import '../subfeatures/deposit/presentation/deposit_route.dart';
 import '../subfeatures/downloadarea/download_area_route.dart';
-import '../subfeatures/transfer/presentation/transfer_route.dart';
-import '../subfeatures/accountcenter/presentation/center_route.dart';
-import '../subfeatures/wallet/presentation/wallet_route.dart';
-import '../subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
-import '../subfeatures/balance/presentation/balance_route.dart';
+import '../subfeatures/flows/presentation/flows_route.dart';
 import '../subfeatures/message/presentation/message_route.dart';
 import '../subfeatures/notice/presentation/notice_route.dart';
-import '../subfeatures/flows/presentation/flows_route.dart';
-import '../subfeatures/agent/presentation/agent_route.dart';
-import '../subfeatures/deals/presentation/deals_route.dart';
-import '../subfeatures/transactions/presentation/transaction_route.dart';
-import '../subfeatures/betrecord/presentation/bet_record_route.dart';
 import '../subfeatures/register/presentation/register_route.dart';
+import '../subfeatures/roller/presentation/roller_route.dart';
 import '../subfeatures/store/presentation/store_route.dart';
+import '../subfeatures/transactions/presentation/transaction_route.dart';
+import '../subfeatures/transfer/presentation/transfer_route.dart';
 import '../subfeatures/viplevel/presentation/vip_level_route.dart';
+import '../subfeatures/wallet/presentation/wallet_route.dart';
+import '../test_area_route.dart';
 import '../user/login/presentation/login_route.dart';
 import '../web/web_route.dart';
-import '../test_area_route.dart';
 
 @MaterialAutoRouter()
 class $Router {
@@ -33,6 +34,7 @@ class $Router {
   HomeRoute homeRoute;
   LoginRoute loginRoute;
   RegisterRoute registerRoute;
+  MovieRoute movieRoute;
   WebRoute serviceRoute;
   MemberRoute memberRoute;
   PromoRoute promoRoute;
