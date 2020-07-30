@@ -19,6 +19,7 @@ import '../models/marquee_model.dart';
 import '../models/marquee_model_list.dart';
 
 class HomeApi {
+  static const String GET_LIMIT = "api/get_account/creditlimit";
   static const String BANNER = "api/banner";
   static const String MARQUEE = "api/marquee";
   static const String GAME_ALL = "api/getAll";
@@ -35,6 +36,8 @@ class HomeApi {
 }
 
 abstract class HomeRepository {
+  Future<Either<Failure, String>> updateCredit(String account);
+
   Future<Either<Failure, List<BannerEntity>>> getBanners();
   Future<Either<Failure, List<BannerEntity>>> getCachedBanners();
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees();
@@ -65,6 +68,41 @@ class HomeRepositoryImpl implements HomeRepository {
   });
 
   @override
+  Future<Either<Failure, String>> updateCredit(String account) async {
+    final result = await requestData(
+      request: dioApiService.get(
+        HomeApi.GET_LIMIT,
+        userToken: jwtInterface.token,
+      ),
+      tag: 'remote-HOME_CREDIT',
+    );
+//    print('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (data) {
+        try {
+          Map<String, dynamic> map;
+          if (data is Map)
+            map = data;
+          else if (data is String)
+            map = jsonDecode(data);
+          else
+            return Left(Failure.dataType());
+
+          if (map.containsKey('creditlimit')) {
+            return Right(map['creditlimit']);
+          } else {
+            return Left(Failure.token());
+          }
+        } catch (e) {
+          print('credit limit error: $e');
+          return Left(Failure.server());
+        }
+      },
+    );
+  }
+
+  @override
   Future<Either<Failure, List<BannerEntity>>> getBanners() async {
     final connected = await networkInfo.isConnected;
     if (!connected) return getCachedBanners();
@@ -72,7 +110,6 @@ class HomeRepositoryImpl implements HomeRepository {
     final result = await requestModelList<BannerModel>(
       request: dioApiService.get(HomeApi.BANNER),
       jsonToModel: BannerModel.jsonToBannerModel,
-      trim: false,
       tag: 'remote-BANNER',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -121,7 +158,6 @@ class HomeRepositoryImpl implements HomeRepository {
     final result = await requestModel<MarqueeModelList>(
       request: dioApiService.get(HomeApi.MARQUEE),
       jsonToModel: MarqueeModelList.jsonToMarqueeModelList,
-      trim: false,
       tag: 'remote-MARQUEE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -169,7 +205,6 @@ class HomeRepositoryImpl implements HomeRepository {
         },
       ),
       jsonToModel: GameTypes.jsonToGameTypes,
-      trim: false,
       tag: 'remote-GAME_ALL',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -214,7 +249,6 @@ class HomeRepositoryImpl implements HomeRepository {
     final result = await requestModelList<GameModel>(
       request: dioApiService.postForm(HomeApi.GAME_INDEX, form.toJson()),
       jsonToModel: GameModel.jsonToGameModel,
-      trim: false,
       tag: 'remote-GAMES',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -384,6 +418,8 @@ class HomeRepositoryImpl implements HomeRepository {
           return Right(data == '1' || data == 'true');
         else if (data is bool)
           return Right(data);
+        else if (data is int)
+          return Right(data == 1);
         else
           return Left(Failure.dataType());
       },
@@ -414,6 +450,8 @@ class HomeRepositoryImpl implements HomeRepository {
           return Right(data == '1' || data == 'true');
         else if (data is bool)
           return Right(data);
+        else if (data is int)
+          return Right(data == 1);
         else
           return Left(Failure.dataType());
       },

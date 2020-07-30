@@ -37,8 +37,7 @@ abstract class AgentLedgerModel
 
 extension AgentLedgerModelExtension on AgentLedgerModel {
   List<num> get sumEachColumn {
-    if (data == null || data.isEmpty)
-      return [];
+    if (data == null || data.isEmpty) return [];
     List<num> sumColumn = new List.generate(4, (_) => 0);
     data.forEach((element) {
       for (int i = 0; i < 4; i++) {
@@ -55,7 +54,6 @@ List<AgentLedgerData> decodeAgentLedgerData(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
       (jsonMap) => AgentLedgerData.jsonToAgentLedgerData(jsonMap),
-      trim: false,
       tag: 'AgentLedgerData',
     );
 

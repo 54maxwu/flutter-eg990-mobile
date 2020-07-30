@@ -25,11 +25,16 @@ class HomeDisplayTabFavorite extends StatefulWidget {
 
 class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
   final String tag = 'HomeDisplayTabFavorite';
+  final bool _isIos = Global.device.isIos;
+//  final bool _isIos = true;
 
   HomeStore _store;
   double labelHeightFactor;
   double itemSize;
+  double baseTextSize;
+  int availableCharacters;
   bool twoLineText = true;
+  int plusGrid = 0;
   Widget _grid;
   List favorites;
 
@@ -37,6 +42,7 @@ class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
   /// [itemData] should be [GamePlatformEntity] or [GameEntity]
   /// else print warn log and show toast.
   void _onItemTap(dynamic itemData) {
+    print('onItemTap favorite: $itemData');
     if (itemData is GamePlatformEntity) {
       widget.onPlatformClicked(itemData);
     } else if (itemData is GameEntity) {
@@ -67,21 +73,23 @@ class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
 
   @override
   void initState() {
-    itemSize = widget.pageMaxWidth / 3 * 0.95;
+    plusGrid = (Global.device.widthScale > 2.0)
+        ? 2
+        : (Global.device.widthScale > 1.5) ? 1 : 0;
+
     labelHeightFactor = 1.5;
+    if (plusGrid > 0) {
+      if (Global.device.widthScale > 2.0) {
+        labelHeightFactor = 1.65;
+      } else {
+        labelHeightFactor = 1.575;
+      }
+    }
+    itemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
+    baseTextSize = (_isIos) ? FontSize.NORMAL.value + 1 : FontSize.NORMAL.value;
+    availableCharacters = (itemSize * 0.9 / baseTextSize).floor();
+    print('item available characters: $availableCharacters');
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    print('change favorite page');
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(HomeDisplayTabFavorite oldWidget) {
-    print('update favorite page');
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -117,17 +125,20 @@ class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
     twoLineText = favorites.any(
       (element) {
         if (element is GameEntity)
-          return element.cname.length >= 5;
+          return element.isLongText(availableCharacters);
         else if (element is GamePlatformEntity)
-          return element.label.length >= 5;
+          return element.isLongText(availableCharacters);
         else
           return false;
       },
     );
-    return new GridView.count(
-      physics: ClampingScrollPhysics(),
-      crossAxisCount: 3,
-      childAspectRatio: 0.7,
+//    print('favorite grid two line text: $twoLineText');
+    return GridView.count(
+      physics: BouncingScrollPhysics(),
+      padding: const EdgeInsets.only(bottom: 2.0),
+      crossAxisCount: 3 + plusGrid,
+      childAspectRatio: (plusGrid > 0) ? 0.85 : (twoLineText) ? 0.65 : 0.7,
+      mainAxisSpacing: (plusGrid > 0) ? 6.0 : (twoLineText) ? 4.0 : 0.0,
       shrinkWrap: true,
       children:
           favorites.map<Widget>((entity) => _createGridItem(entity)).toList(),
@@ -153,9 +164,9 @@ class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
     }
 
     if (twoLineText)
-      textHeight = FontSize.NORMAL.value * labelHeightFactor * 2;
+      textHeight = baseTextSize * labelHeightFactor * 2.5;
     else
-      textHeight = FontSize.NORMAL.value * labelHeightFactor;
+      textHeight = baseTextSize * labelHeightFactor;
 
     return Container(
       padding: const EdgeInsets.only(top: 6.0),
@@ -176,6 +187,7 @@ class _HomeDisplayTabFavoriteState extends State<HomeDisplayTabFavorite> {
           pluginTapAction: (imgUrl != null && label != null)
               ? (_) => _removeFavorite(entity)
               : null,
+          isIos: _isIos,
         ),
       ),
     );

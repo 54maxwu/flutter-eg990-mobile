@@ -30,7 +30,7 @@ class MemberRepositoryImpl implements MemberRepository {
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(MemberApi.GET_NEW_MESSAGE_COUNT),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-MEMBER',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

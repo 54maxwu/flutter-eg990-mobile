@@ -12,7 +12,7 @@ void main() {
 
   test('test store product model', () {
     print('\n');
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('code model: $codeModel\n\n');
     List<StoreProductModel> products = JsonUtil.decodeArrayToModel(
         codeModel.data,

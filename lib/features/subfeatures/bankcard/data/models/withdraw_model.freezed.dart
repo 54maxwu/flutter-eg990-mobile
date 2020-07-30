@@ -8,14 +8,11 @@ part of 'withdraw_model.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-WithdrawModel _$WithdrawModelFromJson(Map<String, dynamic> json) {
-  return _WithdrawModel.fromJson(json);
-}
 
 class _$WithdrawModelTearOff {
   const _$WithdrawModelTearOff();
 
-  _WithdrawModel call({int code, String data, String msg}) {
+  _WithdrawModel call({int code, dynamic data, String msg}) {
     return _WithdrawModel(
       code: code,
       data: data,
@@ -29,10 +26,9 @@ const $WithdrawModel = _$WithdrawModelTearOff();
 
 mixin _$WithdrawModel {
   int get code;
-  String get data;
+  dynamic get data;
   String get msg;
 
-  Map<String, dynamic> toJson();
   $WithdrawModelCopyWith<WithdrawModel> get copyWith;
 }
 
@@ -40,7 +36,7 @@ abstract class $WithdrawModelCopyWith<$Res> {
   factory $WithdrawModelCopyWith(
           WithdrawModel value, $Res Function(WithdrawModel) then) =
       _$WithdrawModelCopyWithImpl<$Res>;
-  $Res call({int code, String data, String msg});
+  $Res call({int code, dynamic data, String msg});
 }
 
 class _$WithdrawModelCopyWithImpl<$Res>
@@ -59,7 +55,7 @@ class _$WithdrawModelCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       code: code == freezed ? _value.code : code as int,
-      data: data == freezed ? _value.data : data as String,
+      data: data == freezed ? _value.data : data as dynamic,
       msg: msg == freezed ? _value.msg : msg as String,
     ));
   }
@@ -71,7 +67,7 @@ abstract class _$WithdrawModelCopyWith<$Res>
           _WithdrawModel value, $Res Function(_WithdrawModel) then) =
       __$WithdrawModelCopyWithImpl<$Res>;
   @override
-  $Res call({int code, String data, String msg});
+  $Res call({int code, dynamic data, String msg});
 }
 
 class __$WithdrawModelCopyWithImpl<$Res>
@@ -92,23 +88,19 @@ class __$WithdrawModelCopyWithImpl<$Res>
   }) {
     return _then(_WithdrawModel(
       code: code == freezed ? _value.code : code as int,
-      data: data == freezed ? _value.data : data as String,
+      data: data == freezed ? _value.data : data as dynamic,
       msg: msg == freezed ? _value.msg : msg as String,
     ));
   }
 }
 
-@JsonSerializable()
 class _$_WithdrawModel implements _WithdrawModel {
   const _$_WithdrawModel({this.code, this.data, this.msg});
-
-  factory _$_WithdrawModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_WithdrawModelFromJson(json);
 
   @override
   final int code;
   @override
-  final String data;
+  final dynamic data;
   @override
   final String msg;
 
@@ -139,24 +131,16 @@ class _$_WithdrawModel implements _WithdrawModel {
   @override
   _$WithdrawModelCopyWith<_WithdrawModel> get copyWith =>
       __$WithdrawModelCopyWithImpl<_WithdrawModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_WithdrawModelToJson(this);
-  }
 }
 
 abstract class _WithdrawModel implements WithdrawModel {
-  const factory _WithdrawModel({int code, String data, String msg}) =
+  const factory _WithdrawModel({int code, dynamic data, String msg}) =
       _$_WithdrawModel;
-
-  factory _WithdrawModel.fromJson(Map<String, dynamic> json) =
-      _$_WithdrawModel.fromJson;
 
   @override
   int get code;
   @override
-  String get data;
+  dynamic get data;
   @override
   String get msg;
   @override

@@ -555,7 +555,7 @@
   "@messageInvalidCardBankPoint": {
     "type": "text"
   },
-  "messageInvalidWithdrawPassword": "密码为4~8个字",
+  "messageInvalidWithdrawPassword": "密码为4~20个字",
   "@messageInvalidWithdrawPassword": {
     "type": "text"
   },
@@ -900,6 +900,10 @@
   },
   "transferResultAlertTitle": "转帐失败",
   "@transferResultAlertTitle": {
+    "type": "text"
+  },
+  "transferHintRefresh": "4.转帐成功後若平台金额未改变，请再次选择平台刷新金额或联系客服",
+  "@transferHintRefresh": {
     "type": "text"
   },
   "bankcardViewTitleOwner": "帐户姓名",
@@ -1919,6 +1923,10 @@
   },
   "wheelTextTitleRules": "活动规则",
   "@wheelTextTitleRules": {
+    "type": "text"
+  },
+  "wheelMessageErrorPrizeUrl": "奖品图片错误，请查看获奖纪录",
+  "@wheelMessageErrorPrizeUrl": {
     "type": "text"
   },
   "wheelOrderTableTextTime": "时间",

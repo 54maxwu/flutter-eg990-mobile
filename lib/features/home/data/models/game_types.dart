@@ -32,7 +32,6 @@ List<GameCategoryModel> decodeGameCategoryModel(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
       (jsonMap) => GameCategoryModel.jsonToGameCategoryModel(jsonMap),
-      trim: false,
       tag: 'GameCategoryModel',
     );
 
@@ -40,7 +39,6 @@ List<GamePlatformModel> decodeGamePlatformModel(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
       (jsonMap) => GamePlatform.jsonToGamePlatformModel(jsonMap),
-      trim: false,
       tag: 'GamePlatformModel',
     );
 

@@ -178,7 +178,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                       Center(
                         child: networkImageBuilder(
                           'images/mall_product/${widget.product.pic}.jpg',
-                          fill: true,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       if (widget.product.isNewProduct)

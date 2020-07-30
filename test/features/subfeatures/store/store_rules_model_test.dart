@@ -13,8 +13,7 @@ void main() {
 
   test('test store rules model', () {
     print('\n');
-    RequestCodeModel codeModel =
-        RequestCodeModel.jsonToRequestCodeModel(ruleMap);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(ruleMap);
     print('code model: $codeModel\n\n');
     List<StoreRuleData> rules = JsonUtil.decodeArrayToModel(codeModel.data,
         (jsonMap) => StoreRuleData.jsonToStoreRuleData(jsonMap));
@@ -23,8 +22,7 @@ void main() {
 
   test('test store dollar model', () {
     print('\n');
-    RequestCodeModel codeModel =
-        RequestCodeModel.jsonToRequestCodeModel(dollarMap);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(dollarMap);
     print('code model: $codeModel\n\n');
     List<StorePlatformDollar> dollar = JsonUtil.decodeArrayToModel(
         codeModel.data,

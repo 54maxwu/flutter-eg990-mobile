@@ -122,8 +122,8 @@ class _MainAppState extends State<MainApp>
   }
 
   @override
-  void dispose() async {
-    await Hive.close().then((value) => _hiveInitialized = false);
+  void dispose() {
+    Hive.close().then((value) => _hiveInitialized = false);
     sl.get<RouteUserStreams>().dispose();
     sl.get<HomeStore>().closeStreams();
     WidgetsBinding.instance.removeObserver(this);

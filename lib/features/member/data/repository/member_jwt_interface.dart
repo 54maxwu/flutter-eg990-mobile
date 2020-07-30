@@ -34,7 +34,7 @@ class MemberJwtInterfaceImpl implements MemberJwtInterface {
       MyLogger.debug(msg: 'no user, cannot read token');
       return false;
     }
-    String currentAccount = getRouteUserStreams.lastUser.currentUser.account;
+    String currentAccount = getRouteUserStreams.lastStatus.currentUser.account;
     if (token.isEmpty) {
       account = currentAccount;
       token = await Future.value(UserTokenStorage.load(account))

@@ -14,6 +14,7 @@ class GridItemMix extends StatelessWidget {
   final bool twoLineText;
   final bool isPlatform;
   final PluginTapAction pluginTapAction;
+  final bool isIos;
 
   GridItemMix({
     @required this.isPlatform,
@@ -24,6 +25,7 @@ class GridItemMix extends StatelessWidget {
     @required this.textHeight,
     @required this.twoLineText,
     @required this.pluginTapAction,
+    @required this.isIos,
   });
 
   @override
@@ -34,14 +36,12 @@ class GridItemMix extends StatelessWidget {
           id: RelativeId('img', alignment: Alignment.topCenter),
           child: Container(
 //            margin: const EdgeInsets.only(bottom: 12.0),
-            constraints: BoxConstraints(
-              maxWidth: itemSize,
-              maxHeight: itemSize,
-            ),
+            constraints: BoxConstraints.tight(Size(itemSize, itemSize)),
             child: (imgUrl != null)
                 ? Transform.scale(
                     scale: (isPlatform) ? 1.15 : 0.9,
-                    child: networkImageBuilder(imgUrl, fill: true),
+                    child: networkImageBuilder(imgUrl,
+                        addPendingIconOnError: true),
                   )
                 : Center(child: Icon(Icons.broken_image)),
           ),
@@ -54,9 +54,13 @@ class GridItemMix extends StatelessWidget {
           ),
           child: Container(
             margin: const EdgeInsets.only(bottom: 14.0),
-            padding: (twoLineText)
-                ? const EdgeInsets.only(bottom: 2.0)
-                : EdgeInsets.zero,
+            padding: (isIos)
+                ? (twoLineText)
+                    ? const EdgeInsets.only(bottom: 6.0)
+                    : const EdgeInsets.only(bottom: 3.0)
+                : (twoLineText)
+                    ? const EdgeInsets.only(bottom: 4.0)
+                    : EdgeInsets.zero,
             constraints: BoxConstraints.tightFor(
               width: itemSize * 0.9,
               height:

@@ -15,7 +15,7 @@ void main() {
     print('\nmap: $map');
     print('\n\n');
 
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('decode to model:\n$codeModel');
     print('\n\n');
 
@@ -33,7 +33,7 @@ void main() {
     print('\nmap2: $map2');
     print('\n\n');
 
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map2);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map2);
     print('decode to model:\n$codeModel');
     print('\n\n');
 
@@ -48,7 +48,7 @@ void main() {
     print('\nmap: $map');
     print('\n\n');
 
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('decode to model:\n$codeModel');
     print('\n\n');
 
@@ -65,7 +65,7 @@ void main() {
     print('\nmap3: $map3');
     print('\n\n');
 
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map3);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map3);
     print('decode to model:\n$codeModel');
     print('\n\n');
 

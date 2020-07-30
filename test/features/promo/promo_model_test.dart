@@ -20,7 +20,6 @@ void main() {
     List<PromoModel> models = JsonUtil.decodeArrayToModel(
       jsonStr,
       (jsonMap) => PromoModel.jsonToPromoModel(jsonMap),
-      trim: false,
     );
     print('decoded models:\n$models');
     print('\n\n');
@@ -32,7 +31,6 @@ void main() {
     List<PromoModel> models = JsonUtil.decodeArrayToModel(
       jsonStr,
       (jsonMap) => PromoModel.jsonToPromoModel(jsonMap),
-      trim: false,
     );
 
     List<PromoEntity> entities = transformPromoModels(models);

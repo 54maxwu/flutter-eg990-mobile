@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/repository/message_repository.dart';
 import '../../data/models/message_model.dart';

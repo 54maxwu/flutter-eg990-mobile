@@ -67,9 +67,10 @@ class JsonUtil {
     String tag = debugTag,
   }) {
     MyLogger.debug(msg: 'start decoding array data to $T...', tag: tag);
-    MyLogger.debug(
+    MyLogger.print(
         msg: 'data type: ${data.runtimeType}, data is List: ${data is List}',
         tag: tag);
+
     List<dynamic> list;
     if (data is List)
       list = data;
@@ -77,10 +78,12 @@ class JsonUtil {
       list = decodeArray(data, trim: trim, tag: tag);
     else
       throw UnknownConditionException();
+
     // mapped decoded data to model data list
     final dataList = (list.isEmpty)
         ? new List<T>()
         : list.map((model) => jsonToModel(model) as T).toList();
+
     if (dataList.isEmpty && list.isNotEmpty) {
       MyLogger.error(
           msg: 'mapped model list error!!'
@@ -143,10 +146,11 @@ class JsonUtil {
     bool trim = true,
     String tag = debugTag,
   }) {
+    MyLogger.debug(
+        msg: 'start decoding ${str.runtimeType} to model $T...', tag: tag);
     Map<String, dynamic> map;
     if (str is Map == false) {
       var trimmed = (trim) ? trimJson(str) : str;
-      MyLogger.debug(msg: 'start decoding data to $T...', tag: tag);
       map = jsonDecode(trimmed);
     } else {
       map = str;
@@ -155,7 +159,7 @@ class JsonUtil {
     try {
       return jsonToModel(map) as T;
     } catch (e, s) {
-      print('decode to model error: $e');
+      print('decode to model error: $e, stack:\n$s');
       MyLogger.error(
           msg: 'mapped model error!! data: $str\nmapped json: $map',
           stackTrace: s,

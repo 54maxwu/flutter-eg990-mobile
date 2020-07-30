@@ -18,13 +18,13 @@ import 'home_store_inherit_widget.dart';
 /// @author H.C.CHIANG
 /// @version 2020/6/20
 ///
-class HomeDisplayTabsPage extends StatefulWidget {
+class HomeDisplayTabPage extends StatefulWidget {
   final String category;
   final double pageMaxWidth;
   final bool addSearchListener;
   final bool addPlugin;
 
-  HomeDisplayTabsPage({
+  HomeDisplayTabPage({
     @required this.pageMaxWidth,
     @required this.category,
     this.addSearchListener = false,
@@ -32,12 +32,14 @@ class HomeDisplayTabsPage extends StatefulWidget {
   });
 
   @override
-  _HomeDisplayTabsPageState createState() => _HomeDisplayTabsPageState();
+  _HomeDisplayTabPageState createState() => _HomeDisplayTabPageState();
 }
 
-class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
+class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
     with AfterLayoutMixin {
   final String tag = 'HomeDisplayTabsPage';
+  final bool _isIos = Global.device.isIos;
+//  final bool _isIos = true;
 
   HomeStore _store;
   List<GamePlatformEntity> platforms;
@@ -47,8 +49,14 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
   bool _isGameGrid = false;
   int plusGrid;
   double labelHeightFactor;
+
   double platformItemSize;
+  double pBaseTextSize;
+//  int pAvailableCharacters;
+
   double gameItemSize;
+  double gBaseTextSize;
+  int gAvailableCharacters;
 
   GamePlatformEntity _currentPlatform;
   List<GameEntity> games;
@@ -79,6 +87,7 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
   /// [itemData] should be [GamePlatformEntity] or [GameEntity]
   /// else throw [UnknownConditionException].
   String _onItemTap(dynamic itemData, {bool search = false}) {
+    print('onItemTap page: $itemData');
     if (itemData is GamePlatformEntity) {
       if (search)
         _setContent(_buildGamesView(itemData));
@@ -119,23 +128,39 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
 
   @override
   void initState() {
-    plusGrid = (Global.device.widthScale > 1.5) ? 1 : 0;
+    plusGrid = (Global.device.widthScale > 2.0)
+        ? 2
+        : (Global.device.widthScale > 1.5) ? 1 : 0;
+
+    labelHeightFactor = 1.5;
     if (plusGrid > 0) {
       if (Global.device.widthScale > 2.0) {
-        labelHeightFactor = 1.75;
+        labelHeightFactor = 1.65;
       } else {
-        labelHeightFactor = 1.625;
+        labelHeightFactor = 1.575;
       }
-    } else {
-      labelHeightFactor = 1.5;
     }
+
     platformItemSize = widget.pageMaxWidth / (2 + plusGrid) * 1.05;
-    gameItemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
+    if (plusGrid > 0)
+      gameItemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.9;
+    else
+      gameItemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
+
+    pBaseTextSize =
+        (_isIos) ? FontSize.SUBTITLE.value + 2 : FontSize.SUBTITLE.value;
+//    pAvailableCharacters = (platformItemSize / pBaseTextSize).floor();
+//    print('platform item available characters: $pAvailableCharacters');
+
+    gBaseTextSize =
+        (_isIos) ? FontSize.NORMAL.value + 2 : FontSize.NORMAL.value;
+    gAvailableCharacters = (gameItemSize * 0.9 / gBaseTextSize).floor();
+    print('game item available characters: $gAvailableCharacters');
     super.initState();
   }
 
   @override
-  void didUpdateWidget(HomeDisplayTabsPage oldWidget) {
+  void didUpdateWidget(HomeDisplayTabPage oldWidget) {
     print("update game-page=${widget.category}");
     super.didUpdateWidget(oldWidget);
   }
@@ -167,10 +192,12 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
   Widget _createPlatformGrid() {
     _isGameGrid = false;
     return GridView.count(
-      physics: ClampingScrollPhysics(),
+      physics: BouncingScrollPhysics(),
+      padding: const EdgeInsets.only(bottom: 2.0),
       crossAxisCount: 2 + plusGrid,
       crossAxisSpacing: 4.0,
-      childAspectRatio: (plusGrid > 0) ? 1.05 : 0.95,
+      childAspectRatio: (plusGrid > 0) ? 1.0 : 0.9,
+      mainAxisSpacing: (plusGrid > 0) ? 6.0 : 0.0,
       shrinkWrap: true,
       children: platforms.map((entity) => _createGridItem(entity)).toList(),
     );
@@ -185,6 +212,7 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
         _getMapKey(platform),
       );
     }
+    print('test platform icon: ${platform.iconUrl}');
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
@@ -244,12 +272,16 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
 
   Widget _createGamesGrid(List<GameEntity> list) {
     games = List.from(list);
-    twoLineText = games.any((element) => element.cname.length >= 5);
+    twoLineText =
+        games.any((element) => element.isLongText(gAvailableCharacters));
     return new GridView.count(
-      physics: ClampingScrollPhysics(),
+      physics: BouncingScrollPhysics(),
+      padding: (_isIos) ? const EdgeInsets.only(bottom: 2.0) : EdgeInsets.zero,
       crossAxisCount: 3 + plusGrid,
       childAspectRatio: (plusGrid > 0) ? 0.85 : 0.7,
+      mainAxisSpacing: (plusGrid > 0 || twoLineText) ? 6.0 : 0.0,
       shrinkWrap: true,
+      cacheExtent: 0.0,
       children: games.map((entity) => _createGridItem(entity)).toList(),
     );
   }
@@ -275,12 +307,12 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
           msg: '${UnknownConditionException()}!! Grid item: $entity', tag: tag);
     }
 
-    if (!_isGameGrid)
-      textHeight = FontSize.SUBTITLE.value * labelHeightFactor;
-    else if (twoLineText)
-      textHeight = FontSize.NORMAL.value * labelHeightFactor * 2;
-    else
-      textHeight = FontSize.NORMAL.value * labelHeightFactor;
+    if (!_isGameGrid) {
+      textHeight = pBaseTextSize * labelHeightFactor;
+    } else {
+      textHeight = gBaseTextSize * labelHeightFactor;
+      if (twoLineText) textHeight = textHeight * 2;
+    }
 
     return Container(
       padding: const EdgeInsets.only(top: 6.0),
@@ -309,6 +341,7 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
                     (widget.addPlugin && imgUrl != null && label != null)
                         ? (isFavorite) => _setFavorite(entity, isFavorite)
                         : null,
+                isIos: _isIos,
               )
             : GridItemGame(
                 imgUrl: imgUrl,
@@ -321,6 +354,7 @@ class _HomeDisplayTabsPageState extends State<HomeDisplayTabsPage>
                     (widget.addPlugin && imgUrl != null && label != null)
                         ? (isFavorite) => _setFavorite(entity, isFavorite)
                         : null,
+                isIos: _isIos,
               ),
       ),
     );

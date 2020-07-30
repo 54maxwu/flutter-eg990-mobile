@@ -35,6 +35,8 @@ class DialogWidget extends StatefulWidget {
 
   final bool darkBg;
 
+  final Color customBg;
+
   final bool debug;
 
   DialogWidget({
@@ -52,6 +54,7 @@ class DialogWidget extends StatefulWidget {
     this.transparentBg = false,
     this.lightBg = false,
     this.darkBg = false,
+    this.customBg,
     this.debug = false,
   }) : super(key: key);
 
@@ -94,7 +97,9 @@ class DialogWidgetState extends State<DialogWidget> {
     if (widget.minHeight != null && dialogHeight < widget.minHeight)
       dialogHeight = widget.minHeight;
 
-    if (widget.noBackground)
+    if (widget.customBg != null)
+      bgColor = widget.customBg;
+    else if (widget.noBackground)
       bgColor = Colors.transparent;
     else if (widget.transparentBg)
       bgColor = Themes.dialogBgTransparent;

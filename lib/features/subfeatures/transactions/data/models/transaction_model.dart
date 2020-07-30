@@ -36,7 +36,6 @@ List<TransactionData> decodeTransactionData(dynamic str) =>
     JsonUtil.decodeMapToModelList(
       str,
       (jsonMap) => TransactionData.jsonToTransactionData(jsonMap),
-      trim: false,
       tag: 'TransactionData',
     );
 

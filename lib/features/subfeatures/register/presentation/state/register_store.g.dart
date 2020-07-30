@@ -6,7 +6,7 @@ part of 'register_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterStore on _RegisterStore, Store {
   final _$registerResultAtom = Atom(name: '_RegisterStore.registerResult');
@@ -71,9 +71,9 @@ mixin _$RegisterStore on _RegisterStore, Store {
   @override
   String toString() {
     return '''
-registerResult: $registerResult,
-waitForRegister: $waitForRegister,
-errorMessage: $errorMessage
+registerResult: ${registerResult},
+waitForRegister: ${waitForRegister},
+errorMessage: ${errorMessage}
     ''';
   }
 }

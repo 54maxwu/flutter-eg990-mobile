@@ -56,7 +56,6 @@ class TransactionRepositoryImpl implements TransactionRepository {
         data: {'dateend': endDate, 'datestart': startDate},
       ),
       jsonToModel: TransactionModel.jsonToTransactionModel,
-      trim: false,
       tag: 'remote-TRANSACTION',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

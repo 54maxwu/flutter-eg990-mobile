@@ -52,7 +52,15 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
         amount: _amountFieldKey.currentState.getInput,
         promoId: _promoSelected,
       );
-      print('deposit form: ${dataForm.toJson()}');
+      if (dataForm.isValid == false) {
+        FLToast.showText(
+          text: localeStr.messageActionFillForm,
+          position: FLToastPosition.top,
+          showDuration: ToastDuration.DEFAULT.value,
+        );
+        return;
+      }
+//      print('deposit form: ${dataForm.toJson()}');
       widget.depositFuncCall(dataForm);
     }
   }

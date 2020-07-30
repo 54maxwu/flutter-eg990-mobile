@@ -70,8 +70,8 @@ class _StoreRouteState extends State<StoreRoute> {
   }
 
   @override
-  void dispose() async {
-    await _store.closeStreams();
+  void dispose() {
+    _store.closeStreams();
     _disposers.forEach((d) => d());
     super.dispose();
   }
@@ -89,7 +89,18 @@ class _StoreRouteState extends State<StoreRoute> {
             case PointStoreState.loading:
               return LoadingWidget();
             case PointStoreState.loaded:
-              return StoreDisplay(_store);
+              return SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(), // user can't scroll
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.tight(Size(
+                    Global.device.width,
+                    Global.device.featureContentHeight,
+                  )),
+                  child: IntrinsicHeight(
+                    child: StoreDisplay(_store),
+                  ),
+                ),
+              );
             default:
               return SizedBox.shrink();
           }

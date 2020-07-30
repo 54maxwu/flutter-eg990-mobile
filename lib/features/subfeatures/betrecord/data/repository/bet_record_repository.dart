@@ -46,24 +46,30 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
     var modelList = result.getOrElse(() => []);
     if (modelList.isEmpty) return Left(Failure.internal(FailureCode()));
 
-    final result2 = await requestDataString(
+    final result2 = await requestData(
       request: dioApiService.get(
         BetRecordApi.GET_PLATFORM,
         userToken: jwtInterface.token,
       ),
-      allowJsonString: true,
       tag: 'remote-BET_TYPE_2',
     );
     return result2.fold(
       (failure) => Left(failure),
       (data) {
-        var map = jsonDecode(data);
+        Map<String, dynamic> map;
+        if (data is Map)
+          map = data;
+        else if (data is String)
+          map = jsonDecode(data);
+        else
+          return Left(Failure.jsonFormat());
+
         List<BetRecordTypeModel> resultList = new List();
         modelList.forEach((model) {
-          resultList.add(
-              model.copyWith(platformMap: map[model.categoryId.toString()]));
+          resultList
+              .add(model.copyWith(platformMap: map['${model.categoryId}']));
         });
-        print('final model list: $resultList');
+//          print('final model list: $resultList');
         return Right(resultList);
       },
     );
@@ -91,13 +97,12 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
   Future<Either<Failure, List<BetRecordDataAllPlatform>>> getRecordAll(
     BetRecordForm form,
   ) async {
-    final result = await requestDataString(
+    final result = await requestData(
       request: dioApiService.get(
         '${BetRecordApi.GET_RECORD}${form.categoryId}',
         userToken: jwtInterface.token,
         data: form.toJson,
       ),
-      allowJsonString: true,
       tag: 'remote-RECORD_ALL',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -105,18 +110,18 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
       (failure) => Left(failure),
       (data) {
         try {
-          var map = jsonDecode(data);
           List<BetRecordDataAllPlatform> list = JsonUtil.decodeMapToModelList(
-            map['data'],
+            data['data'],
             (jsonMap) =>
                 BetRecordDataAllPlatform.jsonToBetRecordDataAllPlatform(
                     jsonMap),
           );
           print('bet platform length: ${list.length}');
           return Right(list);
-        } on Exception {
+        } catch (e, s) {
           MyLogger.error(
               msg: 'error on decode map data to model list: $data', tag: tag);
+          print('$e:\n$s');
           return Left(Failure.jsonFormat());
         }
       },

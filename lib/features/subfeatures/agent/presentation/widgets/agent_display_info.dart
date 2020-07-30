@@ -42,7 +42,8 @@ class _AgentDisplayInfoState extends State<AgentDisplayInfo>
     _hasDescendant = _descendants != null && _descendants.isNotEmpty;
     print(
         'agent code: $_agentCode\nagent qr: $_agentUrl\nagent has descendant: $_hasDescendant');
-    _codeFieldKey.currentState.setInput = '$_agentCode';
+    _codeFieldKey.currentState.setInput =
+        (_agentCode == -1) ? '' : '$_agentCode';
     _linkFieldKey.currentState.setInput = _agentUrl;
     _agentsFieldKey.currentState.setInput = _descendants.join(', ');
     print('agent field updated');

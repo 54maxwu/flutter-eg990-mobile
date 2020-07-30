@@ -33,7 +33,7 @@ class HomeDisplayBanner extends StatelessWidget {
       images: banners
           .map((banner) => networkImageBuilder(
                 banner.pic,
-                fill: true,
+                fit: BoxFit.fill,
               ))
           .toList(),
       showIndicator: false,

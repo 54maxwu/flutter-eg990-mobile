@@ -152,7 +152,7 @@ class _RegisterRouteState extends State<RegisterRoute> {
         child: new Form(
           key: _formKey,
           child: ListView(
-            physics: ClampingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
               new CustomizeFieldWidget(

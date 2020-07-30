@@ -556,7 +556,7 @@
   "@messageInvalidCardBankPoint": {
     "type": "text"
   },
-  "messageInvalidWithdrawPassword": "Password is 4 ~ 8 words",
+  "messageInvalidWithdrawPassword": "Password is 4~20 characters",
   "@messageInvalidWithdrawPassword": {
     "type": "text"
   },
@@ -909,6 +909,10 @@
   },
   "transferResultAlertTitle": "Transfer failed",
   "@transferResultAlertTitle": {
+    "type": "text"
+  },
+  "transferHintRefresh": "4. If platform credit did not update after transfer, please reselect the platform to refresh or contact customer service",
+  "@transferHintRefresh": {
     "type": "text"
   },
   "bankcardViewTitleOwner": "Account Name",
@@ -1928,6 +1932,10 @@
   },
   "wheelTextTitleRules": "Event Rules",
   "@wheelTextTitleRules": {
+    "type": "text"
+  },
+  "wheelMessageErrorPrizeUrl": "Prize image error, please check the order.",
+  "@wheelMessageErrorPrizeUrl": {
     "type": "text"
   },
   "wheelOrderTableTextTime": "Time",

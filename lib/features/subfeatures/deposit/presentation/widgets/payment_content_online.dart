@@ -58,7 +58,15 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline> {
         bankId: _bankSelectedId,
         amount: _depositAmount,
       );
-      print('deposit form: ${dataForm.toJson()}');
+      if (_depositAmount.isEmpty) {
+        FLToast.showText(
+          text: localeStr.messageActionFillForm,
+          position: FLToastPosition.top,
+          showDuration: ToastDuration.DEFAULT.value,
+        );
+        return;
+      }
+//      print('deposit form: ${dataForm.toJson()}');
       widget.depositFuncCall(dataForm);
     }
   }

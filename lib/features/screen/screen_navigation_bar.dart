@@ -40,7 +40,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
 //            RouterNavigate.testNavigate(_tabRoute[index]);
 //              RouterNavigate.switchScreen(web: true);
     var item = (_isUserTabs) ? _userTabs[index] : _tabs[index];
-    print('tapped item: $item');
+    print('tapped item: ${item.value}');
     if (item == ScreenNavigationBarItem.more) {
       showDialog(
         context: context,
@@ -63,6 +63,56 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     }
   }
 
+  void _checkShowEvent() {
+//    _store.debugEvent();
+    if (_store.forceShowEvent && _store.hasEvent == false) {
+      Future.delayed(Duration(milliseconds: 200), () {
+        FLToast.showInfo(
+          text: localeStr.messageNoEvent,
+          showDuration: ToastDuration.DEFAULT.value,
+        );
+      });
+      // set to false so it will not pop on other pages
+      _store.setForceShowEvent = false;
+      return;
+    }
+    if (_store.showEventOnHome && !_showingEventDialog) {
+      _showingEventDialog = true;
+      Future.delayed(Duration(milliseconds: 1200), () {
+        // will not show
+        if (_store.hasUser == false ||
+            (_store.navIndex != 0 && _store.forceShowEvent == false)) {
+          stopEventAutoShow();
+          return;
+        } else {
+          // set to false so it will not pop on other pages
+          _store.setForceShowEvent = false;
+        }
+        _showEventDialog();
+      });
+    }
+  }
+
+  void _showEventDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => (_store.hasSignedEvent == false)
+          ? new EventDialog(
+              event: _store.event.eventData,
+              signCount: _store.event.signData.times,
+              onSign: () => _store.signEvent(),
+              onSignError: () => _store.getEventError(),
+              onDialogClose: () => stopEventAutoShow(),
+            )
+          : new EventDialogSigned(
+              event: _store.event.eventData,
+              signCount: _store.event.signData.times,
+              onDialogClose: () => stopEventAutoShow(),
+            ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewState = FeatureScreenInheritedWidget.of(context);
@@ -78,9 +128,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
           initialData: false,
           builder: (context, snapshot) {
             if (_isUserTabs != snapshot.data) {
-              _barWidget = _buildWidget(
-                snapshot.data,
-              );
+              _barWidget = _buildWidget(snapshot.data);
             }
             _barWidget ??= _buildWidget(snapshot.data);
             _isUserTabs = snapshot.data;
@@ -94,37 +142,8 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       // observe nav index to change icon icon color (setState does not work).
       final index = _store.navIndex;
       if (index >= 0) _navIndex = index;
-      if (_store.showEvent && !_showingEventDialog) {
-        _showingEventDialog = true;
-        Future.delayed(Duration(milliseconds: 1500), () {
-          // will not show
-          if (_store.hasUser == false ||
-              (_store.navIndex != 0 && _store.forceShowEvent == false)) {
-            stopEventAutoShow();
-            return;
-          } else {
-            // set to false so it will not pop on other pages
-            _store.setForceShowEvent = false;
-          }
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => (_store.hasSignedEvent == false)
-                ? new EventDialog(
-                    event: _store.event.eventData,
-                    signCount: _store.event.signData.times,
-                    onSign: () => _store.signEvent(),
-                    onSignError: () => _store.getEventError(),
-                    onDialogClose: () => stopEventAutoShow(),
-                  )
-                : new EventDialogSigned(
-                    event: _store.event.eventData,
-                    signCount: _store.event.signData.times,
-                    onDialogClose: () => stopEventAutoShow(),
-                  ),
-          );
-        });
-      }
+      // monitor observable value to show event dialog
+      if (_store.showEventOnHome) _checkShowEvent();
       return BottomNavigationBar(
         onTap: (index) {
           print('store state user: ${_store.userStatus}');

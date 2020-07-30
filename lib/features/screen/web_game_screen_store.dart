@@ -3,7 +3,7 @@ import 'dart:async' show StreamSubscription;
 import 'package:flutter/services.dart' show DeviceOrientation;
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/internal/orientation_helper.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/utils/platform_util.dart';
 
 part 'web_game_screen_store.g.dart';
@@ -84,7 +84,6 @@ abstract class _WebGameScreenStore with Store {
     } else {
       await _bindSensorListener();
     }
-    _lockAutoRotate = false;
   }
 
   _bindSensorListener() async {
@@ -144,6 +143,7 @@ abstract class _WebGameScreenStore with Store {
       PlatformUtil.disableSensor();
       _sensorOn = false;
     }
+    _sensorSubscription.cancel();
     _reset();
   }
 
@@ -188,6 +188,6 @@ abstract class _WebGameScreenStore with Store {
     _deviceOrientation = DeviceOrientation.portraitUp;
     _sensorRotateId = 1;
     _sensorOn = false;
-    _lockAutoRotate = false;
+    _lockAutoRotate = true;
   }
 }

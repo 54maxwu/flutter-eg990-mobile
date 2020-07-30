@@ -33,7 +33,7 @@ class EventRepositoryImpl implements EventRepository {
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(EventApi.GET_NEW_MESSAGE_COUNT),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-EVENT',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -54,7 +54,7 @@ class EventRepositoryImpl implements EventRepository {
   Future<Either<Failure, EventModel>> getEvent() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(EventApi.GET_EVENT),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-EVENT',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -78,7 +78,7 @@ class EventRepositoryImpl implements EventRepository {
         EventApi.POST_SIGN,
         data: {'aid': eventId, 'prize': prize},
       ),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-EVENT',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

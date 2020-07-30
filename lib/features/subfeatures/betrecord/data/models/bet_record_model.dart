@@ -45,7 +45,6 @@ List<BetRecordData> decodeBetRecordData(dynamic str) =>
     JsonUtil.decodeMapToModelList(
       str,
       (jsonMap) => BetRecordData.jsonToBetRecordData(jsonMap),
-      trim: false,
       tag: 'BetRecordData',
     );
 

@@ -78,7 +78,12 @@ class WithdrawRepositoryImpl implements WithdrawRepository {
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (model) => Right(model),
+      (model) {
+        if (model.code == 0)
+          return Right(model);
+        else
+          return Left(Failure.errorMessage(msg: model.msg));
+      },
     );
   }
 

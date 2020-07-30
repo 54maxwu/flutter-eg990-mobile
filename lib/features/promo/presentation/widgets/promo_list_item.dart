@@ -30,7 +30,7 @@ class PromoListItem extends StatelessWidget {
             /* Promo Image */
             networkImageBuilder(
               promo.bannerMobile,
-              fill: true,
+              fit: BoxFit.fill,
               imgScale: 0.9 / screenScale,
               roundCorner: true,
             ),

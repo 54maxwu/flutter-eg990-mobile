@@ -41,7 +41,6 @@ List<StoreExchangeData> decodeStoreExchangeData(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
       (jsonMap) => StoreExchangeData.jsonToStoreExchangeData(jsonMap),
-      trim: false,
       tag: 'StoreExchangeData',
     );
 

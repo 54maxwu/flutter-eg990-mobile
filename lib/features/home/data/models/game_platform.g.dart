@@ -22,14 +22,13 @@ class GamePlatformEntityAdapter extends TypeAdapter<_$GamePlatformEntity> {
       ch: fields[2] as String,
       site: fields[3] as String,
       category: fields[4] as String,
-      favorite: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$GamePlatformEntity obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -39,66 +38,6 @@ class GamePlatformEntityAdapter extends TypeAdapter<_$GamePlatformEntity> {
       ..writeByte(3)
       ..write(obj.site)
       ..writeByte(4)
-      ..write(obj.category)
-      ..writeByte(5)
-      ..write(obj.favorite);
+      ..write(obj.category);
   }
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-_$GamePlatformModel _$_$GamePlatformModelFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, requiredKeys: const ['type']);
-  return _$GamePlatformModel(
-    id: json['id'] as int,
-    className: decodePlatformClassName(json),
-    ch: decodePlatformChName(json),
-    cid: json['cid'] as int,
-    site: json['site'] as String,
-    site2: json['site2'] as String,
-    category: json['type'] as String,
-    sort: json['sort'] as int,
-    status: json['status'] as String,
-    favorite: json['favorite'] as String ?? '0',
-  );
-}
-
-Map<String, dynamic> _$_$GamePlatformModelToJson(
-        _$GamePlatformModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'class': instance.className,
-      'ch': instance.ch,
-      'cid': instance.cid,
-      'site': instance.site,
-      'site2': instance.site2,
-      'type': instance.category,
-      'sort': instance.sort,
-      'status': instance.status,
-      'favorite': instance.favorite,
-    };
-
-_$GamePlatformEntity _$_$GamePlatformEntityFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, requiredKeys: const ['type']);
-  return _$GamePlatformEntity(
-    id: json['id'] as int,
-    className: decodePlatformClassName(json),
-    ch: decodePlatformChName(json),
-    site: json['site'] as String,
-    category: json['type'] as String,
-    favorite: json['favorite'] as String ?? '0',
-  );
-}
-
-Map<String, dynamic> _$_$GamePlatformEntityToJson(
-        _$GamePlatformEntity instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'class': instance.className,
-      'ch': instance.ch,
-      'site': instance.site,
-      'type': instance.category,
-      'favorite': instance.favorite,
-    };

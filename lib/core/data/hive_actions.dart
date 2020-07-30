@@ -86,8 +86,7 @@ extension AddListToHiveExtension on List {
       if (newData == null) {
         box.deleteAt(index);
       } else if (newData != oldData) {
-        // if  data has changed, delete it from the box
-        box.deleteAt(index);
+        // if data has changed, replace old data in box
         print('replacing hive $identifier: $newData');
         box.putAt(index, newData);
       }

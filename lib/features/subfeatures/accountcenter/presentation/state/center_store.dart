@@ -2,7 +2,7 @@ import 'package:flutter_ty_mobile/core/data/hive_actions.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/user/data/form/login_form.dart';
 import 'package:flutter_ty_mobile/utils/json_util.dart';
 import 'package:hive/hive.dart';

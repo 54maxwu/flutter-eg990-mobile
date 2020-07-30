@@ -27,7 +27,7 @@ void main() {
 
   test('test store point 0', () {
     print('\n');
-    RequestCodeModel model = RequestCodeModel.jsonToRequestCodeModel(map1);
+    RequestCodeModel model = RequestCodeModel.jsonToCodeModel(map1);
     print('code model: $model\n\n');
     var result = retrieveValue(model.data);
     print('point: $result');
@@ -36,7 +36,7 @@ void main() {
 
   test('test store point', () {
     print('\n');
-    RequestCodeModel model = RequestCodeModel.jsonToRequestCodeModel(map2);
+    RequestCodeModel model = RequestCodeModel.jsonToCodeModel(map2);
     print('code model: $model\n\n');
     var result = retrieveValue(model.data);
     print('point: $result');
@@ -45,7 +45,7 @@ void main() {
 
   test('test store point string', () {
     print('\n');
-    RequestCodeModel model = RequestCodeModel.jsonToRequestCodeModel(map3);
+    RequestCodeModel model = RequestCodeModel.jsonToCodeModel(map3);
     print('code model: $model\n\n');
     var result = retrieveValue(model.data);
     print('point: $result');
@@ -54,7 +54,7 @@ void main() {
 
   test('test store point error', () {
     print('\n');
-    RequestCodeModel model = RequestCodeModel.jsonToRequestCodeModel(map4);
+    RequestCodeModel model = RequestCodeModel.jsonToCodeModel(map4);
     print('code model: $model\n\n');
     var result = retrieveValue(model.data);
     print('point: $result');

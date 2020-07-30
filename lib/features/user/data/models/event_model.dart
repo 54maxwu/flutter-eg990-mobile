@@ -19,6 +19,7 @@ abstract class EventModel with _$EventModel {
         signData: jsonMap['signData'] == null
             ? null
             : EventSignData.jsonToEventSignData(jsonMap['signData']),
+        hasData: !(jsonMap.containsKey('msg') && jsonMap['msg'] == 'noData'),
       );
 }
 
@@ -27,8 +28,10 @@ extension EventModelExtension on EventModel {
 
   bool get canSign => signData.times == -1 || signData.hasSigned == false;
 
-  bool showDialog(int userMemberLevel) =>
-      hasEvent && eventData.isValidEvent(userMemberLevel) && canSign;
+  bool userLevelMatchEvent(int userLevel) => eventData.isValidEvent(userLevel);
+
+  bool showDialog(int userLevel) =>
+      hasEvent && userLevelMatchEvent(userLevel) && canSign;
 }
 
 @freezed

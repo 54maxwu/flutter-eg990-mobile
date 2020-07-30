@@ -36,7 +36,8 @@ extension RegexExtension on String {
   /// String Regex
   bool get isUrl => Uri.parse(this).isAbsolute || _urlRegex.hasMatch(this);
   bool get isEmail => EmailValidator.validate(this);
-  bool get isHtmlFormat => _htmlRegex.hasMatch(this);
+  bool get isHtmlFormat =>
+      _htmlRegex.hasMatch("""$this""".replaceAll('\n', ''));
   bool get isValidDate => _dateRegex.hasMatch(this);
   bool get hasChinese => _chineseRegex.hasMatch(this);
 

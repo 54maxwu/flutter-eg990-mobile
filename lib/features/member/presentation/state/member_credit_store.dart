@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/member/data/repository/member_repository.dart';
 import 'package:flutter_ty_mobile/features/router/route_user_streams.dart';
 import 'package:flutter_ty_mobile/features/user/data/entity/login_status.dart';
@@ -41,7 +41,7 @@ abstract class _MemberCreditStore with Store {
   final String creditResetStr = '￥---';
 
   void getUser() {
-    user = getRouteUserStreams.lastUser.currentUser;
+    user = getRouteUserStreams.lastStatus.currentUser;
   }
 
   @action
@@ -69,7 +69,7 @@ abstract class _MemberCreditStore with Store {
         (result) => result.fold(
           (failure) => errorMessage = failure.message,
           (value) {
-            getRouteUserStreams.lastUser.currentUser.updateCredit(value);
+            getRouteUserStreams.lastStatus.currentUser.updateCredit(value);
             credit = value;
           },
         ),

@@ -218,7 +218,7 @@ class CenterRepositoryImpl implements CenterRepository {
         data: {'phone': mobile},
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-CENTER_VERIFY',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -239,7 +239,7 @@ class CenterRepositoryImpl implements CenterRepository {
         data: {'phone': mobile, 'code': code},
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-CENTER_VERIFY',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

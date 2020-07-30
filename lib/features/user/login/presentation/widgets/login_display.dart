@@ -152,7 +152,7 @@ class _LoginDisplayState extends State<LoginDisplay> {
       child: new Form(
         key: _formKey,
         child: ListView(
-          physics: ClampingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           shrinkWrap: true,
           children: <Widget>[
             /* Login Hint Text*/
@@ -219,9 +219,14 @@ class _LoginDisplayState extends State<LoginDisplay> {
                           borderRadius: BorderRadius.circular(4.0),
                         ),
                         onPressed: () {
-                          // clear text field focus
-                          FocusScope.of(context).requestFocus(new FocusNode());
-                          RouterNavigate.navigateToPage(RoutePage.service);
+                          RouterNavigate.navigateToPage(
+                            RoutePage.service,
+                            arg: WebRouteArguments(
+                              startUrl: Global.TY_SERVICE_URL,
+                            ),
+                          );
+                          // close dialog
+                          if (widget.isDialog) Navigator.of(context).pop();
                         }),
                   ),
                 ],

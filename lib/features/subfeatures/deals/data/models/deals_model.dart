@@ -37,7 +37,6 @@ List<DealsData> decodeDealsData(dynamic map) {
   return JsonUtil.decodeArrayToModel(
     map,
     (jsonMap) => DealsData.jsonToDealsData(jsonMap),
-    trim: false,
     tag: 'DealsData',
   );
 }

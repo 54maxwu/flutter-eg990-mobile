@@ -1,5 +1,5 @@
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/form/transfer_form.dart';
 import '../../data/models/transfer_platform_model.dart';
@@ -92,7 +92,8 @@ abstract class _TransferStore with Store {
   }
 
   @action
-  Future<void> getBalance(String site, {bool isLimit = false}) async {
+  Future<void> getBalance(String site,
+      {bool isLimit = false, bool retryOnce = false}) async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -105,9 +106,17 @@ abstract class _TransferStore with Store {
             bool platformClosed = data.balance == '￥-1.00';
             if (isLimit) {
               creditLimit = (platformClosed) ? 0 : data.balance.strToInt;
-              setSite1Value((platformClosed) ? '￥---' : data.balance);
+              if (data.balance != site1)
+                setSite1Value((platformClosed) ? '￥---' : data.balance);
+              else if (retryOnce)
+                Future.delayed(Duration(milliseconds: 2000),
+                    () => getBalance(site, isLimit: isLimit));
             } else {
-              setSite2Value((platformClosed) ? '￥---' : data.balance);
+              if (data.balance != site2)
+                setSite2Value((platformClosed) ? '￥---' : data.balance);
+              else if (retryOnce)
+                Future.delayed(Duration(milliseconds: 2000),
+                    () => getBalance(site, isLimit: isLimit));
             }
           },
         );
@@ -137,8 +146,8 @@ abstract class _TransferStore with Store {
             transferResult = data;
             if (data.isSuccess) {
               Future.delayed(Duration(milliseconds: 1000), () {
-                getBalance(form.from, isLimit: true);
-                getBalance(form.to);
+                getBalance(form.from, isLimit: true, retryOnce: true);
+                getBalance(form.to, retryOnce: true);
               });
             }
           },

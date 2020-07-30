@@ -25,18 +25,7 @@ void main() {
   );
 
   test('test game platform model to entity', () {
-    final jsonStr = json.encode(platformModel);
-    final model = GamePlatformModel.fromJson(json.decode(jsonStr));
-    expect(model, isA<GamePlatformModel>());
-    print("test model: ${model.toString()}");
-
-    final entity = GamePlatformEntity(
-      id: model.id,
-      className: model.className,
-      ch: model.ch,
-      category: model.category,
-      site: model.site,
-    );
+    final entity = platformModel.entity;
     expect(entity, platformEntity);
     print("test entity: ${entity.toString()}");
   });

@@ -14,7 +14,7 @@ void main() {
     print('decoded map: $map');
     print('\n\n');
 
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('map to model: $codeModel');
     print('\n\n');
 

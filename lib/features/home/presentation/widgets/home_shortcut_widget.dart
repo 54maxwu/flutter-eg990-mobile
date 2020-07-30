@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_ty_mobile/features/home/presentation/state/home_store.dart';
 import 'package:flutter_ty_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_ty_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_ty_mobile/res.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_ty_mobile/utils/value_util.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
 
 import 'home_display_size_calc.dart';
+import 'home_store_inherit_widget.dart';
 
 ///
 /// Creates a widget to show member info under Marquee
@@ -30,17 +32,38 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   double _areaHeight;
   double _leftAreaMaxWidth;
   double _leftAreaMinWidth;
+  double _leftAreaTextSize;
 
+  HomeStore _store;
   LoginStatus _userData;
   bool isUserContent = false;
   Widget _contentWidget;
   BorderSide _widgetBorder;
 
+  Widget _infoWidget;
+  String _currentCredit;
+
+  void _updateTextSize(bool updateView) {
+    double textSize = (_userData.currentUser.account.length > 10 ||
+            _userData.currentUser.credit.strToDouble > 10000)
+        ? FontSize.SMALLER.value
+        : FontSize.NORMAL.value;
+
+    if (_leftAreaTextSize != textSize) {
+      _leftAreaTextSize = textSize;
+      if (updateView)
+        Future.delayed(Duration(milliseconds: 200), () {
+          setState(() {});
+        });
+    }
+  }
+
   void updateUser() {
     print('updating member area data...');
     setState(() {
-      _userData = getRouteUserStreams.lastUser;
+      _userData = getRouteUserStreams.lastStatus;
       print('member area user: $_userData');
+      if (_userData.loggedIn) _store?.getCredit();
     });
   }
 
@@ -64,21 +87,24 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     _leftAreaMinWidth = FontSize.NORMAL.value * 6;
     _leftAreaMaxWidth = FontSize.NORMAL.value * 9.5 + 10.0;
 
-    if (Global.device.width > 600)
+    if (Global.device.isIos) _leftAreaMinWidth += 8;
+    if (Global.device.width > 600) {
+      _leftAreaMinWidth = _leftAreaMinWidth * 1.5;
       _leftAreaMaxWidth = _leftAreaMaxWidth * 2;
-    else if (Global.device.isIos) _leftAreaMaxWidth += 16;
+    } else if (Global.device.isIos) _leftAreaMaxWidth += 8;
 
     if (_leftAreaMinWidth < availableWidth) _leftAreaMinWidth = availableWidth;
     if (_leftAreaMaxWidth < _leftAreaMinWidth)
       _leftAreaMaxWidth = _leftAreaMinWidth;
 
-    _userData = getRouteUserStreams.lastUser;
+    _userData = getRouteUserStreams.lastStatus;
     print('updating member area height: $_areaHeight');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _store ??= HomeStoreInheritedWidget.of(context).store;
     if (isUserContent != _userData.loggedIn) {
       isUserContent = _userData.loggedIn;
       _contentWidget = _buildContent(context);
@@ -152,7 +178,11 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   maxWidth: _leftAreaMaxWidth,
                   minWidth: _leftAreaMinWidth,
                 )
-              : BoxConstraints.tightFor(width: _areaHeight),
+              : BoxConstraints.tightFor(
+                  width: (Global.device.width > 400)
+                      ? _areaHeight * Global.device.widthScale
+                      : _areaHeight,
+                ),
           alignment: Alignment.center,
           child: _buildLeftContent(context),
         ),
@@ -195,10 +225,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
       );
     } else {
       /// if logged in, show member info
-      double textSize = (_userData.currentUser.account.length > 10 ||
-              _userData.currentUser.credit.strToDouble > 10000)
-          ? FontSize.SMALLER.value
-          : FontSize.NORMAL.value;
+      if (_leftAreaTextSize == null) _updateTextSize(false);
       return Container(
         margin: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
         child: Column(
@@ -219,12 +246,12 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                           text: '${_userData.currentUser.account}\r',
                           style: TextStyle(
                             color: Themes.defaultAccentColor,
-                            fontSize: textSize,
+                            fontSize: _leftAreaTextSize,
                           ),
                         ),
                         TextSpan(
                           text: localeStr.homeHintWelcome,
-                          style: TextStyle(fontSize: textSize),
+                          style: TextStyle(fontSize: _leftAreaTextSize),
                         ),
                       ],
                     ),
@@ -236,28 +263,19 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                RichText(
-                  overflow: TextOverflow.visible,
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '${localeStr.homeHintMemberCreditLeft} ',
-                        style: TextStyle(fontSize: textSize),
-                      ),
-                      TextSpan(
-                        text: formatValue(
-                          _userData.currentUser.credit,
-                          floorIfInt: true,
-                          creditSign: true,
-                        ),
-                        style: TextStyle(
-                          color: Themes.defaultAccentColor,
-                          fontSize: textSize,
-                        ),
-                      ),
-                    ],
-                  ),
+                StreamBuilder<String>(
+                  stream: _store.creditStream,
+                  initialData: _store.userCredit,
+                  builder: (_, snapshot) {
+                    if (_currentCredit != snapshot.data) {
+                      _currentCredit = snapshot.data;
+                      print('home page user credit updated: $_currentCredit');
+                      _infoWidget = _buildUserInfo();
+                      _updateTextSize(true);
+                    }
+                    _infoWidget ??= _buildUserInfo();
+                    return _infoWidget;
+                  },
                 ),
               ],
             ),
@@ -265,6 +283,32 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         ),
       );
     }
+  }
+
+  Widget _buildUserInfo() {
+    return RichText(
+      overflow: TextOverflow.visible,
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+            text: '${localeStr.homeHintMemberCreditLeft} ',
+            style: TextStyle(fontSize: _leftAreaTextSize),
+          ),
+          TextSpan(
+            text: formatValue(
+              _currentCredit,
+              floorIfInt: true,
+              creditSign: true,
+            ),
+            style: TextStyle(
+              color: Themes.defaultAccentColor,
+              fontSize: _leftAreaTextSize,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildRightContent() {

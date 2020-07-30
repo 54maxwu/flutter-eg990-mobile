@@ -1,19 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'withdraw_model.freezed.dart';
-part 'withdraw_model.g.dart';
 
 @freezed
 abstract class WithdrawModel with _$WithdrawModel {
   const factory WithdrawModel({
     int code,
-    String data,
+    dynamic data,
     String msg,
-}) = _WithdrawModel;
-
-  factory WithdrawModel.fromJson(Map<String, dynamic> json) =>
-      _$WithdrawModelFromJson(json);
+  }) = _WithdrawModel;
 
   static WithdrawModel jsonToWithdrawModel(Map<String, dynamic> jsonMap) =>
-      WithdrawModel.fromJson(jsonMap);
+      _$_WithdrawModel(
+        code: jsonMap['code'] as int,
+        data: jsonMap['data'],
+        msg: jsonMap['msg'] as String,
+      );
 }

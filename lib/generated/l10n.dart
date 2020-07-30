@@ -1243,10 +1243,10 @@ class S {
     );
   }
 
-  /// `Password is 4 ~ 8 words`
+  /// `Password is 4~20 characters`
   String get messageInvalidWithdrawPassword {
     return Intl.message(
-      'Password is 4 ~ 8 words',
+      'Password is 4~20 characters',
       name: 'messageInvalidWithdrawPassword',
       desc: '',
       args: [],
@@ -2088,6 +2088,16 @@ class S {
     return Intl.message(
       'Transfer failed',
       name: 'transferResultAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `4. If platform credit did not update after transfer, please reselect the platform to refresh or contact customer service`
+  String get transferHintRefresh {
+    return Intl.message(
+      '4. If platform credit did not update after transfer, please reselect the platform to refresh or contact customer service',
+      name: 'transferHintRefresh',
       desc: '',
       args: [],
     );
@@ -4368,6 +4378,16 @@ class S {
     return Intl.message(
       'Event Rules',
       name: 'wheelTextTitleRules',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prize image error, please check the order.`
+  String get wheelMessageErrorPrizeUrl {
+    return Intl.message(
+      'Prize image error, please check the order.',
+      name: 'wheelMessageErrorPrizeUrl',
       desc: '',
       args: [],
     );

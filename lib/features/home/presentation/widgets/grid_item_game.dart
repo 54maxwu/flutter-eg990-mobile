@@ -14,6 +14,7 @@ class GridItemGame extends StatelessWidget {
   final double textHeight;
   final bool twoLineText;
   final PluginTapAction pluginTapAction;
+  final bool isIos;
 
   GridItemGame({
     @required this.imgUrl,
@@ -23,6 +24,7 @@ class GridItemGame extends StatelessWidget {
     @required this.textHeight,
     @required this.twoLineText,
     @required this.pluginTapAction,
+    @required this.isIos,
   });
 
   @override
@@ -33,12 +35,9 @@ class GridItemGame extends StatelessWidget {
           id: RelativeId('img', alignment: Alignment.topCenter),
           child: Container(
 //            margin: const EdgeInsets.only(bottom: 12.0),
-            constraints: BoxConstraints(
-              maxWidth: itemSize,
-              maxHeight: itemSize,
-            ),
+            constraints: BoxConstraints.tight(Size(itemSize, itemSize)),
             child: (imgUrl != null)
-                ? networkImageBuilder(imgUrl, fill: true)
+                ? networkImageBuilder(imgUrl, addPendingIconOnError: true)
                 : Center(child: Icon(Icons.broken_image)),
           ),
         ),
@@ -51,7 +50,9 @@ class GridItemGame extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.only(bottom: 14.0),
             padding: (twoLineText)
-                ? const EdgeInsets.only(bottom: 2.0)
+                ? (isIos)
+                    ? const EdgeInsets.only(bottom: 4.0)
+                    : const EdgeInsets.only(bottom: 2.0)
                 : EdgeInsets.zero,
             constraints: BoxConstraints.tightFor(
               width: itemSize * 0.9,

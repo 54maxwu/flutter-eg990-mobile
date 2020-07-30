@@ -69,7 +69,7 @@ class AgentDisplayAdDialog extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: networkImageBuilder(
                       pic,
-                      fill: true,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ],

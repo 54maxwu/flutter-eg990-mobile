@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_ty_mobile/features/member/data/repository/member_jwt_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../exports_for_route_widget.dart';
@@ -17,6 +18,7 @@ class WebRoute extends StatefulWidget {
 
 class _WebRouteState extends State<WebRoute> {
   WebRouteStore _store;
+  MemberJwtInterface _jwtInterface;
   List<ReactionDisposer> _disposers;
 
   WebViewController _controller;
@@ -25,7 +27,9 @@ class _WebRouteState extends State<WebRoute> {
   @override
   void initState() {
     _store ??= WebRouteStore();
+    _jwtInterface = sl.get<MemberJwtInterface>();
     super.initState();
+    print('opening url: ${widget.startUrl}');
   }
 
   @override
@@ -65,11 +69,15 @@ class _WebRouteState extends State<WebRoute> {
 
   @override
   Widget build(BuildContext context) {
-    print('opening url: ${widget.startUrl}');
     Future.delayed(Duration(seconds: 15), () {
       if (_stackToView == 1) {
         _controller.loadUrl(
-            Uri.dataFromString(localeStr.messageErrorLoadingPay).toString());
+          Uri.dataFromString(
+            '${localeStr.messageErrorLoadingPay}',
+            mimeType: Global.WEB_MIMETYPE,
+            encoding: Global.webEncoding,
+          ).toString(),
+        );
       }
     });
     return WillPopScope(
@@ -93,7 +101,11 @@ class _WebRouteState extends State<WebRoute> {
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController controller) async {
                 _controller = controller;
-                _controller.loadUrl(widget.startUrl);
+                if (widget.startUrl == Global.TY_SERVICE_URL)
+                  _controller.loadUrl(
+                      widget.startUrl + '?token=${_jwtInterface?.token ?? ''}');
+                else
+                  _controller.loadUrl(widget.startUrl);
               },
               onPageStarted: (String url) {
                 print('start loading: $url');

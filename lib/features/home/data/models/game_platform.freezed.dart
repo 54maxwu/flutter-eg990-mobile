@@ -8,17 +8,6 @@ part of 'game_platform.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-GamePlatform _$GamePlatformFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
-    case 'model':
-      return GamePlatformModel.fromJson(json);
-    case 'entity':
-      return GamePlatformEntity.fromJson(json);
-
-    default:
-      throw FallThroughError();
-  }
-}
 
 class _$GamePlatformTearOff {
   const _$GamePlatformTearOff();
@@ -69,8 +58,7 @@ class _$GamePlatformTearOff {
       @HiveField(4)
       @JsonKey(name: 'type', required: true)
           String category,
-      @HiveField(5)
-          String favorite = '0'}) {
+      String favorite = '0'}) {
     return GamePlatformEntity(
       id: id,
       className: className,
@@ -128,8 +116,7 @@ mixin _$GamePlatform {
             @HiveField(4)
             @JsonKey(name: 'type', required: true)
                 String category,
-            @HiveField(5)
-                String favorite),
+            String favorite),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -161,8 +148,7 @@ mixin _$GamePlatform {
         @HiveField(4)
         @JsonKey(name: 'type', required: true)
             String category,
-        @HiveField(5)
-            String favorite),
+        String favorite),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -176,7 +162,7 @@ mixin _$GamePlatform {
     Result entity(GamePlatformEntity value),
     @required Result orElse(),
   });
-  Map<String, dynamic> toJson();
+
   $GamePlatformCopyWith<GamePlatform> get copyWith;
 }
 
@@ -283,7 +269,6 @@ class _$GamePlatformModelCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
 class _$GamePlatformModel implements GamePlatformModel {
   const _$GamePlatformModel(
       {@required this.id,
@@ -299,9 +284,6 @@ class _$GamePlatformModel implements GamePlatformModel {
       : assert(id != null),
         assert(site != null),
         assert(favorite != null);
-
-  factory _$GamePlatformModel.fromJson(Map<String, dynamic> json) =>
-      _$_$GamePlatformModelFromJson(json);
 
   @override
   final int id;
@@ -413,8 +395,7 @@ class _$GamePlatformModel implements GamePlatformModel {
             @HiveField(4)
             @JsonKey(name: 'type', required: true)
                 String category,
-            @HiveField(5)
-                String favorite),
+            String favorite),
   }) {
     assert(model != null);
     assert(entity != null);
@@ -453,8 +434,7 @@ class _$GamePlatformModel implements GamePlatformModel {
         @HiveField(4)
         @JsonKey(name: 'type', required: true)
             String category,
-        @HiveField(5)
-            String favorite),
+        String favorite),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -489,11 +469,6 @@ class _$GamePlatformModel implements GamePlatformModel {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$GamePlatformModelToJson(this)..['runtimeType'] = 'model';
-  }
 }
 
 abstract class GamePlatformModel implements GamePlatform {
@@ -513,9 +488,6 @@ abstract class GamePlatformModel implements GamePlatform {
       int sort,
       String status,
       String favorite}) = _$GamePlatformModel;
-
-  factory GamePlatformModel.fromJson(Map<String, dynamic> json) =
-      _$GamePlatformModel.fromJson;
 
   @override
   int get id;
@@ -560,8 +532,7 @@ abstract class $GamePlatformEntityCopyWith<$Res>
       @HiveField(4)
       @JsonKey(name: 'type', required: true)
           String category,
-      @HiveField(5)
-          String favorite});
+      String favorite});
 }
 
 class _$GamePlatformEntityCopyWithImpl<$Res>
@@ -594,7 +565,6 @@ class _$GamePlatformEntityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
 @HiveType(typeId: 104)
 @Implements(DataOperator)
 class _$GamePlatformEntity implements GamePlatformEntity {
@@ -614,14 +584,10 @@ class _$GamePlatformEntity implements GamePlatformEntity {
       @HiveField(4)
       @JsonKey(name: 'type', required: true)
           this.category,
-      @HiveField(5)
-          this.favorite = '0'})
+      this.favorite = '0'})
       : assert(id != null),
         assert(site != null),
         assert(favorite != null);
-
-  factory _$GamePlatformEntity.fromJson(Map<String, dynamic> json) =>
-      _$_$GamePlatformEntityFromJson(json);
 
   @override
   @HiveField(0)
@@ -643,7 +609,6 @@ class _$GamePlatformEntity implements GamePlatformEntity {
   final String category;
   @JsonKey(defaultValue: '0')
   @override
-  @HiveField(5)
   final String favorite;
 
   @override
@@ -719,8 +684,7 @@ class _$GamePlatformEntity implements GamePlatformEntity {
             @HiveField(4)
             @JsonKey(name: 'type', required: true)
                 String category,
-            @HiveField(5)
-                String favorite),
+            String favorite),
   }) {
     assert(model != null);
     assert(entity != null);
@@ -758,8 +722,7 @@ class _$GamePlatformEntity implements GamePlatformEntity {
         @HiveField(4)
         @JsonKey(name: 'type', required: true)
             String category,
-        @HiveField(5)
-            String favorite),
+        String favorite),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -795,30 +758,29 @@ class _$GamePlatformEntity implements GamePlatformEntity {
   }
 
   @override
-  Map<String, dynamic> toJson() {
-    return _$_$GamePlatformEntityToJson(this)..['runtimeType'] = 'entity';
-  }
-
-  @override
   String operator [](String key) {
     return className.toString();
   }
 }
 
 abstract class GamePlatformEntity implements GamePlatform, DataOperator {
-  const factory GamePlatformEntity({
-    @required @HiveField(0) int id,
-    @HiveField(1)
-    @JsonKey(name: 'class', fromJson: decodePlatformClassName)
-        String className,
-    @HiveField(2) @JsonKey(fromJson: decodePlatformChName) String ch,
-    @required @HiveField(3) String site,
-    @HiveField(4) @JsonKey(name: 'type', required: true) String category,
-    @HiveField(5) String favorite,
-  }) = _$GamePlatformEntity;
-
-  factory GamePlatformEntity.fromJson(Map<String, dynamic> json) =
-      _$GamePlatformEntity.fromJson;
+  const factory GamePlatformEntity(
+      {@required
+      @HiveField(0)
+          int id,
+      @HiveField(1)
+      @JsonKey(name: 'class', fromJson: decodePlatformClassName)
+          String className,
+      @HiveField(2)
+      @JsonKey(fromJson: decodePlatformChName)
+          String ch,
+      @required
+      @HiveField(3)
+          String site,
+      @HiveField(4)
+      @JsonKey(name: 'type', required: true)
+          String category,
+      String favorite}) = _$GamePlatformEntity;
 
   @override
   @HiveField(0)
@@ -839,7 +801,6 @@ abstract class GamePlatformEntity implements GamePlatform, DataOperator {
   @JsonKey(name: 'type', required: true)
   String get category;
   @override
-  @HiveField(5)
   String get favorite;
   @override
   $GamePlatformEntityCopyWith<GamePlatformEntity> get copyWith;

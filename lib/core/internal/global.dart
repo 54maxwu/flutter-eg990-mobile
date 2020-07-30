@@ -15,7 +15,7 @@ class Global {
 
   static const String TEST_BASE_URL = "https://www.eg990.com/";
   static const String TY_BASE_URL = "https://www.vip66729.com/";
-  static const String TY_SERVICE_URL = "https://vip66732.com/";
+  static const String TY_SERVICE_URL = "http://vip66741.com/";
 
   static const double APP_BAR_HEIGHT = kToolbarHeight - 8;
   static const double APP_TOOLS_HEIGHT = Global.APP_BAR_HEIGHT * 2 + 8;

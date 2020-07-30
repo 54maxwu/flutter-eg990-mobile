@@ -1,4 +1,5 @@
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
+import 'package:flutter_ty_mobile/core/network/handler/request_code_model.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart'
     show RequestStatusModel;
 import 'package:super_enum/super_enum.dart';
@@ -23,6 +24,14 @@ enum _Failure {
   DataType,
   @object
   CachedFile,
+  @Data(fields: [
+    DataField<String>('msg'),
+  ])
+  ErrorMessage,
+  @UseClass(RequestStatusModel)
+  ErrorStatus,
+  @UseClass(RequestCodeModel)
+  ErrorCode,
   @UseClass(FailureCode)
   Internal,
   @UseClass(RequestStatusModel)
@@ -46,7 +55,7 @@ extension FailureExtension on Failure {
       case _Failure.JsonFormat:
         return localeStr.messageErrorServerData;
       case _Failure.Login:
-        return localeStr.messageLoginFailed;
+        return localeStr.messageLoginFailed + '(${this.props.first.msg})';
       case _Failure.Token:
         return localeStr.messageErrorToken;
       case _Failure.Event:
@@ -55,6 +64,12 @@ extension FailureExtension on Failure {
         return localeStr.messageErrorCachedFile;
       case _Failure.Internal:
         return localeStr.messageErrorInternal + '(${this.props.first.code})';
+      case _Failure.ErrorMessage:
+        return '${this.props.first}';
+      case _Failure.ErrorStatus:
+        return '${this.props.first.msg}';
+      case _Failure.ErrorCode:
+        return '${this.props.first.msg}(code: ${this.props.first.code})';
       default:
         return _OTHER_FAILURE_MESSAGE;
     }

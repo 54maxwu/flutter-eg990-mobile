@@ -44,7 +44,7 @@ class MoreGridItem extends Vnum<RouteListItem> {
   static MoreGridItem roller = MoreGridItem.define(RouteListItem(
     replaceTitle: localeStr.pageTitleRoller,
     imageName: 'images/moreShow_lucky.png',
-    isUserOnly: true,
+    route: RoutePage.roller,
   ));
   static MoreGridItem task = MoreGridItem.define(RouteListItem(
     replaceTitle: localeStr.pageTitleTask,

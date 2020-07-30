@@ -173,6 +173,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
               child: new Form(
                 key: _formKey,
                 child: ListView(
+                  primary: false,
                   shrinkWrap: true,
                   children: <Widget>[
                     /* Name Input Field */

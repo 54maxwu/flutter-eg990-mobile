@@ -170,7 +170,7 @@ class _AgentDisplayAdsState extends State<AgentDisplayAds>
             /* Ad Image */
             networkImageBuilder(
               data.pic,
-              fill: true,
+              fit: BoxFit.fill,
               roundCorner: true,
               roundParam: 16.0,
             ),

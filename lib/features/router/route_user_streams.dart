@@ -33,13 +33,15 @@ class RouteUserStreams {
 
   bool hasEvent = false;
 
-  LoginStatus get lastUser => _user;
+  LoginStatus get lastStatus => _user;
 
   bool get hasUser => _user.loggedIn;
 
   int get userLevel => _user.currentUser?.vip ?? 0;
 
   String get userName => _user.currentUser?.account ?? 'Guest';
+
+  String get userCredit => _user.currentUser?.credit ?? '0';
 
   RouteUserStreams() {
     _userControl.stream.listen((event) {
@@ -61,18 +63,24 @@ class RouteUserStreams {
     String userName = _user.currentUser.account;
     MyLogger.info(msg: 'logging out user $userName', tag: 'RouteUserStreams');
     try {
-      _dioApiService ??= sl.get<DioApiService>();
-      await Future.value(UserTokenStorage.load(userName)).then((value) {
-        _dioApiService.post(UserApi.LOGOUT, userToken: value.cookie.value);
-      });
       var jwtInterface = sl.get<MemberJwtInterface>();
+      _dioApiService ??= sl.get<DioApiService>();
+
+      String token = (jwtInterface.token.isNotEmpty)
+          ? jwtInterface.token
+          : await Future.value(UserTokenStorage.load(userName)).then((value) {
+              return value?.cookie?.value ?? '';
+            });
+      if (token.isNotEmpty)
+        _dioApiService.post(UserApi.LOGOUT, userToken: token);
+
       jwtInterface.clearToken();
     } catch (e, s) {
       MyLogger.error(
         msg: 'logout $userName has error: $e',
-        stackTrace: s,
         tag: 'RouteUserStreams',
       );
+      print('stack:\n$s');
     }
     Future.delayed(Duration(milliseconds: 500),
         () => RouterNavigate.navigateClean(force: true));

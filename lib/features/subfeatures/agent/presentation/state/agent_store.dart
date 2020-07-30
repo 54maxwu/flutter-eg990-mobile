@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/agent/data/enum/agent_chart_time_enum.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/agent/data/enum/agent_chart_type_enum.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/agent/data/models/agent_chart_model.dart';
@@ -109,6 +109,7 @@ abstract class _AgentStore with Store {
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
+      waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
           Failure.internal(FailureCode(type: FailureType.AGENT)).message;
@@ -124,7 +125,7 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.postAgentStatus().then((result) {
-        print('agent result: $result');
+        print('agent qr result: $result');
         result.fold(
           (failure) => errorMessage = failure.message,
           (data) => _agentController.sink.add(data),

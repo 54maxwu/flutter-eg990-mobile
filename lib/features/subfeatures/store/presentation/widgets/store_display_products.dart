@@ -122,7 +122,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                               margin: const EdgeInsets.all(4.0),
                               child: networkImageBuilder(
                                 'images/mall_product/${product.pic}.jpg',
-                                fill: true,
+                                fit: BoxFit.fill,
                                 roundCorner: true,
                                 roundParam: 12.0,
                               ),

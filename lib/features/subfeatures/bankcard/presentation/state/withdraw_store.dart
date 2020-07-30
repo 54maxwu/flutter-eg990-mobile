@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/form/withdraw_form.dart';
 import '../../data/models/withdraw_model.dart';
@@ -61,7 +61,7 @@ abstract class _WithdrawStore with Store {
       await _cgpFuture.then((result) {
         print('cgp result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => errorMessage = 'CGP ${failure.message}',
           (data) => cgpUrl = data,
         );
       });
@@ -81,7 +81,7 @@ abstract class _WithdrawStore with Store {
       await _cpwFuture.then((result) {
         print('cpw result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => errorMessage = 'CPW ${failure.message}',
           (data) => cpwUrl = data,
         );
       });

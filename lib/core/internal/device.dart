@@ -65,6 +65,9 @@ class Device {
   /// device's height
   double get heightScale => _screenHeightScale;
 
+  double get safePadding =>
+      _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+
   /// device's relative button height
   double get comfortButtonHeight => _screenButtonHeight;
 

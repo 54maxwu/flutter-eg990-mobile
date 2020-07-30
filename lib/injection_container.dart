@@ -25,6 +25,7 @@ import 'features/subfeatures/notice/notice_inject.dart';
 import 'features/subfeatures/flows/flows_inject.dart';
 import 'features/subfeatures/agent/agent_inject.dart';
 import 'features/subfeatures/viplevel/vip_level_inject.dart';
+import 'features/subfeatures/roller/roller_inject.dart';
 import 'features/user/event/event_inject.dart';
 import 'features/user/login/login_inject.dart';
 import 'template/template_inject.dart';
@@ -124,6 +125,9 @@ Future<void> init() async {
   sl.registerLazySingleton<StoreRepository>(
     () => StoreRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
+  sl.registerLazySingleton<RollerRepository>(
+    () => RollerRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
 
   /// Mobx Store
   sl.registerLazySingleton<WebGameScreenStore>(
@@ -191,6 +195,9 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => PointStore(sl<StoreRepository>()),
+  );
+  sl.registerFactory(
+    () => RollerStore(sl<RollerRepository>()),
   );
 
   /// Test only

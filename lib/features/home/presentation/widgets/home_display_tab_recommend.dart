@@ -26,11 +26,16 @@ class HomeDisplayTabRecommend extends StatefulWidget {
 
 class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   final String tag = 'HomeDisplayTabRecommend';
+  final bool _isIos = Global.device.isIos;
+//  final bool _isIos = true;
 
   HomeStore _store;
   double labelHeightFactor;
   double itemSize;
+  double baseTextSize;
+  int availableCharacters;
   bool twoLineText = true;
+  int plusGrid = 0;
   Widget _grid;
   List recommends;
 
@@ -38,6 +43,7 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   /// [itemData] should be [GamePlatformEntity] or [GameEntity]
   /// else print warn log and show toast.
   void _onItemTap(dynamic itemData) {
+    print('onItemTap recommend: $itemData');
     if (itemData is GamePlatformEntity) {
       widget.onPlatformClicked(itemData);
     } else if (itemData is GameEntity) {
@@ -68,21 +74,23 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
 
   @override
   void initState() {
-    itemSize = widget.pageMaxWidth / 3 * 0.95;
+    plusGrid = (Global.device.widthScale > 2.0)
+        ? 2
+        : (Global.device.widthScale > 1.5) ? 1 : 0;
+
     labelHeightFactor = 1.5;
+    if (plusGrid > 0) {
+      if (Global.device.widthScale > 2.0) {
+        labelHeightFactor = 1.65;
+      } else {
+        labelHeightFactor = 1.575;
+      }
+    }
+    itemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
+    baseTextSize = (_isIos) ? FontSize.NORMAL.value + 1 : FontSize.NORMAL.value;
+    availableCharacters = (itemSize * 0.9 / baseTextSize).floor();
+    print('item available characters: $availableCharacters');
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    print('change recommend page');
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(HomeDisplayTabRecommend oldWidget) {
-    print('update recommend page');
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -96,20 +104,18 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
         ),
       );
     }
-    return Container(
-      child: StreamBuilder<List>(
-        stream: _store.recommendStream,
-        initialData: _store.recommends,
-        builder: (_, snapshot) {
-          if (snapshot.data == null) _store.getRecommend();
-          if (snapshot != null || snapshot.data != recommends) {
-            recommends = snapshot.data;
-            _grid = _createGrid();
-          }
-          _grid ??= Center(child: CircularProgressIndicator());
-          return _grid;
-        },
-      ),
+    return StreamBuilder<List>(
+      stream: _store.recommendStream,
+      initialData: _store.recommends,
+      builder: (_, snapshot) {
+        if (snapshot.data == null) _store.getRecommend();
+        if (snapshot != null || snapshot.data != recommends) {
+          recommends = snapshot.data;
+          _grid = _createGrid();
+        }
+        _grid ??= Center(child: CircularProgressIndicator());
+        return _grid;
+      },
     );
   }
 
@@ -118,17 +124,20 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
     twoLineText = recommends.any(
       (element) {
         if (element is GameEntity)
-          return element.cname.length >= 5;
+          return element.isLongText(availableCharacters);
         else if (element is GamePlatformEntity)
-          return element.label.length >= 5;
+          return element.isLongText(availableCharacters);
         else
           return false;
       },
     );
-    return new GridView.count(
-      physics: ClampingScrollPhysics(),
-      crossAxisCount: 3,
-      childAspectRatio: 0.7,
+//    print('recommend grid two line text: $twoLineText');
+    return GridView.count(
+      physics: BouncingScrollPhysics(),
+      padding: const EdgeInsets.only(bottom: 2.0),
+      crossAxisCount: 3 + plusGrid,
+      childAspectRatio: (plusGrid > 0) ? 0.85 : (twoLineText) ? 0.65 : 0.7,
+      mainAxisSpacing: (plusGrid > 0) ? 6.0 : (twoLineText) ? 4.0 : 0.0,
       shrinkWrap: true,
       children:
           recommends.map<Widget>((entity) => _createGridItem(entity)).toList(),
@@ -157,9 +166,9 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
     }
 
     if (twoLineText)
-      textHeight = FontSize.NORMAL.value * labelHeightFactor * 2;
+      textHeight = baseTextSize * labelHeightFactor * 2.5;
     else
-      textHeight = FontSize.NORMAL.value * labelHeightFactor;
+      textHeight = baseTextSize * labelHeightFactor;
 
     return Container(
       padding: const EdgeInsets.only(top: 6.0),
@@ -180,6 +189,7 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
           pluginTapAction: (imgUrl != null && label != null)
               ? (isFavorite) => _setFavorite(entity, isFavorite)
               : null,
+          isIos: _isIos,
         ),
       ),
     );

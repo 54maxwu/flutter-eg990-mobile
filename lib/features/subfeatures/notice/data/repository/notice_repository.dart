@@ -22,7 +22,6 @@ class NoticeRepositoryImpl implements NoticeRepository {
     final result = await requestModel<NoticeModel>(
       request: dioApiService.post(NoticeApi.POST_REMIND),
       jsonToModel: NoticeModel.jsonToNoticeModel,
-      trim: false,
       tag: 'remote-NOTICE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

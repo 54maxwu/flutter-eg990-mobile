@@ -31,7 +31,7 @@ class _WalletDialogState extends State<WalletDialog> {
   Widget build(BuildContext context) {
     return DialogWidget(
       key: _dialogKey,
-      maxHeight: 180,
+      maxHeight: 186.0,
       widthShrink: 64.0,
       transparentBg: true,
       onClose: () {
@@ -58,7 +58,10 @@ class _WalletDialogState extends State<WalletDialog> {
                   ),
                   Expanded(
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   ),
                   Padding(
@@ -101,10 +104,13 @@ class _WalletDialogState extends State<WalletDialog> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Icon(
-                        Icons.check,
-                        size: 64,
-                        color: Themes.defaultAccentColor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Icon(
+                          Icons.check,
+                          size: 64,
+                          color: Themes.defaultAccentColor,
+                        ),
                       ),
                     ),
                   ),
@@ -127,10 +133,13 @@ class _WalletDialogState extends State<WalletDialog> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Icon(
-                        Icons.error,
-                        size: 64,
-                        color: Themes.defaultErrorColor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Icon(
+                          Icons.error,
+                          size: 64,
+                          color: Themes.defaultErrorColor,
+                        ),
                       ),
                     ),
                   ),

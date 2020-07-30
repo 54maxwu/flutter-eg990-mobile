@@ -11,7 +11,7 @@ description: New version of TY mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.5.4+3
+version: 0.6.1+3
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -70,7 +70,7 @@ dependencies:
   # HTTP Logger https://pub.dev/packages/pretty_dio_logger
   pretty_dio_logger: ^1.1.1
   # Network state
-  connectivity: ^0.4.8+6
+  connectivity: ^0.4.9
   data_connection_checker: ^0.3.4
   # Hive (noSQL) https://pub.dev/packages/hive
   hive: ^1.4.1+1
@@ -79,7 +79,7 @@ dependencies:
   # https://pub.dev/packages/path_provider
   path_provider: ^1.6.11
   # Handle device permission https://pub.dev/packages/permission_handler
-  permission_handler: ^5.0.1
+  permission_handler: ^5.0.1+1
   # Custom Permission Dialog https://pub.dev/packages/easy_permission_validato
   easy_permission_validator: ^2.0.0
   # Screen Util for adapting screen and font size https://pub.dev/packages/flutter_screenutil
@@ -112,7 +112,7 @@ dependencies:
   # Configurable Expansion List Tile https://pub.dev/packages/configurable_expansion_tile
   configurable_expansion_tile: ^1.0.0
   # Share Function https://pub.dev/packages/share_extend
-  share_extend: ^1.1.7
+  share_extend: ^1.1.9
   # Icon Badge https://pub.dev/packages/badges
   badges: ^1.1.1
 
@@ -127,11 +127,10 @@ dev_dependencies:
   hive_generator: ^0.7.0+2
   mobx_codegen: ^1.1.0+1
   mockito: ^4.1.1
-  bloc_test: ^5.1.0
   flutter_vector_icons: ^0.2.1
   auto_route_generator: ^0.5.0
   freezed: ^0.11.2
-  dataclass_generator: ^0.3.0+2
+  dataclass_generator: ^0.4.0
   super_enum_generator: ^0.5.0
 
 dependency_overrides:
@@ -157,6 +156,8 @@ flutter:
     - assets/images/
     - assets/images/vip/
     - assets/images/index/
+    - assets/images/roller/
+    - assets/images/example/
     - config/app_config.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

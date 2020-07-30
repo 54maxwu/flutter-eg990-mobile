@@ -13,7 +13,7 @@ void main() {
 
   test('test store exchange model', () {
     print('\n');
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('code model: $codeModel\n\n');
     print('data: ${codeModel.data}\n\n');
     StoreExchangeModel model = JsonUtil.decodeToModel<StoreExchangeModel>(

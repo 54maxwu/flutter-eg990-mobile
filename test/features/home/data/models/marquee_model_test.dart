@@ -36,7 +36,6 @@ void main() {
     MarqueeModelList model = JsonUtil.decodeToModel(
       arrayMap,
       (jsonMap) => MarqueeModelList.jsonToMarqueeModelList(jsonMap),
-      trim: false,
     );
     print('decoded model:\n$model\n');
     expect(model.marquees.length, 4);

@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/notice/data/models/notice_model.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/notice/data/repository/notice_repository.dart';
 

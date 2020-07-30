@@ -50,6 +50,8 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
   Map<String, String> areaMap;
 
   bool _waitForProvinceMap = true;
+  bool _highlightProvince = false;
+  bool _highlightCity = false;
   String _provinceSelected;
   String _citySelected;
   String _areaSelected;
@@ -85,6 +87,11 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
           position: FLToastPosition.top,
           showDuration: ToastDuration.DEFAULT.value,
         );
+        if (_provinceSelected.isEmpty || _citySelected.isEmpty)
+          setState(() {
+            _highlightProvince = _provinceSelected.isEmpty;
+            _highlightCity = _citySelected != null && _citySelected.isEmpty;
+          });
       }
     }
   }
@@ -108,6 +115,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
         (map) {
           print('province map changed, size: ${map.keys.length}');
           provinceMap = map;
+          _provinceSelected = '';
           _waitForProvinceMap = false;
           setState(() {});
         },
@@ -120,7 +128,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
         (map) {
           print('city map changed, size: ${map.keys.length}');
           cityMap = map;
-          _citySelected = cityMap.keys.first;
+          _citySelected = '';
           setState(() {});
         },
       ),
@@ -132,7 +140,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
         (map) {
           print('area map changed, size: ${map.keys.length}');
           areaMap = map;
-          _areaSelected = areaMap.keys.first;
+          _areaSelected = '';
           setState(() {});
         },
       ),
@@ -383,56 +391,85 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
                 /* Province Option */
                 Expanded(
                   flex: 1,
-                  child: CustomizeDropdownWidget(
-                    key: _provinceKey,
-                    optionValues:
-                        (provinceMap != null) ? provinceMap.keys.toList() : [],
-                    optionStrings: (provinceMap != null)
-                        ? provinceMap.values.toList()
-                        : [],
-                    changeNotify: (data) {
-                      // clear text field focus
-                      FocusScope.of(context).requestFocus(new FocusNode());
-                      // set selected data
-                      _provinceSelected = data;
-                      // clear dropdown value that's relative
-                      cityMap = null;
-                      _citySelected = null;
-                      areaMap = null;
-                      _areaSelected = null;
-                      // request cities map
-                      widget.store.getCities(data);
-                    },
-                    clearValueOnMenuChanged: true,
-                    minusHeight: 16.0,
-                    whiteBox: true,
-                    scaleText: true,
+                  child: Container(
+                    foregroundDecoration: BoxDecoration(
+                      border: Border.all(
+                        width: 2.0,
+                        style: BorderStyle.solid,
+                        color: (_highlightProvince)
+                            ? Colors.red
+                            : Colors.transparent,
+                      ),
+                    ),
+                    child: CustomizeDropdownWidget(
+                      key: _provinceKey,
+                      optionValues: (provinceMap != null)
+                          ? provinceMap.keys.toList()
+                          : [],
+                      optionStrings: (provinceMap != null)
+                          ? provinceMap.values.toList()
+                          : [],
+                      changeNotify: (data) {
+                        // clear text field focus
+                        FocusScope.of(context).requestFocus(new FocusNode());
+                        // set selected data
+                        _provinceSelected = data;
+                        setState(() {
+                          _highlightProvince = false;
+                        });
+                        // clear dropdown value that's relative
+                        cityMap = null;
+                        _citySelected = null;
+                        areaMap = null;
+                        _areaSelected = null;
+                        // request cities map
+                        widget.store.getCities(data);
+                      },
+                      clearValueOnMenuChanged: true,
+                      minusHeight: 16.0,
+                      whiteBox: true,
+                      scaleText: true,
+                    ),
                   ),
                 ),
                 /* City Option */
                 Expanded(
                   flex: 1,
                   child: (cityMap != null)
-                      ? CustomizeDropdownWidget(
-                          key: _cityKey,
-                          optionValues: cityMap.keys.toList(),
-                          optionStrings: cityMap.values.toList(),
-                          changeNotify: (data) {
-                            // clear text field focus
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-                            // set selected data
-                            _citySelected = data;
-                            // clear dropdown value that's relative
-                            areaMap = null;
-                            _areaSelected = null;
-                            // request areas map
-                            widget.store.getAreas(data);
-                          },
-                          clearValueOnMenuChanged: true,
-                          minusHeight: 16.0,
-                          whiteBox: true,
-                          scaleText: true,
+                      ? Container(
+                          foregroundDecoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2.0,
+                              style: BorderStyle.solid,
+                              color: (_highlightCity)
+                                  ? Colors.red
+                                  : Colors.transparent,
+                            ),
+                          ),
+                          child: CustomizeDropdownWidget(
+                            key: _cityKey,
+                            optionValues: cityMap.keys.toList(),
+                            optionStrings: cityMap.values.toList(),
+                            changeNotify: (data) {
+                              // clear text field focus
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
+                              // set selected data
+                              _citySelected = data;
+                              setState(() {
+                                _highlightCity = false;
+                              });
+                              // clear dropdown value that's relative
+                              areaMap = null;
+                              _areaSelected = null;
+                              // request areas map
+                              widget.store.getAreas(data);
+                            },
+                            clearValueOnMenuChanged: true,
+                            minusHeight: 16.0,
+                            whiteBox: true,
+                            scaleText: true,
+                          ),
                         )
                       : Container(),
                 ),

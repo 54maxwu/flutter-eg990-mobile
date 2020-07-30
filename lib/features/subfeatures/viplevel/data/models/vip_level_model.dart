@@ -45,7 +45,6 @@ List<VipLevelName> decodeVipLevelName(dynamic str) =>
     JsonUtil.decodeMapToModelList(
       str,
       (jsonMap) => VipLevelName.jsonToVipLevelName(jsonMap),
-      trim: false,
       tag: 'VipLevelName',
     );
 
@@ -71,6 +70,5 @@ List<VipLevelOption> decodeVipLevelOption(dynamic str) =>
     JsonUtil.decodeMapToModelList(
       str,
       (jsonMap) => VipLevelOption.jsonToVipLevelOption(jsonMap),
-      trim: false,
       tag: 'VipLevelOption',
     );

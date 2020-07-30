@@ -13,7 +13,6 @@ void main() {
     var list = JsonUtil.decodeArrayToModel<MessageModel>(
       map,
       (jsonMap) => MessageModel.jsonToMessageModel(jsonMap),
-      trim: false,
       tag: 'MessageModel',
     );
     print(list);

@@ -1,5 +1,5 @@
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/repository/bankcard_repository.dart';
 import '../../data/form/bankcard_form.dart';
@@ -67,7 +67,7 @@ abstract class _BankcardStore with Store {
       _bankcardFuture = ObservableFuture(_repository.getBankcard());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _bankcardFuture.then((result) {
-        print('bankcard result: $result');
+//        print('bankcard result: $result');
         result.fold(
           (failure) => errorMessage = failure.message,
           (data) => bankcard = data,

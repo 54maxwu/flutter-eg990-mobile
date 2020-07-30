@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';
 import 'package:flutter_ty_mobile/features/router/route_user_streams.dart'
     show getRouteUserStreams;
@@ -31,14 +31,15 @@ abstract class _FeatureScreenStore with Store {
         await getNewMessageCount();
         await getEvent();
       } else {
-        showEvent = false;
+        showEventOnHome = false;
         forceShowEvent = false;
         hasSignedEvent = false;
         hasNewMessage = false;
         signedTimes = null;
       }
     });
-    if (getRouteUserStreams.hasUser) userStatus = getRouteUserStreams.lastUser;
+    if (getRouteUserStreams.hasUser)
+      userStatus = getRouteUserStreams.lastStatus;
     userStatus ??= LoginStatus(loggedIn: false);
   }
 
@@ -89,16 +90,18 @@ abstract class _FeatureScreenStore with Store {
   EventModel get event => _event;
 
   @observable
-  bool showEvent = false;
+  bool showEventOnHome = false;
 
   bool forceShowEvent = false;
 
+  bool get hasEvent => _event.hasData && _event.userLevelMatchEvent(user.vip);
+
   set setShowEvent(bool show) {
-    showEvent = show;
+    showEventOnHome = show;
   }
 
   set setForceShowEvent(bool show) {
-    showEvent = (!show) ? showEvent : true;
+    showEventOnHome = (!show) ? showEventOnHome : true;
     forceShowEvent = show;
   }
 
@@ -139,12 +142,11 @@ abstract class _FeatureScreenStore with Store {
         (failure) => errorMessage = failure.message,
         (model) {
           _event = model;
-          showEvent =
-              _event.hasData && _event.showDialog(user.vip) && _event.canSign;
+          showEventOnHome = _event.showDialog(user.vip);
           forceShowEvent = false;
-          hasSignedEvent = _event.canSign == false;
+          hasSignedEvent = !(_event.canSign);
           signedTimes = _event.signData?.times ?? 0;
-          print('event show: $showEvent, has signed: $hasSignedEvent');
+          print('event show: $showEventOnHome, has signed: $hasSignedEvent');
         },
       );
     });
@@ -169,7 +171,7 @@ abstract class _FeatureScreenStore with Store {
           if (model.isSuccess == false) {
             errorMessage = localeStr.eventButtonSignUpFailed;
           } else if (model.data is bool) {
-            showEvent = false;
+            showEventOnHome = false;
             forceShowEvent = false;
             hasSignedEvent = true;
             signedTimes = (_event.signData?.times ?? 0) + 1;
@@ -185,6 +187,13 @@ abstract class _FeatureScreenStore with Store {
         },
       );
     });
+  }
+
+  void debugEvent() {
+    print('Event: $_event');
+    print('Event can sign: ${_event.canSign}');
+    print('Has Event? $hasEvent');
+    print('Has Signed? $hasSignedEvent');
   }
 
   Future<void> closeStreams() {

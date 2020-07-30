@@ -31,6 +31,7 @@ import 'package:flutter_ty_mobile/features/subfeatures/downloadarea/download_are
 import 'package:flutter_ty_mobile/features/subfeatures/notice/presentation/notice_route.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/viplevel/presentation/vip_level_route.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/store/presentation/store_route.dart';
+import 'package:flutter_ty_mobile/features/subfeatures/roller/presentation/roller_route.dart';
 import 'package:flutter_ty_mobile/features/test_area_route.dart';
 import 'package:flutter_ty_mobile/template/mobx/presentation/template_route.dart';
 
@@ -61,6 +62,7 @@ abstract class Routes {
   static const noticeRoute = '/notice-route';
   static const levelRoute = '/level-route';
   static const storeRoute = '/store-route';
+  static const rollerRoute = '/roller-route';
   static const testAreaRoute = '/test-area-route';
   static const templateRoute = '/template-route';
   static const all = {
@@ -90,6 +92,7 @@ abstract class Routes {
     noticeRoute,
     levelRoute,
     storeRoute,
+    rollerRoute,
     testAreaRoute,
     templateRoute,
   };
@@ -281,6 +284,11 @@ class Router extends RouterBase {
       case Routes.storeRoute:
         return MaterialPageRoute<dynamic>(
           builder: (context) => StoreRoute(),
+          settings: settings,
+        );
+      case Routes.rollerRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (context) => RollerRoute(),
           settings: settings,
         );
       case Routes.testAreaRoute:

@@ -1,6 +1,6 @@
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/balance/data/repository/balance_repository.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/balance/presentation/enum/balance_grid_action.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/transfer/data/form/transfer_form.dart';

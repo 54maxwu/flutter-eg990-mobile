@@ -1,6 +1,6 @@
 import 'dart:collection' show HashMap;
 
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/banner_entity.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/game_entity.dart';
@@ -10,6 +10,7 @@ import 'package:flutter_ty_mobile/features/home/data/models/game_category_model.
 import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_types.dart';
 import 'package:flutter_ty_mobile/features/home/data/repository/home_repository.dart';
+import 'package:flutter_ty_mobile/features/user/data/entity/user_entity.dart';
 
 part 'home_store.g.dart';
 
@@ -20,6 +21,8 @@ enum HomeStoreState { initial, loading, loaded }
 abstract class _HomeStore with Store {
   final HomeRepository _repository;
 
+  final StreamController<String> _creditController =
+      StreamController<String>.broadcast();
   static StreamController<List<BannerEntity>> _bannerController =
       StreamController<List<BannerEntity>>.broadcast();
   static StreamController<List<MarqueeEntity>> _marqueeController =
@@ -37,26 +40,30 @@ abstract class _HomeStore with Store {
 
   _HomeStore(this._repository) {
     print('init home store');
+    _creditController.stream.listen((event) {
+//      print('home stream credit: $event');
+      userCredit = event;
+    });
     _bannerController.stream.listen((event) {
-      print('home stream banners: ${event.length}');
+//      print('home stream banners: ${event.length}');
       banners = event;
     });
     _marqueeController.stream.listen((event) {
-      print('home stream marquees: ${event.length}');
+//      print('home stream marquees: ${event.length}');
       marquees = event;
     });
-    _tabController.stream.listen((event) {
-      print('home stream games tab: ${event.length}');
-    });
+//    _tabController.stream.listen((event) {
+//      print('home stream games tab: ${event.length}');
+//    });
     _gamesRetrieveController.stream.listen((event) {
       print('home stream games retrieve: $event');
     });
     _recommendController.stream.listen((event) {
-      print('home stream games recommend: ${event.length}');
+//      print('home stream games recommend: ${event.length}');
       recommends = event;
     });
     _favoriteController.stream.listen((event) {
-      print('home stream games favorite: ${event.length}');
+//      print('home stream games favorite: ${event.length}');
       favorites = event
         ..removeWhere(
           (element) => (element is GameEntity || element is GamePlatformEntity)
@@ -65,7 +72,7 @@ abstract class _HomeStore with Store {
         );
     });
     _searchController.stream.listen((event) {
-      print('home stream search recommend: $event');
+//      print('home stream search recommend: $event');
       searchPlatform = event;
     });
   }
@@ -130,6 +137,11 @@ abstract class _HomeStore with Store {
   @observable
   String errorMessage;
 
+  Stream<String> get creditStream =>
+      _creditController.stream.asBroadcastStream();
+
+  String userCredit = '0';
+
   bool hasUser = false;
 
   bool waitForInitializeData = false;
@@ -141,7 +153,7 @@ abstract class _HomeStore with Store {
 
   @computed
   HomeStoreState get state {
-    // If the user has not yet triggerd a action or there has been an error
+    // If the user has not yet triggered a action or there has been an error
     if (_initFuture == null || _initFuture.status == FutureStatus.rejected) {
       return HomeStoreState.initial;
     }
@@ -269,7 +281,7 @@ abstract class _HomeStore with Store {
                   categories: new List.from(data.categories),
                   platforms: new List.from(data.platforms),
                 );
-                processHomeContent();
+                _processHomeContent();
               },
             ),
           )
@@ -288,7 +300,7 @@ abstract class _HomeStore with Store {
 //           + [movieEgCategory, movieNewCategory],
           );
 
-  void processHomeContent() {
+  void _processHomeContent() {
     homeTabs = new List.from(_gameTypes.categories, growable: true);
     if (homeTabs == null || homeTabs.isEmpty) return;
     final all = _gameTypes.platforms;
@@ -323,6 +335,7 @@ abstract class _HomeStore with Store {
   void checkHomeTabs() {
     if (hasUser != getRouteUserStreams.hasUser) {
       hasUser = getRouteUserStreams.hasUser;
+      _creditController.sink.add(getRouteUserStreams.userCredit);
 //      print('home store has user = $hasUser');
       getGameTypes();
     }
@@ -446,7 +459,7 @@ abstract class _HomeStore with Store {
                 (success) {
                   MyLogger.log(
                       msg: 'set platform $id favorite($favorite) success');
-                  updatePlatformMap(entity, favorite);
+                  _updatePlatformMap(entity, favorite);
                 },
               ),
             );
@@ -457,7 +470,7 @@ abstract class _HomeStore with Store {
                     msg: 'set game $id favorite failed: $failure'),
                 (success) {
                   MyLogger.log(msg: 'set game $id favorite($favorite) success');
-                  updateGameMap(entity, favorite);
+                  _updateGameMap(entity, favorite);
                 },
               ),
             );
@@ -468,7 +481,7 @@ abstract class _HomeStore with Store {
     }
   }
 
-  void updatePlatformMap(GamePlatformEntity entity, bool isFavorite) {
+  void _updatePlatformMap(GamePlatformEntity entity, bool isFavorite) {
     if (favorites != null) getFavorites();
     final newItem = entity.copyWith(favorite: (isFavorite) ? '1' : '0');
     try {
@@ -511,7 +524,7 @@ abstract class _HomeStore with Store {
     }
   }
 
-  void updateGameMap(GameEntity entity, bool isFavorite) {
+  void _updateGameMap(GameEntity entity, bool isFavorite) {
     if (favorites != null) getFavorites();
     final newItem = entity.copyWith(favorite: (isFavorite) ? 1 : 0);
     List info = entity.gameUrl.split('/');
@@ -588,13 +601,33 @@ abstract class _HomeStore with Store {
     }
   }
 
-  void clearGameUrl() {
-    Future.delayed(Duration(milliseconds: 100), () => gameUrl = null);
+  void clearGameUrl() => gameUrl = null;
+
+  @action
+  Future<void> getCredit() async {
+    try {
+      if (!hasUser) return;
+      print('requesting home page user credit...');
+      var user = getRouteUserStreams.lastStatus.currentUser;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository.updateCredit(user.account).then(
+            (result) => result.fold(
+              (failure) => errorMessage = failure.message,
+              (value) {
+                getRouteUserStreams.lastStatus.currentUser.updateCredit(value);
+                _creditController.sink.add(value);
+              },
+            ),
+          );
+    } on Exception catch (e) {
+      MyLogger.error(msg: 'home user credit has exception', error: e);
+    }
   }
 
   Future<void> closeStreams() {
     try {
       return Future.wait([
+        _creditController.close(),
         _bannerController.close(),
         _marqueeController.close(),
         _tabController.close(),

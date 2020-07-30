@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:flutter_ty_mobile/features/subfeatures/roller/presentation/roller_route.dart';
 import 'package:flutter_ty_mobile/template/mobx/presentation/template_route.dart';
 
 import '../home/presentation/home_route.dart';
@@ -57,6 +58,7 @@ class $Router {
   NoticeRoute noticeRoute;
   VipLevelRoute levelRoute;
   StoreRoute storeRoute;
+  RollerRoute rollerRoute;
 
   /// test route
   TestAreaRoute testAreaRoute;

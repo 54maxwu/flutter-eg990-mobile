@@ -1,6 +1,6 @@
 import 'package:flutter_ty_mobile/core/network/handler/request_code_model.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/form/store_exchange_form.dart';
 import '../../data/form/store_exchange_history_form.dart';

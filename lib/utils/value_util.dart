@@ -31,7 +31,7 @@ String doubleToStr(double value,
 
 int stringToInt(String str) {
   try {
-    if (str == null) return -1;
+    if (str == null || str.isEmpty) return -1;
     if (str.contains('.'))
       return double.parse(str.replaceAll(RegExp('￥|,'), '').trim()).floor();
     else

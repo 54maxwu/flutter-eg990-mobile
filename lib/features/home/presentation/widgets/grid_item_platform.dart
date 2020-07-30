@@ -13,6 +13,7 @@ class GridItemPlatform extends StatelessWidget {
   final double itemSize;
   final double textHeight;
   final PluginTapAction pluginTapAction;
+  final bool isIos;
 
   GridItemPlatform({
     @required this.imgUrl,
@@ -21,6 +22,7 @@ class GridItemPlatform extends StatelessWidget {
     @required this.itemSize,
     @required this.textHeight,
     @required this.pluginTapAction,
+    @required this.isIos,
   });
 
   @override
@@ -30,13 +32,12 @@ class GridItemPlatform extends StatelessWidget {
         LayoutId(
           id: RelativeId('img', alignment: Alignment.topCenter),
           child: Container(
-            margin: const EdgeInsets.only(bottom: 12.0),
-            constraints: BoxConstraints(
-              maxWidth: itemSize,
-              maxHeight: itemSize - textHeight,
+            margin: const EdgeInsets.only(bottom: 18.0),
+            constraints: BoxConstraints.tight(
+              Size(itemSize, itemSize - textHeight),
             ),
             child: (imgUrl != null)
-                ? networkImageBuilder(imgUrl, fill: true)
+                ? networkImageBuilder(imgUrl, addPendingIconOnError: true)
                 : Center(child: Icon(Icons.broken_image)),
           ),
         ),
@@ -47,9 +48,8 @@ class GridItemPlatform extends StatelessWidget {
             alignment: Alignment.center,
           ),
           child: Container(
-            constraints: BoxConstraints.tightFor(
-              width: itemSize * 0.85,
-              height: textHeight,
+            constraints: BoxConstraints.tight(
+              Size(itemSize * 0.85, textHeight),
             ),
             child: Text(
               label ?? '?',

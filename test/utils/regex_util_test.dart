@@ -51,4 +51,30 @@ void main() {
     String testStr5 = '一2三';
     expect(testStr5.hasChinese, true);
   });
+
+  test('test html regex', () {
+    String html =
+        """<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body onload=''><form id='post_form' name='post_form' method=post action='https://777.bb-api.net'><input name=uid  type='hidden' value='05fe8bca59b4bdd73785da942ed38d9406b2ab76'><input name=langx type='hidden' value='zh-cn'><input name=page_site type='hidden' value='ball'></form></body></html>""";
+    expect(html.isHtmlFormat, true);
+  });
+
+  test('test html regex 2', () {
+    String html = """<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <!-- <body onload=''> -->
+    <body'>
+        <form id='post_form' name='post_form' method=post action='https://777.bb-api.net'>
+            <input name=uid  type='hidden' value='7e4f30e0e5be4a889c2ee5d3d8ae4db399c48e37'>
+            <input name=langx type='hidden' value='zh-cn'>
+            <input name=page_site type='hidden' value='live'>
+            <input name='live_present' type='hidden' value='bbinlive'>
+        </form>
+        <script>window.location.replace('https://kpy0ydbp.com/ipl/portal.php/game/httpredirect?type=liverwd&domain=https%3A%2F%2F777.bb-api.net%2F&hallid=3820062&lang=cn&ots=b4844bd26fb274a0d95026454653c111f57f8d69')</script>
+    </body>
+    </html>""";
+    expect(html.replaceAll('\n', '').isHtmlFormat, true);
+  });
 }

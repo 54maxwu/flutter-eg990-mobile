@@ -30,22 +30,24 @@ class StoreDisplayRecordTable extends StatelessWidget {
     bool hasData = tableData != null &&
         tableData.data != null &&
         tableData.data.isNotEmpty;
+    double dateWidth = (Global.device.isIos) ? 86 : 80;
+    double remainWidth = availableWidth - dateWidth;
     Map<int, TableColumnWidth> _tableWidthMap = (hasData)
         ? {
             //指定索引及固定列宽
-            0: FixedColumnWidth(availableWidth * 0.075),
-            1: FixedColumnWidth(availableWidth * 0.625),
-            2: FixedColumnWidth(availableWidth * 0.075),
-            3: FixedColumnWidth(availableWidth * 0.15),
-            4: FixedColumnWidth(availableWidth * 0.075),
+            0: FixedColumnWidth(remainWidth * 0.1),
+            1: FixedColumnWidth(remainWidth * 0.7),
+            2: FixedColumnWidth(remainWidth * 0.1),
+            3: FixedColumnWidth(dateWidth),
+            4: FixedColumnWidth(remainWidth * 0.1),
           }
         : {
             //指定索引及固定列宽
-            0: FixedColumnWidth(availableWidth * 0.15),
-            1: FixedColumnWidth(availableWidth * 0.4),
-            2: FixedColumnWidth(availableWidth * 0.15),
-            3: FixedColumnWidth(availableWidth * 0.15),
-            4: FixedColumnWidth(availableWidth * 0.15),
+            0: FixedColumnWidth(remainWidth * 0.175),
+            1: FixedColumnWidth(remainWidth * 0.475),
+            2: FixedColumnWidth(remainWidth * 0.175),
+            3: FixedColumnWidth(dateWidth),
+            4: FixedColumnWidth(remainWidth * 0.175),
           };
 
     return ColoredBox(

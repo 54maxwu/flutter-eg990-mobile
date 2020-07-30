@@ -75,17 +75,13 @@ class AgentRepositoryImpl implements AgentRepository {
 
   @override
   Future<Either<Failure, AgentModel>> postAgentStatus() async {
-    final result = await requestDataString(
+    return await requestDataString(
       request: dioApiService.post(
         AgentApi.POST_AGENT_CODE,
         userToken: jwtInterface.token,
       ),
       tag: 'remote-AGENT_STATUS',
-    );
-    return result.andThen(await getAgentDetail()).fold(
-          (failure) => Left(failure),
-          (model) => Right(model),
-        );
+    ).then((_) async => await getAgentDetail());
   }
 
   @override
@@ -176,7 +172,7 @@ class AgentRepositoryImpl implements AgentRepository {
         },
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-AGENT_LEDGER',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
@@ -244,7 +240,7 @@ class AgentRepositoryImpl implements AgentRepository {
         data: {'adsId': id},
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToRequestCodeModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-AGENT_MERGE_AD',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');

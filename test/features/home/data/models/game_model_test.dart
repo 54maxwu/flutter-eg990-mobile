@@ -41,7 +41,6 @@ void main() {
     final dataList = JsonUtil.decodeArrayToModel(
       rawJson,
       (jsonMap) => GameModel.jsonToGameModel(jsonMap),
-      trim: false,
     );
     print('decoded list:\n$dataList\n');
     expect(dataList.length, 11);

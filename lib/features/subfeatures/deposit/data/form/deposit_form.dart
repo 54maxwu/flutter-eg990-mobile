@@ -28,4 +28,6 @@ extension DepositDataFormExtension on DepositDataForm {
       'promo': (this.promoId != -1) ? promoId : '',
     };
   }
+
+  bool get isValid => amount != '-1' && amount.isNotEmpty && name.isNotEmpty;
 }

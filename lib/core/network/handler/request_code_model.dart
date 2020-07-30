@@ -10,7 +10,7 @@ abstract class RequestCodeModel with _$RequestCodeModel {
     String msg,
   }) = _RequestCodeModel;
 
-  static RequestCodeModel jsonToRequestCodeModel(Map<String, dynamic> jsonMap) {
+  static RequestCodeModel jsonToCodeModel(Map<String, dynamic> jsonMap) {
     return _$_RequestCodeModel(
       code: jsonMap['code'] as int,
       data: jsonMap['data'],

@@ -228,8 +228,10 @@ class _TransferDisplayState extends State<TransferDisplay> {
                     ),
                   ),
                   TextSpan(
-                    text:
-                        '${localeStr.balanceHintText1}\n${localeStr.balanceHintText2}\n${localeStr.balanceHintText3}',
+                    text: '${localeStr.balanceHintText1}'
+                        '\n${localeStr.balanceHintText2}'
+                        '\n${localeStr.balanceHintText3}'
+                        '\n${localeStr.transferHintRefresh}',
                     style: TextStyle(
                       height: 1.75,
                     ),

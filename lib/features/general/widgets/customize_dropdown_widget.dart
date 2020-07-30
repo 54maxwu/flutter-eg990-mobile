@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
@@ -97,6 +95,11 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
 
   set setSelected(value) {
     _dropdownValue = value;
+    setState(() {});
+  }
+
+  set setSelectedIndex(index) {
+    _dropdownValue = widget.optionValues[0];
     setState(() {});
   }
 

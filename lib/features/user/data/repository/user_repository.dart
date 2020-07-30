@@ -47,38 +47,42 @@ class UserRepositoryImpl implements UserRepository {
     return result.fold(
       (failure) => Left(failure),
       (data) async {
-        // get user account info when token was successfully retrieved
         if (data is String && data.isNotEmpty) {
-          // return login failed message
+          // data contains status string when failed
           if (data.contains('status')) {
             Map<String, dynamic> map = jsonDecode(data);
             return Left(
                 Failure.login(RequestStatusModel.jsonToStatusModel(map)));
           }
+
+          // extract token from response data
           final token =
               data.substring(data.indexOf('=') + 1, data.indexOf(';'));
           MyLogger.debug(msg: 'token: \n$token', tag: tag);
           MyLogger.log(msg: 'start validate token...', tag: tag);
-          final validStatus =
-              await Future.delayed(Duration(milliseconds: 200), () {
+
+          // check extracted token is valid
+          return await Future.delayed(Duration(milliseconds: 500), () {
             return jwtInterface.checkJwt(
               UserApi.JWT_CHECK_HREF,
               loginAccount: form.account,
               loginToken: token,
             );
+          }).then((status) async {
+            if (status.isSuccess) {
+              MyLogger.log(
+                msg: 'id ${status.msg} token is valid, '
+                    'requesting account info...',
+                tag: tag,
+              );
+              jwtInterface.accountId = status.msg;
+              return await getAccount(token);
+            } else {
+              MyLogger.warn(msg: 'token is not valid: $status', tag: tag);
+              jwtInterface.clearToken();
+              return Left(Failure.token());
+            }
           });
-          if (validStatus.isSuccess) {
-            MyLogger.log(
-              msg: 'id ${validStatus.msg} token is valid, '
-                  'requesting account info...',
-              tag: tag,
-            );
-            jwtInterface.accountId = validStatus.msg;
-            return await getAccount(token);
-          } else {
-            MyLogger.warn(msg: 'token is not valid: $validStatus', tag: tag);
-            return Left(Failure.token());
-          }
         } else {
           /// return login failure status
           RequestStatusModel statusModel;

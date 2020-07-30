@@ -6,7 +6,7 @@ part of 'transfer_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TransferStore on _TransferStore, Store {
   Computed<TransferStoreState> _$stateComputed;
@@ -105,9 +105,10 @@ mixin _$TransferStore on _TransferStore, Store {
   final _$getBalanceAsyncAction = AsyncAction('_TransferStore.getBalance');
 
   @override
-  Future<void> getBalance(String site, {bool isLimit = false}) {
-    return _$getBalanceAsyncAction
-        .run(() => super.getBalance(site, isLimit: isLimit));
+  Future<void> getBalance(String site,
+      {bool isLimit = false, bool retryOnce = false}) {
+    return _$getBalanceAsyncAction.run(
+        () => super.getBalance(site, isLimit: isLimit, retryOnce: retryOnce));
   }
 
   final _$sendRequestAsyncAction = AsyncAction('_TransferStore.sendRequest');

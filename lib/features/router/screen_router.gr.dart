@@ -5,10 +5,10 @@
 // **************************************************************************
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_ty_mobile/features/screen/feature_screen.dart';
 import 'package:flutter_ty_mobile/features/screen/web_game_screen.dart';
+import 'package:flutter_ty_mobile/mylogger.dart';
 import 'package:flutter_ty_mobile/temp/test_screen.dart';
 import 'package:flutter_ty_mobile/temp/test_nested_nav_screen.dart';
 
@@ -88,8 +88,9 @@ class WebGameScreenArguments {
 extension ScreenRouterNavigationHelperMethods on ExtendedNavigatorState {
   Future pushFeatureScreen() => pushNamedAndRemoveUntil(
         ScreenRoutes.featureScreen,
-        (route) => route.settings.name == ScreenRoutes.featureScreen,
+        (route) => false, // true => same as push, false => push and clear stack
       );
+
   Future pushWebGameScreen({
     String startUrl = 'https://eg990.com/',
   }) =>

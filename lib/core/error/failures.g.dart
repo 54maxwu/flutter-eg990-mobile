@@ -22,6 +22,14 @@ abstract class Failure extends Equatable {
 
   factory Failure.cachedFile() = CachedFile;
 
+  factory Failure.errorMessage({@required String msg}) = ErrorMessage;
+
+  factory Failure.errorStatus(RequestStatusModel requestStatusModel) =
+      RequestStatusModelWrapper;
+
+  factory Failure.errorCode(RequestCodeModel requestCodeModel) =
+      RequestCodeModelWrapper;
+
   factory Failure.internal(FailureCode failureCode) = FailureCodeWrapper;
 
   factory Failure.login(RequestStatusModel requestStatusModel) =
@@ -41,6 +49,9 @@ abstract class Failure extends Equatable {
       @required R Function(JsonFormat) jsonFormat,
       @required R Function(DataType) dataType,
       @required R Function(CachedFile) cachedFile,
+      @required R Function(ErrorMessage) errorMessage,
+      @required R Function(RequestStatusModel) errorStatus,
+      @required R Function(RequestCodeModel) errorCode,
       @required R Function(FailureCode) internal,
       @required R Function(RequestStatusModel) login,
       @required R Function(Token) token,
@@ -52,6 +63,9 @@ abstract class Failure extends Equatable {
           jsonFormat == null ||
           dataType == null ||
           cachedFile == null ||
+          errorMessage == null ||
+          errorStatus == null ||
+          errorCode == null ||
           internal == null ||
           login == null ||
           token == null ||
@@ -73,6 +87,13 @@ abstract class Failure extends Equatable {
         return dataType(this as DataType);
       case _Failure.CachedFile:
         return cachedFile(this as CachedFile);
+      case _Failure.ErrorMessage:
+        return errorMessage(this as ErrorMessage);
+      case _Failure.ErrorStatus:
+        return errorStatus(
+            (this as RequestStatusModelWrapper).requestStatusModel);
+      case _Failure.ErrorCode:
+        return errorCode((this as RequestCodeModelWrapper).requestCodeModel);
       case _Failure.Internal:
         return internal((this as FailureCodeWrapper).failureCode);
       case _Failure.Login:
@@ -92,6 +113,9 @@ abstract class Failure extends Equatable {
       @required FutureOr<R> Function(JsonFormat) jsonFormat,
       @required FutureOr<R> Function(DataType) dataType,
       @required FutureOr<R> Function(CachedFile) cachedFile,
+      @required FutureOr<R> Function(ErrorMessage) errorMessage,
+      @required FutureOr<R> Function(RequestStatusModel) errorStatus,
+      @required FutureOr<R> Function(RequestCodeModel) errorCode,
       @required FutureOr<R> Function(FailureCode) internal,
       @required FutureOr<R> Function(RequestStatusModel) login,
       @required FutureOr<R> Function(Token) token,
@@ -103,6 +127,9 @@ abstract class Failure extends Equatable {
           jsonFormat == null ||
           dataType == null ||
           cachedFile == null ||
+          errorMessage == null ||
+          errorStatus == null ||
+          errorCode == null ||
           internal == null ||
           login == null ||
           token == null ||
@@ -124,6 +151,13 @@ abstract class Failure extends Equatable {
         return dataType(this as DataType);
       case _Failure.CachedFile:
         return cachedFile(this as CachedFile);
+      case _Failure.ErrorMessage:
+        return errorMessage(this as ErrorMessage);
+      case _Failure.ErrorStatus:
+        return errorStatus(
+            (this as RequestStatusModelWrapper).requestStatusModel);
+      case _Failure.ErrorCode:
+        return errorCode((this as RequestCodeModelWrapper).requestCodeModel);
       case _Failure.Internal:
         return internal((this as FailureCodeWrapper).failureCode);
       case _Failure.Login:
@@ -142,6 +176,9 @@ abstract class Failure extends Equatable {
       R Function(JsonFormat) jsonFormat,
       R Function(DataType) dataType,
       R Function(CachedFile) cachedFile,
+      R Function(ErrorMessage) errorMessage,
+      R Function(RequestStatusModel) errorStatus,
+      R Function(RequestCodeModel) errorCode,
       R Function(FailureCode) internal,
       R Function(RequestStatusModel) login,
       R Function(Token) token,
@@ -172,6 +209,16 @@ abstract class Failure extends Equatable {
       case _Failure.CachedFile:
         if (cachedFile == null) break;
         return cachedFile(this as CachedFile);
+      case _Failure.ErrorMessage:
+        if (errorMessage == null) break;
+        return errorMessage(this as ErrorMessage);
+      case _Failure.ErrorStatus:
+        if (errorStatus == null) break;
+        return errorStatus(
+            (this as RequestStatusModelWrapper).requestStatusModel);
+      case _Failure.ErrorCode:
+        if (errorCode == null) break;
+        return errorCode((this as RequestCodeModelWrapper).requestCodeModel);
       case _Failure.Internal:
         if (internal == null) break;
         return internal((this as FailureCodeWrapper).failureCode);
@@ -195,6 +242,9 @@ abstract class Failure extends Equatable {
       FutureOr<R> Function(JsonFormat) jsonFormat,
       FutureOr<R> Function(DataType) dataType,
       FutureOr<R> Function(CachedFile) cachedFile,
+      FutureOr<R> Function(ErrorMessage) errorMessage,
+      FutureOr<R> Function(RequestStatusModel) errorStatus,
+      FutureOr<R> Function(RequestCodeModel) errorCode,
       FutureOr<R> Function(FailureCode) internal,
       FutureOr<R> Function(RequestStatusModel) login,
       FutureOr<R> Function(Token) token,
@@ -225,6 +275,16 @@ abstract class Failure extends Equatable {
       case _Failure.CachedFile:
         if (cachedFile == null) break;
         return cachedFile(this as CachedFile);
+      case _Failure.ErrorMessage:
+        if (errorMessage == null) break;
+        return errorMessage(this as ErrorMessage);
+      case _Failure.ErrorStatus:
+        if (errorStatus == null) break;
+        return errorStatus(
+            (this as RequestStatusModelWrapper).requestStatusModel);
+      case _Failure.ErrorCode:
+        if (errorCode == null) break;
+        return errorCode((this as RequestCodeModelWrapper).requestCodeModel);
       case _Failure.Internal:
         if (internal == null) break;
         return internal((this as FailureCodeWrapper).failureCode);
@@ -249,6 +309,9 @@ abstract class Failure extends Equatable {
       FutureOr<void> Function(JsonFormat) jsonFormat,
       FutureOr<void> Function(DataType) dataType,
       FutureOr<void> Function(CachedFile) cachedFile,
+      FutureOr<void> Function(ErrorMessage) errorMessage,
+      FutureOr<void> Function(RequestStatusModel) errorStatus,
+      FutureOr<void> Function(RequestCodeModel) errorCode,
       FutureOr<void> Function(FailureCode) internal,
       FutureOr<void> Function(RequestStatusModel) login,
       FutureOr<void> Function(Token) token,
@@ -260,6 +323,9 @@ abstract class Failure extends Equatable {
           jsonFormat == null &&
           dataType == null &&
           cachedFile == null &&
+          errorMessage == null &&
+          errorStatus == null &&
+          errorCode == null &&
           internal == null &&
           login == null &&
           token == null &&
@@ -287,6 +353,16 @@ abstract class Failure extends Equatable {
       case _Failure.CachedFile:
         if (cachedFile == null) break;
         return cachedFile(this as CachedFile);
+      case _Failure.ErrorMessage:
+        if (errorMessage == null) break;
+        return errorMessage(this as ErrorMessage);
+      case _Failure.ErrorStatus:
+        if (errorStatus == null) break;
+        return errorStatus(
+            (this as RequestStatusModelWrapper).requestStatusModel);
+      case _Failure.ErrorCode:
+        if (errorCode == null) break;
+        return errorCode((this as RequestCodeModelWrapper).requestCodeModel);
       case _Failure.Internal:
         if (internal == null) break;
         return internal((this as FailureCodeWrapper).failureCode);
@@ -379,6 +455,44 @@ class CachedFile extends Failure {
 }
 
 @immutable
+class ErrorMessage extends Failure {
+  const ErrorMessage({@required this.msg}) : super(_Failure.ErrorMessage);
+
+  final String msg;
+
+  @override
+  String toString() => 'ErrorMessage(msg:${this.msg})';
+  @override
+  List get props => [msg];
+}
+
+@immutable
+class RequestStatusModelWrapper extends Failure {
+  const RequestStatusModelWrapper(this.requestStatusModel)
+      : super(_Failure.ErrorStatus);
+
+  final RequestStatusModel requestStatusModel;
+
+  @override
+  String toString() => 'RequestStatusModelWrapper($requestStatusModel)';
+  @override
+  List get props => [requestStatusModel];
+}
+
+@immutable
+class RequestCodeModelWrapper extends Failure {
+  const RequestCodeModelWrapper(this.requestCodeModel)
+      : super(_Failure.ErrorCode);
+
+  final RequestCodeModel requestCodeModel;
+
+  @override
+  String toString() => 'RequestCodeModelWrapper($requestCodeModel)';
+  @override
+  List get props => [requestCodeModel];
+}
+
+@immutable
 class FailureCodeWrapper extends Failure {
   const FailureCodeWrapper(this.failureCode) : super(_Failure.Internal);
 
@@ -388,19 +502,6 @@ class FailureCodeWrapper extends Failure {
   String toString() => 'FailureCodeWrapper($failureCode)';
   @override
   List get props => [failureCode];
-}
-
-@immutable
-class RequestStatusModelWrapper extends Failure {
-  const RequestStatusModelWrapper(this.requestStatusModel)
-      : super(_Failure.Login);
-
-  final RequestStatusModel requestStatusModel;
-
-  @override
-  String toString() => 'RequestStatusModelWrapper($requestStatusModel)';
-  @override
-  List get props => [requestStatusModel];
 }
 
 @immutable

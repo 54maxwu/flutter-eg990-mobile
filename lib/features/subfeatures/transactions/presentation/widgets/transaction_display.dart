@@ -43,8 +43,7 @@ class TransactionDisplayState extends State<TransactionDisplay> {
     // FontSize.NORMAL.value * 2 = font size * 2 line + space
     _tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
 
-//    bool shrinkDate = Global.device.width < 320;
-    bool shrinkDate = true;
+    bool shrinkDate = Global.device.width < 320;
     _availableWidth = Global.device.width - 16;
     double remainWidth =
         (shrinkDate) ? _availableWidth - 72 - 90 : _availableWidth - 72 - 140;

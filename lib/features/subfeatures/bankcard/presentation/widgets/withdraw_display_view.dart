@@ -111,14 +111,14 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                   /* Password Input Field */
                   new CustomizeFieldWidget(
                     key: _passwordFieldKey,
-                    fieldType: FieldType.NoChinese,
+                    fieldType: FieldType.Password,
                     persistHint: false,
                     prefixText: localeStr.withdrawViewTitlePwd,
                     titleLetterSpacing: 4,
-                    maxInputLength: 8,
+                    maxInputLength: 20,
                     errorMsg: localeStr.messageInvalidWithdrawPassword,
                     validCondition: (value) =>
-                        rangeCheck(value: value.length, min: 4, max: 8),
+                        rangeCheck(value: value.length, min: 4, max: 20),
                   ),
                 ],
               ),

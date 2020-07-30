@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
+import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
 import '../../data/form/bet_record_form.dart';
 import '../../data/models/bet_record_type_model.dart';
@@ -59,7 +59,7 @@ abstract class _BetRecordStore with Store {
         (result) => result.fold(
           (failure) => errorMessage = failure.message,
           (list) {
-            print('bet record types: $list');
+            print('bet record types: ${list.length}');
             typeList = list;
           },
         ),

@@ -27,6 +27,5 @@ List<MarqueeModel> decodeMarqueeModel(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
       (jsonMap) => MarqueeModel.jsonToMarqueeModel(jsonMap),
-      trim: false,
       tag: 'MarqueeModel',
     );

@@ -114,7 +114,7 @@ class PaymentTutorial extends StatelessWidget {
           list.add(Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-            child: networkImageBuilder(item.value, fill: true, debug: true),
+            child: networkImageBuilder(item.value, fit: BoxFit.fill),
           ));
           break;
         case TutorialItemType.Button:

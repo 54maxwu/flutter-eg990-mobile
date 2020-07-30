@@ -53,9 +53,8 @@ class _StoreDisplayBannerState extends State<StoreDisplayBanner> {
     imageWidgets = new List();
     await Future.forEach(
       widget.images,
-      (banner) async =>
-          await networkImageWidget(banner.pic, fillContainer: true)
-              .then((widget) => imageWidgets.add(widget)),
+      (banner) async => await networkImageWidget(banner.pic, fit: BoxFit.fill)
+          .then((widget) => imageWidgets.add(widget)),
     ).whenComplete(() => print('store banner count: ${imageWidgets.length}'));
   }
 }

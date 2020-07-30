@@ -12,7 +12,7 @@ void main() {
 
   test('test store banner model', () {
     print('\n');
-    RequestCodeModel codeModel = RequestCodeModel.jsonToRequestCodeModel(map);
+    RequestCodeModel codeModel = RequestCodeModel.jsonToCodeModel(map);
     print('code model: $codeModel\n\n');
     List<StoreBannerModel> banners = JsonUtil.decodeArrayToModel(codeModel.data,
         (jsonMap) => StoreBannerModel.jsonToStoreBannerModel(jsonMap));

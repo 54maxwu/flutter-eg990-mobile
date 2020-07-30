@@ -14,10 +14,10 @@ class BankcardApi {
 
 abstract class BankcardRepository {
   Future<Either<Failure, BankcardModel>> getBankcard();
+  Future<Either<Failure, RequestStatusModel>> postBankcard(BankcardForm form);
   Future<Either<Failure, Map<String, String>>> getBanks();
   Future<Either<Failure, Map<String, String>>> getProvinces();
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
-  Future<Either<Failure, RequestStatusModel>> postBankcard(BankcardForm form);
 }
 
 class BankcardRepositoryImpl implements BankcardRepository {
@@ -67,6 +67,25 @@ class BankcardRepositoryImpl implements BankcardRepository {
   }
 
   @override
+  Future<Either<Failure, RequestStatusModel>> postBankcard(
+      BankcardForm form) async {
+    final result = await requestModel<RequestStatusModel>(
+      request: dioApiService.post(
+        BankcardApi.POST_NEW_CARD,
+        data: form.toJson(),
+        userToken: jwtInterface.token,
+      ),
+      jsonToModel: RequestStatusModel.jsonToStatusModel,
+      tag: 'remote-BANKCARD_NEW',
+    );
+//    print('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (model) => Right(model),
+    );
+  }
+
+  @override
   Future<Either<Failure, Map<String, String>>> getBanks() async {
     final result = await requestData(
       request: dioApiService.post(
@@ -79,17 +98,8 @@ class BankcardRepositoryImpl implements BankcardRepository {
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        if (data is Map) {
-          try {
-//            MyLogger.print(msg: 'banks map: $data', tag: tag);
-            return Right(data.map<String, String>((key, value) =>
-                MapEntry<String, String>(key, value.toString())));
-          } catch (e) {
-            MyLogger.error(
-                msg: 'banks data is not a map!!', error: e, tag: tag);
-            return Left(
-                Failure.internal(FailureCode(type: FailureType.BANKCARD)));
-          }
+        if (data is Map || data is String) {
+          return _processMap(data, 'banks id');
         } else {
           return Left(Failure.jsonFormat());
         }
@@ -111,17 +121,8 @@ class BankcardRepositoryImpl implements BankcardRepository {
       (failure) => Left(failure),
       (data) {
         if ('$data'.isEmpty || '$data' == '[]') return Right(null);
-        if (data is Map) {
-          try {
-//            MyLogger.print(msg: 'provinces map: $data', tag: tag);
-            return Right(data.map<String, String>((key, value) =>
-                MapEntry<String, String>(key, value.toString())));
-          } catch (e) {
-            MyLogger.error(
-                msg: 'province data is not a map!!', error: e, tag: tag);
-            return Left(
-                Failure.internal(FailureCode(type: FailureType.BANKCARD)));
-          }
+        if (data is Map || data is String) {
+          return _processMap(data, 'provinces');
         } else {
           return Left(Failure.jsonFormat());
         }
@@ -145,16 +146,8 @@ class BankcardRepositoryImpl implements BankcardRepository {
       (data) {
         if (data.toString().isEmpty || data.toString() == '[]')
           return Right(null);
-        if (data is Map) {
-          try {
-//            MyLogger.print(msg: 'area map: $data', tag: tag);
-            return Right(data.map<String, String>((key, value) =>
-                MapEntry<String, String>(key, value.toString())));
-          } catch (e) {
-            MyLogger.error(msg: 'area data is not a map!!', error: e, tag: tag);
-            return Left(
-                Failure.internal(FailureCode(type: FailureType.BANKCARD)));
-          }
+        if (data is Map || data is String) {
+          return _processMap(data, 'areas');
         } else {
           return Left(Failure.jsonFormat());
         }
@@ -162,22 +155,30 @@ class BankcardRepositoryImpl implements BankcardRepository {
     );
   }
 
-  @override
-  Future<Either<Failure, RequestStatusModel>> postBankcard(
-      BankcardForm form) async {
-    final result = await requestModel<RequestStatusModel>(
-      request: dioApiService.post(
-        BankcardApi.POST_NEW_CARD,
-        data: form.toJson(),
-        userToken: jwtInterface.token,
-      ),
-      jsonToModel: RequestStatusModel.jsonToStatusModel,
-      tag: 'remote-BANKCARD_NEW',
-    );
-//    print('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (model) => Right(model),
-    );
+  Either<Failure, Map<String, String>> _processMap(
+    dynamic data,
+    String dataName, {
+    bool debug = false,
+  }) {
+    try {
+      if (debug)
+        MyLogger.print(
+          msg: '$dataName data type: ${data.runtimeType}, data: \n$data',
+          tag: tag,
+        );
+
+      if (data is Map) {
+        return Right(data.map<String, String>(
+            (key, value) => MapEntry<String, String>(key, value.toString())));
+      } else {
+        var map = jsonDecode('$data');
+        return Right(map.map<String, String>(
+            (key, value) => MapEntry<String, String>(key, value.toString())));
+      }
+    } catch (e) {
+      MyLogger.error(
+          msg: '$dataName data process error!! $e', error: e, tag: tag);
+      return Left(Failure.jsonFormat());
+    }
   }
 }

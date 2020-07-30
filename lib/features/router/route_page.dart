@@ -41,6 +41,7 @@ class RoutePage extends Vnum<RouteInfo> {
   static RoutePage service = RoutePage.define(RouteInfo(
     route: Routes.serviceRoute,
     title: localeStr.pageTitleService,
+    isFeature: true,
     bottomNavIndex: 3,
     hideAppbarActions: false,
   ));
@@ -191,6 +192,12 @@ class RoutePage extends Vnum<RouteInfo> {
   static RoutePage pointStore = RoutePage.define(RouteInfo(
     route: Routes.storeRoute,
     title: localeStr.pageTitleStore,
+    showDrawer: true,
+  ));
+
+  static RoutePage roller = RoutePage.define(RouteInfo(
+    route: Routes.rollerRoute,
+    title: localeStr.pageTitleRoller,
     showDrawer: true,
   ));
 

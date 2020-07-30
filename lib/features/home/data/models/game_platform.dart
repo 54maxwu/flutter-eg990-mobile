@@ -1,4 +1,5 @@
 import 'package:flutter_ty_mobile/core/base/data_operator.dart';
+import 'package:flutter_ty_mobile/utils/regex_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
@@ -35,20 +36,43 @@ abstract class GamePlatform with _$GamePlatform {
     @Default('0') String favorite,
   }) = GamePlatformEntity;
 
-  factory GamePlatform.fromJson(Map<String, dynamic> json) =>
-      _$GamePlatformFromJson(json);
+//  static GamePlatformModel jsonToGamePlatformModel(
+//      Map<String, dynamic> jsonMap) {
+//    jsonMap['runtimeType'] = 'model';
+//    return _$GamePlatformFromJson(jsonMap);
+//  }
 
   static GamePlatformModel jsonToGamePlatformModel(
-      Map<String, dynamic> jsonMap) {
-    jsonMap['runtimeType'] = 'model';
-    return _$GamePlatformFromJson(jsonMap);
-  }
+          Map<String, dynamic> jsonMap) =>
+      _$GamePlatformModel(
+        id: jsonMap['id'] as int,
+        className: decodePlatformClassName(jsonMap),
+        ch: decodePlatformChName(jsonMap),
+        cid: jsonMap['cid'] as int,
+        site: jsonMap['site'] as String,
+        site2: jsonMap['site2'] as String,
+        category: jsonMap['type'] as String,
+        sort: jsonMap['sort'] as int,
+        status: jsonMap['status'] as String,
+        favorite: jsonMap['favorite'] as String ?? '0',
+      );
+
+//  static GamePlatformEntity jsonToGamePlatformEntity(
+//      Map<String, dynamic> jsonMap) {
+//    jsonMap['runtimeType'] = 'entity';
+//    return _$GamePlatformFromJson(jsonMap);
+//  }
 
   static GamePlatformEntity jsonToGamePlatformEntity(
-      Map<String, dynamic> jsonMap) {
-    jsonMap['runtimeType'] = 'entity';
-    return _$GamePlatformFromJson(jsonMap);
-  }
+          Map<String, dynamic> jsonMap) =>
+      _$GamePlatformEntity(
+        id: jsonMap['id'] as int,
+        className: decodePlatformClassName(jsonMap),
+        ch: decodePlatformChName(jsonMap),
+        site: jsonMap['site'] as String,
+        category: jsonMap['type'] as String,
+        favorite: jsonMap['favorite'] as String ?? '0',
+      );
 
 //  @override
 //  String operator [](String key) {
@@ -97,5 +121,10 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
       default:
         return ch;
     }
+  }
+
+  bool isLongText(int limit) {
+    var name = label;
+    return (name.hasChinese) ? name.length > limit : name.length > limit * 2;
   }
 }
