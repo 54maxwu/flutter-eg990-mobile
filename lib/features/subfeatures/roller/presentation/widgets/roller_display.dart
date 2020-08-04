@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/internal/hex_color.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/router/route_user_streams.dart';
@@ -9,10 +8,10 @@ import 'package:flutter_ty_mobile/res.dart';
 
 import '../state/roller_store.dart';
 import 'roller_display_count.dart';
+import 'roller_display_order.dart';
 import 'roller_display_requirement.dart';
 import 'roller_display_rules.dart';
 import 'roller_display_wheel.dart';
-import 'roller_display_order.dart';
 
 class RollerDisplay extends StatefulWidget {
   final RollerStore store;
@@ -40,10 +39,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
   double countWidgetPosition;
 
   void toastLogin() {
-    FLToast.showInfo(
-      text: localeStr.messageErrorNotLogin,
-      showDuration: ToastDuration.DEFAULT.value,
-    );
+    callToastInfo(localeStr.messageErrorNotLogin);
   }
 
   @override
@@ -101,7 +97,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
               child: Container(
                 width: maxViewWidth,
                 height: firstBlockHeight,
-                margin: const EdgeInsets.symmetric(horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.only(bottom: wheelPadBottom),
@@ -251,6 +247,15 @@ class _RollerDisplayState extends State<RollerDisplay> {
                                     widget.store.requirementStream,
                                 initRequirement: widget.store.requirement ??
                                     RollerRequirementModel(hasData: null),
+                                onApplyCount: (int id) async {
+                                  bool success =
+                                      await widget.store.applyCount(id);
+                                  if (success) {
+                                    widget.store.getRequirement();
+                                    widget.store.getCount();
+                                  }
+                                  return success;
+                                },
                               ),
                             );
                           }

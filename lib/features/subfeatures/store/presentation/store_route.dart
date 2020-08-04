@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/point_store.dart';
@@ -18,7 +17,7 @@ class StoreRoute extends StatefulWidget {
 class _StoreRouteState extends State<StoreRoute> {
   PointStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -40,9 +39,7 @@ class _StoreRouteState extends State<StoreRoute> {
         (bool wait) {
           print('point store initialize wait result: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -56,12 +53,7 @@ class _StoreRouteState extends State<StoreRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -77,33 +69,35 @@ class _StoreRouteState extends State<StoreRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case PointStoreState.initial:
-              return SizedBox.shrink();
-            case PointStoreState.loading:
-              return LoadingWidget();
-            case PointStoreState.loaded:
-              return SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(), // user can't scroll
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.tight(Size(
-                    Global.device.width,
-                    Global.device.featureContentHeight,
-                  )),
-                  child: IntrinsicHeight(
-                    child: StoreDisplay(_store),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case PointStoreState.initial:
+                return SizedBox.shrink();
+              case PointStoreState.loading:
+                return LoadingWidget();
+              case PointStoreState.loaded:
+                return SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(), // user can't scroll
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(
+                      Global.device.width,
+                      Global.device.featureContentHeight,
+                    )),
+                    child: IntrinsicHeight(
+                      child: StoreDisplay(_store),
+                    ),
                   ),
-                ),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        },
+                );
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

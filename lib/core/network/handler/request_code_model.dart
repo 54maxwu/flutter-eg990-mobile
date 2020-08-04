@@ -14,7 +14,7 @@ abstract class RequestCodeModel with _$RequestCodeModel {
     return _$_RequestCodeModel(
       code: jsonMap['code'] as int,
       data: jsonMap['data'],
-      msg: jsonMap['msg'] as String,
+      msg: '${jsonMap['msg']}',
     );
   }
 

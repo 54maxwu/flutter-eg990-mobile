@@ -1,9 +1,9 @@
-import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
+import 'package:flutter_ty_mobile/core/network/handler/request_code_model.dart';
 
-import '../../data/repository/bankcard_repository.dart';
 import '../../data/form/bankcard_form.dart';
 import '../../data/models/bankcard_model.dart';
+import '../../data/repository/bankcard_repository.dart';
 
 part 'bankcard_store.g.dart';
 
@@ -38,7 +38,7 @@ abstract class _BankcardStore with Store {
   bool waitForNewCardResult = false;
 
   @observable
-  RequestStatusModel newCardResult;
+  RequestCodeModel newCardResult;
 
   @observable
   String errorMessage;

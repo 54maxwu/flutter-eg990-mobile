@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  bot_toast:
+    dependency: "direct main"
+    description:
+      name: bot_toast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   build:
     dependency: "direct overridden"
     description:
@@ -239,13 +246,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
-  cryptoutils:
-    dependency: transitive
-    description:
-      name: cryptoutils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0"
   css_colors:
     dependency: transitive
     description:
@@ -259,7 +259,7 @@ packages:
       name: csslib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.16.2"
   cupertino_icons:
     dependency: transitive
     description:
@@ -350,7 +350,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.2"
+    version: "1.2.3"
   extended_image:
     dependency: "direct main"
     description:
@@ -386,13 +386,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.11"
-  flui:
-    dependency: "direct main"
-    description:
-      name: flui
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -404,7 +397,7 @@ packages:
       name: flutter_easyrefresh
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.4"
   flutter_html:
     dependency: "direct main"
     description:
@@ -436,20 +429,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_vector_icons:
-    dependency: "direct dev"
-    description:
-      name: flutter_vector_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
-  flutter_vlc_player:
-    dependency: "direct main"
-    description:
-      name: flutter_vlc_player
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.3"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -672,6 +651,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.3"
+  package_info:
+    dependency: "direct main"
+    description:
+      name: package_info
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   path:
     dependency: "direct overridden"
     description:
@@ -964,6 +950,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
+  to_string:
+    dependency: "direct main"
+    description:
+      name: to_string
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
+  to_string_generator:
+    dependency: "direct dev"
+    description:
+      name: to_string_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   typed_data:
     dependency: transitive
     description:
@@ -1014,7 +1014,7 @@ packages:
     source: hosted
     version: "2.0.8"
   video_player:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: video_player
       url: "https://pub.dartlang.org"

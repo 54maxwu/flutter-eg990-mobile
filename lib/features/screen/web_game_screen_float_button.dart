@@ -10,35 +10,46 @@ class WebGameScreenFloatButton extends StatefulWidget {
   final Function onReturnHome;
 
   WebGameScreenFloatButton({
+    Key key,
     @required this.scaffoldKey,
     @required this.store,
     this.onReturnHome,
-  });
+  }) : super(key: key);
 
   @override
-  _WebGameScreenFloatButtonState createState() =>
-      _WebGameScreenFloatButtonState();
+  WebGameScreenFloatButtonState createState() =>
+      WebGameScreenFloatButtonState();
 }
 
-class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
-  final double expandIconScale = 1.15;
-  final double expandArrowIconScale = 1.5;
-  final double arrowIconScale = 1.25;
+class WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
+  final double _expandIconScale = 1.15;
+  final double _expandArrowIconScale = 1.5;
+  final double _arrowIconScale = 1.25;
+  final bool isIos = Global.device.isIos;
 
-  FloatExpandController controller;
-  double expandHeight;
-  bool fabExpand = false;
+  FloatExpandController _controller;
+  double _expandHeight;
+  bool _fabExpand = false;
+  bool _visible = true;
+
+  void hideTool() {
+    if (mounted && _visible) setState(() => _visible = false);
+  }
+
+  void showTool() {
+    if (mounted && !_visible) setState(() => _visible = true);
+  }
 
   void _initController() {
-    controller = new FloatExpandController();
-    controller.setExpandedWidgetConfiguration(
+    _controller = new FloatExpandController();
+    _controller.setExpandedWidgetConfiguration(
       expendedBackgroundColor: Colors.white,
       withChild: ButtonTheme(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         buttonColor: Themes.buttonSubColorGrey,
         disabledColor: Themes.buttonDisabledColorDark,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -46,7 +57,7 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
               icon: FittedBox(
                 fit: BoxFit.contain,
                 child: Transform.scale(
-                  scale: expandIconScale,
+                  scale: _expandIconScale,
                   child: Icon(
                     Icons.home,
                     color: Themes.iconColorDarkGrey,
@@ -72,8 +83,8 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
                   : () => {},
             ),
 
-            /// TODO error after unlock and rotate, need to fix this
-            if (Global.device.isIos == false)
+            /// TODO error after unlock and rotate in ios
+            if (!isIos)
               IconButton(
                 icon: FittedBox(
                   fit: BoxFit.contain,
@@ -90,7 +101,7 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
               icon: FittedBox(
                 fit: BoxFit.contain,
                 child: Transform.scale(
-                  scale: expandArrowIconScale,
+                  scale: _expandArrowIconScale,
                   child: Icon(
                     Icons.chevron_right,
                     color: Themes.iconColorDarkGrey,
@@ -99,9 +110,9 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
               ),
               visualDensity: VisualDensity.compact,
               onPressed: () {
-                controller.collapseFAB();
+                _controller.collapseFAB();
                 setState(() {
-                  fabExpand = false;
+                  _fabExpand = false;
                 });
               },
             ),
@@ -109,7 +120,7 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
         ),
       ),
       forceCustomHeight: true,
-      heightToExpandTo: expandHeight,
+      heightToExpandTo: _expandHeight,
     );
   }
 
@@ -117,44 +128,47 @@ class _WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
     bool isLock = widget.store.isLockRotate;
     String value = (isLock) ? localeStr.btnOff : localeStr.btnOn;
     widget.store.lockRotate = !isLock;
-    FLToast.showText(
-      text: '${localeStr.sideBtnLockRotate}($value)',
-      position: FLToastPosition.top,
-      showDuration: ToastDuration.DEFAULT.value,
-    );
+    callToast('${localeStr.sideBtnLockRotate}($value)');
   }
 
   @override
   void initState() {
-    expandHeight = (Global.device.comfortButtonHeight + 12.0) /
+    _expandHeight = (Global.device.comfortButtonHeight + 12.0) /
         Global.device.featureContentHeight *
         100;
-    print('expand height: $expandHeight');
+    if (_expandHeight > 10) _expandHeight = 10.0;
+    if (_expandHeight < 9.375) _expandHeight = 9.375;
+    print('float expand height: $_expandHeight');
     super.initState();
     _initController();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FloatExpandWidget(
-      controller: controller,
-      collapsedColor: Colors.white12,
-      useAsFloatingSpaceBar: fabExpand,
-      useAsFloatingActionButton: !fabExpand,
-      floatingActionButtonIcon: Icons.chevron_left,
-      floatingActionButtonIconSizeFactor: 9.0,
-      floatingActionButtonIconScale: arrowIconScale,
-      floatingActionButtonContainerWidth: expandHeight * 1.55,
-      floatingActionButtonContainerHeight: expandHeight * 0.85,
-      onFloatingActionButtonTapped: () {
-        setState(() {
-          fabExpand = true;
-        });
-        controller.expandFAB();
-      },
-      // take 90% of the screen horizontally
-      floatingSpaceBarContainerWidth:
-          Global.device.orientation == Orientation.portrait ? 60 : 40,
+    return Visibility(
+      visible: _visible,
+      maintainState: true,
+      maintainAnimation: true,
+      child: FloatExpandWidget(
+        controller: _controller,
+        collapsedColor: Colors.white30,
+        useAsFloatingSpaceBar: _fabExpand,
+        useAsFloatingActionButton: !_fabExpand,
+        floatingActionButtonIcon: Icons.chevron_left,
+        floatingActionButtonIconSizeFactor: 9.0,
+        floatingActionButtonIconScale: _arrowIconScale,
+        floatingActionButtonContainerWidth: _expandHeight * 1.55,
+        floatingActionButtonContainerHeight: _expandHeight * 0.85,
+        onFloatingActionButtonTapped: () {
+          setState(() {
+            _fabExpand = true;
+          });
+          _controller.expandFAB();
+        },
+        // take 60% of the screen horizontally
+        floatingSpaceBarContainerWidth:
+            Global.device.orientation == Orientation.portrait ? 60 : 35,
+      ),
     );
   }
 }

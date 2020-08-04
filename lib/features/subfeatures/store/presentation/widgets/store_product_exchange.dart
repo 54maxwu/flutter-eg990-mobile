@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
@@ -70,23 +69,14 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
         area: _areaSelected,
         address: _addressFieldKey.currentState.getInput,
       );
-      if (dataForm.isValid) {
-        if (_phoneFieldKey.currentState.getInput.length < 13 ||
-            _postcodeFieldKey.currentState.getInput.length < 5) {
-          FLToast.showText(
-            text: localeStr.messageInvalidFormat,
-            position: FLToastPosition.top,
-            showDuration: ToastDuration.DEFAULT.value,
-          );
-          return;
-        }
+      if (dataForm.phone.length < 11) {
+        callToast(localeStr.messageInvalidPhone);
+      } else if (dataForm.postCode.length < 5) {
+        callToast(localeStr.messageInvalidPostCode);
+      } else if (dataForm.isValid) {
         widget.store.exchangeProduct(dataForm);
       } else {
-        FLToast.showText(
-          text: localeStr.messageActionFillForm,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageActionFillForm);
         if (_provinceSelected.isEmpty || _citySelected.isEmpty)
           setState(() {
             _highlightProvince = _provinceSelected.isEmpty;

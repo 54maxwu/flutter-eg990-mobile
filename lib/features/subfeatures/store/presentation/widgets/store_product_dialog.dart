@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_code_model.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
@@ -30,7 +29,7 @@ class StoreProductDialog extends StatefulWidget {
 
 class _StoreProductDialogState extends State<StoreProductDialog> {
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   double dialogWidth;
   double dialogHeight;
@@ -82,9 +81,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
         // Run some logic with the content of the observed field
         (bool wait) {
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -105,16 +102,10 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
               updateView(_ContentEnum.RESULT);
               setState(() {});
             } else {
-              FLToast.showError(
-                text: localeStr.storeExchangeResultError,
-                showDuration: ToastDuration.DEFAULT.value,
-              );
+              callToastError(localeStr.storeExchangeResultError);
             }
           } else {
-            FLToast.showError(
-              text: localeStr.messageErrorInternal,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(localeStr.messageErrorInternal);
           }
         },
       ),
@@ -218,11 +209,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                         imageSize: imageSize,
                         onExchange: () {
                           if (widget.store.waitForExchange) {
-                            FLToast.showText(
-                              text: localeStr.messageWait,
-                              showDuration: ToastDuration.DEFAULT.value,
-                              position: FLToastPosition.top,
-                            );
+                            callToast(localeStr.messageWait);
                             return;
                           }
                           updateView(_ContentEnum.EXCHANGE);

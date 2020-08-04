@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
@@ -53,11 +52,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
         promoId: _promoSelected,
       );
       if (dataForm.isValid == false) {
-        FLToast.showText(
-          text: localeStr.messageActionFillForm,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageActionFillForm);
         return;
       }
 //      print('deposit form: ${dataForm.toJson()}');

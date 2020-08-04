@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 
@@ -32,6 +31,7 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   HomeStore _store;
   double labelHeightFactor;
   double itemSize;
+  double gridRatio;
   double baseTextSize;
   int availableCharacters;
   bool twoLineText = true;
@@ -48,19 +48,13 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
       widget.onPlatformClicked(itemData);
     } else if (itemData is GameEntity) {
       if (_store == null || _store.hasUser == false) {
-        FLToast.showInfo(
-          text: localeStr.messageErrorNotLogin,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToastInfo(localeStr.messageErrorNotLogin);
       } else {
         print('opening game: ${itemData.gameUrl}');
         _store.getGameUrl(itemData.gameUrl);
       }
     } else {
-      FLToast.showError(
-        text: localeStr.messageErrorInternal,
-        showDuration: ToastDuration.DEFAULT.value,
-      );
+      callToastError(localeStr.messageErrorInternal);
       MyLogger.wtf(msg: 'tapped unknown item, data: $itemData', tag: tag);
     }
   }
@@ -78,18 +72,20 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
         ? 2
         : (Global.device.widthScale > 1.5) ? 1 : 0;
 
-    labelHeightFactor = 1.5;
+    labelHeightFactor = 1.6;
     if (plusGrid > 0) {
       if (Global.device.widthScale > 2.0) {
-        labelHeightFactor = 1.65;
+        labelHeightFactor = 1.75;
       } else {
-        labelHeightFactor = 1.575;
+        labelHeightFactor = 1.675;
       }
     }
+
     itemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
     baseTextSize = (_isIos) ? FontSize.NORMAL.value + 1 : FontSize.NORMAL.value;
     availableCharacters = (itemSize * 0.9 / baseTextSize).floor();
-    print('item available characters: $availableCharacters');
+    print(
+        'recommend item available characters: ${(itemSize * 0.9 / baseTextSize)}');
     super.initState();
   }
 
@@ -131,12 +127,20 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
           return false;
       },
     );
-//    print('recommend grid two line text: $twoLineText');
+    print('recommend grid two line text: $twoLineText');
+
+    if (twoLineText) {
+      var expectHeight = 115 + (baseTextSize * 1.5) / 2.25;
+      gridRatio = itemSize / expectHeight / Global.device.widthScale;
+    } else
+      gridRatio = itemSize / 115 / Global.device.widthScale;
+    print('recommend item size: $itemSize, ratio: $gridRatio');
+
     return GridView.count(
       physics: BouncingScrollPhysics(),
       padding: const EdgeInsets.only(bottom: 2.0),
       crossAxisCount: 3 + plusGrid,
-      childAspectRatio: (plusGrid > 0) ? 0.85 : (twoLineText) ? 0.65 : 0.7,
+      childAspectRatio: gridRatio + (plusGrid * 0.05),
       mainAxisSpacing: (plusGrid > 0) ? 6.0 : (twoLineText) ? 4.0 : 0.0,
       shrinkWrap: true,
       children:

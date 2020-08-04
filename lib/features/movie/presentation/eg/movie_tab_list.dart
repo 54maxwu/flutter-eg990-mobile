@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_ty_mobile/features/export_internal_file.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_ty_mobile/utils/regex_util.dart';
 
 import '../../data/models/movie_model.dart';
 import '../widgets/movie_list_footer.dart';
@@ -41,6 +42,9 @@ class MovieTabListState extends State<MovieTabList> {
 
   List<MovieModel> movieList;
   int _currentLength;
+  double baseTextSize;
+  int availableCharacters;
+  bool _twoLine;
 
   void setList({List<MovieModel> list, bool more = true}) {
     if (mounted) {
@@ -53,8 +57,19 @@ class MovieTabListState extends State<MovieTabList> {
         hasMore = !noMore && more;
         isLoading = false;
         print('load more movie complete, has more = $hasMore');
+        checkItemText();
       });
     }
+  }
+
+  void checkItemText() {
+    baseTextSize ??= (Global.device.isIos)
+        ? FontSize.SMALLER.value + 1
+        : FontSize.SMALLER.value;
+    availableCharacters ??= (itemSize * 0.95 / baseTextSize).round();
+    _twoLine =
+        movieList.any((movie) => movie.title.countLength > availableCharacters);
+    print('available = $availableCharacters, two line text = $_twoLine');
   }
 
   Future<void> _loadMore() async {
@@ -82,15 +97,18 @@ class MovieTabListState extends State<MovieTabList> {
   @override
   void initState() {
     print('init movie list');
+    movieList = widget.movies;
+    _currentLength = movieList?.length ?? 0;
+    hasMore = _currentLength > 0;
+
     maxWidth = widget.viewSize.width;
     itemSize = (maxWidth - 2 * 6) / 2;
     gridItemRatio = itemSize / (itemSize + FontSize.NORMAL.value * 3);
 //    print('movie pic size: $itemSize, '
 //        'base height: ${itemSize + FontSize.NORMAL.value * 3}');
 //    print('gridItemRatio: $gridItemRatio');
-    movieList = widget.movies;
-    _currentLength = movieList?.length ?? 0;
-    hasMore = _currentLength > 0;
+    checkItemText();
+
     super.initState();
     _controller = EasyRefreshController();
     _scrollController = ScrollController();
@@ -132,7 +150,7 @@ class MovieTabListState extends State<MovieTabList> {
                 childAspectRatio: gridItemRatio,
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
-                mainAxisSpacing: 12.0,
+                mainAxisSpacing: (_twoLine) ? 0.0 : 8.0,
                 children: movieList.map((movie) => _createItem(movie)).toList(),
               ),
             ],
@@ -175,20 +193,24 @@ class MovieTabListState extends State<MovieTabList> {
       onTap: () => widget.onClickMovie(movie.tid, movie.mid),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             constraints: BoxConstraints.tight(Size(itemSize, itemSize)),
             color: Colors.black,
             child: networkImageBuilder(movie.pic),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0),
+          Container(
+            margin: const EdgeInsets.only(top: 2.0, bottom: 3.0),
+            height: (_twoLine)
+                ? FontSize.SMALLER.value * 2.75
+                : FontSize.SMALLER.value * 1.2,
             child: Text(
               movie.title,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: FontSize.SMALLER.value),
             ),
           ),
         ],

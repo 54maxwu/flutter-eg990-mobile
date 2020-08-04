@@ -59,26 +59,28 @@ class _TemplateRouteState extends State<TemplateRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_templateStore.state) {
-            case StoreState.initial:
-              return BlankWidget();
-            case StoreState.loading:
-              return LoadingWidget();
-            case StoreState.loaded:
-              {
-                _descText = _templateStore.description;
-                return WarningDisplay(message: _descText);
-              }
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_templateStore.state) {
+              case StoreState.initial:
+                return BlankWidget();
+              case StoreState.loading:
+                return LoadingWidget();
+              case StoreState.loaded:
+                {
+                  _descText = _templateStore.description;
+                  return WarningDisplay(message: _descText);
+                }
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

@@ -30,15 +30,14 @@ class HomeDisplaySizeCalc {
     double availableWidth = Global.device.width - _barMaxWidth;
     _tabWidthFactor = (Global.device.widthScale > 1.5) ? 1.5 : 1.0;
 
-    _barMinHeight = Global.device.height / 3 / _tabWidthFactor;
-    _barMaxHeight = Global.device.height / 1.75 / _tabWidthFactor;
-
     double availableHeight = Global.device.featureContentHeight -
         bannerHeight -
         shortcutMaxHeight -
         8;
     _tabPageMaxHeight = availableHeight;
     if (Global.device.isIos) _tabPageMaxHeight -= 36;
+
+    _barMaxHeight = _tabPageMaxHeight + 12.0;
 
     _tabPageMinWidth = Global.device.width * 0.6;
     _tabPageMaxWidth = availableWidth - 24;
@@ -50,9 +49,7 @@ class HomeDisplaySizeCalc {
 
   double get barMaxWidth => _barMaxWidth;
   double get barMinWidth => _barMinWidth;
-
   double get barMaxHeight => _barMaxHeight;
-  double get barMinHeight => _barMinHeight;
 
   double get pageMaxWidth => _tabPageMaxWidth;
   double get pageMinWidth => _tabPageMinWidth;

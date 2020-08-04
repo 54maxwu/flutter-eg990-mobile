@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/export_internal_file.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/dialog_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/table_cell_text_widget.dart';
@@ -8,13 +7,17 @@ import 'package:flutter_ty_mobile/features/subfeatures/roller/data/models/roller
 
 import '../../data/models/roller_requirement_model.dart';
 
+typedef RollerApplyCountFunction = Future<bool> Function(int id);
+
 class RollerDisplayRequirement extends StatefulWidget {
   final RollerRequirementModel initRequirement;
   final Stream requirementStream;
+  final RollerApplyCountFunction onApplyCount;
 
   RollerDisplayRequirement({
     @required this.requirementStream,
     this.initRequirement,
+    this.onApplyCount,
   });
 
   @override
@@ -41,6 +44,7 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
   double tableWidth;
   Map<int, TableColumnWidth> _tableWidthMap;
   BorderSide tableBorder;
+  bool lockApplied = false;
 
   @override
   void initState() {
@@ -189,13 +193,16 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
       RollerRequirementTarget data = targets[index];
       int progress = current.getValue(data.time);
       bool canComplete = progress >= data.require;
+      bool applied = data.valid == false;
       List<dynamic> dataTexts = [
         data.name,
         '$progress / ${data.require}',
         data.count,
-        (data.status == "1")
-            ? localeStr.wheelApplyTableTextStatus0
-            : localeStr.wheelApplyTableTextStatus1,
+        (canComplete)
+            ? (applied)
+                ? localeStr.wheelApplyTableTextStatus2
+                : localeStr.wheelApplyTableTextStatus1
+            : localeStr.wheelApplyTableTextStatus0,
       ];
       /* generate cell text */
       return TableRow(
@@ -210,14 +217,17 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                       color: Themes.defaultTextColorBlack,
                     ),
                   ),
+                  disabledColor: Themes.buttonDisabledColor,
                   visualDensity:
                       VisualDensity(horizontal: -2.0, vertical: -3.0),
-                  onPressed: () {
-                    if (!canComplete) return;
-
-                    /// TODO add method
-                  },
-                )
+                  onPressed: (applied || !canComplete)
+                      ? null
+                      : () async {
+                          if (lockApplied) return;
+                          lockApplied = true;
+                          bool result = await widget.onApplyCount(data.id);
+                          lockApplied = result;
+                        })
               : TableCellTextWidget(
                   text: '${dataTexts[index]}',
                   textColor: Themes.hintHighlightOrangeStrong,

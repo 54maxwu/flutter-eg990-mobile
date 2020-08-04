@@ -2,10 +2,12 @@ import 'dart:core';
 
 import 'package:flutter/material.dart' show MediaQueryData, Orientation;
 import 'package:flutter_ty_mobile/core/internal/global.dart';
+import 'package:package_info/package_info.dart';
 
 class Device {
   final bool isIos;
   final MediaQueryData _mediaQueryData;
+  PackageInfo packageInfo;
   double _screenWidth;
   double _screenHeight;
   // device status bar
@@ -20,6 +22,17 @@ class Device {
   double _screenButtonHeight;
 
   Device(this._mediaQueryData, this.isIos) {
+    PackageInfo.fromPlatform().then((PackageInfo info) {
+//      String appName = packageInfo.appName;
+//      String packageName = packageInfo.packageName;
+//      String version = packageInfo.version;
+//      String buildNumber = packageInfo.buildNumber;
+      packageInfo = info;
+      print('packageInfo: '
+          'app=${packageInfo.appName}, '
+          'package=${packageInfo.packageName}, '
+          'version=${packageInfo.version}+${packageInfo.buildNumber}');
+    });
     _screenWidth = double.parse(_mediaQueryData.size.width.toStringAsFixed(2));
     _screenHeight =
         double.parse(_mediaQueryData.size.height.toStringAsFixed(2));
@@ -41,9 +54,13 @@ class Device {
         'height=$_screenHeight\n'
         'height scale=$_screenHeightScale\n'
         'ratio=$ratio, hor=$ratioHor\n'
-        'inset=$_screenBottomInset\n'
+        'padding=${_mediaQueryData.viewPadding}\n'
+        'inset=${_mediaQueryData.viewInsets}\n'
         'button=$_screenButtonHeight';
   }
+
+  /// App Version
+  String get appVersion => '${packageInfo.version}+${packageInfo.buildNumber}';
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;

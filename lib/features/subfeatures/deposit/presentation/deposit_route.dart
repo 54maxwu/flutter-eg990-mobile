@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/deposit_store.dart';
@@ -28,12 +27,7 @@ class _DepositRouteState extends State<DepositRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -56,19 +50,21 @@ class _DepositRouteState extends State<DepositRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      child: Observer(
-        builder: (_) {
-          switch (_store.state) {
-            case DepositStoreState.loading:
-              return LoadingWidget();
-            case DepositStoreState.loaded:
-              return DepositDisplay(store: _store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 4.0),
+        child: Observer(
+          builder: (_) {
+            switch (_store.state) {
+              case DepositStoreState.loading:
+                return LoadingWidget();
+              case DepositStoreState.loaded:
+                return DepositDisplay(store: _store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

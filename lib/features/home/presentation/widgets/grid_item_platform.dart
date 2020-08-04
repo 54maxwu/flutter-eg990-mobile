@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/internal/font_size.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:relative_layout/relative_layout.dart';
@@ -51,6 +50,9 @@ class GridItemPlatform extends StatelessWidget {
             constraints: BoxConstraints.tight(
               Size(itemSize * 0.85, textHeight),
             ),
+            padding: (isIos)
+                ? const EdgeInsets.only(top: 6.0)
+                : const EdgeInsets.only(top: 4.0),
             child: Text(
               label ?? '?',
               textAlign: TextAlign.center,

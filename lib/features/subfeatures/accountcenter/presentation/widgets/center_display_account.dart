@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';
@@ -66,11 +65,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
     FocusScope.of(context).requestFocus(FocusNode());
     if (_store == null) return;
     if (_store.waitForResponse) {
-      FLToast.showText(
-        text: localeStr.messageWait,
-        showDuration: ToastDuration.DEFAULT.value,
-        position: FLToastPosition.top,
-      );
+      callToast(localeStr.messageWait);
       return;
     }
     final form = _formKey.currentState;
@@ -78,14 +73,6 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       form.save();
       postCall();
     }
-  }
-
-  void showFormatError() {
-    FLToast.showText(
-      text: localeStr.messageInvalidFormat,
-      position: FLToastPosition.top,
-      showDuration: ToastDuration.DEFAULT.value,
-    );
   }
 
   @override
@@ -198,7 +185,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           if (input.isValidDate)
                             _store.bindBirth(input);
                           else
-                            showFormatError();
+                            callToast(localeStr.messageInvalidFormat);
                         });
                       },
                       readOnly: _storeData.canBindBirthDate == false,
@@ -242,7 +229,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           if (input.isEmail)
                             _store.bindEmail(input);
                           else
-                            showFormatError();
+                            callToast(localeStr.messageInvalidFormat);
                         });
                       },
                       readOnly: _storeData.canBindMail == false,

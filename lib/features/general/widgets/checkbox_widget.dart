@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 ///
 /// Separate checkbox widget to prevent screen flash
 ///
+
+typedef CheckBoxCallBack = void Function(bool);
+
 class CheckboxWidget extends StatefulWidget {
   final String label;
   final bool initValue;
   final EdgeInsets widgetPadding;
+  final CheckBoxCallBack onChecked;
 
   CheckboxWidget({
     Key key,
     @required this.label,
     this.initValue = false,
     this.widgetPadding = const EdgeInsets.only(top: 2.0),
+    this.onChecked,
   }) : super(key: key);
 
   @override
@@ -43,10 +48,13 @@ class CheckboxWidgetState extends State<CheckboxWidget> {
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             visualDensity: VisualDensity.compact,
             value: boxChecked,
-            onChanged: (value) => setChecked = value,
+            onChanged: (value) {
+              setChecked = value;
+              if (widget.onChecked != null) widget.onChecked(value);
+            },
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 2.0),
+            padding: const EdgeInsets.only(bottom: 2.0, left: 2.0),
             child: Text(widget.label),
           ),
         ],

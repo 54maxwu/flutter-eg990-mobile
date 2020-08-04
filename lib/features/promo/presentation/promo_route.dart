@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
@@ -40,12 +41,7 @@ class _PromoRouteState extends State<PromoRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -60,20 +56,22 @@ class _PromoRouteState extends State<PromoRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      child: Observer(
-        builder: (_) {
-          switch (_store.state) {
-            case PromoStoreState.loading:
-              return LoadingWidget();
-            case PromoStoreState.loaded:
-              return PromoDisplay(_store.promos,
-                  showPromoId: widget.openPromoId);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 4.0),
+        child: Observer(
+          builder: (_) {
+            switch (_store.state) {
+              case PromoStoreState.loading:
+                return LoadingWidget();
+              case PromoStoreState.loaded:
+                return PromoDisplay(_store.promos,
+                    showPromoId: widget.openPromoId);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

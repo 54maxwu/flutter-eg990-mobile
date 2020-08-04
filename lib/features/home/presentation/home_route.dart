@@ -1,4 +1,5 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_store_inherit_widget.dart';
@@ -19,7 +20,7 @@ class HomeRoute extends StatefulWidget {
 class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
   HomeStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -38,12 +39,7 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -56,9 +52,7 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
         (bool wait) {
           print('reaction on wait game url: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -95,34 +89,36 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case HomeStoreState.loading:
-              return LoadingWidget();
-            case HomeStoreState.loaded:
-              return SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(), // user can't scroll
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.tight(Size(
-                    Global.device.width,
-                    Global.device.featureContentHeight,
-                  )),
-                  child: IntrinsicHeight(
-                    child: HomeStoreInheritedWidget(
-                      store: _store,
-                      child: HomeDisplay(),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.topCenter,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case HomeStoreState.loading:
+                return LoadingWidget();
+              case HomeStoreState.loaded:
+                return SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(), // user can't scroll
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(
+                      Global.device.width,
+                      Global.device.featureContentHeight,
+                    )),
+                    child: IntrinsicHeight(
+                      child: HomeStoreInheritedWidget(
+                        store: _store,
+                        child: HomeDisplay(),
+                      ),
                     ),
                   ),
-                ),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        },
+                );
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

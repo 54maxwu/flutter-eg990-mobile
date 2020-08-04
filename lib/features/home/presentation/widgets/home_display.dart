@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_category_model.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_display_size_calc.dart';
 
 import '../state/home_store.dart';
+import 'home_display_ad_dialog.dart';
 import 'home_display_banner.dart';
 import 'home_display_marquee.dart';
 import 'home_display_tabs.dart';
@@ -31,6 +31,29 @@ class _HomeDisplayState extends State<HomeDisplay> {
   List banners;
   List marquees;
   List tabs;
+  bool showingAds = false;
+
+  void showAdsDialog(List list) {
+    if (_store.showAds == false) return;
+    Future.delayed(Duration(milliseconds: 500), () {
+      if (!mounted)
+        showAdsDialog(list);
+      else
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => new HomeDisplayAdDialog(
+            ads: new List.from(list),
+            onClose: (skipNextTime) {
+              print('ads dialog close, skip=$skipNextTime');
+              showingAds = false;
+              _store.setSkipAd(skipNextTime);
+              _store.closeAdsDialog();
+            },
+          ),
+        );
+    });
+  }
 
   @override
   void initState() {
@@ -52,6 +75,18 @@ class _HomeDisplayState extends State<HomeDisplay> {
           ),
           child: Stack(
             children: [
+              StreamBuilder<List>(
+                stream: _store.adsStream,
+                initialData: _store.ads ?? [],
+                builder: (ctx, snapshot) {
+                  if (snapshot.data != null && snapshot.data.isNotEmpty) {
+                    print('stream home ads: ${snapshot.data.length}');
+                    showingAds = true;
+                    showAdsDialog(new List.from(snapshot.data));
+                  }
+                  return SizedBox.shrink();
+                },
+              ),
               StreamBuilder(
                 stream: _store.bannerStream,
                 builder: (ctx, _) {

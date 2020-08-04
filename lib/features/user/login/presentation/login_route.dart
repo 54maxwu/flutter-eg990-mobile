@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/dialog_widget.dart';
 
@@ -41,14 +41,9 @@ class _LoginRouteState extends State<LoginRoute> {
         // Run some logic with the content of the observed field
         // Run some logic with the content of the observed field
         (String message) {
-          if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
-          }
+          print('received login error message: $message');
+          if (message != null && message.isNotEmpty)
+            callToastError(message, delayedMilli: 200);
         },
       ),
     ];
@@ -75,6 +70,7 @@ class _LoginRouteState extends State<LoginRoute> {
             case LoginStoreState.loaded:
               return (widget.isDialog)
                   ? DialogWidget(
+                      maxHeight: 270.0,
                       children: [
                         LoginDisplay(
                           _store,

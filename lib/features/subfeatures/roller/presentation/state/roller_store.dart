@@ -1,11 +1,11 @@
 import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 
-import '../../data/repository/roller_repository.dart';
 import '../../data/entity/roller_data_entity.dart';
-import '../../data/models/roller_prize_model.dart';
 import '../../data/models/roller_order_model.dart';
+import '../../data/models/roller_prize_model.dart';
 import '../../data/models/roller_record_model.dart';
 import '../../data/models/roller_requirement_model.dart';
+import '../../data/repository/roller_repository.dart';
 
 part 'roller_store.g.dart';
 
@@ -229,6 +229,35 @@ abstract class _RollerStore with Store {
     } on Exception {
       errorMessage =
           Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+    }
+  }
+
+  @action
+  Future<bool> applyCount(int questId) async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      return await _repository.applyCount(questId).then(
+            (result) => result.fold(
+              (failure) {
+                errorMessage = failure.message;
+                return false;
+              },
+              (result) {
+                if (result.isSuccess)
+                  return true;
+                else {
+                  errorMessage = result.msg;
+                  return false;
+                }
+              },
+            ),
+          );
+    } on Exception {
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      return false;
     }
   }
 

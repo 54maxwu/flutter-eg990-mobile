@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
 
@@ -54,7 +53,7 @@ class _BankcardDisplayCardState extends State<BankcardDisplayCard>
     _waitProvinceMap = widget.bankcard.bankProvince.isNotEmpty &&
         widget.bankcard.bankProvince.contains(chineseRegex) == false;
     _waitCityMap = widget.bankcard.bankCity.isNotEmpty &&
-        widget.bankcard.bankProvince.contains(chineseRegex) == false;
+        widget.bankcard.bankCity.contains(chineseRegex) == false;
     super.initState();
 
     if (_waitProvinceMap)
@@ -165,7 +164,10 @@ class _BankcardDisplayCardState extends State<BankcardDisplayCard>
   }
 
   void updateReadOnlyField() {
-    if (!_waitProvinceMap && !_waitCityMap && !_waitAreaMap) {
+    print('wait city map: $_waitCityMap, wait area map: $_waitAreaMap');
+    if (!_waitProvinceMap &&
+        !_waitCityMap &&
+        (_waitAreaMap == null || !_waitAreaMap)) {
       StringBuffer buffer = new StringBuffer();
       if (_province.isNotEmpty) buffer.write(_province);
       if (_city.isNotEmpty) buffer.write(' / $_city');

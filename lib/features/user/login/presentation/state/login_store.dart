@@ -4,10 +4,10 @@ import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/router/route_user_streams.dart';
 import 'package:hive/hive.dart';
 
-import '../../../data/repository/user_repository.dart';
+import '../../../data/entity/login_status.dart';
 import '../../../data/form/login_form.dart';
 import '../../../data/models/user_model.dart';
-import '../../../data/entity/login_status.dart';
+import '../../../data/repository/user_repository.dart';
 
 part 'login_store.g.dart';
 
@@ -91,7 +91,7 @@ abstract class _LoginStore with Store {
   }
 
   @action
-  Future login(LoginForm form, bool saveForm) async {
+  Future<void> login(LoginForm form, bool saveForm) async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;

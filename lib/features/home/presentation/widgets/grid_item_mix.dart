@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/internal/font_size.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/widgets/grid_plugin_favorite.dart';
@@ -56,10 +55,10 @@ class GridItemMix extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 14.0),
             padding: (isIos)
                 ? (twoLineText)
-                    ? const EdgeInsets.only(bottom: 6.0)
+                    ? const EdgeInsets.only(bottom: 9.0)
                     : const EdgeInsets.only(bottom: 3.0)
                 : (twoLineText)
-                    ? const EdgeInsets.only(bottom: 4.0)
+                    ? const EdgeInsets.only(bottom: 8.0)
                     : EdgeInsets.zero,
             constraints: BoxConstraints.tightFor(
               width: itemSize * 0.9,

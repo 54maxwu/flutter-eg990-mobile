@@ -4,13 +4,13 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/features/screen/feature_screen.dart';
 import 'package:flutter_ty_mobile/features/screen/web_game_screen.dart';
-import 'package:flutter_ty_mobile/temp/test_screen.dart';
 import 'package:flutter_ty_mobile/temp/test_nested_nav_screen.dart';
+import 'package:flutter_ty_mobile/temp/test_screen.dart';
 
 export 'screen_router.dart' show ScreenEnum;
 
@@ -40,7 +40,7 @@ class ScreenRouter extends RouterBase {
     final args = settings.arguments;
     switch (settings.name) {
       case ScreenRoutes.featureScreen:
-        return MaterialPageRoute<dynamic>(
+        return buildAdaptivePageRoute<dynamic>(
           builder: (context) => FeatureScreen(),
           settings: settings,
           maintainState: true,
@@ -51,17 +51,17 @@ class ScreenRouter extends RouterBase {
         }
         final typedArgs =
             args as WebGameScreenArguments ?? WebGameScreenArguments();
-        return MaterialPageRoute<dynamic>(
+        return buildAdaptivePageRoute<dynamic>(
           builder: (context) => WebGameScreen(startUrl: typedArgs.startUrl),
           settings: settings,
         );
       case ScreenRoutes.testScreen:
-        return MaterialPageRoute<dynamic>(
+        return buildAdaptivePageRoute<dynamic>(
           builder: (context) => TestScreen(),
           settings: settings,
         );
       case ScreenRoutes.testScreenNav:
-        return MaterialPageRoute<dynamic>(
+        return buildAdaptivePageRoute<dynamic>(
           builder: (context) => TestNestedNavScreen(),
           settings: settings,
         );
@@ -98,6 +98,8 @@ extension ScreenRouterNavigationHelperMethods on ExtendedNavigatorState {
         ScreenRoutes.webGameScreen,
         arguments: WebGameScreenArguments(startUrl: startUrl),
       );
+
   Future pushTestScreen() => pushNamed(ScreenRoutes.testScreen);
+
   Future pushTestScreenNav() => pushNamed(ScreenRoutes.testScreenNav);
 }

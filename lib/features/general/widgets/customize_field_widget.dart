@@ -251,6 +251,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           child: new TextFormField(
             key: _fieldKey,
             controller: _controller,
+            enableInteractiveSelection: false,
             keyboardType: _keyboardType(),
             inputFormatters: _formatterList(),
             obscureText: widget.fieldType == FieldType.Password,
@@ -297,6 +298,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           child: new TextFormField(
             key: _fieldKey,
             controller: _controller,
+            enableInteractiveSelection: false,
             keyboardType: _keyboardType(),
             inputFormatters: _formatterList(),
             obscureText: widget.fieldType == FieldType.Password,

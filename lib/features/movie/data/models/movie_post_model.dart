@@ -90,7 +90,7 @@ abstract class MoviePostData with _$MoviePostData {
 }
 
 extension MoviePostDataExtension on MoviePostData {
-  bool get isPurchased => buy == 'success';
+  bool get isPurchased => buy == 'success' || freeSwitch == 'open';
   bool get isFreeToWatch => buy == 'free' && freeSwitch == 'open';
   bool get clickedHobby => hobby == '1' || hobby == '-1';
   bool get clickedFavorite => favorite == 'success';

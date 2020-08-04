@@ -244,20 +244,20 @@ class _MovieDisplayPostState extends State<MovieDisplayPost> {
                   minWidth: FontSize.SMALLER.value * 4.5,
                 ),
                 padding: const EdgeInsets.only(left: 6.0, top: 5.0),
-                child: (widget.movie.isPurchased || _justBuy)
+                child: (widget.movie.isFreeToWatch || _justFree)
                     ? Text(
-                        localeStr.movieHintTextPurchased,
+                        localeStr.movieHintTextFree,
                         style: TextStyle(
                           fontSize: FontSize.SMALLER.value,
-                          color: Themes.defaultTextColor,
+                          color: Themes.iconColorGreen,
                         ),
                       )
-                    : (widget.movie.isFreeToWatch || _justFree)
+                    : (widget.movie.isPurchased || _justBuy)
                         ? Text(
-                            localeStr.movieHintTextFree,
+                            localeStr.movieHintTextPurchased,
                             style: TextStyle(
                               fontSize: FontSize.SMALLER.value,
-                              color: Themes.iconColorGreen,
+                              color: Themes.defaultTextColor,
                             ),
                           )
                         : Text(

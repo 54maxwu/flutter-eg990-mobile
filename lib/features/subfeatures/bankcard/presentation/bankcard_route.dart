@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
+import 'package:flutter_ty_mobile/core/network/handler/request_code_model.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/bankcard_store.dart';
@@ -21,7 +20,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
   final Key observerKey = new Key('observer');
   BankcardStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -42,10 +41,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
         // Run some logic with the content of the observed field
         (String msg) {
           if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(msg);
           }
         },
       ),
@@ -58,9 +54,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
         (bool wait) {
           print('reaction on wait bankcard: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -73,20 +67,14 @@ class _BankcardRouteState extends State<BankcardRoute> {
         // Tell the reaction which observable to observe
         (_) => _store.newCardResult,
         // Run some logic with the content of the observed field
-        (RequestStatusModel result) {
+        (RequestCodeModel result) {
           print('new bankcard result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            FLToast.showSuccess(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastInfo(result.msg, icon: Icons.check_circle_outline);
             _store.getBankcard();
           } else {
-            FLToast.showError(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(result.msg);
           }
         },
       ),
@@ -105,47 +93,45 @@ class _BankcardRouteState extends State<BankcardRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      child: Observer(
-        key: observerKey,
-        builder: (_) {
-          switch (_store.state) {
-            case BankcardStoreState.loading:
-              return LoadingWidget();
-            case BankcardStoreState.loaded:
-              bool validCard =
-                  _store.bankcard != null && _store.bankcard.hasCard;
-              if (!validCard && widget.withdraw) {
-                Future.delayed(Duration(milliseconds: 300), () {
-                  FLToast.showText(
-                    text: localeStr.messageErrorBindBankcard,
-                    position: FLToastPosition.top,
-                    showDuration: ToastDuration.DEFAULT.value,
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 4.0),
+        child: Observer(
+          key: observerKey,
+          builder: (_) {
+            switch (_store.state) {
+              case BankcardStoreState.loading:
+                return LoadingWidget();
+              case BankcardStoreState.loaded:
+                bool validCard =
+                    _store.bankcard != null && _store.bankcard.hasCard;
+                if (!validCard && widget.withdraw) {
+                  Future.delayed(Duration(milliseconds: 300), () {
+                    callToast(localeStr.messageErrorBindBankcard);
+                  });
+                }
+                if (validCard && widget.withdraw) {
+                  return WithdrawDisplay(
+                    bankcardStore: _store,
+                    bankcard: _store.bankcard,
                   );
-                });
-              }
-              if (validCard && widget.withdraw) {
-                return WithdrawDisplay(
-                  bankcardStore: _store,
-                  bankcard: _store.bankcard,
-                );
-              } else if (validCard) {
-                return BankcardDisplayCard(
-                  store: _store,
-                  bankcard: _store.bankcard,
-                );
-              } else {
-                return BankcardDisplay(
-                  store: _store,
-                  bankcard: _store.bankcard,
-                );
-              }
-              break;
-            default:
-              return SizedBox.shrink();
-          }
-        },
+                } else if (validCard) {
+                  return BankcardDisplayCard(
+                    store: _store,
+                    bankcard: _store.bankcard,
+                  );
+                } else {
+                  return BankcardDisplay(
+                    store: _store,
+                    bankcard: _store.bankcard,
+                  );
+                }
+                break;
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

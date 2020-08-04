@@ -22,10 +22,7 @@ class _TestBasicInputWidgetState extends State<TestBasicInputWidget>
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      FLToast.showText(
-          text: ('email: $_email\npassword: $_password'),
-          showDuration: ToastDuration.DEFAULT.value,
-          position: FLToastPosition.top);
+      callToast(('email: $_email\npassword: $_password'));
     }
   }
 

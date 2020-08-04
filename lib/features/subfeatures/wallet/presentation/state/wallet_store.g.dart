@@ -144,6 +144,13 @@ mixin _$WalletStore on _WalletStore, Store {
     return _$getWalletAsyncAction.run(() => super.getWallet());
   }
 
+  final _$updateCreditAsyncAction = AsyncAction('_WalletStore.updateCredit');
+
+  @override
+  Future<dynamic> updateCredit() {
+    return _$updateCreditAsyncAction.run(() => super.updateCredit());
+  }
+
   final _$postWalletTypeAsyncAction =
       AsyncAction('_WalletStore.postWalletType');
 

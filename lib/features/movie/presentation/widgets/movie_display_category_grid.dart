@@ -5,7 +5,7 @@ import 'package:flutter_ty_mobile/mylogger.dart';
 
 import '../../data/models/movie_category_model.dart';
 import '../data/movie_category_enum.dart';
-import 'movie_display_grid_item.dart';
+import 'movie_category_grid_item.dart';
 
 typedef ChangeMovieCategory = void Function(int);
 

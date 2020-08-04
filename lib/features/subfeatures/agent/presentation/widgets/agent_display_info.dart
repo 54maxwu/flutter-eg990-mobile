@@ -65,9 +65,10 @@ class _AgentDisplayInfoState extends State<AgentDisplayInfo>
       child: StreamBuilder<AgentModel>(
         key: _streamKey,
         stream: _store.agentStream,
+        initialData: _store.agentData,
         builder: (context, snapshot) {
           if (_storeData != snapshot.data) {
-            print('agent stream snapshot: $snapshot');
+            print('agent stream snapshot: ${snapshot.data}');
             _storeData = snapshot.data;
             if (_layoutReady) updateField();
           }
@@ -112,20 +113,13 @@ class _AgentDisplayInfoState extends State<AgentDisplayInfo>
                       subject: localeStr.agentInfoFieldLink,
                     );
                   } on Exception {
-                    FLToast.showInfo(
-                      text: localeStr.workInProgress,
-                      showDuration: ToastDuration.DEFAULT.value,
-                    );
+                    callToastInfo(localeStr.workInProgress);
                   }
                 },
                 suffixAction2: (input) {
                   Clipboard.setData(new ClipboardData(text: input));
                   Future.delayed(Duration(milliseconds: 200)).then(
-                    (value) => FLToast.showText(
-                      text: localeStr.messageCopy,
-                      showDuration: ToastDuration.DEFAULT.value,
-                      position: FLToastPosition.top,
-                    ),
+                    (value) => callToast(localeStr.messageCopy),
                   );
                 },
                 readOnly: true,

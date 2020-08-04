@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/export_internal_file.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/dialog_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -99,10 +98,7 @@ class CenterDialogCpw extends StatelessWidget {
                                 if (await canLaunch(appUrl)) {
                                   await launch(appUrl);
                                 } else {
-                                  FLToast.showText(
-                                    text: localeStr.messageErrorLink(appUrl),
-                                    showDuration: ToastDuration.DEFAULT.value,
-                                  );
+                                  callToast(localeStr.messageErrorLink(appUrl));
                                 }
                               },
                             ),
@@ -214,17 +210,10 @@ class CenterDialogCpw extends StatelessWidget {
 //                                  startUrl: store.cpwUrl[0],
 //                                ),
 //                              );
-                              FLToast.showInfo(
-                                text: localeStr.workInProgress,
-                                showDuration: ToastDuration.DEFAULT.value,
-                                position: FLToastPosition.center,
-                              );
+                              callToastInfo(localeStr.workInProgress);
                             } else {
-                              FLToast.showError(
-                                text: localeStr.centerDialogCpwRightLinkError,
-                                showDuration: ToastDuration.DEFAULT.value,
-                                position: FLToastPosition.center,
-                              );
+                              callToastError(
+                                  localeStr.centerDialogCpwRightLinkError);
                             }
                           },
                         ),

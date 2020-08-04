@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/loading_widget.dart';
@@ -50,10 +49,12 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
   int plusGrid;
   double labelHeightFactor;
 
+  double platformGridRatio;
   double platformItemSize;
   double pBaseTextSize;
 //  int pAvailableCharacters;
 
+  double gameGridRatio;
   double gameItemSize;
   double gBaseTextSize;
   int gAvailableCharacters;
@@ -115,10 +116,7 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
 
   void _openGame(String url) {
     if (_store.hasUser == false)
-      FLToast.showInfo(
-        text: localeStr.messageErrorNotLogin,
-        showDuration: ToastDuration.DEFAULT.value,
-      );
+      callToastInfo(localeStr.messageErrorNotLogin);
     else if (_store != null) _store.getGameUrl(url);
   }
 
@@ -135,12 +133,12 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
         ? 2
         : (Global.device.widthScale > 1.5) ? 1 : 0;
 
-    labelHeightFactor = 1.5;
+    labelHeightFactor = 1.6;
     if (plusGrid > 0) {
       if (Global.device.widthScale > 2.0) {
-        labelHeightFactor = 1.65;
+        labelHeightFactor = 1.75;
       } else {
-        labelHeightFactor = 1.575;
+        labelHeightFactor = 1.675;
       }
     }
 
@@ -149,6 +147,12 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       gameItemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.9;
     else
       gameItemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
+
+    platformGridRatio = platformItemSize / 147 / Global.device.widthScale;
+    print('platform item size: $platformItemSize, ratio: $platformGridRatio');
+
+    gameGridRatio = gameItemSize / 115 / Global.device.widthScale;
+    print('game item size: $gameItemSize, ratio: $gameGridRatio');
 
     pBaseTextSize =
         (_isIos) ? FontSize.SUBTITLE.value + 2 : FontSize.SUBTITLE.value;
@@ -199,7 +203,7 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       padding: const EdgeInsets.only(bottom: 2.0),
       crossAxisCount: 2 + plusGrid,
       crossAxisSpacing: 4.0,
-      childAspectRatio: (plusGrid > 0) ? 1.0 : 0.9,
+      childAspectRatio: platformGridRatio + (plusGrid * 0.075),
       mainAxisSpacing: (plusGrid > 0) ? 6.0 : 0.0,
       shrinkWrap: true,
       children: platforms.map((entity) => _createGridItem(entity)).toList(),
@@ -281,7 +285,7 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       physics: BouncingScrollPhysics(),
       padding: (_isIos) ? const EdgeInsets.only(bottom: 2.0) : EdgeInsets.zero,
       crossAxisCount: 3 + plusGrid,
-      childAspectRatio: (plusGrid > 0) ? 0.85 : 0.7,
+      childAspectRatio: gameGridRatio + (plusGrid * 0.075),
       mainAxisSpacing: (plusGrid > 0 || twoLineText) ? 6.0 : 0.0,
       shrinkWrap: true,
       cacheExtent: 0.0,
@@ -301,10 +305,12 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       label = entity.cname;
       imgUrl = entity.imageUrl;
       favor = entity.favorite == 1;
+//      print('game: $label, img:$imgUrl');
     } else if (entity is GamePlatformEntity) {
       label = entity.label;
       imgUrl = entity.imageUrl;
       favor = entity.favorite == '1';
+//      print('platform: $label, img:$imgUrl');
     } else {
       MyLogger.warn(
           msg: '${UnknownConditionException()}!! Grid item: $entity', tag: tag);
@@ -314,7 +320,7 @@ class _HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       textHeight = pBaseTextSize * labelHeightFactor;
     } else {
       textHeight = gBaseTextSize * labelHeightFactor;
-      if (twoLineText) textHeight = textHeight * 2;
+      if (twoLineText) textHeight = textHeight * 2.15;
     }
 
     return Container(

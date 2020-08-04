@@ -6,7 +6,7 @@ const String _gameAutoAPI = 'api/openUrl';
 const String _gameAPI = 'api/open';
 
 const String _serviceRegexString =
-    (Global.IS_TEST_VER) ? Global.TEST_BASE_URL : _tyRegString;
+    (Global.IS_TEST_VER) ? Global.EG_BASE_URL : _tyRegString;
 const String _tyRegString = 'https://www.vip66[6-7][0-9][0-9].com';
 
 final RegExp _routeRegex = RegExp("^(?:$_serviceRegexString/?)");
@@ -50,4 +50,17 @@ extension RegexExtension on String {
   bool get isImageUrl => _imageRegex.hasMatch(this);
   bool get isPtLoginUrl => _ptLoginRegex.hasMatch(this);
   bool get isWebResource => _webResRegex.hasMatch(this);
+
+  int get countLength {
+    int ch = 0;
+    int en = 0;
+    for (int code in codeUnits) {
+      if (_chineseRegex.hasMatch(String.fromCharCode(code)))
+        ch += 1;
+      else
+        en += 1;
+    }
+//    print('$this -> ch=$ch, en=$en');
+    return ch + (en / 2).ceil();
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_expansion_tile.dart';
-import 'package:flutter_ty_mobile/features/movie/presentation/widgets/movie_display_grid_item.dart';
+import 'package:flutter_ty_mobile/features/movie/presentation/widgets/movie_category_grid_item.dart';
 
 import '../../data/models/movie_category_model.dart';
 import '../data/movie_category_enum.dart';

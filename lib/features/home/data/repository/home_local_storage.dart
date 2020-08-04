@@ -1,9 +1,9 @@
 import 'package:flutter_ty_mobile/core/data/hive_actions.dart';
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/banner_entity.dart';
-import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/marquee_entity.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_category_model.dart';
+import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_types.dart';
 import 'package:flutter_ty_mobile/mylogger.dart';
 import 'package:hive/hive.dart';

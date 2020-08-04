@@ -20,7 +20,7 @@ class WithdrawDisplay extends StatefulWidget {
 
 class _WithdrawDisplayState extends State<WithdrawDisplay> {
   WithdrawStore _store;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
   List<ReactionDisposer> _disposers;
 
   @override
@@ -42,12 +42,7 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
         (_) => _store.errorMessage,
         // Run some logic with the content of the observed field
         (String msg) {
-          if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
-          }
+          if (msg != null && msg.isNotEmpty) callToastError(msg);
         },
       ),
       /* Reaction on withdraw action */
@@ -59,9 +54,7 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
         (bool wait) {
           print('reaction on wait withdraw: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -78,15 +71,9 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
           print('withdraw result: $result');
           if (result == null) return;
           if (result.code == 0) {
-            FLToast.showSuccess(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastInfo(result.msg, icon: Icons.check_circle_outline);
           } else {
-            FLToast.showError(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(result.msg);
           }
         },
       ),

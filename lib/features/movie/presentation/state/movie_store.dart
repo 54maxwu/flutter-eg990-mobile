@@ -300,7 +300,9 @@ abstract class _MovieStore with Store {
               },
               (list) {
                 print('eg hot movies: ${list.length}');
-                if (nTid is String || _lastEgHotMovieTid is String)
+                if (tid != null ||
+                    nTid is String ||
+                    _lastEgHotMovieTid is String)
                   hotMovies = list;
                 else if (hotMovies != null)
                   hotMovies += list;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/message_store.dart';
@@ -33,12 +32,7 @@ class _MessageRouteState extends State<MessageRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -53,23 +47,25 @@ class _MessageRouteState extends State<MessageRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0.0),
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case MessageStoreState.initial:
-              return SizedBox.shrink();
-            case MessageStoreState.loading:
-              return LoadingWidget();
-            case MessageStoreState.loaded:
-              return MessageDisplay(_store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0.0),
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case MessageStoreState.initial:
+                return SizedBox.shrink();
+              case MessageStoreState.loading:
+                return LoadingWidget();
+              case MessageStoreState.loaded:
+                return MessageDisplay(_store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

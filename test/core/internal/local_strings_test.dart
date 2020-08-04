@@ -56,7 +56,8 @@ void main() {
     expect(find.text('Username'), findsOneWidget);
   });
 
-  testWidgets('test localize app widget with [default(en)]', (WidgetTester tester) async {
+  testWidgets('test localize app widget with [default(en)]',
+      (WidgetTester tester) async {
     MaterialApp app = MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -72,7 +73,8 @@ void main() {
     expect(find.text('Home'), findsOneWidget);
   });
 
-  testWidgets('test localize app widget with [zh]', (WidgetTester tester) async {
+  testWidgets('test localize app widget with [zh]',
+      (WidgetTester tester) async {
     MaterialApp app = MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -88,6 +90,3 @@ void main() {
     expect(find.text('首页'), findsOneWidget);
   });
 }
-
-
-

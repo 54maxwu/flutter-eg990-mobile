@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/core/internal/font_size.dart';
+import 'package:flutter_ty_mobile/features/router/my_page_transition_builder.dart';
 
 export 'font_size.dart';
 export 'hex_color.dart';
@@ -93,6 +94,10 @@ class Themes {
       primary: defaultAccentColor,
       secondary: defaultWidgetColor,
     ),
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.iOS: MyPageTransitionBuilder(),
+      TargetPlatform.android: MyPageTransitionBuilder(),
+    }),
     /* Widgets Theme */
     scaffoldBackgroundColor: defaultBackgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(

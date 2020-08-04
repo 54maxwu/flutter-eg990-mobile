@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game_entity.freezed.dart';
 
@@ -39,7 +39,5 @@ extension GameEntityExtension on GameEntity {
   }
 
   String get imageUrl => '/images/index/gamelist/$id.jpg?1';
-
-  bool isLongText(int limit) =>
-      (cname.hasChinese) ? cname.length > limit : cname.length > limit * 2;
+  bool isLongText(int limit) => cname.countLength > limit;
 }

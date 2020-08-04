@@ -1,7 +1,6 @@
 import 'dart:math' show Random, pi;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/res.dart';
 
@@ -28,7 +27,7 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
   final Size rawWheelBtnSize = Size(170, 211);
 
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
   double wheelScale;
   double wheelSize;
 
@@ -56,10 +55,7 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
           if (wait) {
             // show toast if server has no response after 500ms
             Future.delayed(Duration(milliseconds: 500), () {
-              if (widget.store.waitForPrize)
-                toastDismiss = FLToast.showLoading(
-                  text: localeStr.messageWait,
-                );
+              if (widget.store.waitForPrize) toastDismiss = callToastLoading();
             });
           } else if (toastDismiss != null) {
             toastDismiss();
@@ -127,10 +123,7 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
               builder: (_) => new RollerPrizeDialog(prizeUrl),
             );
           else
-            FLToast.showError(
-              text: localeStr.wheelMessageErrorPrizeUrl,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(localeStr.wheelMessageErrorPrizeUrl);
 
           widget.store.clearPrize();
           waitForReturnPrize = false;

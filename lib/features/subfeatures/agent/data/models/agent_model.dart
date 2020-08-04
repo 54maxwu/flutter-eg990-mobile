@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_ty_mobile/utils/value_util.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'agent_model.freezed.dart';
 
@@ -16,7 +16,9 @@ abstract class AgentModel with _$AgentModel {
   static AgentModel jsonToAgentModel(Map<String, dynamic> jsonMap) {
     return _$_AgentModel(
       code: '${jsonMap['code']}'.strToInt,
-      descendant: jsonMap['descendant'],
+      descendant: (jsonMap['descendant'].toString().isNotEmpty)
+          ? jsonMap['descendant']
+          : [],
       qrcode: jsonMap['qrcode'] as String,
       upline: jsonMap['upline'] as String,
       url: jsonMap['url'] as String,

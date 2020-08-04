@@ -96,11 +96,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
             ),
             RaisedButton(
               onPressed: () {
-                FLToast.showText(
-                  text: Global.device.toString(),
-                  position: FLToastPosition.top,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToast(Global.device.toString());
               },
               child: Text('Size'),
             ),
@@ -336,11 +332,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
             ),
             RaisedButton(
               onPressed: () {
-                FLToast.showText(
-                  text: Global.device.toString(),
-                  position: FLToastPosition.top,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToast(Global.device.toString());
               },
               child: Text('Size'),
             ),

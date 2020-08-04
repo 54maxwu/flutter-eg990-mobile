@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/internal/font_size.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:relative_layout/relative_layout.dart';
@@ -52,7 +51,7 @@ class GridItemGame extends StatelessWidget {
             padding: (twoLineText)
                 ? (isIos)
                     ? const EdgeInsets.only(bottom: 4.0)
-                    : const EdgeInsets.only(bottom: 2.0)
+                    : const EdgeInsets.only(bottom: 6.0)
                 : EdgeInsets.zero,
             constraints: BoxConstraints.tightFor(
               width: itemSize * 0.9,

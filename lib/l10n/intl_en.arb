@@ -216,6 +216,10 @@
   "@btnRegister": {
     "type": "text"
   },
+  "btnStopShowing": "Skip",
+  "@btnStopShowing": {
+    "type": "text"
+  },
   "btnResetPassword": "Forgot Password",
   "@btnResetPassword": {
     "type": "text"
@@ -377,6 +381,10 @@
   "@messageClearDataRestart": {
     "type": "text"
   },
+  "messageLoading": "Loading...",
+  "@messageLoading": {
+    "type": "text"
+  },
   "messageWelcomeUser": "Welcome, {name}",
   "@messageWelcomeUser": {
     "type": "text",
@@ -505,11 +513,14 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "Wrong phone format",
+  "messageInvalidPhone": "Error Phone Number(11~13)",
   "@messageInvalidPhone": {
     "type": "text"
   },
-
+  "messageInvalidPostCode": "Error Post Code(5~6)",
+  "@messageInvalidPostCode": {
+    "type": "text"
+  },
   "messageInvalidWechat": "Invalid WeChat account",
   "@messageInvalidWechat": {
     "type": "text"
@@ -2021,6 +2032,10 @@
   },
   "wheelApplyTableTextStatus1": "Achieved",
   "@ wheelApplyTableTextStatus1": {
+    "type": "text"
+  },
+  "wheelApplyTableTextStatus2": "Applied",
+  "@wheelApplyTableTextStatus2": {
     "type": "text"
   },
   "storeTextTitleProduct": "Redeem Product",

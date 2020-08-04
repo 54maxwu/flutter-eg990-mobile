@@ -73,11 +73,7 @@ class _MovieDialogMobileState extends State<MovieDialogMobile>
                       suffixAction: (input) async {
                         String msg = await widget.store.requestVerifyPhone(
                             _phoneFieldKey.currentState.getInput);
-                        if (msg.isNotEmpty)
-                          FLToast.showInfo(
-                            text: msg,
-                            showDuration: ToastDuration.DEFAULT.value,
-                          );
+                        if (msg.isNotEmpty) callToastInfo(msg);
                       },
                       readOnly: true,
                     ),
@@ -156,17 +152,13 @@ class _MovieDialogMobileState extends State<MovieDialogMobile>
         if (success) {
           Future.delayed(Duration(milliseconds: 300), () {
             Navigator.of(context).pop();
-          }).whenComplete(() => FLToast.showSuccess(
-                text: localeStr.messageVerifySuccess,
-                showDuration: ToastDuration.DEFAULT.value,
+          }).whenComplete(() => callToastInfo(
+                localeStr.messageVerifySuccess,
+                icon: Icons.check_circle_outline,
               ));
         }
       } else {
-        FLToast.showText(
-          text: localeStr.messageInvalidVerify,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageInvalidVerify);
       }
     }
   }

@@ -36,7 +36,7 @@ class ScreenDrawer extends StatelessWidget {
     }
     var route = item.value.route;
     if (route == null) {
-      FLToast.showInfo(text: localeStr.workInProgress);
+      callToastInfo(localeStr.workInProgress);
     } else if (route == RoutePage.moreWeb) {
       // open web page
       RouterNavigate.replacePage(
@@ -115,38 +115,54 @@ class ScreenDrawer extends StatelessWidget {
                       ],
                     ),
             ),
-            Container(
-              constraints: BoxConstraints(
-                // _kDrawerHeaderHeight = 161
-                maxHeight: Global.device.height - 161.0 - 36.0,
+            Expanded(
+              child: Container(
+                constraints: BoxConstraints(
+                  // _kDrawerHeaderHeight = 161
+                  maxHeight: Global.device.height - 161.0 - 36.0,
+                ),
+                padding: const EdgeInsets.only(top: 12.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: _menuItems.length,
+                  itemBuilder: (_, index) {
+                    ScreenDrawerItem item = _menuItems[index];
+                    if (item.value.isUserOnly &&
+                        getRouteUserStreams.hasUser == false)
+                      return SizedBox.shrink();
+                    if (item == ScreenDrawerItem.sign &&
+                        (viewState.store.event == null ||
+                            viewState.store.event.hasData == false))
+                      return SizedBox.shrink();
+                    return GestureDetector(
+                      onTap: () {
+                        if ((item == ScreenDrawerItem.sign)
+                            ? _itemTapped(item, store: viewState.store)
+                            : _itemTapped(item)) {
+                          // close the drawer
+                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
+                            Navigator.of(context).pop();
+                        }
+                      },
+                      child: _buildListItem(item.value),
+                    );
+                  },
+                ),
               ),
-              padding: const EdgeInsets.only(top: 12.0),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                itemCount: _menuItems.length,
-                itemBuilder: (_, index) {
-                  ScreenDrawerItem item = _menuItems[index];
-                  if (item.value.isUserOnly &&
-                      getRouteUserStreams.hasUser == false)
-                    return SizedBox.shrink();
-                  if (item == ScreenDrawerItem.sign &&
-                      (viewState.store.event == null ||
-                          viewState.store.event.hasData == false))
-                    return SizedBox.shrink();
-                  return GestureDetector(
-                    onTap: () {
-                      if ((item == ScreenDrawerItem.sign)
-                          ? _itemTapped(item, store: viewState.store)
-                          : _itemTapped(item)) {
-                        // close the drawer
-                        if (viewState.scaffoldKey.currentState.isDrawerOpen)
-                          Navigator.of(context).pop();
-                      }
-                    },
-                    child: _buildListItem(item.value),
-                  );
-                },
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'version: ${Global.device.appVersion}',
+                    style: TextStyle(
+                      fontSize: FontSize.SMALL.value,
+                      color: Themes.defaultHintColorDark,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

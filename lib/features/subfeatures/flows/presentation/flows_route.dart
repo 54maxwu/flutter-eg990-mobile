@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/flows_store.dart';
@@ -13,7 +12,7 @@ class FlowsRoute extends StatefulWidget {
 class _FlowsRouteState extends State<FlowsRoute> {
   FlowsStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   final GlobalKey<FlowsDisplayState> contentKey =
       new GlobalKey(debugLabel: 'content');
@@ -40,12 +39,7 @@ class _FlowsRouteState extends State<FlowsRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -58,9 +52,7 @@ class _FlowsRouteState extends State<FlowsRoute> {
         (bool wait) {
           print('reaction on wait flows: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -69,10 +61,7 @@ class _FlowsRouteState extends State<FlowsRoute> {
               try {
                 contentKey.currentState.updateContent = _store.dataList;
               } on Exception {
-                FLToast.showError(
-                  text: localeStr.messageActionFailed,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToastError(localeStr.messageActionFailed);
               }
             }
           }
@@ -93,10 +82,12 @@ class _FlowsRouteState extends State<FlowsRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-      alignment: Alignment.topCenter,
-      child: FlowsDisplay(contentKey),
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+        alignment: Alignment.topCenter,
+        child: FlowsDisplay(contentKey),
+      ),
     );
   }
 }

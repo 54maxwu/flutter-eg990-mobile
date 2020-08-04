@@ -32,7 +32,9 @@ abstract class _WalletStore with Store {
   @observable
   bool waitForTransfer;
 
-  bool showingDialog;
+  bool waitForUpdate = false;
+
+  bool showingDialog = false;
 
   StreamController<String> _progressController;
 
@@ -67,17 +69,43 @@ abstract class _WalletStore with Store {
       // Fetch from the repository and wrap the regular Future into an observable.
       _walletFuture = ObservableFuture(_repository.getWallet());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _walletFuture.then(
-        (result) => result.fold(
-          (failure) => errorMessage = failure.message,
-          (data) {
-            wallet = data;
-            print('wallet updated: $wallet');
-          },
-        ),
-      );
+      await _walletFuture.then((result) => result.fold(
+            (failure) => errorMessage = failure.message,
+            (data) {
+              wallet = data;
+              print('wallet updated: $wallet');
+            },
+          ));
     } on Exception {
-      errorMessage = "Couldn't fetch wallet. Is the device online?";
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+    }
+  }
+
+  @action
+  Future updateCredit() async {
+    if (waitForUpdate) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      waitForUpdate = true;
+      wallet = wallet.copyWith(credit: '---');
+      // Fetch from the repository and wrap the regular Future into an observable.
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository
+          .getWallet()
+          .then((result) => result.fold(
+                (failure) => errorMessage = failure.message,
+                (data) {
+                  wallet = data;
+                  print('wallet updated: $wallet');
+                },
+              ))
+          .whenComplete(() => waitForUpdate = false);
+    } on Exception {
+      waitForUpdate = false;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
     }
   }
 
@@ -105,7 +133,8 @@ abstract class _WalletStore with Store {
           .whenComplete(() => waitForTypeChange = false);
     } on Exception {
       waitForTypeChange = false;
-      errorMessage = "Couldn't fetch wallet. Is the device online?";
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
     }
   }
 
@@ -158,7 +187,8 @@ abstract class _WalletStore with Store {
               Duration(milliseconds: 500), () => waitForTransfer = false));
     } on Exception {
       waitForTypeChange = false;
-      errorMessage = "Couldn't fetch wallet. Is the device online?";
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
     }
   }
 

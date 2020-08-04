@@ -34,8 +34,11 @@ abstract class _AgentStore with Store {
 
   _AgentStore(this._repository) {
     _agentController.stream.listen((event) {
-//      print('agent data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
+      print('agent data: $event');
+      if (event == null)
+        errorMessage = Failure.jsonFormat().message;
+      else
+        agentData = event;
     });
     _commissionController.stream.listen((event) {
 //      print('commission data: $event');
@@ -78,6 +81,8 @@ abstract class _AgentStore with Store {
 
   @observable
   dynamic mergeAdResult;
+
+  AgentModel agentData;
 
   @computed
   AgentStoreState get state {

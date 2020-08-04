@@ -2,10 +2,10 @@ import 'dart:async' show Timer;
 
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/core/internal/themes.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart' as VLC;
+import 'package:flutter_ty_mobile/features/home/presentation/widgets/home_display_ad_dialog.dart';
+import 'package:video_player/video_player.dart';
+
+import 'home/data/models/ad_model.dart';
 
 class TestAreaRoute extends StatefulWidget {
   @override
@@ -13,245 +13,143 @@ class TestAreaRoute extends StatefulWidget {
 }
 
 class _TestAreaRouteState extends State<TestAreaRoute> with AfterLayoutMixin {
-  VLC.VlcPlayerController _videoViewController;
+  VideoPlayerController _controller;
+  bool _runScheduleTimer = false;
+  Timer _periodTimer;
+  Timer _periodTimerTimeout;
 
-  Size _playerSize;
-  bool _isPlaying = true;
-  bool _sliderChange = false;
-  double _sliderValue = 0.0;
+//  Future<ClosedCaptionFile> _loadCaptions() async {
+//    final String fileContents = await DefaultAssetBundle.of(context)
+//        .loadString('assets/bumble_bee_captions.srt');
+//    return SubRipCaptionFile(fileContents);
+//  }
 
-  bool _visibleTool = true;
-  Timer _toolVisibleTimeout;
+  final List<AdModel> ads = [
+    AdModel(
+        id: 9,
+        title: "购宝",
+        type: 'image/jpeg',
+        pic: 'images/ad/pc/27.jpg',
+        url: 'https://www.gamewallet.asia/version.php?fn=gp_a&latest',
+        mobileUrl: 'https://www.gamewallet.asia/version.php?fn=gp_a&latest',
+        picMobile: 'images/ad/mobile/28.jpg',
+        startTime: '2020-06-30 17:27:27',
+        endTime: '2021-06-01 00:00:00',
+        sort: 1,
+        status: true,
+        urlBlank: true),
+    AdModel(
+        id: 6,
+        title: "test2",
+        type: 'image/jpeg',
+        pic: 'images/ad/pc/23.jpg',
+        url: '/index/slot',
+        mobileUrl: '/index/slot',
+        picMobile: 'images/ad/mobile/24.jpg',
+        startTime: '2020-06-15 09:23:08',
+        endTime: '2021-06-01 00:00:00',
+        sort: 4,
+        status: true,
+        urlBlank: true),
+    AdModel(
+        id: 8,
+        title: "test3",
+        type: 'image/jpeg',
+        pic: 'images/ad/pc/25.jpg',
+        url: '/mission',
+        mobileUrl: '/mission',
+        picMobile: 'images/ad/mobile/26.jpg',
+        startTime: '2020-06-19 16:30:31',
+        endTime: '2021-06-01 16:30:33',
+        sort: 5,
+        status: true,
+        urlBlank: true)
+  ];
 
-  void startToolVisibilityTimer(int seconds) {
-    _toolVisibleTimeout?.cancel();
-    _toolVisibleTimeout = new Timer(Duration(seconds: seconds), () {
-      if (this.mounted) {
-        setState(() => _visibleTool = false);
+  void startPeriodTimeoutTimer(Timer innerTimer) {
+    _periodTimerTimeout?.cancel();
+    _periodTimerTimeout = new Timer(Duration(seconds: 30), () {
+      if (_runScheduleTimer) {
+        try {
+          innerTimer?.cancel();
+          _periodTimer?.cancel();
+          print('stopped period timer');
+        } catch (e) {
+          print('cancel period timer has exception: $e');
+        }
+        _runScheduleTimer = false;
       }
     });
   }
 
-  void playOrPauseVideo() {
-    VLC.PlayingState state = _videoViewController.playingState;
-    if (_sliderChange) _sliderChange = false;
-    if (state == VLC.PlayingState.PLAYING) {
-      _toolVisibleTimeout?.cancel();
-      _videoViewController.pause();
-      setState(() {
-        _isPlaying = false;
-      });
-    } else {
-      if (_sliderValue.floor() == _videoViewController.duration.inSeconds) {
-        // reset play state if current progress is at the end
-        _sliderValue = 0.0;
-        _videoViewController.setTime(0);
+  void startProgressTimer() {
+    print('start progress timer');
+    _periodTimer?.cancel();
+    _periodTimer = Timer.periodic(Duration(milliseconds: 1000), (Timer timer) {
+      print('video value playing: ${_controller.value.isPlaying}');
+      if (_controller.value.isPlaying) {
+        _periodTimerTimeout?.cancel();
+        print('video value duration: ${_controller.value.duration}');
+        print('video value position: ${_controller.value.position}');
+        print('video value buffered: ${_controller.value.buffered}');
+      } else {
+        if (_periodTimerTimeout == null ||
+            _periodTimerTimeout.isActive == false) {
+          // set a timer to stop period check after 10s
+          startPeriodTimeoutTimer(timer);
+        }
       }
-      _videoViewController.play();
-      setState(() {
-        _isPlaying = true;
-      });
-      startToolVisibilityTimer(5);
-    }
+    });
   }
 
   @override
   void initState() {
-    _playerSize = Size(
-      Global.device.width,
-      (Global.device.width * Global.device.ratio + 32.0),
-    );
     super.initState();
-    _videoViewController = new VLC.VlcPlayerController(
-      onInit: () {
-        _videoViewController.play();
-        startToolVisibilityTimer(3);
-      },
+    _controller = VideoPlayerController.network(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+//      closedCaptionFile: _loadCaptions(),
     );
-    _videoViewController.addListener(() {
+    _controller.addListener(() {
+      print('triggered player control listener');
+      if (_controller.value.isPlaying && !_runScheduleTimer) {
+        _runScheduleTimer = true;
+        startProgressTimer();
+      }
       setState(() {});
     });
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
-      VLC.PlayingState state = _videoViewController.playingState;
-      if (this.mounted && !_sliderChange) {
-        setState(() {
-          if (state == VLC.PlayingState.PLAYING &&
-              _sliderValue < _videoViewController.duration.inSeconds) {
-            // position max = duration - 1, so slider value need to add 1
-            _sliderValue =
-                _videoViewController.position.inSeconds.toDouble() + 1;
-          } else if (state == VLC.PlayingState.STOPPED) {
-            if (_sliderValue <= _videoViewController.duration.inSeconds) {
-              // position max = duration - 1, so slider value need to add 1
-              _sliderValue =
-                  _videoViewController.position.inSeconds.toDouble() + 1;
-            }
-            _toolVisibleTimeout?.cancel();
-            _isPlaying = false;
-            _visibleTool = true;
-          }
-        });
-      }
-    });
+    _controller.setLooping(false);
+    _controller.initialize();
   }
 
   @override
   void dispose() {
-    _toolVisibleTimeout?.cancel();
-    _videoViewController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: Global.device.featureContentHeight,
-        maxWidth: Global.device.width,
-      ),
+//    return Container();
+    return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ColoredBox(
-            color: Colors.black,
-            child: Stack(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 16.0),
-                  alignment: Alignment.topCenter,
-                  child: VLC.VlcPlayer(
-                    aspectRatio: Global.device.ratioHor,
-//                    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-                    url: 'https://storage.tytv99.com/movie/s3/5376/list.m3u8',
-                    controller: _videoViewController,
-                    placeholder: Center(child: CircularProgressIndicator()),
-                  ),
-                ),
-                Container(
-                  constraints: BoxConstraints.tight(_playerSize),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() => _visibleTool = true);
-                      startToolVisibilityTimer(5);
-                    },
-                  ),
-                ),
-                Visibility(
-//                  maintainSize: true,
-                  maintainAnimation: true,
-                  maintainState: true,
-                  visible: _visibleTool,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.tight(_playerSize),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 64.0),
-                            child: FlatButton(
-                              child: _isPlaying
-                                  ? Icon(
-                                      Icons.pause,
-                                      color: Themes.defaultAccentColor,
-                                      size: _playerSize.width / 6,
-                                    )
-                                  : Icon(
-                                      Icons.play_arrow,
-                                      color: Themes.defaultAccentColor,
-                                      size: _playerSize.width / 6,
-                                    ),
-                              onPressed: () => playOrPauseVideo(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 64.0,
-                          child: Stack(
-                            alignment: Alignment.topLeft,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 4.0),
-                                    child: FlatButton(
-                                      child: _isPlaying
-                                          ? Icon(Icons.pause)
-                                          : Icon(Icons.play_arrow),
-                                      onPressed: () => playOrPauseVideo(),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Text(
-                                      '${_durationToTime(Duration(seconds: _sliderValue.round()))}/'
-                                      '${_durationToTime(Duration(seconds: _videoViewController.duration.inSeconds))}',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Positioned(
-                                top: 18.0,
-                                child: SizedBox(
-                                  width: _playerSize.width,
-                                  child: Slider(
-                                    inactiveColor: Colors.white38,
-                                    activeColor: Colors.white,
-                                    value: _sliderValue,
-                                    min: 0.0,
-                                    max: _videoViewController.duration == null
-                                        ? 1.0
-                                        : _videoViewController
-                                            .duration.inSeconds
-                                            .toDouble(),
-                                    onChanged: (progress) {
-                                      print('slider progress: $progress');
-                                      var target = progress.round();
-                                      //convert to Milliseconds since VLC requires MS to set time
-                                      _videoViewController
-                                          .setTime(target * 1000);
-                                      print('slider target: $target');
-                                      setState(() {
-                                        _sliderValue = target.toDouble();
-                                      });
-                                      print('slider value: $_sliderValue');
-                                    },
-                                    onChangeStart: (_) {
-                                      _sliderChange = true;
-                                      _toolVisibleTimeout?.cancel();
-                                    },
-                                    onChangeEnd: (_) {
-                                      startToolVisibilityTimer(3);
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+        children: <Widget>[
+          Container(padding: const EdgeInsets.only(top: 20.0)),
+          const Text('With remote mp4'),
+          Container(
+            padding: const EdgeInsets.all(20),
+            child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: <Widget>[
+                  VideoPlayer(_controller),
+                  ClosedCaption(text: _controller.value.caption.text),
+                  _PlayPauseOverlay(controller: _controller),
+                  VideoProgressIndicator(_controller, allowScrubbing: true),
+                ],
+              ),
             ),
           ),
-          Text("position=" +
-              (_videoViewController.position.inSeconds + 1).toString() +
-              ", duration=" +
-              _videoViewController.duration.inSeconds.toString() +
-              ", speed=" +
-              _videoViewController.playbackSpeed.toString()),
-          Text("ratio=" + _videoViewController.aspectRatio.toString()),
-          Text("size=" +
-              _videoViewController.size.width.toString() +
-              "x" +
-              _videoViewController.size.height.toString()),
-          Text("state=" + _videoViewController.playingState.toString()),
         ],
       ),
     );
@@ -269,5 +167,49 @@ class _TestAreaRouteState extends State<TestAreaRoute> with AfterLayoutMixin {
   @override
   void afterFirstLayout(BuildContext context) {
     print('after first layout');
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => new HomeDisplayAdDialog(ads: ads, onClose: null),
+    );
+  }
+}
+
+class _PlayPauseOverlay extends StatelessWidget {
+  const _PlayPauseOverlay({Key key, this.controller}) : super(key: key);
+
+  final VideoPlayerController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: Duration(milliseconds: 50),
+            reverseDuration: Duration(milliseconds: 200),
+            child: controller.value.isPlaying
+                ? SizedBox.shrink()
+                : Container(
+                    color: Colors.black26,
+                    child: Center(
+                      child: Icon(
+                        Icons.play_arrow,
+                        color: Colors.white,
+                        size: 100.0,
+                      ),
+                    ),
+                  ),
+          ),
+          GestureDetector(
+            onTap: () {
+              controller.value.isPlaying
+                  ? controller.pause()
+                  : controller.play();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -123,6 +123,13 @@ class RouterNavigate {
   // TODO should replace with navigator stack or observer
   static String _currentRoute = '/';
   static String _previousRoute = '/';
+  static final refreshList = [
+    Routes.depositRoute,
+    Routes.transferRoute,
+    Routes.balanceRoute,
+    Routes.walletRoute,
+    Routes.messageRoute
+  ];
 
   static String get current => _currentRoute;
 
@@ -221,6 +228,11 @@ class RouterNavigate {
         return;
       } else if (navigator.canPop()) {
         try {
+          if (_previousRoute == Routes.memberRoute &&
+              refreshList.contains(_currentRoute)) {
+            // update member route credit and badge
+            routerStreams.setCheck(true);
+          }
           navigator.popUntil((route) => route.settings.name == _previousRoute);
         } catch (e) {
           navigator.popAndPushNamed(_previousRoute);

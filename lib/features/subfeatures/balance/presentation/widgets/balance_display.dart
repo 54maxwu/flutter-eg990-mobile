@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 
 import '../state/balance_store.dart';
@@ -71,11 +70,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
         platform,
         onTapAction: (action, platform) {
           if (widget.store.waitForTransferResult)
-            FLToast.showText(
-              text: localeStr.messageWait,
-              showDuration: ToastDuration.DEFAULT.value,
-              position: FLToastPosition.top,
-            );
+            callToast(localeStr.messageWait);
           else
             widget.store.exeGridAction(action, platform);
         },

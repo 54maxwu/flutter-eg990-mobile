@@ -1,16 +1,19 @@
 import 'dart:collection' show HashMap;
 
+import 'package:flutter_ty_mobile/core/data/hive_actions.dart';
 import 'package:flutter_ty_mobile/core/mobx_store_export.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/banner_entity.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/game_entity.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/marquee_entity.dart';
 import 'package:flutter_ty_mobile/features/home/data/form/platform_game_form.dart';
+import 'package:flutter_ty_mobile/features/home/data/models/ad_model.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_category_model.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_types.dart';
 import 'package:flutter_ty_mobile/features/home/data/repository/home_repository.dart';
 import 'package:flutter_ty_mobile/features/user/data/entity/user_entity.dart';
+import 'package:hive/hive.dart' show Box;
 
 part 'home_store.g.dart';
 
@@ -23,6 +26,8 @@ abstract class _HomeStore with Store {
 
   final StreamController<String> _creditController =
       StreamController<String>.broadcast();
+  static StreamController<List<AdModel>> _adsController =
+      StreamController<List<AdModel>>.broadcast();
   static StreamController<List<BannerEntity>> _bannerController =
       StreamController<List<BannerEntity>>.broadcast();
   static StreamController<List<MarqueeEntity>> _marqueeController =
@@ -43,6 +48,10 @@ abstract class _HomeStore with Store {
     _creditController.stream.listen((event) {
 //      print('home stream credit: $event');
       userCredit = event;
+    });
+    _adsController.stream.listen((event) {
+//      print('home stream ads: ${event.length}');
+      ads = event;
     });
     _bannerController.stream.listen((event) {
 //      print('home stream banners: ${event.length}');
@@ -80,6 +89,8 @@ abstract class _HomeStore with Store {
   @observable
   ObservableFuture<List> _initFuture;
 
+  Stream<List<AdModel>> get adsStream => _adsController.stream;
+
   Stream<List<BannerEntity>> get bannerStream => _bannerController.stream;
 
   Stream<List<MarqueeEntity>> get marqueeStream => _marqueeController.stream;
@@ -94,6 +105,8 @@ abstract class _HomeStore with Store {
 
   Stream<String> get showPlatformStream => _searchController.stream;
 
+  List<AdModel> ads;
+
   List<BannerEntity> banners;
 
   List<MarqueeEntity> marquees;
@@ -107,6 +120,14 @@ abstract class _HomeStore with Store {
   List favorites;
 
   String searchPlatform = '';
+
+  final String skipAdsKey = 'skipAds';
+
+  bool _skipAds = false;
+
+  bool _showAdsDialog = true;
+
+  bool get showAds => _showAdsDialog;
 
   // Key = category
   HashMap<String, List<GamePlatformEntity>> homePlatformMap;
@@ -177,13 +198,66 @@ abstract class _HomeStore with Store {
         if (_gameTypes == null) Future.value(getGameTypes()),
       ]));
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _initFuture.whenComplete(() => waitForInitializeData = false);
+      await _initFuture.whenComplete(() {
+        waitForInitializeData = false;
+        if (ads == null)
+          Future.delayed(Duration(milliseconds: 1000), () => getAds());
+      });
     } on Exception {
       waitForInitializeData = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
           Failure.internal(FailureCode(type: FailureType.HOME)).message;
     }
+  }
+
+  @action
+  Future<void> getAds() async {
+    if (_skipAds) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      // Fetch from the repository and wrap the regular Future into an observable.
+      print('requesting home ads data...');
+      Box box = await Future.value(getHiveBox(Global.CACHE_LOGIN_FORM));
+      if (box != null && box.isNotEmpty) {
+        _skipAds = (box.containsKey(skipAdsKey)) ? box.get(skipAdsKey) : false;
+      }
+      print('home skip ads: $_skipAds');
+      if (_skipAds)
+        _adsController.sink.add([]);
+      else
+        await _repository.getAds().then(
+              (result) => result.fold(
+                (failure) => errorMessage = failure.message,
+                (list) => _adsController.sink.add(List.from(list)),
+              ),
+            );
+    } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.HOME)).message;
+    }
+  }
+
+  void setSkipAd(bool value) {
+    if (_skipAds == value) return;
+    _skipAds = value;
+    Future.microtask(() async {
+      bool saveValue = _skipAds;
+      if (saveValue) {
+        Box box = await Future.value(getHiveBox(Global.CACHE_LOGIN_FORM));
+        if (box != null) {
+          await box.putAll({skipAdsKey: saveValue});
+          print('box ads: ${box.get(skipAdsKey)}');
+        }
+      }
+      print('box saved: $skipAdsKey - $saveValue');
+    });
+  }
+
+  void closeAdsDialog() {
+    _showAdsDialog = false;
   }
 
   @action
@@ -296,7 +370,7 @@ abstract class _HomeStore with Store {
 
   @computed
   List<GameCategoryModel> get homeUserTabs => new List.from(
-        [recommendCategory, favoriteCategory] + homeTabs + [movieEgCategory],
+        [recommendCategory, favoriteCategory] + homeTabs + [movieNewCategory],
 //           + [movieEgCategory, movieNewCategory],
       );
 
@@ -628,6 +702,7 @@ abstract class _HomeStore with Store {
     try {
       return Future.wait([
         _creditController.close(),
+        _adsController.close(),
         _bannerController.close(),
         _marqueeController.close(),
         _tabController.close(),

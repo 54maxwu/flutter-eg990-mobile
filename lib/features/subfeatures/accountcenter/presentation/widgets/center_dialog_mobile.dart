@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/export_internal_file.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/dialog_widget.dart';
@@ -147,11 +146,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
       if (verifyCode.isNotEmpty)
         widget.store.postVerify(widget.mobile, verifyCode);
       else
-        FLToast.showText(
-          text: localeStr.messageInvalidVerify,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageInvalidVerify);
     }
   }
 

@@ -27,7 +27,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       /* App bar Icon */
       title: Image.asset(
         Res.iconBarLogoEg,
-        scale: 4,
+        scale: 2,
       ),
       titleSpacing: 0,
       centerTitle: false,

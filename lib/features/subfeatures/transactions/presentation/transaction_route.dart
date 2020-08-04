@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/pager_widget.dart';
@@ -16,7 +15,7 @@ class TransactionRoute extends StatefulWidget {
 class _TransactionRouteState extends State<TransactionRoute> {
   TransactionStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   final GlobalKey<CustomizeDropdownWidgetState> _selectorKey =
       new GlobalKey(debugLabel: 'selector');
@@ -64,12 +63,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -82,9 +76,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
         (bool wait) {
           print('reaction on wait transaction: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -102,10 +94,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
                 }
                 contentKey.currentState.updateContent = _store.dataModel.data;
               } on Exception {
-                FLToast.showError(
-                  text: localeStr.messageActionFailed,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToastError(localeStr.messageActionFailed);
               }
             }
           }
@@ -126,63 +115,65 @@ class _TransactionRouteState extends State<TransactionRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CustomizeDropdownWidget(
-                key: _selectorKey,
-                horizontalInset: 16.0,
-                prefixText: localeStr.transactionViewSpinnerTitle,
-                titleLetterSpacing: 4,
-                optionValues: _selectorValues,
-                optionStrings: _selectorStrings,
-                changeNotify: (data) {
-                  _selected = data;
-                  print('selected: $data');
-                },
-              ),
-            ],
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-            child: Row(
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(
-                  child: SizedBox(
-                    height: Global.device.comfortButtonHeight,
-                    child: RaisedButton(
-                      child: Text(localeStr.btnQueryNow),
-                      onPressed: () => getPageData(1),
-                    ),
-                  ),
+                CustomizeDropdownWidget(
+                  key: _selectorKey,
+                  horizontalInset: 16.0,
+                  prefixText: localeStr.transactionViewSpinnerTitle,
+                  titleLetterSpacing: 4,
+                  optionValues: _selectorValues,
+                  optionStrings: _selectorStrings,
+                  changeNotify: (data) {
+                    _selected = data;
+                    print('selected: $data');
+                  },
                 ),
               ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 10.0),
-            child: TransactionDisplay(contentKey),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              PagerWidget(
-                pagerKey,
-                onAction: (page) => getPageData(page),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: SizedBox(
+                      height: Global.device.comfortButtonHeight,
+                      child: RaisedButton(
+                        child: Text(localeStr.btnQueryNow),
+                        onPressed: () => getPageData(1),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 10.0),
+              child: TransactionDisplay(contentKey),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                PagerWidget(
+                  pagerKey,
+                  onAction: (page) => getPageData(page),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

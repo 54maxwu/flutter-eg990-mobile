@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
@@ -56,11 +55,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
 
   void _validateForm() {
     if (widget.store.isPlatformValid == false) {
-      FLToast.showText(
-        text: localeStr.transferPlatformError,
-        showDuration: ToastDuration.DEFAULT.value,
-        position: FLToastPosition.top,
-      );
+      callToast(localeStr.transferPlatformError);
       return;
     }
     final form = _formKey.currentState;
@@ -73,10 +68,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
         min: 1,
         max: widget.store.creditLimit,
       )) {
-        FLToast.showError(
-          text: localeStr.messageInvalidDepositAmount,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToastError(localeStr.messageInvalidDepositAmount);
         return;
       }
       TransferForm dataForm = TransferForm(

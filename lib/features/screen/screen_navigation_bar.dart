@@ -48,7 +48,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
         builder: (context) => new MoreDialog(_store),
       );
     } else if (item.value.route == null) {
-      FLToast.showInfo(text: localeStr.workInProgress);
+      callToastInfo(localeStr.workInProgress);
     } else {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
@@ -67,10 +67,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
 //    _store.debugEvent();
     if (_store.forceShowEvent && _store.hasEvent == false) {
       Future.delayed(Duration(milliseconds: 200), () {
-        FLToast.showInfo(
-          text: localeStr.messageNoEvent,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToastInfo(localeStr.messageNoEvent);
       });
       // set to false so it will not pop on other pages
       _store.setForceShowEvent = false;

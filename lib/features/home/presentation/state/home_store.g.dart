@@ -91,6 +91,13 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getInitializeDataAsyncAction.run(() => super.getInitializeData());
   }
 
+  final _$getAdsAsyncAction = AsyncAction('_HomeStore.getAds');
+
+  @override
+  Future<void> getAds() {
+    return _$getAdsAsyncAction.run(() => super.getAds());
+  }
+
   final _$getBannersAsyncAction = AsyncAction('_HomeStore.getBanners');
 
   @override

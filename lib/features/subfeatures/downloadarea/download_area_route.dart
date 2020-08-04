@@ -28,60 +28,59 @@ class DownloadAreaRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (appLinks.length != appImages.length) {
-      return WarningDisplay(
-        message:
-            Failure.internal(FailureCode(type: FailureType.SIDE_MENU)).message,
-      );
-    } else {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
-        child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (_, index) {
-            return Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Row(
+    return Scaffold(
+      body: (appLinks.length != appImages.length)
+          ? WarningDisplay(
+              message:
+                  Failure.internal(FailureCode(type: FailureType.SIDE_MENU))
+                      .message,
+            )
+          : Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (_, index) {
+                  return Column(
                     children: <Widget>[
-                      Text(
-                        appLabels[index],
-                        style: TextStyle(fontSize: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              appLabels[index],
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text((index % 2 == 0) ? appHints[0] : appHints[1],
+                                style: TextStyle(color: Colors.grey))
+                          ],
+                        ),
                       ),
-                      Text((index % 2 == 0) ? appHints[0] : appHints[1],
-                          style: TextStyle(color: Colors.grey))
+                      ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: 120,
+                            maxWidth: Global.device.width - 32,
+                          ),
+                          child: Center(
+                            child: GestureDetector(
+                              child: networkImageBuilder(appImages[index]),
+                              onTap: () async {
+                                if (appLinks[index].isNotEmpty) {
+                                  String url = appLinks[index];
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    callToastError(
+                                        localeStr.messageErrorLink(url));
+                                  }
+                                }
+                              },
+                            ),
+                          )),
                     ],
-                  ),
-                ),
-                ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: 120,
-                      maxWidth: Global.device.width - 32,
-                    ),
-                    child: Center(
-                      child: GestureDetector(
-                        child: networkImageBuilder(appImages[index]),
-                        onTap: () async {
-                          if (appLinks[index].isNotEmpty) {
-                            String url = appLinks[index];
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              FLToast.showError(
-                                text: localeStr.messageErrorLink(url),
-                                showDuration: ToastDuration.DEFAULT.value,
-                              );
-                            }
-                          }
-                        },
-                      ),
-                    )),
-              ],
-            );
-          },
-        ),
-      );
-    }
+                  );
+                },
+              ),
+            ),
+    );
   }
 }

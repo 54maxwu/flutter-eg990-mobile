@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/screen/screen_drawer_item.dart';
 import 'package:flutter_ty_mobile/features/screen/web_game_screen_store.dart';
@@ -121,11 +120,7 @@ class _WebGameScreenDrawerState extends State<WebGameScreenDrawer>
                             String value =
                                 (isLock) ? localeStr.btnOff : localeStr.btnOn;
                             widget.store.lockRotate = !isLock;
-                            FLToast.showText(
-                              text: '${localeStr.sideBtnLockRotate}($value)',
-                              position: FLToastPosition.top,
-                              showDuration: ToastDuration.DEFAULT.value,
-                            );
+                            callToast('${localeStr.sideBtnLockRotate}($value)');
                             break;
                           default:
                             break;

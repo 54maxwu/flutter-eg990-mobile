@@ -3,6 +3,7 @@ import 'dart:io' show Cookie;
 import 'package:flutter_ty_mobile/core/error/exceptions.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/repository_export.dart';
+import 'package:flutter_ty_mobile/features/home/data/models/ad_model.dart';
 import 'package:flutter_ty_mobile/features/home/data/models/game_platform.dart';
 import 'package:flutter_ty_mobile/features/member/data/repository/member_jwt_interface.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
@@ -20,6 +21,7 @@ import '../repository/home_local_storage.dart';
 
 class HomeApi {
   static const String GET_LIMIT = "api/get_account/creditlimit";
+  static const String AD = "api/getAd";
   static const String BANNER = "api/banner";
   static const String MARQUEE = "api/marquee";
   static const String GAME_ALL = "api/getAll";
@@ -38,6 +40,7 @@ class HomeApi {
 abstract class HomeRepository {
   Future<Either<Failure, String>> updateCredit(String account);
 
+  Future<Either<Failure, List<AdModel>>> getAds();
   Future<Either<Failure, List<BannerEntity>>> getBanners();
   Future<Either<Failure, List<BannerEntity>>> getCachedBanners();
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees();
@@ -99,6 +102,20 @@ class HomeRepositoryImpl implements HomeRepository {
           return Left(Failure.server());
         }
       },
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<AdModel>>> getAds() async {
+    final result = await requestModelList<AdModel>(
+      request: dioApiService.get(HomeApi.AD),
+      jsonToModel: AdModel.jsonToAdModel,
+      tag: 'remote-AD',
+    );
+//    print('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (models) => Right(models),
     );
   }
 

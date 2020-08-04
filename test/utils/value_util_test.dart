@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/utils/value_util.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
+import 'package:flutter_ty_mobile/utils/value_util.dart';
 
 void main() {
   test('test value int', () {
@@ -48,7 +48,7 @@ void main() {
   });
 
   test('test string verify', () {
-    expect(Global.TEST_BASE_URL.isUrl, true);
+    expect(Global.EG_BASE_URL.isUrl, true);
     expect('a1234@'.isEmail, false);
     expect('a1234@yahoo.com'.isEmail, true);
     var html =

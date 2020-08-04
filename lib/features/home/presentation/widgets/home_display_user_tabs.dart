@@ -1,7 +1,6 @@
 import 'dart:async' show StreamController;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/tabs_page_control_widget.dart';
 import 'package:flutter_ty_mobile/features/movie/presentation/eg/movie_tab_eg_route.dart';
@@ -134,6 +133,7 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
               child: Container(
                 /* Tab bar constraints */
                 constraints: BoxConstraints(
+                  maxHeight: widget.sizeCalc.barMaxHeight,
                   minWidth: widget.sizeCalc.barMinWidth,
                   maxWidth: widget.sizeCalc.barMaxWidth,
                 ),
@@ -219,7 +219,9 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                           );
                           break;
                         case GamePageType.Movie2:
-                          return Center(child: Text('${category.type}'));
+                          return new MovieTabEgRoute(
+                            displaySize: widget.sizeCalc,
+                          );
                           break;
                       }
                     }).toList(),

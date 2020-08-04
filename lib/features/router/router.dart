@@ -27,8 +27,12 @@ import '../subfeatures/wallet/presentation/wallet_route.dart';
 import '../test_area_route.dart';
 import '../user/login/presentation/login_route.dart';
 import '../web/web_route.dart';
+import 'my_static_page_transition.dart';
 
-@MaterialAutoRouter()
+@CustomAutoRouter(
+  transitionsBuilder: MyStaticPageTransition.slide,
+  durationInMilliseconds: 400,
+)
 class $Router {
   @initial
   HomeRoute homeRoute;

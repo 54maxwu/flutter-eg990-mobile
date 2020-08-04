@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/state/home_store.dart';
 import 'package:flutter_ty_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_ty_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_ty_mobile/res.dart';
-import 'package:flutter_ty_mobile/utils/value_util.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
+import 'package:flutter_ty_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';
 import 'home_store_inherit_widget.dart';
@@ -68,10 +67,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   }
 
   void toastLogin() {
-    FLToast.showInfo(
-      text: localeStr.messageErrorNotLogin,
-      showDuration: ToastDuration.DEFAULT.value,
-    );
+    callToastInfo(localeStr.messageErrorNotLogin);
   }
 
   @override

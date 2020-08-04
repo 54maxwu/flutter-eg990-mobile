@@ -5,9 +5,9 @@ import 'package:flutter_ty_mobile/utils/value_util.dart';
 
 import '../entity/roller_data_entity.dart';
 import '../models/roller_order_model.dart';
+import '../models/roller_prize_model.dart';
 import '../models/roller_record_model.dart';
 import '../models/roller_requirement_model.dart';
-import '../models/roller_prize_model.dart';
 
 class RollerApi {
   static const String GET_COUNT = "api/getCount";
@@ -17,6 +17,7 @@ class RollerApi {
   static const String GET_RECORD = "api/getTurntableRecord";
   static const String POST_REQUIREMENT = "api/applyRequirement";
   static const String GET_WHEEL_PRIZE = "api/startTurntable";
+  static const String APPLY_WHEEL_COUNT = "api/applyCount";
 }
 
 abstract class RollerRepository {
@@ -26,6 +27,8 @@ abstract class RollerRepository {
   Future<Either<Failure, List<RollerOrderModel>>> getOrder();
   Future<Either<Failure, List<RollerRecordModel>>> getRecord();
   Future<Either<Failure, RollerRequirementModel>> getRequirement();
+
+  Future<Either<Failure, RequestCodeModel>> applyCount(int questId);
 }
 
 class RollerRepositoryImpl implements RollerRepository {
@@ -206,6 +209,23 @@ class RollerRepositoryImpl implements RollerRepository {
           return Left(Failure.jsonFormat());
         }
       },
+    );
+  }
+
+  @override
+  Future<Either<Failure, RequestCodeModel>> applyCount(int questId) async {
+    final result = await requestModel<RequestCodeModel>(
+      request: dioApiService.post(
+        RollerApi.APPLY_WHEEL_COUNT,
+        data: {'id': questId},
+      ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      tag: 'remote-ROLLER',
+    );
+    print('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (data) => Right(data),
     );
   }
 }

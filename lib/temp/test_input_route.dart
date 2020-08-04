@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
-import 'package:flutter_ty_mobile/utils/value_util.dart';
 import 'package:flutter_ty_mobile/utils/regex_util.dart';
+import 'package:flutter_ty_mobile/utils/value_util.dart';
 
 import 'test_single_input_widget.dart';
 
@@ -35,13 +35,10 @@ class _TestInputRouteState extends State<TestInputRoute> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      FLToast.showText(
-          text: ('email:${_emailFieldKey.currentState.inputText}\n'
-              'username:${_userFieldKey.currentState.inputText}\n'
-              'password:${_pwdFieldKey.currentState.inputText}\n'
-              'test:${_testFieldKey.currentState.inputText}'),
-          showDuration: ToastDuration.DEFAULT.value,
-          position: FLToastPosition.top);
+      callToast('email:${_emailFieldKey.currentState.inputText}\n'
+          'username:${_userFieldKey.currentState.inputText}\n'
+          'password:${_pwdFieldKey.currentState.inputText}\n'
+          'test:${_testFieldKey.currentState.inputText}');
     }
   }
 

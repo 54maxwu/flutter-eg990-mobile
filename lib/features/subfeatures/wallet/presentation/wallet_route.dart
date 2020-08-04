@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/warning_display.dart';
 
@@ -34,10 +33,7 @@ class _WalletRouteState extends State<WalletRoute> {
         // Run some logic with the content of the observed field
         (String msg) {
           if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(msg);
           }
         },
       ),
@@ -51,17 +47,13 @@ class _WalletRouteState extends State<WalletRoute> {
           print('reaction on change result: $result');
           if (result == null) return;
           if (result) {
-            FLToast.showSuccess(
-              text: localeStr
-                  .messageTaskSuccess(localeStr.walletViewMessageSetting),
-              showDuration: ToastDuration.DEFAULT.value,
+            callToastInfo(
+              localeStr.messageTaskSuccess(localeStr.walletViewMessageSetting),
+              icon: Icons.check_circle_outline,
             );
           } else {
-            FLToast.showError(
-              text: localeStr
-                  .messageTaskFailed(localeStr.walletViewMessageSetting),
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(localeStr
+                .messageTaskFailed(localeStr.walletViewMessageSetting));
           }
         },
       ),
@@ -76,26 +68,28 @@ class _WalletRouteState extends State<WalletRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case WalletStoreState.initial:
-              return SizedBox.shrink();
-            case WalletStoreState.loading:
-              return LoadingWidget();
-            case WalletStoreState.loaded:
-              if (_store.wallet != null)
-                return WalletDisplay(store: _store);
-              else
-                return WarningDisplay(message: _store.errorMessage);
-              break;
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case WalletStoreState.initial:
+                return SizedBox.shrink();
+              case WalletStoreState.loading:
+                return LoadingWidget();
+              case WalletStoreState.loaded:
+                if (_store.wallet != null)
+                  return WalletDisplay(store: _store);
+                else
+                  return WarningDisplay(message: _store.errorMessage);
+                break;
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

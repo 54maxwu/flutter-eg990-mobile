@@ -61,11 +61,7 @@ class MoviePluginRateState extends State<MoviePluginRate> {
     return GestureDetector(
       onTap: () async {
         if (_locked) {
-          FLToast.showText(
-            text: localeStr.messageActionTooFrequent,
-            position: FLToastPosition.top,
-            showDuration: ToastDuration.DEFAULT.value,
-          );
+          callToast(localeStr.messageActionTooFrequent);
           return;
         }
         _locked = true;
@@ -78,11 +74,7 @@ class MoviePluginRateState extends State<MoviePluginRate> {
         if (success)
           clicked();
         else
-          FLToast.showText(
-            text: localeStr.messageActionFailed,
-            position: FLToastPosition.top,
-            showDuration: ToastDuration.DEFAULT.value,
-          );
+          callToast(localeStr.messageActionFailed);
       },
       child: Row(
         children: [

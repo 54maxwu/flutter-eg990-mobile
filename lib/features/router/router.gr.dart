@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_ty_mobile/features/home/presentation/home_route.dart';
+import 'package:flutter_ty_mobile/features/router/my_static_page_transition.dart';
 import 'package:flutter_ty_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/register/presentation/register_route.dart';
 import 'package:flutter_ty_mobile/features/movie/presentation/movie_route.dart';
@@ -115,44 +116,56 @@ class Router extends RouterBase {
     final args = settings.arguments;
     switch (settings.name) {
       case Routes.homeRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => HomeRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => HomeRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.loginRoute:
         if (hasInvalidArgs<LoginRouteArguments>(args)) {
           return misTypedArgsRoute<LoginRouteArguments>(args);
         }
         final typedArgs = args as LoginRouteArguments ?? LoginRouteArguments();
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => LoginRoute(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginRoute(
               returnHomeAfterLogin: typedArgs.returnHomeAfterLogin,
               isDialog: typedArgs.isDialog),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.registerRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => RegisterRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              RegisterRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.movieRoute:
         if (hasInvalidArgs<MovieRouteArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<MovieRouteArguments>(args);
         }
         final typedArgs = args as MovieRouteArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => MovieRoute(typedArgs.form),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              MovieRoute(typedArgs.form),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.serviceRoute:
         if (hasInvalidArgs<WebRouteArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<WebRouteArguments>(args);
         }
         final typedArgs = args as WebRouteArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => WebRoute(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => WebRoute(
               startUrl: typedArgs.startUrl, hideBars: typedArgs.hideBars),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.memberRoute:
         if (hasInvalidArgs<MemberRouteArguments>(args)) {
@@ -160,38 +173,52 @@ class Router extends RouterBase {
         }
         final typedArgs =
             args as MemberRouteArguments ?? MemberRouteArguments();
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => MemberRoute(key: typedArgs.key),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              MemberRoute(key: typedArgs.key),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.promoRoute:
         if (hasInvalidArgs<PromoRouteArguments>(args)) {
           return misTypedArgsRoute<PromoRouteArguments>(args);
         }
         final typedArgs = args as PromoRouteArguments ?? PromoRouteArguments();
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => PromoRoute(openPromoId: typedArgs.openPromoId),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              PromoRoute(openPromoId: typedArgs.openPromoId),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.depositRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => DepositRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              DepositRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.depositWebPage:
         if (hasInvalidArgs<WebRouteArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<WebRouteArguments>(args);
         }
         final typedArgs = args as WebRouteArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => WebRoute(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => WebRoute(
               startUrl: typedArgs.startUrl, hideBars: typedArgs.hideBars),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.transferRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => TransferRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              TransferRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.bankcardRoute:
         if (hasInvalidArgs<BankcardRouteArguments>(args)) {
@@ -199,29 +226,44 @@ class Router extends RouterBase {
         }
         final typedArgs =
             args as BankcardRouteArguments ?? BankcardRouteArguments();
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => BankcardRoute(withdraw: typedArgs.withdraw),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              BankcardRoute(withdraw: typedArgs.withdraw),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.balanceRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => BalanceRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              BalanceRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.walletRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => WalletRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              WalletRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.messageRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => MessageRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              MessageRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.centerRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => CenterRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              CenterRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.centerPasswordPage:
         if (hasInvalidArgs<CenterDisplayAccountPasswordArguments>(args,
@@ -229,85 +271,120 @@ class Router extends RouterBase {
           return misTypedArgsRoute<CenterDisplayAccountPasswordArguments>(args);
         }
         final typedArgs = args as CenterDisplayAccountPasswordArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) =>
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
               CenterDisplayAccountPassword(store: typedArgs.store),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.centerWebPage:
         if (hasInvalidArgs<WebRouteArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<WebRouteArguments>(args);
         }
         final typedArgs = args as WebRouteArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => WebRoute(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => WebRoute(
               startUrl: typedArgs.startUrl, hideBars: typedArgs.hideBars),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.transactionRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => TransactionRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              TransactionRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.betRecordRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => BetRecordRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              BetRecordRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.dealsRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => DealsRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => DealsRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.flowsRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => FlowsRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => FlowsRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.agentRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => AgentRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => AgentRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.moreWebPage:
         if (hasInvalidArgs<WebRouteArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<WebRouteArguments>(args);
         }
         final typedArgs = args as WebRouteArguments;
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => WebRoute(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => WebRoute(
               startUrl: typedArgs.startUrl, hideBars: typedArgs.hideBars),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.downloadAreaRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => DownloadAreaRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              DownloadAreaRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.noticeRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => NoticeRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              NoticeRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.levelRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => VipLevelRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              VipLevelRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.storeRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => StoreRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) => StoreRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.rollerRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => RollerRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              RollerRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.testAreaRoute:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => TestAreaRoute(),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              TestAreaRoute(),
           settings: settings,
+          transitionsBuilder: MyStaticPageTransition.slide,
+          transitionDuration: const Duration(milliseconds: 400),
         );
       case Routes.templateRoute:
         return MaterialPageRoute<dynamic>(

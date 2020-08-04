@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/agent_store.dart';
@@ -13,7 +12,7 @@ class AgentRoute extends StatefulWidget {
 class _AgentRouteState extends State<AgentRoute> {
   AgentStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -34,12 +33,7 @@ class _AgentRouteState extends State<AgentRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -52,9 +46,7 @@ class _AgentRouteState extends State<AgentRoute> {
         (bool wait) {
           print('reaction on wait agent: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -74,15 +66,12 @@ class _AgentRouteState extends State<AgentRoute> {
             try {
               Navigator.of(context).pop();
             } on Exception {}
-            FLToast.showSuccess(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
+            callToastInfo(
+              result.msg,
+              icon: Icons.check_circle_outline,
             );
           } else {
-            FLToast.showError(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(result.msg);
           }
         },
       ),
@@ -104,22 +93,24 @@ class _AgentRouteState extends State<AgentRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case AgentStoreState.initial:
-              return SizedBox.shrink();
-            case AgentStoreState.loading:
-              return LoadingWidget();
-            case AgentStoreState.loaded:
-              return AgentDisplay(_store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case AgentStoreState.initial:
+                return SizedBox.shrink();
+              case AgentStoreState.loading:
+                return LoadingWidget();
+              case AgentStoreState.loaded:
+                return AgentDisplay(_store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

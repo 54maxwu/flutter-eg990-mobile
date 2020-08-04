@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart' show Observer;
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';

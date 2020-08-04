@@ -5,9 +5,12 @@ import 'package:flutter_ty_mobile/temp/test_screen.dart';
 import '../screen/feature_screen.dart';
 import '../screen/web_game_screen.dart';
 
-@MaterialAutoRouter(generateNavigationHelperExtension: true)
+@AdaptiveAutoRouter(
+  generateNavigationHelperExtension: true,
+  routesClassName: 'ScreenRoutes',
+)
 class $ScreenRouter {
-  @MaterialRoute(initial: true, maintainState: true)
+  @AdaptiveRoute(initial: true, maintainState: true)
   FeatureScreen featureScreen;
 
   WebGameScreen webGameScreen;

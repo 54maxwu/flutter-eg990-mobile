@@ -71,12 +71,7 @@ class _MainStartupState extends State<MainStartup> {
                 Duration(milliseconds: 500), () => closeAppCount = 0);
             if (closeAppCount > 1)
               return Future(() => true); // exit app
-            else if (closeAppCount == 1)
-              FLToast.showText(
-                text: localeStr.exitAppHint,
-                position: FLToastPosition.bottom,
-                showDuration: ToastDuration.SHORT.value,
-              );
+            else if (closeAppCount == 1) callToast(localeStr.exitAppHint);
           } else {
             RouterNavigate.navigateBack();
           }
@@ -87,12 +82,12 @@ class _MainStartupState extends State<MainStartup> {
             initialRoute: ScreenRoutes.featureScreen,
             router: ScreenRouter(),
           ),
+        ),
 //        body: Navigator(
 //          key: ScreenRouter.navigator.key,
 //          onGenerateRoute: ScreenRouter.onGenerateRoute,
 //          initialRoute: ScreenRouter.featureScreen,
 //        ),
-        ),
       ),
     );
   }

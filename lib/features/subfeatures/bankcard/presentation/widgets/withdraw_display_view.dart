@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/export_internal_file.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_titled_container.dart';
@@ -56,19 +55,11 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
       if (dataForm.isValid) {
         print('bankcard form: ${dataForm.toJson()}');
         if (widget.store.waitForWithdrawResult)
-          FLToast.showText(
-            text: localeStr.messageWait,
-            showDuration: ToastDuration.DEFAULT.value,
-            position: FLToastPosition.top,
-          );
+          callToast(localeStr.messageWait);
         else
           widget.store.sendRequest(dataForm);
       } else {
-        FLToast.showText(
-          text: localeStr.messageActionFillForm,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageActionFillForm);
       }
     }
   }
@@ -149,13 +140,9 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                             onChanged: (value) {
                               if ((value == 1 && widget.store.cgpUrl.isEmpty) ||
                                   (value == 2 && widget.store.cpwUrl.isEmpty)) {
-                                FLToast.showText(
-                                  text: (value == 1)
-                                      ? localeStr.messageErrorBindCgp
-                                      : localeStr.messageErrorBindCpw,
-                                  position: FLToastPosition.top,
-                                  showDuration: ToastDuration.DEFAULT.value,
-                                );
+                                callToast((value == 1)
+                                    ? localeStr.messageErrorBindCgp
+                                    : localeStr.messageErrorBindCpw);
                                 return;
                               }
                               setState(() {

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
 import 'package:flutter_ty_mobile/core/internal/themes.dart';
@@ -106,10 +105,7 @@ class _EventDialogState extends State<EventDialog> {
                                     count += 1;
                                     setState(() {});
                                   } else {
-                                    FLToast.showError(
-                                      text: widget.onSignError(),
-                                      showDuration: ToastDuration.DEFAULT.value,
-                                    );
+                                    callToastError(widget.onSignError());
                                   }
                                 },
                               ),

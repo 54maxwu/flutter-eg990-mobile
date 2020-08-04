@@ -1,9 +1,8 @@
-import 'package:flui/flui.dart' show FLMarqueeLabel;
 import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/marquee_entity.dart';
+import 'package:flutter_ty_mobile/features/home/presentation/widgets/marquee_widget.dart';
 
 class HomeDisplayMarquee extends StatelessWidget {
   final List<MarqueeEntity> marquees;
@@ -14,20 +13,21 @@ class HomeDisplayMarquee extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.tight(
-        Size(Global.device.width, 36.0),
+        Size(Global.device.width, 30.0),
       ),
       color: Themes.defaultMarqueeBarColor,
+      padding: const EdgeInsets.only(top: 3.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.fromLTRB(6.0, 0.0, 2.0, 2.0),
             child: Icon(
               const IconData(0xf027, fontFamily: 'FontAwesome'),
               color: Colors.white,
-              size: 16.0,
+              size: 20.0,
             ),
           ),
           Expanded(
@@ -38,7 +38,7 @@ class HomeDisplayMarquee extends StatelessWidget {
 //            'error: ${snapshot.hasError}');
                 if (snapshot.connectionState == ConnectionState.done &&
                     !snapshot.hasError) {
-                  return FLMarqueeLabel(
+                  return MarqueeWidget(
                     text: snapshot.data,
                     style: TextStyle(fontSize: FontSize.NORMAL.value),
                     loop: true,
@@ -58,7 +58,7 @@ class HomeDisplayMarquee extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            padding: const EdgeInsets.fromLTRB(6.0, 0.0, 6.0, 3.0),
             child: ButtonTheme(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               minWidth: 64.0,

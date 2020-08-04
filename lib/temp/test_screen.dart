@@ -4,13 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ty_mobile/core/internal/global.dart';
 import 'package:flutter_ty_mobile/core/internal/themes.dart';
+import 'package:flutter_ty_mobile/features/general/bloc_widget_export.dart';
 import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';
 import 'package:flutter_ty_mobile/mylogger.dart';
 
+import 'test_basic_chip_widget.dart';
 import 'test_basic_dropdown_widget.dart';
 import 'test_basic_input_widget.dart';
-import 'test_basic_chip_widget.dart';
 import 'test_single_input_chip_widget.dart';
 
 class TestScreen extends StatefulWidget {
@@ -43,11 +44,7 @@ class _TestScreenState extends State<TestScreen> {
                 children: <Widget>[
                   RaisedButton(
                     onPressed: () {
-                      FLToast.showText(
-                        text: Global.device.toString(),
-                        position: FLToastPosition.top,
-                        showDuration: ToastDuration.DEFAULT.value,
-                      );
+                      callToast(Global.device.toString());
                     },
                     child: Text('Size'),
                   ),
@@ -78,6 +75,36 @@ class _TestScreenState extends State<TestScreen> {
                     SingleInputChipWidget(),
                   ],
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 6.0),
+                child: Text('Toast: '),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () => callToastError('error toast'),
+                    child: Text('ERROR'),
+                  ),
+                  RaisedButton(
+                      onPressed: () => callToastInfo('info toast'),
+                      child: Text('INFO')),
+                  RaisedButton(
+                    onPressed: () => BotToast.showText(text: 'toast text'),
+                    child: Text('TEXT'),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      var toastCancel = callToastLoading();
+                      Future.delayed(Duration(seconds: 5), () {
+                        toastCancel();
+                      });
+                    },
+                    child: Text('LOADING'),
+                  ),
+                ],
               ),
             ],
           ),

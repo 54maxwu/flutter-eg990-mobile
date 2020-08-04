@@ -37,12 +37,7 @@ class _MovieRouteState extends State<MovieRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -57,24 +52,26 @@ class _MovieRouteState extends State<MovieRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.egRouteState) {
-            case MovieStoreState.loading:
-              return LoadingWidget();
-            case MovieStoreState.loaded:
-              return MovieStoreInheritedWidget(
-                store: _store,
-                size: null,
-                child: MovieDisplay(),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.topCenter,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.egRouteState) {
+              case MovieStoreState.loading:
+                return LoadingWidget();
+              case MovieStoreState.loaded:
+                return MovieStoreInheritedWidget(
+                  store: _store,
+                  size: null,
+                  child: MovieDisplay(),
+                );
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

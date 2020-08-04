@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/notice_store.dart';
@@ -33,12 +32,7 @@ class _NoticeRouteState extends State<NoticeRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -53,23 +47,25 @@ class _NoticeRouteState extends State<NoticeRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 12.0),
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case NoticeStoreState.initial:
-              return SizedBox.shrink();
-            case NoticeStoreState.loading:
-              return LoadingWidget();
-            case NoticeStoreState.loaded:
-              return NoticeDisplay(_store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.only(top: 12.0),
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case NoticeStoreState.initial:
+                return SizedBox.shrink();
+              case NoticeStoreState.loading:
+                return LoadingWidget();
+              case NoticeStoreState.loaded:
+                return NoticeDisplay(_store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

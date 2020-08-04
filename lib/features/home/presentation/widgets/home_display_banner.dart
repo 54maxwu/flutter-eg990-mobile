@@ -1,6 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/home/data/entity/banner_entity.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';

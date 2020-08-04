@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
@@ -32,12 +33,7 @@ class _RollerRouteState extends State<RollerRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then(
-              (value) => FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              ),
-            );
+            callToastError(message, delayedMilli: 200);
           }
         },
       ),
@@ -53,20 +49,22 @@ class _RollerRouteState extends State<RollerRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case RollerStoreState.loading:
-              return LoadingWidget();
-            case RollerStoreState.loaded:
-              return RollerDisplay(_store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.topCenter,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case RollerStoreState.loading:
+                return LoadingWidget();
+              case RollerStoreState.loaded:
+                return RollerDisplay(_store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

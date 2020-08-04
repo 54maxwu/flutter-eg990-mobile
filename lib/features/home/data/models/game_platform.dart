@@ -123,8 +123,5 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
     }
   }
 
-  bool isLongText(int limit) {
-    var name = label;
-    return (name.hasChinese) ? name.length > limit : name.length > limit * 2;
-  }
+  bool isLongText(int limit) => label.countLength > limit;
 }

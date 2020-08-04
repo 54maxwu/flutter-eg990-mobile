@@ -553,6 +553,16 @@ class S {
     );
   }
 
+  /// `Skip`
+  String get btnStopShowing {
+    return Intl.message(
+      'Skip',
+      name: 'btnStopShowing',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot Password`
   String get btnResetPassword {
     return Intl.message(
@@ -943,6 +953,16 @@ class S {
     );
   }
 
+  /// `Loading...`
+  String get messageLoading {
+    return Intl.message(
+      'Loading...',
+      name: 'messageLoading',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome, {name}`
   String messageWelcomeUser(Object name) {
     return Intl.message(
@@ -1143,11 +1163,21 @@ class S {
     );
   }
 
-  /// `Wrong phone format`
+  /// `Error Phone Number(11~13)`
   String get messageInvalidPhone {
     return Intl.message(
-      'Wrong phone format',
+      'Error Phone Number(11~13)',
       name: 'messageInvalidPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error Post Code(5~6)`
+  String get messageInvalidPostCode {
+    return Intl.message(
+      'Error Post Code(5~6)',
+      name: 'messageInvalidPostCode',
       desc: '',
       args: [],
     );
@@ -4588,6 +4618,16 @@ class S {
     return Intl.message(
       'Achieved',
       name: 'wheelApplyTableTextStatus1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Applied`
+  String get wheelApplyTableTextStatus2 {
+    return Intl.message(
+      'Applied',
+      name: 'wheelApplyTableTextStatus2',
       desc: '',
       args: [],
     );

@@ -8,8 +8,7 @@ void main() {
   String tyRoute4Url = 'https://www.vip66432.com/';
 
   test('test router regex', () {
-    expect('${Global.TEST_BASE_URL}'.isRouteUrl, true);
-    expect('${Global.TY_BASE_URL}'.testTyRouteUrl, true);
+    expect('${Global.EG_BASE_URL}'.isRouteUrl, true);
     expect(tyRoute7Url.testTyRouteUrl, true);
     expect(tyRoute6Url.testTyRouteUrl, true);
     expect(tyRoute4Url.testTyRouteUrl, false);

@@ -17,11 +17,7 @@ class _SingleInputChipWidgetState extends State<SingleInputChipWidget> {
       ),
       label: Text('Button'),
       onPressed: () {
-        FLToast.showText(
-          text: ('You pressed me'),
-          showDuration: ToastDuration.SHORT.value,
-          position: FLToastPosition.top,
-        );
+        callToast('You pressed me');
       },
     );
   }

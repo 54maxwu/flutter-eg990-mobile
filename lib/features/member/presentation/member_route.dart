@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/member_credit_store.dart';
@@ -28,17 +27,19 @@ class _MemberRouteState extends State<MemberRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          print('member observe user: ${_store.user}');
-          if (_store.user != null)
-            return MemberDisplay(_store);
-          else
-            return LoadingWidget();
-        },
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            print('member observe user: ${_store.user}');
+            if (_store.user != null)
+              return MemberDisplay(_store);
+            else
+              return LoadingWidget();
+          },
+        ),
       ),
     );
   }

@@ -2,15 +2,14 @@ import 'dart:async' show StreamController;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/tabs_page_control_widget.dart';
 
+import '../../data/models/game_category_model.dart';
+import '../state/home_store.dart';
 import 'home_display_size_calc.dart';
 import 'home_display_tab_page.dart';
 import 'home_store_inherit_widget.dart';
-import '../state/home_store.dart';
-import '../../data/models/game_category_model.dart';
 
 /// Main view of the game area
 /// Creates a [TabBar] widget to switch between each game category
@@ -122,8 +121,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
               child: Container(
                 /* Tab bar constraints */
                 constraints: BoxConstraints(
-//                  minHeight: widget.sizeCalc.barMinHeight,
-//                  maxHeight: widget.sizeCalc.barMaxHeight,
+                  maxHeight: widget.sizeCalc.barMaxHeight,
                   minWidth: widget.sizeCalc.barMinWidth,
                   maxWidth: widget.sizeCalc.barMaxWidth,
                 ),

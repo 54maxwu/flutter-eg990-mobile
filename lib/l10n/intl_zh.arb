@@ -216,11 +216,15 @@
   "@btnRegister": {
     "type": "text"
   },
+  "btnStopShowing": "不再显示",
+  "@btnStopShowing": {
+    "type": "text"
+  },
   "btnResetPassword": "忘记密码",
   "@btnResetPassword": {
     "type": "text"
   },
-  "btnFastLogin": "記住帳密",
+  "btnFastLogin": "记住帐密",
   "@btnFastLogin": {
     "type": "text"
   },
@@ -377,6 +381,10 @@
   "@messageClearDataRestart": {
     "type": "text"
   },
+  "messageLoading": "请稍候…",
+  "@messageLoading": {
+    "type": "text"
+  },
   "messageWelcomeUser": "欢迎，{name}",
   "@messageWelcomeUser": {
     "type": "text",
@@ -505,8 +513,12 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "电话格式错误",
+  "messageInvalidPhone": "电话格式错误(11~13碼)",
   "@messageInvalidPhone": {
+    "type": "text"
+  },
+  "messageInvalidPostCode": "邮递区号错误(5~6碼)",
+  "@messageInvalidPostCode": {
     "type": "text"
   },
   "messageInvalidWechat": "微信号格式错误",
@@ -2012,6 +2024,10 @@
   },
   "wheelApplyTableTextStatus1": "已达成",
   "@wheelApplyTableTextStatus1": {
+    "type": "text"
+  },
+  "wheelApplyTableTextStatus2": "已领取",
+  "@wheelApplyTableTextStatus2": {
     "type": "text"
   },
   "storeTextTitleProduct": "兑换商品",

@@ -17,7 +17,7 @@ class UserTokenStorage {
   static Future<void> save(String account) async {
     Box box = await getHiveBox(Global.CACHED_COOKIE);
     var cookies = DioApiService.loadCookies(
-        Uri.parse('${Global.TEST_BASE_URL}${UserApi.LOGIN}'));
+        Uri.parse('${Global.EG_BASE_URL}${UserApi.LOGIN}'));
 //    for (var value in cookies) {
 //      print('cookie name: ${value.name}');
 //    }

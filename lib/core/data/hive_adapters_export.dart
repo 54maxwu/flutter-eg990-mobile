@@ -1,3 +1,4 @@
+export '../../features/general/data/app/hive_app_data.dart';
 export '../../features/general/data/user/hive_cookie.dart';
 export '../../features/home/data/entity/banner_entity.dart'
     show BannerEntityAdapter;

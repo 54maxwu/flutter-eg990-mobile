@@ -40,13 +40,10 @@ class _TestInputDialogState extends State<TestInputDialog> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      FLToast.showText(
-          text: ('email:${_emailFieldKey.currentState.inputText}\n'
-              'username:${_userFieldKey.currentState.inputText}\n'
-              'password:${_pwdFieldKey.currentState.inputText}\n'
-              'test:${_testFieldKey.currentState.inputText}'),
-          showDuration: ToastDuration.DEFAULT.value,
-          position: FLToastPosition.top);
+      callToast('email:${_emailFieldKey.currentState.inputText}\n'
+          'username:${_userFieldKey.currentState.inputText}\n'
+          'password:${_pwdFieldKey.currentState.inputText}\n'
+          'test:${_testFieldKey.currentState.inputText}');
     }
   }
 

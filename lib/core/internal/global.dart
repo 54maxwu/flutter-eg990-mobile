@@ -10,11 +10,9 @@ class Global {
   static bool regLocale = false;
 
   static const bool IS_TEST_VER = true;
-  static const String CURRENT_SERVICE =
-      (IS_TEST_VER) ? TEST_BASE_URL : TY_BASE_URL;
+  static const String CURRENT_SERVICE = EG_BASE_URL;
 
-  static const String TEST_BASE_URL = "https://www.eg990.com/";
-  static const String TY_BASE_URL = "https://www.vip66729.com/";
+  static const String EG_BASE_URL = "https://www.eg990.com/";
   static const String TY_SERVICE_URL = "http://vip66741.com/";
 
   static const double APP_BAR_HEIGHT = kToolbarHeight - 8;
@@ -24,6 +22,8 @@ class Global {
 
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';
   static const String CACHE_LOGIN_FORM = 'CACHE_LOGIN_FORM';
+  static const String CACHE_APP_DATA = 'CACHE_APP_DATA';
+
   static const String WEB_MIMETYPE = 'text/html';
   static Encoding webEncoding = Encoding.getByName('utf-8');
 }

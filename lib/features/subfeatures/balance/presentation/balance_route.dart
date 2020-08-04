@@ -13,7 +13,7 @@ class BalanceRoute extends StatefulWidget {
 class _BalanceRouteState extends State<BalanceRoute> {
   BalanceStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -34,12 +34,7 @@ class _BalanceRouteState extends State<BalanceRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            Future.delayed(Duration(milliseconds: 200)).then((value) {
-              FLToast.showError(
-                text: message,
-                showDuration: ToastDuration.DEFAULT.value,
-              );
-            });
+            callToastError(message);
           }
         },
       ),
@@ -52,9 +47,7 @@ class _BalanceRouteState extends State<BalanceRoute> {
         (bool wait) {
           print('reaction on wait transfer: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -71,15 +64,9 @@ class _BalanceRouteState extends State<BalanceRoute> {
           print('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            FLToast.showSuccess(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastInfo(result.msg, icon: Icons.check_circle_outline);
           } else {
-            FLToast.showError(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(result.msg);
           }
         },
       ),
@@ -98,22 +85,24 @@ class _BalanceRouteState extends State<BalanceRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case BalanceStoreState.initial:
-              return SizedBox.shrink();
-            case BalanceStoreState.loading:
-              return LoadingWidget();
-            case BalanceStoreState.loaded:
-              return BalanceDisplay(_store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case BalanceStoreState.initial:
+                return SizedBox.shrink();
+              case BalanceStoreState.loading:
+                return LoadingWidget();
+              case BalanceStoreState.loaded:
+                return BalanceDisplay(_store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

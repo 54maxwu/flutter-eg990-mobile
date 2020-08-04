@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/res.dart';
 
@@ -23,7 +22,6 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
   double _heightFactor;
   double _bgHeight;
-  double _bgMaxHeight;
   double _bgWidth;
   String _credit;
   WalletType _selected;
@@ -90,17 +88,11 @@ class _WalletDisplayState extends State<WalletDisplay> {
   void initState() {
     _heightFactor = Global.device.heightScale;
     if (_heightFactor < 1.0) _heightFactor = 1.0;
-    _bgHeight = Global.device.height * 0.6 * _heightFactor;
-    if (_bgHeight < 420) {
-      var available = Global.device.height - Global.APP_TOOLS_HEIGHT - 16;
-      _bgHeight = (available > 420) ? 420 : available;
-    }
-    _bgMaxHeight = (_bgHeight > 480.0)
-        ? 480.0 * _heightFactor
-        : _bgHeight; //TODO need to test max height on small screen
-    print('wallet bg height:$_bgHeight, max: $_bgMaxHeight');
-    if (_bgHeight > _bgMaxHeight) _bgHeight = _bgMaxHeight;
+    _bgHeight = Global.device.featureContentHeight - 100;
+    if (_bgHeight > 480) _bgHeight = _bgHeight / _heightFactor;
     _bgWidth = Global.device.width - 28.0;
+    if (_bgWidth > 380) _bgWidth = 380;
+    print('wallet bg w$_bgWidth*h$_bgHeight');
     _credit = widget.store.wallet.credit;
     _walletType = (widget.store.wallet.auto == WalletType.SINGLE.value)
         ? WalletType.SINGLE
@@ -121,102 +113,94 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(14.0, 10.0, 14.0, 90.0),
-        child: Container(
-          alignment: Alignment.topCenter,
-
-          ///Background Container
-          constraints: BoxConstraints(
-            minHeight: _bgHeight,
-            maxHeight: _bgMaxHeight,
-            maxWidth: _bgWidth,
+    return Container(
+      ///Background Container
+      constraints: BoxConstraints.tight(Size(_bgWidth, _bgHeight)),
+      decoration: BoxDecoration(
+        color: Themes.defaultBackgroundColor,
+        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black54,
+            spreadRadius: 0.7,
+            blurRadius: 3.5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-          decoration: BoxDecoration(
-            color: Themes.defaultBackgroundColor,
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black54,
-                spreadRadius: 0.7,
-                blurRadius: 3.5,
-                offset: Offset(0, 5), // changes position of shadow
+        ],
+      ),
+      margin: const EdgeInsets.fromLTRB(14.0, 10.0, 14.0, 90.0),
+      alignment: Alignment.topCenter,
+//      child: Placeholder(),
+      child: Stack(
+        fit: StackFit.expand,
+        alignment: AlignmentDirectional.topCenter,
+        children: <Widget>[
+          Row(
+            /// Background Top Icon
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  height: 120, // same as icon height
+                  decoration: BoxDecoration(
+                    color: Themes.stackBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16.0),
+                      topRight: Radius.circular(16.0),
+                    ),
+                  ),
+                  child: Image.asset(
+                    Res.walletBgIcon,
+                    alignment: Alignment.topLeft,
+                    fit: BoxFit.none,
+                  ),
+                ),
               ),
             ],
           ),
-          child: Stack(
-            fit: StackFit.expand,
-            alignment: AlignmentDirectional.topCenter,
-            children: <Widget>[
-              Row(
-                /// Background Top Icon
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 120, // same as icon height
-                      decoration: BoxDecoration(
-                        color: Themes.stackBackgroundColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.0),
-                          topRight: Radius.circular(16.0),
-                        ),
-                      ),
-                      child: Image.asset(
-                        Res.walletBgIcon,
-                        alignment: Alignment.topLeft,
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                  ),
-                ],
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 8.0,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: _bgHeight - 24,
+                maxHeight: _bgHeight - 24,
+                maxWidth: _bgWidth - 16,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12.0,
-                  horizontal: 8.0,
-                ),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: _bgHeight - 24,
-                    maxHeight: _bgMaxHeight - 24,
-                    maxWidth: _bgWidth - 16,
-                  ),
-                  child: Column(
-                    /// Wallet Content
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: Column(
+                /// Wallet Content
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(Res.walletBgIconSmall),
-                          Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Text(
-                              localeStr.walletViewTitleMy,
-                              style: TextStyle(fontSize: FontSize.LARGE.value),
-                            ),
-                          ),
-                        ],
-                      ),
+                      Image.asset(Res.walletBgIconSmall),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
-                        child: _buildWalletBox(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: _buildOptions(),
+                        padding: const EdgeInsets.all(6.0),
+                        child: Text(
+                          localeStr.walletViewTitleMy,
+                          style: TextStyle(fontSize: FontSize.LARGE.value),
+                        ),
                       ),
                     ],
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
+                    child: _buildWalletBox(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _buildOptions(),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -228,7 +212,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
     return Container(
       constraints: BoxConstraints(
         minHeight: _bgHeight * 0.325,
-        maxHeight: _bgMaxHeight * 0.325,
+        maxHeight: _bgHeight * 0.325,
         minWidth: _bgWidth - 32,
       ),
       decoration: BoxDecoration(
@@ -271,14 +255,17 @@ class _WalletDisplayState extends State<WalletDisplay> {
                   ),
                 ),
               ),
-              Text(
-                _credit,
-                style: TextStyle(
-                  fontSize: FontSize.XLARGE.value,
-                  fontWeight: FontWeight.bold,
-                  color: Themes.defaultAccentColor,
+              GestureDetector(
+                onTap: () => widget.store.updateCredit(),
+                child: Text(
+                  _credit,
+                  style: TextStyle(
+                    fontSize: FontSize.XLARGE.value,
+                    fontWeight: FontWeight.bold,
+                    color: Themes.defaultAccentColor,
+                  ),
+                  overflow: TextOverflow.visible,
                 ),
-                overflow: TextOverflow.visible,
               ),
             ],
           ),
@@ -319,7 +306,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
         // (_bgHeight * 0.325) = wallet box
         // 64 = parent padding and items above
         // 60 = child padding and font line space
-        maxHeight: _bgMaxHeight - (_bgMaxHeight * 0.325) - 64 - 60,
+        maxHeight: _bgHeight - (_bgHeight * 0.325) - 64 - 60,
       ),
       child: Scrollbar(
         child: ListView.builder(
@@ -406,11 +393,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                         textColor: Themes.defaultTextColorBlack,
                         onPressed: () {
                           if (widget.store.waitForTypeChange) {
-                            FLToast.showText(
-                              text: localeStr.messageWait,
-                              showDuration: ToastDuration.DEFAULT.value,
-                              position: FLToastPosition.top,
-                            );
+                            callToast(localeStr.messageWait);
                           } else if (_walletType != _selected) {
                             if (_selected == WalletType.SINGLE)
                               widget.store.postWalletTransfer(toSingle: true);

@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/router/app_navigate.dart';
 import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/entity/payment_enum.dart';
@@ -22,7 +21,7 @@ class DepositDisplay extends StatefulWidget {
 class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
   GlobalKey<PaymentContentState> _contentKey;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   Widget _topWidget;
 
@@ -53,9 +52,7 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
         (bool wait) {
           print('deposit display wait result: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -72,9 +69,9 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
           print('deposit display result: $result');
           if (result == null) return;
           if (result.code == 0 && result.ledger != null && result.ledger > 0) {
-            FLToast.showSuccess(
-              text: localeStr.depositMessageSuccessLocal(result.ledger),
-              showDuration: ToastDuration.DEFAULT.value,
+            callToastInfo(
+              localeStr.depositMessageSuccessLocal(result.ledger),
+              icon: Icons.check_circle_outline,
             );
           } else if (result.code == 0 && result.url != null) {
             print('deposit display url: ${result.url}');
@@ -83,10 +80,7 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
               arg: WebRouteArguments(startUrl: result.url),
             );
           } else {
-            FLToast.showError(
-              text: localeStr.depositMessageFailed,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(localeStr.depositMessageFailed);
           }
         },
       ),

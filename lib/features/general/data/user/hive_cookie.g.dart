@@ -8,7 +8,7 @@ part of 'hive_cookie.dart';
 
 class HiveCookieEntityAdapter extends TypeAdapter<HiveCookieEntity> {
   @override
-  final typeId = 105;
+  final typeId = 108;
 
   @override
   HiveCookieEntity read(BinaryReader reader) {

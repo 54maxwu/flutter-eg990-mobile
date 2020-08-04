@@ -71,8 +71,7 @@ Future<Either<Failure, dynamic>> runTask(
           return Left(Failure.dataType());
         default:
           MyLogger.error(msg: 'task has exception: $e', tag: 'TaskX');
-          return Left(
-              Failure.internal(FailureCode(type: FailureType.TASK)));
+          return Left(Failure.internal(FailureCode(type: FailureType.TASK)));
       }
     },
   );

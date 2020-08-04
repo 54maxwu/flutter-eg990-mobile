@@ -20,10 +20,9 @@ class LoginNavigate extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(Duration(milliseconds: 200)).then((_) {
       // show login hint
-      var dismiss = FLToast.showLoading(
-        text: localeStr
-            .messageWelcomeUser(user?.account ?? getRouteUserStreams.userName),
-      );
+      var dismiss = callToastLoading(
+          message: localeStr.messageWelcomeUser(
+              user?.account ?? getRouteUserStreams.userName));
 
       // update user stream
       if (user != null) {

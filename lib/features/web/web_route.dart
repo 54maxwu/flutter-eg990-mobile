@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/member/data/repository/member_jwt_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -50,10 +49,7 @@ class _WebRouteState extends State<WebRoute> {
         (String message) {
           if (message != null && message.isNotEmpty) {
             Future.delayed(Duration(milliseconds: 200))
-                .then((value) => FLToast.showError(
-                      text: message,
-                      showDuration: ToastDuration.DEFAULT.value,
-                    ));
+                .then((value) => callToastError(message));
           }
         },
       ),
@@ -91,70 +87,72 @@ class _WebRouteState extends State<WebRoute> {
         }
         return Future(() => true);
       },
-      child: IndexedStack(
-        index: _stackToView,
-        children: <Widget>[
-          Container(
-            child: WebView(
+      child: Scaffold(
+        body: IndexedStack(
+          index: _stackToView,
+          children: <Widget>[
+            Container(
+              child: WebView(
 //            initialUrl: widget.startUrl,
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController controller) async {
-                _controller = controller;
-                if (widget.startUrl == Global.TY_SERVICE_URL)
-                  _controller.loadUrl(
-                      widget.startUrl + '?token=${_jwtInterface?.token ?? ''}');
-                else
-                  _controller.loadUrl(widget.startUrl);
-              },
-              onPageStarted: (String url) {
-                print('start loading: $url');
-              },
-              onPageFinished: (String url) async {
-                if (_stackToView == 1) {
-                  setState(() {
-                    _stackToView = 0;
-                  });
-                }
-                if (widget.hideBars) {
-                  print('hiding web page bars');
-                  _controller.evaluateJavascript(
-                      "document.getElementsByClassName('el-header')[0].style.display='none';");
-                  _controller.evaluateJavascript(
-                      "document.getElementsByClassName('el-footer')[0].style.display='none';");
-                  _controller.evaluateJavascript(
-                      "document.getElementsByClassName('aside_bars')[0].style.display='none';");
-                }
-
-                print('web page loaded: $url');
-                if (url.isUrl == false) return;
-
-                String pageTitle = await _controller.getTitle();
-                print('web page title: $pageTitle');
-                //TODO check the normal page title or 404
-                // Error 500 Title: 500 Internal Server Error
-                if (pageTitle.contains('Error') ||
-                    pageTitle.contains('Exception')) {
-                  if (pageTitle.startsWith('500')) {
-                    _controller.loadUrl(Uri.dataFromString(
-                      pageTitle,
-                      mimeType: Global.WEB_MIMETYPE,
-                      encoding: Global.webEncoding,
-                    ).toString());
+                javascriptMode: JavascriptMode.unrestricted,
+                onWebViewCreated: (WebViewController controller) async {
+                  _controller = controller;
+                  if (widget.startUrl == Global.TY_SERVICE_URL)
+                    _controller.loadUrl(widget.startUrl +
+                        '?token=${_jwtInterface?.token ?? ''}');
+                  else
+                    _controller.loadUrl(widget.startUrl);
+                },
+                onPageStarted: (String url) {
+                  print('start loading: $url');
+                },
+                onPageFinished: (String url) async {
+                  if (_stackToView == 1) {
+                    setState(() {
+                      _stackToView = 0;
+                    });
                   }
-                }
-              },
-              javascriptChannels: <JavascriptChannel>[
-                _toasterJavascriptChannel(context),
-              ].toSet(),
+                  if (widget.hideBars) {
+                    print('hiding web page bars');
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('el-header')[0].style.display='none';");
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('el-footer')[0].style.display='none';");
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('aside_bars')[0].style.display='none';");
+                  }
+
+                  print('web page loaded: $url');
+                  if (url.isUrl == false) return;
+
+                  String pageTitle = await _controller.getTitle();
+                  print('web page title: $pageTitle');
+                  //TODO check the normal page title or 404
+                  // Error 500 Title: 500 Internal Server Error
+                  if (pageTitle.contains('Error') ||
+                      pageTitle.contains('Exception')) {
+                    if (pageTitle.startsWith('500')) {
+                      _controller.loadUrl(Uri.dataFromString(
+                        pageTitle,
+                        mimeType: Global.WEB_MIMETYPE,
+                        encoding: Global.webEncoding,
+                      ).toString());
+                    }
+                  }
+                },
+                javascriptChannels: <JavascriptChannel>[
+                  _toasterJavascriptChannel(context),
+                ].toSet(),
+              ),
             ),
-          ),
-          Container(
-            color: Themes.defaultBackgroundColor,
-            child: Center(
-              child: CircularProgressIndicator(),
+            Container(
+              color: Themes.defaultBackgroundColor,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

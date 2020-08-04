@@ -20,6 +20,17 @@ class MovieApi {
   static const String EG_MOVIE_BUY = "api/movieBuy_2";
   static const String EG_MOVIE_BUY_FREE = "api/movieFree_2";
 
+  static const String NEW_MOVIE_CATEGORY = "api/movieCate_3";
+  static const String NEW_MOVIE_LIST = "api/movieList_3";
+  static const String NEW_MOVIE_COLLECT = "api/movieCollect_3";
+  static const String NEW_MOVIE_OWN = "api/movieOwn_3";
+  static const String NEW_MOVIE_POST = "api/moviePost_3";
+  static const String NEW_MOVIE_HOT = "api/movieHot_3";
+  static const String NEW_MOVIE_FAVORITE = "api/movieFavorite_3";
+  static const String NEW_MOVIE_HOBBY = "api/movieHobby_3";
+  static const String NEW_MOVIE_BUY = "api/movieBuy_3";
+  static const String NEW_MOVIE_BUY_FREE = "api/movieFree_3";
+
   static const String POST_VERIFY_REQUEST = "api/sendMessage";
   static const String POST_VERIFY = "api/checkVerifyCode";
 }
@@ -74,10 +85,10 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<MovieCategoryModel>>> getEgCategory() async {
     final result = await requestData(
       request: dioApiService.get(
-        MovieApi.EG_MOVIE_CATEGORY,
+        MovieApi.NEW_MOVIE_CATEGORY,
         userToken: jwtInterface.token,
       ),
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -111,13 +122,13 @@ class MovieRepositoryImpl implements MovieRepository {
     String api;
     switch (tid) {
       case 'love':
-        api = MovieApi.EG_MOVIE_COLLECT;
+        api = MovieApi.NEW_MOVIE_COLLECT;
         break;
       case 'buy':
-        api = MovieApi.EG_MOVIE_OWN;
+        api = MovieApi.NEW_MOVIE_OWN;
         break;
       default:
-        api = MovieApi.EG_MOVIE_LIST;
+        api = MovieApi.NEW_MOVIE_LIST;
         break;
     }
     final result = await requestData(
@@ -127,7 +138,7 @@ class MovieRepositoryImpl implements MovieRepository {
         cancelToken: _cancelToken,
         data: {'page': page, 'tid': tid},
       ),
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -148,12 +159,12 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, MoviePostModel>> getEgMoviePost({tid, int mid}) async {
     final result = await requestModel<MoviePostModel>(
       request: dioApiService.post(
-        MovieApi.EG_MOVIE_POST,
+        MovieApi.NEW_MOVIE_POST,
         userToken: jwtInterface.token,
         data: {'tid': tid, 'mid': mid},
       ),
       jsonToModel: MoviePostModel.jsonToModel,
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -167,13 +178,13 @@ class MovieRepositoryImpl implements MovieRepository {
     String api;
     switch (tid) {
       case 'love':
-        api = MovieApi.EG_MOVIE_COLLECT;
+        api = MovieApi.NEW_MOVIE_COLLECT;
         break;
       case 'buy':
-        api = MovieApi.EG_MOVIE_OWN;
+        api = MovieApi.NEW_MOVIE_OWN;
         break;
       default:
-        api = MovieApi.EG_MOVIE_HOT;
+        api = MovieApi.NEW_MOVIE_HOT;
         break;
     }
     final result = await requestData(
@@ -182,7 +193,7 @@ class MovieRepositoryImpl implements MovieRepository {
         userToken: jwtInterface.token,
         data: {'tid': tid},
       ),
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -206,12 +217,12 @@ class MovieRepositoryImpl implements MovieRepository {
   }) async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
-        MovieApi.EG_MOVIE_FAVORITE,
+        MovieApi.NEW_MOVIE_FAVORITE,
         userToken: jwtInterface.token,
         data: {'mid': mid, 'status': (isFavorite) ? 1 : -1},
       ),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -229,12 +240,12 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(Failure.internal(FailureCode()));
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
-        MovieApi.EG_MOVIE_HOBBY,
+        MovieApi.NEW_MOVIE_HOBBY,
         userToken: jwtInterface.token,
         data: {'mid': mid, 'status': (hobby == 0) ? 'c' : hobby},
       ),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -247,12 +258,12 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, RequestCodeModel>> postEgMovieBuy({int mid}) async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
-        MovieApi.EG_MOVIE_BUY,
+        MovieApi.NEW_MOVIE_BUY,
         userToken: jwtInterface.token,
         data: {'mid': mid},
       ),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
@@ -265,12 +276,12 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, RequestCodeModel>> postEgMovieFree({int mid}) async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
-        MovieApi.EG_MOVIE_BUY_FREE,
+        MovieApi.NEW_MOVIE_BUY_FREE,
         userToken: jwtInterface.token,
         data: {'mid': mid},
       ),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EG_MOVIE',
+      tag: 'remote-NEW_MOVIE',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
@@ -14,7 +13,7 @@ class TransferRoute extends StatefulWidget {
 class _TransferRouteState extends State<TransferRoute> {
   TransferStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -35,10 +34,7 @@ class _TransferRouteState extends State<TransferRoute> {
         // Run some logic with the content of the observed field
         (String msg) {
           if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(msg);
           }
         },
       ),
@@ -51,9 +47,7 @@ class _TransferRouteState extends State<TransferRoute> {
         (bool wait) {
           print('reaction on wait transfer: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -70,15 +64,9 @@ class _TransferRouteState extends State<TransferRoute> {
           print('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            FLToast.showSuccess(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastInfo(result.msg, icon: Icons.check_circle_outline);
           } else {
-            FLToast.showError(
-              text: result.msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(result.msg);
           }
         },
       ),
@@ -98,22 +86,24 @@ class _TransferRouteState extends State<TransferRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case TransferStoreState.initial:
-              return SizedBox.shrink();
-            case TransferStoreState.loading:
-              return LoadingWidget();
-            case TransferStoreState.loaded:
-              return TransferDisplay(store: _store);
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case TransferStoreState.initial:
+                return SizedBox.shrink();
+              case TransferStoreState.loading:
+                return LoadingWidget();
+              case TransferStoreState.loaded:
+                return TransferDisplay(store: _store);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

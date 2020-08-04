@@ -1,7 +1,6 @@
 import 'dart:math' show Random;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/warning_display.dart';
@@ -69,11 +68,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
   void _validateForm() {
     if (_store == null) return;
     if (_store.waitForResponse) {
-      FLToast.showText(
-        text: localeStr.messageWait,
-        showDuration: ToastDuration.DEFAULT.value,
-        position: FLToastPosition.top,
-      );
+      callToast(localeStr.messageWait);
       return;
     }
 
@@ -86,11 +81,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
       if (numbers.every((num) => rangeCheck(value: num, min: 1, max: 49)))
         _store.postLucky(numbers); //FIXME response data error
       else
-        FLToast.showInfo(
-          text: localeStr.centerLuckyNumberError,
-          position: FLToastPosition.center,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToastInfo(localeStr.centerLuckyNumberError);
     }
   }
 

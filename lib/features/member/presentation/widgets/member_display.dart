@@ -1,9 +1,9 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_ty_mobile/features/screen/feature_screen_inherited_widget.dart';
 
 import '../data/member_grid_item_v2.dart';
 import '../state/member_credit_store.dart';
@@ -56,7 +56,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
     } else if (item.value.route != null) {
       RouterNavigate.navigateToPage(item.value.route);
     } else {
-      FLToast.showInfo(text: localeStr.workInProgress);
+      callToastInfo(localeStr.workInProgress);
     }
   }
 
@@ -85,10 +85,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
         // Run some logic with the content of the observed field
         (String msg) {
           if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(msg);
           }
         },
       ),
@@ -118,6 +115,25 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        /// update new message count and member credit
+        /// triggered by navigate back and user login/logout
+        StreamBuilder<bool>(
+          stream: RouterNavigate.routerStreams.recheckUserStream,
+          initialData: false,
+          builder: (context, snapshot) {
+            if (snapshot.data) {
+              widget.store.getCredit();
+              widget.store.getNewMessageCount();
+              try {
+                final featureInherit =
+                    FeatureScreenInheritedWidget.of(context)?.store ?? null;
+                print('found feature inherit: ${featureInherit != null}');
+                if (featureInherit != null) featureInherit.getNewMessageCount();
+              } on Exception {}
+            }
+            return SizedBox.shrink();
+          },
+        ),
         Container(
           constraints: BoxConstraints(
             minHeight: headerMinHeight,

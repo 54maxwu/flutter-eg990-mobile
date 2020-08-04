@@ -181,6 +181,13 @@ mixin _$RollerStore on _RollerStore, Store {
     return _$getCountAsyncAction.run(() => super.getCount());
   }
 
+  final _$applyCountAsyncAction = AsyncAction('_RollerStore.applyCount');
+
+  @override
+  Future<bool> applyCount(int questId) {
+    return _$applyCountAsyncAction.run(() => super.applyCount(questId));
+  }
+
   final _$getPrizeAsyncAction = AsyncAction('_RollerStore.getPrize');
 
   @override

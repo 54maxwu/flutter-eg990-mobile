@@ -127,13 +127,13 @@ mixin _$BankcardStore on _BankcardStore, Store {
   final _$newCardResultAtom = Atom(name: '_BankcardStore.newCardResult');
 
   @override
-  RequestStatusModel get newCardResult {
+  RequestCodeModel get newCardResult {
     _$newCardResultAtom.reportRead();
     return super.newCardResult;
   }
 
   @override
-  set newCardResult(RequestStatusModel value) {
+  set newCardResult(RequestCodeModel value) {
     _$newCardResultAtom.reportWrite(value, super.newCardResult, () {
       super.newCardResult = value;
     });

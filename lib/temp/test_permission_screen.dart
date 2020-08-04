@@ -26,11 +26,7 @@ class _TestPermissionScreenState extends State<TestPermissionScreen> {
           if (key != map.keys.last) result.write('\n');
         });
         print(result);
-        FLToast.showText(
-          text: '(auto)\n${result.toString()}',
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.LONG.value,
-        );
+        callToast('(auto)\n${result.toString()}');
       });
     });
     return WillPopScope(
@@ -102,11 +98,7 @@ class _TestPermissionScreenState extends State<TestPermissionScreen> {
                           if (key != map.keys.last) result.write('\n');
                         });
                         print(result);
-                        FLToast.showText(
-                          text: '(auto)\n${result.toString()}',
-                          position: FLToastPosition.top,
-                          showDuration: ToastDuration.LONG.value,
-                        );
+                        callToast('(auto)\n${result.toString()}');
                       });
                     },
                   ),

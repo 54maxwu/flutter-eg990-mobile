@@ -13,27 +13,21 @@ class LocaleTestWidget extends StatefulWidget {
 class _LocaleTestWidgetState extends State<LocaleTestWidget> {
   @override
   void initState() {
-    if (widget.changeLang)
-
-    super.initState();
+    if (widget.changeLang) super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     if (widget.changeLang) {
-     return FutureBuilder(
-         future: Future.wait([S.load(Locale('zh', '')).then((value) => true)]),
-         builder: (context, snapshot) {
-           var localeText = S
-               .of(context)
-               .pageTitleHome;
-           print('locale text: $localeText');
-           return Text(localeText);
-         }
-     );
+      return FutureBuilder(
+          future: Future.wait([S.load(Locale('zh', '')).then((value) => true)]),
+          builder: (context, snapshot) {
+            var localeText = S.of(context).pageTitleHome;
+            print('locale text: $localeText');
+            return Text(localeText);
+          });
     } else {
-      var localeText = S
-          .of(context)
-          .pageTitleHome;
+      var localeText = S.of(context).pageTitleHome;
       print('locale text: $localeText');
       return Text(localeText);
     }

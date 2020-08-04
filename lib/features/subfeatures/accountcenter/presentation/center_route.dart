@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_route_widget.dart';
 
 import 'state/center_store.dart';
@@ -15,7 +14,7 @@ class _CenterRouteState extends State<CenterRoute> {
   final GlobalKey routeKey = new GlobalKey();
   CenterStore _store;
   List<ReactionDisposer> _disposers;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   @override
   void initState() {
@@ -37,10 +36,7 @@ class _CenterRouteState extends State<CenterRoute> {
         // Run some logic with the content of the observed field
         (String msg) {
           if (msg != null && msg.isNotEmpty) {
-            FLToast.showError(
-              text: msg,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(msg);
           }
         },
       ),
@@ -52,9 +48,7 @@ class _CenterRouteState extends State<CenterRoute> {
         // Run some logic with the content of the observed field
         (bool wait) {
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -74,26 +68,21 @@ class _CenterRouteState extends State<CenterRoute> {
               case CenterStoreAction.email:
               case CenterStoreAction.wechat:
               case CenterStoreAction.lucky:
-                FLToast.showSuccess(
-                  text: localeStr
-                      .messageTaskSuccess(localeStr.centerTextButtonBind),
-                  showDuration: ToastDuration.DEFAULT.value,
+                callToastInfo(
+                  localeStr.messageTaskSuccess(localeStr.centerTextButtonBind),
+                  icon: Icons.check_circle_outline,
                 );
                 break;
               case CenterStoreAction.password:
-                FLToast.showSuccess(
-                  text: localeStr
-                      .messageTaskSuccess(localeStr.centerTextButtonEdit),
-                  showDuration: ToastDuration.DEFAULT.value,
+                callToastInfo(
+                  localeStr.messageTaskSuccess(localeStr.centerTextButtonEdit),
+                  icon: Icons.check_circle_outline,
                 );
                 RouterNavigate.navigateBack();
                 break;
               case CenterStoreAction.verify_request:
               case CenterStoreAction.verify:
-                FLToast.showSuccess(
-                  text: response.msg,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                localeStr.messageTaskSuccess(response.msg);
                 break;
             }
           } else {
@@ -102,25 +91,16 @@ class _CenterRouteState extends State<CenterRoute> {
               case CenterStoreAction.email:
               case CenterStoreAction.wechat:
               case CenterStoreAction.lucky:
-                FLToast.showError(
-                  text:
-                      '${localeStr.messageTaskFailed(localeStr.centerTextButtonBind)}: ${response.msg}',
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToastError(
+                    '${localeStr.messageTaskFailed(localeStr.centerTextButtonBind)}: ${response.msg}');
                 break;
               case CenterStoreAction.password:
-                FLToast.showError(
-                  text: localeStr
-                      .messageTaskFailed(localeStr.centerTextButtonEdit),
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToastError(localeStr
+                    .messageTaskFailed(localeStr.centerTextButtonEdit));
                 break;
               case CenterStoreAction.verify_request:
               case CenterStoreAction.verify:
-                FLToast.showError(
-                  text: response.msg,
-                  showDuration: ToastDuration.DEFAULT.value,
-                );
+                callToastError(localeStr.messageTaskFailed(response.msg));
                 break;
             }
           }
@@ -140,25 +120,27 @@ class _CenterRouteState extends State<CenterRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: CenterStoreInheritedWidget(
-        key: routeKey,
-        store: _store,
-        child: Observer(
-          // Observe using specific widget
-          builder: (_) {
-            switch (_store.state) {
-              case CenterStoreState.initial:
-                return SizedBox.shrink();
-              case CenterStoreState.loading:
-                return LoadingWidget();
-              case CenterStoreState.loaded:
-                return CenterDisplay();
-              default:
-                return SizedBox.shrink();
-            }
-          },
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: CenterStoreInheritedWidget(
+          key: routeKey,
+          store: _store,
+          child: Observer(
+            // Observe using specific widget
+            builder: (_) {
+              switch (_store.state) {
+                case CenterStoreState.initial:
+                  return SizedBox.shrink();
+                case CenterStoreState.loading:
+                  return LoadingWidget();
+                case CenterStoreState.loaded:
+                  return CenterDisplay();
+                default:
+                  return SizedBox.shrink();
+              }
+            },
+          ),
         ),
       ),
     );

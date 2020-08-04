@@ -87,7 +87,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            resValue "string", "app_name", "EG990 V2"
+            resValue "string", "app_name", "EG990"
             versionNameSuffix "R"
         }
         debug {
@@ -95,7 +95,7 @@ android {
             minifyEnabled true
             useProguard true // set to true for VLC player
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "EG990 V2 Test"
+            resValue "string", "app_name", "EG990 Test"
             versionNameSuffix "T"
             applicationIdSuffix ".debug"
         }

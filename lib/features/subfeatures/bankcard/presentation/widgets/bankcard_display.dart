@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_ty_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_ty_mobile/features/general/widgets/customize_field_widget.dart';
@@ -56,28 +55,22 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
       form.save();
       BankcardForm dataForm = BankcardForm(
         owner: _nameFieldKey.currentState.getInput,
-        bankId: _bankSelected,
+        bankId: _bankSelected ?? '',
         card: _accountFieldKey.currentState.getInput,
         branch: _branchFieldKey.currentState.getInput,
-        province: _provinceSelected,
-        area: (_areaSelected != null) ? _areaSelected : _citySelected,
+        province: _provinceSelected ?? '',
+        area: (_areaSelected != null)
+            ? _areaSelected
+            : (_citySelected != null) ? _citySelected : '',
       );
       if (dataForm.isValid) {
         print('bankcard form: ${dataForm.toJson()}');
         if (widget.store.waitForNewCardResult)
-          FLToast.showText(
-            text: localeStr.messageWait,
-            showDuration: ToastDuration.DEFAULT.value,
-            position: FLToastPosition.top,
-          );
+          callToast(localeStr.messageWait);
         else
           widget.store.sendRequest(dataForm);
       } else {
-        FLToast.showText(
-          text: localeStr.messageActionFillForm,
-          position: FLToastPosition.top,
-          showDuration: ToastDuration.DEFAULT.value,
-        );
+        callToast(localeStr.messageActionFillForm);
       }
     }
   }
@@ -125,7 +118,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         (map) {
           print('city map changed, size: ${map.keys.length}');
           cityMap = map;
-          _citySelected = cityMap.keys.first;
+          _citySelected = null;
           setState(() {});
         },
       ),
@@ -137,7 +130,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         (map) {
           print('area map changed, size: ${map.keys.length}');
           areaMap = map;
-          _areaSelected = areaMap.keys.first;
+          _areaSelected = null;
           setState(() {});
         },
       ),
@@ -304,9 +297,8 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                         onPressed: () {
                           try {
                             _validateForm();
-                          } catch (e) {
-                            MyLogger.error(
-                                msg: 'form error: $e', error: e, tag: tag);
+                          } catch (e, s) {
+                            MyLogger.error(msg: 'form error: $e\n$s', tag: tag);
                           }
                         },
                       ),

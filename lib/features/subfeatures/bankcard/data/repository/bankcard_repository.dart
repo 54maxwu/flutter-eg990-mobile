@@ -14,7 +14,7 @@ class BankcardApi {
 
 abstract class BankcardRepository {
   Future<Either<Failure, BankcardModel>> getBankcard();
-  Future<Either<Failure, RequestStatusModel>> postBankcard(BankcardForm form);
+  Future<Either<Failure, RequestCodeModel>> postBankcard(BankcardForm form);
   Future<Either<Failure, Map<String, String>>> getBanks();
   Future<Either<Failure, Map<String, String>>> getProvinces();
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
@@ -34,48 +34,46 @@ class BankcardRepositoryImpl implements BankcardRepository {
 
   @override
   Future<Either<Failure, BankcardModel>> getBankcard() async {
-    final result = await requestData(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
         BankcardApi.GET_CARD,
         userToken: jwtInterface.token,
       ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-BANKCARD',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        if ((data is bool && !data) || (data is String && data == 'false')) {
-          return Right(BankcardModel(hasCard: false));
-        } else if (data is Map) {
-          data.putIfAbsent('hasCard', () => true);
-          MyLogger.print(msg: 'bankcard map: $data', tag: tag);
-          return Right(BankcardModel.jsonToBankcardModel(data));
-        } else if (data is String &&
-            data.startsWith('{') &&
-            data.endsWith('}')) {
-          Map map = jsonDecode(data);
-          map.putIfAbsent('hasCard', () => true);
-          MyLogger.print(msg: 'bankcard map: $map', tag: tag);
-          return Right(BankcardModel.jsonToBankcardModel(map));
+        if (data.isSuccess && data.data.toString().isNotEmpty) {
+          MyLogger.print(msg: 'bankcard map: ${data.data}', tag: tag);
+          if (data.data is Map)
+            return Right(BankcardModel.jsonToBankcardModel(data.data)
+                .copyWith(hasCard: true));
+          else if (data.data is String)
+            return Right(
+                BankcardModel.jsonToBankcardModel(jsonDecode(data.data))
+                    .copyWith(hasCard: true));
+          else
+            return Left(Failure.dataType());
         } else {
-          MyLogger.error(msg: 'bankcard data error: $data', tag: tag);
-          return Left(Failure.token());
+          return Right(BankcardModel(hasCard: false));
         }
       },
     );
   }
 
   @override
-  Future<Either<Failure, RequestStatusModel>> postBankcard(
+  Future<Either<Failure, RequestCodeModel>> postBankcard(
       BankcardForm form) async {
-    final result = await requestModel<RequestStatusModel>(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
         BankcardApi.POST_NEW_CARD,
         data: form.toJson(),
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestStatusModel.jsonToStatusModel,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-BANKCARD_NEW',
     );
 //    print('test response type: ${result.runtimeType}, data: $result');
