@@ -1,5 +1,5 @@
+import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/utils/json_decode_util.dart';
 
 final String jsonListString =
     '[{"id": 4107, "category": "slot","platform": "eg"},{"id": 4108,"category": "slot","platform": "eg"}]';
@@ -21,11 +21,11 @@ final String htmlString = '<p>方案A</p>'
 
 void main() {
   test('test json trim decode', () {
-    print(JsonDecodeUtil.trimJson(jsonListString));
+    print(JsonUtil.trimJson(jsonListString));
   });
 
   test('test json array decode to list', () {
-    var list = JsonDecodeUtil.decodeArray(jsonListString);
+    var list = JsonUtil.decodeArray(jsonListString);
     print(list);
     expect(list, isA<List>());
   });
@@ -34,7 +34,7 @@ void main() {
 //    final trimRegex = RegExp('r"\n|\r\n|\r|\t"');
 //    String strBody =
 //        """$htmlString""".replaceAll(trimRegex, "").replaceAll('> <', "><");
-    String strBody = JsonDecodeUtil.trimJson(htmlString);
+    String strBody = JsonUtil.trimJson(htmlString);
     print(strBody);
     expect(strBody.contains('table style='), true);
   });

@@ -1,11 +1,12 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/entity/payment_enum.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/form/deposit_form.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/deposit_result.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/payment_freezed.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/payment_promo.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/payment_raw.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/repository/deposit_repository.dart';
+import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/features/subfeatures/deposit/data/entity/payment_enum.dart';
+
+import '../../data/form/deposit_form.dart';
+import '../../data/model/deposit_result.dart';
+import '../../data/model/payment_freezed.dart';
+import '../../data/model/payment_promo.dart';
+import '../../data/model/payment_raw.dart';
+import '../../data/repository/deposit_repository.dart';
 
 part 'deposit_store.g.dart';
 
@@ -59,7 +60,7 @@ abstract class _DepositStore with Store {
   }
 
   @action
-  Future getPaymentType() async {
+  Future<void> getPaymentType() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -79,12 +80,13 @@ abstract class _DepositStore with Store {
         );
       });
     } on Exception {
-      errorMessage = Failure.internal().message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
     }
   }
 
   @action
-  Future getPaymentPromo() async {
+  Future<void> getPaymentPromo() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -106,13 +108,14 @@ abstract class _DepositStore with Store {
         );
       });
     } on Exception {
-      errorMessage = Failure.internal().message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
     }
   }
 
   void generateEnumList() {
     if (paymentMap.isEmpty) {
-      errorMessage = Failure.dataSource().message;
+      errorMessage = Failure.jsonFormat().message;
     } else {
       List<PaymentEnum> list = new List();
       PaymentEnum.valueMap.forEach((key, value) {
@@ -124,8 +127,9 @@ abstract class _DepositStore with Store {
   }
 
   @action
-  Future sendRequest(DepositDataForm form) async {
+  Future<void> sendRequest(DepositDataForm form) async {
     try {
+      if (waitForDepositResult) return;
       // Reset the possible previous error message.
       errorMessage = null;
       depositResult = null;
@@ -143,7 +147,9 @@ abstract class _DepositStore with Store {
         );
       });
     } on Exception {
-      errorMessage = Failure.internal().message;
+      waitForDepositResult = false;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
     }
   }
 }

@@ -6,6 +6,7 @@ part of 'payment_raw.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_PaymentRaw _$_$_PaymentRawFromJson(Map<String, dynamic> json) {
   return _$_PaymentRaw(
     bankJson: json['1'] ?? '',
@@ -18,6 +19,7 @@ _$_PaymentRaw _$_$_PaymentRawFromJson(Map<String, dynamic> json) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$_PaymentRawToJson(_$_PaymentRaw instance) =>
     <String, dynamic>{
       '1': instance.bankJson,
@@ -29,6 +31,7 @@ Map<String, dynamic> _$_$_PaymentRawToJson(_$_PaymentRaw instance) =>
       '8': instance.virtualJson,
     };
 
+// ignore: non_constant_identifier_names
 _$_PaymentRawNamed _$_$_PaymentRawNamedFromJson(Map<String, dynamic> json) {
   return _$_PaymentRawNamed(
     bankJson: json['localbank'] ?? '',
@@ -41,6 +44,7 @@ _$_PaymentRawNamed _$_$_PaymentRawNamedFromJson(Map<String, dynamic> json) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$_PaymentRawNamedToJson(_$_PaymentRawNamed instance) =>
     <String, dynamic>{
       'localbank': instance.bankJson,

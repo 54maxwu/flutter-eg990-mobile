@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/template/mobx/data/repository/template_repository.dart';
+import 'package:flutter_eg990_mobile/template/mobx/data/repository/template_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'template_store.g.dart';
@@ -24,8 +24,7 @@ abstract class _TemplateStore with Store {
   @computed
   StoreState get state {
     // If the user has not yet searched for a weather forecast or there has been an error
-    if (_descFuture == null ||
-        _descFuture.status == FutureStatus.rejected) {
+    if (_descFuture == null || _descFuture.status == FutureStatus.rejected) {
       return StoreState.initial;
     }
     // Pending Future means "loading"
@@ -42,8 +41,7 @@ abstract class _TemplateStore with Store {
       errorMessage = null;
       // Fetch weather from the repository and wrap the regular Future into an observable.
       // This _weatherFuture triggers updates to the computed state property.
-      _descFuture =
-          ObservableFuture(_templateRepository.fetchString());
+      _descFuture = ObservableFuture(_templateRepository.fetchString());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       description = await _descFuture;
     } on Exception {

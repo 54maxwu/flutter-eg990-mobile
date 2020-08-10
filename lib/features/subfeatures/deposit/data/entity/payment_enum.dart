@@ -1,60 +1,26 @@
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:generic_enum/generic_enum.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:vnum/vnum.dart';
 
-part 'payment_enum.freezed.dart';
+import 'payment_enum_data.dart';
 
-enum TutorialItemType { Desc, Image, Button }
-
-@freezed
-abstract class PaymentTutorialItem with _$PaymentTutorialItem {
-  const factory PaymentTutorialItem({
-    @required int sortId,
-    @required String value,
-    @required TutorialItemType type,
-  }) = _PaymentTutorialItem;
-}
-
-@freezed
-abstract class PaymentEnumData with _$PaymentEnumData {
-  const factory PaymentEnumData({
-    @required String title,
-    @required String jsonKey,
-//    @required String jsonKey2,
-    String tutorialTitle,
-    List<PaymentTutorialItem> tutorialItem,
-  }) = _PaymentEnumData;
-}
-
-class PaymentEnum extends GenericEnum<PaymentEnumData> {
-  const PaymentEnum._(PaymentEnumData value) : super(value);
-
-  static Map<int, PaymentEnum> get valueMap => {
-        1: PaymentEnum.bank,
-        2: PaymentEnum.online,
-        3: PaymentEnum.wechat,
-        4: PaymentEnum.quickPay,
-        5: PaymentEnum.ali,
-        7: PaymentEnum.union,
-        8: PaymentEnum.cgp,
-        9: PaymentEnum.atm,
-      };
-
-  static PaymentEnum bank = PaymentEnum._(PaymentEnumData(
+@VnumDefinition
+class PaymentEnum extends Vnum<PaymentEnumData> {
+  /// Case Definition
+  static PaymentEnum bank = PaymentEnum.define(PaymentEnumData(
 //    title: 'bank',
     title: localeStr.depositPaymentTitleBank,
     jsonKey: '1',
 //    jsonKey2: 'localbank',
   ));
 
-  static PaymentEnum online = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum online = PaymentEnum.define(PaymentEnumData(
 //    title: 'online',
     title: localeStr.depositPaymentTitleOnline,
     jsonKey: '2',
 //    jsonKey2: 'onlinepay',
   ));
 
-  static PaymentEnum wechat = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum wechat = PaymentEnum.define(PaymentEnumData(
 //    title: 'wechat',
     title: localeStr.depositPaymentTitleWechat,
     jsonKey: '3',
@@ -79,7 +45,7 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
     ],
   ));
 
-  static PaymentEnum quickPay = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum quickPay = PaymentEnum.define(PaymentEnumData(
 //    title: 'quick',
     title: localeStr.depositPaymentTitleQuick,
     jsonKey: '4',
@@ -95,7 +61,7 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
     ),
   ));
 
-  static PaymentEnum ali = PaymentEnum._(
+  static PaymentEnum ali = PaymentEnum.define(
     PaymentEnumData(
 //    title: 'ali',
       title: localeStr.depositPaymentTitleAli,
@@ -141,7 +107,7 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
     ),
   );
 
-  static PaymentEnum jdcom = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum jdcom = PaymentEnum.define(PaymentEnumData(
 //    title: 'union',
     title: localeStr.depositPaymentTitleJd,
     jsonKey: '7',
@@ -180,7 +146,7 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
       ..sort((a, b) => a.sortId.compareTo(b.sortId)),
   ));
 
-  static PaymentEnum union = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum union = PaymentEnum.define(PaymentEnumData(
 //    title: 'union',
     title: localeStr.depositPaymentTitleUnion,
     jsonKey: '7',
@@ -219,7 +185,7 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
       ..sort((a, b) => a.sortId.compareTo(b.sortId)),
   ));
 
-  static PaymentEnum cgp = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum cgp = PaymentEnum.define(PaymentEnumData(
 //    title: 'cgpay',
     title: localeStr.depositPaymentTitleCgp,
     jsonKey: '8',
@@ -241,20 +207,39 @@ class PaymentEnum extends GenericEnum<PaymentEnumData> {
     ],
   ));
 
-  static PaymentEnum atm = PaymentEnum._(PaymentEnumData(
+  static PaymentEnum atm = PaymentEnum.define(PaymentEnumData(
 //    title: 'Web ATM',
     title: localeStr.depositPaymentTitleAtm,
     jsonKey: '9',
 //    jsonKey2: 'atm',
   ));
-}
 
-extension PaymentEnumExtension on PaymentEnum {
-  int get typeKey => int.parse(this.value.jsonKey);
+  /// Used for defining cases
+  const PaymentEnum.define(PaymentEnumData fromValue) : super.define(fromValue);
 
-  String get title => this.value.title;
+  /// Used for loading enum using value
+  factory PaymentEnum(PaymentEnumData value) =>
+      Vnum.fromValue(value, PaymentEnum);
 
-  List get tutorial => (this.value.tutorialTitle != null)
-      ? [this.value.tutorialTitle, this.value.tutorialItem]
+  /// Iterating cases
+  Iterable get listAll => Vnum.allCasesFor(PaymentEnum);
+
+  static Map<int, PaymentEnum> get valueMap => {
+        1: PaymentEnum.bank,
+        2: PaymentEnum.online,
+        3: PaymentEnum.wechat,
+        4: PaymentEnum.quickPay,
+        5: PaymentEnum.ali,
+        7: PaymentEnum.union,
+        8: PaymentEnum.cgp,
+        9: PaymentEnum.atm,
+      };
+
+  int get typeKey => int.parse(value.jsonKey);
+
+  String get title => value.title;
+
+  List get tutorial => (value.tutorialTitle != null)
+      ? [value.tutorialTitle, value.tutorialItem]
       : null;
 }

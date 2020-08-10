@@ -11,6 +11,10 @@ class ScreenMenuBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _ScreenMenuBarState extends State<ScreenMenuBar> {
+  final String _langIcon = (Global.lang == 'vi')
+      ? '/images/lang_vnm.jpg'
+      : (Global.lang == 'en') ? '/images/lang_eng.jpg' : '/images/lang_chn.jpg';
+
   Widget _lastActionWidget;
   bool _usingUserAction = false;
 
@@ -26,8 +30,8 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
     return AppBar(
       /* App bar Icon */
       title: Image.asset(
-        Res.iconBarLogoEg,
-        scale: 4,
+        Res.iconBarLogo,
+        scale: 2,
       ),
       titleSpacing: 0,
       centerTitle: false,
@@ -49,10 +53,9 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       /* App bar Left Actions */
       leading: Observer(
         builder: (_) {
-          final showMenu = viewState.store.pageInfo.isFeature ?? true;
-          if (showMenu) {
+          if (viewState.store.showMenuDrawer) {
             return IconButton(
-              icon: Icon(Icons.menu, color: Themes.defaultAccentColor),
+              icon: Icon(Icons.menu, color: Themes.drawerIconColor),
               tooltip: localeStr.btnMenu,
               onPressed: () {
                 viewState.scaffoldKey.currentState.openDrawer();
@@ -60,7 +63,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
             );
           } else {
             return IconButton(
-              icon: Icon(Icons.arrow_back, color: Themes.iconColor),
+              icon: Icon(Icons.arrow_back, color: Themes.drawerIconSubColor),
               tooltip: localeStr.btnBack,
               onPressed: () {
                 RouterNavigate.navigateBack();
@@ -94,7 +97,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
         scale: 0.75,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(36.0),
-          child: networkImageBuilder('/images/lang_chn.jpg', imgScale: 3.0),
+          child: networkImageBuilder(_langIcon, imgScale: 3.0),
         ),
       ),
     );
@@ -131,16 +134,16 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
                 borderRadius: new BorderRadius.circular(4.0),
               ),
               child: RaisedButton(
-                color: Themes.defaultAccentColor,
                 child: new Text(
                   localeStr.pageTitleRegister2,
                   style: TextStyle(
-                      fontSize: FontSize.NORMAL.value + 1,
-                      color: Themes.defaultTextColorBlack),
+                    fontSize: FontSize.NORMAL.value + 1,
+                    color: Themes.buttonTextPrimaryColor,
+                  ),
                 ),
                 visualDensity: VisualDensity(horizontal: -3.0),
                 onPressed: () =>
-                    RouterNavigate.navigateToPage(RoutePage.template2),
+                    RouterNavigate.navigateToPage(RoutePage.register),
               ),
             ),
           ],

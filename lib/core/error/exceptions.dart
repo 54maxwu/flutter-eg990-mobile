@@ -1,6 +1,5 @@
-import 'package:flutter_ty_mobile/core/network/handler/request_status_freezed.dart' show RequestStatusModel;
-
-class NetworkException implements Exception {}
+import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart'
+    show RequestStatusModel;
 
 class LocationException implements Exception {}
 
@@ -19,8 +18,6 @@ class RequestTimeoutException implements ServerException {
 class RequestCanceledException implements ServerException {}
 
 class ResponseException implements ServerException {}
-
-class DownloadException implements ServerException {}
 
 class UnknownException implements ServerException {}
 
@@ -45,8 +42,8 @@ class JsonFormatException implements Exception {
 
 class MapJsonDataException implements Exception {}
 
-class EmptyDataException implements Exception {}
-
 class HiveDataException implements Exception {}
+
+class RequestTypeErrorException implements Exception {}
 
 class UnknownConditionException implements Exception {}

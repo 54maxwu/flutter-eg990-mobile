@@ -1,8 +1,12 @@
-import 'package:flutter_ty_mobile/core/repository_export.dart';
-import 'package:flutter_ty_mobile/core/error/exceptions.dart' show HiveDataException;
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_freezed.dart';
-import 'package:flutter_ty_mobile/features/promo/data/source/promo_local_data_source.dart';
-import 'package:flutter_ty_mobile/features/promo/data/source/promo_remote_data_source.dart';
+import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
+import 'package:flutter_eg990_mobile/core/repository_export.dart';
+
+import '../models/promo_freezed.dart';
+import 'promo_local_storage.dart';
+
+class PromoApi {
+  static const String GET_PROMO = "api/promo";
+}
 
 abstract class PromoRepository {
   Future<Either<Failure, List<PromoEntity>>> getPromos();
@@ -10,39 +14,18 @@ abstract class PromoRepository {
 }
 
 class PromoRepositoryImpl implements PromoRepository {
-  final tag = 'PromoRepository';
-  final PromoRemoteDataSource remoteDataSource;
-  final PromoLocalDataSource localDataSource;
+  final DioApiService dioApiService;
   final NetworkInfo networkInfo;
+  final PromoLocalStorage localStorage;
+  final tag = 'PromoRepository';
 
   PromoRepositoryImpl({
-    @required this.remoteDataSource,
-    @required this.localDataSource,
+    @required this.dioApiService,
     @required this.networkInfo,
+    @required this.localStorage,
   });
 
-  @override
-  Future<Either<Failure, List<PromoEntity>>> getPromos() async {
-    final connected = await networkInfo.isConnected;
-//    print('network connected: $connected');
-    if (connected) {
-      final result = await handleResponse<List<PromoModel>>(
-          remoteDataSource.getPromos());
-//      print('test response type: ${result.runtimeType}');
-      return result.fold(
-            (failure) {
-          if (failure.typeIndex == 0)
-            return getCachedPromos();
-          else
-            return Left(failure);
-        },
-            (models) => Right(transformPromoModels(models)),
-      );
-    }
-    return getCachedPromos();
-  }
-
-  List<PromoEntity> transformPromoModels(List<PromoModel> data) {
+  List<PromoEntity> _transformPromoModels(List<PromoModel> data) {
     final list = data.map((model) {
       return model.entity;
     }).toList();
@@ -51,10 +34,33 @@ class PromoRepositoryImpl implements PromoRepository {
   }
 
   @override
+  Future<Either<Failure, List<PromoEntity>>> getPromos() async {
+    final connected = await networkInfo.isConnected;
+    if (connected) {
+      final result = await requestModelList<PromoModel>(
+        request: dioApiService.get(PromoApi.GET_PROMO),
+        jsonToModel: PromoModel.jsonToPromoModel,
+        tag: 'remote-PROMO',
+      );
+//      print('test response type: ${result.runtimeType}, data: $result');
+      return result.fold(
+        (failure) {
+          if (failure.typeIndex == 0)
+            return getCachedPromos();
+          else
+            return Left(failure);
+        },
+        (models) => Right(_transformPromoModels(models)),
+      );
+    }
+    return getCachedPromos();
+  }
+
+  @override
   Future<Either<Failure, List<PromoEntity>>> getCachedPromos() async {
     try {
-      print('accessing local data source...');
-      var cached = await localDataSource.getCachedPromos();
+      print('accessing promo data storage...');
+      var cached = await localStorage.getCachedPromos();
 //      print('data from cached source: $cached');
       if (cached.isNotEmpty)
         return Right(cached);

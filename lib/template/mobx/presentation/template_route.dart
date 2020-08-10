@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/general/bloc_widget_export.dart';
+import 'package:flutter_eg990_mobile/temp/blank_widget.dart';
+import 'package:flutter_eg990_mobile/template/mobx/presentation/state/template_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_ty_mobile/features/general/bloc_widget_export.dart';
-import 'package:flutter_ty_mobile/temp/blank_widget.dart';
-import 'package:flutter_ty_mobile/template/mobx/presentation/state/template_store.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../injection_container.dart';
@@ -39,7 +39,6 @@ class _TemplateRouteState extends State<TemplateRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(
@@ -60,26 +59,28 @@ class _TemplateRouteState extends State<TemplateRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      alignment: Alignment.center,
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_templateStore.state) {
-            case StoreState.initial:
-              return BlankWidget();
-            case StoreState.loading:
-              return LoadingWidget();
-            case StoreState.loaded:
-              {
-                _descText = _templateStore.description;
-                return MessageDisplay(message: _descText);
-              }
-            default:
-              return SizedBox.shrink();
-          }
-        },
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        alignment: Alignment.center,
+        child: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_templateStore.state) {
+              case StoreState.initial:
+                return BlankWidget();
+              case StoreState.loading:
+                return LoadingWidget();
+              case StoreState.loaded:
+                {
+                  _descText = _templateStore.description;
+                  return WarningDisplay(message: _descText);
+                }
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

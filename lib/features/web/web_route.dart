@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:flutter_ty_mobile/core/internal/themes.dart';
-import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flutter_eg990_mobile/features/member/data/repository/member_jwt_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../features/member/data/repository/member_repository.dart';
-import '../../injection_container.dart';
-import '../../utils/string_util.dart' show StringVerifyExtension;
-import '../web/state/web_route_store.dart';
+import '../exports_for_route_widget.dart';
+import 'state/web_route_store.dart';
 
 class WebRoute extends StatefulWidget {
   final String startUrl;
+  final bool hideBars;
 
-  const WebRoute({@required this.startUrl});
+  const WebRoute({@required this.startUrl, this.hideBars = false});
 
   @override
   _WebRouteState createState() => _WebRouteState();
@@ -22,6 +17,7 @@ class WebRoute extends StatefulWidget {
 
 class _WebRouteState extends State<WebRoute> {
   WebRouteStore _store;
+  MemberJwtInterface _jwtInterface;
   List<ReactionDisposer> _disposers;
 
   WebViewController _controller;
@@ -29,15 +25,10 @@ class _WebRouteState extends State<WebRoute> {
 
   @override
   void initState() {
-    _store ??= WebRouteStore(sl.get<MemberRepository>());
-    // to hide only bottom bar:
-//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
-    // to hide only status bar:
-//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
-    // to hide both:
-//    SystemChrome.setEnabledSystemUIOverlays([]);
+    _store ??= WebRouteStore();
+    _jwtInterface = sl.get<MemberJwtInterface>();
     super.initState();
-//    _store.getCredit('');
+    print('opening url: ${widget.startUrl}');
   }
 
   @override
@@ -48,7 +39,6 @@ class _WebRouteState extends State<WebRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(
@@ -59,10 +49,7 @@ class _WebRouteState extends State<WebRoute> {
         (String message) {
           if (message != null && message.isNotEmpty) {
             Future.delayed(Duration(milliseconds: 200))
-                .then((value) => FLToast.showError(
-                      text: message,
-                      showDuration: ToastDuration.DEFAULT.value,
-                    ));
+                .then((value) => callToastError(message));
           }
         },
       ),
@@ -77,64 +64,99 @@ class _WebRouteState extends State<WebRoute> {
 
   @override
   Widget build(BuildContext context) {
-    print('opening url: ${widget.startUrl}');
     Future.delayed(Duration(seconds: 15), () {
       if (_stackToView == 1) {
         _controller.loadUrl(
-            Uri.dataFromString(localeStr.messageErrorLoadingPay).toString());
+          Uri.dataFromString(
+            '${localeStr.messageErrorLoadingPay}',
+            mimeType: Global.WEB_MIMETYPE,
+            encoding: Global.webEncoding,
+          ).toString(),
+        );
       }
     });
-    return IndexedStack(
-      index: _stackToView,
-      children: <Widget>[
-        Container(
-          child: WebView(
+    return WillPopScope(
+      onWillPop: () async {
+        print('pop web route');
+        if (RouterNavigate.current == Routes.depositWebPage ||
+            RouterNavigate.current == Routes.centerWebPage ||
+            RouterNavigate.current == Routes.moreWebPage) {
+          Future.delayed(
+            Duration(milliseconds: 300),
+            () => RouterNavigate.navigateBack(),
+          );
+        }
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: IndexedStack(
+          index: _stackToView,
+          children: <Widget>[
+            Container(
+              child: WebView(
 //            initialUrl: widget.startUrl,
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController controller) async {
-              _controller = controller;
-              _controller.loadUrl(widget.startUrl);
-            },
-            onPageStarted: (String url) {
-              print('start loading: $url');
-            },
-            onPageFinished: (String url) async {
-              if (_stackToView == 1) {
-                setState(() {
-                  _stackToView = 0;
-                });
-              }
+                javascriptMode: JavascriptMode.unrestricted,
+                onWebViewCreated: (WebViewController controller) async {
+                  _controller = controller;
+                  if (widget.startUrl == Global.TY_SERVICE_URL)
+                    _controller.loadUrl(widget.startUrl +
+                        '?token=${_jwtInterface?.token ?? ''}');
+                  else
+                    _controller.loadUrl(widget.startUrl);
+                },
+                onPageStarted: (String url) {
+                  print('start loading: $url');
+                },
+                onPageFinished: (String url) async {
+                  if (_stackToView == 1) {
+                    setState(() {
+                      _stackToView = 0;
+                    });
+                  }
+                  if (widget.hideBars) {
+                    print('hiding web page bars');
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('el-header')[0].style.display='none';");
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('el-footer')[0].style.display='none';");
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('aside_bars')[0].style.display='none';");
+                    _controller.evaluateJavascript(
+                        "document.getElementsByClassName('page_title')[0].remove();");
+                  }
 
-              print('web page loaded: $url');
-              if (url.isUrl == false) return;
+                  print('web page loaded: $url');
+                  if (url.isUrl == false) return;
 
-              String pageTitle = await _controller.getTitle();
-              print('web page title: $pageTitle');
-              //TODO check the normal page title or 404
-              // Error 500 Title: 500 Internal Server Error
-              if (pageTitle.contains('Error') ||
-                  pageTitle.contains('Exception')) {
-                if (pageTitle.startsWith('500')) {
-                  _controller.loadUrl(Uri.dataFromString(
-                    pageTitle,
-                    mimeType: Global.WEB_MIMETYPE,
-                    encoding: Global.webEncoding,
-                  ).toString());
-                }
-              }
-            },
-            javascriptChannels: <JavascriptChannel>[
-              _toasterJavascriptChannel(context),
-            ].toSet(),
-          ),
+                  String pageTitle = await _controller.getTitle();
+                  print('web page title: $pageTitle');
+                  //TODO check the normal page title or 404
+                  // Error 500 Title: 500 Internal Server Error
+                  if (pageTitle.contains('Error') ||
+                      pageTitle.contains('Exception')) {
+                    if (pageTitle.startsWith('500')) {
+                      _controller.loadUrl(Uri.dataFromString(
+                        pageTitle,
+                        mimeType: Global.WEB_MIMETYPE,
+                        encoding: Global.webEncoding,
+                      ).toString());
+                    }
+                  }
+                },
+                javascriptChannels: <JavascriptChannel>[
+                  _toasterJavascriptChannel(context),
+                ].toSet(),
+              ),
+            ),
+            Container(
+              color: Themes.defaultBackgroundColor,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          ],
         ),
-        Container(
-          color: Themes.defaultBackgroundColor,
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      ],
+      ),
     );
   }
 

@@ -1,5 +1,5 @@
+import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/core/base/data_operator.dart';
 import 'package:meta/meta.dart' show required;
 
 class TestEntity implements DataOperator {

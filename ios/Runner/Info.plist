@@ -37,7 +37,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
@@ -47,5 +47,23 @@
         <dict>
             <key>NSAllowsArbitraryLoads</key><true/>
         </dict>
+    <key>NSLocationUsageDescription</key>
+    <string>Location access for iOS 6.0~8.0</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Location access for iOS 8.0~10.0</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location access for iOS 11.0+</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Location access for iOS 11.0+</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>This App does not require calendars access to function properly.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>This App does not require contacts access to function properly.</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>This App does not require music access to function properly.</string>
+    <key>NSMotionUsageDescription</key>
+    <string>This App does not require motion access to function properly.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>This App does not require speech access to function properly.</string>
 </dict>
 </plist>

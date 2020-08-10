@@ -1,6 +1,7 @@
-import 'package:flutter_ty_mobile/core/store_export.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_freezed.dart';
-import 'package:flutter_ty_mobile/features/promo/data/repository/promo_repository.dart';
+import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/features/promo/data/models/promo_freezed.dart';
+
+import '../../data/repository/promo_repository.dart';
 
 part 'promo_store.g.dart';
 
@@ -36,7 +37,7 @@ abstract class _PromoStore with Store {
   }
 
   @action
-  Future getPromoList() async {
+  Future<void> getPromoList() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -61,7 +62,8 @@ abstract class _PromoStore with Store {
         );
       });
     } on Exception {
-      errorMessage = Failure.internal().message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.PROMO)).message;
     }
   }
 }

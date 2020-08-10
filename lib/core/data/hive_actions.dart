@@ -1,6 +1,6 @@
-import 'package:flutter_ty_mobile/core/base/data_operator.dart';
-import 'package:flutter_ty_mobile/core/error/exceptions.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
+import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
 
@@ -86,8 +86,7 @@ extension AddListToHiveExtension on List {
       if (newData == null) {
         box.deleteAt(index);
       } else if (newData != oldData) {
-        // if  data has changed, delete it from the box
-        box.deleteAt(index);
+        // if data has changed, replace old data in box
         print('replacing hive $identifier: $newData');
         box.putAt(index, newData);
       }

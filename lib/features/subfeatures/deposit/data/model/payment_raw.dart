@@ -1,7 +1,7 @@
 import 'dart:convert' show json;
 
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/payment_freezed.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/features/subfeatures/deposit/data/model/payment_freezed.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_raw.freezed.dart';
@@ -59,6 +59,7 @@ extension PaymentRawExtension on PaymentRaw {
     map[5] = this.getOtherDataList(5, this.aliJson);
     map[7] = this.getOtherDataList(7, this.unionJson);
     map[8] = this.getOtherDataList(8, this.virtualJson);
+    print('raw payment map: $map');
     map.removeWhere((key, value) => value.isEmpty);
     return map;
   }

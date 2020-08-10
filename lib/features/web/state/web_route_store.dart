@@ -1,5 +1,4 @@
-import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
-import 'package:flutter_ty_mobile/features/member/data/repository/member_repository.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:mobx/mobx.dart';
 
 part 'web_route_store.g.dart';
@@ -9,9 +8,7 @@ class WebRouteStore = _WebRouteStore with _$WebRouteStore;
 enum WebRouteStoreState { initial, loading, loaded }
 
 abstract class _WebRouteStore with Store {
-  final MemberRepository _repository;
-
-  _WebRouteStore(this._repository);
+  _WebRouteStore();
 
   @observable
   ObservableFuture<String> _descFuture;

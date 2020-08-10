@@ -6,67 +6,63 @@ part of 'template_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TemplateStore on _TemplateStore, Store {
   Computed<StoreState> _$stateComputed;
 
   @override
-  StoreState get state =>
-      (_$stateComputed ??= Computed<StoreState>(() => super.state)).value;
+  StoreState get state => (_$stateComputed ??=
+          Computed<StoreState>(() => super.state, name: '_TemplateStore.state'))
+      .value;
 
   final _$_descFutureAtom = Atom(name: '_TemplateStore._descFuture');
 
   @override
   ObservableFuture<String> get _descFuture {
-    _$_descFutureAtom.context.enforceReadPolicy(_$_descFutureAtom);
-    _$_descFutureAtom.reportObserved();
+    _$_descFutureAtom.reportRead();
     return super._descFuture;
   }
 
   @override
   set _descFuture(ObservableFuture<String> value) {
-    _$_descFutureAtom.context.conditionallyRunInAction(() {
+    _$_descFutureAtom.reportWrite(value, super._descFuture, () {
       super._descFuture = value;
-      _$_descFutureAtom.reportChanged();
-    }, _$_descFutureAtom, name: '${_$_descFutureAtom.name}_set');
+    });
   }
 
   final _$descriptionAtom = Atom(name: '_TemplateStore.description');
 
   @override
   String get description {
-    _$descriptionAtom.context.enforceReadPolicy(_$descriptionAtom);
-    _$descriptionAtom.reportObserved();
+    _$descriptionAtom.reportRead();
     return super.description;
   }
 
   @override
   set description(String value) {
-    _$descriptionAtom.context.conditionallyRunInAction(() {
+    _$descriptionAtom.reportWrite(value, super.description, () {
       super.description = value;
-      _$descriptionAtom.reportChanged();
-    }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
+    });
   }
 
   final _$errorMessageAtom = Atom(name: '_TemplateStore.errorMessage');
 
   @override
   String get errorMessage {
-    _$errorMessageAtom.context.enforceReadPolicy(_$errorMessageAtom);
-    _$errorMessageAtom.reportObserved();
+    _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
   set errorMessage(String value) {
-    _$errorMessageAtom.context.conditionallyRunInAction(() {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
-      _$errorMessageAtom.reportChanged();
-    }, _$errorMessageAtom, name: '${_$errorMessageAtom.name}_set');
+    });
   }
 
-  final _$getDescriptionAsyncAction = AsyncAction('getDescription');
+  final _$getDescriptionAsyncAction =
+      AsyncAction('_TemplateStore.getDescription');
 
   @override
   Future<dynamic> getDescription() {
@@ -75,8 +71,10 @@ mixin _$TemplateStore on _TemplateStore, Store {
 
   @override
   String toString() {
-    final string =
-        'description: ${description.toString()},errorMessage: ${errorMessage.toString()},state: ${state.toString()}';
-    return '{$string}';
+    return '''
+description: $description,
+errorMessage: $errorMessage,
+state: $state
+    ''';
   }
 }

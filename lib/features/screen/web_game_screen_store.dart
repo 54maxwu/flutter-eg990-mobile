@@ -1,13 +1,10 @@
 import 'dart:async' show StreamSubscription;
-import 'dart:io' show Platform;
 
 import 'package:flutter/services.dart' show DeviceOrientation;
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/core/internal/orientation_helper.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
-import 'package:flutter_ty_mobile/utils/platform_util.dart';
-import 'package:mobx/mobx.dart';
-import 'package:webview_flutter/webview_flutter.dart' show WebViewController;
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
+import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 part 'web_game_screen_store.g.dart';
 
@@ -18,144 +15,179 @@ enum WebGameScreenStoreState { initial, loading, loaded }
 abstract class _WebGameScreenStore with Store {
   final String tag = 'WebGameScreenStore';
 
-  @observable
-  ObservableStream<DeviceOrientation> _streamRotate;
+  StreamSubscription _sensorSubscription;
 
   @observable
-  DeviceOrientation deviceOrientation = DeviceOrientation.portraitUp;
+  DeviceOrientation _deviceOrientation = DeviceOrientation.portraitUp;
 
-  StreamSubscription sensorSubscription;
+  DeviceOrientation _targetOrientation;
+  int _sensorRotateId = 1;
 
-  int sensorRotateId = 1;
+  bool _isIos = Global.device.isIos;
   bool _sensorOn = false;
-  bool lockAutoRotate = false;
-  bool isAndroid = Platform.isAndroid;
-  WebViewController _viewController;
+  bool _lockAutoRotate = true;
+
+  get isLockRotate => _lockAutoRotate;
+  set lockRotate(bool value) => _lockAutoRotate = value;
+
+  bool get isScreenPortrait =>
+      _deviceOrientation == DeviceOrientation.portraitUp ||
+      _deviceOrientation == DeviceOrientation.portraitDown;
 
   @action
-  Future<void> rotateScreen(DeviceOrientation receivedRotate) async {
-    try {
-      if (receivedRotate != deviceOrientation) return;
-      await OrientationHelper.forceOrientation(deviceOrientation);
-      print('rotate complete: $deviceOrientation');
-    } on Exception catch (e) {
-      MyLogger.error(msg: 'rotate screen has exception', error: e, tag: tag);
+  Future<void> rotateScreenLeft() async {
+    print('called rotate left, current: $_deviceOrientation');
+    if (_targetOrientation == _deviceOrientation) return;
+    switch (_deviceOrientation) {
+      case DeviceOrientation.portraitUp:
+        return await _rotateScreen(DeviceOrientation.landscapeLeft);
+      case DeviceOrientation.landscapeLeft:
+        return await _rotateScreen(DeviceOrientation.portraitDown);
+      case DeviceOrientation.portraitDown:
+        return await _rotateScreen(DeviceOrientation.landscapeRight);
+      case DeviceOrientation.landscapeRight:
+        return await _rotateScreen(DeviceOrientation.portraitUp);
     }
   }
 
   @action
   Future<void> rotateScreenById(int receivedId) async {
-    try {
-      if (receivedId != sensorRotateId) return;
-      var target;
-      switch (receivedId) {
-        case 0:
-          target = DeviceOrientation.landscapeRight;
-          break;
-        case 2:
-          target = DeviceOrientation.landscapeLeft;
-          break;
-        case 3:
-          target = DeviceOrientation.portraitDown;
-          break;
-        default:
-          target = DeviceOrientation.portraitUp;
-          break;
-      }
-      print('rotateScreenById, target: $target, current: $deviceOrientation');
-      if (target != deviceOrientation) {
-        deviceOrientation = target;
-        await OrientationHelper.forceOrientation(target);
-        print('rotate complete: $deviceOrientation');
-      }
-    } on Exception catch (e) {
-      MyLogger.error(msg: 'rotate screen has exception', error: e, tag: tag);
+    if (receivedId != _sensorRotateId) return;
+    print('called rotate by id: $receivedId');
+    switch (receivedId) {
+      case 0:
+        return await _rotateScreen(DeviceOrientation.landscapeRight);
+      case 2:
+        return await _rotateScreen(DeviceOrientation.landscapeLeft);
+      case 3:
+        return await _rotateScreen(DeviceOrientation.portraitDown);
+      default:
+        return await _rotateScreen(DeviceOrientation.portraitUp);
     }
   }
 
   @action
   Future<void> initSensorStream() async {
     MyLogger.print(msg: 'initializing rotate listener...', tag: tag);
-    if (isAndroid) {
-      if (!_sensorOn) {
-        PlatformUtil.enableSensor();
-        _sensorOn = true;
-      }
-      if (sensorSubscription != null && sensorSubscription.isPaused) {
-        sensorSubscription.resume();
-      } else {
+    if (!_isIos && !_sensorOn) {
+      PlatformUtil.enableSensor();
+      _sensorOn = true;
+    }
+    if (_sensorSubscription != null && _sensorSubscription.isPaused) {
+      try {
+        _sensorSubscription.resume();
+      } catch (e) {
+        MyLogger.warn(
+            msg: 'cannot restore rotate listener, subscripting...', tag: tag);
         await _bindSensorListener();
       }
-    } else
-      _bindRotateListener();
+    } else {
+      await _bindSensorListener();
+    }
   }
 
   _bindSensorListener() async {
-    return await Future.delayed(Duration(milliseconds: 500), () {
-      try {
-        sensorSubscription = PlatformUtil.sensorEventChannel
-            .receiveBroadcastStream()
-            .listen((rotateId) {
-          print('sensor event: $rotateId');
-          if (lockAutoRotate) return;
-          if (sensorRotateId == rotateId) return;
-          sensorRotateId = rotateId;
-          Future.delayed(Duration(milliseconds: 500), () {
-            rotateScreenById(rotateId);
-          });
-        }, onError: (dynamic error) {
-          print('sensor error: ${error.message}');
-        });
-      } catch (e) {
-        MyLogger.warn(msg: 'bind sensor failed: $e', tag: tag);
+    return await Future.delayed(Duration(milliseconds: 600), () {
+      if (_isIos) {
         _bindRotateListener();
+      } else {
+        try {
+          _sensorSubscription = PlatformUtil.sensorEventChannel
+              .receiveBroadcastStream()
+              .listen((rotateId) {
+            print('sensor event: $rotateId');
+            if (_lockAutoRotate) return;
+            if (_sensorRotateId == rotateId) return;
+            _sensorRotateId = rotateId;
+            Future.delayed(Duration(milliseconds: 300), () {
+              rotateScreenById(rotateId);
+            });
+          }, onError: (dynamic error) {
+            print('sensor error: ${error.message}');
+          });
+        } catch (e) {
+          MyLogger.warn(msg: 'bind sensor failed: $e', tag: tag);
+          _bindRotateListener();
+        }
       }
     });
   }
 
   _bindRotateListener() {
-    if (_streamRotate != null) return;
-    _streamRotate = ObservableStream(OrientationHelper.onOrientationChange);
-    _streamRotate.listen((value) {
-      if (lockAutoRotate || isAndroid) return;
-      if (deviceOrientation == value) return;
-      deviceOrientation = value;
-      Future.delayed(Duration(seconds: 500), () {
-        rotateScreen(value);
-      });
-      print('rotate detected: $deviceOrientation');
-    });
-  }
-
-  bindController(WebViewController controller) {
-    _viewController = controller;
-  }
-
-  _reset() {
-    deviceOrientation = DeviceOrientation.portraitUp;
-    sensorRotateId = 1;
-    _sensorOn = false;
-    lockAutoRotate = false;
+    try {
+      _sensorSubscription = OrientationHelper.onOrientationChange.listen(
+        (event) {
+          if (_lockAutoRotate) return;
+          if (_deviceOrientation == event) return;
+          _targetOrientation = event;
+          // delay orientation to avoid multiple changes in a short time
+          Future.delayed(Duration(milliseconds: 200), () {
+            if (_targetOrientation != event) return;
+            _rotateScreen(event);
+          });
+        },
+        onError: (dynamic error) {
+          print('sensor error: ${error.message}');
+        },
+      );
+    } catch (e) {
+      MyLogger.warn(msg: 'bind sensor failed: $e', tag: tag);
+    }
   }
 
   @action
   Future<void> stopSensor() async {
     MyLogger.print(msg: 'stopping rotate listener...', tag: tag);
-    if (sensorSubscription != null) sensorSubscription.cancel();
-    if (isAndroid) {
+    _sensorSubscription?.pause();
+    if (!_isIos && _sensorOn) {
       PlatformUtil.disableSensor();
       _sensorOn = false;
     }
-    if (!isAndroid) _streamRotate = null;
-    if (_viewController != null) {
-      _viewController.loadUrl(Uri.dataFromString(
-        '',
-        mimeType: Global.WEB_MIMETYPE,
-        encoding: Global.webEncoding,
-      ).toString());
-      await _viewController.clearCache();
-      _viewController = null;
-    }
+    _sensorSubscription.cancel();
     _reset();
+  }
+
+  Future<void> _rotateScreen(
+    DeviceOrientation target, {
+    bool skipCheck = false,
+  }) async {
+    try {
+      if (!skipCheck && target == _deviceOrientation) return;
+      MyLogger.print(msg: 'rotating to $target', tag: tag);
+      _targetOrientation = target;
+      if (_isIos)
+        await _rotateIosScreen(target);
+      else
+        await _rotateAndroidScreen(target);
+    } on Exception catch (e) {
+      MyLogger.error(msg: 'rotate screen has exception', error: e, tag: tag);
+    }
+  }
+
+  Future<void> _rotateAndroidScreen(DeviceOrientation target) {
+    return OrientationHelper.forceOrientation(_targetOrientation)
+        .whenComplete(() {
+      print('rotate complete: $_targetOrientation');
+      // use param value in case the [targetOrientation] points to null
+      _deviceOrientation = target;
+      _targetOrientation = null;
+    });
+  }
+
+  Future<void> _rotateIosScreen(DeviceOrientation target) {
+    if (_targetOrientation == DeviceOrientation.portraitDown)
+      _targetOrientation = DeviceOrientation.landscapeRight;
+
+    OrientationHelper.setDesiredOrientations(_targetOrientation);
+    PlatformUtil.setIosOrientation(_targetOrientation);
+    return _rotateAndroidScreen(target);
+  }
+
+  void _reset() {
+    _rotateScreen(DeviceOrientation.portraitUp);
+    _deviceOrientation = DeviceOrientation.portraitUp;
+    _sensorRotateId = 1;
+    _sensorOn = false;
+    _lockAutoRotate = true;
   }
 }

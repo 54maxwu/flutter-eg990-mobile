@@ -6,92 +6,178 @@ part of 'feature_screen_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$FeatureScreenStore on _FeatureScreenStore, Store {
-  Computed<bool> _$hasUserComputed;
-
-  @override
-  bool get hasUser =>
-      (_$hasUserComputed ??= Computed<bool>(() => super.hasUser)).value;
   Computed<int> _$navIndexComputed;
 
   @override
   int get navIndex =>
-      (_$navIndexComputed ??= Computed<int>(() => super.navIndex)).value;
+      (_$navIndexComputed ??= Computed<int>(() => super.navIndex,
+              name: '_FeatureScreenStore.navIndex'))
+          .value;
+  Computed<bool> _$hasUserComputed;
+
+  @override
+  bool get hasUser => (_$hasUserComputed ??= Computed<bool>(() => super.hasUser,
+          name: '_FeatureScreenStore.hasUser'))
+      .value;
+
+  final _$errorMessageAtom = Atom(name: '_FeatureScreenStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
 
   final _$_streamRouteAtom = Atom(name: '_FeatureScreenStore._streamRoute');
 
   @override
   ObservableStream<RouteInfo> get _streamRoute {
-    _$_streamRouteAtom.context.enforceReadPolicy(_$_streamRouteAtom);
-    _$_streamRouteAtom.reportObserved();
+    _$_streamRouteAtom.reportRead();
     return super._streamRoute;
   }
 
   @override
   set _streamRoute(ObservableStream<RouteInfo> value) {
-    _$_streamRouteAtom.context.conditionallyRunInAction(() {
+    _$_streamRouteAtom.reportWrite(value, super._streamRoute, () {
       super._streamRoute = value;
-      _$_streamRouteAtom.reportChanged();
-    }, _$_streamRouteAtom, name: '${_$_streamRouteAtom.name}_set');
+    });
   }
 
   final _$pageInfoAtom = Atom(name: '_FeatureScreenStore.pageInfo');
 
   @override
   RouteInfo get pageInfo {
-    _$pageInfoAtom.context.enforceReadPolicy(_$pageInfoAtom);
-    _$pageInfoAtom.reportObserved();
+    _$pageInfoAtom.reportRead();
     return super.pageInfo;
   }
 
   @override
   set pageInfo(RouteInfo value) {
-    _$pageInfoAtom.context.conditionallyRunInAction(() {
+    _$pageInfoAtom.reportWrite(value, super.pageInfo, () {
       super.pageInfo = value;
-      _$pageInfoAtom.reportChanged();
-    }, _$pageInfoAtom, name: '${_$pageInfoAtom.name}_set');
+    });
   }
 
   final _$_streamUserAtom = Atom(name: '_FeatureScreenStore._streamUser');
 
   @override
   ObservableStream<LoginStatus> get _streamUser {
-    _$_streamUserAtom.context.enforceReadPolicy(_$_streamUserAtom);
-    _$_streamUserAtom.reportObserved();
+    _$_streamUserAtom.reportRead();
     return super._streamUser;
   }
 
   @override
   set _streamUser(ObservableStream<LoginStatus> value) {
-    _$_streamUserAtom.context.conditionallyRunInAction(() {
+    _$_streamUserAtom.reportWrite(value, super._streamUser, () {
       super._streamUser = value;
-      _$_streamUserAtom.reportChanged();
-    }, _$_streamUserAtom, name: '${_$_streamUserAtom.name}_set');
+    });
   }
 
   final _$userStatusAtom = Atom(name: '_FeatureScreenStore.userStatus');
 
   @override
   LoginStatus get userStatus {
-    _$userStatusAtom.context.enforceReadPolicy(_$userStatusAtom);
-    _$userStatusAtom.reportObserved();
+    _$userStatusAtom.reportRead();
     return super.userStatus;
   }
 
   @override
   set userStatus(LoginStatus value) {
-    _$userStatusAtom.context.conditionallyRunInAction(() {
+    _$userStatusAtom.reportWrite(value, super.userStatus, () {
       super.userStatus = value;
-      _$userStatusAtom.reportChanged();
-    }, _$userStatusAtom, name: '${_$userStatusAtom.name}_set');
+    });
+  }
+
+  final _$showEventOnHomeAtom =
+      Atom(name: '_FeatureScreenStore.showEventOnHome');
+
+  @override
+  bool get showEventOnHome {
+    _$showEventOnHomeAtom.reportRead();
+    return super.showEventOnHome;
+  }
+
+  @override
+  set showEventOnHome(bool value) {
+    _$showEventOnHomeAtom.reportWrite(value, super.showEventOnHome, () {
+      super.showEventOnHome = value;
+    });
+  }
+
+  final _$hasSignedEventAtom = Atom(name: '_FeatureScreenStore.hasSignedEvent');
+
+  @override
+  bool get hasSignedEvent {
+    _$hasSignedEventAtom.reportRead();
+    return super.hasSignedEvent;
+  }
+
+  @override
+  set hasSignedEvent(bool value) {
+    _$hasSignedEventAtom.reportWrite(value, super.hasSignedEvent, () {
+      super.hasSignedEvent = value;
+    });
+  }
+
+  final _$hasNewMessageAtom = Atom(name: '_FeatureScreenStore.hasNewMessage');
+
+  @override
+  bool get hasNewMessage {
+    _$hasNewMessageAtom.reportRead();
+    return super.hasNewMessage;
+  }
+
+  @override
+  set hasNewMessage(bool value) {
+    _$hasNewMessageAtom.reportWrite(value, super.hasNewMessage, () {
+      super.hasNewMessage = value;
+    });
+  }
+
+  final _$getNewMessageCountAsyncAction =
+      AsyncAction('_FeatureScreenStore.getNewMessageCount');
+
+  @override
+  Future<void> getNewMessageCount() {
+    return _$getNewMessageCountAsyncAction
+        .run(() => super.getNewMessageCount());
+  }
+
+  final _$getEventAsyncAction = AsyncAction('_FeatureScreenStore.getEvent');
+
+  @override
+  Future<void> getEvent() {
+    return _$getEventAsyncAction.run(() => super.getEvent());
+  }
+
+  final _$signEventAsyncAction = AsyncAction('_FeatureScreenStore.signEvent');
+
+  @override
+  Future<bool> signEvent() {
+    return _$signEventAsyncAction.run(() => super.signEvent());
   }
 
   @override
   String toString() {
-    final string =
-        'pageInfo: ${pageInfo.toString()},userStatus: ${userStatus.toString()},hasUser: ${hasUser.toString()},navIndex: ${navIndex.toString()}';
-    return '{$string}';
+    return '''
+errorMessage: $errorMessage,
+pageInfo: $pageInfo,
+userStatus: $userStatus,
+showEvent: $showEventOnHome,
+hasSignedEvent: $hasSignedEvent,
+hasNewMessage: $hasNewMessage,
+navIndex: $navIndex,
+hasUser: $hasUser
+    ''';
   }
 }

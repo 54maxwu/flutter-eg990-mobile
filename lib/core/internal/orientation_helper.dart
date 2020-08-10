@@ -3,8 +3,32 @@ import 'package:orientation/orientation.dart';
 import 'package:rxdart/rxdart.dart';
 
 class OrientationHelper {
-  static Future<void> setEnabledSystemUIOverlays() {
+  static void restoreUI() {
+    try {
+      print('Restoring orientation lock...');
+      // Rotate to normal
+      forceOrientationEasy();
+      // Lock Screen Orientation
+      setPreferredOrientations();
+      // restore the screen to normal SystemUiOverlay
+      enabledSystemUIOverlays();
+    } on Exception catch (e) {
+      print('Orientation Helper has exception: $e');
+    }
+  }
+
+  static Future<void> enabledSystemUIOverlays() {
+    print('Restoring system overlays...');
     return OrientationPlugin.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  }
+
+  static Future<void> disabledSystemUIOverlays() {
+    print('Hide System UI');
+    // to hide only bottom bar:
+//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
+    // to hide only status bar:
+//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
+    return OrientationPlugin.setEnabledSystemUIOverlays([]);
   }
 
   static Future<void> setPreferredOrientations() {
@@ -12,14 +36,29 @@ class OrientationHelper {
         [DeviceOrientation.portraitUp]);
   }
 
+  static Future<void> setDesiredOrientations(DeviceOrientation orientation) {
+    return OrientationPlugin.setPreferredOrientations([orientation]);
+  }
+
+  static Future<void> unlockPreferredOrientations() {
+    return OrientationPlugin.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
   static Future<void> forceOrientation(DeviceOrientation orientation) {
     print('force rotate: $orientation');
     return OrientationPlugin.forceOrientation(orientation);
   }
 
-  static Future<void> forceOrientationEasy(
-      {bool isPortrait = true, bool isReversed = false}) {
-    print('force rotate portrate: $isPortrait, reversed: $isReversed');
+  static Future<void> forceOrientationEasy({
+    bool isPortrait = true,
+    bool isReversed = false,
+  }) {
+    print('force rotate portrait: $isPortrait, reversed: $isReversed');
     DeviceOrientation ori;
     if (isPortrait && !isReversed)
       ori = DeviceOrientation.portraitUp;
@@ -40,6 +79,7 @@ class OrientationHelper {
   static Stream<DeviceOrientation> get onOrientationChange {
     if (_onOrientationChange == null) {
       _onOrientationChange = OrientationPlugin.onOrientationChange
+          .throttleTime(Duration(milliseconds: 500), trailing: true)
           .shareValueSeeded(initOrientation)
           .distinct((previous, next) => previous == next);
     }

@@ -1,4 +1,4 @@
-import 'package:flutter_ty_mobile/core/base/data_operator.dart';
+import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'freezed_inherit.freezed.dart';

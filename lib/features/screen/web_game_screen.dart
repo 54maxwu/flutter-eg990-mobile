@@ -1,10 +1,16 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/features/screen/web_game_screen_store.dart';
-import 'package:flutter_ty_mobile/injection_container.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
-import 'package:flutter_ty_mobile/utils/string_util.dart';
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/screen/web_game_screen_store.dart';
+import 'package:flutter_eg990_mobile/injection_container.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'web_game_screen_float_button.dart';
 
 class WebGameScreen extends StatefulWidget {
   final String startUrl;
@@ -15,40 +21,33 @@ class WebGameScreen extends StatefulWidget {
   _WebGameScreenState createState() => _WebGameScreenState();
 }
 
-class _WebGameScreenState extends State<WebGameScreen> {
+class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      new GlobalKey<ScaffoldState>(debugLabel: 'webgame');
+  final GlobalKey<WebGameScreenFloatButtonState> _toolKey =
+      new GlobalKey<WebGameScreenFloatButtonState>(debugLabel: 'webtool');
+
   WebViewController _controller;
   WebGameScreenStore _store;
+  Future<void> _floatFuture;
 
-  bool isForm = false;
   String parsedHtml;
+  bool isForm = false;
+  bool showToolHint = true;
+  bool showVisibleHint = true;
 
-  @override
-  void initState() {
-    print('web url: ${widget.startUrl}');
-    // to hide only bottom bar:
-//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
-    // to hide only status bar:
-//    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
-    // to hide both:
-//    SystemChrome.setEnabledSystemUIOverlays([]);
-    // to restore
-//    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    _store ??= sl.get<WebGameScreenStore>();
-
-    isForm =
-        widget.startUrl.isHtmlFormat && widget.startUrl.contains('</form>');
-    print('web url is form: $isForm');
-    if (isForm) rewriteHtml(widget.startUrl);
-
-    super.initState();
-    _store.initSensorStream();
-//    _store.getCredit('');
+  void _returnHome() {
+    ScreenNavigate.switchScreen(
+      force: true,
+      screen: ScreenEnum.Feature,
+    );
+    _store.stopSensor();
   }
 
   ///
   /// Used in BB games
   ///
-  void rewriteHtml(String htmlStr) {
+  void _rewriteHtml(String htmlStr) {
     String formStr =
         htmlStr.substring(htmlStr.indexOf('<form'), htmlStr.indexOf('</form>'));
     formStr = formStr.substring(0, formStr.indexOf('>'));
@@ -69,8 +68,28 @@ class _WebGameScreenState extends State<WebGameScreen> {
   }
 
   @override
-  void dispose() async {
+  void initState() {
+    print('web url: ${widget.startUrl}');
+    _store ??= sl.get<WebGameScreenStore>();
+
+    isForm =
+        widget.startUrl.contains('</form>') && widget.startUrl.isHtmlFormat;
+    print('web url is form: $isForm');
+    if (isForm) _rewriteHtml(widget.startUrl);
+
+    _floatFuture =
+        Future.delayed(Duration(seconds: (showToolHint) ? 5 : 2), () => true);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
     MyLogger.debug(msg: 'dispose web game screen', tag: 'WebGameScreen');
+    try {
+      _store.stopSensor();
+      OrientationHelper.restoreUI();
+    } catch (e) {}
     // edit the source code in FlutterWebView
     // (under external lib -> webview_flutter -> android
     // -> src.main -> java.io.flutter.plugins.webviewflutter)
@@ -99,46 +118,88 @@ class _WebGameScreenState extends State<WebGameScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: WillPopScope(
-        child: WebView(
-          initialUrl: widget.startUrl,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController controller) async {
-            _controller = controller;
-            _store.bindController(_controller);
-            if (isForm) {
-              _controller.loadUrl(Uri.dataFromString(
-                parsedHtml,
-                mimeType: Global.WEB_MIMETYPE,
-                encoding: Global.webEncoding,
-              ).toString());
-            } else if (widget.startUrl.isUrl == false) {
-              _controller.loadUrl(Uri.dataFromString(
-                widget.startUrl,
-                mimeType: Global.WEB_MIMETYPE,
-                encoding: Global.webEncoding,
-              ).toString());
-            }
-          },
-          onPageFinished: (String url) async {
-            print('web page loaded: $url');
-            if (url.isUrl == false) return;
-            if (isForm) isForm = false;
-
-            String pageTitle = await _controller.getTitle();
-            print('web page title: $pageTitle');
-            //TODO check the normal page title or 404
-            // Error 500 Title: 500 Internal Server Error
-            if (pageTitle.contains('Error') ||
-                pageTitle.contains('Exception')) {
-              if (pageTitle.startsWith('500')) {
-                _controller.loadUrl(Uri.dataFromString(
-                  pageTitle,
-                  mimeType: Global.WEB_MIMETYPE,
-                  encoding: Global.webEncoding,
-                ).toString());
+        child: Scaffold(
+          key: _scaffoldKey,
+//          drawer: WebGameScreenDrawer(
+//            scaffoldKey: _scaffoldKey,
+//            store: _store,
+//          ),
+          floatingActionButton: FutureBuilder(
+            future: _floatFuture,
+            builder: (_, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (showToolHint) {
+                  showToolHint = false;
+                  Future.delayed(Duration(milliseconds: 1500), () {
+                    callToast('单击显示，长按隐藏 ↗');
+                  });
+                }
+                return GestureDetector(
+                  onLongPress: () {
+                    if (showVisibleHint) {
+                      showVisibleHint = false;
+                      Future.delayed(Duration(milliseconds: 300), () {
+                        callToast('双击可恢复显示');
+                      });
+                    }
+                    _toolKey.currentState?.hideTool();
+                  },
+                  child: WebGameScreenFloatButton(
+                    key: _toolKey,
+                    scaffoldKey: _scaffoldKey,
+                    store: _store,
+                    onReturnHome: () => _returnHome(),
+                  ),
+                );
+              } else {
+                return SizedBox.shrink();
               }
-            }
-          },
+            },
+          ),
+          body: GestureDetector(
+//            onDoubleTap: () => _scaffoldKey.currentState.openDrawer(),
+            onDoubleTap: () => _toolKey.currentState?.showTool(),
+            child: WebView(
+              initialUrl: widget.startUrl,
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (WebViewController controller) async {
+                _controller = controller;
+                if (isForm) {
+                  _controller.loadUrl(Uri.dataFromString(
+                    parsedHtml,
+                    mimeType: Global.WEB_MIMETYPE,
+                    encoding: Global.webEncoding,
+                  ).toString());
+                } else if (widget.startUrl.isUrl == false) {
+                  _controller.loadUrl(Uri.dataFromString(
+                    widget.startUrl,
+                    mimeType: Global.WEB_MIMETYPE,
+                    encoding: Global.webEncoding,
+                  ).toString());
+                }
+              },
+              onPageFinished: (String url) async {
+                print('web page loaded: $url');
+                if (url.isUrl == false) return;
+                if (isForm) isForm = false;
+
+                String pageTitle = await _controller.getTitle();
+                print('web page title: $pageTitle');
+                //TODO check the normal page title or 404
+                // Error 500 Title: 500 Internal Server Error
+                if (pageTitle.contains('Error') ||
+                    pageTitle.contains('Exception')) {
+                  if (pageTitle.startsWith('500')) {
+                    _controller.loadUrl(Uri.dataFromString(
+                      pageTitle,
+                      mimeType: Global.WEB_MIMETYPE,
+                      encoding: Global.webEncoding,
+                    ).toString());
+                  }
+                }
+              },
+            ),
+          ),
         ),
         onWillPop: () async {
           MyLogger.debug(msg: 'pop web game screen', tag: 'WebGameScreen');
@@ -146,5 +207,15 @@ class _WebGameScreenState extends State<WebGameScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    try {
+      _store.initSensorStream();
+    } catch (e, s) {
+      callToastError('Cannot Enable Sensor');
+      print('init sensor error: $e\n$s');
+    }
   }
 }

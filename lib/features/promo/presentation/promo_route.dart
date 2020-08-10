@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart' show Observer;
-import 'package:flutter_ty_mobile/features/general/bloc_widget_export.dart'
-    show LoadingWidget, ToastMessage;
+import 'package:flutter/widgets.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 
-import '../../route_page_export.dart' show sl;
 import 'state/promo_store.dart';
 import 'widgets/promo_display.dart';
 
+///
 /// Main View of [Router.promoRoute]
 ///@author H.C.CHIANG
-///@version 2020/3/9
+///@version 2020/6/9
+///
 class PromoRoute extends StatefulWidget {
   final int openPromoId;
 
@@ -21,6 +21,7 @@ class PromoRoute extends StatefulWidget {
 
 class _PromoRouteState extends State<PromoRoute> {
   PromoStore _store;
+  List<ReactionDisposer> _disposers;
 
   @override
   void initState() {
@@ -30,24 +31,47 @@ class _PromoRouteState extends State<PromoRoute> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      child: Observer(
-        builder: (_) {
-          if (_store.errorMessage != null && _store.errorMessage.isNotEmpty) {
-            return ToastMessage(message: _store.errorMessage);
-          }
-          switch (_store.state) {
-            case PromoStoreState.loading:
-              return LoadingWidget();
-            case PromoStoreState.loaded:
-              return PromoDisplay(_store.promos,
-                  showPromoId: widget.openPromoId);
-            default:
-              return SizedBox.shrink();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _disposers ??= [
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.errorMessage,
+        // Run some logic with the content of the observed field
+        (String message) {
+          if (message != null && message.isNotEmpty) {
+            callToastError(message, delayedMilli: 200);
           }
         },
+      ),
+    ];
+  }
+
+  @override
+  void dispose() {
+    _disposers.forEach((d) => d());
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 4.0),
+        child: Observer(
+          builder: (_) {
+            switch (_store.state) {
+              case PromoStoreState.loading:
+                return LoadingWidget();
+              case PromoStoreState.loaded:
+                return PromoDisplay(_store.promos,
+                    showPromoId: widget.openPromoId);
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

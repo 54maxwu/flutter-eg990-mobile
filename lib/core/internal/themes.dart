@@ -1,94 +1,235 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/font_size.dart';
+import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
+import 'package:flutter_eg990_mobile/features/router/my_page_transition_builder.dart';
+
+export 'font_size.dart';
+export 'hex_color.dart';
 
 final appTheme = Themes();
 
 class Themes {
-  static final defaultBackgroundColor = Color(0xff313131);
-  static final defaultAccentColor = Color(0xffe7c080);
-  static final defaultAppbarColor = Color(0xff222222);
-  static final defaultWidgetColor = Color(0xffb5b5b5);
-  static final defaultWidgetBgColor = Color(0xff383838);
-  static final defaultDisabledColor = Color(0xff575757);
-  static final defaultErrorColor = Color(0xffe53935);
+  static const isDarkTheme = true;
+  static const defaultBackgroundColor = Color(0xff313131);
+  static const defaultPrimaryColor = Color(0xff38394b);
+  static const defaultAccentColor = Color(0xffe7c080);
+  static const defaultAppbarColor = Color(0xff222222);
+  static const defaultMarqueeBarColor = Color(0xA0000000);
+  static const defaultMarqueeTextColor = Color(0xfff0f0f0);
+  static const defaultWidgetColor = Color(0xfff5f5f5);
+  static const defaultSelectableWidgetColor = Color(0xffc7c7c7);
+  static const defaultWidgetBgColor = Color(0xff383838);
+  static const defaultDisabledColor = Color(0xff575757);
+  static const defaultErrorColor = Color(0xffe53935);
+  static const defaultBorderColor = Color(0xff6a6a6a);
+  static const defaultIndicatorColor = Color(0xffe7c080);
+  static const defaultDividerColor = Color(0xffa8a8a8);
+  static const defaultGridColor = Colors.black45;
+  static const defaultGridTextColor = Color(0xfff0f0f0);
+  static const defaultCardColor = Color(0xff606060);
 
-  static final accentLightColor = Color(0xffeace98);
-  static final dialogBgColor = Color(0xff424242);
-  static final dialogTextColor = Color(0xffe6e6e6);
-  static final dialogTitleColor = Color(0xffe7c080);
+  static const defaultTextColor = Color(0xffd9d9d9);
+  static const secondaryTextColor1 = Color(0xffffffff);
+  static const secondaryTextColor2 = Color(0xffc7c7c7);
+  static const defaultSubtitleColor = Color(0xffeea942);
+  static const defaultHintColor = Color(0xffdadada);
+  static const defaultHintSubColor = Color(0xffa4a4a4);
+  static const defaultMessageColor = Color(0xffbcbcbc);
+  static const defaultTabUnselectedColor = Color(0xffb5b5b5);
 
-  static final defaultTextColor = Color(0xffb5b5b5);
-  static final defaultSubtitleColor = Color(0xffeea942);
-  static final defaultHintColor = Color(0xffdadada);
-  static final defaultMessageColor = Color(0xffbcbcbc);
-  static final defaultTextColorWhite = Color(0xffffffff);
-  static final defaultTextColorBlack = Color(0xff000000);
+  static const drawerIconColor = Color(0xffe7c080);
+  static const drawerIconSubColor = Color(0xffffffff);
+  static const sideMenuPrimaryColor = Color(0xff222222);
+  static const sideMenuSecondaryColor = Color(0xff313131);
+  static const sideMenuButtonColor = Color(0xfff4daa3);
+  static const sideMenuButtonTextColor = Color(0xff000000);
+  static const sideMenuHeaderTextColor = Color(0xffffffff);
+  static const sideMenuIconColor = Color(0xffffffff);
+  static const sideMenuIconTextColor = Color(0xffffffff);
 
-  static final iconColor = Color(0xffffffff);
-  static final iconColorDark = Color(0xffa4a4a4);
-  static final iconBgColorTrans = Color(0x40a4a4a4);
+  static const dialogBgColor = Color(0xff424242);
+  static const dialogBgColor0 = Color(0xff606266);
+  static const dialogBgColor1 = Color(0xff2a2a2a);
+  static const dialogBgTransparent = Color(0xD0383838);
+  static const dialogTextColor = Color(0xffe6e6e6);
+  static const dialogTitleColor = Color(0xffe7c080);
+  static const dialogTitleBgColor = Color(0xff5b5b5b);
+  static const dialogCloseIconColor = Color(0xffe6e6e6);
 
-  static final buttonSubColor = Color(0xfff19149);
-  static final buttonDisabledColor = Color(0xffc9c9c9);
-  static final buttonDisabledTextColor = Color(0xff575757);
+  static const iconColor = Color(0xffffffff);
+  static const iconSubColor1 = Color(0xffa4a4a4);
+  static const iconSubColor2 = Color(0xff606060);
+  static const iconSubColor3 = Color(0xff3a3a3a);
+  static const iconColorGreen = Color(0xff40b92c);
+  static const iconColorYellow = Color(0xffffdd3a);
+  static const iconBgColorTrans = Color(0x40a4a4a4);
+  static const iconTextColor = Color(0xffe7c080);
 
-  static final fieldHeight = 51.6;
-  static final fieldIconSize = 24.0;
-  static final fieldInputBgColor = Color(0xff4e4e4e);
-  static final fieldInputHintColor = Color(0xffececec);
+  // default color or selected
+  static const buttonPrimaryColor = Color(0xffe7c080);
+  static const buttonTextPrimaryColor = Color(0xff000000);
+  // unselected button
+  static const buttonSecondaryColor = Color(0xff525252);
+  // sub color button (ex. readme, forget)
+  static const buttonSubColor = Color(0xffc9c9c9);
+  static const buttonTextSubColor = Color(0xff575757);
+  static const buttonDisabledColor = Color(0xffa9a9a9);
+  static const buttonDisabledColorDark = Color(0xc03a3a3a);
+  static const buttonDisabledTextColor = Color(0xff575757);
+  static const buttonBorderColor = Color(0xff383838);
+  static const pagerButtonColor = Color(0xff4e4e4e);
+  static const pagerButtonSelectedColor = Color(0xff3b3b3b);
 
-  static final hintHighlight = Color(0xffff7eb8);
-  static final hintHighlightRed = Color(0xffff0000);
-  static final hintHyperLink = Color(0xff82f8ff);
+  static const fieldInputColor = Color(0xffffffff);
+  static const fieldInputBgColor = Color(0xff4e4e4e);
+  static const fieldReadOnlyBgColor = Color(0xff404040);
+  static const fieldInputHintColor = Color(0xffdadada);
+  static const fieldPrefixColor = Color(0xffb7b7b7);
+  static const fieldSuffixColor = Color(0xffe3b977);
+  static const fieldSuffixSubColor = Color(0xffe3b977);
 
-  static final linearAccentColor1 = Color(0xffbb904d);
-  static final linearAccentColor2 = Color(0xffe3b977);
-  static final linearAccentColor3 = Color(0xffca9a51);
+  static const fieldInputSubBgColor = Color(0xffffffff);
+  static const fieldReadOnlySubBgColor = Color(0xffd3d3d3);
+  static const fieldInputSubColor = Color(0xffe7c080);
+  static const fieldInputHintSubColor = Color(0xff484848);
+  static const fieldCursorSubColor = Color(0xff000000);
+
+  static const double fieldHeight = 53.6;
+  static const double fieldIconSize = 24.0;
+  static const double prefixTextWidthFactor = 0.3;
+  static const double prefixTextSpacing = 13.0;
+  static const double prefixIconWidthFactor = 0.166;
+  static const double suffixWidthFactor = 0.314;
+  static const double horizontalInset = 32.0;
+  static const double minusSize = 8.0;
+
+  static const hintHighlight = Color(0xffff7eb8);
+  static const hintHighlightDarkRed = Color(0xffe63f3f);
+  static const hintHighlightRed = Color(0xffff0000);
+  static const hintHighlightYellow = Color(0xffffdd3a);
+  static const hintHighlightLightYellow = Color(0xffffe6b1);
+  static const hintHighlightOrange = Color(0xffde9c57);
+  static const hintHighlightOrangeStrong = Color(0xffff9e4c);
+  static const hintHyperLink = Color(0xff82f8ff);
+
+  static const chartBorderColor = Color(0xff6a6a6a);
+  static const chartPrimaryHeaderColor = Color(0xff2a8fbd);
+  static const chartPrimaryHeaderTextColor = Color(0xffb5b5b5);
+  static const chartSecondaryHeaderColor = Color(0xff4e4e4e);
+  static const chartBgColor = Color(0xff3a3a3a);
+
+  static const navigationColor = Color(0xffb5b5b5);
+  static const navigationColorFocus = Color(0xffe7c080);
+
+  static const homeFavoriteColor = Color(0xffffffff);
+  static const homeTabBgColor = Colors.black54;
+  static const homeTabDividerColor = Color(0xffe7c080);
+  static const homeTabIconColor = Color(0xffb5b5b5);
+  static const homeBoxBgColor = Color(0xff222222);
+  static const homeBoxHintBgColor = Color(0xffe7c080);
+  static const homeBoxHintTextColor = Color(0xff000000);
+  static const homeBoxInfoTextColor = Color(0xffe7c080);
+  static const homeBoxDividerColor = Color(0xffe7c080);
+  static const homeBoxIconColor = Color(0xffe7c080);
+  static const homeBoxIconTextColor = Color(0xffe7c080);
+  static const homeBoxButtonTextColor = Color(0xff000000);
+
+  static const promoTabBgColor = Color(0xff222222);
+  static const promoTabIconColor = Color(0xffe7c080);
+  static const promoTabTextColor = Color(0xffb5b5b5);
+  static const promoTabSelectedBgColor = Color(0xffe7c080);
+  static const promoTabSelectedIconColor = Color(0xff3a3a3a);
+  static const promoTabSelectedTextColor = Color(0xff000000);
+
+  static const memberIconColor = Color(0xffe7c080);
+  static const memberLinearColor1 = Color(0xffbb904d);
+  static const memberLinearColor2 = Color(0xffe3b977);
+  static const memberLinearColor3 = Color(0xffca9a51);
+
+  static const moreDialogColor = Color(0xff2a2a2a);
+  static const moreGridColor = Color(0xff424242);
+
+  static const balanceCardBackground = Color(0xff424242);
+  static const balanceCardTitleColor = Color(0xffde9c57);
+  static const balanceActionTextColor = Color(0xffffe6b1);
+  static const balanceAction2TextColor = Color(0xffffe6b1);
+  static const balanceActionDisableTextColor = Color(0xff575757);
+
+  static const walletCardBackground = Color(0xff3a3a3a);
+  static const walletCardIconBackground = Color(0xff575757);
+  static const walletBoxBackground = Color(0xff272727);
+  static const walletRadioColor = Color(0xff575757);
+  static const walletCreditTitleColor = Color(0xffde9c57);
+
+  static const vipCardBackgroundColor = Color(0xff424242);
+  static const vipTitleBackgroundColor = Color(0xff3a3a3a);
+  static const vipTitleBackgroundSubColor = Color(0xff4e4e4e);
+  static const vipIconBackgroundColor = Color(0xffa4a4a4);
+  static const vipIconColor = Color(0xffe7c080);
+  static const vipIconTextColor = Color(0xfff0f0f0);
+  static const vipTitleColor = Color(0xffe7c080);
+  static const vipTextColor = Color(0xfff0f0f0);
+  static const vipLinearBgColor1 = Color(0xff585656);
+  static const vipLinearBgColor2 = Color(0xcc3f3a39);
+
+  static const storeDialogBackground = Color(0xff606266);
+  static const storeDialogSpanText = Color(0xffb5b5b5);
+  static const storeHighlightTextColor = Color(0xffff9e4c);
 
   final defaultTheme = ThemeData.dark().copyWith(
-    primaryColor: defaultAppbarColor,
+    primaryColor: defaultPrimaryColor,
     accentColor: defaultAccentColor,
     backgroundColor: defaultBackgroundColor,
+    dialogBackgroundColor: dialogBgColor,
+    cardColor: defaultCardColor,
+    // screen drawer color
+    canvasColor: sideMenuPrimaryColor,
+    colorScheme: ColorScheme.dark().copyWith(
+      primary: defaultAccentColor,
+      secondary: defaultWidgetColor,
+    ),
+    // Route Animation
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.iOS: MyPageTransitionBuilder(),
+      TargetPlatform.android: MyPageTransitionBuilder(),
+    }),
     /* Widgets Theme */
     scaffoldBackgroundColor: defaultBackgroundColor,
+    appBarTheme: AppBarTheme(color: defaultAppbarColor),
+    tabBarTheme: TabBarTheme(
+      unselectedLabelColor: Themes.defaultTabUnselectedColor,
+      labelColor: Themes.defaultAccentColor,
+      labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
+      labelPadding: const EdgeInsets.only(top: 4.0),
+    ),
+    /* Icons Theme */
+    dividerColor: defaultDividerColor,
+    iconTheme: IconThemeData(color: iconColor),
+    primaryIconTheme: IconThemeData(color: iconSubColor1),
+    accentIconTheme: IconThemeData(color: defaultAccentColor),
+    /* Selector Theme */
+    unselectedWidgetColor: defaultSelectableWidgetColor,
+    toggleableActiveColor: defaultAccentColor,
+    /* Buttons Theme */
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       foregroundColor: iconColor,
       backgroundColor: iconBgColorTrans,
       elevation: 2.0,
     ),
-    appBarTheme: AppBarTheme(color: defaultAppbarColor),
-    tabBarTheme: TabBarTheme(
-      unselectedLabelColor: Themes.defaultTextColor,
-      labelColor: Themes.defaultAccentColor,
-      labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
-      labelPadding: const EdgeInsets.only(top: 4.0),
-    ),
-    unselectedWidgetColor: defaultWidgetColor,
-    canvasColor: fieldInputBgColor,
-    hintColor: defaultHintColor,
-    disabledColor: defaultDisabledColor,
-    toggleableActiveColor: defaultAccentColor,
-    indicatorColor: accentLightColor,
-    dividerColor: accentLightColor,
-    cursorColor: iconColor,
-    textSelectionHandleColor: iconColorDark,
-    cardColor: dialogBgColor,
-    dialogBackgroundColor: dialogBgColor,
-    /* Buttons Theme */
     buttonTheme: ButtonThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(4.0),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 4.0),
-      textTheme: ButtonTextTheme.normal,
-      buttonColor: defaultAccentColor,
+      padding: EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 8.0),
+      // set button minimum width, default is 88
+      minWidth: 60,
+      textTheme: ButtonTextTheme.primary,
+      buttonColor: buttonPrimaryColor,
       disabledColor: buttonDisabledColor,
     ),
-    iconTheme: IconThemeData(color: iconColor),
-    primaryIconTheme: IconThemeData(color: iconColorDark),
-    accentIconTheme: IconThemeData(color: defaultAccentColor),
     /* Text Theme */
+    hintColor: defaultHintColor,
+    disabledColor: defaultDisabledColor,
     textTheme: TextTheme(
       headline5:
           TextStyle(color: defaultTextColor, fontSize: FontSize.TITLE.value),
@@ -96,21 +237,24 @@ class Themes {
           TextStyle(color: defaultTextColor, fontSize: FontSize.TITLE.value),
       // input text color
       subtitle1: TextStyle(
-          color: defaultTextColorWhite, fontSize: FontSize.MESSAGE.value),
+          color: defaultSubtitleColor, fontSize: FontSize.MESSAGE.value),
       subtitle2:
           TextStyle(color: defaultHintColor, fontSize: FontSize.SUBTITLE.value),
       bodyText1:
           TextStyle(color: defaultTextColor, fontSize: FontSize.SUBTITLE.value),
       bodyText2: TextStyle(
-          color: defaultTextColorWhite, fontSize: FontSize.NORMAL.value),
+          color: secondaryTextColor2, fontSize: FontSize.NORMAL.value),
       button: TextStyle(
-          color: defaultTextColorBlack, fontSize: FontSize.NORMAL.value),
+          color: buttonTextPrimaryColor, fontSize: FontSize.NORMAL.value),
       caption: TextStyle(
           color: defaultMessageColor, fontSize: FontSize.NORMAL.value - 1),
       overline: TextStyle(
-          color: accentLightColor, fontSize: FontSize.NORMAL.value - 2),
+          color: defaultIndicatorColor, fontSize: FontSize.NORMAL.value - 2),
     ),
     /* Input-Field Theme */
+    indicatorColor: defaultIndicatorColor,
+    cursorColor: iconColor,
+    textSelectionHandleColor: iconSubColor1,
     inputDecorationTheme: InputDecorationTheme(
       border: InputBorder.none,
       errorBorder: InputBorder.none,
@@ -122,7 +266,7 @@ class Themes {
       fillColor: fieldInputBgColor,
       isDense: true, // used less vertical space
       labelStyle: TextStyle(
-        color: defaultHintColor,
+        color: fieldInputHintColor,
         fontSize: FontSize.NORMAL.value,
       ),
       helperStyle: TextStyle(
@@ -155,7 +299,7 @@ class Themes {
         fontSize: FontSize.NORMAL.value - 2,
       ),
       selectedColor: defaultAccentColor,
-      secondarySelectedColor: accentLightColor,
+      secondarySelectedColor: defaultIndicatorColor,
       shape: StadiumBorder(
         side: BorderSide(
           color: defaultAccentColor,
@@ -165,28 +309,47 @@ class Themes {
       ),
     ),
     /* Slider Theme */
-//    sliderTheme: SliderThemeData(
-//      activeTrackColor: Color(0xffeace98),
-//      inactiveTrackColor: Color(0x3d212121),
-//      disabledActiveTrackColor: Color(0xff888888),
-//      disabledInactiveTrackColor: Color(0x1f000000),
-//      activeTickMarkColor: Color(0x8a9e9e9e),
-//      inactiveTickMarkColor: Color(0x8a212121),
-//      disabledActiveTickMarkColor: Color(0x1f9e9e9e),
-//      disabledInactiveTickMarkColor: Color(0x1f000000),
-//      thumbColor: Color(0xffe7c080),
-//      disabledThumbColor: Color(0xff888888),
-//      thumbShape: RoundSliderThumbShape(),
-//      overlayColor: Color(0x29212121),
-//      valueIndicatorColor: Color(0xff575757),
-//      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-//      showValueIndicator: ShowValueIndicator.onlyForDiscrete,
-//      valueIndicatorTextStyle: TextStyle(
-//        color: Color(0xdd000000),
-//        fontSize: 14.0,
-//        fontWeight: FontWeight.w400,
-//        fontStyle: FontStyle.normal,
-//      ),
+    sliderTheme: SliderThemeData(
+      trackHeight: 3.0,
+      activeTrackColor: Colors.white,
+      inactiveTrackColor: Colors.white38,
+      disabledActiveTrackColor: Color(0xff888888),
+      disabledInactiveTrackColor: Color(0x1f000000),
+      activeTickMarkColor: Color(0x8a9e9e9e),
+      inactiveTickMarkColor: Color(0x8a212121),
+      disabledActiveTickMarkColor: Color(0x1f9e9e9e),
+      disabledInactiveTickMarkColor: Color(0x1f000000),
+      thumbColor: Colors.white,
+      disabledThumbColor: Color(0xff888888),
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
+      overlayColor: Color(0x29212121),
+      valueIndicatorColor: Color(0xff575757),
+      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+      showValueIndicator: ShowValueIndicator.onlyForDiscrete,
+      valueIndicatorTextStyle: TextStyle(
+        color: Color(0xdd000000),
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+      ),
+    ),
+    /* Switch Button Theme */
+//    toggleButtonsTheme: ToggleButtonsThemeData(
+//      this.textStyle, //文本样式
+//      this.constraints,//定义button尺寸
+//      this.color,//文本和Icon的颜色
+//      this.selectedColor,//选中文本和Icon的颜色
+//      this.disabledColor,//禁用文本和Icon的颜色
+//      this.fillColor,//选中button填充颜色
+//      this.focusColor,//按钮具有输入焦点时用于填充按钮的颜色。
+//      this.highlightColor,//高亮颜色
+//      this.hoverColor,// 指针悬停在它上面时的颜色
+//      this.splashColor,// 水波纹颜色
+//      this.borderColor,//边框颜色
+//      this.selectedBorderColor,//选中边框颜色
+//      this.disabledBorderColor,//禁用边框颜色
+//      this.borderRadius,//边框半径
+//      this.borderWidth,//边框宽度
 //    ),
   );
 }

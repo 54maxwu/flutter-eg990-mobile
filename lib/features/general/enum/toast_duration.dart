@@ -1,17 +1,19 @@
-import 'package:generic_enum/generic_enum.dart';
+import 'package:vnum/vnum.dart';
 
-class ToastDuration extends GenericEnum<Duration> {
-  const ToastDuration._(Duration value) : super(value);
-
-  /// duration = 1500ms
+@VnumDefinition
+class ToastDuration extends Vnum<Duration> {
+  /// duration = 2000ms
   static const ToastDuration SHORT =
-      ToastDuration._(Duration(milliseconds: 1500));
+      const ToastDuration.define(const Duration(milliseconds: 2000));
 
   /// duration = 3000ms
   static const ToastDuration DEFAULT =
-      ToastDuration._(Duration(milliseconds: 3000));
+      const ToastDuration.define(const Duration(milliseconds: 3000));
 
   /// duration = 5000ms
   static const ToastDuration LONG =
-      ToastDuration._(Duration(milliseconds: 5000));
+      const ToastDuration.define(const Duration(milliseconds: 5000));
+
+  /// Used for defining cases
+  const ToastDuration.define(Duration fromValue) : super.define(fromValue);
 }

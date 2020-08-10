@@ -1,7 +1,7 @@
 //import 'package:flushbar/flushbar.dart';
 //import 'package:flutter/material.dart';
-//import 'package:flutter_ty_mobile/core/internal/font_size.dart';
-//import 'package:flutter_ty_mobile/core/internal/global.dart';
+//import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
+//import 'package:flutter_eg990_mobile/core/internal/global.dart';
 //
 //class FlushBarWidget extends StatelessWidget {
 //  final String message;

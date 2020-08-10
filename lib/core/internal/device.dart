@@ -1,18 +1,66 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart' show MediaQueryData, Orientation;
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:package_info/package_info.dart';
 
 class Device {
-  MediaQueryData _mediaQueryData;
+  final bool isIos;
+  final MediaQueryData _mediaQueryData;
+  PackageInfo packageInfo;
   double _screenWidth;
   double _screenHeight;
+  // device status bar
+  double _screenTopPadding;
+  // device virtual key
+  double _screenBottomInset;
+  // screen width compare with test device
+  double _screenWidthScale;
+  // screen height compare with test device
+  double _screenHeightScale;
+  // computed button height
+  double _screenButtonHeight;
 
-  Device(this._mediaQueryData, this._screenWidth, this._screenHeight);
+  Device(this._mediaQueryData, this.isIos) {
+    PackageInfo.fromPlatform().then((PackageInfo info) {
+//      String appName = packageInfo.appName;
+//      String packageName = packageInfo.packageName;
+//      String version = packageInfo.version;
+//      String buildNumber = packageInfo.buildNumber;
+      packageInfo = info;
+      print('packageInfo: '
+          'app=${packageInfo.appName}, '
+          'package=${packageInfo.packageName}, '
+          'version=${packageInfo.version}+${packageInfo.buildNumber}');
+    });
+    _screenWidth = double.parse(_mediaQueryData.size.width.toStringAsFixed(2));
+    _screenHeight =
+        double.parse(_mediaQueryData.size.height.toStringAsFixed(2));
+    _screenWidthScale = _screenWidth / Global.TEST_DEVICE_WIDTH;
+    _screenHeightScale = _screenHeight / Global.TEST_DEVICE_HEIGHT;
+    _screenTopPadding = _mediaQueryData.viewPadding.top;
+    _screenBottomInset = _mediaQueryData.viewInsets.bottom;
+    _screenButtonHeight = (_screenHeightScale > 1)
+        ? (36 * _screenHeightScale).ceilToDouble()
+        : 36.0;
+    print('Device Inset: ${_mediaQueryData.viewInsets}');
+    print('Device Padding: ${_mediaQueryData.viewPadding}');
+  }
 
   @override
   String toString() {
-    return 'width=$_screenWidth height=$_screenHeight';
+    return 'width=$_screenWidth\n'
+        'width scale=$_screenWidthScale\n'
+        'height=$_screenHeight\n'
+        'height scale=$_screenHeightScale\n'
+        'ratio=$ratio, hor=$ratioHor\n'
+        'padding=${_mediaQueryData.viewPadding}\n'
+        'inset=${_mediaQueryData.viewInsets}\n'
+        'button=$_screenButtonHeight';
   }
+
+  /// App Version
+  String get appVersion => '${packageInfo.version}+${packageInfo.buildNumber}';
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;
@@ -28,4 +76,22 @@ class Device {
 
   /// device's height
   double get height => _screenHeight;
+
+  /// device's width scale
+  double get widthScale => _screenWidthScale;
+
+  /// device's height
+  double get heightScale => _screenHeightScale;
+
+  double get safePadding =>
+      _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+
+  /// device's relative button height
+  double get comfortButtonHeight => _screenButtonHeight;
+
+  double get featureContentHeight =>
+      _screenHeight -
+      Global.APP_TOOLS_HEIGHT -
+      _screenBottomInset -
+      _screenTopPadding;
 }

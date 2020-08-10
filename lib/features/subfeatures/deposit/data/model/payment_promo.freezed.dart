@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'payment_promo.dart';
 
@@ -23,6 +23,7 @@ PaymentPromo _$PaymentPromoFromJson(Map<String, dynamic> json) {
 class _$PaymentPromoTearOff {
   const _$PaymentPromoTearOff();
 
+// ignore: unused_element
   PaymentPromoTypeJson call(
       {@JsonKey(name: '1', defaultValue: '') dynamic local,
       @JsonKey(name: '2', defaultValue: '') dynamic other}) {
@@ -32,6 +33,7 @@ class _$PaymentPromoTearOff {
     );
   }
 
+// ignore: unused_element
   PaymentPromoData data(
       {@JsonKey(name: 'promoid', required: true)
           int promoId,
@@ -156,8 +158,9 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
         (other is PaymentPromoTypeJson &&
             (identical(other.local, local) ||
                 const DeepCollectionEquality().equals(other.local, local)) &&
-            (identical(other.other, other) ||
-                const DeepCollectionEquality().equals(other.other, other)));
+            (identical(other.other, this.other) ||
+                const DeepCollectionEquality()
+                    .equals(other.other, this.other)));
   }
 
   @override

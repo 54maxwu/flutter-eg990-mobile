@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_category.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_freezed.dart'
-    show PromoEntity;
 
+import '../../data/models/promo_category.dart';
+import '../../data/models/promo_freezed.dart' show PromoEntity;
 import 'promo_list_item.dart';
 
 /// Contains a List builder to show [PromoListItem]

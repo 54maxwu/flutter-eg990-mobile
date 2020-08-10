@@ -29,18 +29,20 @@ class MyLogger {
   static void warn({@required msg, String tag = '', dynamic error}) =>
       _log.warning(createMessage(msg, tag), [error]);
 
-  static void error(
-          {@required msg,
-          String tag = '',
-          dynamic error,
-          StackTrace stackTrace}) =>
+  static void error({
+    @required msg,
+    String tag = '',
+    dynamic error,
+    StackTrace stackTrace,
+  }) =>
       _log.severe(createMessage(msg, tag), [error, stackTrace]);
 
-  static void wtf(
-          {@required msg,
-          String tag = '',
-          dynamic error,
-          StackTrace stackTrace}) =>
+  static void wtf({
+    @required msg,
+    String tag = '',
+    dynamic error,
+    StackTrace stackTrace,
+  }) =>
       _log.shout(createMessage(msg, tag), [error, stackTrace]);
 
   static String createMessage(msg, String tag) =>

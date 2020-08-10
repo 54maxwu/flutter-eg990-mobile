@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:flutter_ty_mobile/generated/l10n.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
@@ -56,7 +56,8 @@ void main() {
     expect(find.text('Username'), findsOneWidget);
   });
 
-  testWidgets('test localize app widget with [default(en)]', (WidgetTester tester) async {
+  testWidgets('test localize app widget with [default(en)]',
+      (WidgetTester tester) async {
     MaterialApp app = MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -72,7 +73,8 @@ void main() {
     expect(find.text('Home'), findsOneWidget);
   });
 
-  testWidgets('test localize app widget with [zh]', (WidgetTester tester) async {
+  testWidgets('test localize app widget with [zh]',
+      (WidgetTester tester) async {
     MaterialApp app = MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -88,6 +90,3 @@ void main() {
     expect(find.text('首页'), findsOneWidget);
   });
 }
-
-
-

@@ -1,10 +1,20 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/route_user_streams.dart';
+import 'package:flutter_eg990_mobile/features/screen/feature_screen_store.dart';
+import 'package:flutter_eg990_mobile/features/subfeatures/more/more_dialog.dart';
+import 'package:flutter_eg990_mobile/features/user/event/presentation/event_dialog.dart';
+import 'package:flutter_eg990_mobile/features/user/event/presentation/event_dialog_signed.dart';
+import 'package:flutter_eg990_mobile/res.dart';
+import 'package:flutter_mobx/flutter_mobx.dart' show Observer;
 
-import '../resource_export.dart';
-import '../route_page_export.dart';
-import '../router/router.gr.dart';
+import '../export_internal_file.dart';
 import 'feature_screen_inherited_widget.dart';
+import 'screen_drawer_item.dart';
+import 'screen_navigation_bar_item.dart';
 
 part 'screen_drawer.dart';
 part 'screen_menu_bar.dart';
@@ -26,17 +36,22 @@ class FeatureScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewState = FeatureScreenInheritedWidget.of(context);
-    return Scaffold(
-      key: viewState.scaffoldKey,
-      appBar: ScreenMenuBar(),
-      drawer: new ScreenDrawer(),
-      bottomNavigationBar: ScreenNavigationBar(),
-      /* Main Content (switch placeholder with Router) */
-      body: Navigator(
-        key: Router.navigator.key,
-        onGenerateRoute: Router.onGenerateRoute,
-        initialRoute: Router.homeRoute,
-      ),
+    return SafeArea(
+      child: Scaffold(
+        key: viewState.scaffoldKey,
+        appBar: ScreenMenuBar(),
+        drawer: new ScreenDrawer(),
+        bottomNavigationBar: ScreenNavigationBar(),
+        /* Main Content (switch placeholder with Router) */
+        body: ExtendedNavigator<Router>(
+          initialRoute: Routes.homeRoute,
+          router: Router(),
+        ),
+//      body: Navigator(
+//        key: Router.navigator.key,
+//        onGenerateRoute: Router.onGenerateRoute,
+//        initialRoute: Router.homeRoute,
+//      ),
 // /* Route Test */
 //      body: Center(
 //        child: Observer(builder: (_) {
@@ -44,6 +59,7 @@ class FeatureScreenView extends StatelessWidget {
 //          return Text(route);
 //        }),
 //      ),
+      ),
     );
   }
 }

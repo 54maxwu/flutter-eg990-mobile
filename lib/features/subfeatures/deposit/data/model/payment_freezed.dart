@@ -1,3 +1,4 @@
+import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_freezed.freezed.dart';
@@ -23,8 +24,8 @@ abstract class PaymentFreezed with _$PaymentFreezed {
     @JsonKey(name: 'bankaccountid') int bankAccountId,
     @JsonKey(name: 'bankaccountno') String bankAccountNo,
     @JsonKey(name: 'bankindex') int bankIndex,
-    @JsonKey(fromJson: _strFromJson) String max,
-    String min,
+    @JsonKey(fromJson: JsonUtil.getRawJson) String max,
+    @JsonKey(fromJson: JsonUtil.getRawJson) String min,
     String payment,
     String type,
   }) = PaymentDataLocal;
@@ -49,4 +50,6 @@ abstract class PaymentFreezed with _$PaymentFreezed {
   }
 }
 
-String _strFromJson(dynamic str) => (str != null) ? str.toString() : '';
+extension PaymentDataExtension on PaymentDataOther {
+  bool get hasAmountOption => amountOption != null && amountOption.isNotEmpty;
+}

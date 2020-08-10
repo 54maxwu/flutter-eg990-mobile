@@ -6,6 +6,7 @@ part of 'payment_freezed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$PaymentDataOther _$_$PaymentDataOtherFromJson(Map<String, dynamic> json) {
   return _$PaymentDataOther(
     amount: json['amount'] as String,
@@ -23,6 +24,7 @@ _$PaymentDataOther _$_$PaymentDataOtherFromJson(Map<String, dynamic> json) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$PaymentDataOtherToJson(_$PaymentDataOther instance) =>
     <String, dynamic>{
       'amount': instance.amount,
@@ -38,18 +40,20 @@ Map<String, dynamic> _$_$PaymentDataOtherToJson(_$PaymentDataOther instance) =>
       'type': instance.type,
     };
 
+// ignore: non_constant_identifier_names
 _$PaymentDataLocal _$_$PaymentDataLocalFromJson(Map<String, dynamic> json) {
   return _$PaymentDataLocal(
     bankAccountId: json['bankaccountid'] as int,
     bankAccountNo: json['bankaccountno'] as String,
     bankIndex: json['bankindex'] as int,
-    max: _strFromJson(json['max']),
-    min: json['min'] as String,
+    max: JsonUtil.getRawJson(json['max']),
+    min: JsonUtil.getRawJson(json['min']),
     payment: json['payment'] as String,
     type: json['type'] as String,
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$PaymentDataLocalToJson(_$PaymentDataLocal instance) =>
     <String, dynamic>{
       'bankaccountid': instance.bankAccountId,

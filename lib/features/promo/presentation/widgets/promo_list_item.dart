@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_freezed.dart'
-    show PromoEntity;
-import 'package:flutter_ty_mobile/features/promo/presentation/widgets/promo_detail.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 
-import '../../../resource_export.dart'
-    show FontSize, Themes, networkImageBuilder;
+import '../../data/models/promo_freezed.dart' show PromoEntity;
+import 'promo_detail.dart';
 
 /// View for [PromoEntity]
 /// [promo] = view's data
@@ -16,11 +14,12 @@ class PromoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenScale = (Global.device.width / 360).ceilToDouble();
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 8.0, color: Themes.defaultDisabledColor),
+        border: Border.all(width: 8.0, color: Themes.defaultCardColor),
         borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
-        color: Themes.defaultDisabledColor,
+        color: Themes.defaultCardColor,
       ),
       margin: const EdgeInsets.all(6.0),
       child: Container(
@@ -30,8 +29,8 @@ class PromoListItem extends StatelessWidget {
             /* Promo Image */
             networkImageBuilder(
               promo.bannerMobile,
-              fill: true,
-              imgScale: 0.9,
+              fit: BoxFit.fill,
+              imgScale: 0.9 / screenScale,
               roundCorner: true,
             ),
             /* Promo Text*/

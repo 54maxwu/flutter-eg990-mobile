@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/features/resource_export.dart'
-    show FontSize, Themes, networkImageBuilder;
-import 'package:flutter_ty_mobile/features/route_page_export.dart'
-    show Global, localeStr;
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/entity/payment_enum.dart';
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../data/entity/payment_enum_data.dart';
 
 class PaymentTutorial extends StatelessWidget {
   final List tutorialData;
@@ -113,37 +114,35 @@ class PaymentTutorial extends StatelessWidget {
           list.add(Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-            child: networkImageBuilder(item.value, fill: true, debug: true),
+            child: networkImageBuilder(item.value, fit: BoxFit.fill),
           ));
           break;
         case TutorialItemType.Button:
           list.add(Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: RaisedButton(
-              child: Text(item.value),
-              color: Themes.defaultAccentColor,
-              textColor: Themes.defaultTextColorBlack,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4.0),
-              ),
-              visualDensity: VisualDensity.standard,
-              onPressed: () async {
-                switch (item.sortId) {
-                  case 81:
-                    await launch(
-                        'https://www.gamewallet.asia/version.php?fn=gp_a&latest');
+            child: SizedBox(
+              height: Global.device.comfortButtonHeight,
+              child: RaisedButton(
+                child: Text(item.value),
+                visualDensity: VisualDensity.standard,
+                onPressed: () async {
+                  switch (item.sortId) {
+                    case 81:
+                      await launch(
+                          'https://www.gamewallet.asia/version.php?fn=gp_a&latest');
 //                RouterNavigate.navigateToPage(
 //                  RoutePage.depositWeb,
 //                  arg: 'https://www.gamewallet.asia/version.php?fn=gp_a&latest',
 //                );
-//                Navigator.pop(context);
-                    break;
-                  case 82:
-                    await launch('https://www.vip66729.com/pdf/cpw.pdf');
-                    break;
-                }
-              },
+//                Navigator.of(context).pop();
+                      break;
+                    case 82:
+                      await launch('https://www.vip66729.com/pdf/cpw.pdf');
+                      break;
+                  }
+                },
+              ),
             ),
           ));
           break;

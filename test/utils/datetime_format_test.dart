@@ -1,5 +1,5 @@
+import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/utils/datetime_format.dart';
 
 void main() {
   test('test datetime format', () {
@@ -7,6 +7,16 @@ void main() {
     print(datetime);
     var strDatetime = datetime.toDatetimeString;
     print(strDatetime);
+    var strDate = datetime.toDateString;
+    print(strDate);
+    var strDateStart = datetime.toDateStartString;
+    print(strDateStart);
+  });
+
+  test('test specific date to datetime', () {
+    var specificDate = DateTime(2011, 1, 1).toDateStartString;
+    print(specificDate);
+    expect(specificDate, '2011-01-01 00:00:00');
   });
 
   test('test string to datetime', () {

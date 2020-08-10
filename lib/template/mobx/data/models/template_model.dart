@@ -1,10 +1,9 @@
-import 'package:equatable/equatable.dart';
-import 'package:to_string/to_string.dart';
+import 'package:dataclass/dataclass.dart';
 
 part 'template_model.g.dart';
 
-@ToString()
-class TemplateModel extends Equatable {
+@dataClass
+class TemplateModel {
   final String vip1;
   final String vip2;
   final String vip3;
@@ -36,12 +35,6 @@ class TemplateModel extends Equatable {
     data['6'] = this.vip6;
     return data;
   }
-
-  @override
-  List<Object> get props => [vip1, vip2, vip3, vip4, vip5, vip6];
-
-  @override
-  String toString() => _$TemplateModelToString(this);
 
   static TemplateModel jsonToModel(Map<String, dynamic> jsonMap) =>
       TemplateModel.fromJson(jsonMap);

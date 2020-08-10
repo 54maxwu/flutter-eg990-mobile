@@ -7,40 +7,97 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_ty_mobile/features/screen/feature_screen.dart';
-import 'package:flutter_ty_mobile/features/screen/web_game_screen.dart';
-import 'package:flutter_ty_mobile/features/screen/test_screen.dart';
+import 'package:flutter_eg990_mobile/features/screen/feature_screen.dart';
+import 'package:flutter_eg990_mobile/features/screen/web_game_screen.dart';
+import 'package:flutter_eg990_mobile/temp/test_screen.dart';
+import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen.dart';
 
-class ScreenRouter {
+abstract class ScreenRoutes {
   static const featureScreen = '/';
   static const webGameScreen = '/web-game-screen';
   static const testScreen = '/test-screen';
-  static final navigator = ExtendedNavigator();
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+  static const testScreenNav = '/test-screen-nav';
+  static const all = {
+    featureScreen,
+    webGameScreen,
+    testScreen,
+    testScreenNav,
+  };
+}
+
+class ScreenRouter extends RouterBase {
+  @override
+  Set<String> get allRoutes => ScreenRoutes.all;
+
+  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
+  static ExtendedNavigatorState get navigator =>
+      ExtendedNavigator.ofRouter<ScreenRouter>();
+
+  @override
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
-      case ScreenRouter.featureScreen:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => FeatureScreen(),
+      case ScreenRoutes.featureScreen:
+        return buildAdaptivePageRoute<dynamic>(
+          builder: (context) => FeatureScreen(),
           settings: settings,
           maintainState: true,
         );
-      case ScreenRouter.webGameScreen:
-        if (hasInvalidArgs<String>(args)) {
-          return misTypedArgsRoute<String>(args);
+      case ScreenRoutes.webGameScreen:
+        if (hasInvalidArgs<WebGameScreenArguments>(args)) {
+          return misTypedArgsRoute<WebGameScreenArguments>(args);
         }
-        final typedArgs = args as String ?? 'https://eg990.com/';
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => WebGameScreen(startUrl: typedArgs),
+        final typedArgs =
+            args as WebGameScreenArguments ?? WebGameScreenArguments();
+        return buildAdaptivePageRoute<dynamic>(
+          builder: (context) => WebGameScreen(startUrl: typedArgs.startUrl),
           settings: settings,
         );
-      case ScreenRouter.testScreen:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => TestScreen(),
+      case ScreenRoutes.testScreen:
+        return buildAdaptivePageRoute<dynamic>(
+          builder: (context) => TestScreen(),
+          settings: settings,
+        );
+      case ScreenRoutes.testScreenNav:
+        return buildAdaptivePageRoute<dynamic>(
+          builder: (context) => TestNestedNavScreen(),
           settings: settings,
         );
       default:
         return unknownRoutePage(settings.name);
     }
   }
+}
+
+// *************************************************************************
+// Arguments holder classes
+// **************************************************************************
+
+//WebGameScreen arguments holder class
+class WebGameScreenArguments {
+  final String startUrl;
+  WebGameScreenArguments({this.startUrl = 'https://eg990.com/'});
+}
+
+// *************************************************************************
+// Navigation helper methods extension
+// **************************************************************************
+
+extension ScreenRouterNavigationHelperMethods on ExtendedNavigatorState {
+  Future pushFeatureScreen() => pushNamedAndRemoveUntil(
+        ScreenRoutes.featureScreen,
+        (route) => false, // true => same as push, false => push and clear stack
+      );
+
+  Future pushWebGameScreen({
+    String startUrl = 'https://eg990.com/',
+  }) =>
+      pushNamed(
+        ScreenRoutes.webGameScreen,
+        arguments: WebGameScreenArguments(startUrl: startUrl),
+      );
+
+  Future pushTestScreen() => pushNamed(ScreenRoutes.testScreen);
+
+  Future pushTestScreenNav() => pushNamed(ScreenRoutes.testScreenNav);
 }

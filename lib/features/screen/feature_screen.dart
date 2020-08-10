@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemChrome, SystemUiOverlay;
-import 'package:flutter_ty_mobile/features/screen/feature_screen_inherited_widget.dart';
-import 'package:flutter_ty_mobile/utils/platform_util.dart';
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
+import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 import '../../mylogger.dart';
 import 'feature_screen_store.dart';
@@ -28,8 +28,6 @@ class _FeatureScreenState extends State<FeatureScreen> {
   @override
   void initState() {
     MyLogger.debug(msg: 'init feature screen', tag: tag);
-    // restore the screen to normal SystemUiOverlay
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     super.initState();
   }
 
@@ -63,8 +61,12 @@ class _FeatureScreenState extends State<FeatureScreen> {
 
   @override
   void dispose() {
-    MyLogger.warn(msg: 'feature screen disposed', tag: tag);
-    super.dispose();
+    MyLogger.warn(msg: 'disposing feature screen', tag: tag);
+    try {
+      Global.regLocale = false;
+      _store.closeStreams();
+    } on Exception {}
     Future.delayed(Duration(milliseconds: 200), () => PlatformUtil.restart());
+    super.dispose();
   }
 }

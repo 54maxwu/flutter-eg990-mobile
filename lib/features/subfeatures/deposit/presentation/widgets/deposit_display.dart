@@ -1,13 +1,10 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/global.dart';
-import 'package:flutter_ty_mobile/core/internal/local_strings.dart';
-import 'package:flutter_ty_mobile/features/general/toast_widget_export.dart';
-import 'package:flutter_ty_mobile/features/route_page_export.dart';
-import 'package:flutter_ty_mobile/features/subfeatures/deposit/data/model/deposit_result.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/subfeatures/deposit/data/entity/payment_enum.dart';
 
-import '../../data/entity/payment_enum.dart';
+import '../../data/model/deposit_result.dart';
 import '../state/deposit_store.dart';
 import 'deposit_display_grid.dart';
 import 'payment_content.dart';
@@ -24,7 +21,7 @@ class DepositDisplay extends StatefulWidget {
 class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
   GlobalKey<PaymentContentState> _contentKey;
-  Function toastDismiss;
+  CancelFunc toastDismiss;
 
   Widget _topWidget;
 
@@ -36,7 +33,6 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on page data changed */
@@ -56,9 +52,7 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
         (bool wait) {
           print('deposit display wait result: $wait');
           if (wait) {
-            toastDismiss = FLToast.showLoading(
-              text: localeStr.messageWait,
-            );
+            toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
@@ -74,22 +68,19 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
         (DepositResult result) {
           print('deposit display result: $result');
           if (result == null) return;
-          if (result.code == 0 && result.ledger != null) {
-            FLToast.showSuccess(
-              text: localeStr.depositMessageSuccessLocal(result.ledger),
-              showDuration: ToastDuration.DEFAULT.value,
+          if (result.code == 0 && result.ledger != null && result.ledger > 0) {
+            callToastInfo(
+              localeStr.depositMessageSuccessLocal(result.ledger),
+              icon: Icons.check_circle_outline,
             );
           } else if (result.code == 0 && result.url != null) {
             print('deposit display url: ${result.url}');
             RouterNavigate.navigateToPage(
               RoutePage.depositWeb,
-              arg: result.url,
+              arg: WebRouteArguments(startUrl: result.url),
             );
           } else {
-            FLToast.showError(
-              text: localeStr.depositMessageFailed,
-              showDuration: ToastDuration.DEFAULT.value,
-            );
+            callToastError(localeStr.depositMessageFailed);
           }
         },
       ),

@@ -1,14 +1,12 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ty_mobile/core/internal/font_size.dart';
-import 'package:flutter_ty_mobile/core/internal/themes.dart';
-import 'package:flutter_ty_mobile/features/general/widgets/cached_network_image.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_category.dart';
-import 'package:flutter_ty_mobile/features/promo/data/models/promo_freezed.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
 
+import '../../data/models/promo_category.dart';
+import '../../data/models/promo_freezed.dart';
 import 'promo_detail.dart';
-import 'promo_display_view.dart';
 import 'promo_list_view.dart';
 
 /// Display promo category and items
@@ -38,6 +36,19 @@ class _PromoDisplayState extends State<PromoDisplay>
     PromoCategoryEnum.other
   ];
 
+  double tabItemWidth;
+
+  PromoCategoryEnum _current;
+  Widget contentWidget;
+  int target = -1;
+
+  /// Set [_current] to change tab bar item color
+  void _setActiveTabIndex() {
+    // set state to change tab's image color
+    _current = categories[_tabController.index];
+    setState(() {});
+  }
+
   @override
   void initState() {
     categories.removeWhere((element) =>
@@ -45,10 +56,18 @@ class _PromoDisplayState extends State<PromoDisplay>
             .any((promo) => promo.postCategoryId == element.value.id) ==
         false);
     categories.insert(0, PromoCategoryEnum.all);
+    _current = PromoCategoryEnum.all;
 //    print('promo categories map: $categories');
     super.initState();
     _tabController = TabController(length: categories.length, vsync: this);
     _pageController = PageController();
+    _tabController.addListener(_setActiveTabIndex);
+//    _pageController.addListener(() {
+//      if (_pageController.page % 1.0 == 0) {
+//        print('page anim complete');
+//        _setActiveTabIndex();
+//      }
+//    });
   }
 
   @override
@@ -63,68 +82,102 @@ class _PromoDisplayState extends State<PromoDisplay>
 
   @override
   Widget build(BuildContext context) {
+    tabItemWidth ??=
+        (Global.device.width - 8 * categories.length - 11 - 32) / 5;
     return Column(
       children: <Widget>[
         /* Category Tab Bar */
         Container(
-          height: 74, // here the desired height
           padding: const EdgeInsets.only(right: 6.0, left: 5.0),
           child: TabBar(
-            unselectedLabelColor: Colors.white60,
-            labelColor: Colors.white,
-            labelStyle: TextStyle(fontSize: 16.0),
+            unselectedLabelColor: Themes.promoTabTextColor,
+            labelColor: Themes.promoTabSelectedTextColor,
+            labelStyle: TextStyle(fontSize: FontSize.SUBTITLE.value),
             labelPadding: const EdgeInsets.only(top: 4.0),
-            indicatorWeight: 3.0,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            indicatorColor: Colors.transparent,
+//            indicatorWeight: 3.0,
+//            indicatorSize: TabBarIndicatorSize.label,
+//            indicatorPadding: const EdgeInsets.symmetric(horizontal: 4.0),
             controller: _tabController,
             isScrollable: true,
             /* Category Tabs */
             tabs: categories.map((c) {
               return Container(
-                width: 56,
-                decoration: BoxDecoration(color: Themes.defaultAppbarColor),
-                margin:
-                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
-                child: Tab(
-                  icon: networkImageBuilder(
-                    c.value.iconUrl,
-                    imgScale: (c.value.id == 0 || c.value.id == 6) ? 6.0 : 3.0,
-                  ),
-                  iconMargin: EdgeInsets.only(top: 2.0, bottom: 2.0),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 3.0),
-                    child: Text(
-                      c.value.label,
-                      style: TextStyle(fontSize: FontSize.NORMAL.value),
+                width: tabItemWidth,
+                height: (tabItemWidth < 72) ? tabItemWidth * 1.14 : 72,
+                decoration: BoxDecoration(
+                  color: c == _current
+                      ? Themes.promoTabSelectedBgColor
+                      : Themes.promoTabBgColor,
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: <Widget>[
+                    FittedBox(
+                      child: Center(
+                        child: Tab(
+                          icon: ExtendedImage.network(
+                            '${Global.CURRENT_SERVICE}${c.value.iconUrl}',
+                            scale: (c.value.id == 0 || c.value.id == 6)
+                                ? 6.0
+                                : 3.0,
+                            color: c == _current
+                                ? Themes.promoTabSelectedIconColor
+                                : Themes.promoTabIconColor,
+                            loadStateChanged: (ExtendedImageState state) {
+                              switch (state.extendedImageLoadState) {
+                                case LoadState.completed:
+                                  return state.completedWidget;
+                                case LoadState.failed:
+                                  return Icon(
+                                    Icons.broken_image,
+                                    color: Themes.promoTabIconColor,
+                                  );
+                                default:
+                                  return null;
+                              }
+                            },
+                          ),
+                          iconMargin: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 3.0),
+                            child: Text(
+                              c.value.label,
+                              style: TextStyle(fontSize: FontSize.NORMAL.value),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      child: SizedBox(
+                        height: 2,
+                        width: tabItemWidth,
+                        child: ColoredBox(
+                          color: Themes.defaultAccentColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
             }).toList(),
             onTap: (index) {
-              _pageController.jumpToPage(index);
+              _pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.linearToEaseOut,
+              );
             },
           ),
         ),
         /* Promo List Content */
-        Expanded(
-          child: PromoDisplayView(
-            pageController: _pageController,
-            tabController: _tabController,
-            children: categories.map((c) {
-              return PromoListView(
-                category: c,
-                list: (c.value.id == 0)
-                    ? widget.promos
-                    : widget.promos
-                        .where(
-                            (element) => element.postCategoryId == c.value.id)
-                        .toList(),
-              );
-            }).toList(),
+        if (contentWidget != null)
+          Expanded(
+            child: contentWidget,
           ),
-        ),
       ],
     );
   }
@@ -132,6 +185,26 @@ class _PromoDisplayState extends State<PromoDisplay>
   @override
   void afterFirstLayout(BuildContext context) async {
     print('open promo id: ${widget.showPromoId}');
+    if (contentWidget == null) {
+      contentWidget = new TabsPageControlWidget(
+        pageController: _pageController,
+        tabController: _tabController,
+        children: categories.map(
+          (c) {
+            return PromoListView(
+              category: c,
+              list: (c.value.id == 0)
+                  ? widget.promos
+                  : widget.promos
+                      .where((element) => element.postCategoryId == c.value.id)
+                      .toList(),
+            );
+          },
+        ).toList(),
+      );
+      setState(() {});
+    }
+
     // show Promo Detail if id is specified
     if (widget.showPromoId != -1) {
       Future.delayed(Duration(milliseconds: 500), () {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_ty_mobile/core/base/usecase_export.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_promo.freezed.dart';

@@ -1,5 +1,5 @@
-import 'package:flutter_ty_mobile/core/repository_export.dart';
-import 'package:flutter_ty_mobile/template/mobx/data/source/template_data_source.dart';
+import 'package:flutter_eg990_mobile/core/repository_export.dart';
+import 'package:flutter_eg990_mobile/template/mobx/data/source/template_data_source.dart';
 
 abstract class TemplateRepository {
   Future<String> fetchString();

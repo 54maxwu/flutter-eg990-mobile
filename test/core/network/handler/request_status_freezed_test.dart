@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/core/network/handler/request_status_freezed.dart';
 
 void main() {
   var statusNum = '{"status":"success", "msg":1234}';
