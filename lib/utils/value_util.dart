@@ -89,13 +89,12 @@ String formatValue(
       floorIfInt: floorIfInt || floor,
       floorIfZero: floorIfZero,
     );
-//    print('result: $result');
+//    debugPrint('result: $result');
     return (floor && result.contains('.'))
         ? '${result.substring(0, result.indexOf('.'))}'.trim()
         : result.trim();
   } catch (e) {
-    MyLogger.warn(msg: 'trim value has exception', tag: 'trimValue');
-    print('trim value exception: $e');
+    MyLogger.warn(msg: 'trim value has exception', error: e, tag: 'trimValue');
     return '$formatted';
   }
 }

@@ -10,15 +10,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen_view.dart';
 import 'package:flutter_eg990_mobile/temp/test_permission_screen.dart';
 import 'package:flutter_eg990_mobile/temp/test_input_route.dart';
+import 'package:flutter_eg990_mobile/temp/test_home_size_calc.dart';
 
 abstract class TestRoutes {
   static const testScreenInnerView = '/test-screen-inner-view';
   static const testPermissionScreen = '/test-permission-screen';
   static const testInputRoute = '/test-input-route';
+  static const testHomeSizeCalc = '/test-home-size-calc';
   static const all = {
     testScreenInnerView,
     testPermissionScreen,
     testInputRoute,
+    testHomeSizeCalc,
   };
 }
 
@@ -46,6 +49,11 @@ class TestRouter extends RouterBase {
       case TestRoutes.testInputRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => TestInputRoute(),
+          settings: settings,
+        );
+      case TestRoutes.testHomeSizeCalc:
+        return CupertinoPageRoute<dynamic>(
+          builder: (context) => TestHomeSizeCalc(),
           settings: settings,
         );
       default:

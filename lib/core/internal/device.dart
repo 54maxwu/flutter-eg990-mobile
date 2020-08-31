@@ -1,19 +1,28 @@
-import 'dart:core';
-
-import 'package:flutter/material.dart' show MediaQueryData, Orientation;
+import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:flutter/widgets.dart'
+    show EdgeInsets, MediaQueryData, Orientation;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:package_info/package_info.dart';
 
 class Device {
   final bool isIos;
   final MediaQueryData _mediaQueryData;
+
   PackageInfo packageInfo;
+  String _version;
+
   double _screenWidth;
   double _screenHeight;
-  // device status bar
-  double _screenTopPadding;
-  // device virtual key
-  double _screenBottomInset;
+
+  /// ex. device virtual button, phone's notch area
+  EdgeInsets _screenPadding;
+
+  /// ex. status bar area
+  EdgeInsets _screenViewPadding;
+
+  /// ex. on-screen virtual button, also changes while keyboard pops
+  EdgeInsets _screenViewInset;
+
   // screen width compare with test device
   double _screenWidthScale;
   // screen height compare with test device
@@ -23,28 +32,30 @@ class Device {
 
   Device(this._mediaQueryData, this.isIos) {
     PackageInfo.fromPlatform().then((PackageInfo info) {
-//      String appName = packageInfo.appName;
-//      String packageName = packageInfo.packageName;
-//      String version = packageInfo.version;
-//      String buildNumber = packageInfo.buildNumber;
       packageInfo = info;
-      print('packageInfo: '
+      _version = (packageInfo.buildNumber == '1' ||
+              packageInfo.buildNumber == packageInfo.version)
+          ? packageInfo.version
+          : '${packageInfo.version}+${packageInfo.buildNumber}';
+      debugPrint('packageInfo: '
           'app=${packageInfo.appName}, '
           'package=${packageInfo.packageName}, '
-          'version=${packageInfo.version}+${packageInfo.buildNumber}');
+          'pkg version=${packageInfo.version}, '
+          'pkg build=${packageInfo.buildNumber}, '
+          'app version=$_version');
     });
     _screenWidth = double.parse(_mediaQueryData.size.width.toStringAsFixed(2));
     _screenHeight =
         double.parse(_mediaQueryData.size.height.toStringAsFixed(2));
     _screenWidthScale = _screenWidth / Global.TEST_DEVICE_WIDTH;
     _screenHeightScale = _screenHeight / Global.TEST_DEVICE_HEIGHT;
-    _screenTopPadding = _mediaQueryData.viewPadding.top;
-    _screenBottomInset = _mediaQueryData.viewInsets.bottom;
+
+    _screenPadding = _mediaQueryData.padding;
+    _screenViewPadding = _mediaQueryData.viewPadding;
+    _screenViewInset = _mediaQueryData.viewInsets;
     _screenButtonHeight = (_screenHeightScale > 1)
         ? (36 * _screenHeightScale).ceilToDouble()
         : 36.0;
-    print('Device Inset: ${_mediaQueryData.viewInsets}');
-    print('Device Padding: ${_mediaQueryData.viewPadding}');
   }
 
   @override
@@ -54,8 +65,9 @@ class Device {
         'height=$_screenHeight\n'
         'height scale=$_screenHeightScale\n'
         'ratio=$ratio, hor=$ratioHor\n'
-        'padding=${_mediaQueryData.viewPadding}\n'
-        'inset=${_mediaQueryData.viewInsets}\n'
+        'padding=${_mediaQueryData.padding}\n'
+        'view padding=${_mediaQueryData.viewPadding}\n'
+        'view inset=${_mediaQueryData.viewInsets}\n'
         'button=$_screenButtonHeight';
   }
 
@@ -64,6 +76,8 @@ class Device {
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;
+
+  MediaQueryData get query => _mediaQueryData;
 
   /// screen's ratio = width / height
   double get ratio => _mediaQueryData.size.aspectRatio;
@@ -83,15 +97,19 @@ class Device {
   /// device's height
   double get heightScale => _screenHeightScale;
 
-  double get safePadding =>
-      _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+  double get safeHorizontalPadding => _mediaQueryData.padding.horizontal;
+
+  double get safeVerticalPadding => _screenPadding.vertical;
+
+  EdgeInsets get dialogInset => _mediaQueryData.viewInsets;
+
+  double get safeInset => _screenViewInset.bottom;
+
+  double get safeFloat => _screenViewPadding.bottom + _screenViewInset.bottom;
 
   /// device's relative button height
   double get comfortButtonHeight => _screenButtonHeight;
 
   double get featureContentHeight =>
-      _screenHeight -
-      Global.APP_TOOLS_HEIGHT -
-      _screenBottomInset -
-      _screenTopPadding;
+      _screenHeight - Global.APP_TOOLS_HEIGHT - safeInset - safeVerticalPadding;
 }

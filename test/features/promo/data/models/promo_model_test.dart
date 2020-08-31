@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/features/promo/data/models/promo_freezed.dart';
+import 'package:flutter_eg990_mobile/features/routes/promo/data/models/promo_freezed.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 

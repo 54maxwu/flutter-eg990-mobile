@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
@@ -20,7 +21,7 @@ class JsonUtil {
     String strBody = (hasHtmlTag)
         ? jsonStr.replaceAll(trimRegexSimple, "").replaceAll('> <', "><")
         : jsonStr.replaceAll(trimRegex, "");
-//    print("trimmed: $strBody");
+//    debugPrint("trimmed: $strBody");
     if (strBody.isHtmlFormat) throw LocationException();
     return strBody;
   }
@@ -36,12 +37,12 @@ class JsonUtil {
     if (trimmed.isEmpty) return [];
     try {
       List decoded = jsonDecode(trimmed);
-//      print("Decoded type: ${decoded.runtimeType} Json: $decoded");
+//      debugPrint("Decoded type: ${decoded.runtimeType} Json: $decoded");
       if (decoded.isEmpty && trimmed.isNotEmpty)
         MyLogger.warn(msg: 'decoded data list is empty!!', tag: tag);
       return decoded;
     } catch (e, s) {
-      print('exception: $e');
+      debugPrint('exception: $e');
       if (returnNullOnError) {
         MyLogger.error(msg: 'decode json array error!!', tag: tag);
         return null;
@@ -66,7 +67,7 @@ class JsonUtil {
     bool trim = true,
     String tag = debugTag,
   }) {
-    MyLogger.debug(msg: 'start decoding array data to $T...', tag: tag);
+    MyLogger.print(msg: 'start decoding array data to $T...', tag: tag);
     MyLogger.print(
         msg: 'data type: ${data.runtimeType}, data is List: ${data is List}',
         tag: tag);
@@ -92,7 +93,7 @@ class JsonUtil {
       throw MapJsonDataException();
     } else {
 //      for (int index = 0; index < dataList.length; index++) {
-//        print('mapped data $index: ${dataList[index]}');
+//        debugPrint('mapped data $index: ${dataList[index]}');
 //      }
       return dataList;
     }
@@ -112,7 +113,7 @@ class JsonUtil {
     bool addKey = true,
     String tag = debugTag,
   }) {
-//    print('decodeMapToModelList: $map, type: ${map.runtimeType}');
+//    debugPrint('decodeMapToModelList: $map, type: ${map.runtimeType}');
     if (map == null || map is Map == false) return [];
     MyLogger.debug(msg: 'start decoding map to $T list...', tag: tag);
     List<T> dataList = new List();
@@ -127,7 +128,7 @@ class JsonUtil {
       throw MapJsonDataException();
     } else {
 //      for (int index = 0; index < dataList.length; index++) {
-//        print('mapped data $index: ${dataList[index]}');
+//        debugPrint('mapped data $index: ${dataList[index]}');
 //      }
       return dataList;
     }
@@ -159,7 +160,7 @@ class JsonUtil {
     try {
       return jsonToModel(map) as T;
     } catch (e, s) {
-      print('decode to model error: $e, stack:\n$s');
+      debugPrint('decode to model error: $e, stack:\n$s');
       MyLogger.error(
           msg: 'mapped model error!! data: $str\nmapped json: $map',
           stackTrace: s,

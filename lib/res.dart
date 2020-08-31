@@ -2,6 +2,8 @@
 class Res {
   //  static const String fontawesome_webfont = "assets/fonts/fontawesome_webfont.ttf";
   static const String wallpaper = "";
+//  static const String shadow = "assets/images/shadow.png";
+  static const String homeBoxUserAreaBg = "assets/images/index_member.jpg";
   static const String iconBarLogo = "assets/images/icon_bar_logo.png";
   static const String iconPending = "assets/images/icon_pending.png";
 

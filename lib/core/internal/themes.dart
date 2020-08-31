@@ -10,6 +10,7 @@ final appTheme = Themes();
 class Themes {
   static const isDarkTheme = true;
   static const defaultBackgroundColor = Color(0xff313131);
+  static const defaultLayerBackgroundColor = Color(0xff313131);
   static const defaultPrimaryColor = Color(0xff38394b);
   static const defaultAccentColor = Color(0xffe7c080);
   static const defaultAppbarColor = Color(0xff222222);
@@ -26,10 +27,11 @@ class Themes {
   static const defaultGridColor = Colors.black45;
   static const defaultGridTextColor = Color(0xfff0f0f0);
   static const defaultCardColor = Color(0xff606060);
+  static const defaultCardTitleColor = Color(0xff2a60ba);
 
-  static const defaultTextColor = Color(0xffd9d9d9);
-  static const secondaryTextColor1 = Color(0xffffffff);
-  static const secondaryTextColor2 = Color(0xffc7c7c7);
+  static const defaultTextColor = Color(0xffb5b5b5);
+  static const secondaryTextColor1 = Color(0xff222222);
+  static const secondaryTextColor2 = Color(0xffececec);
   static const defaultSubtitleColor = Color(0xffeea942);
   static const defaultHintColor = Color(0xffdadada);
   static const defaultHintSubColor = Color(0xffa4a4a4);
@@ -44,6 +46,7 @@ class Themes {
   static const sideMenuButtonTextColor = Color(0xff000000);
   static const sideMenuHeaderTextColor = Color(0xffffffff);
   static const sideMenuIconColor = Color(0xffffffff);
+  static const sideMenuIconBgColor = Color(0xffffffff);
   static const sideMenuIconTextColor = Color(0xffffffff);
 
   static const dialogBgColor = Color(0xff424242);
@@ -68,10 +71,10 @@ class Themes {
   static const buttonPrimaryColor = Color(0xffe7c080);
   static const buttonTextPrimaryColor = Color(0xff000000);
   // unselected button
-  static const buttonSecondaryColor = Color(0xff525252);
-  // sub color button (ex. readme, forget)
-  static const buttonSubColor = Color(0xffc9c9c9);
-  static const buttonTextSubColor = Color(0xff575757);
+  static const buttonSecondaryColor = Color(0xff3b3b3b);
+  // sub color button (ex. readme)
+  static const buttonSubColor = Color(0xff3b3b3b);
+  static const buttonTextSubColor = Color(0xffe6e6e6);
   static const buttonDisabledColor = Color(0xffa9a9a9);
   static const buttonDisabledColorDark = Color(0xc03a3a3a);
   static const buttonDisabledTextColor = Color(0xff575757);
@@ -82,21 +85,23 @@ class Themes {
   static const fieldInputColor = Color(0xffffffff);
   static const fieldInputBgColor = Color(0xff4e4e4e);
   static const fieldReadOnlyBgColor = Color(0xff404040);
-  static const fieldInputHintColor = Color(0xffdadada);
-  static const fieldPrefixColor = Color(0xffb7b7b7);
-  static const fieldSuffixColor = Color(0xffe3b977);
-  static const fieldSuffixSubColor = Color(0xffe3b977);
+  static const fieldInputHintColor = Color(0xffa4a4a4);
+  static const fieldPrefixBgColor = Color(0xff383838);
+  static const fieldPrefixColor = Color(0xffd9d9d9);
+  static const fieldPrefixSubColor = Color(0xffffffff);
+  static const fieldSuffixColor = Color(0xffe7c080);
+  static const fieldSuffixSubColor = Color(0xffffffff);
 
   static const fieldInputSubBgColor = Color(0xffffffff);
   static const fieldReadOnlySubBgColor = Color(0xffd3d3d3);
-  static const fieldInputSubColor = Color(0xffe7c080);
-  static const fieldInputHintSubColor = Color(0xff484848);
+  static const fieldInputSubColor = Color(0xff000000);
+  static const fieldInputHintSubColor = Color(0xff383838);
   static const fieldCursorSubColor = Color(0xff000000);
 
   static const double fieldHeight = 53.6;
   static const double fieldIconSize = 24.0;
-  static const double prefixTextWidthFactor = 0.3;
-  static const double prefixTextSpacing = 13.0;
+  static const double prefixTextWidthFactor = 0.35;
+  static const double prefixTextSpacing = 5.0;
   static const double prefixIconWidthFactor = 0.166;
   static const double suffixWidthFactor = 0.314;
   static const double horizontalInset = 32.0;
@@ -110,11 +115,13 @@ class Themes {
   static const hintHighlightOrange = Color(0xffde9c57);
   static const hintHighlightOrangeStrong = Color(0xffff9e4c);
   static const hintHyperLink = Color(0xff82f8ff);
+  static const hintDarkRed = Color(0xff752121);
+  static const hintHighlightNotice = Color(0xffffffff);
 
   static const chartBorderColor = Color(0xff6a6a6a);
   static const chartPrimaryHeaderColor = Color(0xff2a8fbd);
-  static const chartPrimaryHeaderTextColor = Color(0xffb5b5b5);
-  static const chartSecondaryHeaderColor = Color(0xff4e4e4e);
+  static const chartPrimaryHeaderTextColor = Color(0xffffffff);
+  static const chartSecondaryHeaderColor = Color(0xff222222);
   static const chartBgColor = Color(0xff3a3a3a);
 
   static const navigationColor = Color(0xffb5b5b5);
@@ -124,6 +131,9 @@ class Themes {
   static const homeTabBgColor = Colors.black54;
   static const homeTabDividerColor = Color(0xffe7c080);
   static const homeTabIconColor = Color(0xffb5b5b5);
+  static const homeTabIconBgColor = Color(0xffe7c080);
+  static const homeTabTextColor = Color(0xffe7c080);
+  static const homeTabSelectedTextColor = Color(0xffffffff);
   static const homeBoxBgColor = Color(0xff222222);
   static const homeBoxHintBgColor = Color(0xffe7c080);
   static const homeBoxHintTextColor = Color(0xff000000);
@@ -150,13 +160,18 @@ class Themes {
 
   static const balanceCardBackground = Color(0xff424242);
   static const balanceCardTitleColor = Color(0xffde9c57);
+  static const balanceCardTextColor = Color(0xfff0f0f0);
   static const balanceActionTextColor = Color(0xffffe6b1);
   static const balanceAction2TextColor = Color(0xffffe6b1);
   static const balanceActionDisableTextColor = Color(0xff575757);
+  static const balanceRefreshColor = Color(0xffffe6b1);
 
   static const walletCardBackground = Color(0xff3a3a3a);
   static const walletCardIconBackground = Color(0xff575757);
+  static const walletBoxBackgroundColor = Color(0xff272727);
   static const walletBoxBackground = Color(0xff272727);
+  static const walletBoxBorderColor = Color(0xff575757);
+  static const walletBoxButtonColor = Color(0xffffe6b1);
   static const walletRadioColor = Color(0xff575757);
   static const walletCreditTitleColor = Color(0xffde9c57);
 
@@ -170,10 +185,74 @@ class Themes {
   static const vipTextColor = Color(0xfff0f0f0);
   static const vipLinearBgColor1 = Color(0xff585656);
   static const vipLinearBgColor2 = Color(0xcc3f3a39);
+  static const vipProgressColor = Color(0xffa9a9a9);
+  static const vipProgressCircleColor = Color(0xffe7c080);
+  static const vipProgressBorderColor = Color(0xffe7c080);
 
   static const storeDialogBackground = Color(0xff606266);
   static const storeDialogSpanText = Color(0xffb5b5b5);
   static const storeHighlightTextColor = Color(0xffff9e4c);
+
+  static const layerShadowDecorRound = BoxDecoration(
+    color: defaultLayerBackgroundColor,
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    boxShadow: <BoxShadow>[
+      BoxShadow(
+        color: Colors.black12,
+        spreadRadius: 2.15,
+        blurRadius: 3.0,
+        offset: Offset(3, 3), // changes position of shadow
+      ),
+    ],
+  );
+
+  static const layerShadowDecorRoundTop = BoxDecoration(
+    color: defaultLayerBackgroundColor,
+    borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
+    boxShadow: <BoxShadow>[
+      BoxShadow(
+        color: Colors.black12,
+        spreadRadius: 2.15,
+        blurRadius: 3.0,
+        offset: Offset(3, 3), // changes position of shadow
+      ),
+    ],
+  );
+
+  static const layerShadowDecorRoundBottom = BoxDecoration(
+    color: defaultLayerBackgroundColor,
+    borderRadius: BorderRadius.vertical(bottom: Radius.circular(8.0)),
+    boxShadow: <BoxShadow>[
+      BoxShadow(
+        color: Colors.black12,
+        spreadRadius: 2.15,
+        blurRadius: 3.0,
+        offset: Offset(3, 3), // changes position of shadow
+      ),
+    ],
+  );
+
+  static const gridItemShadowDecor = BoxDecoration(
+    color: defaultLayerBackgroundColor,
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    boxShadow: <BoxShadow>[
+      BoxShadow(
+        color: Colors.black12,
+        spreadRadius: 1.15,
+        blurRadius: 2.0,
+        offset: Offset(2, 2), // changes position of shadow
+      ),
+    ],
+  );
+
+  static const roundIconShadow = <BoxShadow>[
+    BoxShadow(
+      color: Colors.black26,
+      spreadRadius: 1.15,
+      blurRadius: 2.0,
+      offset: Offset(2, 2), // changes position of shadow
+    ),
+  ];
 
   final defaultTheme = ThemeData.dark().copyWith(
     primaryColor: defaultPrimaryColor,

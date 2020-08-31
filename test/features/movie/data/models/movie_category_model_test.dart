@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_eg990_mobile/features/movie/data/models/movie_category_model.dart';
+import 'package:flutter_eg990_mobile/features/routes/movie/data/models/movie_category_model.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 

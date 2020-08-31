@@ -9,9 +9,16 @@ class CustomizeInputChipContainer extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final double horizontalInset;
   final double heightFactor;
-  final double titleLetterSpacing;
+  final Color backgroundColor;
+  final bool roundCorner;
+
   final String prefixTitle;
+  final double prefixTextSize;
+  final int prefixTextMaxLines;
   final IconData prefixIconData;
+  final Color prefixItemColor;
+  final Color prefixBgColor;
+  final double titleLetterSpacing;
   final double titleWidthFactor;
   final double iconWidthFactor;
 
@@ -19,6 +26,7 @@ class CustomizeInputChipContainer extends StatefulWidget {
   final List values;
   final ChipTapCall chipTapCall;
   final double chipSpacing;
+  final bool roundChip;
 
   CustomizeInputChipContainer({
     Key key,
@@ -30,11 +38,18 @@ class CustomizeInputChipContainer extends StatefulWidget {
     this.padding,
     this.horizontalInset = 32.0,
     this.heightFactor = 1,
+    this.roundCorner = true,
+    this.backgroundColor = Themes.fieldInputBgColor,
     this.prefixTitle,
+    this.prefixTextSize,
+    this.prefixTextMaxLines = 1,
+    this.prefixIconData,
+    this.prefixItemColor = Themes.fieldPrefixColor,
+    this.prefixBgColor = Themes.defaultWidgetBgColor,
     this.titleWidthFactor = Themes.prefixTextWidthFactor,
     this.titleLetterSpacing = Themes.prefixTextSpacing,
-    this.prefixIconData,
     this.iconWidthFactor = Themes.prefixIconWidthFactor,
+    this.roundChip = true,
   }) : super(key: key);
 
   @override
@@ -47,8 +62,14 @@ class _CustomizeInputChipContainerState
   List<Widget> chips;
 
   @override
+  void didUpdateWidget(CustomizeInputChipContainer oldWidget) {
+    chips = null;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (chips == null) {
+    if (chips == null && widget.labels.isNotEmpty) {
       chips = new List();
       int index = 0;
       for (String label in widget.labels) {
@@ -62,27 +83,53 @@ class _CustomizeInputChipContainerState
       padding: widget.padding,
       horizontalInset: widget.horizontalInset,
       heightFactor: widget.heightFactor,
+      roundCorner: widget.roundCorner,
+      backgroundColor: widget.backgroundColor,
       prefixText: widget.prefixTitle,
+      prefixTextSize: widget.prefixTextSize,
+      prefixTextMaxLines: widget.prefixTextMaxLines,
+      prefixItemColor: widget.prefixItemColor,
+      prefixBgColor: widget.prefixBgColor,
+      prefixIconData: widget.prefixIconData,
       titleWidthFactor: widget.titleWidthFactor,
       titleLetterSpacing: widget.titleLetterSpacing,
-      prefixIconData: widget.prefixIconData,
       iconWidthFactor: widget.iconWidthFactor,
-      child: Wrap(
-        spacing: widget.chipSpacing,
-        children: chips,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 1,
+          itemBuilder: (context, index) {
+            return Wrap(spacing: widget.chipSpacing, children: chips);
+          },
+        ),
       ),
     );
   }
 
   Widget _createChip(String labelText, dynamic returnOnPress) {
-    return InputChip(
-      visualDensity: VisualDensity.compact,
-      label: Text(
-        labelText,
-        style: TextStyle(color: Themes.defaultAccentColor),
-      ),
-      onPressed: () =>
-          (widget.chipTapCall != null) ? widget.chipTapCall(returnOnPress) : {},
-    );
+    if (widget.roundChip == false)
+      return InputChip(
+        visualDensity: VisualDensity.compact,
+        label: Text(labelText),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(4.0),
+          right: Radius.circular(4.0),
+        )),
+        backgroundColor: Themes.fieldInputBgColor,
+        onPressed: () => (widget.chipTapCall != null)
+            ? widget.chipTapCall(returnOnPress)
+            : {},
+      );
+    else
+      return InputChip(
+        visualDensity: VisualDensity.compact,
+        label: Text(labelText),
+        onPressed: () => (widget.chipTapCall != null)
+            ? widget.chipTapCall(returnOnPress)
+            : {},
+      );
   }
 }

@@ -55,57 +55,63 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m17(num, num2, num3) => "输入范围:${num}~${num2}(金额为${num3}的倍数)";
 
-  static m18(value) => "已累积签到${value}天";
+  static m18(value) => "现实: ${value} VND";
 
-  static m19(name) => "${name}您好！";
+  static m19(value) => "已累积签到${value}天";
 
-  static m20(msg) => "${msg}错误";
+  static m20(name) => "${name}您好！";
 
-  static m21(wallet) => "${wallet}钱包綁定網址錯誤";
+  static m21(msg) => "${msg}错误";
 
-  static m22(msg, msg2) => "错误:${msg}(${msg2})";
+  static m22(wallet) => "${wallet}钱包綁定網址錯誤";
 
-  static m23(msg) => "请输入${msg}";
+  static m23(msg, msg2) => "错误:${msg}(${msg2})";
 
-  static m24(url) => "無法開啟網頁連結：${url}";
+  static m24(msg) => "请输入${msg}";
 
-  static m25(msg) => "错误:${msg}";
+  static m25(url) => "無法開啟網頁連結：${url}";
 
-  static m26(num) => "金额最小值为${num}";
+  static m26(msg) => "错误:${msg}";
 
-  static m27(num) => "密码至少为${num}个字";
+  static m27(num) => "金额最小值为${num}";
 
-  static m28(name) => "${name}，请重新登入";
+  static m28(num) => "密码至少为${num}个字";
 
-  static m29(msg) => "已取消${msg}";
+  static m29(name) => "${name}，请重新登入";
 
-  static m30(msg) => "${msg}失败";
+  static m30(msg) => "已取消${msg}";
 
-  static m31(msg) => "${msg}成功";
+  static m31(msg) => "${msg}失败";
 
-  static m32(name) => "欢迎，${name}";
+  static m32(msg) => "${msg}成功";
 
-  static m33(value) => "商城积分 ${value} 购买";
+  static m33(name) => "欢迎，${name}";
 
-  static m34(value) => "地址：${value}";
+  static m34(value) => "商城积分 ${value} 购买";
 
-  static m35(from, to, total) => "顯示第 ${from} 至 ${to} 項結果，共 ${total} 項";
+  static m35(value) => "地址：${value}";
 
-  static m36(value) => "姓名：${value}";
+  static m36(from, to, total) => "顯示第 ${from} 至 ${to} 項結果，共 ${total} 項";
 
-  static m37(value) => "电话：${value}";
+  static m37(value) => "姓名：${value}";
 
-  static m38(value) => "邮编：${value}";
+  static m38(value) => "电话：${value}";
 
-  static m39(value) => "各平台${value}";
+  static m39(value) => "邮编：${value}";
 
-  static m40(value) => "${value}积分";
+  static m40(value) => "各平台${value}";
 
-  static m41(value) => "￥ ${value}";
+  static m41(value) => "${value}积分";
 
-  static m42(separator) => "获取${separator}验证码";
+  static m42(value) => "￥ ${value}";
 
-  static m43(num) => "累积幸运轮抽奖次数:${num}次数";
+  static m43(from, to) => "${from} 到 ${to}";
+
+  static m44(value, version) => "发现新版本，请点击“更新”按钮前往下载安装。\n当前版本号：${version}\n新版本号：${value}";
+
+  static m45(separator) => "获取${separator}验证码";
+
+  static m46(num) => "累积幸运轮抽奖次数:${num}次数";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -165,11 +171,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTransferAmountError" : m1,
     "balanceTransferInText" : MessageLookupByLibrary.simpleMessage("转入"),
     "balanceTransferOutText" : MessageLookupByLibrary.simpleMessage("转出"),
+    "bankcardViewTitleBank" : MessageLookupByLibrary.simpleMessage("银行"),
     "bankcardViewTitleBankArea" : MessageLookupByLibrary.simpleMessage("地区"),
+    "bankcardViewTitleBankBranch" : MessageLookupByLibrary.simpleMessage("银行支行"),
     "bankcardViewTitleBankName" : MessageLookupByLibrary.simpleMessage("银行名称"),
-    "bankcardViewTitleBankPoint" : MessageLookupByLibrary.simpleMessage("银行支行"),
     "bankcardViewTitleBankProvince" : MessageLookupByLibrary.simpleMessage("开户网点"),
     "bankcardViewTitleCardNumber" : MessageLookupByLibrary.simpleMessage("账(卡)号"),
+    "bankcardViewTitleHolder" : MessageLookupByLibrary.simpleMessage("账户持有人"),
     "bankcardViewTitleOwner" : MessageLookupByLibrary.simpleMessage("帐户姓名"),
     "bankcardViewTitleSend" : MessageLookupByLibrary.simpleMessage("送出"),
     "betsFieldDateError" : MessageLookupByLibrary.simpleMessage("时间范围错误"),
@@ -181,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "betsHeaderGame" : MessageLookupByLibrary.simpleMessage("游戏名称"),
     "betsHeaderId" : MessageLookupByLibrary.simpleMessage("注单号"),
     "betsHeaderPlatform" : MessageLookupByLibrary.simpleMessage("平台"),
+    "betsHeaderSum" : MessageLookupByLibrary.simpleMessage("总计"),
+    "betsHeaderValidBet" : MessageLookupByLibrary.simpleMessage("有效投注"),
     "betsSpinnerOptionAllPlatform" : MessageLookupByLibrary.simpleMessage("全部平台"),
     "betsSpinnerTitlePlatform" : MessageLookupByLibrary.simpleMessage("游戏平台"),
     "betsSpinnerTitleTime" : MessageLookupByLibrary.simpleMessage("投注时间"),
@@ -188,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "btnBack" : MessageLookupByLibrary.simpleMessage("返回"),
     "btnBind" : MessageLookupByLibrary.simpleMessage("点我绑定"),
     "btnCancel" : MessageLookupByLibrary.simpleMessage("取消"),
+    "btnClose" : MessageLookupByLibrary.simpleMessage("关闭"),
     "btnConfirm" : MessageLookupByLibrary.simpleMessage("确定"),
     "btnConfirmSend" : MessageLookupByLibrary.simpleMessage("确定送出"),
     "btnDownload" : MessageLookupByLibrary.simpleMessage("点我下载"),
@@ -200,11 +211,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "btnRefresh" : MessageLookupByLibrary.simpleMessage("刷新"),
     "btnRegister" : MessageLookupByLibrary.simpleMessage("注册"),
     "btnResetPassword" : MessageLookupByLibrary.simpleMessage("忘记密码"),
+    "btnSearch" : MessageLookupByLibrary.simpleMessage("搜索"),
     "btnSend" : MessageLookupByLibrary.simpleMessage("送出"),
     "btnShow" : MessageLookupByLibrary.simpleMessage("显示"),
     "btnSignUp" : MessageLookupByLibrary.simpleMessage("立即签到"),
     "btnStopShowing" : MessageLookupByLibrary.simpleMessage("不再显示"),
     "btnSubmit" : MessageLookupByLibrary.simpleMessage("提交"),
+    "btnUpdate" : MessageLookupByLibrary.simpleMessage("更新"),
     "centerDialogCpwLeftHint" : MessageLookupByLibrary.simpleMessage("※ 点击将退出APP(不支持iPad)"),
     "centerDialogCpwLeftTitle" : MessageLookupByLibrary.simpleMessage("还没有购宝APP？"),
     "centerDialogCpwRightHint" : MessageLookupByLibrary.simpleMessage("(绑定完成后请等侯页面更新)"),
@@ -294,14 +307,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositNewbieWechat1" : MessageLookupByLibrary.simpleMessage("1、先用一个手机拍下付款二维码。"),
     "depositNewbieWechat2" : MessageLookupByLibrary.simpleMessage("2、然后用另一个手机微信扫码付款。"),
     "depositPaymentButtonTitleTutorial" : MessageLookupByLibrary.simpleMessage("点我看教学"),
+    "depositPaymentEditTitleAccount" : MessageLookupByLibrary.simpleMessage("打款人银行账号"),
+    "depositPaymentEditTitleAccountHint" : MessageLookupByLibrary.simpleMessage("请填写打款人的银行账号"),
     "depositPaymentEditTitleAmount" : MessageLookupByLibrary.simpleMessage("存款金额"),
     "depositPaymentEditTitleAmountHintRange" : m16,
     "depositPaymentEditTitleAmountHintRangeStep" : m17,
+    "depositPaymentEditTitleAmountHintVND" : m18,
     "depositPaymentEditTitleName" : MessageLookupByLibrary.simpleMessage("打款人姓名"),
     "depositPaymentEditTitleNameHint" : MessageLookupByLibrary.simpleMessage("请填写您的打款人姓名"),
+    "depositPaymentEditTitleNote" : MessageLookupByLibrary.simpleMessage("备注"),
     "depositPaymentMethodLocal1" : MessageLookupByLibrary.simpleMessage("转帐充值"),
     "depositPaymentMethodLocal2" : MessageLookupByLibrary.simpleMessage("ATM充值"),
     "depositPaymentNoPromo" : MessageLookupByLibrary.simpleMessage("放弃申请优惠"),
+    "depositPaymentSpinnerTitleAccountBank" : MessageLookupByLibrary.simpleMessage("打款人银行"),
     "depositPaymentSpinnerTitleBank" : MessageLookupByLibrary.simpleMessage("支付银行"),
     "depositPaymentSpinnerTitleMethod" : MessageLookupByLibrary.simpleMessage("充值方式"),
     "depositPaymentSpinnerTitlePromo" : MessageLookupByLibrary.simpleMessage("选择优惠"),
@@ -318,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("已签到"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("签到失败!!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("签到成功!!"),
-    "eventButtonSignUpTv" : m18,
+    "eventButtonSignUpTv" : m19,
     "eventSignUpHint1" : MessageLookupByLibrary.simpleMessage("已累积签到"),
     "eventSignUpHint2" : MessageLookupByLibrary.simpleMessage("天"),
     "exitAppHint" : MessageLookupByLibrary.simpleMessage("再按一次关闭APP"),
@@ -337,6 +355,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategoryCardFull" : MessageLookupByLibrary.simpleMessage("热门棋牌"),
     "gameCategoryCasino" : MessageLookupByLibrary.simpleMessage("真人"),
     "gameCategoryCasinoFull" : MessageLookupByLibrary.simpleMessage("真人娱乐"),
+    "gameCategoryCockFighting" : MessageLookupByLibrary.simpleMessage("斗鸡"),
     "gameCategoryFish" : MessageLookupByLibrary.simpleMessage("捕鱼"),
     "gameCategoryFishFull" : MessageLookupByLibrary.simpleMessage("捕鱼电玩"),
     "gameCategoryGift" : MessageLookupByLibrary.simpleMessage("礼物"),
@@ -347,19 +366,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategorySlotFull" : MessageLookupByLibrary.simpleMessage("电子游戏"),
     "gameCategorySport" : MessageLookupByLibrary.simpleMessage("体育"),
     "gameCategorySportFull" : MessageLookupByLibrary.simpleMessage("体育竞技"),
+    "gameCategoryWeb" : MessageLookupByLibrary.simpleMessage("网页版"),
+    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("点我开启85Bet网页版"),
     "hintAccount" : MessageLookupByLibrary.simpleMessage("您的会员帐号"),
+    "hintAccountInput" : MessageLookupByLibrary.simpleMessage("请输入帐号"),
     "hintAccountPassword" : MessageLookupByLibrary.simpleMessage("您的密码"),
     "hintActionLogin" : MessageLookupByLibrary.simpleMessage("请先登入"),
     "hintActionSelect" : MessageLookupByLibrary.simpleMessage("请选择"),
     "hintConfirmed" : MessageLookupByLibrary.simpleMessage("再次输入密码"),
+    "hintConfirmedInput" : MessageLookupByLibrary.simpleMessage("请输入确认密码"),
     "hintEmail" : MessageLookupByLibrary.simpleMessage("输入信箱"),
     "hintName" : MessageLookupByLibrary.simpleMessage("输入用户名"),
     "hintPassword" : MessageLookupByLibrary.simpleMessage("输入密码"),
+    "hintPasswordInput" : MessageLookupByLibrary.simpleMessage("请输入密码"),
+    "hintPhoneInput" : MessageLookupByLibrary.simpleMessage("请输入手机号"),
+    "hintReferralInput" : MessageLookupByLibrary.simpleMessage("请输入推荐码"),
     "hintTitleLogin" : MessageLookupByLibrary.simpleMessage("请先登入您的会员帐号"),
-    "homeHintMemberCreditLeft" : MessageLookupByLibrary.simpleMessage("余额"),
+    "homeHintDefaultMarquee" : MessageLookupByLibrary.simpleMessage("尊敬的会员您好！如果您有任何使用上的问题，请使用在线客服系统。"),
+    "homeHintMemberCreditLeft" : MessageLookupByLibrary.simpleMessage("总余额"),
     "homeHintWelcome" : MessageLookupByLibrary.simpleMessage("您好！"),
     "homeHintWelcomeLogin" : MessageLookupByLibrary.simpleMessage("您好！ 请登入会员"),
-    "homeHintWelcomeMember" : m19,
+    "homeHintWelcomeMember" : m20,
     "homeUserTabCategoryEgMovie" : MessageLookupByLibrary.simpleMessage("EG影城"),
     "homeUserTabCategoryFavorite" : MessageLookupByLibrary.simpleMessage("我的最爱"),
     "homeUserTabCategoryMovie" : MessageLookupByLibrary.simpleMessage("影城"),
@@ -384,60 +411,65 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageActionTooFrequent" : MessageLookupByLibrary.simpleMessage("请求过于频繁"),
     "messageCopy" : MessageLookupByLibrary.simpleMessage("已复制到剪贴板"),
     "messageCopyError" : MessageLookupByLibrary.simpleMessage("复制失败"),
-    "messageError" : m20,
+    "messageError" : m21,
+    "messageErrorAccount" : MessageLookupByLibrary.simpleMessage("帐号错误"),
     "messageErrorAutoLogin" : MessageLookupByLibrary.simpleMessage("数据错误，请手动登入"),
     "messageErrorBindBankcard" : MessageLookupByLibrary.simpleMessage("请先绑定银行卡！"),
     "messageErrorBindCgp" : MessageLookupByLibrary.simpleMessage("请先绑定Cgp钱包"),
     "messageErrorBindCpw" : MessageLookupByLibrary.simpleMessage("请先绑定购宝钱包"),
-    "messageErrorBindUrl" : m21,
+    "messageErrorBindUrl" : m22,
     "messageErrorCachedFile" : MessageLookupByLibrary.simpleMessage("缓存数据错误，请稍候再重试或联系客服"),
-    "messageErrorCause" : m22,
+    "messageErrorCause" : m23,
     "messageErrorEvent" : MessageLookupByLibrary.simpleMessage("无法取得签到活动数据，请稍候再重试或联系客服"),
-    "messageErrorFieldError" : m23,
+    "messageErrorFieldError" : m24,
     "messageErrorHasCardData" : MessageLookupByLibrary.simpleMessage("已绑定过银行卡"),
     "messageErrorInternal" : MessageLookupByLibrary.simpleMessage("内部错误，请稍候再重试或联系客服"),
-    "messageErrorLink" : m24,
+    "messageErrorLink" : m25,
     "messageErrorLoadingGame" : MessageLookupByLibrary.simpleMessage("游戏加载发生错误，请稍候再重试"),
     "messageErrorLoadingPay" : MessageLookupByLibrary.simpleMessage("网页加载错误，请稍候再重试"),
     "messageErrorNoNetwork" : MessageLookupByLibrary.simpleMessage("请检查网络状态"),
     "messageErrorNoServerConnection" : MessageLookupByLibrary.simpleMessage("无法连接至伺服器!!"),
     "messageErrorNoStoragePermission" : MessageLookupByLibrary.simpleMessage("请开启\"保存\"权限"),
     "messageErrorNotLogin" : MessageLookupByLibrary.simpleMessage("请先登入"),
+    "messageErrorPassword" : MessageLookupByLibrary.simpleMessage("密码错误"),
+    "messageErrorPasswordHint" : MessageLookupByLibrary.simpleMessage("密码不符合，错误5次将锁定帐号"),
     "messageErrorServerData" : MessageLookupByLibrary.simpleMessage("伺服器資料错误，请稍候再重试或联系客服"),
-    "messageErrorStatus" : m25,
+    "messageErrorStatus" : m26,
     "messageErrorTimeoutError" : MessageLookupByLibrary.simpleMessage("网络逾時，请稍候再重试"),
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("用户验证失败，请重新登入或联系客服"),
+    "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("提款失败"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("更改失败，请稍候再重试"),
     "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("帐号为6~12个字"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("名称需大于3个字"),
-    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("卡号为16~19个字"),
+    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("卡号为6~19个字"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("持卡人名称错误"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("密码不符合"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("金额输入错误"),
-    "messageInvalidDepositAmountMin" : m26,
+    "messageInvalidDepositAmountMin" : m27,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("帐号名称错误"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("信箱格式错误"),
     "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("格式错误"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("名称格式错误"),
     "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("密码为6~20个字"),
-    "messageInvalidPasswordArg" : m27,
+    "messageInvalidPasswordArg" : m28,
     "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("密码为8~20个字"),
-    "messageInvalidPhone" : MessageLookupByLibrary.simpleMessage("电话格式错误(11~13碼)"),
+    "messageInvalidPhone" : MessageLookupByLibrary.simpleMessage("电话格式错误(10碼)"),
     "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("邮递区号错误(5~6碼)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("含非法字符"),
     "messageInvalidVerify" : MessageLookupByLibrary.simpleMessage("请输入验证码"),
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("微信号格式错误"),
-    "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("密码为4~20个字"),
+    "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("超过帐户余额"),
+    "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("密码不符合(默认值为登录密码)"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("请稍候…"),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("登入失败"),
-    "messageLogout" : m28,
+    "messageLogout" : m29,
     "messageNoEvent" : MessageLookupByLibrary.simpleMessage("当前没有活动"),
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("部分平台转帐失败"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("注册失败"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("成功"),
-    "messageTaskCanceled" : m29,
-    "messageTaskFailed" : m30,
-    "messageTaskSuccess" : m31,
+    "messageTaskCanceled" : m30,
+    "messageTaskFailed" : m31,
+    "messageTaskSuccess" : m32,
     "messageVerifySuccess" : MessageLookupByLibrary.simpleMessage("验证成功"),
     "messageWait" : MessageLookupByLibrary.simpleMessage("处理请求中，请稍候…"),
     "messageWaitComplete" : MessageLookupByLibrary.simpleMessage("处理请求中，请勿退出"),
@@ -447,13 +479,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageWarnNoPromoData" : MessageLookupByLibrary.simpleMessage("查无优惠"),
     "messageWarnNoPromoInfo" : MessageLookupByLibrary.simpleMessage("查无优惠信息"),
     "messageWarnUsingCellular" : MessageLookupByLibrary.simpleMessage("您正在使用移动网络"),
-    "messageWelcome" : MessageLookupByLibrary.simpleMessage("欢迎光临，请先登入/注册"),
-    "messageWelcomeUser" : m32,
+    "messageWelcome" : MessageLookupByLibrary.simpleMessage("欢迎光临"),
+    "messageWelcomeHint" : MessageLookupByLibrary.simpleMessage("请先登入/注册"),
+    "messageWelcomeUser" : m33,
     "movieCategoryLabelBuy" : MessageLookupByLibrary.simpleMessage("购买"),
     "movieCategoryLabelCollect" : MessageLookupByLibrary.simpleMessage("收藏"),
     "movieCategoryLabelExpand" : MessageLookupByLibrary.simpleMessage("展开分类"),
     "movieCategoryLabelFold" : MessageLookupByLibrary.simpleMessage("收起分类"),
-    "movieDialogButtonPayPoint" : m33,
+    "movieDialogButtonPayPoint" : m34,
     "movieDialogButtonWatchFree" : MessageLookupByLibrary.simpleMessage("免费次数观看"),
     "movieDialogTextFreeTimes" : MessageLookupByLibrary.simpleMessage("剩余免费观看次数: "),
     "movieDialogTextStorePoints" : MessageLookupByLibrary.simpleMessage("剩余商城绩分: "),
@@ -469,8 +502,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "movieListHintLoading" : MessageLookupByLibrary.simpleMessage("加载中..."),
     "movieSeparatorTextHot" : MessageLookupByLibrary.simpleMessage("其他人都在看"),
     "movieTextBuyNow" : MessageLookupByLibrary.simpleMessage("立即购买"),
+    "networkChangedHint" : MessageLookupByLibrary.simpleMessage("偵測到網路狀態變更，是否要刷新頁面?"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("一般讯息"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("维护通知"),
+    "pageTitleCenter" : MessageLookupByLibrary.simpleMessage("个人中心"),
     "pageTitleCollect" : MessageLookupByLibrary.simpleMessage("集字活动"),
     "pageTitleDeposit" : MessageLookupByLibrary.simpleMessage("充值"),
     "pageTitleDownload" : MessageLookupByLibrary.simpleMessage("APP下载区"),
@@ -499,7 +534,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageTitlePromo" : MessageLookupByLibrary.simpleMessage("优惠"),
     "pageTitleRank" : MessageLookupByLibrary.simpleMessage("VIP阶层"),
     "pageTitleRegister" : MessageLookupByLibrary.simpleMessage("注册"),
-    "pageTitleRegister2" : MessageLookupByLibrary.simpleMessage("免费注册"),
+    "pageTitleRegisterFree" : MessageLookupByLibrary.simpleMessage("免费注册"),
+    "pageTitleRegisterMember" : MessageLookupByLibrary.simpleMessage("注册会员"),
     "pageTitleRoller" : MessageLookupByLibrary.simpleMessage("幸运轮盘"),
     "pageTitleRouter" : MessageLookupByLibrary.simpleMessage("线路导航"),
     "pageTitleService" : MessageLookupByLibrary.simpleMessage("客服"),
@@ -514,13 +550,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "promoDetailPlatform" : MessageLookupByLibrary.simpleMessage("适用平台"),
     "promoDetailRules" : MessageLookupByLibrary.simpleMessage("活动细则"),
     "promoDetailText" : MessageLookupByLibrary.simpleMessage(">>活动细则"),
+    "registerButtonServiceHint" : MessageLookupByLibrary.simpleMessage("如有任何疑问，请单击此图标!"),
     "registerButtonTitleRefresh" : MessageLookupByLibrary.simpleMessage("点图刷新"),
     "registerButtonTitleRegister" : MessageLookupByLibrary.simpleMessage("注册"),
-    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("帐号："),
-    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("确认密码："),
-    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("密码："),
-    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("手机号："),
-    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("推荐码："),
+    "registerCheckButtonNews" : MessageLookupByLibrary.simpleMessage("接收优惠活动信息"),
+    "registerCheckButtonTerms" : MessageLookupByLibrary.simpleMessage("已阅读并同意《条款与细则》的投注规则"),
+    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("帐号"),
+    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("确认密码"),
+    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("密码"),
+    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("手机号"),
+    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("推荐码"),
     "registerHintAutoLogin" : MessageLookupByLibrary.simpleMessage("登入中，请稍候..."),
     "sideBtnBackHome" : MessageLookupByLibrary.simpleMessage("回首页"),
     "sideBtnLockRotate" : MessageLookupByLibrary.simpleMessage("锁定旋屏"),
@@ -544,11 +583,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRecordFieldHint" : MessageLookupByLibrary.simpleMessage("请输入商品名称"),
     "storeRecordSpinnerTitle1" : MessageLookupByLibrary.simpleMessage("显示"),
     "storeRecordSpinnerTitle2" : MessageLookupByLibrary.simpleMessage("项"),
-    "storeRecordTableDetailAddress" : m34,
-    "storeRecordTableDetailItem" : m35,
-    "storeRecordTableDetailName" : m36,
-    "storeRecordTableDetailPhone" : m37,
-    "storeRecordTableDetailPostCode" : m38,
+    "storeRecordTableDetailAddress" : m35,
+    "storeRecordTableDetailItem" : m36,
+    "storeRecordTableDetailName" : m37,
+    "storeRecordTableDetailPhone" : m38,
+    "storeRecordTableDetailPostCode" : m39,
     "storeRecordTableStatusPending" : MessageLookupByLibrary.simpleMessage("待出货"),
     "storeRecordTableTitleDate" : MessageLookupByLibrary.simpleMessage("日期"),
     "storeRecordTableTitleNo" : MessageLookupByLibrary.simpleMessage("订单号"),
@@ -565,17 +604,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRequestWindowTextPoint" : MessageLookupByLibrary.simpleMessage("累计积分："),
     "storeRequestWindowTitle" : MessageLookupByLibrary.simpleMessage("联络资讯"),
     "storeRuleTableHeader" : MessageLookupByLibrary.simpleMessage("每100元有效投注额即可获得积分表"),
-    "storeRuleTableTitle" : m39,
+    "storeRuleTableTitle" : m40,
     "storeTextItemButton" : MessageLookupByLibrary.simpleMessage("立即兑换"),
     "storeTextItemButtonDisabled" : MessageLookupByLibrary.simpleMessage("積分不足"),
     "storeTextItemHint" : MessageLookupByLibrary.simpleMessage("数量有限换完为止"),
-    "storeTextItemPoint" : m40,
+    "storeTextItemPoint" : m41,
     "storeTextTitlePoint" : MessageLookupByLibrary.simpleMessage("会员积分："),
     "storeTextTitleProduct" : MessageLookupByLibrary.simpleMessage("兑换商品"),
     "storeTextTitleRecord" : MessageLookupByLibrary.simpleMessage("积分记录"),
     "storeTextTitleRule" : MessageLookupByLibrary.simpleMessage("兑换规则"),
-    "title" : MessageLookupByLibrary.simpleMessage("EG990"),
-    "toolBarMemberCredit" : m41,
+    "title" : MessageLookupByLibrary.simpleMessage("85Bet Mobile"),
+    "toolBarMemberCredit" : m42,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("金额"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("日期"),
     "transactionHeaderDesc" : MessageLookupByLibrary.simpleMessage("说明"),
@@ -584,6 +623,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionViewSpinnerTitle" : MessageLookupByLibrary.simpleMessage("转帐时间"),
     "transferDataError" : MessageLookupByLibrary.simpleMessage("数据错误，请重新选择"),
     "transferHintRefresh" : MessageLookupByLibrary.simpleMessage("4.转帐成功後若平台金额未改变，请再次选择平台刷新金额或联系客服"),
+    "transferMessage" : m43,
     "transferPlatformError" : MessageLookupByLibrary.simpleMessage("所选平台当前无法转帐"),
     "transferResultAlertTitle" : MessageLookupByLibrary.simpleMessage("转帐失败"),
     "transferViewButtonConfirm" : MessageLookupByLibrary.simpleMessage("确认转帐"),
@@ -593,6 +633,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "transferViewTitleIn" : MessageLookupByLibrary.simpleMessage("转入"),
     "transferViewTitleOption" : MessageLookupByLibrary.simpleMessage("选择金额"),
     "transferViewTitleOut" : MessageLookupByLibrary.simpleMessage("转出"),
+    "updateDialogErrorUrl" : MessageLookupByLibrary.simpleMessage("无法取得下载网址，请联系客服!!"),
+    "updateDialogMessage" : m44,
     "userPwdButtonTitle" : MessageLookupByLibrary.simpleMessage("修改密码"),
     "userPwdFieldHintConfirm" : MessageLookupByLibrary.simpleMessage("再次输入新密码"),
     "userPwdFieldHintNew" : MessageLookupByLibrary.simpleMessage("输入新密码"),
@@ -600,7 +642,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPwdFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("密码确认："),
     "userPwdFieldTitleNew" : MessageLookupByLibrary.simpleMessage("新密码："),
     "userPwdFieldTitleOld" : MessageLookupByLibrary.simpleMessage("旧密码："),
-    "userVerifyButtonText" : m42,
+    "userVerifyButtonText" : m45,
     "userVerifyFieldHint" : MessageLookupByLibrary.simpleMessage("请输入验证码"),
     "userVerifyFieldInfo" : MessageLookupByLibrary.simpleMessage("24小时内只能获取一组验证码"),
     "userVerifyFieldTitle" : MessageLookupByLibrary.simpleMessage("验证码："),
@@ -631,11 +673,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "wheelRecordTableTextCount" : MessageLookupByLibrary.simpleMessage("次数"),
     "wheelRecordTableTextOperate" : MessageLookupByLibrary.simpleMessage("操作"),
     "wheelRecordTableTextTime" : MessageLookupByLibrary.simpleMessage("时间"),
-    "wheelTextTitleCount" : m43,
+    "wheelTextTitleCount" : m46,
     "wheelTextTitleGet" : MessageLookupByLibrary.simpleMessage("领取旋转次数"),
     "wheelTextTitlePrize" : MessageLookupByLibrary.simpleMessage("获奖纪录"),
     "wheelTextTitleRecord" : MessageLookupByLibrary.simpleMessage("操作纪录"),
     "wheelTextTitleRules" : MessageLookupByLibrary.simpleMessage("活动规则"),
+    "withdrawViewHint1" : MessageLookupByLibrary.simpleMessage("提款时想要更改与网络绑定的银行卡的会员，请联系在线客服以获取指示。"),
+    "withdrawViewHint2" : MessageLookupByLibrary.simpleMessage("每个会员账户每天最多只能取3次提款，如果超过3次将加收5％的服务费。"),
     "withdrawViewOptionCgp" : MessageLookupByLibrary.simpleMessage("使用CGP钱包"),
     "withdrawViewOptionCpw" : MessageLookupByLibrary.simpleMessage("使用购宝钱包"),
     "withdrawViewOptionHint1" : MessageLookupByLibrary.simpleMessage("如需提取虚拟货币请绑定後选取"),

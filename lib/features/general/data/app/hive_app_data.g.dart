@@ -8,13 +8,13 @@ part of 'hive_app_data.dart';
 
 class HiveAppDataEntityAdapter extends TypeAdapter<HiveAppDataEntity> {
   @override
-  final typeId = 106;
+  final int typeId = 106;
 
   @override
   HiveAppDataEntity read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return HiveAppDataEntity(
       key: fields[0] as String,
@@ -31,4 +31,14 @@ class HiveAppDataEntityAdapter extends TypeAdapter<HiveAppDataEntity> {
       ..writeByte(1)
       ..write(obj.data);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is HiveAppDataEntityAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

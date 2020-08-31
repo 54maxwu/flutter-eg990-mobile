@@ -47,7 +47,7 @@ class PagerWidgetState extends State<PagerWidget> {
         widget.horizontalInset -
         2 * (totalPage + 2) -
         (btnSize + 8);
-    print('pager max width: $maxListWidth, max screen width: $maxScreenWidth');
+//    debugPrint('pager max width: $maxListWidth, max screen width: $maxScreenWidth');
     if (maxListWidth > maxScreenWidth) maxListWidth = maxScreenWidth;
   }
 

@@ -41,7 +41,7 @@ class _LoginRouteState extends State<LoginRoute> {
         // Run some logic with the content of the observed field
         // Run some logic with the content of the observed field
         (String message) {
-          print('received login error message: $message');
+          debugPrint('received login error message: $message');
           if (message != null && message.isNotEmpty)
             callToastError(message, delayedMilli: 200);
         },
@@ -60,36 +60,56 @@ class _LoginRouteState extends State<LoginRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case LoginStoreState.loading:
-              return LoadingWidget();
-            case LoginStoreState.loaded:
-              return (widget.isDialog)
-                  ? DialogWidget(
-                      maxHeight: 270.0,
-                      minHeight: 260.0,
-                      children: [
-                        LoginDisplay(
-                          _store,
-                          widget.returnHomeAfterLogin,
-                          widget.isDialog,
-                        ),
-                      ],
-                    )
-                  : LoginDisplay(
-                      _store,
-                      widget.returnHomeAfterLogin,
-                      widget.isDialog,
-                    );
-            default:
-              return SizedBox.shrink();
-          }
-        },
-      ),
-    );
+    return (widget.isDialog)
+        ? DialogWidget(
+            maxHeight: 320.0,
+            minHeight: 300.0,
+            children: [
+              Observer(
+                // Observe using specific widget
+                builder: (_) {
+                  switch (_store.state) {
+                    case LoginStoreState.loading:
+                      return LoadingWidget();
+                    case LoginStoreState.loaded:
+                      return new LoginDisplay(
+                        store: _store,
+                        returnHome: widget.returnHomeAfterLogin,
+                        isDialog: widget.isDialog,
+                      );
+                    default:
+                      return SizedBox.shrink();
+                  }
+                },
+              ),
+            ],
+          )
+        : WillPopScope(
+            onWillPop: () {
+              debugPrint('pop login route');
+              Future.delayed(Duration(milliseconds: 100),
+                  () => RouterNavigate.navigateBack());
+              return Future(() => true);
+            },
+            child: Scaffold(
+              body: Observer(
+                // Observe using specific widget
+                builder: (_) {
+                  switch (_store.state) {
+                    case LoginStoreState.loading:
+                      return LoadingWidget();
+                    case LoginStoreState.loaded:
+                      return new LoginDisplay(
+                        store: _store,
+                        returnHome: widget.returnHomeAfterLogin,
+                        isDialog: widget.isDialog,
+                      );
+                    default:
+                      return SizedBox.shrink();
+                  }
+                },
+              ),
+            ),
+          );
   }
 }

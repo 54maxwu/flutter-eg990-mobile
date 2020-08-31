@@ -65,7 +65,7 @@ mixin _$TemplateStore on _TemplateStore, Store {
       AsyncAction('_TemplateStore.getDescription');
 
   @override
-  Future<dynamic> getDescription() {
+  Future<void> getDescription() {
     return _$getDescriptionAsyncAction.run(() => super.getDescription());
   }
 

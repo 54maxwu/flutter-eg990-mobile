@@ -20,6 +20,7 @@ typedef SuffixTapCall = void Function(String);
 class CustomizeFieldWidget extends StatefulWidget {
   /* Field Settings */
   final FieldType fieldType;
+  final double fieldTextSize;
   final String hint;
   final bool persistHint;
   final bool coloredHint;
@@ -41,7 +42,11 @@ class CustomizeFieldWidget extends StatefulWidget {
 
   /* Decoration Widget Settings */
   final String prefixText;
+  final double prefixTextSize;
+  final int prefixTextMaxLines;
   final IconData prefixIconData;
+  final Color prefixItemColor;
+  final Color prefixBgColor;
   final IconData suffixIconData;
   final String suffixText;
   final SuffixTapCall suffixAction;
@@ -51,6 +56,10 @@ class CustomizeFieldWidget extends StatefulWidget {
   final double iconWidthFactor;
   final double suffixLetterWidth;
   final int maxLines;
+  final bool roundCorner;
+  final bool requiredInput;
+
+  final SuffixTapCall onInputChanged;
 
   /* Other Settings */
   final bool debug;
@@ -58,6 +67,7 @@ class CustomizeFieldWidget extends StatefulWidget {
   CustomizeFieldWidget({
     Key key,
     this.fieldType = FieldType.Normal,
+    this.fieldTextSize,
     this.hint = '',
     this.persistHint = true,
     this.coloredHint = false,
@@ -74,7 +84,11 @@ class CustomizeFieldWidget extends StatefulWidget {
     this.minusPrefixWidth = Themes.minusSize,
     this.padding,
     this.prefixText,
+    this.prefixTextSize,
+    this.prefixTextMaxLines,
     this.prefixIconData,
+    this.prefixItemColor = Themes.fieldPrefixColor,
+    this.prefixBgColor = Themes.fieldPrefixBgColor,
     this.suffixText,
     this.suffixIconData,
     this.suffixAction,
@@ -83,6 +97,9 @@ class CustomizeFieldWidget extends StatefulWidget {
     this.titleWidthFactor = Themes.prefixTextWidthFactor,
     this.iconWidthFactor = Themes.prefixIconWidthFactor,
     this.suffixLetterWidth = 2.4,
+    this.roundCorner = true,
+    this.onInputChanged,
+    this.requiredInput = false,
     this.debug = false,
   }) : super(key: key);
 
@@ -108,6 +125,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
 
   int _lastTextLength = 0;
   int _currentMaxLines;
+  int _currentPrefixMaxLines;
   bool _isValid = true;
 
   String get getInput => _controller.text;
@@ -134,14 +152,15 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                 : Themes.fieldInputColor;
 
     _fieldTextStyle = TextStyle(
-      fontSize:
-          (widget.readOnly) ? FontSize.NORMAL.value : FontSize.SUBTITLE.value,
+      fontSize: (widget.fieldTextSize != null)
+          ? widget.fieldTextSize
+          : FontSize.NORMAL.value,
       color: textColor,
       decorationColor: textColor,
     );
 
     _fieldColor = (widget.useSameBgColor)
-        ? Themes.defaultWidgetBgColor
+        ? widget.prefixBgColor
         : (widget.subTheme)
             ? (widget.readOnly)
                 ? Themes.fieldReadOnlySubBgColor
@@ -164,6 +183,8 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     if (Global.device.isIos) _suffixWidth += 8.0;
 
     _currentMaxLines = widget.maxLines;
+    _currentPrefixMaxLines =
+        widget.prefixTextMaxLines ?? (Global.lang == 'zh') ? 1 : 2;
 
     _smallWidgetHeight =
         ((Global.device.isIos) ? Themes.fieldHeight + 8 : Themes.fieldHeight) -
@@ -180,19 +201,25 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     _updateFieldStyle();
 
     if (widget.debug) {
-      print('screen width: ${Global.device.width}');
-      print('field prefix width: $_prefixWidth');
-      print('field height: $_smallWidgetHeight');
+      debugPrint('screen width: ${Global.device.width}');
+      debugPrint('field prefix width: $_prefixWidth');
+      debugPrint('field height: $_smallWidgetHeight');
     }
+
     super.initState();
+    if (widget.onInputChanged != null) {
+      _controller.addListener(() {
+        widget.onInputChanged(_controller.text);
+      });
+    }
   }
 
   @override
   void didUpdateWidget(CustomizeFieldWidget oldWidget) {
-    if (widget.debug) print('update custom field: ${widget.prefixText}');
+    if (widget.debug) debugPrint('update custom field: ${widget.prefixText}');
     // update prefix widget
-    if (widget.prefixText == null && widget.prefixIconData == null)
-      _prefixWidget = null;
+    if ((widget.prefixText == null && widget.prefixIconData == null) ||
+        widget.prefixText != oldWidget.prefixText) _prefixWidget = null;
     // update suffix widget
     if (widget.suffixText == null && widget.suffixIconData == null)
       _suffixWidget = null;
@@ -214,6 +241,8 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
         minHeight: _smallWidgetHeight,
       );
     }
+    _currentPrefixMaxLines =
+        widget.prefixTextMaxLines ?? (Global.lang == 'zh') ? 1 : 2;
     _updateFieldStyle();
     super.didUpdateWidget(oldWidget);
   }
@@ -240,7 +269,9 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     }
     if (_prefixWidget == null && _suffixWidget == null) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(6.0),
+        borderRadius: (widget.roundCorner)
+            ? BorderRadius.circular(8.0)
+            : BorderRadius.circular(0.0),
         child: Container(
           padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 2.0),
           constraints: BoxConstraints(
@@ -257,10 +288,11 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             obscureText: widget.fieldType == FieldType.Password,
             readOnly: widget.readOnly,
             onChanged: (value) {
-              _isValid = widget.validCondition(value) ?? true;
+              setState(() {
+                _isValid = widget.validCondition(value) ?? true;
+              });
               if (widget.debug)
-                print('${widget.hint} input: $value, valid: $_isValid');
-              setState(() {});
+                debugPrint('${widget.hint} input: $value, valid: $_isValid');
             },
             style: _fieldTextStyle,
             cursorColor: (widget.subTheme)
@@ -274,21 +306,23 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               hintText: (widget.persistHint) ? null : widget.hint,
               hintStyle: (widget.coloredHint)
                   ? TextStyle(color: Themes.hintHighlight)
-                  : null,
+                  : TextStyle(color: Themes.fieldInputHintColor),
               fillColor: _fieldColor,
               isDense: true,
               contentPadding: _fieldInset,
               errorText: (_isValid) ? null : widget.errorMsg,
             ),
-            minLines: null,
-            maxLines: null,
-            expands: true,
+            minLines: widget.fieldType == FieldType.Password ? 1 : null,
+            maxLines: widget.fieldType == FieldType.Password ? 1 : null,
+            expands: widget.fieldType != FieldType.Password,
           ),
         ),
       );
     } else {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: (widget.roundCorner)
+            ? BorderRadius.circular(8.0)
+            : BorderRadius.circular(0.0),
         child: Container(
           padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 2.0),
           constraints: BoxConstraints(
@@ -307,12 +341,13 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               if (widget.fieldType == FieldType.Date) {
                 if (_dateInputChecked(value) == false) return;
               }
-              _isValid = widget.validCondition(value) ?? true;
-              if (widget.debug) {
-                print(
+              setState(() {
+                _isValid = widget.validCondition(value) ?? true;
+              });
+              if (widget.onInputChanged != null) if (widget.debug) {
+                debugPrint(
                     '${widget.hint} input: $value, code: ${value.codeUnits}, valid: $_isValid');
               }
-              setState(() {});
             },
             style: _fieldTextStyle,
             cursorColor: (widget.subTheme)
@@ -326,7 +361,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               hintText: (widget.persistHint) ? null : widget.hint,
               hintStyle: (widget.coloredHint)
                   ? TextStyle(color: Themes.hintHighlight)
-                  : null,
+                  : TextStyle(color: Themes.fieldInputHintColor),
               isDense: true,
               fillColor: _fieldColor,
               contentPadding: _fieldInset,
@@ -336,7 +371,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               prefixIcon: (_prefixWidget != null)
                   ? Container(
                       margin: const EdgeInsets.only(right: 8.0),
-                      color: Themes.defaultWidgetBgColor,
+                      color: widget.prefixBgColor,
                       child: _prefixWidget,
                     )
                   : SizedBox.shrink(),
@@ -365,50 +400,76 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             child: Icon(
               widget.prefixIconData,
               size: Themes.fieldIconSize,
-              color: Themes.fieldPrefixColor,
+              color: widget.prefixItemColor,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 6.0),
-            child: Text(
-              widget.prefixText,
-              style: TextStyle(
-//                fontSize: FontSize.SUBTITLE.value,
-                wordSpacing: widget.titleLetterSpacing / 2,
-                letterSpacing: widget.titleLetterSpacing / 4,
-                color: Themes.fieldPrefixColor,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: RichText(
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
+                    wordSpacing: widget.titleLetterSpacing / 2,
+                    letterSpacing: widget.titleLetterSpacing / 4,
+                    color: widget.prefixItemColor,
+                  ),
+                  children: [
+                    TextSpan(text: widget.prefixText),
+                    if (widget.requiredInput)
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize:
+                              widget.prefixTextSize ?? FontSize.NORMAL.value,
+                          color: Themes.hintHighlightRed,
+                        ),
+                      ),
+                  ],
+                ),
               ),
-              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
       );
     } else if (widget.prefixText != null) {
-      _prefixWidget = Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 4.0),
-            child: Text(
-              widget.prefixText,
+      _prefixWidget = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+            overflow: TextOverflow.ellipsis,
+            maxLines: _currentPrefixMaxLines,
+            text: TextSpan(
               style: TextStyle(
-//              fontSize: FontSize.SUBTITLE.value,
+                fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
                 letterSpacing: widget.titleLetterSpacing,
-                color: Themes.fieldPrefixColor,
+                color: widget.prefixItemColor,
               ),
-              overflow: TextOverflow.ellipsis,
+              children: [
+                TextSpan(text: widget.prefixText),
+                if (widget.requiredInput)
+                  TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                      fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
+                      color: Themes.hintHighlightRed,
+                    ),
+                  ),
+              ],
             ),
           ),
-        ],
+        ),
       );
     } else if (widget.prefixIconData != null) {
       _prefixWidget = Center(
         child: Icon(
           widget.prefixIconData,
           size: Themes.fieldIconSize,
-          color: Themes.fieldPrefixColor,
+          color: widget.prefixItemColor,
         ),
       );
     }
@@ -435,7 +496,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               ),
               onTap: () => (widget.suffixAction != null)
                   ? widget.suffixAction(_controller.text)
-                  : print(_controller.text),
+                  : debugPrint(_controller.text),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 6.0, right: 4.0),
@@ -449,7 +510,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                 ),
                 onTap: () => (widget.suffixAction2 != null)
                     ? widget.suffixAction2(_controller.text)
-                    : print(_controller.text),
+                    : debugPrint(_controller.text),
               ),
             ),
           ],
@@ -467,7 +528,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           ),
           onTap: () => (widget.suffixAction != null)
               ? widget.suffixAction(_controller.text)
-              : print(_controller.text),
+              : debugPrint(_controller.text),
         ),
       );
     } else if (widget.suffixText != null) {
@@ -488,7 +549,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             ),
             onTap: () => (widget.suffixAction != null)
                 ? widget.suffixAction(_controller.text)
-                : print(_controller.text),
+                : debugPrint(_controller.text),
           ),
         ),
       );
@@ -520,6 +581,11 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           _withoutEngInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength ~/ 2),
         ];
+      case FieldType.TextOnly:
+        return [
+          _textOnlyInputFormatter,
+          LengthLimitingTextInputFormatter(widget.maxInputLength),
+        ];
       case FieldType.Numbers:
         return [
           _numbersInputFormatter,
@@ -533,6 +599,11 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       case FieldType.Email:
         return [
           _emailInputFormatter,
+          LengthLimitingTextInputFormatter(widget.maxInputLength),
+        ];
+      case FieldType.Account:
+        return [
+          _accountInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
       case FieldType.NoChinese:
@@ -556,25 +627,25 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
   bool _dateInputChecked(String input) {
     if (input.isValidDate || input.length < 4) {
       _lastTextLength = input.length;
-      print('field date checked');
+      debugPrint('field date checked');
       return true;
     }
     if (input.length < _lastTextLength) {
       // is deleting
-      print('date helper deleting: $input');
+      debugPrint('date helper deleting: $input');
       // delete separator
       if (input.endsWith(dateSeparator)) {
         _controller.text = input.substring(0, input.length - 1);
       }
-      print('date helper new text: ${_controller.text}');
+      debugPrint('date helper new text: ${_controller.text}');
     } else if (input.length > _lastTextLength) {
       // is typing
-      print('date helper typing: $input');
+      debugPrint('date helper typing: $input');
       var position = input.length;
 
       if (position < dateMask.length && dateMask[position] == dateSeparator) {
         _controller.text = input + dateSeparator;
-        print('date helper new text: ${_controller.text}');
+        debugPrint('date helper new text: ${_controller.text}');
       }
       if (position == 5 && input.contains(dateSeparator) == false) {
         _controller.text = input.replaceRange(
@@ -587,7 +658,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       _fieldKey.currentState.didChange(_controller.text);
       setInput = _controller.text;
     } on Exception catch (e) {
-      print('field state error: $e');
+      debugPrint('field state error: $e');
       setState(() {});
     }
     return false;

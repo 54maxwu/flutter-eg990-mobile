@@ -1,4 +1,5 @@
 export 'package:flutter_eg990_mobile/core/error/failures.dart';
+export 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item.dart';
 export 'package:mobx/mobx.dart' show ReactionDisposer, reaction;
 
 export '../utils/value_util.dart';

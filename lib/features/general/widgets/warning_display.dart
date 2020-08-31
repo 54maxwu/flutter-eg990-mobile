@@ -1,21 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 
 class WarningDisplay extends StatelessWidget {
   final String message;
-  final bool smallText;
+  final bool smallerText;
+  final bool largerText;
   final bool highlight;
   final double widthFactor;
-  final bool infiniteHeight;
+  final double fixedHeight;
   final bool isFailureMsg;
 
   const WarningDisplay({
     Key key,
     @required this.message,
-    this.smallText = false,
+    this.smallerText = false,
+    this.largerText = false,
     this.highlight = false,
     this.widthFactor = 2,
-    this.infiniteHeight = false,
+    this.fixedHeight,
     this.isFailureMsg = true,
   }) : super(key: key);
 
@@ -23,40 +27,42 @@ class WarningDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width / widthFactor,
-        maxHeight:
-            (infiniteHeight) ? double.infinity : FontSize.NORMAL.value * 2.5,
+        maxWidth: Global.device.width / widthFactor,
+        maxHeight: fixedHeight ?? double.infinity,
       ),
       alignment: Alignment.center,
-      child: Column(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Icon(
-                Icons.warning,
-                size: (smallText) ? 18 : 24,
-                color: (highlight)
-                    ? Themes.defaultErrorColor
-                    : Themes.iconSubColor1,
-              ),
-              Expanded(
-                child: Text(
-                  (isFailureMsg) ? message.split('-')[0].trim() : message,
-                  style: TextStyle(
-                    fontSize: (smallText)
-                        ? FontSize.SMALL.value
-                        : FontSize.NORMAL.value,
-                    color: Themes.iconSubColor1,
-                  ),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: (isFailureMsg) ? 2 : 30,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Icon(
+              Icons.warning,
+              size: (largerText) ? 28 : (smallerText) ? 18 : 24,
+              color:
+                  (highlight) ? Themes.defaultErrorColor : Themes.iconSubColor1,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: RichText(
+              maxLines: (isFailureMsg) ? 3 : 30,
+              text: TextSpan(
+                text: (isFailureMsg) ? message.split('-')[0].trim() : message,
+                style: TextStyle(
+                  fontSize: (largerText)
+                      ? FontSize.SUBTITLE.value
+                      : (smallerText)
+                          ? FontSize.SMALLER.value
+                          : FontSize.NORMAL.value,
+                  color: (highlight)
+                      ? Themes.defaultMessageColor
+                      : Themes.defaultTextColor,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),

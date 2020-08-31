@@ -4,13 +4,13 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/screen/feature_screen.dart';
 import 'package:flutter_eg990_mobile/features/screen/web_game_screen.dart';
-import 'package:flutter_eg990_mobile/temp/test_screen.dart';
 import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen.dart';
+import 'package:flutter_eg990_mobile/temp/test_screen.dart';
 
 abstract class ScreenRoutes {
   static const featureScreen = '/';
@@ -76,7 +76,7 @@ class ScreenRouter extends RouterBase {
 //WebGameScreen arguments holder class
 class WebGameScreenArguments {
   final String startUrl;
-  WebGameScreenArguments({this.startUrl = 'https://eg990.com/'});
+  WebGameScreenArguments({this.startUrl = 'https://www.eg990.com/'});
 }
 
 // *************************************************************************
@@ -90,7 +90,7 @@ extension ScreenRouterNavigationHelperMethods on ExtendedNavigatorState {
       );
 
   Future pushWebGameScreen({
-    String startUrl = 'https://eg990.com/',
+    String startUrl = 'https://www.eg990.com/',
   }) =>
       pushNamed(
         ScreenRoutes.webGameScreen,

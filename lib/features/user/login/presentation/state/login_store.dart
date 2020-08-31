@@ -1,7 +1,7 @@
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/features/router/route_user_streams.dart';
+import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 import 'package:hive/hive.dart';
 
 import '../../../data/entity/login_status.dart';
@@ -68,7 +68,7 @@ abstract class _LoginStore with Store {
       _box = value;
       MyLogger.log(msg: 'User Box check: ${_box?.length}', tag: tag);
       if (_box != null && _box.isNotEmpty) {
-        print('box login data: ${_box.values.last}');
+        debugPrint('box login data: ${_box.values.last}');
         hiveLoginForm = _box.values.last;
         waitForHive = false;
       } else {
@@ -102,7 +102,17 @@ abstract class _LoginStore with Store {
       await _loginFuture.then((value) => value.fold(
             (failure) {
               waitForLogin = false;
-              errorMessage = failure.message;
+              if (failure.message == 'accountError')
+                errorMessage =
+                    localeStr.messageError(localeStr.messageErrorAccount);
+              else if (failure.message == 'pwdError')
+                errorMessage =
+                    localeStr.messageError(localeStr.messageErrorPassword);
+              else if (failure.message == 'pwdErrorFive')
+                errorMessage =
+                    localeStr.messageError(localeStr.messageErrorPasswordHint);
+              else
+                errorMessage = failure.message;
             },
             (model) async {
               if (saveForm)
@@ -114,7 +124,7 @@ abstract class _LoginStore with Store {
               else
                 await cleanBox();
 
-              getRouteUserStreams.updateUser(LoginStatus(
+              getAppGlobalStreams.updateUser(LoginStatus(
                 loggedIn: true,
                 currentUser: model.entity,
               ));
@@ -122,10 +132,12 @@ abstract class _LoginStore with Store {
               waitForLogin = false;
             },
           ));
-    } on Exception {
+    } on Exception catch (e) {
       waitForLogin = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage = Failure.internal(FailureCode()).message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.LOGIN)).message;
+      MyLogger.error(msg: '$tag has exception: $e');
     }
   }
 
@@ -137,13 +149,13 @@ abstract class _LoginStore with Store {
     if (_box.isNotEmpty) {
       await _box
           .putAt(0, form)
-          .whenComplete(() => print('form saved: $form'))
+          .whenComplete(() => debugPrint('form saved: $form'))
           .catchError((e) =>
               MyLogger.error(msg: 'Save error: $_box', error: e, tag: tag));
     } else {
       await _box
           .add(form)
-          .whenComplete(() => print('form saved: $form'))
+          .whenComplete(() => debugPrint('form saved: $form'))
           .catchError((e) =>
               MyLogger.error(msg: 'Save error: $_box', error: e, tag: tag));
     }
@@ -153,8 +165,8 @@ abstract class _LoginStore with Store {
     if (_box != null && _box.isNotEmpty) {
       await _box
           .clear()
-          .whenComplete(() => print('hive cleared'))
-          .catchError((e) => print('hive clear error: $e'));
+          .whenComplete(() => debugPrint('hive cleared'))
+          .catchError((e) => debugPrint('hive clear error: $e'));
     }
   }
 

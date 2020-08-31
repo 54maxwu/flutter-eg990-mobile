@@ -63,7 +63,8 @@ extension FailureExtension on Failure {
       case _Failure.CachedFile:
         return localeStr.messageErrorCachedFile;
       case _Failure.Internal:
-        return localeStr.messageErrorInternal + '(${this.props.first.code})';
+        return localeStr.messageErrorInternal +
+            '(${this.props.first.errorCode})';
       case _Failure.ErrorMessage:
         return '${this.props.first}';
       case _Failure.ErrorStatus:

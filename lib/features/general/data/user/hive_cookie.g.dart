@@ -8,13 +8,13 @@ part of 'hive_cookie.dart';
 
 class HiveCookieEntityAdapter extends TypeAdapter<HiveCookieEntity> {
   @override
-  final typeId = 108;
+  final int typeId = 108;
 
   @override
   HiveCookieEntity read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return HiveCookieEntity(
       account: fields[0] as String,
@@ -31,4 +31,14 @@ class HiveCookieEntityAdapter extends TypeAdapter<HiveCookieEntity> {
       ..writeByte(1)
       ..write(obj.cookie);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is HiveCookieEntityAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

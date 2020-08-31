@@ -1,6 +1,7 @@
 import 'dart:async' show StreamSubscription;
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/services.dart'
     show DeviceOrientation, EventChannel, MethodChannel;
 
@@ -41,9 +42,9 @@ class PlatformUtil {
       Future.delayed(Duration(milliseconds: 500), () {
         sensorStream = sensorEventChannel.receiveBroadcastStream();
         sensorSubscription = sensorStream.listen((event) {
-          print('sensor event: $event');
+          debugPrint('sensor event: $event');
         }, onError: (dynamic error) {
-          print('sensor error: ${error.message}');
+          debugPrint('sensor error: ${error.message}');
         });
       }).catchError(
         (e) => MyLogger.error(msg: 'Sensor listener has error: $e', tag: TAG),

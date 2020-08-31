@@ -63,9 +63,7 @@ class _WebGameScreenDrawerTileState extends State<WebGameScreenDrawerTile> {
                 ? Padding(
                     padding: const EdgeInsets.only(bottom: 2.0),
                     child: Text(
-                      widget.item.replaceTitle ??
-                          widget.item.route?.pageTitle ??
-                          '?',
+                      widget.item.title ?? widget.item.route?.pageTitle ?? '?',
                       style: listTitleDefaultTextStyle,
                     ),
                   )

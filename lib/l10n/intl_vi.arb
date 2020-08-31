@@ -1,13 +1,13 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "EG990",
+  "title": "85Bet Mobile",
   "@title": {
-    "description": "EG990 Demo",
+    "description": "85Bet Demo",
     "type": "text",
     "placeholders": {}
   },
-  "pageTitleHome": "HOME",
+  "pageTitleHome": "Trang Chủ",
   "@pageTitleHome": {
     "type": "text"
   },
@@ -71,6 +71,10 @@
   "@pageTitleMember": {
     "type": "text"
   },
+  "pageTitleCenter": "Tài khoản",
+  "@pageTitleCenter": {
+    "type": "text"
+  },
   "pageTitleLogin": "Đăng nhập",
   "@pageTitleLogin": {
     "type": "text"
@@ -83,8 +87,12 @@
   "@pageTitleRegister": {
     "type": "text"
   },
-  "pageTitleRegister2": "thành viên Đăng ký",
-  "@pageTitleRegister2": {
+"pageTitleRegisterFree": "thành viên Đăng ký",
+  "@pageTitleRegisterFree": {
+    "type": "text"
+  },
+  "pageTitleRegisterMember": "thành viên đã đăng ký",
+  "@pageTitleRegisterMember": {
     "type": "text"
   },
   "pageTitleMemberTransfer": "Chuyển khoản nhanh",
@@ -180,6 +188,18 @@
   "@btnRefresh": {
     "type": "text"
   },
+  "btnUpdate": "Cập nhật",
+  "@btnUpdate": {
+    "type": "text"
+  },
+  "btnClose": "tắt",
+  "@btnClose": {
+    "type": "text"
+  },
+  "btnSearch": "Tìm kiếm",
+  "@btnSearch": {
+    "type": "text"
+  },
   "btnConfirm": "Xác nhận",
   "@btnConfirm": {
     "type": "text"
@@ -248,7 +268,7 @@
   "@btnOff": {
     "type": "text"
   },
-  "sideBtnBackHome": "HOME",
+  "sideBtnBackHome": "Trang Chủ",
   "@sideBtnBackHome": {
     "type": "text"
   },
@@ -272,11 +292,11 @@
   "@spinnerDateYesterday": {
     "type": "text"
   },
-  "spinnerDateMonth": "Trong vòng một tháng",
+  "spinnerDateMonth": "tháng này",
   "@spinnerDateMonth": {
     "type": "text"
   },
-  "spinnerDateCustom": "Thời gian tùy chỉnh",
+  "spinnerDateCustom": "Tập quán",
   "@spinnerDateCustom": {
     "type": "text"
   },
@@ -298,6 +318,26 @@
   },
   "hintAccountPassword": "Mật khẩu",
   "@hintAccountPassword": {
+    "type": "text"
+  },
+  "hintAccountInput": "vui lòng nhập tài khoản của bạn",
+  "@hintAccountInput": {
+    "type": "text"
+  },
+  "hintPasswordInput": "Xin vui lòng nhập mật khẩu",
+  "@hintPasswordInput": {
+    "type": "text"
+  },
+  "hintPhoneInput": "Vui lòng nhập số điện thoại",
+  "@hintPhoneInput": {
+    "type": "text"
+  },
+  "hintReferralInput": "Vui lòng nhập mã giới thiệu",
+  "@hintReferralInput": {
+    "type": "text"
+  },
+  "hintConfirmedInput": "Vui lòng nhập mật khẩu xác nhận",
+  "@hintConfirmedInput": {
     "type": "text"
   },
   "hintName": "Vui lòng nhập tài khoản thành viên",
@@ -331,6 +371,10 @@
   },
   "messageWelcome": "Chào Mừng",
   "@messageWelcome": {
+    "type": "text"
+  },
+  "messageWelcomeHint": "Vui lòng Đăng nhập /Đăng ký",
+  "@messageWelcomeHint": {
     "type": "text"
   },
   "messageRegisterFailed": "đăng ký thất bại",
@@ -452,11 +496,11 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "Lỗi định dạng điện thoại(11~13碼)",
+  "messageInvalidPhone": "Lỗi định dạng điện thoại(10)",
   "@messageInvalidPhone": {
     "type": "text"
   },
-  "messageInvalidPostCode": "Mã bưu điện không chính xác(5~6碼)",
+  "messageInvalidPostCode": "Mã bưu điện không chính xác(5~6)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
@@ -514,7 +558,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 16 ~ 19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là 6 ~ 19 ký tự",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -522,8 +566,12 @@
   "@messageInvalidCardBankPoint": {
     "type": "text"
   },
-  "messageInvalidWithdrawPassword": "Mật khẩu dài 4 ~ 20 ký tự",
+  "messageInvalidWithdrawPassword": "Mật khẩu không hợp lệ",
   "@messageInvalidWithdrawPassword": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawAmount": "Vượt quá số dư tài khoản",
+  "@messageInvalidWithdrawAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",
@@ -636,6 +684,22 @@
   "@messageErrorBindBankcard": {
     "type": "text"
   },
+  "messageErrorAccount": "Lỗi tài khoản",
+  "@messageErrorAccount": {
+    "type": "text"
+  },
+  "messageErrorPassword": "sai mật khẩu",
+  "@messageErrorPassword": {
+    "type": "text"
+  },
+  "messageErrorPasswordHint": "Mật khẩu không khớp, tài khoản sẽ bị khóa sau 5 lỗi",
+  "@messageErrorPasswordHint": {
+    "type": "text"
+  },
+  "messageErrorWithdraw": "Rút tiền không thành công",
+  "@messageErrorWithdraw": {
+    "type": "text"
+  },
   "messageCopy": "Sao chép vào clipboard",
   "@messageCopy": {
     "type": "text"
@@ -683,6 +747,10 @@
   },
   "homeHintMemberCreditLeft": "Thăng bằng",
   "@homeHintMemberCreditLeft": {
+    "type": "text"
+  },
+  "homeHintDefaultMarquee": "Xin chào, thành viên thân mến! Nếu bạn có bất kỳ câu hỏi nào về việc sử dụng, vui lòng sử dụng hệ thống dịch vụ khách hàng trực tuyến.",
+  "@homeHintDefaultMarquee": {
     "type": "text"
   },
   "homeUserTabCategoryMovie": "Rạp chiếu phim",
@@ -757,12 +825,24 @@
   "@gameCategoryGift": {
     "type": "text"
   },
+  "gameCategoryCockFighting": "CHỌI GÀ",
+  "@gameCategoryCockFighting": {
+    "type": "text"
+  },
   "gameCategoryAll": "Tất cả",
   "@gameCategoryAll": {
     "type": "text"
   },
   "gameCategoryOther": "Khác",
   "@gameCategoryOther": {
+    "type": "text"
+  },
+  "gameCategoryWeb": "Phiên bản web",
+  "@gameCategoryWeb": {
+    "type": "text"
+  },
+  "gameCategoryWebHint": "Nhấp vào tôi để mở phiên bản web",
+  "@gameCategoryWebHint": {
     "type": "text"
   },
   "userPwdFieldTitleOld": "Mật khẩu cũ：",
@@ -814,23 +894,23 @@
       }
     }
   },
-  "registerFieldTitleAccount": "Số tài khoản:",
+  "registerFieldTitleAccount": "Số tài khoản",
   "@registerFieldTitleAccount": {
     "type": "text"
   },
-  "registerFieldTitlePassword": "Mật khẩu:",
+  "registerFieldTitlePassword": "Mật khẩu",
   "@registerFieldTitlePassword": {
     "type": "text"
   },
-  "registerFieldTitleConfirm": "Xác nhận mật khẩu：",
+  "registerFieldTitleConfirm": "Xác nhận mật khẩu",
   "@registerFieldTitleConfirm": {
     "type": "text"
   },
-  "registerFieldTitlePhone": "Số điện thoại：",
+  "registerFieldTitlePhone": "Số điện thoại",
   "@registerFieldTitlePhone": {
     "type": "text"
   },
-  "registerFieldTitleRecommend": "Mã đại lý：",
+  "registerFieldTitleRecommend": "Mã đại lý",
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
@@ -840,6 +920,18 @@
   },
   "registerButtonTitleRegister": "đăng ký",
   "@registerButtonTitleRegister": {
+    "type": "text"
+  },
+  "registerCheckButtonNews": "Nhận thông tin ưu đãi",
+  "@registerCheckButtonNews": {
+    "type": "text"
+  },
+  "registerCheckButtonTerms": "Đọc và đồng ý với các quy tắc cá cược của Điều khoản và Điều kiện",
+  "@registerCheckButtonTerms": {
+    "type": "text"
+  },
+  "registerButtonServiceHint": "Mọi thắc mắc xin vui lòng ấn vào biểu tượng này !",
+  "@registerButtonServiceHint": {
     "type": "text"
   },
   "registerHintAutoLogin": "Đang đăng nhập, vui lòng đợi ...",
@@ -974,8 +1066,28 @@
   "@transferHintRefresh": {
     "type": "text"
   },
+  "transferMessage": "{from} Đến {to}",
+  "@transferMessage": {
+    "type": "text",
+    "placeholders": {
+      "from": {
+        "example": "site1"
+      },
+      "to": {
+        "example": "site2"
+      }
+    }
+  },
   "bankcardViewTitleOwner": "Tên tài khoản",
   "@bankcardViewTitleOwner": {
+    "type": "text"
+  },
+  "bankcardViewTitleHolder": "chủ tài khoản",
+  "@bankcardViewTitleHolder": {
+    "type": "text"
+  },
+  "bankcardViewTitleBank": "Ngân hàng BIDV",
+  "@bankcardViewTitleBank": {
     "type": "text"
   },
   "bankcardViewTitleBankName": "Tên ngân hàng",
@@ -986,8 +1098,8 @@
   "@bankcardViewTitleCardNumber": {
     "type": "text"
   },
-  "bankcardViewTitleBankPoint": "Chi nhánh",
-  "@bankcardViewTitleBankPoint": {
+  "bankcardViewTitleBankBranch": "Chi nhánh",
+  "@bankcardViewTitleBankBranch": {
     "type": "text"
   },
   "bankcardViewTitleBankProvince": "Mở tài khoản",
@@ -1036,6 +1148,14 @@
   },
   "withdrawViewOptionHint3": "Nhắc bạn rằng dữ liệu doanh thu sẽ khác do công ty trò chơi chậm trễ",
   "@withdrawViewOptionHint3": {
+    "type": "text"
+  },
+  "withdrawViewHint1": "Hội viên muốn thay đổi thẻ ngân hàng ràng buộc với web khi rút tiền ,vui lòng liên hệ với dịch vụ chăm sóc khách hàng trực tuyến để được hướng dẫn .",
+  "@withdrawViewHint1": {
+    "type": "text"
+  },
+  "withdrawViewHint2": "Mỗi tài khoản hội viên được tối đa 3 lần rút tiền trong ngày , nếu hơn 3 lần sẽ phải chịu thêm phí dịch vụ 5%.",
+  "@withdrawViewHint2": {
     "type": "text"
   },
   "walletViewTitleMy": "Túi của tôi",
@@ -1275,8 +1395,16 @@
   "@betsHeaderAmount": {
     "type": "text"
   },
+  "betsHeaderValidBet": "Cược hợp lệ",
+  "@betsHeaderValidBet": {
+    "type": "text"
+  },
   "betsHeaderBonus": "Tiền thanh toán",
   "@betsHeaderBonus": {
+    "type": "text"
+  },
+  "betsHeaderSum": "toàn bộ",
+  "@betsHeaderSum": {
     "type": "text"
   },
   "dealsViewSpinnerType0": "Tất cả",
@@ -1379,8 +1507,12 @@
   "@depositPaymentSpinnerTitlePromo": {
     "type": "text"
   },
-  "depositPaymentSpinnerTitleBank": "ngân hàng thanh toán",
+  "depositPaymentSpinnerTitleBank": "Chọn ngân hàng",
   "@depositPaymentSpinnerTitleBank": {
+    "type": "text"
+  },
+  "depositPaymentSpinnerTitleAccountBank": "Ngân hàng thanh toán",
+  "@depositPaymentSpinnerTitleAccountBank": {
     "type": "text"
   },
   "depositPaymentSpinnerTitleMethod": "Phương thức nạp tiền",
@@ -1395,11 +1527,32 @@
   "@depositPaymentEditTitleNameHint": {
     "type": "text"
   },
+  "depositPaymentEditTitleAccount": "Số tài khoản ngân hàng",
+  "@depositPaymentEditTitleAccount": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleAccountHint": "Vui lòng điền vào tài khoản ngân hàng của người trả tiền",
+  "@depositPaymentEditTitleAccountHint": {
+    "type": "text"
+  },
   "depositPaymentEditTitleAmount": "Số tiền",
   "@depositPaymentEditTitleAmount": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "Phạm vi đầu vào:{num}~{num2}",
+  "depositPaymentEditTitleAmountHintVND": "Thực tế: {value} VND",
+  "@depositPaymentEditTitleAmountHintVND": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "100"
+      }
+    }
+  },
+  "depositPaymentEditTitleNote": "Nhận xét",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleAmountHintRange": "{num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -2391,5 +2544,25 @@
         "example": "10"
       }
     }
+  },
+  "updateDialogErrorUrl": "Không thể lấy URL tải xuống, vui lòng liên hệ với dịch vụ khách hàng !!",
+  "@updateDialogErrorUrl": {
+    "type": "text"
+  },
+  "updateDialogMessage": "Phiên bản mới được tìm thấy， Vui lòng nhấp vào nút \"Cập nhật\" để tải xuống và cài đặt。\nSố phiên bản hiện tại：{version}\nSố phiên bản mới：{value}",
+  "@updateDialogMessage": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "v1.0"
+      },
+      "version": {
+        "example": "v1.0"
+      }
+    }
+  },
+  "networkChangedHint": "Đã phát hiện thấy thay đổi trạng thái mạng. Bạn có muốn làm mới trang không?",
+  "@networkChangedHint": {
+    "type": "text"
   }
 }

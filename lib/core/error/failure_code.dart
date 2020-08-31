@@ -9,15 +9,19 @@ class FailureCode extends _$FailureCode {
   final int code;
 
   const FailureCode({this.type = FailureType.NOT_DEFINED, this.code = 0});
+
+  int get errorCode => type.value + code;
 }
 
 @VnumDefinition
 class FailureType extends Vnum<int> {
   /// Case Definition
-  static const FailureType LOGIN = const FailureType.define(0100);
-  static const FailureType REGISTER = const FailureType.define(0200);
-  static const FailureType WEB = const FailureType.define(0500);
-  static const FailureType WEB_URL = const FailureType.define(0600);
+  static const FailureType UPDATE = const FailureType.define(0100);
+  static const FailureType LOGIN = const FailureType.define(0200);
+  static const FailureType REGISTER = const FailureType.define(0300);
+  static const FailureType EVENT = const FailureType.define(0400);
+  static const FailureType WEB = const FailureType.define(0700);
+  static const FailureType WEB_URL = const FailureType.define(0800);
   static const FailureType SERVICE = const FailureType.define(0900);
 
   static const FailureType HOME = const FailureType.define(1000);
@@ -55,6 +59,7 @@ class FailureType extends Vnum<int> {
   static const FailureType ROLLER = const FailureType.define(3600);
 
   static const FailureType INHERIT = const FailureType.define(7000);
+  static const FailureType INJECTOR = const FailureType.define(7100);
   static const FailureType TASK = const FailureType.define(8000);
   static const FailureType JSON = const FailureType.define(8100);
   static const FailureType REPO = const FailureType.define(8200);

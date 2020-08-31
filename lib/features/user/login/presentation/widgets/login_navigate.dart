@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
-import 'package:flutter_eg990_mobile/features/router/route_user_streams.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/user_entity.dart';
 
@@ -22,13 +22,13 @@ class LoginNavigate extends StatelessWidget {
       // show login hint
       var dismiss = callToastLoading(
           message: localeStr.messageWelcomeUser(
-              user?.account ?? getRouteUserStreams.userName));
+              user?.account ?? getAppGlobalStreams.userName));
 
       // update user stream
       if (user != null) {
-        getRouteUserStreams
+        getAppGlobalStreams
             .updateUser(LoginStatus(loggedIn: true, currentUser: user));
-        getRouteUserStreams.setCheck(true);
+        getAppGlobalStreams.setCheck(true);
       }
 
       // navigate to home or member route

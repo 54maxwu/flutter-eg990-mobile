@@ -8,6 +8,8 @@ class DialogWidget extends StatefulWidget {
 
   final BoxConstraints constraints;
 
+  final EdgeInsets padding;
+
   /// List of widgets that's inside a dialog.
   ///
   /// {@macro flutter.widgets.children}
@@ -39,6 +41,7 @@ class DialogWidget extends StatefulWidget {
     this.key,
     @required this.children,
     this.constraints,
+    this.padding,
     this.canClose = true,
     this.onClose,
     this.heightFactor = 0.85,
@@ -63,7 +66,7 @@ class DialogWidgetState extends State<DialogWidget> {
   Color bgColor;
   double dialogHeight;
   double dialogWidth;
-  double contentWidth;
+  EdgeInsets dialogPadding;
 
   void updateHeightFactor(double heightFactor) {
     dialogHeight = Global.device.height * heightFactor;
@@ -76,20 +79,26 @@ class DialogWidgetState extends State<DialogWidget> {
 
   @override
   void initState() {
-    dialogHeight = Global.device.height * widget.heightFactor;
-    // screen width - dialog padding
-    dialogWidth = Global.device.width - widget.widthShrink;
-    // screen width - dialog padding - stack padding - text padding
-    contentWidth = Global.device.width - widget.widthShrink - 20 - 8;
-    if (widget.debug) {
-      print('dialog is h$dialogHeight * w$dialogWidth');
-      print('dialog max height: ${widget.maxHeight}');
-      print('dialog content width: $contentWidth');
+    dialogPadding = widget.padding ??
+        Global.device.dialogInset +
+            EdgeInsets.symmetric(
+              horizontal: widget.widthShrink / 2,
+              vertical: 16.0,
+            );
+    if (widget.constraints == null) {
+      dialogHeight = Global.device.height * widget.heightFactor;
+      // screen width - dialog padding
+      dialogWidth = Global.device.width - widget.widthShrink;
+      // screen width - dialog padding - stack padding - text padding
+      if (widget.debug) {
+        debugPrint('dialog is h$dialogHeight * w$dialogWidth');
+        debugPrint('dialog max height: ${widget.maxHeight}');
+      }
+      if (widget.maxHeight != null && dialogHeight > widget.maxHeight)
+        dialogHeight = widget.maxHeight;
+      if (widget.minHeight != null && dialogHeight < widget.minHeight)
+        dialogHeight = widget.minHeight;
     }
-    if (widget.maxHeight != null && dialogHeight > widget.maxHeight)
-      dialogHeight = widget.maxHeight;
-    if (widget.minHeight != null && dialogHeight < widget.minHeight)
-      dialogHeight = widget.minHeight;
 
     if (widget.customBg != null)
       bgColor = widget.customBg;
@@ -105,11 +114,7 @@ class DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets +
-          EdgeInsets.symmetric(
-            horizontal: widget.widthShrink / 2,
-            vertical: 16.0,
-          ),
+      padding: dialogPadding,
       duration: insetAnimationDuration,
       curve: insetAnimationCurve,
       child: MediaQuery.removeViewInsets(
@@ -131,7 +136,7 @@ class DialogWidgetState extends State<DialogWidget> {
               highlightColor: Colors.transparent,
               focusColor: Colors.transparent,
               onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
+                FocusScope.of(context).unfocus();
               },
               child: Container(
                 constraints: widget.constraints ??

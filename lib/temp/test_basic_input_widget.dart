@@ -28,12 +28,12 @@ class _TestBasicInputWidgetState extends State<TestBasicInputWidget>
 
   @override
   Widget build(BuildContext context) {
-    print("building login");
+    debugPrint("building login");
     return InkWell(
       // to dismiss the keyboard when the user tabs out of the TextField
       splashColor: Colors.transparent,
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        FocusScope.of(context).unfocus();
       },
       child: new Form(
         key: _formKey,

@@ -4,38 +4,38 @@ import 'package:get_it/get_it.dart';
 
 import 'core/network/dio_api_service.dart';
 import 'core/network/util/network_info.dart';
-import 'features/home/home_inject.dart';
-import 'features/member/member_inject.dart';
-import 'features/movie/movie_inject.dart';
-import 'features/promo/promo_inject.dart';
-import 'features/router/route_user_streams.dart';
+import 'features/event/event_inject.dart';
+import 'features/router/app_global_streams.dart';
+import 'features/routes/home/home_inject.dart';
+import 'features/routes/member/member_inject.dart';
+import 'features/routes/movie/movie_inject.dart';
+import 'features/routes/promo/promo_inject.dart';
+import 'features/routes/subfeatures/accountcenter/center_inject.dart';
+import 'features/routes/subfeatures/agent/agent_inject.dart';
+import 'features/routes/subfeatures/balance/balance_inject.dart';
+import 'features/routes/subfeatures/bankcard/bankcard_inject.dart';
+import 'features/routes/subfeatures/betrecord/bet_record_inject.dart';
+import 'features/routes/subfeatures/deals/deals_inject.dart';
+import 'features/routes/subfeatures/deposit/deposit_inject.dart';
+import 'features/routes/subfeatures/flows/flows_inject.dart';
+import 'features/routes/subfeatures/message/message_inject.dart';
+import 'features/routes/subfeatures/notice/notice_inject.dart';
+import 'features/routes/subfeatures/roller/roller_inject.dart';
+import 'features/routes/subfeatures/store/store_inject.dart';
+import 'features/routes/subfeatures/transactions/transaction_inject.dart';
+import 'features/routes/subfeatures/transfer/transfer_inject.dart';
+import 'features/routes/subfeatures/viplevel/vip_level_inject.dart';
+import 'features/routes/subfeatures/wallet/wallet_inject.dart';
 import 'features/screen/web_game_screen_store.dart';
-import 'features/subfeatures/accountcenter/center_inject.dart';
-import 'features/subfeatures/agent/agent_inject.dart';
-import 'features/subfeatures/balance/balance_inject.dart';
-import 'features/subfeatures/bankcard/bankcard_inject.dart';
-import 'features/subfeatures/betrecord/bet_record_inject.dart';
-import 'features/subfeatures/deals/deals_inject.dart';
-import 'features/subfeatures/deposit/deposit_inject.dart';
-import 'features/subfeatures/flows/flows_inject.dart';
-import 'features/subfeatures/message/message_inject.dart';
-import 'features/subfeatures/notice/notice_inject.dart';
-import 'features/subfeatures/register/register_inject.dart';
-import 'features/subfeatures/roller/roller_inject.dart';
-import 'features/subfeatures/store/store_inject.dart';
-import 'features/subfeatures/transactions/transaction_inject.dart';
-import 'features/subfeatures/transfer/transfer_inject.dart';
-import 'features/subfeatures/viplevel/vip_level_inject.dart';
-import 'features/subfeatures/wallet/wallet_inject.dart';
-import 'features/user/event/event_inject.dart';
+import 'features/update/update_inject.dart';
 import 'features/user/login/login_inject.dart';
-import 'template/template_inject.dart';
+import 'features/user/register/register_inject.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   /// App User
-  sl.registerLazySingleton<RouteUserStreams>(() => RouteUserStreams());
+  sl.registerLazySingleton<AppGlobalStreams>(() => AppGlobalStreams());
 
   /// Core
   sl.registerLazySingleton(() => DioApiService());
@@ -46,6 +46,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DataConnectionChecker());
 
   /// Repository
+  sl.registerLazySingleton<UpdateRepository>(
+    () => UpdateRepositoryImpl(sl()),
+  );
   sl.registerLazySingleton<HomeLocalStorage>(
     () => HomeLocalStorageImpl(),
   );
@@ -138,6 +141,12 @@ Future<void> init() async {
     () => WebGameScreenStore(),
   );
   sl.registerLazySingleton(
+    () => UpdateStore(sl<UpdateRepository>()),
+  );
+  sl.registerLazySingleton(
+    () => EventStore(sl<EventRepository>()),
+  );
+  sl.registerLazySingleton(
     () => HomeStore(sl<HomeRepository>()),
   );
   sl.registerLazySingleton(
@@ -209,18 +218,18 @@ Future<void> init() async {
 
   /// Test only
   /* Template Mobx */
-  sl.registerLazySingleton<TemplateRemoteDataSource>(
-    () => TemplateRemoteDataSourceImpl(dioApiService: sl()),
-  );
-
-  sl.registerLazySingleton<TemplateRepository>(
-    () => TemplateRepositoryImpl(
-      networkInfo: sl(),
-      remoteDataSource: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton<TemplateStore>(
-    () => TemplateStore(sl<TemplateRepository>()),
-  );
+//  sl.registerLazySingleton<TemplateRemoteDataSource>(
+//    () => TemplateRemoteDataSourceImpl(dioApiService: sl()),
+//  );
+//
+//  sl.registerLazySingleton<TemplateRepository>(
+//    () => TemplateRepositoryImpl(
+//      networkInfo: sl(),
+//      remoteDataSource: sl(),
+//    ),
+//  );
+//
+//  sl.registerLazySingleton<TemplateStore>(
+//    () => TemplateStore(sl<TemplateRepository>()),
+//  );
 }

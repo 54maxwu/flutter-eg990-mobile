@@ -35,14 +35,12 @@ abstract class _TemplateStore with Store {
   }
 
   @action
-  Future getDescription() async {
+  Future<void> getDescription() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
-      // Fetch weather from the repository and wrap the regular Future into an observable.
-      // This _weatherFuture triggers updates to the computed state property.
-      _descFuture = ObservableFuture(_templateRepository.fetchString());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      _descFuture = ObservableFuture(_templateRepository.fetchString());
       description = await _descFuture;
     } on Exception {
       errorMessage = "Couldn't fetch description. Is the device online?";

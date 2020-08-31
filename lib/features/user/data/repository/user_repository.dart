@@ -1,6 +1,6 @@
 import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/member/data/repository/member_jwt_interface.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 
 import '../form/login_form.dart';
@@ -32,7 +32,7 @@ class UserRepositoryImpl implements UserRepository {
 
   /// Calls the service [UserApi.LOGIN] endpoint with [form] to get user token.
   Future<Either<Failure, dynamic>> _getToken(LoginForm form) {
-    print('start requesting token...');
+    debugPrint('start requesting token...');
     return requestHeader(
       request: dioApiService.post(UserApi.LOGIN, data: form.toJson()),
       header: 'set-cookie',
@@ -43,7 +43,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, UserModel>> login(LoginForm form) async {
     final result = await _getToken(form);
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) async {
@@ -111,7 +111,7 @@ class UserRepositoryImpl implements UserRepository {
       jsonToModel: UserModel.jsonToUserModel,
       tag: 'remote-USER',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),

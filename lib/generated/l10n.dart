@@ -33,12 +33,12 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `EG990`
+  /// `85Bet Mobile`
   String get title {
     return Intl.message(
-      'EG990',
+      '85Bet Mobile',
       name: 'title',
-      desc: 'EG990 Demo',
+      desc: '85Bet Demo',
       args: [],
     );
   }
@@ -203,6 +203,16 @@ class S {
     );
   }
 
+  /// `Center`
+  String get pageTitleCenter {
+    return Intl.message(
+      'Center',
+      name: 'pageTitleCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Login`
   String get pageTitleLogin {
     return Intl.message(
@@ -234,10 +244,20 @@ class S {
   }
 
   /// `Register Free`
-  String get pageTitleRegister2 {
+  String get pageTitleRegisterFree {
     return Intl.message(
       'Register Free',
-      name: 'pageTitleRegister2',
+      name: 'pageTitleRegisterFree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Member`
+  String get pageTitleRegisterMember {
+    return Intl.message(
+      'Register Member',
+      name: 'pageTitleRegisterMember',
       desc: '',
       args: [],
     );
@@ -343,20 +363,20 @@ class S {
     );
   }
 
-  /// `Transaction History`
+  /// `Deals History`
   String get pageTitleMemberDeals {
     return Intl.message(
-      'Transaction History',
+      'Deals History',
       name: 'pageTitleMemberDeals',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flowing Record`
+  /// `Flow Record`
   String get pageTitleMemberFlow {
     return Intl.message(
-      'Flowing Record',
+      'Flow Record',
       name: 'pageTitleMemberFlow',
       desc: '',
       args: [],
@@ -458,6 +478,36 @@ class S {
     return Intl.message(
       'Refresh',
       name: 'btnRefresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get btnUpdate {
+    return Intl.message(
+      'Update',
+      name: 'btnUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get btnClose {
+    return Intl.message(
+      'Close',
+      name: 'btnClose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get btnSearch {
+    return Intl.message(
+      'Search',
+      name: 'btnSearch',
       desc: '',
       args: [],
     );
@@ -743,21 +793,71 @@ class S {
     );
   }
 
-  /// `UserName *`
+  /// `UserName`
   String get hintAccount {
     return Intl.message(
-      'UserName *',
+      'UserName',
       name: 'hintAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password *`
+  /// `Password`
   String get hintAccountPassword {
     return Intl.message(
-      'Password *',
+      'Password',
       name: 'hintAccountPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter account`
+  String get hintAccountInput {
+    return Intl.message(
+      'enter account',
+      name: 'hintAccountInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter password`
+  String get hintPasswordInput {
+    return Intl.message(
+      'enter password',
+      name: 'hintPasswordInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter password again`
+  String get hintConfirmedInput {
+    return Intl.message(
+      'enter password again',
+      name: 'hintConfirmedInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter phone number`
+  String get hintPhoneInput {
+    return Intl.message(
+      'enter phone number',
+      name: 'hintPhoneInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter referral code`
+  String get hintReferralInput {
+    return Intl.message(
+      'enter referral code',
+      name: 'hintReferralInput',
       desc: '',
       args: [],
     );
@@ -823,11 +923,21 @@ class S {
     );
   }
 
-  /// `Welcome, please login / register`
+  /// `Welcome`
   String get messageWelcome {
     return Intl.message(
-      'Welcome, please login / register',
+      'Welcome',
       name: 'messageWelcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please login / register`
+  String get messageWelcomeHint {
+    return Intl.message(
+      'please login / register',
+      name: 'messageWelcomeHint',
       desc: '',
       args: [],
     );
@@ -1023,10 +1133,10 @@ class S {
     );
   }
 
-  /// `Error Phone Number(11~13)`
+  /// `Error Phone Number(10)`
   String get messageInvalidPhone {
     return Intl.message(
-      'Error Phone Number(11~13)',
+      'Error Phone Number(10)',
       name: 'messageInvalidPhone',
       desc: '',
       args: [],
@@ -1153,10 +1263,10 @@ class S {
     );
   }
 
-  /// `The card number is 16 ~ 19 characters`
+  /// `The card number is 6 ~ 19 characters`
   String get messageInvalidCardNumber {
     return Intl.message(
-      'The card number is 16 ~ 19 characters',
+      'The card number is 6 ~ 19 characters',
       name: 'messageInvalidCardNumber',
       desc: '',
       args: [],
@@ -1173,11 +1283,21 @@ class S {
     );
   }
 
-  /// `Password is 4~20 characters`
+  /// `Password Error!(default is login password)`
   String get messageInvalidWithdrawPassword {
     return Intl.message(
-      'Password is 4~20 characters',
+      'Password Error!(default is login password)',
       name: 'messageInvalidWithdrawPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not enough credit`
+  String get messageInvalidWithdrawAmount {
+    return Intl.message(
+      'Not enough credit',
+      name: 'messageInvalidWithdrawAmount',
       desc: '',
       args: [],
     );
@@ -1433,6 +1553,46 @@ class S {
     );
   }
 
+  /// `Account Error`
+  String get messageErrorAccount {
+    return Intl.message(
+      'Account Error',
+      name: 'messageErrorAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Error`
+  String get messageErrorPassword {
+    return Intl.message(
+      'Password Error',
+      name: 'messageErrorPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password not match, account will be locked after 5 errors`
+  String get messageErrorPasswordHint {
+    return Intl.message(
+      'password not match, account will be locked after 5 errors',
+      name: 'messageErrorPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `withdrawal failed`
+  String get messageErrorWithdraw {
+    return Intl.message(
+      'withdrawal failed',
+      name: 'messageErrorWithdraw',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Copy to clipboard`
   String get messageCopy {
     return Intl.message(
@@ -1538,6 +1698,16 @@ class S {
     return Intl.message(
       'Credit',
       name: 'homeHintMemberCreditLeft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello, dear member! If you have any questions about this website, please use the online customer service system.`
+  String get homeHintDefaultMarquee {
+    return Intl.message(
+      'Hello, dear member! If you have any questions about this website, please use the online customer service system.',
+      name: 'homeHintDefaultMarquee',
       desc: '',
       args: [],
     );
@@ -1723,6 +1893,16 @@ class S {
     );
   }
 
+  /// `Cockfighting`
+  String get gameCategoryCockFighting {
+    return Intl.message(
+      'Cockfighting',
+      name: 'gameCategoryCockFighting',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All`
   String get gameCategoryAll {
     return Intl.message(
@@ -1738,6 +1918,26 @@ class S {
     return Intl.message(
       'Other',
       name: 'gameCategoryOther',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Website`
+  String get gameCategoryWeb {
+    return Intl.message(
+      'Website',
+      name: 'gameCategoryWeb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click me to open 85Bet website`
+  String get gameCategoryWebHint {
+    return Intl.message(
+      'Click me to open 85Bet website',
+      name: 'gameCategoryWebHint',
       desc: '',
       args: [],
     );
@@ -1853,60 +2053,60 @@ class S {
     );
   }
 
-  /// `Account:`
+  /// `Account`
   String get registerFieldTitleAccount {
     return Intl.message(
-      'Account:',
+      'Account',
       name: 'registerFieldTitleAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password:`
+  /// `Password`
   String get registerFieldTitlePassword {
     return Intl.message(
-      'Password:',
+      'Password',
       name: 'registerFieldTitlePassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Confirm Password:`
+  /// `Confirm Password`
   String get registerFieldTitleConfirm {
     return Intl.message(
-      'Confirm Password:',
+      'Confirm Password',
       name: 'registerFieldTitleConfirm',
       desc: '',
       args: [],
     );
   }
 
-  /// `Mobile number:`
+  /// `Mobile number`
   String get registerFieldTitlePhone {
     return Intl.message(
-      'Mobile number:',
+      'Mobile number',
       name: 'registerFieldTitlePhone',
       desc: '',
       args: [],
     );
   }
 
-  /// `Recommended Code:`
+  /// `Recommended Code`
   String get registerFieldTitleRecommend {
     return Intl.message(
-      'Recommended Code:',
+      'Recommended Code',
       name: 'registerFieldTitleRecommend',
       desc: '',
       args: [],
     );
   }
 
-  /// `Verification Code:`
+  /// `Verification Code`
   String get registerFieldTitleVerify {
     return Intl.message(
-      'Verification Code:',
+      'Verification Code',
       name: 'registerFieldTitleVerify',
       desc: '',
       args: [],
@@ -1938,6 +2138,36 @@ class S {
     return Intl.message(
       'Register',
       name: 'registerButtonTitleRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive promotion information`
+  String get registerCheckButtonNews {
+    return Intl.message(
+      'Receive promotion information',
+      name: 'registerCheckButtonNews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have read and agree to the 'Terms and Conditions' betting rules`
+  String get registerCheckButtonTerms {
+    return Intl.message(
+      'Have read and agree to the \'Terms and Conditions\' betting rules',
+      name: 'registerCheckButtonTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you have any questions, please click this icon!`
+  String get registerButtonServiceHint {
+    return Intl.message(
+      'If you have any questions, please click this icon!',
+      name: 'registerButtonServiceHint',
       desc: '',
       args: [],
     );
@@ -2123,20 +2353,20 @@ class S {
     );
   }
 
-  /// `Transaction History`
+  /// `Deals History`
   String get memberGridTitleDeal {
     return Intl.message(
-      'Transaction History',
+      'Deals History',
       name: 'memberGridTitleDeal',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flowing Record`
+  /// `Flow Record`
   String get memberGridTitleFlow {
     return Intl.message(
-      'Flowing Record',
+      'Flow Record',
       name: 'memberGridTitleFlow',
       desc: '',
       args: [],
@@ -2163,20 +2393,20 @@ class S {
     );
   }
 
-  /// `To`
+  /// `IN`
   String get transferViewTitleIn {
     return Intl.message(
-      'To',
+      'IN',
       name: 'transferViewTitleIn',
       desc: '',
       args: [],
     );
   }
 
-  /// `From`
+  /// `OUT`
   String get transferViewTitleOut {
     return Intl.message(
-      'From',
+      'OUT',
       name: 'transferViewTitleOut',
       desc: '',
       args: [],
@@ -2273,11 +2503,41 @@ class S {
     );
   }
 
+  /// `{from} to {to}`
+  String transferMessage(Object from, Object to) {
+    return Intl.message(
+      '$from to $to',
+      name: 'transferMessage',
+      desc: '',
+      args: [from, to],
+    );
+  }
+
   /// `Account Name`
   String get bankcardViewTitleOwner {
     return Intl.message(
       'Account Name',
       name: 'bankcardViewTitleOwner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Holder`
+  String get bankcardViewTitleHolder {
+    return Intl.message(
+      'Account Holder',
+      name: 'bankcardViewTitleHolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank`
+  String get bankcardViewTitleBank {
+    return Intl.message(
+      'Bank',
+      name: 'bankcardViewTitleBank',
       desc: '',
       args: [],
     );
@@ -2304,10 +2564,10 @@ class S {
   }
 
   /// `Bank Branch`
-  String get bankcardViewTitleBankPoint {
+  String get bankcardViewTitleBankBranch {
     return Intl.message(
       'Bank Branch',
-      name: 'bankcardViewTitleBankPoint',
+      name: 'bankcardViewTitleBankBranch',
       desc: '',
       args: [],
     );
@@ -2428,6 +2688,26 @@ class S {
     return Intl.message(
       'Data delay will very from game suppliers',
       name: 'withdrawViewOptionHint3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members who want to change the bank card bound to the network when withdrawing money, please contact online customer service for instructions. `
+  String get withdrawViewHint1 {
+    return Intl.message(
+      'Members who want to change the bank card bound to the network when withdrawing money, please contact online customer service for instructions. ',
+      name: 'withdrawViewHint1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Each member account can only withdraw up to 3 withdrawals per day, if more than 3 withdrawals will be charged a 5% service fee. `
+  String get withdrawViewHint2 {
+    return Intl.message(
+      'Each member account can only withdraw up to 3 withdrawals per day, if more than 3 withdrawals will be charged a 5% service fee. ',
+      name: 'withdrawViewHint2',
       desc: '',
       args: [],
     );
@@ -3013,11 +3293,31 @@ class S {
     );
   }
 
+  /// `Valid Bet`
+  String get betsHeaderValidBet {
+    return Intl.message(
+      'Valid Bet',
+      name: 'betsHeaderValidBet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Payout Amount`
   String get betsHeaderBonus {
     return Intl.message(
       'Payout Amount',
       name: 'betsHeaderBonus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get betsHeaderSum {
+    return Intl.message(
+      'Total',
+      name: 'betsHeaderSum',
       desc: '',
       args: [],
     );
@@ -3273,11 +3573,21 @@ class S {
     );
   }
 
-  /// `Payment Bank`
+  /// `Deposit Bank`
   String get depositPaymentSpinnerTitleBank {
     return Intl.message(
-      'Payment Bank',
+      'Deposit Bank',
       name: 'depositPaymentSpinnerTitleBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank`
+  String get depositPaymentSpinnerTitleAccountBank {
+    return Intl.message(
+      'Bank',
+      name: 'depositPaymentSpinnerTitleAccountBank',
       desc: '',
       args: [],
     );
@@ -3293,21 +3603,41 @@ class S {
     );
   }
 
-  /// `Payee Name`
+  /// `Name`
   String get depositPaymentEditTitleName {
     return Intl.message(
-      'Payee Name',
+      'Name',
       name: 'depositPaymentEditTitleName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please fill in your payer name`
+  /// `fill in account holder`
   String get depositPaymentEditTitleNameHint {
     return Intl.message(
-      'Please fill in your payer name',
+      'fill in account holder',
       name: 'depositPaymentEditTitleNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank Account`
+  String get depositPaymentEditTitleAccount {
+    return Intl.message(
+      'Bank Account',
+      name: 'depositPaymentEditTitleAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `fill in bank account`
+  String get depositPaymentEditTitleAccountHint {
+    return Intl.message(
+      'fill in bank account',
+      name: 'depositPaymentEditTitleAccountHint',
       desc: '',
       args: [],
     );
@@ -3323,20 +3653,40 @@ class S {
     );
   }
 
-  /// `Input range: {num} ~ {num2}`
+  /// `Reality: {value} VND`
+  String depositPaymentEditTitleAmountHintVND(Object value) {
+    return Intl.message(
+      'Reality: $value VND',
+      name: 'depositPaymentEditTitleAmountHintVND',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Remarks`
+  String get depositPaymentEditTitleNote {
+    return Intl.message(
+      'Remarks',
+      name: 'depositPaymentEditTitleNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Range: {num} ~ {num2}`
   String depositPaymentEditTitleAmountHintRange(Object num, Object num2) {
     return Intl.message(
-      'Input range: $num ~ $num2',
+      'Range: $num ~ $num2',
       name: 'depositPaymentEditTitleAmountHintRange',
       desc: '',
       args: [num, num2],
     );
   }
 
-  /// `Input range: {num} ~ {num2} (amount is a multiple of {num3})`
+  /// `Range: {num} ~ {num2} (Step:{num3})`
   String depositPaymentEditTitleAmountHintRangeStep(Object num, Object num2, Object num3) {
     return Intl.message(
-      'Input range: $num ~ $num2 (amount is a multiple of $num3)',
+      'Range: $num ~ $num2 (Step:$num3)',
       name: 'depositPaymentEditTitleAmountHintRangeStep',
       desc: '',
       args: [num, num2, num3],
@@ -3383,10 +3733,10 @@ class S {
     );
   }
 
-  /// `Abandon Application Offer`
+  /// `Without Promo`
   String get depositPaymentNoPromo {
     return Intl.message(
-      'Abandon Application Offer',
+      'Without Promo',
       name: 'depositPaymentNoPromo',
       desc: '',
       args: [],
@@ -5430,6 +5780,36 @@ class S {
       name: 'movieDialogButtonPayPoint',
       desc: '',
       args: [value],
+    );
+  }
+
+  /// `Unable to get the download URL, please contact customer service!!`
+  String get updateDialogErrorUrl {
+    return Intl.message(
+      'Unable to get the download URL, please contact customer service!!',
+      name: 'updateDialogErrorUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Found new version，please click 'update' button to download and install.\nCurrent Version：{version}\nNew Version：{value}`
+  String updateDialogMessage(Object value, Object version) {
+    return Intl.message(
+      'Found new version，please click \'update\' button to download and install.\nCurrent Version：$version\nNew Version：$value',
+      name: 'updateDialogMessage',
+      desc: '',
+      args: [value, version],
+    );
+  }
+
+  /// `Detect network status has changed, do you want to refresh?`
+  String get networkChangedHint {
+    return Intl.message(
+      'Detect network status has changed, do you want to refresh?',
+      name: 'networkChangedHint',
+      desc: '',
+      args: [],
     );
   }
 }

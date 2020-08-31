@@ -10,7 +10,7 @@ import 'package:flutter_eg990_mobile/res.dart';
 /// Check if image [url] has cached file.
 /// If url image has been cached, return image's [File] else return url.
 Future<dynamic> checkCachedImage(String url) async {
-//    print('checking cached image: $url');
+//    debugPrint('checking cached image: $url');
   return await getCachedImageFile(url).then((file) async {
     if (file == null) return url;
     return await file.exists().then((exist) {
@@ -31,11 +31,11 @@ Future<Widget> networkImageWidget(
 }) async {
   String imageUrl = (url.startsWith('http://') || url.startsWith('https://'))
       ? url
-      : '${Global.CURRENT_SERVICE}$url'.replaceAll('//images/', '/images/');
+      : '${Global.CURRENT_BASE}$url'.replaceAll('//images/', '/images/');
   final image = await Future.value(checkCachedImage(imageUrl)).then((item) {
-//    print('image: $imageUrl, item: ${item.runtimeType}');
+//    debugPrint('image: $imageUrl, item: ${item.runtimeType}');
     if (item is File) {
-//      print('file state: ${item.statSync()}, length: ${item.lengthSync()}');
+//      debugPrint('file state: ${item.statSync()}, length: ${item.lengthSync()}');
       return Image.file(
         item,
         fit: fit,
@@ -55,8 +55,8 @@ Future<Widget> networkImageWidget(
                 return state.completedWidget;
               case LoadState.failed:
                 MyLogger.warn(msg: 'load image failed: $imageUrl');
-                Future.sync(() => clearDiskCachedImage(imageUrl))
-                    .then((value) => print('clean image cache result: $value'));
+                Future.sync(() => clearDiskCachedImage(imageUrl)).then(
+                    (value) => debugPrint('clean image cache result: $value'));
                 if (addPendingIconOnError) return Image.asset(Res.iconPending);
                 return Icon(
                   Icons.broken_image,
@@ -69,7 +69,7 @@ Future<Widget> networkImageWidget(
         );
       } catch (e) {
         MyLogger.warn(msg: 'load image error: $imageUrl');
-        print(e);
+        debugPrint(e);
       }
     }
   });
@@ -104,7 +104,9 @@ FutureBuilder networkImageBuilder(
         else
           return snapshot.data;
       } else if (snapshot.hasError) {
-        MyLogger.warn(msg: 'network image builder error: ${snapshot.error}');
+        MyLogger.warn(
+            msg: 'network image builder error: ${snapshot.error}',
+            error: snapshot.error);
         return Icon(Icons.broken_image, color: Themes.iconSubColor1);
       } else {
         return SizedBox.shrink();

@@ -23,12 +23,20 @@ class CustomizeTitledContainer extends StatefulWidget {
   /// Text space between letters and words
   final double titleLetterSpacing;
 
+  final Color backgroundColor;
+  final bool roundCorner;
+
   final String prefixText;
+  final double prefixTextSize;
+  final int prefixTextMaxLines;
   final IconData prefixIconData;
+  final Color prefixItemColor;
+  final Color prefixBgColor;
   final double titleWidthFactor;
   final double iconWidthFactor;
   final double minusHeight;
   final double minusPrefixWidth;
+  final bool requiredInput;
   final bool debug;
 
   final Widget child;
@@ -41,13 +49,20 @@ class CustomizeTitledContainer extends StatefulWidget {
     this.padding,
     this.horizontalInset = Themes.horizontalInset,
     this.heightFactor = 1,
+    this.roundCorner = true,
+    this.backgroundColor = Themes.fieldInputBgColor,
     this.prefixText,
+    this.prefixTextSize,
+    this.prefixTextMaxLines,
     this.prefixIconData,
+    this.prefixItemColor = Themes.fieldPrefixColor,
+    this.prefixBgColor = Themes.fieldPrefixBgColor,
     this.titleWidthFactor = Themes.prefixTextWidthFactor,
     this.titleLetterSpacing = Themes.prefixTextSpacing,
     this.iconWidthFactor = Themes.prefixIconWidthFactor,
     this.minusHeight = Themes.minusSize,
     this.minusPrefixWidth = Themes.minusSize,
+    this.requiredInput = false,
     this.debug = false,
   }) : super(key: key);
 
@@ -62,12 +77,13 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
   double _prefixWidth;
   Widget _prefixWidget;
   BoxConstraints _prefixConstraints;
+  int _currentPrefixMaxLines;
 
-  @override
-  void initState() {
+  void updateVariables() {
     _viewWidth = (widget.parentWidth ?? Global.device.width).roundToDouble() -
         widget.horizontalInset;
 
+    // update size limit
     _prefixWidth = ((widget.prefixText != null)
             ? _viewWidth * widget.titleWidthFactor
             : _viewWidth * widget.iconWidthFactor) -
@@ -80,22 +96,43 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
             widget.minusHeight;
     if (widget.prefixIconData != null) _smallWidgetHeight += 8.0;
 
+    // update constraints
+    _prefixConstraints = BoxConstraints(
+      minWidth: _prefixWidth,
+      maxWidth: _prefixWidth,
+      minHeight: _smallWidgetHeight,
+    );
+
+    // update text max lines
+    _currentPrefixMaxLines = (widget.prefixTextMaxLines != null)
+        ? widget.prefixTextMaxLines
+        : (Global.lang == 'zh') ? 1 : 2;
+
     if (widget.debug) {
-      print('screen width: ${Global.device.width}');
-      print('field prefix width: $_prefixWidth');
+      debugPrint('screen width: ${Global.device.width}');
+      debugPrint('field prefix width: $_prefixWidth');
     }
+  }
+
+  @override
+  void initState() {
+    updateVariables();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(CustomizeTitledContainer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    updateVariables();
+    if (oldWidget.prefixText != widget.prefixText) {
+      _prefixWidget = null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     if (_prefixWidget == null &&
         (widget.prefixText != null || widget.prefixIconData != null)) {
-      _prefixConstraints ??= BoxConstraints(
-        minWidth: _prefixWidth,
-        maxWidth: _prefixWidth,
-        minHeight: _smallWidgetHeight,
-      );
       _buildPrefix();
     }
 
@@ -110,17 +147,31 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          if (_prefixWidget != null) _prefixWidget,
+          if (_prefixWidget != null)
+            Container(
+              constraints: _prefixConstraints,
+              decoration: BoxDecoration(
+                color: widget.prefixBgColor,
+                borderRadius: (widget.roundCorner)
+                    ? BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        bottomLeft: Radius.circular(4.0),
+                      )
+                    : BorderRadius.zero,
+              ),
+              child: _prefixWidget,
+            ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0),
               alignment: widget.childAlignment,
               decoration: BoxDecoration(
-                color: Themes.fieldInputBgColor,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(4.0),
-                  bottomRight: Radius.circular(4.0),
-                ),
+                color: widget.backgroundColor,
+                borderRadius: (widget.roundCorner)
+                    ? BorderRadius.only(
+                        topRight: Radius.circular(4.0),
+                        bottomRight: Radius.circular(4.0),
+                      )
+                    : BorderRadius.zero,
               ),
               child: widget.child,
             ),
@@ -132,82 +183,85 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
 
   void _buildPrefix() {
     if (widget.prefixText != null && widget.prefixIconData != null) {
-      _prefixWidget = Container(
-        constraints: _prefixConstraints,
-        decoration: BoxDecoration(
-          color: Themes.defaultWidgetBgColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(4.0),
-            bottomLeft: Radius.circular(4.0),
+      _prefixWidget = Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Icon(
+              widget.prefixIconData,
+              size: Themes.fieldIconSize,
+              color: widget.prefixItemColor,
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon(
-                widget.prefixIconData,
-                size: Themes.fieldIconSize,
-                color: Themes.fieldPrefixColor,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 6.0),
-              child: Text(
-                widget.prefixText,
-                style: TextStyle(
-//              fontSize: FontSize.SUBTITLE.value,
-                  wordSpacing: widget.titleLetterSpacing / 2,
-                  letterSpacing: widget.titleLetterSpacing / 4,
-                  color: Themes.fieldPrefixColor,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(right: 6.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: RichText(
                 overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
+                    wordSpacing: widget.titleLetterSpacing,
+                    letterSpacing: widget.titleLetterSpacing,
+                    color: widget.prefixItemColor,
+                  ),
+                  children: [
+                    TextSpan(text: widget.prefixText),
+                    if (widget.requiredInput)
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(
+                          fontSize:
+                              widget.prefixTextSize ?? FontSize.NORMAL.value,
+                          color: Themes.hintHighlightRed,
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     } else if (widget.prefixText != null) {
-      _prefixWidget = Container(
-        constraints: _prefixConstraints,
-        decoration: BoxDecoration(
-          color: Themes.defaultWidgetBgColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(4.0),
-            bottomLeft: Radius.circular(4.0),
+      _prefixWidget = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+            overflow: TextOverflow.ellipsis,
+            maxLines: _currentPrefixMaxLines,
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
+                wordSpacing: widget.titleLetterSpacing,
+                letterSpacing: widget.titleLetterSpacing,
+                color: widget.prefixItemColor,
+              ),
+              children: [
+                TextSpan(text: widget.prefixText),
+                if (widget.requiredInput)
+                  TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                      fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
+                      color: Themes.hintHighlightRed,
+                    ),
+                  ),
+              ],
+            ),
           ),
-        ),
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(right: 4.0),
-        child: Text(
-          widget.prefixText,
-          style: TextStyle(
-//              fontSize: FontSize.SUBTITLE.value,
-            wordSpacing: widget.titleLetterSpacing,
-            letterSpacing: widget.titleLetterSpacing,
-            color: Themes.fieldPrefixColor,
-          ),
-          overflow: TextOverflow.ellipsis,
         ),
       );
     } else if (widget.prefixIconData != null) {
-      _prefixWidget = Container(
-        constraints: _prefixConstraints,
-        decoration: BoxDecoration(
-          color: Themes.defaultWidgetBgColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(4.0),
-            bottomLeft: Radius.circular(4.0),
-          ),
-        ),
-        child: Center(
-          child: Icon(
-            widget.prefixIconData,
-            size: Themes.fieldIconSize,
-            color: Themes.fieldPrefixColor,
-          ),
+      _prefixWidget = Center(
+        child: Icon(
+          widget.prefixIconData,
+          size: Themes.fieldIconSize,
+          color: widget.prefixItemColor,
         ),
       );
     }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_eg990_mobile/features/home/data/models/marquee_model.dart';
-import 'package:flutter_eg990_mobile/features/home/data/models/marquee_model_list.dart';
+import 'package:flutter_eg990_mobile/features/routes/home/data/models/marquee_model.dart';
+import 'package:flutter_eg990_mobile/features/routes/home/data/models/marquee_model_list.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 

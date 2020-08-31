@@ -1,8 +1,7 @@
 import 'dart:convert' show json;
 
+import 'package:flutter_eg990_mobile/features/event/data/models/ad_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'file:///C:/Dev/Projects/flutter_eg990_mobile/lib/features/home/data/models/ad_model.dart';
 
 import '../../fixtures/fixture_reader.dart';
 

@@ -1,15 +1,16 @@
 import 'dart:io' show Platform;
 
+import 'package:after_layout/after_layout.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/core/internal/device.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/injection_container.dart';
 
-import '../core/internal/device.dart';
-import '../core/internal/global.dart';
-import '../core/internal/local_strings.dart';
-import '../injection_container.dart' show sl;
-import '../mylogger.dart';
-import 'general/toast_widget_export.dart';
 import 'router/app_navigate.dart';
 import 'screen/web_game_screen_store.dart';
+import 'update/presentation/state/update_store.dart';
 
 ///
 /// Build the main ui using [ScreenRouter] and
@@ -23,36 +24,43 @@ class MainStartup extends StatefulWidget {
   _MainStartupState createState() => _MainStartupState();
 }
 
-class _MainStartupState extends State<MainStartup> {
+class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   final String keyId = 'Navi';
 
-  int closeAppCount = 0;
+  Future<bool> updateFuture;
+  UpdateStore updateStore;
 
   void registerLocale(BuildContext context) {
     try {
       sl.registerSingleton<LocalStrings>(LocalStrings(context));
-//      print('test locale:${sl.get<LocalStrings>().res.pageTitleHome}');
+//      debugPrint('test locale:${sl.get<LocalStrings>().res.pageTitleHome}');
     } catch (e) {
       MyLogger.warn(msg: 'locale file has exception: $e');
     } finally {
-      Global.regLocale = true;
+      Global.initLocale = true;
     }
-//    print('test locale res:${localeStr.pageTitleHome}');
+//    debugPrint('test locale res:${localeStr.pageTitleHome}');
 //    sl.get<LocalStrings>().init().then((value) {
-//      print('test locale res1:${S.of(context).pageHomeRoute}');
-//      print('test locale res2:${sl.get<LocalStrings>().res.pageHomeRoute}');
+//      debugPrint('test locale res1:${S.of(context).pageHomeRoute}');
+//      debugPrint('test locale res2:${sl.get<LocalStrings>().res.pageHomeRoute}');
 //    });
   }
 
   void getDeviceInfo(BuildContext context) {
     Global.device = Device(MediaQuery.of(context), Platform.isIOS);
-    print('Device Size: ${Global.device}');
+    debugPrint('Device:\n----------\n${Global.device}\n----------');
+  }
+
+  @override
+  void initState() {
+    updateStore ??= sl.get<UpdateStore>();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     if (Global.device == null) getDeviceInfo(context);
-    if (Global.regLocale == false) registerLocale(context);
+    if (Global.initLocale == false) registerLocale(context);
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {
@@ -65,15 +73,8 @@ class _MainStartupState extends State<MainStartup> {
             ScreenNavigate.switchScreen(screen: ScreenEnum.Feature);
           } else if (ScreenNavigate.screenIndex == 2) {
             ScreenNavigate.switchScreen();
-          } else if (RouterNavigate.current == Routes.homeRoute) {
-            closeAppCount += 1;
-            Future.delayed(
-                Duration(milliseconds: 500), () => closeAppCount = 0);
-            if (closeAppCount > 1)
-              return Future(() => true); // exit app
-            else if (closeAppCount == 1) callToast(localeStr.exitAppHint);
           } else {
-            RouterNavigate.navigateBack();
+            return Future(() => true);
           }
           return Future(() => false);
         },
@@ -90,5 +91,35 @@ class _MainStartupState extends State<MainStartup> {
 //        ),
       ),
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    if (updateStore != null) {
+      updateStore.dialogClosed();
+//      updateFuture ??=
+//          Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
+//      updateFuture.then((hasUpdate) {
+//        if (hasUpdate) {
+//          showDialog(
+//            context: context,
+//            barrierDismissible: false,
+//            builder: (context) => UpdateDialog(
+//              newVersion: updateStore.serverAppVersion,
+//              onUpdateClick: () {
+//                String url = updateStore.serverAppUrl;
+//                if (url == null || url.isEmpty || url.isUrl == false)
+//                  callToastError(localeStr.updateDialogErrorUrl);
+//                else
+//                  launch(updateStore.serverAppUrl);
+//              },
+//              onDialogClose: () => updateStore.dialogClosed(),
+//            ),
+//          );
+//        } else {
+//          updateStore.dialogClosed();
+//        }
+//      });
+    }
   }
 }

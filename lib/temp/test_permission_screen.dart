@@ -25,7 +25,7 @@ class _TestPermissionScreenState extends State<TestPermissionScreen> {
           result.write('permission: $key is ${value.isGranted}');
           if (key != map.keys.last) result.write('\n');
         });
-        print(result);
+        debugPrint(result.toString());
         callToast('(auto)\n${result.toString()}');
       });
     });
@@ -97,7 +97,7 @@ class _TestPermissionScreenState extends State<TestPermissionScreen> {
                               .write('permission: $key is ${value.isGranted}');
                           if (key != map.keys.last) result.write('\n');
                         });
-                        print(result);
+                        debugPrint(result.toString());
                         callToast('(auto)\n${result.toString()}');
                       });
                     },

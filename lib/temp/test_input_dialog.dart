@@ -86,7 +86,7 @@ class _TestInputDialogState extends State<TestInputDialog> {
               child: InkWell(
                 splashColor: Colors.transparent,
                 onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
+                  FocusScope.of(context).unfocus();
                 },
                 child: Stack(
                   children: <Widget>[
@@ -109,7 +109,7 @@ class _TestInputDialogState extends State<TestInputDialog> {
                                   setState(() {
                                     selectedOption = data.toString();
                                   });
-                                print('selected: $selectedOption');
+                                debugPrint('selected: $selectedOption');
                               },
                             ),
                             new SingleInputWidget(
@@ -133,7 +133,7 @@ class _TestInputDialogState extends State<TestInputDialog> {
                                   setState(() {
                                     selectedOption = data.toString();
                                   });
-                                print('selected: $selectedOption');
+                                debugPrint('selected: $selectedOption');
                               },
                             ),
                             new SingleInputWidget(

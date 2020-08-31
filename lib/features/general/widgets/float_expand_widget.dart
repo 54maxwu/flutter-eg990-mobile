@@ -54,7 +54,7 @@ class FloatExpandController {
     //set the color when expanded
     if (expendedBackgroundColor == null) {
       if (showLogs == true) {
-        print(
+        debugPrint(
             'AdvFab: A custom background color was not set for expanded widget' +
                 '\n using the collapsed background color instead ');
       }
@@ -65,7 +65,7 @@ class FloatExpandController {
     // we actually remove the widget once we decide to configure it again
     if (forceCustomHeight == false) {
       if (heightToExpandTo < 15 || heightToExpandTo > 70) {
-        print(
+        debugPrint(
             '\n!==[AdvFab WARNING]==!\n[== The height percentage your provided is not withing the acceptable range [15...80], this might cause unexpected behaviour ==]\n[== Setting up default value of 15% to the screen height  ==]\n!==[NOTE]==!\n[== Set "forceCustomHeight" to true if you really want to use values outside the range ==]');
         _heightToExpandTo = 15;
       } else {
@@ -152,7 +152,7 @@ class FloatExpandWidget extends StatefulWidget {
   final bool useElevation;
 
   /// Set to false by default; use it for Debuging,
-  /// warnings and errors will always be printed
+  /// warnings and errors will always be debugPrinted
   final bool showLogs;
 
   const FloatExpandWidget({
@@ -235,19 +235,20 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
       onTap: () {
         if (widget.useAsFloatingActionButton == true) {
           if (widget.onFloatingActionButtonTapped == null) {
-            print('\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "onFloatingActionButtonTapped" was not defined by you; please initialize it on the constructor' +
-                '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton" is set to true, "onFloatingActionButtonTapped" must be defined and not be null');
+            debugPrint(
+                '\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "onFloatingActionButtonTapped" was not defined by you; please initialize it on the constructor' +
+                    '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton" is set to true, "onFloatingActionButtonTapped" must be defined and not be null');
           } else {
             if (widget.showLogs == true) {
-              print('AdvFab: FloatingActionButton pressed');
-              print(
+              debugPrint('AdvFab: FloatingActionButton pressed');
+              debugPrint(
                   'AdvFab: calling the method "onFloatingActionButtonTapped"');
             }
             if (widget.controller.isCollapsed == true) {
               widget.onFloatingActionButtonTapped();
             } else {
               if (widget.showLogs == true) {
-                print(
+                debugPrint(
                     'AdvFab: cannot perform tapped action\nReason: When the FAB is expanded no action gets performed until it gets collapsed');
               }
             }
@@ -357,24 +358,25 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
 
   void expandFAB() async {
     if (widget.showLogs == true) {
-      print('AdvFab: Checking initial expanded widget configuration ');
+      debugPrint('AdvFab: Checking initial expanded widget configuration ');
     }
     if (widget.controller._expendedContainerCrossAxisAlignment == null ||
         widget.controller._expendedContainerMainAxisAlignment == null) {
-      print('\n==[WRONG CONFIGURATION ERROR]==\n"setExpandedWidgetConfiguration" of "AdvFabController"has to be called at least once during the lifetime of your application' +
-          '\n==[Indication]==\nCall AdvFabController.setExpandedWidgetConfiguration(<<configure widget here>>) to tell the AdvFab wich widget shall be displayed once it is expanded\n' +
-          'Then call the method "expandFAB" again');
+      debugPrint(
+          '\n==[WRONG CONFIGURATION ERROR]==\n"setExpandedWidgetConfiguration" of "AdvFabController"has to be called at least once during the lifetime of your application' +
+              '\n==[Indication]==\nCall AdvFabController.setExpandedWidgetConfiguration(<<configure widget here>>) to tell the AdvFab wich widget shall be displayed once it is expanded\n' +
+              'Then call the method "expandFAB" again');
 
       return null;
     }
     if (widget.showLogs == true) {
-      print('AdvFab: Trying to perfom expansion');
-      print('AdvFab: Awaiting for a color change (if any)');
+      debugPrint('AdvFab: Trying to perfom expansion');
+      debugPrint('AdvFab: Awaiting for a color change (if any)');
     }
     await changeTweenColor();
     if (widget.showLogs == true) {
-      print('AdvFab: color change awaited successfully');
-      print('AdvFab: performing expansion');
+      debugPrint('AdvFab: color change awaited successfully');
+      debugPrint('AdvFab: performing expansion');
     }
     await startExpanding().then((value) {
       Future.delayed(widget.animationDuration, () {
@@ -395,15 +397,15 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
       });
     });
     if (widget.showLogs == true) {
-      print('AdvFab: widget expanded successfully');
+      debugPrint('AdvFab: widget expanded successfully');
     }
   }
 
   void closeFAB() async {
     if (widget.showLogs == true) {
-      print('AdvFab: Trying to perfom collapse ');
-      print('AdvFab: Awaiting for a color change (if any)');
-      print('AdvFab: Collapsing');
+      debugPrint('AdvFab: Trying to perfom collapse ');
+      debugPrint('AdvFab: Awaiting for a color change (if any)');
+      debugPrint('AdvFab: Collapsing');
     }
     await collapseFAB().then((value) {
       Future.delayed(widget.animationDuration, () {
@@ -424,7 +426,7 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
       });
     });
     if (widget.showLogs == true) {
-      print('AdvFab: Widget collapsed successfully');
+      debugPrint('AdvFab: Widget collapsed successfully');
     }
   }
 
@@ -439,7 +441,7 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
         setState(() {});
       });
     if (widget.showLogs == true) {
-      print('AdvFab: background Color changed ');
+      debugPrint('AdvFab: background Color changed ');
     }
     return colorTween;
   }
@@ -447,7 +449,7 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
   // this is to handle the animation collapse
   Future<bool> collapseFAB() async {
     if (widget.showLogs == true) {
-      print(
+      debugPrint(
           'AdvFab: Colors reversed (if no color was specified by you, then default value were applied)');
     }
     if (mounted) {
@@ -484,8 +486,9 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
   void verifyRequestedSetting() {
     if (widget.useAsFloatingActionButton == true &&
         widget.useAsFloatingSpaceBar == true) {
-      print('\n==[WRONG CONFIGURATION ERROR]==\nThe parameters "useAsFloatingActionButton", "useFloatingSpaceBar" and "useNavigationbar" are all set to true ' +
-          '\n==[Indication]==\nSet only one of these paramaters to true and the rest to false');
+      debugPrint(
+          '\n==[WRONG CONFIGURATION ERROR]==\nThe parameters "useAsFloatingActionButton", "useFloatingSpaceBar" and "useNavigationbar" are all set to true ' +
+              '\n==[Indication]==\nSet only one of these paramaters to true and the rest to false');
     }
     if (widget.useAsFloatingActionButton == false &&
         widget.useAsFloatingSpaceBar == false) {}
@@ -494,20 +497,23 @@ class _FloatExpandWidgetState extends State<FloatExpandWidget>
       if (widget.onFloatingActionButtonTapped == null) {
         // the floating action button is selected but this argument is not specified
         // do ou need
-        print('\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "onFloatingActionButtonTapped" was not defined by you; please initialize it on the constructor' +
-            '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton " is set to true, "onFloatingActionButtonTapped " must be defined and not be null');
+        debugPrint(
+            '\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "onFloatingActionButtonTapped" was not defined by you; please initialize it on the constructor' +
+                '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton " is set to true, "onFloatingActionButtonTapped " must be defined and not be null');
       }
       if (widget.floatingActionButtonIcon == null) {
         // you wanna use a floating action button but there is Icon on it
-        print('\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "floatingActionButtonIcon" was not defined by you; please initialize it on the constructor' +
-            '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton " is set to true, "floatingActionButtonIcon" must be defined and not be null');
+        debugPrint(
+            '\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "floatingActionButtonIcon" was not defined by you; please initialize it on the constructor' +
+                '\n==[Indication]==\nWhen the parameter "useAsFloatingActionButton " is set to true, "floatingActionButtonIcon" must be defined and not be null');
       }
     }
     if (widget.useAsFloatingSpaceBar == true) {
       if (widget.spaceBarWidget == null) {
         // you did set a floating spacebar , without a widget inside of it
-        print('\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "spacebarWidget" was not defined by you; please initialize it on the constructor' +
-            '\n==[Indication]==\nWhen the parameter "useFloatingSpaceBar" is set to true, "spacebarWidget" must be defined and not be null ');
+        debugPrint(
+            '\n==[WRONG CONFIGURATION ERROR]==\nThe parameter "spacebarWidget" was not defined by you; please initialize it on the constructor' +
+                '\n==[Indication]==\nWhen the parameter "useFloatingSpaceBar" is set to true, "spacebarWidget" must be defined and not be null ');
       }
     }
   }
@@ -534,7 +540,7 @@ class _Size {
   static void init() {
     width = Global.device.width;
     height = Global.device.height;
-    _safeAreaHorizontal = Global.device.safePadding;
+    _safeAreaHorizontal = Global.device.safeHorizontalPadding;
     safeBlockHorizontal = (width - _safeAreaHorizontal) / 100;
   }
 }

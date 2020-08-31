@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
+
+export 'package:hive/hive.dart' show Box;
 
 const String HIVE_ACTION_TAG = 'HIVE action';
 
@@ -23,10 +26,10 @@ extension HiveBoxExtension on Box {
   }
 
   void debug() {
-    print('debug hive box data: ${this.name}, length:${this.length}');
+    debugPrint('debug hive box data: ${this.name}, length:${this.length}');
     if (hasData()) {
       this.toMap().forEach((key, value) {
-        print('$key, $value\n');
+        debugPrint('$key, $value\n');
       });
     }
   }
@@ -58,7 +61,7 @@ extension AddListToHiveExtension on List {
   }) {
     try {
       forEach((data) {
-//        print('writing $identifier to hive: $data');
+//        debugPrint('writing $identifier to hive: $data');
         box.add(data);
       });
     } on Exception catch (e, s) {
@@ -87,13 +90,13 @@ extension AddListToHiveExtension on List {
         box.deleteAt(index);
       } else if (newData != oldData) {
         // if data has changed, replace old data in box
-        print('replacing hive $identifier: $newData');
+//        debugPrint('replacing hive $identifier: $newData');
         box.putAt(index, newData);
       }
       // remove data from leftovers after processed
       leftovers.remove(newData);
     }
-//    print('checking new data: $leftovers');
+//    debugPrint('checking new data: $leftovers');
     // if the list still has new data, add to hive
     if (leftovers.isNotEmpty)
       leftovers.addAllToHive(box: box, identifier: identifier);

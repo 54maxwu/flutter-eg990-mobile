@@ -124,7 +124,7 @@ mixin _$LoginStore on _LoginStore, Store {
   final _$loginAsyncAction = AsyncAction('_LoginStore.login');
 
   @override
-  Future<dynamic> login(LoginForm form, bool saveForm) {
+  Future<void> login(LoginForm form, bool saveForm) {
     return _$loginAsyncAction.run(() => super.login(form, saveForm));
   }
 

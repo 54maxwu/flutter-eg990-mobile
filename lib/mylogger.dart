@@ -26,24 +26,24 @@ class MyLogger {
   static void info({@required msg, String tag = ''}) =>
       _log.info(createMessage(msg, tag));
 
-  static void warn({@required msg, String tag = '', dynamic error}) =>
-      _log.warning(createMessage(msg, tag), [error]);
+  static void warn({@required msg, String tag = '', Object error}) =>
+      _log.warning(createMessage(msg, tag), error);
 
   static void error({
     @required msg,
     String tag = '',
-    dynamic error,
+    Object error,
     StackTrace stackTrace,
   }) =>
-      _log.severe(createMessage(msg, tag), [error, stackTrace]);
+      _log.severe(createMessage(msg, tag), error, stackTrace);
 
   static void wtf({
     @required msg,
     String tag = '',
-    dynamic error,
+    Object error,
     StackTrace stackTrace,
   }) =>
-      _log.shout(createMessage(msg, tag), [error, stackTrace]);
+      _log.shout(createMessage(msg, tag), error, stackTrace);
 
   static String createMessage(msg, String tag) =>
       '[${tag.isEmpty ? TAG : tag}] $msg';

@@ -1,13 +1,14 @@
 import 'dart:async' show StreamController;
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
+import 'app_global_streams.dart';
 import 'route_info.dart';
 import 'route_page.dart';
-import 'route_user_streams.dart';
 import 'router.gr.dart';
 import 'screen_router.dart' show ScreenEnum;
 import 'screen_router.gr.dart';
@@ -17,8 +18,8 @@ export 'package:auto_route/auto_route.dart';
 export 'route_info.dart';
 export 'route_page.dart';
 export 'router.gr.dart';
-export 'screen_router.gr.dart';
 export 'screen_router.dart' show ScreenEnum;
+export 'screen_router.gr.dart';
 
 ///
 /// Main Screen Navigation
@@ -87,7 +88,7 @@ class ScreenNavigate {
             break;
           case ScreenEnum.Feature:
           default:
-            print('can pop screen: ${screenNavigator.canPop()}');
+            debugPrint('can pop screen: ${screenNavigator.canPop()}');
             if (screenNavigator.canPop())
               screenNavigator.pop();
             else
@@ -109,7 +110,7 @@ class ScreenNavigate {
       }
     }
     if (screenIndex != 1) {
-      print('restoring screen orientation...');
+      debugPrint('restoring screen orientation...');
       OrientationHelper.restoreUI();
     }
   }
@@ -119,7 +120,7 @@ class ScreenNavigate {
 /// Feature Router Action class to switch between routes
 ///
 class RouterNavigate {
-  static final routerStreams = getRouteUserStreams;
+  static final routerStreams = getAppGlobalStreams;
 
   static final String _tag = 'RouterNavigate';
   // TODO should replace with navigator stack or observer
@@ -164,20 +165,21 @@ class RouterNavigate {
     }
     try {
       if ((_currentRoute != Routes.homeRoute && page.isFeature)) {
-        print('navigate feature, from:$_currentRoute to:${page.page}');
+        debugPrint('navigate feature, from:$_currentRoute to:${page.page}');
         navigator.pushNamedAndRemoveUntil(
           page.page,
           (route) =>
               route.settings.name == page.page ||
               route.settings.name == Routes.homeRoute,
-          arguments: arg,
+          arguments: arg ?? page.value.routeArg,
         );
         _setPath(page.page,
-            parentRoute:
-                (current != Routes.memberRoute) ? page.pageRoot : current);
+            parentRoute: (page.isFeature || current != Routes.memberRoute)
+                ? page.pageRoot
+                : current);
       } else {
-        print('navigate page, from:$_currentRoute to:${page.page}');
-        navigator.pushNamed(page.page, arguments: arg);
+        debugPrint('navigate page, from:$_currentRoute to:${page.page}');
+        navigator.pushNamed(page.page, arguments: arg ?? page.value.routeArg);
         _setPath(page.page);
       }
     } catch (e) {
@@ -192,18 +194,30 @@ class RouterNavigate {
 
   static replacePage(RoutePage page, {Object arg}) {
     try {
-      navigator.pushReplacementNamed(page.page, arguments: arg);
+      debugPrint('replacing page, '
+          'from:$_currentRoute to:${page.page}, '
+          'arg: ${arg ?? page.value.routeArg}');
+
+      if (_previousRoute != '/') {
+        navigator.pushReplacementNamed(page.page,
+            arguments: arg ?? page.value.routeArg);
+      } else {
+        navigateToPage(page, arg: arg);
+      }
+
       _setPath(page.page,
-          parentRoute:
-              (current != Routes.memberRoute) ? page.pageRoot : current);
+          parentRoute: (page.isFeature || current != Routes.memberRoute)
+              ? page.pageRoot
+              : current);
     } catch (e) {
       MyLogger.warn(
-          msg:
-              'replace page has exception!! Router current: $_currentRoute, previous: $_previousRoute',
+          msg: 'replace page has exception!! '
+              'Router current: $_currentRoute, previous: $_previousRoute',
           error: e,
           tag: _tag);
+
       navigateClean();
-      navigateToPage(page, arg: arg);
+      navigateToPage(page, arg: arg ?? page.value.routeArg);
     }
     _routeInfo.sink.add(page.value);
   }
@@ -217,8 +231,11 @@ class RouterNavigate {
     } catch (e) {
       isFeature = false;
     }
-    print('navigate back, current:$_currentRoute, previous: $_previousRoute, '
+    debugPrint(
+        'navigate back, current:$_currentRoute, previous: $_previousRoute, '
         'canPop: ${navigator.canPop()}, isFeature: $isFeature');
+
+    var page = _previousRoute.toRoutePage;
     try {
       if (ScreenNavigate.screenIndex != 0) {
         ScreenNavigate.switchScreen();
@@ -237,7 +254,8 @@ class RouterNavigate {
           }
           navigator.popUntil((route) => route.settings.name == _previousRoute);
         } catch (e) {
-          navigator.popAndPushNamed(_previousRoute);
+          navigator.popAndPushNamed(_previousRoute,
+              arguments: page.value.routeArg);
         }
       }
     } catch (e) {
@@ -251,14 +269,13 @@ class RouterNavigate {
       ScreenNavigate.switchScreen(force: true);
     }
 
-    var page = _previousRoute.toRoutePage;
     _setPath(page.page, parentRoute: page.pageRoot);
     _routeInfo.sink.add(page.value);
   }
 
   /// Navigate to [Router.homeRoute] and clean the stack
   static navigateClean({bool force = false}) {
-    print('navigate to home, from:$_currentRoute');
+    debugPrint('navigate to home, from:$_currentRoute');
     try {
       if (force && _currentRoute == Routes.homeRoute) {
         navigator.pushReplacementNamed(Routes.homeRoute);
@@ -278,7 +295,7 @@ class RouterNavigate {
           tag: _tag);
     }
     _setPath(Routes.homeRoute, parentRoute: Routes.homeRoute);
-//    print('update home app bar on clean');
+//    debugPrint('update home app bar on clean');
     _routeInfo.sink.add(RoutePage.home.value);
   }
 
@@ -289,14 +306,14 @@ class RouterNavigate {
   static _setPath(String route, {String parentRoute = ''}) {
     _previousRoute = parentRoute.isEmpty ? _currentRoute : parentRoute;
     _currentRoute = route;
-    print(
+    debugPrint(
         'set navigate path, current:$_currentRoute, previous: $_previousRoute');
   }
 
   static resetCheckUser() => routerStreams.setCheck(false);
 
   static testNavigate(RoutePage page) {
-    print('test navigate...page: ${page.value}');
+    debugPrint('test navigate...page: ${page.value}');
     _setPath(page.page, parentRoute: page.pageRoot);
     _routeInfo.sink.add(page.value);
   }

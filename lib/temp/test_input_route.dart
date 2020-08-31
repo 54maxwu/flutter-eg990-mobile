@@ -49,7 +49,7 @@ class _TestInputRouteState extends State<TestInputRoute> {
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
+          FocusScope.of(context).unfocus();
         },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 36.0, horizontal: 8.0),
@@ -98,7 +98,7 @@ class _TestInputRouteState extends State<TestInputRoute> {
                   hint: 'Test Suffix Icon',
                   parentWidth: MediaQuery.of(context).size.width,
                   suffixIconData: Icons.edit,
-                  suffixAction: (input) => print('input: $input'),
+                  suffixAction: (input) => debugPrint('input: $input'),
                 ),
                 new SingleInputWidget(
                   key: _testFieldKey3,
@@ -106,7 +106,7 @@ class _TestInputRouteState extends State<TestInputRoute> {
                   parentWidth: MediaQuery.of(context).size.width,
                   prefixTitle: '地址',
                   suffixText: '修改地址',
-                  suffixAction: (input) => print('input: $input'),
+                  suffixAction: (input) => debugPrint('input: $input'),
                 ),
                 new SingleInputWidget(
                   key: _testFieldKey4,
@@ -115,7 +115,7 @@ class _TestInputRouteState extends State<TestInputRoute> {
                   prefixTitle: '電話',
                   prefixIconData: Icons.phone,
                   suffixText: '驗證',
-                  suffixAction: (input) => print('input: $input'),
+                  suffixAction: (input) => debugPrint('input: $input'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 24),

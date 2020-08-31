@@ -36,7 +36,7 @@ abstract class _WebGameScreenStore with Store {
 
   @action
   Future<void> rotateScreenLeft() async {
-    print('called rotate left, current: $_deviceOrientation');
+    debugPrint('called rotate left, current: $_deviceOrientation');
     if (_targetOrientation == _deviceOrientation) return;
     switch (_deviceOrientation) {
       case DeviceOrientation.portraitUp:
@@ -53,7 +53,7 @@ abstract class _WebGameScreenStore with Store {
   @action
   Future<void> rotateScreenById(int receivedId) async {
     if (receivedId != _sensorRotateId) return;
-    print('called rotate by id: $receivedId');
+    debugPrint('called rotate by id: $receivedId');
     switch (receivedId) {
       case 0:
         return await _rotateScreen(DeviceOrientation.landscapeRight);
@@ -95,7 +95,7 @@ abstract class _WebGameScreenStore with Store {
           _sensorSubscription = PlatformUtil.sensorEventChannel
               .receiveBroadcastStream()
               .listen((rotateId) {
-            print('sensor event: $rotateId');
+            debugPrint('sensor event: $rotateId');
             if (_lockAutoRotate) return;
             if (_sensorRotateId == rotateId) return;
             _sensorRotateId = rotateId;
@@ -103,7 +103,7 @@ abstract class _WebGameScreenStore with Store {
               rotateScreenById(rotateId);
             });
           }, onError: (dynamic error) {
-            print('sensor error: ${error.message}');
+            debugPrint('sensor error: ${error.message}');
           });
         } catch (e) {
           MyLogger.warn(msg: 'bind sensor failed: $e', tag: tag);
@@ -127,7 +127,7 @@ abstract class _WebGameScreenStore with Store {
           });
         },
         onError: (dynamic error) {
-          print('sensor error: ${error.message}');
+          debugPrint('sensor error: ${error.message}');
         },
       );
     } catch (e) {
@@ -167,7 +167,7 @@ abstract class _WebGameScreenStore with Store {
   Future<void> _rotateAndroidScreen(DeviceOrientation target) {
     return OrientationHelper.forceOrientation(_targetOrientation)
         .whenComplete(() {
-      print('rotate complete: $_targetOrientation');
+      debugPrint('rotate complete: $_targetOrientation');
       // use param value in case the [targetOrientation] points to null
       _deviceOrientation = target;
       _targetOrientation = null;

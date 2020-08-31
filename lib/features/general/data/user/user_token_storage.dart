@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart'
     show getHiveBox;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
@@ -18,14 +19,14 @@ class UserTokenStorage {
   static Future<void> save(String account) async {
     Box box = await getHiveBox(Global.CACHED_COOKIE);
     var cookies = DioApiService.loadCookies(
-        Uri.parse('${Global.EG_BASE_URL}${UserApi.LOGIN}'));
+        Uri.parse('${Global.CURRENT_BASE}${UserApi.LOGIN}'));
 //    for (var value in cookies) {
-//      print('cookie name: ${value.name}');
+//      debugPrint('cookie name: ${value.name}');
 //    }
     var tokenCookie =
         cookies.singleWhere((element) => element.name == 'token_mobile');
-    print('cookie token: ${tokenCookie.value}');
-    print('cookie token length: ${tokenCookie.value.length}');
+    debugPrint('cookie token: ${tokenCookie.value}');
+    debugPrint('cookie token length: ${tokenCookie.value.length}');
     try {
       // TODO: Need to check if saving token to hive is necessary or the RAM cookie will suffice
       box.put(account, HiveCookieEntity(account: account, cookie: tokenCookie));
@@ -48,7 +49,7 @@ class UserTokenStorage {
       }
     }
     box.close();
-    print('loaded hive token: ${entity.cookie}');
+    debugPrint('loaded hive token: ${entity.cookie}');
     return entity;
   }
 

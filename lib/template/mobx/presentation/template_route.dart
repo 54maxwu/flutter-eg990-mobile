@@ -33,7 +33,7 @@ class _TemplateRouteState extends State<TemplateRoute> {
 
   @override
   void didUpdateWidget(TemplateRoute oldWidget) {
-    print('didUpdateWidget');
+    debugPrint('didUpdateWidget');
     super.didUpdateWidget(oldWidget);
   }
 

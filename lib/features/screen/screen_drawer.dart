@@ -8,44 +8,54 @@ class ScreenDrawer extends StatelessWidget {
   const ScreenDrawer();
 
   static final List<ScreenDrawerItem> _menuItems = [
-    ScreenDrawerItem.home,
+    ScreenDrawerItem.promo,
+    ScreenDrawerItem.service,
     ScreenDrawerItem.download,
-    ScreenDrawerItem.tutorial,
-    ScreenDrawerItem.notice,
-    ScreenDrawerItem.wallet,
     ScreenDrawerItem.vip,
+    ScreenDrawerItem.agentAbout,
+    ScreenDrawerItem.testUI,
+    ScreenDrawerItem.test,
+  ];
+
+  static final List<ScreenDrawerItem> _userMenuItems = [
+    ScreenDrawerItem.member,
+    ScreenDrawerItem.deposit,
+    ScreenDrawerItem.promo,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.notice,
+    ScreenDrawerItem.store,
+    ScreenDrawerItem.roller,
+    ScreenDrawerItem.task,
+    ScreenDrawerItem.collect,
     ScreenDrawerItem.sign,
-//    ScreenDrawerItem.store,
+    ScreenDrawerItem.service,
+    ScreenDrawerItem.download,
+    ScreenDrawerItem.vip,
+    ScreenDrawerItem.agentAbout,
     ScreenDrawerItem.logout,
-//    ScreenDrawerItem.testUI,
-//    ScreenDrawerItem.test,
+    ScreenDrawerItem.testUI,
+    ScreenDrawerItem.test,
   ];
 
   bool _itemTapped(ScreenDrawerItem item, {FeatureScreenStore store}) {
     if (item == ScreenDrawerItem.logout) {
-      getRouteUserStreams.logout();
+      getAppGlobalStreams.logout();
       return true;
     }
     if (item == ScreenDrawerItem.test) {
       ScreenNavigate.switchScreen(screen: ScreenEnum.Test);
       return true;
     }
-    if (item == ScreenDrawerItem.sign) {
-      store.setForceShowEvent = true;
-      return true;
-    }
+//    if (item == ScreenDrawerItem.sign) {
+//      store.setForceShowEvent = true;
+//      return true;
+//    }
     var route = item.value.route;
     if (route == null) {
       callToastInfo(localeStr.workInProgress);
     } else if (route == RoutePage.tutorial || route == RoutePage.agentAbout) {
       // open web page
-      RouterNavigate.replacePage(
-        route,
-        arg: WebRouteArguments(
-          startUrl: item.value.webUrl,
-          hideBars: true,
-        ),
-      );
+      RouterNavigate.replacePage(route, arg: route.value.routeArg);
       return true;
     } else if (route.page != RouterNavigate.current) {
       RouterNavigate.navigateToPage(route);
@@ -57,13 +67,15 @@ class ScreenDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewState = FeatureScreenInheritedWidget.of(context);
-    double drawerWidth = Global.device.width / 3 * 2;
-    if (drawerWidth < 240) drawerWidth = 240;
+    double drawerWidth = Global.device.width / 6 * 5;
+    if (drawerWidth < 300) drawerWidth = 300;
+
+    double gridItemWidth = drawerWidth / 2;
+    double gridRatio = gridItemWidth / 48;
+
     return Container(
-      constraints: BoxConstraints(
-        maxWidth: drawerWidth,
-        maxHeight: Global.device.height,
-      ),
+      width: drawerWidth,
+      height: Global.device.height,
       child: Drawer(
         elevation: 8.0,
         child: Column(
@@ -124,19 +136,20 @@ class ScreenDrawer extends StatelessWidget {
                   maxHeight: Global.device.height - 161.0 - 36.0,
                 ),
                 padding: const EdgeInsets.only(top: 12.0),
-                child: ListView.builder(
-                  shrinkWrap: true,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: gridRatio,
+                  ),
                   physics: BouncingScrollPhysics(),
-                  itemCount: _menuItems.length,
+                  shrinkWrap: true,
+                  itemCount: (getAppGlobalStreams.hasUser)
+                      ? _userMenuItems.length
+                      : _menuItems.length,
                   itemBuilder: (_, index) {
-                    ScreenDrawerItem item = _menuItems[index];
-                    if (item.value.isUserOnly &&
-                        getRouteUserStreams.hasUser == false)
-                      return SizedBox.shrink();
-                    if (item == ScreenDrawerItem.sign &&
-                        (viewState.store.event == null ||
-                            viewState.store.event.hasData == false))
-                      return SizedBox.shrink();
+                    ScreenDrawerItem item = (getAppGlobalStreams.hasUser)
+                        ? _userMenuItems[index]
+                        : _menuItems[index];
                     return GestureDetector(
                       onTap: () {
                         if ((item == ScreenDrawerItem.sign)
@@ -174,11 +187,12 @@ class ScreenDrawer extends StatelessWidget {
   }
 
   Widget _buildListItem(RouteListItem itemValue) {
-    bool shrink = itemValue.iconData.codePoint == 0xf219;
+    bool shrink =
+        itemValue.iconData != null && itemValue.iconData.codePoint == 0xf219;
     return Padding(
       padding: (shrink)
-          ? const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0)
-          : const EdgeInsets.fromLTRB(18.0, 0.0, 16.0, 16.0),
+          ? const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 16.0)
+          : const EdgeInsets.fromLTRB(10.0, 0.0, 8.0, 16.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -196,22 +210,33 @@ class ScreenDrawer extends StatelessWidget {
                   margin: (shrink)
                       ? const EdgeInsets.only(right: 4.0)
                       : EdgeInsets.zero,
-                  child: Icon(
-                    itemValue.iconData,
-                    color: Themes.sideMenuIconColor,
-                  ),
+                  child: (itemValue.imageName != null)
+                      ? SizedBox(
+                          width: 24.0,
+                          height: 24.0,
+                          child: networkImageBuilder(
+                            itemValue.imageName,
+                            imgColor: Themes.sideMenuIconColor,
+                          ),
+                        )
+                      : Icon(
+                          itemValue.iconData,
+                          color: Themes.sideMenuIconColor,
+                        ),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              itemValue.replaceTitle ?? itemValue.route?.pageTitle ?? '?',
+              itemValue.title ?? itemValue.route?.pageTitle ?? '?',
               style: TextStyle(
-                fontSize: FontSize.MESSAGE.value,
+                fontSize: FontSize.SUBTITLE.value,
                 color: Themes.sideMenuIconTextColor,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

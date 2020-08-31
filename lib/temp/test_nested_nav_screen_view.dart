@@ -35,7 +35,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
 //        if (!_lockAutoRotate) {
 //          _deviceOrientation = value;
 //          _rotateIndex = value.index;
-//          print('auto rotate index: $_rotateIndex');
+//          debugPrint('auto rotate index: $_rotateIndex');
 //          OrientationHelper.forceOrientation(value);
 //          Scaffold.of(context).showSnackBar(
 //            SnackBar(content: Text('received from sensor: $value')),
@@ -95,10 +95,9 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
               child: Text('Permission'),
             ),
             RaisedButton(
-              onPressed: () {
-                callToast(Global.device.toString());
-              },
-              child: Text('Size'),
+              onPressed: () =>
+                  testNavigator.pushNamed(TestRoutes.testHomeSizeCalc),
+              child: Text('Home Calc'),
             ),
           ],
         ),
@@ -135,7 +134,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                   if (!_lockAutoRotate) {
                     _deviceOrientation = snapshot.data;
                     _rotateIndex = snapshot.data.index;
-                    print('auto rotate index: $_rotateIndex');
+                    debugPrint('auto rotate index: $_rotateIndex');
                     OrientationHelper.forceOrientation(_deviceOrientation);
                     return Text('Auto Rotate Index: ${snapshot.data.index}');
                   } else {
@@ -155,7 +154,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                 setState(() {
                   _lockAutoRotate = !_lockAutoRotate;
                 });
-                print('lock rotate: $_lockAutoRotate');
+                debugPrint('lock rotate: $_lockAutoRotate');
                 Scaffold.of(context).showSnackBar(
                   SnackBar(content: Text('lock rotate: $_lockAutoRotate')),
                 );
@@ -183,7 +182,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                   }
                   OrientationHelper.forceOrientation(_targetOrientation)
                       .whenComplete(() {
-                    print('rotate complete: $_deviceOrientation');
+                    debugPrint('rotate complete: $_deviceOrientation');
                     Scaffold.of(context).showSnackBar(
                       SnackBar(
                           content:
@@ -371,7 +370,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                   if (!_lockAutoRotate) {
                     _deviceOrientation = snapshot.data;
                     _rotateIndex = snapshot.data.index;
-                    print('auto rotate index: $_rotateIndex');
+                    debugPrint('auto rotate index: $_rotateIndex');
                     OrientationHelper.forceOrientation(_deviceOrientation);
                     return Text('Auto Rotate Index: ${snapshot.data.index}');
                   } else {
@@ -395,7 +394,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                   OrientationHelper.unlockPreferredOrientations();
                 else
                   OrientationHelper.setPreferredOrientations();
-                print('lock rotate: $_lockAutoRotate');
+                debugPrint('lock rotate: $_lockAutoRotate');
                 Scaffold.of(context).showSnackBar(
                   SnackBar(content: Text('lock rotate: $_lockAutoRotate')),
                 );
@@ -422,7 +421,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
                 PlatformUtil.setIosOrientation(_targetOrientation);
                 OrientationHelper.forceOrientation(_targetOrientation)
                     .whenComplete(() {
-                  print('rotate complete: $_deviceOrientation');
+                  debugPrint('rotate complete: $_deviceOrientation');
                   Scaffold.of(context).showSnackBar(
                     SnackBar(
                         content: Text('rotate complete: $_targetOrientation')),

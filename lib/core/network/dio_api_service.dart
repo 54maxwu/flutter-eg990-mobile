@@ -6,6 +6,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/network/interceptors/dio_logger_interceptor.dart';
@@ -28,7 +29,7 @@ class DioApiService {
   static List<Cookie> loadCookies(Uri uri) => _cookieJar.loadForRequest(uri);
 
   DioApiService() {
-    _options = createOptions(Global.CURRENT_SERVICE);
+    _options = createOptions(Global.CURRENT_BASE);
     _dio = new Dio(_options);
     _dio.transformer = FlutterTransformer(); // replace dio default transformer
     _dio.interceptors.add(DioLoggerInterceptor());
@@ -45,10 +46,10 @@ class DioApiService {
               'sha1: ${cert.sha1}\n',
           tag: TAG,
         );
-//        print('pem: ${cert.pem}\n');
-//        print('der: ${cert.der}\n');
-//        print('subject: ${cert.subject}\n');
-//        print('user agent: ${client.userAgent}\n');
+//        debugPrint('pem: ${cert.pem}\n');
+//        debugPrint('der: ${cert.der}\n');
+//        debugPrint('subject: ${cert.subject}\n');
+//        debugPrint('user agent: ${client.userAgent}\n');
         return true;
       };
       return client;
@@ -77,15 +78,15 @@ class DioApiService {
 
   InterceptorsWrapper createDebugInterceptor() {
     return InterceptorsWrapper(onRequest: (RequestOptions options) {
-      print("請求之前");
+      debugPrint("請求之前");
       // Do something before request is sent
       return options; //continue
     }, onResponse: (Response response) {
-      print("響應之前");
+      debugPrint("響應之前");
       // Do something with response data
       return response; // continue
     }, onError: (DioError e) {
-      print("錯誤之前");
+      debugPrint("錯誤之前");
       // Do something with response error
       return e; //continue
     });
@@ -161,11 +162,11 @@ class DioApiService {
   }) async {
     try {
       for (int i = 0; i < keyList.length; i++) {
-        print('$i: ${keyList[i]}');
+        debugPrint('$i: ${keyList[i]}');
       }
       Map<String, dynamic> resultMap = new Map();
       int index = 0;
-      print(
+      debugPrint(
           'start posting ${dataList.length} request. length match: ${dataList.length == keyList.length}');
       await Future.forEach(dataList, (data) async {
         // update progress
@@ -182,18 +183,18 @@ class DioApiService {
                     : options,
                 cancelToken: cancelToken)
             .catchError((error) {
-          print('Error ${index + 1}: ${keyList[index]} - $error');
+          debugPrint('Error ${index + 1}: ${keyList[index]} - $error');
           resultMap[keyList[index].toString()] = 500;
           return null;
         });
         if (response != null) {
-          print('Data $index: ${keyList[index]} - ${response.data}');
+          debugPrint('Data $index: ${keyList[index]} - ${response.data}');
           // write result to map
           resultMap[keyList[index].toString()] = response.statusCode;
         }
         index += 1;
       });
-      print('DIO Multi results: $resultMap');
+      debugPrint('DIO Multi results: $resultMap');
       return resultMap;
     } on DioError catch (e) {
       throw getErrorType(e);

@@ -51,61 +51,67 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m15(value) => "Request Success, Order No.${value}";
 
-  static m16(num, num2) => "Input range: ${num} ~ ${num2}";
+  static m16(num, num2) => "Range: ${num} ~ ${num2}";
 
-  static m17(num, num2, num3) => "Input range: ${num} ~ ${num2} (amount is a multiple of ${num3})";
+  static m17(num, num2, num3) => "Range: ${num} ~ ${num2} (Step:${num3})";
 
-  static m18(value) => "signed ${value} days";
+  static m18(value) => "Reality: ${value} VND";
 
-  static m19(name) => "Hello, ${name}！";
+  static m19(value) => "signed ${value} days";
 
-  static m20(msg) => "${msg} error";
+  static m20(name) => "Hello, ${name}！";
 
-  static m21(wallet) => "Cannot retrieve ${wallet} wallet url";
+  static m21(msg) => "${msg} error";
 
-  static m22(msg, msg2) => "Error:${msg}(${msg2})";
+  static m22(wallet) => "Cannot retrieve ${wallet} wallet url";
 
-  static m23(msg) => "Please enter ${msg}";
+  static m23(msg, msg2) => "Error:${msg}(${msg2})";
 
-  static m24(url) => "Cannot open link：${url}";
+  static m24(msg) => "Please enter ${msg}";
 
-  static m25(msg) => "Error:${msg}";
+  static m25(url) => "Cannot open link：${url}";
 
-  static m26(num) => "The minimum amount is ${num}";
+  static m26(msg) => "Error:${msg}";
 
-  static m27(num) => "Password must be at least ${num} words";
+  static m27(num) => "The minimum amount is ${num}";
 
-  static m28(name) => "${name}, please log in again";
+  static m28(num) => "Password must be at least ${num} words";
 
-  static m29(msg) => "${msg} canceled";
+  static m29(name) => "${name}, please log in again";
 
-  static m30(msg) => "${msg} failed";
+  static m30(msg) => "${msg} canceled";
 
-  static m31(msg) => "${msg} success";
+  static m31(msg) => "${msg} failed";
 
-  static m32(name) => "Welcome, ${name}";
+  static m32(msg) => "${msg} success";
 
-  static m33(value) => "Pay ${value} Store Points";
+  static m33(name) => "Welcome, ${name}";
 
-  static m34(value) => "Address: ${value}";
+  static m34(value) => "Pay ${value} Store Points";
 
-  static m35(from, to, total) => "showing No.${from} to ${to} results，total is ${total}";
+  static m35(value) => "Address: ${value}";
 
-  static m36(value) => "Name: ${value}";
+  static m36(from, to, total) => "showing No.${from} to ${to} results，total is ${total}";
 
-  static m37(value) => "Phone: ${value}";
+  static m37(value) => "Name: ${value}";
 
-  static m38(value) => "PostCode: ${value}";
+  static m38(value) => "Phone: ${value}";
 
-  static m39(value) => "Each platform ${value}";
+  static m39(value) => "PostCode: ${value}";
 
-  static m40(value) => "${value} points";
+  static m40(value) => "Each platform ${value}";
 
-  static m41(value) => "￥ ${value}";
+  static m41(value) => "${value} points";
 
-  static m42(separator) => "Request${separator}Code";
+  static m42(value) => "￥ ${value}";
 
-  static m43(num) => "Cumulative Lucky Draw: ${num} times";
+  static m43(from, to) => "${from} to ${to}";
+
+  static m44(value, version) => "Found new version，please click \'update\' button to download and install.\nCurrent Version：${version}\nNew Version：${value}";
+
+  static m45(separator) => "Request${separator}Code";
+
+  static m46(num) => "Cumulative Lucky Draw: ${num} times";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -165,11 +171,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTransferAmountError" : m1,
     "balanceTransferInText" : MessageLookupByLibrary.simpleMessage("Transfer In"),
     "balanceTransferOutText" : MessageLookupByLibrary.simpleMessage("Transfer Out"),
+    "bankcardViewTitleBank" : MessageLookupByLibrary.simpleMessage("Bank"),
     "bankcardViewTitleBankArea" : MessageLookupByLibrary.simpleMessage("Area"),
+    "bankcardViewTitleBankBranch" : MessageLookupByLibrary.simpleMessage("Bank Branch"),
     "bankcardViewTitleBankName" : MessageLookupByLibrary.simpleMessage("Bank Name"),
-    "bankcardViewTitleBankPoint" : MessageLookupByLibrary.simpleMessage("Bank Branch"),
     "bankcardViewTitleBankProvince" : MessageLookupByLibrary.simpleMessage("Open an Account"),
     "bankcardViewTitleCardNumber" : MessageLookupByLibrary.simpleMessage("Account (Card) Number"),
+    "bankcardViewTitleHolder" : MessageLookupByLibrary.simpleMessage("Account Holder"),
     "bankcardViewTitleOwner" : MessageLookupByLibrary.simpleMessage("Account Name"),
     "bankcardViewTitleSend" : MessageLookupByLibrary.simpleMessage("Send"),
     "betsFieldDateError" : MessageLookupByLibrary.simpleMessage("Date Range Error"),
@@ -181,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "betsHeaderGame" : MessageLookupByLibrary.simpleMessage("Game Name"),
     "betsHeaderId" : MessageLookupByLibrary.simpleMessage("bet slip number"),
     "betsHeaderPlatform" : MessageLookupByLibrary.simpleMessage("Platform"),
+    "betsHeaderSum" : MessageLookupByLibrary.simpleMessage("Total"),
+    "betsHeaderValidBet" : MessageLookupByLibrary.simpleMessage("Valid Bet"),
     "betsSpinnerOptionAllPlatform" : MessageLookupByLibrary.simpleMessage("All Platform"),
     "betsSpinnerTitlePlatform" : MessageLookupByLibrary.simpleMessage("Game Platform"),
     "betsSpinnerTitleTime" : MessageLookupByLibrary.simpleMessage("Bet Time"),
@@ -188,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "btnBack" : MessageLookupByLibrary.simpleMessage("Back"),
     "btnBind" : MessageLookupByLibrary.simpleMessage("Bind"),
     "btnCancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
+    "btnClose" : MessageLookupByLibrary.simpleMessage("Close"),
     "btnConfirm" : MessageLookupByLibrary.simpleMessage("Confirm"),
     "btnConfirmSend" : MessageLookupByLibrary.simpleMessage("Confirm & Send"),
     "btnDownload" : MessageLookupByLibrary.simpleMessage("Download"),
@@ -200,11 +211,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "btnRefresh" : MessageLookupByLibrary.simpleMessage("Refresh"),
     "btnRegister" : MessageLookupByLibrary.simpleMessage("Register"),
     "btnResetPassword" : MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "btnSearch" : MessageLookupByLibrary.simpleMessage("Search"),
     "btnSend" : MessageLookupByLibrary.simpleMessage("Send"),
     "btnShow" : MessageLookupByLibrary.simpleMessage("Show"),
     "btnSignUp" : MessageLookupByLibrary.simpleMessage("Sign in"),
     "btnStopShowing" : MessageLookupByLibrary.simpleMessage("Skip"),
     "btnSubmit" : MessageLookupByLibrary.simpleMessage("Submit"),
+    "btnUpdate" : MessageLookupByLibrary.simpleMessage("Update"),
     "centerDialogCpwLeftHint" : MessageLookupByLibrary.simpleMessage("※ Will close APP"),
     "centerDialogCpwLeftTitle" : MessageLookupByLibrary.simpleMessage("APP not installed？"),
     "centerDialogCpwRightHint" : MessageLookupByLibrary.simpleMessage("(please wait for data update after bind wallet)"),
@@ -294,15 +307,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositNewbieWechat1" : MessageLookupByLibrary.simpleMessage("1. Take a payment QR code with a mobile phone."),
     "depositNewbieWechat2" : MessageLookupByLibrary.simpleMessage("2. Then use another mobile phone WeChat to scan the code."),
     "depositPaymentButtonTitleTutorial" : MessageLookupByLibrary.simpleMessage("Tutorial"),
+    "depositPaymentEditTitleAccount" : MessageLookupByLibrary.simpleMessage("Bank Account"),
+    "depositPaymentEditTitleAccountHint" : MessageLookupByLibrary.simpleMessage("fill in bank account"),
     "depositPaymentEditTitleAmount" : MessageLookupByLibrary.simpleMessage("Deposit Amount"),
     "depositPaymentEditTitleAmountHintRange" : m16,
     "depositPaymentEditTitleAmountHintRangeStep" : m17,
-    "depositPaymentEditTitleName" : MessageLookupByLibrary.simpleMessage("Payee Name"),
-    "depositPaymentEditTitleNameHint" : MessageLookupByLibrary.simpleMessage("Please fill in your payer name"),
+    "depositPaymentEditTitleAmountHintVND" : m18,
+    "depositPaymentEditTitleName" : MessageLookupByLibrary.simpleMessage("Name"),
+    "depositPaymentEditTitleNameHint" : MessageLookupByLibrary.simpleMessage("fill in account holder"),
+    "depositPaymentEditTitleNote" : MessageLookupByLibrary.simpleMessage("Remarks"),
     "depositPaymentMethodLocal1" : MessageLookupByLibrary.simpleMessage("Local Transfer"),
     "depositPaymentMethodLocal2" : MessageLookupByLibrary.simpleMessage("ATM Deposit"),
-    "depositPaymentNoPromo" : MessageLookupByLibrary.simpleMessage("Abandon Application Offer"),
-    "depositPaymentSpinnerTitleBank" : MessageLookupByLibrary.simpleMessage("Payment Bank"),
+    "depositPaymentNoPromo" : MessageLookupByLibrary.simpleMessage("Without Promo"),
+    "depositPaymentSpinnerTitleAccountBank" : MessageLookupByLibrary.simpleMessage("Bank"),
+    "depositPaymentSpinnerTitleBank" : MessageLookupByLibrary.simpleMessage("Deposit Bank"),
     "depositPaymentSpinnerTitleMethod" : MessageLookupByLibrary.simpleMessage("Recharge Method"),
     "depositPaymentSpinnerTitlePromo" : MessageLookupByLibrary.simpleMessage("Choose Offer"),
     "depositPaymentTitleAli" : MessageLookupByLibrary.simpleMessage("AliPay"),
@@ -318,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("Signed in"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("Sign in failed!!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("Sign in successfully!!"),
-    "eventButtonSignUpTv" : m18,
+    "eventButtonSignUpTv" : m19,
     "eventSignUpHint1" : MessageLookupByLibrary.simpleMessage("Has Signed-Up"),
     "eventSignUpHint2" : MessageLookupByLibrary.simpleMessage("Days"),
     "exitAppHint" : MessageLookupByLibrary.simpleMessage("Press again to exit APP"),
@@ -337,6 +355,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategoryCardFull" : MessageLookupByLibrary.simpleMessage("Card"),
     "gameCategoryCasino" : MessageLookupByLibrary.simpleMessage("Casino"),
     "gameCategoryCasinoFull" : MessageLookupByLibrary.simpleMessage("Casino"),
+    "gameCategoryCockFighting" : MessageLookupByLibrary.simpleMessage("Cockfighting"),
     "gameCategoryFish" : MessageLookupByLibrary.simpleMessage("Fish"),
     "gameCategoryFishFull" : MessageLookupByLibrary.simpleMessage("Fishing"),
     "gameCategoryGift" : MessageLookupByLibrary.simpleMessage("Gift"),
@@ -347,19 +366,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategorySlotFull" : MessageLookupByLibrary.simpleMessage("Slot"),
     "gameCategorySport" : MessageLookupByLibrary.simpleMessage("Sport"),
     "gameCategorySportFull" : MessageLookupByLibrary.simpleMessage("Sport"),
-    "hintAccount" : MessageLookupByLibrary.simpleMessage("UserName *"),
-    "hintAccountPassword" : MessageLookupByLibrary.simpleMessage("Password *"),
+    "gameCategoryWeb" : MessageLookupByLibrary.simpleMessage("Website"),
+    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("Click me to open 85Bet website"),
+    "hintAccount" : MessageLookupByLibrary.simpleMessage("UserName"),
+    "hintAccountInput" : MessageLookupByLibrary.simpleMessage("enter account"),
+    "hintAccountPassword" : MessageLookupByLibrary.simpleMessage("Password"),
     "hintActionLogin" : MessageLookupByLibrary.simpleMessage("Please login first"),
     "hintActionSelect" : MessageLookupByLibrary.simpleMessage("Please select"),
     "hintConfirmed" : MessageLookupByLibrary.simpleMessage("Enter the password again"),
+    "hintConfirmedInput" : MessageLookupByLibrary.simpleMessage("enter password again"),
     "hintEmail" : MessageLookupByLibrary.simpleMessage("Enter Email"),
     "hintName" : MessageLookupByLibrary.simpleMessage("Enter username"),
     "hintPassword" : MessageLookupByLibrary.simpleMessage("Enter password"),
+    "hintPasswordInput" : MessageLookupByLibrary.simpleMessage("enter password"),
+    "hintPhoneInput" : MessageLookupByLibrary.simpleMessage("enter phone number"),
+    "hintReferralInput" : MessageLookupByLibrary.simpleMessage("enter referral code"),
     "hintTitleLogin" : MessageLookupByLibrary.simpleMessage("Please enter your member info"),
+    "homeHintDefaultMarquee" : MessageLookupByLibrary.simpleMessage("Hello, dear member! If you have any questions about this website, please use the online customer service system."),
     "homeHintMemberCreditLeft" : MessageLookupByLibrary.simpleMessage("Credit"),
     "homeHintWelcome" : MessageLookupByLibrary.simpleMessage("Welcome！"),
     "homeHintWelcomeLogin" : MessageLookupByLibrary.simpleMessage("Welcome！ Please login first"),
-    "homeHintWelcomeMember" : m19,
+    "homeHintWelcomeMember" : m20,
     "homeUserTabCategoryEgMovie" : MessageLookupByLibrary.simpleMessage("EG Movie"),
     "homeUserTabCategoryFavorite" : MessageLookupByLibrary.simpleMessage("Favorite"),
     "homeUserTabCategoryMovie" : MessageLookupByLibrary.simpleMessage("Movie"),
@@ -370,9 +397,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberGridTitleBalance" : MessageLookupByLibrary.simpleMessage("Platform balance"),
     "memberGridTitleBet" : MessageLookupByLibrary.simpleMessage("Bet History"),
     "memberGridTitleCard" : MessageLookupByLibrary.simpleMessage("Bank Card"),
-    "memberGridTitleDeal" : MessageLookupByLibrary.simpleMessage("Transaction History"),
+    "memberGridTitleDeal" : MessageLookupByLibrary.simpleMessage("Deals History"),
     "memberGridTitleDeposit" : MessageLookupByLibrary.simpleMessage("Recharge"),
-    "memberGridTitleFlow" : MessageLookupByLibrary.simpleMessage("Flowing Record"),
+    "memberGridTitleFlow" : MessageLookupByLibrary.simpleMessage("Flow Record"),
     "memberGridTitleLogout" : MessageLookupByLibrary.simpleMessage("Sign Out"),
     "memberGridTitleMessage" : MessageLookupByLibrary.simpleMessage("Site Message"),
     "memberGridTitleTransaction" : MessageLookupByLibrary.simpleMessage("Transfer Record"),
@@ -384,60 +411,65 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageActionTooFrequent" : MessageLookupByLibrary.simpleMessage("Too many action in a short time"),
     "messageCopy" : MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
     "messageCopyError" : MessageLookupByLibrary.simpleMessage("Copy failed"),
-    "messageError" : m20,
+    "messageError" : m21,
+    "messageErrorAccount" : MessageLookupByLibrary.simpleMessage("Account Error"),
     "messageErrorAutoLogin" : MessageLookupByLibrary.simpleMessage("Data error, please log in manually"),
     "messageErrorBindBankcard" : MessageLookupByLibrary.simpleMessage("Please bind your bank card first!"),
     "messageErrorBindCgp" : MessageLookupByLibrary.simpleMessage("Please bind Cgp wallet first"),
     "messageErrorBindCpw" : MessageLookupByLibrary.simpleMessage("Please bind the wallet for buying treasure"),
-    "messageErrorBindUrl" : m21,
+    "messageErrorBindUrl" : m22,
     "messageErrorCachedFile" : MessageLookupByLibrary.simpleMessage("Cached file error, please try again later or contact customer service"),
-    "messageErrorCause" : m22,
+    "messageErrorCause" : m23,
     "messageErrorEvent" : MessageLookupByLibrary.simpleMessage("Can\'t not retrieve event from server, please try again later."),
-    "messageErrorFieldError" : m23,
+    "messageErrorFieldError" : m24,
     "messageErrorHasCardData" : MessageLookupByLibrary.simpleMessage("A bank card has been bound"),
     "messageErrorInternal" : MessageLookupByLibrary.simpleMessage("Internal error, please try again later or contact customer service"),
-    "messageErrorLink" : m24,
+    "messageErrorLink" : m25,
     "messageErrorLoadingGame" : MessageLookupByLibrary.simpleMessage("An error occurred while loading the game, please try again later"),
     "messageErrorLoadingPay" : MessageLookupByLibrary.simpleMessage("Page loading error, please try again later"),
     "messageErrorNoNetwork" : MessageLookupByLibrary.simpleMessage("Please check the network status"),
     "messageErrorNoServerConnection" : MessageLookupByLibrary.simpleMessage("Unable to connect to the server !!"),
     "messageErrorNoStoragePermission" : MessageLookupByLibrary.simpleMessage("Please turn on \"Save\" permissions"),
     "messageErrorNotLogin" : MessageLookupByLibrary.simpleMessage("Please login first"),
+    "messageErrorPassword" : MessageLookupByLibrary.simpleMessage("Password Error"),
+    "messageErrorPasswordHint" : MessageLookupByLibrary.simpleMessage("password not match, account will be locked after 5 errors"),
     "messageErrorServerData" : MessageLookupByLibrary.simpleMessage("Server data error, please try again later or contact customer service"),
-    "messageErrorStatus" : m25,
+    "messageErrorStatus" : m26,
     "messageErrorTimeoutError" : MessageLookupByLibrary.simpleMessage("Network timed out, please try again later"),
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("User token error, please logout and login again"),
+    "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("withdrawal failed"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("Change failed, please try again later"),
     "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6 ~ 12 words"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("The name must be greater than 3 characters"),
-    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 16 ~ 19 characters"),
+    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 6 ~ 19 characters"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("Wrong cardholder name"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("Password does not match"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("Amount Error"),
-    "messageInvalidDepositAmountMin" : m26,
+    "messageInvalidDepositAmountMin" : m27,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("Incorrect account name"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("Mailbox is malformed"),
     "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("Error Data Format"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("Malformed name"),
     "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("Password should be 6 ~ 20 words"),
-    "messageInvalidPasswordArg" : m27,
+    "messageInvalidPasswordArg" : m28,
     "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("Password should be 8 ~ 20 words"),
-    "messageInvalidPhone" : MessageLookupByLibrary.simpleMessage("Error Phone Number(11~13)"),
+    "messageInvalidPhone" : MessageLookupByLibrary.simpleMessage("Error Phone Number(10)"),
     "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("Error Post Code(5~6)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("Contains Invalid Symbols"),
     "messageInvalidVerify" : MessageLookupByLibrary.simpleMessage("Please enter a verification code"),
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("Invalid WeChat account"),
-    "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("Password is 4~20 characters"),
+    "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("Not enough credit"),
+    "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("Password Error!(default is login password)"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("Loading..."),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("Login Failed"),
-    "messageLogout" : m28,
+    "messageLogout" : m29,
     "messageNoEvent" : MessageLookupByLibrary.simpleMessage("No activity currently"),
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("Some of the transfer action has failed"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("Registration failed"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("Success"),
-    "messageTaskCanceled" : m29,
-    "messageTaskFailed" : m30,
-    "messageTaskSuccess" : m31,
+    "messageTaskCanceled" : m30,
+    "messageTaskFailed" : m31,
+    "messageTaskSuccess" : m32,
     "messageVerifySuccess" : MessageLookupByLibrary.simpleMessage("Verify Success"),
     "messageWait" : MessageLookupByLibrary.simpleMessage("Please wait while processing the request ..."),
     "messageWaitComplete" : MessageLookupByLibrary.simpleMessage("Don\'t exit while processing a request"),
@@ -447,13 +479,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageWarnNoPromoData" : MessageLookupByLibrary.simpleMessage("No offer found"),
     "messageWarnNoPromoInfo" : MessageLookupByLibrary.simpleMessage("No offer information found"),
     "messageWarnUsingCellular" : MessageLookupByLibrary.simpleMessage("You are using a mobile network"),
-    "messageWelcome" : MessageLookupByLibrary.simpleMessage("Welcome, please login / register"),
-    "messageWelcomeUser" : m32,
+    "messageWelcome" : MessageLookupByLibrary.simpleMessage("Welcome"),
+    "messageWelcomeHint" : MessageLookupByLibrary.simpleMessage("please login / register"),
+    "messageWelcomeUser" : m33,
     "movieCategoryLabelBuy" : MessageLookupByLibrary.simpleMessage("Buy"),
     "movieCategoryLabelCollect" : MessageLookupByLibrary.simpleMessage("Collection"),
     "movieCategoryLabelExpand" : MessageLookupByLibrary.simpleMessage("Expand"),
     "movieCategoryLabelFold" : MessageLookupByLibrary.simpleMessage("Fold"),
-    "movieDialogButtonPayPoint" : m33,
+    "movieDialogButtonPayPoint" : m34,
     "movieDialogButtonWatchFree" : MessageLookupByLibrary.simpleMessage("Watch Free"),
     "movieDialogTextFreeTimes" : MessageLookupByLibrary.simpleMessage("Watch-Free Remain: "),
     "movieDialogTextStorePoints" : MessageLookupByLibrary.simpleMessage("Current Store Point: "),
@@ -469,8 +502,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "movieListHintLoading" : MessageLookupByLibrary.simpleMessage("Loading..."),
     "movieSeparatorTextHot" : MessageLookupByLibrary.simpleMessage("Others are watching"),
     "movieTextBuyNow" : MessageLookupByLibrary.simpleMessage("Buy Now"),
+    "networkChangedHint" : MessageLookupByLibrary.simpleMessage("Detect network status has changed, do you want to refresh?"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("General Message"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("Maintenance Notification"),
+    "pageTitleCenter" : MessageLookupByLibrary.simpleMessage("Center"),
     "pageTitleCollect" : MessageLookupByLibrary.simpleMessage("Word Collect"),
     "pageTitleDeposit" : MessageLookupByLibrary.simpleMessage("Recharge"),
     "pageTitleDownload" : MessageLookupByLibrary.simpleMessage("APP Download"),
@@ -484,8 +519,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageTitleMemberBets" : MessageLookupByLibrary.simpleMessage("Bet History"),
     "pageTitleMemberCard" : MessageLookupByLibrary.simpleMessage("Bank Card"),
     "pageTitleMemberCenter" : MessageLookupByLibrary.simpleMessage("Center"),
-    "pageTitleMemberDeals" : MessageLookupByLibrary.simpleMessage("Transaction History"),
-    "pageTitleMemberFlow" : MessageLookupByLibrary.simpleMessage("Flowing Record"),
+    "pageTitleMemberDeals" : MessageLookupByLibrary.simpleMessage("Deals History"),
+    "pageTitleMemberFlow" : MessageLookupByLibrary.simpleMessage("Flow Record"),
     "pageTitleMemberMessage" : MessageLookupByLibrary.simpleMessage("Site Message"),
     "pageTitleMemberPassword" : MessageLookupByLibrary.simpleMessage("Change Password"),
     "pageTitleMemberTransaction" : MessageLookupByLibrary.simpleMessage("Transfer Record"),
@@ -499,7 +534,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageTitlePromo" : MessageLookupByLibrary.simpleMessage("Offer"),
     "pageTitleRank" : MessageLookupByLibrary.simpleMessage("Vip Tier"),
     "pageTitleRegister" : MessageLookupByLibrary.simpleMessage("Register"),
-    "pageTitleRegister2" : MessageLookupByLibrary.simpleMessage("Register Free"),
+    "pageTitleRegisterFree" : MessageLookupByLibrary.simpleMessage("Register Free"),
+    "pageTitleRegisterMember" : MessageLookupByLibrary.simpleMessage("Register Member"),
     "pageTitleRoller" : MessageLookupByLibrary.simpleMessage("Lucky Roller"),
     "pageTitleRouter" : MessageLookupByLibrary.simpleMessage("Line Navigation"),
     "pageTitleService" : MessageLookupByLibrary.simpleMessage("Support"),
@@ -514,15 +550,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "promoDetailPlatform" : MessageLookupByLibrary.simpleMessage("Applicable Platform"),
     "promoDetailRules" : MessageLookupByLibrary.simpleMessage("Event Details"),
     "promoDetailText" : MessageLookupByLibrary.simpleMessage(">>Detail"),
+    "registerButtonServiceHint" : MessageLookupByLibrary.simpleMessage("If you have any questions, please click this icon!"),
     "registerButtonTitleRefresh" : MessageLookupByLibrary.simpleMessage("Dotmap Refresh"),
     "registerButtonTitleRegister" : MessageLookupByLibrary.simpleMessage("Register"),
+    "registerCheckButtonNews" : MessageLookupByLibrary.simpleMessage("Receive promotion information"),
+    "registerCheckButtonTerms" : MessageLookupByLibrary.simpleMessage("Have read and agree to the \'Terms and Conditions\' betting rules"),
     "registerFieldHintVerify" : MessageLookupByLibrary.simpleMessage("Please enter a verification code"),
-    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("Account:"),
-    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("Confirm Password:"),
-    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("Password:"),
-    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("Mobile number:"),
-    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("Recommended Code:"),
-    "registerFieldTitleVerify" : MessageLookupByLibrary.simpleMessage("Verification Code:"),
+    "registerFieldTitleAccount" : MessageLookupByLibrary.simpleMessage("Account"),
+    "registerFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "registerFieldTitlePassword" : MessageLookupByLibrary.simpleMessage("Password"),
+    "registerFieldTitlePhone" : MessageLookupByLibrary.simpleMessage("Mobile number"),
+    "registerFieldTitleRecommend" : MessageLookupByLibrary.simpleMessage("Recommended Code"),
+    "registerFieldTitleVerify" : MessageLookupByLibrary.simpleMessage("Verification Code"),
     "registerHintAutoLogin" : MessageLookupByLibrary.simpleMessage("Logging in，please wait..."),
     "sideBtnBackHome" : MessageLookupByLibrary.simpleMessage("Return"),
     "sideBtnLockRotate" : MessageLookupByLibrary.simpleMessage("Lock Rotate"),
@@ -546,11 +585,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRecordFieldHint" : MessageLookupByLibrary.simpleMessage("Please enter a product name"),
     "storeRecordSpinnerTitle1" : MessageLookupByLibrary.simpleMessage("Show"),
     "storeRecordSpinnerTitle2" : MessageLookupByLibrary.simpleMessage("item"),
-    "storeRecordTableDetailAddress" : m34,
-    "storeRecordTableDetailItem" : m35,
-    "storeRecordTableDetailName" : m36,
-    "storeRecordTableDetailPhone" : m37,
-    "storeRecordTableDetailPostCode" : m38,
+    "storeRecordTableDetailAddress" : m35,
+    "storeRecordTableDetailItem" : m36,
+    "storeRecordTableDetailName" : m37,
+    "storeRecordTableDetailPhone" : m38,
+    "storeRecordTableDetailPostCode" : m39,
     "storeRecordTableStatusPending" : MessageLookupByLibrary.simpleMessage("Pending"),
     "storeRecordTableTitleDate" : MessageLookupByLibrary.simpleMessage("Date"),
     "storeRecordTableTitleNo" : MessageLookupByLibrary.simpleMessage("Order Number"),
@@ -568,17 +607,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "storeRequestWindowTextPoint" : MessageLookupByLibrary.simpleMessage("Accumulated Points:"),
     "storeRequestWindowTitle" : MessageLookupByLibrary.simpleMessage("Contact Information"),
     "storeRuleTableHeader" : MessageLookupByLibrary.simpleMessage("You can get a points table for every 100 yuan of valid bets"),
-    "storeRuleTableTitle" : m39,
+    "storeRuleTableTitle" : m40,
     "storeTextItemButton" : MessageLookupByLibrary.simpleMessage("Redeem Now"),
     "storeTextItemButtonDisabled" : MessageLookupByLibrary.simpleMessage("Not enough points"),
     "storeTextItemHint" : MessageLookupByLibrary.simpleMessage("Limited to a limited number"),
-    "storeTextItemPoint" : m40,
+    "storeTextItemPoint" : m41,
     "storeTextTitlePoint" : MessageLookupByLibrary.simpleMessage("Member Points:"),
     "storeTextTitleProduct" : MessageLookupByLibrary.simpleMessage("Redeem Product"),
     "storeTextTitleRecord" : MessageLookupByLibrary.simpleMessage("Point Record"),
     "storeTextTitleRule" : MessageLookupByLibrary.simpleMessage("Exchange Rules"),
-    "title" : MessageLookupByLibrary.simpleMessage("EG990"),
-    "toolBarMemberCredit" : m41,
+    "title" : MessageLookupByLibrary.simpleMessage("85Bet Mobile"),
+    "toolBarMemberCredit" : m42,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("Amount"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("Date"),
     "transactionHeaderDesc" : MessageLookupByLibrary.simpleMessage("Description"),
@@ -587,15 +626,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionViewSpinnerTitle" : MessageLookupByLibrary.simpleMessage("Transfer time"),
     "transferDataError" : MessageLookupByLibrary.simpleMessage("Data error, please select again"),
     "transferHintRefresh" : MessageLookupByLibrary.simpleMessage("4. If platform credit did not update after transfer, please reselect the platform to refresh or contact customer service"),
+    "transferMessage" : m43,
     "transferPlatformError" : MessageLookupByLibrary.simpleMessage("Selected platform is maintaining"),
     "transferResultAlertTitle" : MessageLookupByLibrary.simpleMessage("Transfer failed"),
     "transferViewButtonConfirm" : MessageLookupByLibrary.simpleMessage("Confirm Transfer"),
     "transferViewSiteHint" : MessageLookupByLibrary.simpleMessage("Select One"),
     "transferViewTextOptionAll" : MessageLookupByLibrary.simpleMessage("All credits"),
     "transferViewTitleAmount" : MessageLookupByLibrary.simpleMessage("Amount"),
-    "transferViewTitleIn" : MessageLookupByLibrary.simpleMessage("To"),
+    "transferViewTitleIn" : MessageLookupByLibrary.simpleMessage("IN"),
     "transferViewTitleOption" : MessageLookupByLibrary.simpleMessage("Select Amount"),
-    "transferViewTitleOut" : MessageLookupByLibrary.simpleMessage("From"),
+    "transferViewTitleOut" : MessageLookupByLibrary.simpleMessage("OUT"),
+    "updateDialogErrorUrl" : MessageLookupByLibrary.simpleMessage("Unable to get the download URL, please contact customer service!!"),
+    "updateDialogMessage" : m44,
     "userPwdButtonTitle" : MessageLookupByLibrary.simpleMessage("Change Password"),
     "userPwdFieldHintConfirm" : MessageLookupByLibrary.simpleMessage("Enter the new password again"),
     "userPwdFieldHintNew" : MessageLookupByLibrary.simpleMessage("Enter new password"),
@@ -603,7 +645,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPwdFieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("Password Confirmation:"),
     "userPwdFieldTitleNew" : MessageLookupByLibrary.simpleMessage("New Password:"),
     "userPwdFieldTitleOld" : MessageLookupByLibrary.simpleMessage("Old Password:"),
-    "userVerifyButtonText" : m42,
+    "userVerifyButtonText" : m45,
     "userVerifyFieldHint" : MessageLookupByLibrary.simpleMessage("enter verify code"),
     "userVerifyFieldInfo" : MessageLookupByLibrary.simpleMessage("You can only request once in 24 hrs"),
     "userVerifyFieldTitle" : MessageLookupByLibrary.simpleMessage("Verify:"),
@@ -634,11 +676,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "wheelRecordTableTextCount" : MessageLookupByLibrary.simpleMessage("Number of times"),
     "wheelRecordTableTextOperate" : MessageLookupByLibrary.simpleMessage("Operation"),
     "wheelRecordTableTextTime" : MessageLookupByLibrary.simpleMessage("Time"),
-    "wheelTextTitleCount" : m43,
+    "wheelTextTitleCount" : m46,
     "wheelTextTitleGet" : MessageLookupByLibrary.simpleMessage("Get spins"),
     "wheelTextTitlePrize" : MessageLookupByLibrary.simpleMessage("Winning History"),
     "wheelTextTitleRecord" : MessageLookupByLibrary.simpleMessage("Operation Record"),
     "wheelTextTitleRules" : MessageLookupByLibrary.simpleMessage("Event Rules"),
+    "withdrawViewHint1" : MessageLookupByLibrary.simpleMessage("Members who want to change the bank card bound to the network when withdrawing money, please contact online customer service for instructions. "),
+    "withdrawViewHint2" : MessageLookupByLibrary.simpleMessage("Each member account can only withdraw up to 3 withdrawals per day, if more than 3 withdrawals will be charged a 5% service fee. "),
     "withdrawViewOptionCgp" : MessageLookupByLibrary.simpleMessage("Use CGP"),
     "withdrawViewOptionCpw" : MessageLookupByLibrary.simpleMessage("Use CPW"),
     "withdrawViewOptionHint1" : MessageLookupByLibrary.simpleMessage("If you want to withdraw virtual currency, please select it after binding"),

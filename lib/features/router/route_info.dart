@@ -1,3 +1,4 @@
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/router.gr.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -6,8 +7,9 @@ part 'route_info.freezed.dart';
 @freezed
 abstract class RouteInfo with _$RouteInfo {
   const factory RouteInfo({
+    @required RouteEnum id,
     @required String route,
-    @required String title,
+    Object routeArg,
     @Default(Routes.homeRoute) String parentRoute,
 
     /// 1. effect the navigation action
@@ -17,7 +19,10 @@ abstract class RouteInfo with _$RouteInfo {
     /// if true, shows the top navigator drawer icon
     @Default(false) bool showDrawer,
 
-    /// if true, shows the widget on the right side (logout, lang...etc)
+    /// if true, shows the widget on the left side (lang...etc)
+    @Default(false) bool disableLanguageDropDown,
+
+    /// if true, shows the widget on the right side (logout, register...etc)
     @Default(true) bool hideAppbarActions,
 
     /// sets the bottom navigator index to highlight icon

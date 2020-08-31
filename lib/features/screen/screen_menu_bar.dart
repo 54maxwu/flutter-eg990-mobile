@@ -11,54 +11,108 @@ class ScreenMenuBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _ScreenMenuBarState extends State<ScreenMenuBar> {
-  final String _langIcon = (Global.lang == 'vi')
-      ? '/images/lang_vnm.jpg'
-      : (Global.lang == 'en') ? '/images/lang_eng.jpg' : '/images/lang_chn.jpg';
+  FeatureScreenInheritedWidget _viewState;
+  List<ReactionDisposer> _disposers;
+  EventStore _eventStore;
 
-  Widget _lastActionWidget;
-  bool _usingUserAction = false;
+  bool _hideActions = false;
+  bool _hideLangOption = false;
+
+  void initDisposers() {
+    _disposers = [
+      reaction(
+          // Observe in page
+          // Tell the reaction which observable to observe
+          (_) => _viewState.store.pageInfo.disableLanguageDropDown,
+          // Run some logic with the content of the observed field
+          (bool disable) {
+        if (disable != _hideLangOption) {
+          if (mounted) {
+            setState(() {
+              _hideLangOption = disable;
+            });
+          } else {
+            _hideLangOption = disable;
+          }
+        }
+      }),
+      reaction(
+          // Observe in page
+          // Tell the reaction which observable to observe
+          (_) => _viewState.store.pageInfo.hideAppbarActions,
+          // Run some logic with the content of the observed field
+          (bool hide) {
+        if (hide != _hideActions) {
+          if (mounted) {
+            setState(() {
+              _hideActions = hide;
+            });
+          } else {
+            _hideActions = hide;
+          }
+        }
+      }),
+    ];
+  }
+
+//  @override
+//  void didUpdateWidget(ScreenMenuBar oldWidget) {
+//    _viewState = null;
+//    _eventStore = null;
+//    if (_disposers != null) {
+//      _disposers.forEach((d) => d());
+//      _disposers.clear();
+//      _disposers = null;
+//    }
+//    super.didUpdateWidget(oldWidget);
+//  }
 
   @override
-  void initState() {
-    _lastActionWidget = buttonGroup();
-    super.initState();
+  void dispose() {
+    _disposers.forEach((d) => d());
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewState = FeatureScreenInheritedWidget.of(context);
+    _viewState ??= FeatureScreenInheritedWidget.of(context);
+    _eventStore ??= _viewState?.eventStore;
+    if (_disposers == null) initDisposers();
     return AppBar(
       /* App bar Icon */
-      title: Image.asset(
-        Res.iconBarLogo,
-        scale: 2,
-      ),
+      title: Image.asset(Res.iconBarLogo, scale: 2.5),
       titleSpacing: 0,
       centerTitle: false,
       /* Appbar Title */
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-        title: Observer(builder: (_) {
-          final page = viewState.store.pageInfo ?? RoutePage.template.value;
-          return Text(
-            page.title,
-            style: TextStyle(fontSize: FontSize.MESSAGE.value),
-          );
-        }),
-        titlePadding: EdgeInsetsDirectional.only(
-          start: Global.APP_BAR_HEIGHT / 3,
-          bottom: (Global.APP_BAR_HEIGHT / 3) - 4,
-        ),
-      ),
+//      flexibleSpace: FlexibleSpaceBar(
+//        centerTitle: true,
+//        title: Observer(builder: (_) {
+//          final page = viewState.store.pageInfo ?? RoutePage.template.value;
+//          return Container(
+//            width: Global.device.width / 5,
+//            height: Global.APP_BAR_HEIGHT / 2,
+//            child: FittedBox(
+//              child: Text(
+//                page.title,
+//                style: TextStyle(fontSize: FontSize.MESSAGE.value),
+//              ),
+//            ),
+//          );
+//        }),
+//        titlePadding: EdgeInsetsDirectional.only(
+//          start: Global.APP_BAR_HEIGHT / 3,
+//          bottom: (Global.APP_BAR_HEIGHT / 3) - 4,
+//        ),
+//      ),
       /* App bar Left Actions */
       leading: Observer(
         builder: (_) {
-          if (viewState.store.showMenuDrawer) {
+          if (_viewState.store.showMenuDrawer) {
             return IconButton(
               icon: Icon(Icons.menu, color: Themes.drawerIconColor),
               tooltip: localeStr.btnMenu,
               onPressed: () {
-                viewState.scaffoldKey.currentState.openDrawer();
+                _viewState.scaffoldKey.currentState.openDrawer();
               },
             );
           } else {
@@ -74,81 +128,57 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       ),
       /* App bar Right Actions */
       actions: <Widget>[
-        Observer(builder: (_) {
-          final hide = viewState.store.pageInfo.hideAppbarActions;
-          if (hide) return SizedBox.shrink();
-          final hasUser = viewState.store.hasUser ?? false;
-          if (hasUser != _usingUserAction) {
-            _lastActionWidget = (hasUser) ? userGroup() : buttonGroup();
-            _usingUserAction = hasUser;
-          }
-          return _lastActionWidget;
-        }),
-      ],
-    );
-  }
-
-  /// Right Action Widget when user logged in
-  Widget userGroup() {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(shape: BoxShape.circle),
-      child: Transform.scale(
-        scale: 0.75,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(36.0),
-          child: networkImageBuilder(_langIcon, imgScale: 3.0),
-        ),
-      ),
-    );
-//    return Container(
-//      child: Padding(
-//        padding: const EdgeInsets.only(top: 2.0, right: 3.0),
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          crossAxisAlignment: CrossAxisAlignment.end,
-//          children: <Widget>[
-//            Row(
-//              children: <Widget>[Text(user.account)],
-//            ),
-//            Row(
-//              children: <Widget>[Text(user.credit.trimValue(creditSign: true))],
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
-  }
-
-  /// Right Action Widget when no user
-  Widget buttonGroup() {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Row(
-          children: <Widget>[
-            ButtonTheme(
-              height: 30,
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(4.0),
-              ),
-              child: RaisedButton(
-                child: new Text(
-                  localeStr.pageTitleRegister2,
-                  style: TextStyle(
-                    fontSize: FontSize.NORMAL.value + 1,
-                    color: Themes.buttonTextPrimaryColor,
+        if (_eventStore != null)
+          Container(
+//            padding: const EdgeInsets.only(right: 12.0),
+            decoration: BoxDecoration(shape: BoxShape.circle),
+            child: Transform.scale(
+              scale: 0.5,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(36.0),
+                child: GestureDetector(
+                  onTap: () {
+                    if (_eventStore.canShowAds) {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => new AdDialog(
+                          ads: _eventStore.ads,
+                          initCheck: _eventStore.checkSkip,
+                          onClose: (skipNextTime) {
+                            debugPrint('ads dialog close, skip=$skipNextTime');
+                            _eventStore.setSkipAd(skipNextTime);
+                            _eventStore.adsDialogClose();
+                          },
+                        ),
+                      );
+                    }
+                  },
+                  child: networkImageBuilder(
+                    'images/AD_ICON2.png',
+                    imgScale: 3.0,
                   ),
                 ),
-                visualDensity: VisualDensity(horizontal: -3.0),
-                onPressed: () =>
-                    RouterNavigate.navigateToPage(RoutePage.register),
               ),
             ),
-          ],
+          ),
+        Visibility(
+          visible: !_hideLangOption,
+          maintainState: true,
+          child: Align(
+            alignment: Alignment.center,
+            child: ScreenMenuLangWidget(),
+          ),
         ),
-      ),
+        Visibility(
+          visible: !_hideActions,
+          maintainState: true,
+          child: Align(
+            alignment: Alignment.center,
+            child: ScreenMenuBarAction(_viewState),
+          ),
+        ),
+      ],
     );
   }
 }

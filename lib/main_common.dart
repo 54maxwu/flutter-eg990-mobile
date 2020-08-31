@@ -1,13 +1,16 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'core/data/hive_actions.dart';
 import 'core/data/hive_adapters_export.dart';
+import 'core/internal/global.dart';
 import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
@@ -21,7 +24,7 @@ Future<void> mainCommon(String env) async {
 
   switch (env) {
     case Environment.dev:
-      print('Config Version: ${ConfigReader.getVersion()}');
+      debugPrint('App Config Version: ${ConfigReader.getVersion()}');
       break;
   }
 
@@ -44,7 +47,7 @@ Future<void> mainCommon(String env) async {
   // init hive database
   final docDir = await getApplicationDocumentsDirectory();
   Hive.init(docDir.path);
-  print('Hive initialized, location: $docDir');
+  debugPrint('Hive initialized, location: $docDir');
   try {
     Hive.registerAdapter(BannerEntityAdapter());
     Hive.registerAdapter(MarqueeEntityAdapter());
@@ -55,22 +58,26 @@ Future<void> mainCommon(String env) async {
     Hive.registerAdapter(PromoEntityAdapter());
     Hive.registerAdapter(LoginHiveFormAdapter());
   } catch (e) {
-    print('register hive adapter has error!! $e');
+    debugPrint('register hive adapter has error!! $e');
   }
 
   // check app language setting
-//  try {
-//    Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-//    if (box.containsKey('lang')) {
-//      Global.lang = box.get('lang', defaultValue: 'zh');
-//    } else {
-//      box.put('lang', Global.lang);
-//    }
-//  } catch (e) {
-//    print('read app language setting has error!! $e');
-//  } finally {
-//    print('app language: ${Global.lang}');
-//  }
+  try {
+    Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
+    if (box.containsKey('lang')) {
+      Global.setLanguage = box.get('lang', defaultValue: 'zh');
+    } else {
+      box.put('lang', Global.lang);
+    }
+  } catch (e) {
+    debugPrint('read app language setting has error!! $e');
+  } finally {
+    debugPrint('app language: ${Global.lang}');
+  }
+
+  // hide keyboard and wait for 500ms to get the correct viewInset
+  await SystemChannels.textInput.invokeMethod('TextInput.hide');
+  await Future.delayed(Duration(milliseconds: 500));
 
   // run application
   runApp(new MainApp());
@@ -79,7 +86,7 @@ Future<void> mainCommon(String env) async {
 void _setupLogging() {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((rec) {
-    print('${rec.loggerName}: [${rec.level.name}] ${rec.message}');
+    debugPrint('${rec.loggerName}: [${rec.level.name}] ${rec.message}');
   });
 }
 
@@ -91,9 +98,9 @@ Future<void> _initPermissionList(List<Permission> permissions) async {
         result.write('permission: $key is ${value.isGranted}');
         if (key != map.keys.last) result.write('\n');
       });
-      print('Permissions: ${result.toString()}');
+      debugPrint('Permissions: ${result.toString()}');
     });
   } catch (e) {
-    print('permission request has exception: $e');
+    debugPrint('permission request has exception: $e');
   }
 }

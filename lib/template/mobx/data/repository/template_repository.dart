@@ -18,7 +18,7 @@ class TemplateRepositoryImpl implements TemplateRepository {
   @override
   Future<String> fetchString() async {
     final connected = await networkInfo.isConnected;
-    print('network connected: $connected');
+    debugPrint('network connected: $connected');
     // Simulate network delay
     return Future.delayed(
       Duration(seconds: 3),

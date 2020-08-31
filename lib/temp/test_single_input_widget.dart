@@ -110,9 +110,9 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
         EdgeInsets.symmetric(horizontal: 8.0, vertical: fieldInsetHeight);
 
     if (widget.debug) {
-      print(
+      debugPrint(
           'screen width: ${Global.device.width}, view width: ${widget.parentWidth}');
-      print('field prefix width: $prefixWidth');
+      debugPrint('field prefix width: $prefixWidth');
     }
     super.initState();
   }
@@ -149,7 +149,7 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
           onChanged: (value) {
             _isValid = widget.validCondition(value) ?? true;
             if (widget.debug)
-              print('${widget.hint} input: $value, valid: $_isValid');
+              debugPrint('${widget.hint} input: $value, valid: $_isValid');
             setState(() {});
           },
           decoration: InputDecoration(
@@ -173,7 +173,7 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
           onChanged: (value) {
             _isValid = widget.validCondition(value) ?? true;
             if (widget.debug)
-              print('${widget.hint} input: $value, valid: $_isValid');
+              debugPrint('${widget.hint} input: $value, valid: $_isValid');
             setState(() {});
           },
           decoration: InputDecoration(
@@ -272,7 +272,7 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
           ),
           onTap: () => (widget.suffixAction != null)
               ? widget.suffixAction(_controller.text)
-              : print(_controller.text),
+              : debugPrint(_controller.text),
         ),
       );
     } else if (widget.suffixText != null) {
@@ -288,7 +288,7 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
             ),
             onTap: () => (widget.suffixAction != null)
                 ? widget.suffixAction(_controller.text)
-                : print(_controller.text),
+                : debugPrint(_controller.text),
           ),
         ),
       );

@@ -39,8 +39,8 @@ class _WebGameScreenDrawerState extends State<WebGameScreenDrawer>
 
   @override
   void initState() {
-    userLevel = getRouteUserStreams.userLevel;
-    username = getRouteUserStreams.userName;
+    userLevel = getAppGlobalStreams.userLevel;
+    username = getAppGlobalStreams.userName;
     super.initState();
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));

@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "en",
-  "title": "EG990",
+  "title": "85Bet Mobile",
   "@title": {
-    "description": "EG990 Demo",
+    "description": "85Bet Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -71,6 +71,10 @@
   "@pageTitleMember": {
     "type": "text"
   },
+  "pageTitleCenter": "Center",
+  "@pageTitleCenter": {
+    "type": "text"
+  },
   "pageTitleLogin": "Login",
   "@pageTitleLogin": {
     "type": "text"
@@ -83,8 +87,12 @@
   "@pageTitleRegister": {
     "type": "text"
   },
-  "pageTitleRegister2": "Register Free",
-  "@pageTitleRegister2": {
+"pageTitleRegisterFree": "Register Free",
+  "@pageTitleRegisterFree": {
+    "type": "text"
+  },
+  "pageTitleRegisterMember": "Register Member",
+  "@pageTitleRegisterMember": {
     "type": "text"
   },
   "pageTitleMemberTransfer": "Transfer",
@@ -127,11 +135,11 @@
   "@pageTitleMemberBets": {
     "type": "text"
   },
-  "pageTitleMemberDeals": "Transaction History",
+  "pageTitleMemberDeals": "Deals History",
   "@pageTitleMemberDeals": {
     "type": "text"
   },
-  "pageTitleMemberFlow": "Flowing Record",
+  "pageTitleMemberFlow": "Flow Record",
   "@pageTitleMemberFlow": {
     "type": "text"
   },
@@ -178,6 +186,18 @@
   },
   "btnRefresh": "Refresh",
   "@btnRefresh": {
+    "type": "text"
+  },
+  "btnUpdate": "Update",
+  "@btnUpdate": {
+    "type": "text"
+  },
+  "btnClose": "Close",
+  "@btnClose": {
+    "type": "text"
+  },
+  "btnSearch": "Search",
+  "@btnSearch": {
     "type": "text"
   },
   "btnConfirm": "Confirm",
@@ -292,12 +312,32 @@
   "@hintTitleLogin": {
     "type": "text"
   },
-  "hintAccount": "UserName *",
+  "hintAccount": "UserName",
   "@hintAccount": {
     "type": "text"
   },
-  "hintAccountPassword": "Password *",
+  "hintAccountPassword": "Password",
   "@hintAccountPassword": {
+    "type": "text"
+  },
+  "hintAccountInput": "enter account",
+  "@hintAccountInput": {
+    "type": "text"
+  },
+  "hintPasswordInput": "enter password",
+  "@hintPasswordInput": {
+    "type": "text"
+  },
+  "hintConfirmedInput": "enter password again",
+  "@hintConfirmedInput": {
+    "type": "text"
+  },
+  "hintPhoneInput": "enter phone number",
+  "@hintPhoneInput": {
+    "type": "text"
+  },
+  "hintReferralInput": "enter referral code",
+  "@hintReferralInput": {
     "type": "text"
   },
   "hintName": "Enter username",
@@ -329,8 +369,12 @@
       }
     }
   },
-  "messageWelcome": "Welcome, please login / register",
+  "messageWelcome": "Welcome",
   "@messageWelcome": {
+    "type": "text"
+  },
+  "messageWelcomeHint": "please login / register",
+  "@messageWelcomeHint": {
     "type": "text"
   },
   "messageRegisterFailed": "Registration failed",
@@ -452,7 +496,7 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "Error Phone Number(11~13)",
+  "messageInvalidPhone": "Error Phone Number(10)",
   "@messageInvalidPhone": {
     "type": "text"
   },
@@ -514,7 +558,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 16 ~ 19 characters",
+  "messageInvalidCardNumber": "The card number is 6 ~ 19 characters",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -522,8 +566,12 @@
   "@messageInvalidCardBankPoint": {
     "type": "text"
   },
-  "messageInvalidWithdrawPassword": "Password is 4~20 characters",
+  "messageInvalidWithdrawPassword": "Password Error!(default is login password)",
   "@messageInvalidWithdrawPassword": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawAmount": "Not enough credit",
+  "@messageInvalidWithdrawAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "You are using a mobile network",
@@ -636,6 +684,22 @@
   "@messageErrorBindBankcard": {
     "type": "text"
   },
+  "messageErrorAccount": "Account Error",
+  "@messageErrorAccount": {
+    "type": "text"
+  },
+  "messageErrorPassword": "Password Error",
+  "@messageErrorPassword": {
+    "type": "text"
+  },
+  "messageErrorPasswordHint": "password not match, account will be locked after 5 errors",
+  "@messageErrorPasswordHint": {
+    "type": "text"
+  },
+  "messageErrorWithdraw": "withdrawal failed",
+  "@messageErrorWithdraw": {
+    "type": "text"
+  },
   "messageCopy": "Copy to clipboard",
   "@messageCopy": {
     "type": "text"
@@ -683,6 +747,10 @@
   },
   "homeHintMemberCreditLeft": "Credit",
   "@homeHintMemberCreditLeft": {
+    "type": "text"
+  },
+  "homeHintDefaultMarquee": "Hello, dear member! If you have any questions about this website, please use the online customer service system.",
+  "@homeHintDefaultMarquee": {
     "type": "text"
   },
   "homeUserTabCategoryMovie": "Movie",
@@ -757,12 +825,24 @@
   "@gameCategoryGift": {
     "type": "text"
   },
+  "gameCategoryCockFighting": "Cockfighting",
+  "@gameCategoryCockFighting": {
+    "type": "text"
+  },
   "gameCategoryAll": "All",
   "@gameCategoryAll": {
     "type": "text"
   },
   "gameCategoryOther": "Other",
   "@gameCategoryOther": {
+    "type": "text"
+  },
+  "gameCategoryWeb": "Website",
+  "@gameCategoryWeb": {
+    "type": "text"
+  },
+  "gameCategoryWebHint": "Click me to open 85Bet website",
+  "@gameCategoryWebHint": {
     "type": "text"
   },
   "userPwdFieldTitleOld": "Old Password:",
@@ -814,27 +894,27 @@
       }
     }
   },
-  "registerFieldTitleAccount": "Account:",
+  "registerFieldTitleAccount": "Account",
   "@registerFieldTitleAccount": {
     "type": "text"
   },
-  "registerFieldTitlePassword": "Password:",
+  "registerFieldTitlePassword": "Password",
   "@registerFieldTitlePassword": {
     "type": "text"
   },
-  "registerFieldTitleConfirm": "Confirm Password:",
+  "registerFieldTitleConfirm": "Confirm Password",
   "@registerFieldTitleConfirm": {
     "type": "text"
   },
-  "registerFieldTitlePhone": "Mobile number:",
+  "registerFieldTitlePhone": "Mobile number",
   "@registerFieldTitlePhone": {
     "type": "text"
   },
-  "registerFieldTitleRecommend": "Recommended Code:",
+  "registerFieldTitleRecommend": "Recommended Code",
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
-  "registerFieldTitleVerify": "Verification Code:",
+  "registerFieldTitleVerify": "Verification Code",
   "@registerFieldTitleVerify": {
     "type": "text"
   },
@@ -848,6 +928,18 @@
   },
   "registerButtonTitleRegister": "Register",
   "@registerButtonTitleRegister": {
+    "type": "text"
+  },
+  "registerCheckButtonNews": "Receive promotion information",
+  "@registerCheckButtonNews": {
+    "type": "text"
+  },
+  "registerCheckButtonTerms": "Have read and agree to the 'Terms and Conditions' betting rules",
+  "@registerCheckButtonTerms": {
+    "type": "text"
+  },
+  "registerButtonServiceHint": "If you have any questions, please click this icon!",
+  "@registerButtonServiceHint": {
     "type": "text"
   },
   "registerHintAutoLogin": "Logging in，please wait...",
@@ -922,11 +1014,11 @@
   "@memberGridTitleBet": {
     "type": "text"
   },
-  "memberGridTitleDeal": "Transaction History",
+  "memberGridTitleDeal": "Deals History",
   "@memberGridTitleDeal": {
     "type": "text"
   },
-  "memberGridTitleFlow": "Flowing Record",
+  "memberGridTitleFlow": "Flow Record",
   "@memberGridTitleFlow": {
     "type": "text"
   },
@@ -938,11 +1030,11 @@
   "@memberGridTitleLogout": {
     "type": "text"
   },
-  "transferViewTitleIn": "To",
+  "transferViewTitleIn": "IN",
   "@transferViewTitleIn": {
     "type": "text"
   },
-  "transferViewTitleOut": "From",
+  "transferViewTitleOut": "OUT",
   "@transferViewTitleOut": {
     "type": "text"
   },
@@ -982,8 +1074,28 @@
   "@transferHintRefresh": {
     "type": "text"
   },
+  "transferMessage": "{from} to {to}",
+  "@transferMessage": {
+    "type": "text",
+    "placeholders": {
+      "from": {
+        "example": "site1"
+      },
+      "to": {
+        "example": "site2"
+      }
+    }
+  },
   "bankcardViewTitleOwner": "Account Name",
   "@bankcardViewTitleOwner": {
+    "type": "text"
+  },
+  "bankcardViewTitleHolder": "Account Holder",
+  "@bankcardViewTitleHolder": {
+    "type": "text"
+  },
+  "bankcardViewTitleBank": "Bank",
+  "@bankcardViewTitleBank": {
     "type": "text"
   },
   "bankcardViewTitleBankName": "Bank Name",
@@ -994,8 +1106,8 @@
   "@bankcardViewTitleCardNumber": {
     "type": "text"
   },
-  "bankcardViewTitleBankPoint": "Bank Branch",
-  "@bankcardViewTitleBankPoint": {
+  "bankcardViewTitleBankBranch": "Bank Branch",
+  "@bankcardViewTitleBankBranch": {
     "type": "text"
   },
   "bankcardViewTitleBankProvince": "Open an Account",
@@ -1044,6 +1156,14 @@
   },
   "withdrawViewOptionHint3": "Data delay will very from game suppliers",
   "@withdrawViewOptionHint3": {
+    "type": "text"
+  },
+  "withdrawViewHint1": "Members who want to change the bank card bound to the network when withdrawing money, please contact online customer service for instructions. ",
+  "@withdrawViewHint1": {
+    "type": "text"
+  },
+  "withdrawViewHint2": "Each member account can only withdraw up to 3 withdrawals per day, if more than 3 withdrawals will be charged a 5% service fee. ",
+  "@withdrawViewHint2": {
     "type": "text"
   },
   "walletViewTitleMy": "My Wallet",
@@ -1283,8 +1403,16 @@
   "@betsHeaderAmount": {
     "type": "text"
   },
+  "betsHeaderValidBet": "Valid Bet",
+  "@betsHeaderValidBet": {
+    "type": "text"
+  },
   "betsHeaderBonus": "Payout Amount",
   "@betsHeaderBonus": {
+    "type": "text"
+  },
+  "betsHeaderSum": "Total",
+  "@betsHeaderSum": {
     "type": "text"
   },
   "dealsViewSpinnerType0": "All",
@@ -1387,27 +1515,52 @@
   "@depositPaymentSpinnerTitlePromo": {
     "type": "text"
   },
-  "depositPaymentSpinnerTitleBank": "Payment Bank",
+  "depositPaymentSpinnerTitleBank": "Deposit Bank",
   "@depositPaymentSpinnerTitleBank": {
+    "type": "text"
+  },
+  "depositPaymentSpinnerTitleAccountBank": "Bank",
+  "@depositPaymentSpinnerTitleAccountBank": {
     "type": "text"
   },
   "depositPaymentSpinnerTitleMethod": "Recharge Method",
   "@depositPaymentSpinnerTitleMethod": {
     "type": "text"
   },
-  "depositPaymentEditTitleName": "Payee Name",
+  "depositPaymentEditTitleName": "Name",
   "@depositPaymentEditTitleName": {
     "type": "text"
   },
-  "depositPaymentEditTitleNameHint": "Please fill in your payer name",
+  "depositPaymentEditTitleNameHint": "fill in account holder",
   "@depositPaymentEditTitleNameHint": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleAccount": "Bank Account",
+  "@depositPaymentEditTitleAccount": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleAccountHint": "fill in bank account",
+  "@depositPaymentEditTitleAccountHint": {
     "type": "text"
   },
   "depositPaymentEditTitleAmount": "Deposit Amount",
   "@depositPaymentEditTitleAmount": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "Input range: {num} ~ {num2}",
+  "depositPaymentEditTitleAmountHintVND": "Reality: {value} VND",
+  "@depositPaymentEditTitleAmountHintVND": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "100"
+      }
+    }
+  },
+  "depositPaymentEditTitleNote": "Remarks",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleAmountHintRange": "Range: {num} ~ {num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -1419,7 +1572,7 @@
       }
     }
   },
-  "depositPaymentEditTitleAmountHintRangeStep": "Input range: {num} ~ {num2} (amount is a multiple of {num3})",
+  "depositPaymentEditTitleAmountHintRangeStep": "Range: {num} ~ {num2} (Step:{num3})",
   "@depositPaymentEditTitleAmountHintRangeStep": {
     "type": "text",
     "placeholders": {
@@ -1450,7 +1603,7 @@
   "@ depositPaymentMethodLocal2": {
     "type": "text"
   },
-  "depositPaymentNoPromo": "Abandon Application Offer",
+  "depositPaymentNoPromo": "Without Promo",
   "@depositPaymentNoPromo": {
     "type": "text"
   },
@@ -2403,5 +2556,25 @@
         "example": "10"
       }
     }
+  },
+  "updateDialogErrorUrl": "Unable to get the download URL, please contact customer service!!",
+  "@updateDialogErrorUrl": {
+    "type": "text"
+  },
+  "updateDialogMessage": "Found new version，please click 'update' button to download and install.\nCurrent Version：{version}\nNew Version：{value}",
+  "@updateDialogMessage": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "v1.0"
+      },
+      "version": {
+        "example": "v1.0"
+      }
+    }
+  },
+  "networkChangedHint": "Detect network status has changed, do you want to refresh?",
+  "@networkChangedHint": {
+    "type": "text"
   }
 }

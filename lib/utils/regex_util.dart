@@ -6,7 +6,7 @@ const String _gameAutoAPI = 'api/openUrl';
 const String _gameAPI = 'api/open';
 
 const String _serviceRegexString =
-    (Global.IS_TEST_VER) ? Global.EG_BASE_URL : _tyRegString;
+    (Global.HAS_FLEX_ROUTE) ? _tyRegString : Global.CURRENT_BASE;
 const String _tyRegString = 'https://www.vip66[6-7][0-9][0-9].com';
 
 final RegExp _routeRegex = RegExp("^(?:$_serviceRegexString/?)");
@@ -64,7 +64,7 @@ extension RegexExtension on String {
       else
         en += 1;
     }
-//    print('$this -> ch=$ch, en=$en');
+//    debugPrint('$this -> ch=$ch, en=$en');
     return ch + (en / 2).ceil();
   }
 }

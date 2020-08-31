@@ -1,5 +1,5 @@
-import 'package:flutter_eg990_mobile/features/movie/data/models/movie_category_model.dart';
-import 'package:flutter_eg990_mobile/features/movie/presentation/data/movie_category_enum.dart';
+import 'package:flutter_eg990_mobile/features/routes/movie/data/models/movie_category_model.dart';
+import 'package:flutter_eg990_mobile/features/routes/movie/presentation/data/movie_category_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

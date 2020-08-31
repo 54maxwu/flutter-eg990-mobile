@@ -50,7 +50,7 @@ class HorizontalRadioGroupWidgetState
                 groupValue: _selected,
                 onChanged: (value) {
                   _selected = value;
-                  if (widget.debug) print('selected type: $_selected');
+                  if (widget.debug) debugPrint('selected type: $_selected');
                   setState(() {});
                 },
               ),

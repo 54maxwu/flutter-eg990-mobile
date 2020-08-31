@@ -98,86 +98,14 @@ mixin _$FeatureScreenStore on _FeatureScreenStore, Store {
     });
   }
 
-  final _$showEventOnHomeAtom =
-      Atom(name: '_FeatureScreenStore.showEventOnHome');
-
-  @override
-  bool get showEventOnHome {
-    _$showEventOnHomeAtom.reportRead();
-    return super.showEventOnHome;
-  }
-
-  @override
-  set showEventOnHome(bool value) {
-    _$showEventOnHomeAtom.reportWrite(value, super.showEventOnHome, () {
-      super.showEventOnHome = value;
-    });
-  }
-
-  final _$hasSignedEventAtom = Atom(name: '_FeatureScreenStore.hasSignedEvent');
-
-  @override
-  bool get hasSignedEvent {
-    _$hasSignedEventAtom.reportRead();
-    return super.hasSignedEvent;
-  }
-
-  @override
-  set hasSignedEvent(bool value) {
-    _$hasSignedEventAtom.reportWrite(value, super.hasSignedEvent, () {
-      super.hasSignedEvent = value;
-    });
-  }
-
-  final _$hasNewMessageAtom = Atom(name: '_FeatureScreenStore.hasNewMessage');
-
-  @override
-  bool get hasNewMessage {
-    _$hasNewMessageAtom.reportRead();
-    return super.hasNewMessage;
-  }
-
-  @override
-  set hasNewMessage(bool value) {
-    _$hasNewMessageAtom.reportWrite(value, super.hasNewMessage, () {
-      super.hasNewMessage = value;
-    });
-  }
-
-  final _$getNewMessageCountAsyncAction =
-      AsyncAction('_FeatureScreenStore.getNewMessageCount');
-
-  @override
-  Future<void> getNewMessageCount() {
-    return _$getNewMessageCountAsyncAction
-        .run(() => super.getNewMessageCount());
-  }
-
-  final _$getEventAsyncAction = AsyncAction('_FeatureScreenStore.getEvent');
-
-  @override
-  Future<void> getEvent() {
-    return _$getEventAsyncAction.run(() => super.getEvent());
-  }
-
-  final _$signEventAsyncAction = AsyncAction('_FeatureScreenStore.signEvent');
-
-  @override
-  Future<bool> signEvent() {
-    return _$signEventAsyncAction.run(() => super.signEvent());
-  }
-
   @override
   String toString() {
     return '''
-errorMessage: $errorMessage,
-pageInfo: $pageInfo,
-userStatus: $userStatus,
-showEvent: $showEventOnHome,
-hasSignedEvent: $hasSignedEvent,
-hasNewMessage: $hasNewMessage,
-navIndex: $navIndex,
-hasUser: $hasUser
+errorMessage: ${errorMessage},
+pageInfo: ${pageInfo},
+userStatus: ${userStatus},
+navIndex: ${navIndex},
+hasUser: ${hasUser}
     ''';
   }
 }

@@ -85,9 +85,9 @@ class SingleDropdownWidgetState extends State<SingleDropdownWidget> {
     _smallWidgetHeight = Themes.fieldHeight - 12;
 
     if (widget.debug) {
-      print(
+      debugPrint(
           'screen width: ${Global.device.width}, view width: ${widget.parentWidth}');
-      print('field prefix width: $_prefixWidth');
+      debugPrint('field prefix width: $_prefixWidth');
     }
 
     if (widget.optionStrings != null &&
@@ -145,7 +145,7 @@ class SingleDropdownWidgetState extends State<SingleDropdownWidget> {
                   ),
                   onChanged: (data) {
                     if (widget.changeNotify != null) widget.changeNotify(data);
-                    if (widget.debug) print('selected: $data');
+                    if (widget.debug) debugPrint('selected: $data');
                     _dropdownValue = data;
                     setState(() {});
                   },

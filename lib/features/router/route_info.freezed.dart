@@ -14,19 +14,23 @@ class _$RouteInfoTearOff {
 
 // ignore: unused_element
   _RouteInfo call(
-      {@required String route,
-      @required String title,
+      {@required RouteEnum id,
+      @required String route,
+      Object routeArg,
       String parentRoute = Routes.homeRoute,
       bool isFeature = false,
       bool showDrawer = false,
+      bool disableLanguageDropDown = false,
       bool hideAppbarActions = true,
       int bottomNavIndex = -1}) {
     return _RouteInfo(
+      id: id,
       route: route,
-      title: title,
+      routeArg: routeArg,
       parentRoute: parentRoute,
       isFeature: isFeature,
       showDrawer: showDrawer,
+      disableLanguageDropDown: disableLanguageDropDown,
       hideAppbarActions: hideAppbarActions,
       bottomNavIndex: bottomNavIndex,
     );
@@ -37,11 +41,13 @@ class _$RouteInfoTearOff {
 const $RouteInfo = _$RouteInfoTearOff();
 
 mixin _$RouteInfo {
+  RouteEnum get id;
   String get route;
-  String get title;
+  Object get routeArg;
   String get parentRoute;
   bool get isFeature;
   bool get showDrawer;
+  bool get disableLanguageDropDown;
   bool get hideAppbarActions;
   int get bottomNavIndex;
 
@@ -52,11 +58,13 @@ abstract class $RouteInfoCopyWith<$Res> {
   factory $RouteInfoCopyWith(RouteInfo value, $Res Function(RouteInfo) then) =
       _$RouteInfoCopyWithImpl<$Res>;
   $Res call(
-      {String route,
-      String title,
+      {RouteEnum id,
+      String route,
+      Object routeArg,
       String parentRoute,
       bool isFeature,
       bool showDrawer,
+      bool disableLanguageDropDown,
       bool hideAppbarActions,
       int bottomNavIndex});
 }
@@ -70,22 +78,28 @@ class _$RouteInfoCopyWithImpl<$Res> implements $RouteInfoCopyWith<$Res> {
 
   @override
   $Res call({
+    Object id = freezed,
     Object route = freezed,
-    Object title = freezed,
+    Object routeArg = freezed,
     Object parentRoute = freezed,
     Object isFeature = freezed,
     Object showDrawer = freezed,
+    Object disableLanguageDropDown = freezed,
     Object hideAppbarActions = freezed,
     Object bottomNavIndex = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as RouteEnum,
       route: route == freezed ? _value.route : route as String,
-      title: title == freezed ? _value.title : title as String,
+      routeArg: routeArg == freezed ? _value.routeArg : routeArg,
       parentRoute:
           parentRoute == freezed ? _value.parentRoute : parentRoute as String,
       isFeature: isFeature == freezed ? _value.isFeature : isFeature as bool,
       showDrawer:
           showDrawer == freezed ? _value.showDrawer : showDrawer as bool,
+      disableLanguageDropDown: disableLanguageDropDown == freezed
+          ? _value.disableLanguageDropDown
+          : disableLanguageDropDown as bool,
       hideAppbarActions: hideAppbarActions == freezed
           ? _value.hideAppbarActions
           : hideAppbarActions as bool,
@@ -102,11 +116,13 @@ abstract class _$RouteInfoCopyWith<$Res> implements $RouteInfoCopyWith<$Res> {
       __$RouteInfoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String route,
-      String title,
+      {RouteEnum id,
+      String route,
+      Object routeArg,
       String parentRoute,
       bool isFeature,
       bool showDrawer,
+      bool disableLanguageDropDown,
       bool hideAppbarActions,
       int bottomNavIndex});
 }
@@ -121,22 +137,28 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object route = freezed,
-    Object title = freezed,
+    Object routeArg = freezed,
     Object parentRoute = freezed,
     Object isFeature = freezed,
     Object showDrawer = freezed,
+    Object disableLanguageDropDown = freezed,
     Object hideAppbarActions = freezed,
     Object bottomNavIndex = freezed,
   }) {
     return _then(_RouteInfo(
+      id: id == freezed ? _value.id : id as RouteEnum,
       route: route == freezed ? _value.route : route as String,
-      title: title == freezed ? _value.title : title as String,
+      routeArg: routeArg == freezed ? _value.routeArg : routeArg,
       parentRoute:
           parentRoute == freezed ? _value.parentRoute : parentRoute as String,
       isFeature: isFeature == freezed ? _value.isFeature : isFeature as bool,
       showDrawer:
           showDrawer == freezed ? _value.showDrawer : showDrawer as bool,
+      disableLanguageDropDown: disableLanguageDropDown == freezed
+          ? _value.disableLanguageDropDown
+          : disableLanguageDropDown as bool,
       hideAppbarActions: hideAppbarActions == freezed
           ? _value.hideAppbarActions
           : hideAppbarActions as bool,
@@ -149,25 +171,30 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
 
 class _$_RouteInfo implements _RouteInfo {
   const _$_RouteInfo(
-      {@required this.route,
-      @required this.title,
+      {@required this.id,
+      @required this.route,
+      this.routeArg,
       this.parentRoute = Routes.homeRoute,
       this.isFeature = false,
       this.showDrawer = false,
+      this.disableLanguageDropDown = false,
       this.hideAppbarActions = true,
       this.bottomNavIndex = -1})
-      : assert(route != null),
-        assert(title != null),
+      : assert(id != null),
+        assert(route != null),
         assert(parentRoute != null),
         assert(isFeature != null),
         assert(showDrawer != null),
+        assert(disableLanguageDropDown != null),
         assert(hideAppbarActions != null),
         assert(bottomNavIndex != null);
 
   @override
+  final RouteEnum id;
+  @override
   final String route;
   @override
-  final String title;
+  final Object routeArg;
   @JsonKey(defaultValue: Routes.homeRoute)
   @override
   final String parentRoute;
@@ -177,6 +204,9 @@ class _$_RouteInfo implements _RouteInfo {
   @JsonKey(defaultValue: false)
   @override
   final bool showDrawer;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool disableLanguageDropDown;
   @JsonKey(defaultValue: true)
   @override
   final bool hideAppbarActions;
@@ -186,17 +216,20 @@ class _$_RouteInfo implements _RouteInfo {
 
   @override
   String toString() {
-    return 'RouteInfo(route: $route, title: $title, parentRoute: $parentRoute, isFeature: $isFeature, showDrawer: $showDrawer, hideAppbarActions: $hideAppbarActions, bottomNavIndex: $bottomNavIndex)';
+    return 'RouteInfo(id: $id, route: $route, routeArg: $routeArg, parentRoute: $parentRoute, isFeature: $isFeature, showDrawer: $showDrawer, disableLanguageDropDown: $disableLanguageDropDown, hideAppbarActions: $hideAppbarActions, bottomNavIndex: $bottomNavIndex)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RouteInfo &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.route, route) ||
                 const DeepCollectionEquality().equals(other.route, route)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.routeArg, routeArg) ||
+                const DeepCollectionEquality()
+                    .equals(other.routeArg, routeArg)) &&
             (identical(other.parentRoute, parentRoute) ||
                 const DeepCollectionEquality()
                     .equals(other.parentRoute, parentRoute)) &&
@@ -206,6 +239,10 @@ class _$_RouteInfo implements _RouteInfo {
             (identical(other.showDrawer, showDrawer) ||
                 const DeepCollectionEquality()
                     .equals(other.showDrawer, showDrawer)) &&
+            (identical(
+                    other.disableLanguageDropDown, disableLanguageDropDown) ||
+                const DeepCollectionEquality().equals(
+                    other.disableLanguageDropDown, disableLanguageDropDown)) &&
             (identical(other.hideAppbarActions, hideAppbarActions) ||
                 const DeepCollectionEquality()
                     .equals(other.hideAppbarActions, hideAppbarActions)) &&
@@ -217,11 +254,13 @@ class _$_RouteInfo implements _RouteInfo {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(route) ^
-      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(routeArg) ^
       const DeepCollectionEquality().hash(parentRoute) ^
       const DeepCollectionEquality().hash(isFeature) ^
       const DeepCollectionEquality().hash(showDrawer) ^
+      const DeepCollectionEquality().hash(disableLanguageDropDown) ^
       const DeepCollectionEquality().hash(hideAppbarActions) ^
       const DeepCollectionEquality().hash(bottomNavIndex);
 
@@ -232,24 +271,30 @@ class _$_RouteInfo implements _RouteInfo {
 
 abstract class _RouteInfo implements RouteInfo {
   const factory _RouteInfo(
-      {@required String route,
-      @required String title,
+      {@required RouteEnum id,
+      @required String route,
+      Object routeArg,
       String parentRoute,
       bool isFeature,
       bool showDrawer,
+      bool disableLanguageDropDown,
       bool hideAppbarActions,
       int bottomNavIndex}) = _$_RouteInfo;
 
   @override
+  RouteEnum get id;
+  @override
   String get route;
   @override
-  String get title;
+  Object get routeArg;
   @override
   String get parentRoute;
   @override
   bool get isFeature;
   @override
   bool get showDrawer;
+  @override
+  bool get disableLanguageDropDown;
   @override
   bool get hideAppbarActions;
   @override

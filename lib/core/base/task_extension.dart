@@ -31,7 +31,7 @@ Future<Either<Failure, dynamic>> runTypedTask<T>(Future<T> future) {
       .mapLeftToFailure()
       .run()
       .catchError((e, s) {
-    print('task has exception: $e');
+//    debugPrint('task has exception: $e');
     MyLogger.error(msg: 'task has exception: $e', tag: 'TaskX', stackTrace: s);
     return Left(Failure.internal(FailureCode(type: FailureType.TASK)));
   });
@@ -52,7 +52,7 @@ Future<Either<Failure, dynamic>> runTask(
 }) {
   return Task(() => future).attempt().mapLeftToFailure().run().catchError(
     (e, s) {
-      print('task has exception: $e, type: ${e.runtimeType}');
+//      debugPrint('task has exception: $e, type: ${e.runtimeType}');
       switch (e.runtimeType) {
         case LocationException:
           MyLogger.error(msg: 'task has exception: $e', tag: 'TaskX');

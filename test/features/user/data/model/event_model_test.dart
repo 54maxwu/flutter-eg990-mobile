@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_eg990_mobile/core/network/handler/request_code_model.dart';
-import 'package:flutter_eg990_mobile/features/user/data/models/event_model.dart';
+import 'package:flutter_eg990_mobile/features/event/data/models/event_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';

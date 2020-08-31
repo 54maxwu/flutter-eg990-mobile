@@ -33,7 +33,7 @@ Future<dynamic> _exceptionHandler(Function func, String tag) async {
         tag: tag,
         error: e,
         stackTrace: s);
-    throw Failure.internal(FailureCode());
+    throw Failure.internal(FailureCode(type: FailureType.TASK));
   } on Exception catch (e, s) {
     MyLogger.error(
         msg: 'Something went wrong!!', tag: tag, error: e, stackTrace: s);
@@ -47,7 +47,7 @@ Future _makeRequest({
 }) async {
   // check if network is connected
   final connected = await sl.get<NetworkInfo>()?.isConnected ?? false;
-//  print('network connected: $connected');
+//  debugPrint('network connected: $connected');
   if (!connected) return Failure.network();
   // request data with exception handler
   final result = await _exceptionHandler(() async {
@@ -70,7 +70,7 @@ Future _makeHeaderRequest({
 }) async {
   // check if network is connected
   final connected = await sl.get<NetworkInfo>()?.isConnected ?? false;
-  print('network connected: $connected');
+//  debugPrint('network connected: $connected');
   if (!connected) return Failure.network();
   // request data with exception handler
   final result = await _exceptionHandler(() async {
@@ -127,7 +127,7 @@ Future<Either<Failure, dynamic>> requestData({
 ///        ),
 ///        jsonToModel: DataModel.jsonToDataModel,
 ///     );
-///     print('test response type: ${result.runtimeType}, data: $result');
+///     debugPrint('test response type: ${result.runtimeType}, data: $result');
 ///     return result.fold(
 ///       (failure) => Left(failure),
 ///       (model) => Right(model),
@@ -202,10 +202,10 @@ Future<Either<Failure, dynamic>> requestHeader({
       (data) {
         if (data[0] is Headers) {
           String headerRequested = data[0].value(header);
-          print('test header cookie: $headerRequested');
+//          debugPrint('test header cookie: $headerRequested');
           return Right(headerRequested ?? data[1]);
         }
-        return Left(Failure.internal(FailureCode()));
+        return Left(Failure.internal(FailureCode(type: FailureType.TASK)));
       },
     );
   });
