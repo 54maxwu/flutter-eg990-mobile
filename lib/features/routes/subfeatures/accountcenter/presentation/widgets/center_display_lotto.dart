@@ -56,11 +56,11 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
         _randomNumbers.add(newNum);
     }
     _randomNumbers.sort((a, b) => a.compareTo(b));
-    print('random: $_randomNumbers');
+    debugPrint('random: $_randomNumbers');
     // apply numbers to fields
     for (int i = 0; i < _fieldKeys.length; i++) {
       _fieldKeys[i].currentState.setInput = _randomNumbers[i].toString();
-      print('set field $i to ${_randomNumbers[i]}');
+      debugPrint('set field $i to ${_randomNumbers[i]}');
     }
     setState(() {});
   }
@@ -77,7 +77,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
       form.save();
       List<int> numbers =
           _fieldKeys.map((e) => e.currentState.getInput.strToInt).toList();
-      print('validating lotto numbers: $numbers');
+      debugPrint('validating lotto numbers: $numbers');
       if (numbers.every((num) => rangeCheck(value: num, min: 1, max: 49)))
         _store.postLucky(numbers); //FIXME response data error
       else
@@ -92,7 +92,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.CENTER)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }
@@ -100,7 +100,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
       key: _streamKey,
       stream: _store.lottoStream,
       builder: (_, snapshot) {
-//        print('lotto stream snapshot: $snapshot');
+//        debugPrint('lotto stream snapshot: $snapshot');
         if (contentWidget == null || _storeData != _store.accountLotto) {
           _storeData = _store.accountLotto;
           if (_storeData == null || _storeData.isEmpty) {

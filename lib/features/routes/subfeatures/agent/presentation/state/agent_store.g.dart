@@ -32,21 +32,6 @@ mixin _$AgentStore on _AgentStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_AgentStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$waitForAgentResponseAtom =
       Atom(name: '_AgentStore.waitForAgentResponse');
 
@@ -76,6 +61,21 @@ mixin _$AgentStore on _AgentStore, Store {
   set mergeAdResult(dynamic value) {
     _$mergeAdResultAtom.reportWrite(value, super.mergeAdResult, () {
       super.mergeAdResult = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_AgentStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
     });
   }
 
@@ -146,9 +146,10 @@ mixin _$AgentStore on _AgentStore, Store {
   @override
   String toString() {
     return '''
-errorMessage: $errorMessage,
-waitForRequest: $waitForAgentResponse,
-state: $state
+waitForAgentResponse: ${waitForAgentResponse},
+mergeAdResult: ${mergeAdResult},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

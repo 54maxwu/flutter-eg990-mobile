@@ -15,7 +15,7 @@ abstract class TransactionRepository {
 
 class TransactionRepositoryImpl implements TransactionRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'TransactionRepository';
 
   TransactionRepositoryImpl(

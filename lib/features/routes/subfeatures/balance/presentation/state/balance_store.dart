@@ -31,9 +31,6 @@ abstract class _BalanceStore with Store {
 
   Stream<String> get loadingStream => _loadingController.stream;
 
-  @observable
-  String errorMessage;
-
   int balanceRequestProgress;
 
   @observable
@@ -48,6 +45,21 @@ abstract class _BalanceStore with Store {
   bool _cancelRequest = false;
 
   double creditLimit;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.BALANCE,
+          code: code,
+        )).message;
+  }
 
   @computed
   BalanceStoreState get state {
@@ -73,7 +85,7 @@ abstract class _BalanceStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _promiseFuture.then(
         (result) => result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             promises = list;
             totalPlatform = list.length;
@@ -83,8 +95,7 @@ abstract class _BalanceStore with Store {
         ),
       );
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -119,8 +130,7 @@ abstract class _BalanceStore with Store {
         sinkProgress(close: true);
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -145,8 +155,7 @@ abstract class _BalanceStore with Store {
         },
       );
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -159,14 +168,13 @@ abstract class _BalanceStore with Store {
       await _repository.getLimit().then(
         (result) {
           result.fold(
-            (failure) => errorMessage = failure.message,
+            (failure) => setErrorMsg(msg: failure.message, showOnce: true),
             (data) => creditLimit = data.strToDouble,
           );
         },
       ).whenComplete(() => debugPrint('credit limit: $creditLimit'));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -183,7 +191,7 @@ abstract class _BalanceStore with Store {
           .then((result) {
         debugPrint('transfer from ${form.from} to ${form.to} result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             transferResult = data;
             if (data.isSuccess) {
@@ -199,8 +207,7 @@ abstract class _BalanceStore with Store {
       });
     } on Exception {
       waitForTransferResult = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSFER)).message;
+      setErrorMsg(code: 5);
     }
   }
 

@@ -23,6 +23,18 @@ abstract class _PromoStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.PROMO,
+          code: code,
+        )).message;
+  }
+
   @computed
   PromoStoreState get state {
     // If the user has not yet searched for a weather forecast or there has been an error
@@ -48,7 +60,7 @@ abstract class _PromoStore with Store {
 //        print('promo store result: $result');
         result.fold(
           (failure) {
-            errorMessage = failure.message;
+            setErrorMsg(msg: failure.message, showOnce: true);
           },
           (list) {
             if (list.isNotEmpty) {
@@ -62,8 +74,7 @@ abstract class _PromoStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.PROMO)).message;
+      setErrorMsg(code: 1);
     }
   }
 }

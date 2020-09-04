@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:flutter_eg990_mobile/features/routes/movie/presentation/movie_route.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/roller/presentation/roller_route.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/presentation/store_route.dart';
 
@@ -37,7 +38,7 @@ class $Router {
   LoginRoute loginRoute;
   RegisterRoute registerRoute;
   WebRoute serviceRoute;
-//  MovieRoute movieRoute;
+  MovieRoute movieRoute;
   MemberRoute memberRoute;
   PromoRoute promoRoute;
   DepositRoute depositRoute;

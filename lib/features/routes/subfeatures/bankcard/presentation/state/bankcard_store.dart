@@ -43,6 +43,18 @@ abstract class _BankcardStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.BANKCARD,
+          code: code,
+        )).message;
+  }
+
   @computed
   BankcardStoreState get state {
     // If the user has not yet searched for a weather forecast or there has been an error
@@ -67,12 +79,12 @@ abstract class _BankcardStore with Store {
       await _bankcardFuture.then((result) {
 //        debugPrint('bankcard result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => bankcard = data,
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch bankcard. Is the device online?";
+      setErrorMsg(code: 1);
     }
   }
 
@@ -85,14 +97,14 @@ abstract class _BankcardStore with Store {
       await _repository.getBanks().then((result) {
 //        debugPrint('bank ids map result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data != null) banksMap = data;
           },
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch bank ids. Is the device online?";
+      setErrorMsg(code: 2);
     }
   }
 
@@ -105,7 +117,7 @@ abstract class _BankcardStore with Store {
       await _repository.getProvinces().then((result) {
 //        debugPrint('province map result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data != null && data.isNotEmpty) {
               provinceMap = data;
@@ -114,7 +126,7 @@ abstract class _BankcardStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch provinces. Is the device online?";
+      setErrorMsg(code: 3);
     }
   }
 
@@ -129,7 +141,7 @@ abstract class _BankcardStore with Store {
         result.fold(
           (failure) {
             if (showError)
-              errorMessage = failure.message;
+              setErrorMsg(msg: failure.message, showOnce: true);
             else
               debugPrint(failure.message);
           },
@@ -139,7 +151,7 @@ abstract class _BankcardStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch cities. Is the device online?";
+      setErrorMsg(code: 4);
     }
   }
 
@@ -152,14 +164,14 @@ abstract class _BankcardStore with Store {
       await _repository.getMapByCode(cityCode).then((result) {
 //        debugPrint('area map result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data != null && data.isNotEmpty) areaMap = data;
           },
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch areas. Is the device online?";
+      setErrorMsg(code: 5);
     }
   }
 
@@ -177,14 +189,13 @@ abstract class _BankcardStore with Store {
           .then((result) {
         debugPrint('bankcard bind result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => newCardResult = data,
         );
       });
     } on Exception {
       waitForNewCardResult = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BANKCARD)).message;
+      setErrorMsg(code: 6);
     }
   }
 }

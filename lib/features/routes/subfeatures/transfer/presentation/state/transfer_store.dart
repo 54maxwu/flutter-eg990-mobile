@@ -31,6 +31,7 @@ abstract class _TransferStore with Store {
       new StreamController<String>.broadcast();
 
   Stream<String> get site1ValueStream => _site1ValueController.stream;
+
   Stream<String> get site2ValueStream => _site2ValueController.stream;
 
   @observable
@@ -45,15 +46,27 @@ abstract class _TransferStore with Store {
   @observable
   bool waitForTransferResult = false;
 
-  @observable
-  String errorMessage;
-
   int creditLimit = 0;
 
   bool isPlatformValid = false;
 
   String site1;
   String site2;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.TRANSFER,
+          code: code,
+        )).message;
+  }
 
   @computed
   TransferStoreState get state {
@@ -79,7 +92,7 @@ abstract class _TransferStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _platformFuture.then((result) {
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             platforms = data.list;
             print('platforms: $platforms');
@@ -87,7 +100,7 @@ abstract class _TransferStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch platforms. Is the device online?";
+      setErrorMsg(code: 1);
     }
   }
 
@@ -100,7 +113,7 @@ abstract class _TransferStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getBalance(site).then((result) {
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             bool platformClosed = data.balance == '$creditSymbol-1.00';
             debugPrint('$site balance: ${data.balance}');
@@ -127,7 +140,7 @@ abstract class _TransferStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch $site balance. Is the device online?";
+      setErrorMsg(code: 2);
     }
   }
 
@@ -146,7 +159,7 @@ abstract class _TransferStore with Store {
           .then((result) {
         print('transfer from ${form.from} to ${form.to} result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             transferResult = data;
             if (data.isSuccess) {
@@ -160,8 +173,7 @@ abstract class _TransferStore with Store {
       });
     } on Exception {
       waitForTransferResult = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSFER)).message;
+      setErrorMsg(code: 3);
     }
   }
 

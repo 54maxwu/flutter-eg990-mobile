@@ -29,9 +29,6 @@ abstract class _MovieStore with Store {
   _MovieStore(this._repository);
 
   @observable
-  String errorMessage;
-
-  @observable
   ObservableFuture _tabInitFuture;
 
   @observable
@@ -71,9 +68,26 @@ abstract class _MovieStore with Store {
   MoviePostData moviePost;
 
   Stream<MoviePostData> get moviePostStream => _moviePostController.stream;
+
   Stream<List<MovieHotModel>> get hotMoviesStream =>
       _hotMoviesController.stream;
+
   Stream<String> get movieUrlStream => _movieStreamController.stream;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.MOVIE,
+          code: code,
+        )).message;
+  }
 
   /// Movie Tab Page
   @computed
@@ -100,7 +114,7 @@ abstract class _MovieStore with Store {
       _tabInitFuture = ObservableFuture(Future.sync(() async {
         await _repository.getEgCategory().then(
               (result) => result.fold(
-                (failure) => errorMessage = failure.message,
+                (failure) => setErrorMsg(msg: failure.message, showOnce: true),
                 (list) {
                   debugPrint('first movie category: ${list.first}');
                   categories = list;
@@ -111,7 +125,7 @@ abstract class _MovieStore with Store {
       }).then((value) async {
         await _repository.getEgMovieList(tid: _currentEgMovieTid).then(
               (result) => result.fold(
-                (failure) => errorMessage = failure.message,
+                (failure) => setErrorMsg(msg: failure.message, showOnce: true),
                 (list) => movies = list,
               ),
             );
@@ -120,9 +134,7 @@ abstract class _MovieStore with Store {
       await _tabInitFuture.whenComplete(() => waitForTabInitializeData = false);
     } on Exception {
       waitForTabInitializeData = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB)).message;
+      setErrorMsg(type: FailureType.MOVIE_TAB, code: 1);
     }
   }
 
@@ -148,7 +160,7 @@ abstract class _MovieStore with Store {
           .then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 if (_currentMoviePage <= 1 || movies == null) movies = [];
                 return -1;
               },
@@ -171,8 +183,7 @@ abstract class _MovieStore with Store {
       });
     } on Exception {
       waitForMovieData = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB)).message;
+      setErrorMsg(type: FailureType.MOVIE_TAB, code: 2);
       if (_currentMoviePage <= 1 || movies == null) movies = [];
       return -1;
     }
@@ -205,7 +216,8 @@ abstract class _MovieStore with Store {
           if (categories == null) {
             await _repository.getEgCategory().then(
                   (result) => result.fold(
-                    (failure) => errorMessage = failure.message,
+                    (failure) =>
+                        setErrorMsg(msg: failure.message, showOnce: true),
                     (list) {
                       debugPrint('first movie category: ${list.first}');
                       categories = list;
@@ -221,9 +233,7 @@ abstract class _MovieStore with Store {
           .whenComplete(() => waitForRouteInitializeData = false);
     } on Exception {
       waitForRouteInitializeData = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -244,7 +254,7 @@ abstract class _MovieStore with Store {
           .getEgMoviePost(tid: form.tid, mid: form.mid)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (data) {
                 debugPrint(
                     'eg movie post: ${data.post}, hots: ${data.hotList.length}');
@@ -269,8 +279,7 @@ abstract class _MovieStore with Store {
           .whenComplete(() => waitForMoviePost = false);
     } on Exception {
       waitForMoviePost = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -292,7 +301,7 @@ abstract class _MovieStore with Store {
           .then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 if (hotMovies == null) {
                   hotMovies = [];
                   _hotMoviesController.sink.add(hotMovies);
@@ -317,8 +326,7 @@ abstract class _MovieStore with Store {
           .whenComplete(() => waitForHotMovies = false);
     } on Exception {
       waitForHotMovies = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -332,7 +340,7 @@ abstract class _MovieStore with Store {
           .postEgMovieFavorite(mid: mid, isFavorite: isFavorite)
           .then((result) => result.fold(
                 (failure) {
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                   return false;
                 },
                 (data) {
@@ -342,8 +350,7 @@ abstract class _MovieStore with Store {
                 },
               ));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 4);
       return false;
     }
   }
@@ -358,7 +365,7 @@ abstract class _MovieStore with Store {
           .postEgMovieHobby(mid: mid, hobby: rate.value)
           .then((result) => result.fold(
                 (failure) {
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                   return false;
                 },
                 (data) {
@@ -368,8 +375,7 @@ abstract class _MovieStore with Store {
                 },
               ));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 5);
       return false;
     }
   }
@@ -385,7 +391,7 @@ abstract class _MovieStore with Store {
           .postEgMovieFree(mid: mid)
           .then((result) => result.fold(
                 (failure) {
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                   return null;
                 },
                 (data) {
@@ -402,8 +408,7 @@ abstract class _MovieStore with Store {
                 },
               ));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 6);
       return null;
     }
   }
@@ -419,7 +424,7 @@ abstract class _MovieStore with Store {
           .postEgMovieBuy(mid: mid)
           .then((result) => result.fold(
                 (failure) {
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                   return null;
                 },
                 (data) {
@@ -436,8 +441,7 @@ abstract class _MovieStore with Store {
                 },
               ));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 7);
       return null;
     }
   }
@@ -455,7 +459,7 @@ abstract class _MovieStore with Store {
         debugPrint('movie verify phone request result: $result');
         return result.fold(
           (failure) {
-            errorMessage = failure.message;
+            setErrorMsg(msg: failure.message, showOnce: true);
             return '';
           },
           (data) => data.msg,
@@ -463,8 +467,7 @@ abstract class _MovieStore with Store {
       }).whenComplete(() => waitForVerify = false);
     } on Exception {
       waitForVerify = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 8);
       return '';
     }
   }
@@ -482,7 +485,7 @@ abstract class _MovieStore with Store {
         debugPrint('movie verify phone result: $result');
         return result.fold(
           (failure) {
-            errorMessage = failure.message;
+            setErrorMsg(msg: failure.message, showOnce: true);
             return false;
           },
           (data) {
@@ -493,8 +496,7 @@ abstract class _MovieStore with Store {
       }).whenComplete(() => waitForVerify = false);
     } on Exception {
       waitForVerify = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+      setErrorMsg(code: 9);
       return false;
     }
   }

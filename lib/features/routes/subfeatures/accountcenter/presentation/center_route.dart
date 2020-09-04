@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/warning_display.dart';
 
 import 'state/center_store.dart';
 import 'widgets/center_display.dart';
@@ -137,12 +138,18 @@ class _CenterRouteState extends State<CenterRoute> {
               // Observe using specific widget
               builder: (_) {
                 switch (_store.state) {
-                  case CenterStoreState.initial:
-                    return SizedBox.shrink();
                   case CenterStoreState.loading:
                     return LoadingWidget();
                   case CenterStoreState.loaded:
                     return CenterDisplay();
+                  case CenterStoreState.error:
+                    return Center(
+                        child: WarningDisplay(
+                      message: Failure.internal(FailureCode(
+                        type: FailureType.CENTER,
+                        code: 10,
+                      )).message,
+                    ));
                   default:
                     return SizedBox.shrink();
                 }

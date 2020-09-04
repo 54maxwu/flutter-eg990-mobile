@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 
 /// 经典Footer
 class MovieListFooter extends Footer {
@@ -139,7 +139,9 @@ class MovieListFooterWidgetState extends State<MovieListFooterWidget>
     with TickerProviderStateMixin<MovieListFooterWidget> {
   // 是否到达触发加载距离
   bool _overTriggerDistance = false;
+
   bool get overTriggerDistance => _overTriggerDistance;
+
   set overTriggerDistance(bool over) {
     if (_overTriggerDistance != over) {
       _overTriggerDistance
@@ -238,6 +240,7 @@ class MovieListFooterWidgetState extends State<MovieListFooterWidget>
 
   // 更新时间
   DateTime _dateTime;
+
   // 获取更多信息
   String get _infoTextStr {
     if (widget.loadState == LoadMode.loaded) {

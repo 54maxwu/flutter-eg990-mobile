@@ -77,21 +77,6 @@ mixin _$PointStore on _PointStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_PointStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$waitForInitializeDataAtom =
       Atom(name: '_PointStore.waitForInitializeData');
 
@@ -154,6 +139,21 @@ mixin _$PointStore on _PointStore, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_PointStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$getInitializeDataAsyncAction =
       AsyncAction('_PointStore.getInitializeData');
 
@@ -209,15 +209,15 @@ mixin _$PointStore on _PointStore, Store {
   @override
   String toString() {
     return '''
-provinceMap: $provinceMap,
-cityMap: $cityMap,
-areaMap: $areaMap,
-errorMessage: $errorMessage,
-waitForInitializeData: $waitForInitializeData,
-waitForExchange: $waitForExchange,
-exchangeResult: $exchangeResult,
-waitForRecord: $waitForRecord,
-state: $state
+provinceMap: ${provinceMap},
+cityMap: ${cityMap},
+areaMap: ${areaMap},
+waitForInitializeData: ${waitForInitializeData},
+waitForExchange: ${waitForExchange},
+exchangeResult: ${exchangeResult},
+waitForRecord: ${waitForRecord},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

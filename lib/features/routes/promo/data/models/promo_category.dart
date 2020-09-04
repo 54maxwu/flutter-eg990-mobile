@@ -47,10 +47,10 @@ class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   }
 
   /// (optional) Extend your Vnums
-  //PromoCategory example() {
-  //  switch(value) {
-  //    default:
-  //      return PromoCategoryEnum.example.value;
-  //  };
-  //}
+//PromoCategory example() {
+//  switch(value) {
+//    default:
+//      return PromoCategoryEnum.example.value;
+//  };
+//}
 }

@@ -12,7 +12,7 @@ part 'deposit_store.g.dart';
 
 class DepositStore = _DepositStore with _$DepositStore;
 
-enum DepositStoreState { initial, loading, loaded }
+enum DepositStoreState { initial, loading, loaded, error }
 
 abstract class _DepositStore with Store {
   final DepositRepository _repository;
@@ -42,11 +42,28 @@ abstract class _DepositStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  bool _errorState = false;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.CENTER,
+          code: code,
+        )).message;
+  }
+
   @computed
   DepositStoreState get state {
     // If the user has not yet searched for a weather forecast or there has been an error
     if (_initFuture == null || _initFuture.status == FutureStatus.rejected) {
       return DepositStoreState.initial;
+    }
+    if (_errorState) {
+      return DepositStoreState.error;
     }
     // Pending Future means "loading"
     // Fulfilled Future means "loaded"
@@ -73,9 +90,7 @@ abstract class _DepositStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _initFuture;
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.HOME)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -89,13 +104,16 @@ abstract class _DepositStore with Store {
       await _repository.getPayment().then((result) {
 //        debugPrint('payment store type result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) {
+            _errorState = true;
+            setErrorMsg(msg: failure.message, showOnce: true);
+          },
           (data) => paymentTypes = data,
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      _errorState = true;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -110,7 +128,7 @@ abstract class _DepositStore with Store {
 //        debugPrint('payment store promo result: $result');
         result.fold(
           (failure) {
-            errorMessage = failure.message;
+            setErrorMsg(msg: failure.message, showOnce: true);
           },
           (data) {
             promoMap ??= new Map();
@@ -123,8 +141,7 @@ abstract class _DepositStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -138,7 +155,7 @@ abstract class _DepositStore with Store {
       await _repository.getDepositInfo().then((result) {
 //        debugPrint('deposit info result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             if (list == null || list.isEmpty) {
               infoList = [];
@@ -158,8 +175,7 @@ abstract class _DepositStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -173,13 +189,12 @@ abstract class _DepositStore with Store {
       await _repository.getDepositBanks().then((result) {
 //        debugPrint('deposit banks result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => banks = data,
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      setErrorMsg(code: 5);
     }
   }
 
@@ -193,13 +208,12 @@ abstract class _DepositStore with Store {
       await _repository.getDepositRule().then((result) {
 //        debugPrint('deposit rule result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => depositRule = data,
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      setErrorMsg(code: 6);
     }
   }
 
@@ -219,14 +233,13 @@ abstract class _DepositStore with Store {
           .then((result) {
 //        debugPrint('payment store promo result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => depositResult = data,
         );
       });
     } on Exception {
       waitForDepositResult = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+      setErrorMsg(code: 7);
     }
   }
 }

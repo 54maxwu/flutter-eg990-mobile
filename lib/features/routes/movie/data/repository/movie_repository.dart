@@ -1,6 +1,5 @@
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/utils/json_util.dart';
 
 import '../models/movie_category_model.dart';
 import '../models/movie_hot_model.dart';
@@ -68,16 +67,14 @@ abstract class MovieRepository {
 
 class MovieRepositoryImpl implements MovieRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'MovieRepository';
-  bool jwtChecked = false;
   CancelToken _cancelToken;
 
   MovieRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
     _cancelToken = new CancelToken();
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override

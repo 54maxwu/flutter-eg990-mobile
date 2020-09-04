@@ -33,21 +33,6 @@ mixin _$BetRecordStore on _BetRecordStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_BetRecordStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$waitForRecordResponseAtom =
       Atom(name: '_BetRecordStore.waitForRecordResponse');
 
@@ -62,6 +47,21 @@ mixin _$BetRecordStore on _BetRecordStore, Store {
     _$waitForRecordResponseAtom.reportWrite(value, super.waitForRecordResponse,
         () {
       super.waitForRecordResponse = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_BetRecordStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
     });
   }
 
@@ -82,9 +82,9 @@ mixin _$BetRecordStore on _BetRecordStore, Store {
   @override
   String toString() {
     return '''
-errorMessage: $errorMessage,
-waitForRecordResponse: $waitForRecordResponse,
-state: $state
+waitForRecordResponse: ${waitForRecordResponse},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

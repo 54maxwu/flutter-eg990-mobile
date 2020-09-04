@@ -171,7 +171,7 @@ class ScreenDrawer extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'version: ${Global.device.appVersion}',
+                    'version: ${Global.device.appVersionSide}',
                     style: TextStyle(
                       fontSize: FontSize.SMALL.value,
                       color: Themes.defaultHintSubColor,

@@ -42,6 +42,7 @@ abstract class _HomeStore with Store {
 
   final StreamController<String> _searchPlatformController =
       StreamController<String>.broadcast();
+
 //  final StreamController<String> _searchGameController =
 //      StreamController<String>.broadcast();
 
@@ -161,15 +162,24 @@ abstract class _HomeStore with Store {
   bool hasUser = false;
 
   /// Store Internal
-  @observable
-  String errorMessage;
-
   bool waitForInitializeData = false;
   bool waitForBanner = false;
   bool waitForMarquee = false;
   bool waitForGameTypes = false;
   bool waitForRecommend = false;
   bool waitForFavorite = false;
+
+  @observable
+  String errorMessage;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && msg == errorMessage) return;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.HOME,
+          code: code,
+        )).message;
+  }
 
   @computed
   HomeStoreState get state {
@@ -207,9 +217,7 @@ abstract class _HomeStore with Store {
       });
     } on Exception {
       waitForInitializeData = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.HOME)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -227,7 +235,7 @@ abstract class _HomeStore with Store {
           .then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 _bannerController.sink.add([]);
               },
               (list) {
@@ -241,9 +249,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForBanner = false);
     } on Exception {
       waitForBanner = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BANNER)).message;
+      setErrorMsg(type: FailureType.BANNER);
     }
   }
 
@@ -261,7 +267,7 @@ abstract class _HomeStore with Store {
           .then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 _marqueeController.sink.add([]);
               },
               (list) {
@@ -284,9 +290,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForMarquee = false);
     } on Exception {
       waitForMarquee = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MARQUEE)).message;
+      setErrorMsg(type: FailureType.MARQUEE);
     }
   }
 
@@ -304,7 +308,7 @@ abstract class _HomeStore with Store {
           .then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 _tabController.sink.add([]);
               },
               (data) {
@@ -327,9 +331,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForGameTypes = false);
     } on Exception {
       waitForGameTypes = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+      setErrorMsg(type: FailureType.GAMES, code: 1);
     }
   }
 
@@ -424,7 +426,7 @@ abstract class _HomeStore with Store {
       debugPrint('requesting home platform games: $form');
       await _repository.getGames(form).then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
                 debugPrint('home store platform games: $list');
                 _homeGamesMap[key] = new List.from(list);
@@ -433,9 +435,7 @@ abstract class _HomeStore with Store {
             ),
           );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+      setErrorMsg(type: FailureType.GAMES, code: 2);
     }
   }
 
@@ -452,7 +452,7 @@ abstract class _HomeStore with Store {
           .getRecommend()
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
 //                print('home store game recommend: $list');
                 // creates a new data instance then add to stream
@@ -465,9 +465,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForRecommend = false);
     } on Exception {
       waitForRecommend = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.RECOMMENDS)).message;
+      setErrorMsg(type: FailureType.RECOMMENDS);
     }
   }
 
@@ -484,7 +482,7 @@ abstract class _HomeStore with Store {
           .getFavorites()
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
                 print('home store game favorite: $list');
                 // creates a new data instance then add to stream
@@ -497,9 +495,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForFavorite = false);
     } on Exception {
       waitForFavorite = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.FAVORITE)).message;
+      setErrorMsg(type: FailureType.FAVORITE, code: 1);
     }
   }
 
@@ -539,9 +535,7 @@ abstract class _HomeStore with Store {
               ),
             );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.FAVORITE)).message;
+      setErrorMsg(type: FailureType.FAVORITE, code: 2);
     }
   }
 
@@ -649,7 +643,7 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;
@@ -659,9 +653,7 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForGameUrl = false);
     } on Exception {
       waitForGameUrl = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+      setErrorMsg(type: FailureType.GAMES, code: 3);
     }
   }
 
@@ -676,7 +668,7 @@ abstract class _HomeStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.updateCredit(user.account).then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (value) {
                 getAppGlobalStreams.lastStatus.currentUser.updateCredit(value);
                 _creditController.sink.add(value);

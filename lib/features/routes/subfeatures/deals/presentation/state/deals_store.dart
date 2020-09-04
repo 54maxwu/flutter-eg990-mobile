@@ -24,6 +24,18 @@ abstract class _DealsStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.DEALS,
+          code: code,
+        )).message;
+  }
+
   @action
   Future getRecord(DealsForm form) async {
     debugPrint('waiting: $waitForPageData');
@@ -37,7 +49,7 @@ abstract class _DealsStore with Store {
           .getDataModel(form)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (model) {
                 debugPrint('deals data result: $model');
                 dataModel = model;
@@ -47,8 +59,7 @@ abstract class _DealsStore with Store {
           )
           .whenComplete(() => waitForPageData = false);
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEALS)).message;
+      setErrorMsg(code: 1);
     }
   }
 }

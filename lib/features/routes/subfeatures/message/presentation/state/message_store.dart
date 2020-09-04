@@ -22,6 +22,18 @@ abstract class _MessageStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.MESSAGE,
+          code: code,
+        )).message;
+  }
+
   @computed
   MessageStoreState get state {
     // If the user has not yet triggered a action or there has been an error
@@ -45,7 +57,7 @@ abstract class _MessageStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _dataFuture.then(
         (result) => result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             messageList = list;
             debugPrint('message list: $messageList');
@@ -53,9 +65,7 @@ abstract class _MessageStore with Store {
         ),
       );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MESSAGE)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -68,14 +78,12 @@ abstract class _MessageStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.updateMessageStatus(id).then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (data) => debugPrint('$id update result: $data'),
             ),
           );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MESSAGE)).message;
+      setErrorMsg(code: 2);
     }
   }
 }

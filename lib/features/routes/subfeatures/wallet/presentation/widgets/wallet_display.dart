@@ -40,7 +40,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
         (_) => widget.store.waitForTransfer,
         // Run some logic with the content of the observed field
         (bool wait) {
-          print('reaction on wait wallet transfer: $wait');
+          debugPrint('reaction on wait wallet transfer: $wait');
           if (wait == null) return;
           if (wait && widget.store.showingDialog != true) {
             widget.store.showingDialog = true;
@@ -59,14 +59,14 @@ class _WalletDisplayState extends State<WalletDisplay> {
         (_) => widget.store.wallet,
         // Run some logic with the content of the observed field
         (wallet) {
-          print('reaction on wallet changed: $wallet');
+          debugPrint('reaction on wallet changed: $wallet');
           if (wallet == null) return;
           String newCredit = widget.store.wallet.credit;
           WalletType newWalletType =
               (widget.store.wallet.auto == WalletType.SINGLE.value)
                   ? WalletType.SINGLE
                   : WalletType.MULTI;
-          print('new wallet type: $newWalletType, current: $_walletType');
+          debugPrint('new wallet type: $newWalletType, current: $_walletType');
           if (newWalletType != _walletType)
             _optionListKey.currentState.setState(() {
               _walletType = newWalletType;
@@ -98,7 +98,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
     _bgWidth = Global.device.width - 28.0;
     if (_bgWidth > 380) _bgWidth = 380;
-    print('wallet bg w$_bgWidth*h$_bgHeight');
+    debugPrint('wallet bg w$_bgWidth*h$_bgHeight');
 
     _credit = widget.store.wallet.credit;
     _walletType = (widget.store.wallet.auto == WalletType.SINGLE.value)
@@ -361,7 +361,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                         setState(() {
                           _selected = value;
                         });
-                        print('selected: $_selected');
+                        debugPrint('selected: $_selected');
                       },
                     ),
                     Text(

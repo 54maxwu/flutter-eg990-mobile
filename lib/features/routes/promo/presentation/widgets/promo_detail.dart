@@ -108,10 +108,8 @@ class _PromoDetailState extends State<PromoDetail> {
           ),
         if (html.isEmpty)
           WarningDisplay(
-            message: Failure.internal(FailureCode(
-              type: FailureType.PROMO,
-              code: 1,
-            )).message,
+            message:
+                Failure.internal(FailureCode(type: FailureType.PROMO)).message,
           ),
       ],
     );

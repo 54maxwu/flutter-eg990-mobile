@@ -32,21 +32,6 @@ mixin _$BalanceStore on _BalanceStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_BalanceStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$balanceUpdatedAtom = Atom(name: '_BalanceStore.balanceUpdated');
 
   @override
@@ -91,6 +76,21 @@ mixin _$BalanceStore on _BalanceStore, Store {
     _$waitForTransferResultAtom.reportWrite(value, super.waitForTransferResult,
         () {
       super.waitForTransferResult = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_BalanceStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
     });
   }
 
@@ -142,11 +142,11 @@ mixin _$BalanceStore on _BalanceStore, Store {
   @override
   String toString() {
     return '''
-errorMessage: $errorMessage,
-balanceUpdated: $balanceUpdated,
-transferResult: $transferResult,
-waitForTransferResult: $waitForTransferResult,
-state: $state
+balanceUpdated: ${balanceUpdated},
+transferResult: ${transferResult},
+waitForTransferResult: ${waitForTransferResult},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

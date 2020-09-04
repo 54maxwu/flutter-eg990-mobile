@@ -12,14 +12,16 @@ class BetRecordApi {
 
 abstract class BetRecordRepository {
   Future<Either<Failure, List<BetRecordTypeModel>>> getTypeData();
+
   Future<Either<Failure, BetRecordModel>> getRecord(BetRecordForm form);
+
   Future<Either<Failure, List<BetRecordDataAllPlatform>>> getRecordAll(
       BetRecordForm form);
 }
 
 class BetRecordRepositoryImpl implements BetRecordRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'BetRecordRepository';
 
   BetRecordRepositoryImpl(
@@ -40,7 +42,8 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
     if (result.isLeft()) return result;
     var modelList = result.getOrElse(() => []);
     if (modelList.isEmpty)
-      return Left(Failure.internal(FailureCode(type: FailureType.BETS)));
+      return Left(
+          Failure.internal(FailureCode(type: FailureType.BETS, code: 1)));
 
     final result2 = await requestData(
       request: dioApiService.get(

@@ -89,13 +89,17 @@ const Map<String, GameCategory> _categoryMap = {
 ///
 /// Define Category Font Icon
 ///
-const _promoIcon = const IconData(0xe965, fontFamily: 'IconMoon');
-const _websiteIcon = const IconData(0xe905, fontFamily: 'IconMoon');
+const _promoIcon = const IconData(0xf06b, fontFamily: 'FontAwesome');
+//const _promoIcon = const IconData(0xe965, fontFamily: 'IconMoon');
+const _websiteIcon = const IconData(0xf08e, fontFamily: 'FontAwesome');
+//const _websiteIcon = const IconData(0xe905, fontFamily: 'IconMoon');
 const _unknownIcon = const IconData(0xe145, fontFamily: 'MaterialIcons');
 
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
+
   String get iconUrl => info.value.imageUrl ?? '';
+
   GamePageType get pageType => info.value.pageType;
 
   IconData get iconCode {

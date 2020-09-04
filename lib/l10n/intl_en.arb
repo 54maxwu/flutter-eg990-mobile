@@ -87,7 +87,7 @@
   "@pageTitleRegister": {
     "type": "text"
   },
-"pageTitleRegisterFree": "Register Free",
+  "pageTitleRegisterFree": "Register Free",
   "@pageTitleRegisterFree": {
     "type": "text"
   },

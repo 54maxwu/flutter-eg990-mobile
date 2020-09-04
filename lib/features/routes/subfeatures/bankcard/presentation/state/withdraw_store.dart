@@ -27,13 +27,24 @@ abstract class _WithdrawStore with Store {
   @observable
   WithdrawModel withdrawResult;
 
+  String cgpUrl = '';
+  String cpwUrl = '';
+  String rollback = '';
+
   @observable
   String errorMessage;
 
-  String cgpUrl = '';
-  String cpwUrl = '';
-  // TODO need rollback data to adjust data flow
-  String rollback = '';
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.WITHDRAW,
+          code: code,
+        )).message;
+  }
 
   @computed
   WithdrawStoreState get state {
@@ -66,7 +77,7 @@ abstract class _WithdrawStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch cgp wallet. Is the device online?";
+      setErrorMsg(code: 2);
     }
   }
 
@@ -86,7 +97,7 @@ abstract class _WithdrawStore with Store {
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch cpw wallet. Is the device online?";
+      setErrorMsg(code: 3);
     }
   }
 
@@ -99,12 +110,12 @@ abstract class _WithdrawStore with Store {
       await _repository.getRollback().then((result) {
         debugPrint('rollback result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => rollback = data,
         );
       });
     } on Exception {
-      errorMessage = "Couldn't fetch rollback. Is the device online?";
+      setErrorMsg(code: 1);
     }
   }
 
@@ -128,15 +139,14 @@ abstract class _WithdrawStore with Store {
             else if (failure.message == 'wrongPassword')
               errorMessage = localeStr.messageInvalidWithdrawPassword;
             else
-              errorMessage = failure.message;
+              setErrorMsg(msg: failure.message, showOnce: true);
           },
           (data) => withdrawResult = data,
         );
       });
     } on Exception {
       waitForWithdrawResult = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WITHDRAW)).message;
+      setErrorMsg(code: 4);
     }
   }
 }

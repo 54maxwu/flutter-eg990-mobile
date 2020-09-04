@@ -24,6 +24,18 @@ abstract class _TransactionStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.TRANSACTIONS,
+          code: code,
+        )).message;
+  }
+
   @action
   Future getRecord({
     int page = 1,
@@ -40,7 +52,7 @@ abstract class _TransactionStore with Store {
           .getDataModel(page, selection)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (model) {
                 print('transaction data result: $model');
                 dataModel = model;
@@ -51,8 +63,7 @@ abstract class _TransactionStore with Store {
           .whenComplete(() => waitForPageData = false);
     } on Exception {
       waitForPageData = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSACTIONS)).message;
+      setErrorMsg(code: 1);
     }
   }
 }

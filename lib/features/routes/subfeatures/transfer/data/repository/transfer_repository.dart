@@ -12,20 +12,20 @@ class TransferApi {
 
 abstract class TransferRepository {
   Future<Either<Failure, TransferPlatformList>> getPlatform();
+
   Future<Either<Failure, TransferBalanceModel>> getBalance(String platform);
+
   Future<Either<Failure, RequestStatusModel>> postTransfer(TransferForm form);
 }
 
 class TransferRepositoryImpl implements TransferRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'TransferRepository';
-  bool jwtChecked = false;
 
   TransferRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override

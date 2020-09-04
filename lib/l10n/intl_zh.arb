@@ -749,7 +749,6 @@
   "@homeHintMemberCreditLeft": {
     "type": "text"
   },
-
   "homeHintDefaultMarquee": "尊敬的会员您好！如果您有任何使用上的问题，请使用在线客服系统。",
   "@homeHintDefaultMarquee": {
     "type": "text"

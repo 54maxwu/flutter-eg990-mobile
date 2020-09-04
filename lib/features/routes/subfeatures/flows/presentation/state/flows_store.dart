@@ -21,6 +21,18 @@ abstract class _FlowsStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.FLOWS,
+          code: code,
+        )).message;
+  }
+
   @action
   Future getRecord({
     int page = 1,
@@ -36,7 +48,7 @@ abstract class _FlowsStore with Store {
           .getDataModel(page)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
                 debugPrint('flow data result: $list');
                 dataList = list;
@@ -45,8 +57,7 @@ abstract class _FlowsStore with Store {
           )
           .whenComplete(() => waitForPageData = false);
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSACTIONS)).message;
+      setErrorMsg(code: 1);
     }
   }
 }

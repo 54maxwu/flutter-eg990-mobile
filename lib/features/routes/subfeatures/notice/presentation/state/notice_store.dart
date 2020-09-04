@@ -22,6 +22,18 @@ abstract class _NoticeStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.NOTICE,
+          code: code,
+        )).message;
+  }
+
   @computed
   NoticeStoreState get state {
     // If the user has not yet triggered a action or there has been an error
@@ -45,7 +57,7 @@ abstract class _NoticeStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _dataFuture.then(
         (result) => result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (model) {
             dataModel = model;
             debugPrint('notice data: $dataModel');
@@ -53,12 +65,11 @@ abstract class _NoticeStore with Store {
         ),
       );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.NOTICE)).message;
+      setErrorMsg(code: 1);
     }
   }
 
   List<NoticeData> get getMaintenanceList => dataModel.data.maintenanceList;
+
   List<NoticeData> get getMarqueeList => dataModel.data.marqueeList;
 }

@@ -17,7 +17,7 @@ part 'center_store.g.dart';
 
 class CenterStore = _CenterStore with _$CenterStore;
 
-enum CenterStoreState { initial, loading, loaded }
+enum CenterStoreState { initial, loading, loaded, error }
 
 enum CenterStoreAction {
   password,
@@ -65,6 +65,8 @@ abstract class _CenterStore with Store {
   @observable
   bool accountDataReady = false;
 
+  Box _loginDataBox;
+
   CenterAccountEntity accountEntity;
   List<int> accountLotto;
   CenterVipEntity accountVip;
@@ -73,7 +75,9 @@ abstract class _CenterStore with Store {
   List<String> cpwUrl;
 
   Stream<CenterAccountEntity> get accountStream => _accountController.stream;
+
   Stream<List<int>> get lottoStream => _lottoController.stream;
+
   Stream<CenterVipEntity> get vipStream => _vipController.stream;
 
   CenterStoreAction currentRequest;
@@ -87,7 +91,19 @@ abstract class _CenterStore with Store {
   @observable
   String errorMessage;
 
-  Box _loginDataBox;
+  String _lastError;
+
+  bool _errorState = false;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.CENTER,
+          code: code,
+        )).message;
+  }
 
   @computed
   CenterStoreState get state {
@@ -95,6 +111,9 @@ abstract class _CenterStore with Store {
     if (_accountFuture == null ||
         _accountFuture.status == FutureStatus.rejected) {
       return CenterStoreState.initial;
+    }
+    if (_errorState) {
+      return CenterStoreState.error;
     }
     // Pending Future means "loading"
     // Fulfilled Future means "loaded"
@@ -114,7 +133,10 @@ abstract class _CenterStore with Store {
       await _accountFuture.then((result) {
 //        debugPrint('center data result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) {
+            setErrorMsg(msg: failure.message, showOnce: true);
+            _errorState = true;
+          },
           (model) {
             if (model.cgpWallet.isEmpty && cgpUrl == null) getCgpUrl();
             if (model.cpwWallet.isEmpty && cpwUrl == null) getCpwUrl();
@@ -126,8 +148,8 @@ abstract class _CenterStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.CENTER)).message;
+      _errorState = true;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -140,7 +162,7 @@ abstract class _CenterStore with Store {
       await _repository.getCgpBindUrl().then((result) {
 //        debugPrint('cpg url result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             if (list.isEmpty) {
               errorMessage = '${localeStr.messageErrorBindUrl('CGP')}';
@@ -165,7 +187,7 @@ abstract class _CenterStore with Store {
       await _repository.getCpwBindUrl().then((result) {
 //        debugPrint('cpw url result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             if (list.isEmpty) {
               errorMessage = '${localeStr.messageErrorBindUrl('CPW')}';
@@ -200,7 +222,7 @@ abstract class _CenterStore with Store {
       await _repository.postPassword(form).then((result) {
 //        debugPrint('center password result: $result');
         return result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data.isSuccess &&
                 _loginDataBox != null &&
@@ -226,9 +248,7 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -279,7 +299,7 @@ abstract class _CenterStore with Store {
       await task(data).then((result) {
 //        debugPrint('center $action result: $result');
         return result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (RequestStatusModel data) {
             if (data.isSuccess) callback();
             requestResponse = data;
@@ -288,9 +308,7 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -307,7 +325,7 @@ abstract class _CenterStore with Store {
       await _repository.postLucky(numbers).then((result) {
 //        debugPrint('center lotto result: $result');
         return result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data.isSuccess) {
               _lottoController.sink
@@ -319,9 +337,7 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -338,15 +354,13 @@ abstract class _CenterStore with Store {
       await _repository.postVerifyRequest(mobile).then((result) {
         debugPrint('center verify request result: $result');
         return result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => requestResponse = data,
         );
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      setErrorMsg(code: 5);
     }
   }
 
@@ -363,7 +377,7 @@ abstract class _CenterStore with Store {
       await _repository.postVerify(mobile, code).then((result) {
         debugPrint('center verify result: $result');
         return result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data.isSuccess)
               Future.delayed(Duration(milliseconds: 300), () => getAccount());
@@ -374,7 +388,7 @@ abstract class _CenterStore with Store {
     } on Exception {
       waitForResponse = false;
       errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
+        FailureCode(type: FailureType.CENTER, code: 6),
       ).message;
     }
   }

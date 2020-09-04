@@ -70,8 +70,10 @@ class Themes {
   // default color or selected
   static const buttonPrimaryColor = Color(0xffe7c080);
   static const buttonTextPrimaryColor = Color(0xff000000);
+
   // unselected button
   static const buttonSecondaryColor = Color(0xff3b3b3b);
+
   // sub color button (ex. readme)
   static const buttonSubColor = Color(0xff3b3b3b);
   static const buttonTextSubColor = Color(0xffe6e6e6);
@@ -341,9 +343,11 @@ class Themes {
       focusedErrorBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
-      filled: true, // filled the field with color
+      // filled the field with color
+      filled: true,
       fillColor: fieldInputBgColor,
-      isDense: true, // used less vertical space
+      // used less vertical space
+      isDense: true,
       labelStyle: TextStyle(
         color: fieldInputHintColor,
         fontSize: FontSize.NORMAL.value,

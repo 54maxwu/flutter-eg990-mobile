@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/warning_display.dart';
 
 import 'state/deposit_store.dart';
 import 'widgets/deposit_display.dart';
@@ -66,6 +67,14 @@ class _DepositRouteState extends State<DepositRoute> {
                   return LoadingWidget();
                 case DepositStoreState.loaded:
                   return DepositDisplay(store: _store);
+                case DepositStoreState.error:
+                  return Center(
+                      child: WarningDisplay(
+                    message: Failure.internal(FailureCode(
+                      type: FailureType.DEPOSIT,
+                      code: 10,
+                    )).message,
+                  ));
                 default:
                   return SizedBox.shrink();
               }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>71741613638-5vroa8tn2vk358d1gs3ridqfkq6fm9je.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.71741613638-5vroa8tn2vk358d1gs3ridqfkq6fm9je</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC4ewrZYkQ_vfanUWeq38ctj6XynYFukK8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>71741613638</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.eg990.mobile</string>
+	<key>PROJECT_ID</key>
+	<string>eg990-ga</string>
+	<key>STORAGE_BUCKET</key>
+	<string>eg990-ga.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:71741613638:ios:4a6301becaf043245d0c47</string>
+	<key>DATABASE_URL</key>
+	<string>https://eg990-ga.firebaseio.com</string>
+</dict>
+</plist>

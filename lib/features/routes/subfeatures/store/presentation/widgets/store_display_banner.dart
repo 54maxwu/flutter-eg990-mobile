@@ -22,6 +22,7 @@ class StoreDisplayBanner extends StatefulWidget {
 
 class _StoreDisplayBannerState extends State<StoreDisplayBanner> {
   List<Widget> imageWidgets;
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

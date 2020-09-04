@@ -1,8 +1,4 @@
-import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:meta/meta.dart' show required;
-
-import 'member_jwt_interface.dart';
 
 class MemberApi {
   static const String GET_LIMIT = "api/get_account/creditlimit";
@@ -11,19 +7,18 @@ class MemberApi {
 
 abstract class MemberRepository {
   Future<Either<Failure, String>> updateCredit(String account);
+
   Future<Either<Failure, bool>> checkNewMessage();
 }
 
 class MemberRepositoryImpl implements MemberRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'MemberRepository';
-  bool jwtChecked = false;
 
   MemberRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override
@@ -68,7 +63,7 @@ class MemberRepositoryImpl implements MemberRepository {
             return Right(map['creditlimit']);
           } else {
             debugPrint('decoded: $map');
-            return Left(Failure.token());
+            return Left(Failure.token(FailureType.CREDIT));
           }
         } catch (e) {
           debugPrint('credit limit error: $e');

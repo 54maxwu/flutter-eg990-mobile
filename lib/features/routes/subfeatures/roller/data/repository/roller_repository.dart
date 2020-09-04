@@ -20,10 +20,15 @@ class RollerApi {
 
 abstract class RollerRepository {
   Future<Either<Failure, int>> getCount();
+
   Future<Either<Failure, RollerDataEntity>> getRollerData();
+
   Future<Either<Failure, int>> getWheelPrize();
+
   Future<Either<Failure, List<RollerOrderModel>>> getOrder();
+
   Future<Either<Failure, List<RollerRecordModel>>> getRecord();
+
   Future<Either<Failure, RollerRequirementModel>> getRequirement();
 
   Future<Either<Failure, RequestCodeModel>> applyCount(int questId);
@@ -31,15 +36,12 @@ abstract class RollerRepository {
 
 class RollerRepositoryImpl implements RollerRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'RollerRepository';
-  bool jwtChecked = false;
 
   RollerRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    if (jwtInterface.account.isNotEmpty)
-      Future.value(jwtInterface.checkJwt('/'))
-          .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override
@@ -99,7 +101,7 @@ class RollerRepositoryImpl implements RollerRepository {
       _getRollerRule(),
       _getRollerPrize(),
     ]).catchError((e) =>
-        Left(Failure.internal(FailureCode(code: FailureType.REPO.value))));
+        Left(Failure.internal(FailureCode(type: FailureType.ROLLER, code: 1))));
 //    print('roller future data list: $data');
     Either either =
         data.singleWhere((element) => element.isLeft(), orElse: () => null);
@@ -122,7 +124,8 @@ class RollerRepositoryImpl implements RollerRepository {
             : [],
       ));
     } on Exception {
-      return Left(Failure.internal(FailureCode(code: FailureType.REPO.value)));
+      return Left(
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 2)));
     }
   }
 

@@ -40,7 +40,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.STORE)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }

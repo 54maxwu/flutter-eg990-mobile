@@ -1,5 +1,4 @@
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../form/deposit_form.dart';
@@ -20,23 +19,26 @@ class DepositApi {
 
 abstract class DepositRepository {
   Future<Either<Failure, List<PaymentType>>> getPayment();
+
   Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo();
+
   Future<Either<Failure, List<DepositInfo>>> getDepositInfo();
+
   Future<Either<Failure, Map<int, String>>> getDepositBanks();
+
   Future<Either<Failure, Map<int, String>>> getDepositRule();
+
   Future<Either<Failure, DepositResult>> postDeposit(DepositDataForm form);
 }
 
 class DepositRepositoryImpl implements DepositRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'DepositRepository';
-  bool jwtChecked = false;
 
   DepositRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override
@@ -61,7 +63,7 @@ class DepositRepositoryImpl implements DepositRepository {
           return Left(Failure.dataType());
       } else {
         MyLogger.error(msg: 'payment data error: $data', tag: tag);
-        return Left(Failure.token());
+        return Left(Failure.token(FailureType.DEPOSIT));
       }
     });
   }
@@ -91,7 +93,7 @@ class DepositRepositoryImpl implements DepositRepository {
             return Left(Failure.dataType());
         } else {
           MyLogger.error(msg: 'payment promo data error: $data', tag: tag);
-          return Left(Failure.token());
+          return Left(Failure.token(FailureType.DEPOSIT));
         }
       },
     );

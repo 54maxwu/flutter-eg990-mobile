@@ -1,6 +1,4 @@
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
-import 'package:flutter_eg990_mobile/utils/json_util.dart';
 
 import '../form/center_password_form.dart';
 import '../models/center_model.dart';
@@ -21,30 +19,38 @@ class CenterApi {
 
 abstract class CenterRepository {
   Future<Either<Failure, CenterModel>> getAccount();
+
   Future<Either<Failure, List<String>>> getCgpBindUrl();
+
   Future<Either<Failure, List<String>>> getCpwBindUrl();
+
   Future<Either<Failure, RequestStatusModel>> postPassword(
       CenterPasswordForm form);
+
   Future<Either<Failure, RequestStatusModel>> postBirth(String dateOfBirth);
+
   Future<Either<Failure, RequestStatusModel>> postEmail(String email);
+
   Future<Either<Failure, RequestStatusModel>> postWechat(String wechatId);
+
   Future<Either<Failure, RequestStatusModel>> postLucky(List<int> numbers);
+
   Future<Either<Failure, RequestCodeModel>> postVerifyRequest(String mobile);
+
   Future<Either<Failure, RequestCodeModel>> postVerify(
       String mobile, String code);
 }
 
 class CenterRepositoryImpl implements CenterRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'CenterRepository';
-  bool jwtChecked = false;
 
   CenterRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
+
   @override
   Future<Either<Failure, CenterModel>> getAccount() async {
     final result = await requestModel<CenterModel>(
@@ -58,8 +64,9 @@ class CenterRepositoryImpl implements CenterRepository {
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (model) =>
-          (model.accountCode != null) ? Right(model) : Left(Failure.token()),
+      (model) => (model.accountCode != null)
+          ? Right(model)
+          : Left(Failure.token(FailureType.CENTER)),
     );
   }
 

@@ -29,10 +29,22 @@ abstract class _BetRecordStore with Store {
   Stream get dataStream => _dataController.stream;
 
   @observable
-  String errorMessage;
+  bool waitForRecordResponse = false;
 
   @observable
-  bool waitForRecordResponse = false;
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.BETS,
+          code: code,
+        )).message;
+  }
 
   @computed
   BetRecordStoreState get state {
@@ -57,7 +69,7 @@ abstract class _BetRecordStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _typeFuture.then(
         (result) => result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
             debugPrint('bet record types: ${list.length}');
             typeList = list;
@@ -65,9 +77,7 @@ abstract class _BetRecordStore with Store {
         ),
       );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BETS)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -84,7 +94,7 @@ abstract class _BetRecordStore with Store {
             .getRecordAll(form)
             .then(
               (result) => result.fold(
-                (failure) => errorMessage = failure.message,
+                (failure) => setErrorMsg(msg: failure.message, showOnce: true),
                 (list) {
                   debugPrint('type ${form.categoryId} bet record: $list');
                   _dataController.sink.add(list);
@@ -97,7 +107,7 @@ abstract class _BetRecordStore with Store {
             .getRecord(form)
             .then(
               (result) => result.fold(
-                (failure) => errorMessage = failure.message,
+                (failure) => setErrorMsg(msg: failure.message, showOnce: true),
                 (model) {
                   debugPrint('${form.platform} bet record: $model');
                   _dataController.sink.add(model);
@@ -107,10 +117,8 @@ abstract class _BetRecordStore with Store {
             .whenComplete(() => waitForRecordResponse = false);
       }
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       waitForRecordResponse = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BETS)).message;
+      setErrorMsg(code: 2);
     }
   }
 

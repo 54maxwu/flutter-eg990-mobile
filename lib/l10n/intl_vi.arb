@@ -87,7 +87,7 @@
   "@pageTitleRegister": {
     "type": "text"
   },
-"pageTitleRegisterFree": "thành viên Đăng ký",
+  "pageTitleRegisterFree": "thành viên Đăng ký",
   "@pageTitleRegisterFree": {
     "type": "text"
   },

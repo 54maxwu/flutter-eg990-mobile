@@ -8,7 +8,7 @@ export 'package:flutter_eg990_mobile/core/network/handler/request_code_model.dar
 export 'package:flutter_eg990_mobile/core/network/handler/request_handler.dart';
 export 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 export 'package:flutter_eg990_mobile/core/network/util/network_info.dart';
-export 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
+export 'package:flutter_eg990_mobile/features/user/data/repository/jwt_interface.dart';
 export 'package:flutter_eg990_mobile/mylogger.dart';
 export 'package:flutter_eg990_mobile/utils/json_util.dart';
 export 'package:meta/meta.dart' show required;

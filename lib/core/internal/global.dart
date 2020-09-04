@@ -8,13 +8,20 @@ class Global {
   /// Device Relative
   static Device device;
 
+  /// BuildType
+  static bool addAnalytics = true;
+
   /// APP Language
   static bool initLocale = false;
+
   // zh, th, en, vi
   static String _language = 'zh';
+
   // content_cn, content_th, content_us, content_vn
   static String _jsonContentKey = 'content_cn';
+
   static String get lang => _language;
+
   static String get jsonContentKey => _jsonContentKey;
 
   static set setLanguage(String langCode) {

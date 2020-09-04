@@ -25,14 +25,26 @@ abstract class _UpdateStore with Store {
 
   bool _dialogClosed = false;
 
-  @observable
-  String errorMessage;
-
   String get serverAppVersion => _updateVersion;
 
   String get serverAppUrl => _updateUrl;
 
   bool get showingUpdateDialog => !_dialogClosed;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.UPDATE,
+          code: code,
+        )).message;
+  }
 
   @action
   Future<bool> getVersion() async {
@@ -61,8 +73,7 @@ abstract class _UpdateStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.UPDATE)).message;
+      setErrorMsg(code: 1);
       return false;
     }
   }

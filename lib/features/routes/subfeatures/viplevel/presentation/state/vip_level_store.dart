@@ -22,6 +22,18 @@ abstract class _VipLevelStore with Store {
   @observable
   String errorMessage;
 
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.VIP_LEVEL,
+          code: code,
+        )).message;
+  }
+
   @computed
   VipLevelStoreState get state {
     // If the user has not yet triggered a action or there has been an error
@@ -46,14 +58,12 @@ abstract class _VipLevelStore with Store {
       await _levelFuture.then((result) {
 //        debugPrint('vip level result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (model) => levelModel = model,
         );
       });
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.VIP_LEVEL)).message;
+      setErrorMsg(code: 1);
     }
   }
 

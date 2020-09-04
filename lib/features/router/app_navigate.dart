@@ -123,6 +123,7 @@ class RouterNavigate {
   static final routerStreams = getAppGlobalStreams;
 
   static final String _tag = 'RouterNavigate';
+
   // TODO should replace with navigator stack or observer
   static String _currentRoute = '/';
   static String _previousRoute = '/';

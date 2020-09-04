@@ -11,7 +11,7 @@ description: EG990 mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.2+2
+version: 1.0.3+7
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -22,6 +22,10 @@ dependencies:
   meta: ^1.1.8
   flutter_localizations:
     sdk: flutter
+
+  # Firebase analytics
+  firebase_core: any
+  firebase_analytics: any
 
   # Object Injectors https://pub.dev/packages/get_it
   get_it: ^4.0.4

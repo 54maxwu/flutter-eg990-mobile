@@ -81,8 +81,19 @@ abstract class _EventStore with Store {
 
   bool get autoShowAds => !_showingAds && _showOnStartup && !_skipAds;
 
+  set setAutoShowAds(bool auto) => _showOnStartup = auto;
+
   @observable
   String errorMessage;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && msg == errorMessage) return;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.EVENT,
+          code: code,
+        )).message;
+  }
 
   @action
   Future<void> getWebsiteList() async {
@@ -92,7 +103,7 @@ abstract class _EventStore with Store {
     await _repository.getWebsiteList().then((result) {
       debugPrint('website list result: $result');
       result.fold(
-        (failure) => errorMessage = failure.message,
+        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
         (value) {},
       );
     });
@@ -107,14 +118,12 @@ abstract class _EventStore with Store {
       await _repository.checkNewMessage().then((result) {
         debugPrint('new message result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (value) => hasNewMessage = value,
         );
       });
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.EVENT)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -126,7 +135,7 @@ abstract class _EventStore with Store {
     await _repository.getEvent().then((result) {
       print('event result: $result');
       result.fold(
-        (failure) => errorMessage = failure.message,
+        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
         (model) {
           _event = model;
           showEventOnHome =
@@ -151,7 +160,7 @@ abstract class _EventStore with Store {
       print('event result: $result');
       return result.fold(
         (failure) {
-          errorMessage = failure.message;
+          setErrorMsg(msg: failure.message, showOnce: true);
           return false;
         },
         (model) async {
@@ -197,14 +206,12 @@ abstract class _EventStore with Store {
       // Fetch from the repository and wrap the regular Future into an observable.
       await _repository.getAds().then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) => _adsController.sink.add(List.from(list)),
             ),
           );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.EVENT)).message;
+      setErrorMsg(code: 2);
     }
   }
 

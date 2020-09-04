@@ -1,5 +1,4 @@
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
 
 import '../form/bankcard_form.dart';
 import '../models/bankcard_model.dart';
@@ -14,22 +13,24 @@ class BankcardApi {
 
 abstract class BankcardRepository {
   Future<Either<Failure, BankcardModel>> getBankcard();
+
   Future<Either<Failure, RequestCodeModel>> postBankcard(BankcardForm form);
+
   Future<Either<Failure, Map<String, String>>> getBanks();
+
   Future<Either<Failure, Map<String, String>>> getProvinces();
+
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
 }
 
 class BankcardRepositoryImpl implements BankcardRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'BankcardRepository';
-  bool jwtChecked = false;
 
   BankcardRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override

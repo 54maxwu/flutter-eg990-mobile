@@ -21,9 +21,6 @@ abstract class _WalletStore with Store {
   WalletModel wallet;
 
   @observable
-  String errorMessage;
-
-  @observable
   bool changeSuccess;
 
   @observable
@@ -46,6 +43,21 @@ abstract class _WalletStore with Store {
   bool transferSuccess;
 
   StringBuffer transferErrorList;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.WALLET,
+          code: code,
+        )).message;
+  }
 
   @computed
   WalletStoreState get state {
@@ -70,15 +82,14 @@ abstract class _WalletStore with Store {
       _walletFuture = ObservableFuture(_repository.getWallet());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _walletFuture.then((result) => result.fold(
-            (failure) => errorMessage = failure.message,
+            (failure) => setErrorMsg(msg: failure.message, showOnce: true),
             (data) {
               wallet = data;
               debugPrint('wallet updated: $wallet');
             },
           ));
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -95,7 +106,7 @@ abstract class _WalletStore with Store {
       await _repository
           .getWallet()
           .then((result) => result.fold(
-                (failure) => errorMessage = failure.message,
+                (failure) => setErrorMsg(msg: failure.message, showOnce: true),
                 (data) {
                   wallet = data;
                   debugPrint('wallet updated: $wallet');
@@ -104,8 +115,7 @@ abstract class _WalletStore with Store {
           .whenComplete(() => waitForUpdate = false);
     } on Exception {
       waitForUpdate = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -123,7 +133,7 @@ abstract class _WalletStore with Store {
           .postWalletType(toSingle)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (data) {
                 changeSuccess = data == 'success';
                 Future.delayed(Duration(milliseconds: 500), () => getWallet());
@@ -133,8 +143,7 @@ abstract class _WalletStore with Store {
           .whenComplete(() => waitForTypeChange = false);
     } on Exception {
       waitForTypeChange = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -189,8 +198,7 @@ abstract class _WalletStore with Store {
               Duration(milliseconds: 500), () => waitForTransfer = false));
     } on Exception {
       waitForTypeChange = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+      setErrorMsg(code: 4);
     }
   }
 

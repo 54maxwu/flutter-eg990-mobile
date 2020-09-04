@@ -28,8 +28,7 @@ import 'features/routes/subfeatures/viplevel/vip_level_inject.dart';
 import 'features/routes/subfeatures/wallet/wallet_inject.dart';
 import 'features/screen/web_game_screen_store.dart';
 import 'features/update/update_inject.dart';
-import 'features/user/login/login_inject.dart';
-import 'features/user/register/register_inject.dart';
+import 'features/user/user_repo_inject.dart';
 
 final sl = GetIt.instance;
 
@@ -65,9 +64,6 @@ Future<void> init() async {
   sl.registerLazySingleton<EventRepository>(
     () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
-  sl.registerLazySingleton<RegisterRepository>(
-    () => RegisterRepositoryImpl(dioApiService: sl()),
-  );
   sl.registerLazySingleton<PromoLocalStorage>(
     () => PromoLocalStorageImpl(),
   );
@@ -75,8 +71,8 @@ Future<void> init() async {
     () => PromoRepositoryImpl(
         dioApiService: sl(), localStorage: sl(), networkInfo: sl()),
   );
-  sl.registerLazySingleton<MemberJwtInterface>(
-    () => MemberJwtInterfaceImpl(dioApiService: sl()),
+  sl.registerLazySingleton<JwtInterface>(
+    () => JwtInterfaceImpl(dioApiService: sl()),
   );
   sl.registerLazySingleton<MemberRepository>(
     () => MemberRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
@@ -156,7 +152,7 @@ Future<void> init() async {
     () => LoginStore(sl<UserRepository>()),
   );
   sl.registerFactory(
-    () => RegisterStore(sl<RegisterRepository>(), sl<UserRepository>()),
+    () => RegisterStore(sl<UserRepository>()),
   );
   sl.registerFactory(
     () => PromoStore(sl<PromoRepository>()),

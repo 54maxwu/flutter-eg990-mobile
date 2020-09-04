@@ -4,19 +4,18 @@ import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
 import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart';
 
-import '../../data/form/register_form.dart';
-import '../../data/repository/register_repository.dart';
+import '../../../data/form/register_form.dart';
+import '../../../data/repository/user_repository.dart';
 
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
 
 abstract class _RegisterStore with Store {
-  final RegisterRepository _repository;
-  final UserRepository _userRepository;
+  final UserRepository _repository;
   final StreamController _loginController = StreamController.broadcast();
 
-  _RegisterStore(this._repository, this._userRepository);
+  _RegisterStore(this._repository);
 
   Stream get loginStream => _loginController.stream;
 
@@ -28,6 +27,18 @@ abstract class _RegisterStore with Store {
 
   @observable
   String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.REGISTER,
+          code: code,
+        )).message;
+  }
 
   @action
   Future<void> postRegister(RegisterForm form) async {
@@ -41,7 +52,7 @@ abstract class _RegisterStore with Store {
           .postRegister(form)
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (model) {
 //                print('register result: $model');
                 registerResult = model;
@@ -59,9 +70,7 @@ abstract class _RegisterStore with Store {
           .whenComplete(() => waitForRegister = false);
     } on Exception {
       waitForRegister = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.REGISTER)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -71,7 +80,7 @@ abstract class _RegisterStore with Store {
       // Reset the possible previous error message.
       errorMessage = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _userRepository.login(form).then(
+      await _repository.login(form).then(
             (result) => result.fold(
               (failure) {
                 print('auto login failed: $failure');
@@ -84,9 +93,7 @@ abstract class _RegisterStore with Store {
             ),
           );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.REGISTER)).message;
+      setErrorMsg(code: 2);
     }
   }
 

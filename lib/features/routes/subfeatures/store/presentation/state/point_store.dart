@@ -57,9 +57,6 @@ abstract class _PointStore with Store {
   Map<String, String> areaMap;
 
   @observable
-  String errorMessage;
-
-  @observable
   bool waitForInitializeData = false;
 
   @observable
@@ -70,6 +67,21 @@ abstract class _PointStore with Store {
 
   @observable
   bool waitForRecord = false;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.STORE,
+          code: code,
+        )).message;
+  }
 
   @computed
   PointStoreState get state {
@@ -95,7 +107,8 @@ abstract class _PointStore with Store {
         Future.value(
           _repository.getProduct().then(
                 (result) => result.fold(
-                  (failure) => errorMessage = failure.message,
+                  (failure) =>
+                      setErrorMsg(msg: failure.message, showOnce: true),
                   (list) => products = list,
                 ),
               ),
@@ -103,7 +116,8 @@ abstract class _PointStore with Store {
         Future.value(
           _repository.getBanners().then(
                 (result) => result.fold(
-                  (failure) => errorMessage = failure.message,
+                  (failure) =>
+                      setErrorMsg(msg: failure.message, showOnce: true),
                   (list) => banners = list,
                 ),
               ),
@@ -111,7 +125,8 @@ abstract class _PointStore with Store {
         Future.value(
           _repository.getPoint().then(
                 (result) => result.fold(
-                  (failure) => errorMessage = failure.message,
+                  (failure) =>
+                      setErrorMsg(msg: failure.message, showOnce: true),
                   (value) => _pointController.sink.add(value),
                 ),
               ),
@@ -119,7 +134,8 @@ abstract class _PointStore with Store {
         Future.value(
           _repository.getRules().then(
                 (result) => result.fold(
-                  (failure) => errorMessage = failure.message,
+                  (failure) =>
+                      setErrorMsg(msg: failure.message, showOnce: true),
                   (value) => rulesModel = value,
                 ),
               ),
@@ -129,9 +145,7 @@ abstract class _PointStore with Store {
       await _initFuture.whenComplete(() => waitForInitializeData = false);
     } on Exception {
       waitForInitializeData = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -144,7 +158,7 @@ abstract class _PointStore with Store {
       await _repository.getProvinces().then((result) {
 //        print('province map result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data != null && data.isNotEmpty) {
               provinceMap = data;
@@ -153,8 +167,7 @@ abstract class _PointStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -169,7 +182,7 @@ abstract class _PointStore with Store {
         result.fold(
           (failure) {
             if (showError)
-              errorMessage = failure.message;
+              setErrorMsg(msg: failure.message, showOnce: true);
             else
               print(failure.message);
           },
@@ -179,8 +192,7 @@ abstract class _PointStore with Store {
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -193,15 +205,14 @@ abstract class _PointStore with Store {
       await _repository.getMapByCode(cityCode).then((result) {
 //        print('area map result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data != null && data.isNotEmpty) areaMap = data;
           },
         );
       });
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -216,7 +227,7 @@ abstract class _PointStore with Store {
       await _repository.postExchange(form).then((result) {
 //        print('store exchange result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (model) {
             exchangeResult = model;
             if ((exchangeResult is RequestCodeModel ||
@@ -224,7 +235,8 @@ abstract class _PointStore with Store {
                 exchangeResult.isSuccess) {
               _repository.getPoint().then(
                     (result) => result.fold(
-                      (failure) => errorMessage = failure.message,
+                      (failure) =>
+                          setErrorMsg(msg: failure.message, showOnce: true),
                       (value) => _pointController.sink.add(value),
                     ),
                   );
@@ -234,8 +246,7 @@ abstract class _PointStore with Store {
       }).whenComplete(() => waitForExchange = false);
     } on Exception {
       waitForExchange = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 5);
     }
   }
 
@@ -247,13 +258,12 @@ abstract class _PointStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getRules().then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (value) => rulesModel = value,
             ),
           );
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 6);
     }
   }
 
@@ -268,15 +278,14 @@ abstract class _PointStore with Store {
           .getExchange(form ?? StoreExchangeHistoryInit())
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (value) => _recordController.sink.add(value),
             ),
           )
           .whenComplete(() => waitForRecord = false);
     } on Exception {
       waitForRecord = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+      setErrorMsg(code: 7);
     }
   }
 

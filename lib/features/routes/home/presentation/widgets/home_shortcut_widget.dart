@@ -18,6 +18,7 @@ import 'home_store_inherit_widget.dart';
 ///
 class HomeShortcutWidget extends StatefulWidget {
   final HomeDisplaySizeCalc sizeCalc;
+
   HomeShortcutWidget({
     Key key,
     @required this.sizeCalc,

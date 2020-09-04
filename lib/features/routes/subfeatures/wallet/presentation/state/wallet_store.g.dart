@@ -47,21 +47,6 @@ mixin _$WalletStore on _WalletStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_WalletStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$changeSuccessAtom = Atom(name: '_WalletStore.changeSuccess');
 
   @override
@@ -137,6 +122,21 @@ mixin _$WalletStore on _WalletStore, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_WalletStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$getWalletAsyncAction = AsyncAction('_WalletStore.getWallet');
 
   @override
@@ -172,14 +172,14 @@ mixin _$WalletStore on _WalletStore, Store {
   @override
   String toString() {
     return '''
-wallet: $wallet,
-errorMessage: $errorMessage,
-changeSuccess: $changeSuccess,
-waitForTypeChange: $waitForTypeChange,
-waitForTransfer: $waitForTransfer,
-transferProgress: $transferProgress,
-transferSuccess: $transferSuccess,
-state: $state
+wallet: ${wallet},
+changeSuccess: ${changeSuccess},
+waitForTypeChange: ${waitForTypeChange},
+waitForTransfer: ${waitForTransfer},
+transferProgress: ${transferProgress},
+transferSuccess: ${transferSuccess},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

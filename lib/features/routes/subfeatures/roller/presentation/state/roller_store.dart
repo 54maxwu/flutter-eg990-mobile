@@ -42,7 +42,9 @@ abstract class _RollerStore with Store {
   ObservableFuture<Either<Failure, RollerDataEntity>> _dataFuture;
 
   Stream<List<RollerOrderModel>> get orderStream => _orderController.stream;
+
   Stream<List<RollerRecordModel>> get recordStream => _recordController.stream;
+
   Stream<RollerRequirementModel> get requirementStream =>
       _requirementController.stream;
 
@@ -68,6 +70,18 @@ abstract class _RollerStore with Store {
 
   @observable
   String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.ROLLER,
+          code: code,
+        )).message;
+  }
 
   bool get canRoll => count != null && count > 0;
 
@@ -95,7 +109,7 @@ abstract class _RollerStore with Store {
       await _dataFuture.then((result) {
 //        print('roller init data result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             print('roller prize data: ${data.prizes}');
             print('roller init data, prize: ${data.prizes.length}');
@@ -104,9 +118,7 @@ abstract class _RollerStore with Store {
         );
       });
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -123,7 +135,7 @@ abstract class _RollerStore with Store {
           .then((result) => result.fold(
                 (failure) {
                   _orderController.sink.add([]);
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                 },
                 (list) {
                   if (list != null &&
@@ -140,8 +152,7 @@ abstract class _RollerStore with Store {
           .whenComplete(() => waitForOrder = false);
     } on Exception {
       waitForOrder = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -158,7 +169,7 @@ abstract class _RollerStore with Store {
           .then((result) => result.fold(
                 (failure) {
                   _recordController.sink.add([]);
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                 },
                 (list) {
                   if (list != null &&
@@ -175,8 +186,7 @@ abstract class _RollerStore with Store {
           .whenComplete(() => waitForRecord = false);
     } on Exception {
       waitForRecord = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -194,7 +204,7 @@ abstract class _RollerStore with Store {
                 (failure) {
                   _requirementController.sink
                       .add(RollerRequirementModel(hasData: false));
-                  errorMessage = failure.message;
+                  setErrorMsg(msg: failure.message, showOnce: true);
                 },
                 (data) {
                   if (data != null && requirement != data) {
@@ -209,8 +219,7 @@ abstract class _RollerStore with Store {
           .whenComplete(() => waitForRequirement = false);
     } on Exception {
       waitForRequirement = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -222,13 +231,12 @@ abstract class _RollerStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getCount().then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (value) => count = value,
             ),
           );
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 5);
     }
   }
 
@@ -241,7 +249,7 @@ abstract class _RollerStore with Store {
       return await _repository.applyCount(questId).then(
             (result) => result.fold(
               (failure) {
-                errorMessage = failure.message;
+                setErrorMsg(msg: failure.message, showOnce: true);
                 return false;
               },
               (result) {
@@ -255,8 +263,7 @@ abstract class _RollerStore with Store {
             ),
           );
     } on Exception {
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 6);
       return false;
     }
   }
@@ -273,7 +280,7 @@ abstract class _RollerStore with Store {
           .getWheelPrize()
           .then(
             (result) => result.fold(
-              (failure) => errorMessage = failure.message,
+              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (value) {
                 prizeId = value;
                 count -= 1;
@@ -283,8 +290,7 @@ abstract class _RollerStore with Store {
           .whenComplete(() => waitForPrize = false);
     } on Exception {
       waitForPrize = false;
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+      setErrorMsg(code: 7);
     }
   }
 

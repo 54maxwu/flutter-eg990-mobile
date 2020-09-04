@@ -195,7 +195,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.BETS)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }

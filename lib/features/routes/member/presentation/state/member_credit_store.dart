@@ -36,13 +36,22 @@ abstract class _MemberCreditStore with Store {
   @observable
   String credit = '';
 
-  @observable
-  String errorMessage;
-
   final String creditResetStr = '$creditSymbol---';
 
   void getUser() {
     user = getAppGlobalStreams.lastStatus.currentUser;
+  }
+
+  @observable
+  String errorMessage;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && msg == errorMessage) return;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.CREDIT,
+          code: code,
+        )).message;
   }
 
   @action
@@ -53,7 +62,7 @@ abstract class _MemberCreditStore with Store {
     await _repository.checkNewMessage().then((result) {
       debugPrint('new message result: $result');
       result.fold(
-        (failure) => errorMessage = failure.message,
+        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
         (value) => hasNewMessage = value,
       );
     });
@@ -68,7 +77,7 @@ abstract class _MemberCreditStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _creditFuture.then(
         (result) => result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (value) {
             getAppGlobalStreams.lastStatus.currentUser.updateCredit(value);
             credit = value;

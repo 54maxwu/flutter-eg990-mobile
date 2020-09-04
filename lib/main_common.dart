@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
@@ -16,6 +17,8 @@ import 'env/environment.dart';
 import 'features/main_app.dart';
 import 'injection_container.dart' as di;
 
+FirebaseAnalytics _analytics;
+
 Future<void> mainCommon(String env) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,11 @@ Future<void> mainCommon(String env) async {
   switch (env) {
     case Environment.dev:
       debugPrint('App Config Version: ${ConfigReader.getVersion()}');
+      Global.addAnalytics = false;
+      break;
+    case Environment.release:
+      debugPrint('App Config Version: ${ConfigReader.getVersion()}');
+      Global.addAnalytics = true;
       break;
   }
 
@@ -79,8 +87,12 @@ Future<void> mainCommon(String env) async {
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
+  // Google Firebase
+  if (Global.addAnalytics) {
+    _analytics = FirebaseAnalytics();
+  }
   // run application
-  runApp(new MainApp());
+  runApp(new MainApp(_analytics));
 }
 
 void _setupLogging() {

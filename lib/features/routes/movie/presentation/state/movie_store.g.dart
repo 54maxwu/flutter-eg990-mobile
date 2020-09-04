@@ -24,21 +24,6 @@ mixin _$MovieStore on _MovieStore, Store {
               name: '_MovieStore.egRouteState'))
       .value;
 
-  final _$errorMessageAtom = Atom(name: '_MovieStore.errorMessage');
-
-  @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
-  }
-
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
   final _$_tabInitFutureAtom = Atom(name: '_MovieStore._tabInitFuture');
 
   @override
@@ -163,6 +148,21 @@ mixin _$MovieStore on _MovieStore, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_MovieStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$getTabInitializeDataAsyncAction =
       AsyncAction('_MovieStore.getTabInitializeData');
 
@@ -254,13 +254,13 @@ mixin _$MovieStore on _MovieStore, Store {
   @override
   String toString() {
     return '''
-errorMessage: ${errorMessage},
 waitForTabInitializeData: ${waitForTabInitializeData},
 waitForRouteInitializeData: ${waitForRouteInitializeData},
 waitForMovieData: ${waitForMovieData},
 changeCategory: ${changeCategory},
 waitForMoviePost: ${waitForMoviePost},
 waitForHotMovies: ${waitForHotMovies},
+errorMessage: ${errorMessage},
 tabState: ${tabState},
 egRouteState: ${egRouteState}
     ''';

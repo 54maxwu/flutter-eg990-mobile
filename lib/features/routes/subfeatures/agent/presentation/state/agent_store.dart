@@ -62,19 +62,21 @@ abstract class _AgentStore with Store {
     });
   }
 
-  @observable
-  ObservableFuture<Either<Failure, AgentModel>> _agentFuture;
-
   Stream<AgentModel> get agentStream => _agentController.stream;
+
   Stream<List<AgentCommissionModel>> get commissionStream =>
       _commissionController.stream;
+
   Stream<List<AgentChartModel>> get reportStream => _reportController.stream;
+
   Stream<AgentLedgerModel> get ledgerStream => _ledgerController.stream;
+
   Stream<List<AgentAdModel>> get adStream => _adController.stream;
+
   Stream<List<AgentAdModel>> get mergeAdStream => _mergeAdController.stream;
 
   @observable
-  String errorMessage;
+  ObservableFuture<Either<Failure, AgentModel>> _agentFuture;
 
   @observable
   bool waitForAgentResponse = false;
@@ -83,6 +85,21 @@ abstract class _AgentStore with Store {
   dynamic mergeAdResult;
 
   AgentModel agentData;
+
+  @observable
+  String errorMessage;
+
+  String _lastError;
+
+  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+    if (showOnce && _lastError != null && msg == _lastError) return;
+    if (msg.isNotEmpty) _lastError = msg;
+    errorMessage = msg ??
+        Failure.internal(FailureCode(
+          type: type ?? FailureType.AGENT,
+          code: code,
+        )).message;
+  }
 
   @computed
   AgentStoreState get state {
@@ -109,15 +126,13 @@ abstract class _AgentStore with Store {
       await _agentFuture.then((result) {
         debugPrint('agent result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _agentController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 1);
     }
   }
 
@@ -132,15 +147,13 @@ abstract class _AgentStore with Store {
       await _repository.postAgentStatus().then((result) {
         debugPrint('agent qr result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _agentController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 2);
     }
   }
 
@@ -155,15 +168,13 @@ abstract class _AgentStore with Store {
       await _repository.getCommission().then((result) {
         debugPrint('agent commission result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _commissionController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 3);
     }
   }
 
@@ -182,15 +193,13 @@ abstract class _AgentStore with Store {
       await _repository.getReport(time: time, type: type).then((result) {
 //        debugPrint('agent report result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _reportController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 4);
     }
   }
 
@@ -211,15 +220,13 @@ abstract class _AgentStore with Store {
           .then((result) {
         debugPrint('agent ledger result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _ledgerController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 5);
     }
   }
 
@@ -234,7 +241,7 @@ abstract class _AgentStore with Store {
       await _repository.getAds().then((result) {
         debugPrint('agent available ad data: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _adController.sink.add(data),
         );
       }).whenComplete(() {
@@ -245,9 +252,7 @@ abstract class _AgentStore with Store {
       });
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 6);
     }
   }
 
@@ -262,15 +267,13 @@ abstract class _AgentStore with Store {
       await _repository.getMergeAds().then((result) {
         debugPrint('agent merged ads data: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => _mergeAdController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 7);
     }
   }
 
@@ -285,7 +288,7 @@ abstract class _AgentStore with Store {
       await _repository.postAgentAd(id).then((result) {
         debugPrint('merge ad result: $result');
         result.fold(
-          (failure) => errorMessage = failure.message,
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             if (data.isSuccess) {
               mergeAdResult = data;
@@ -299,9 +302,7 @@ abstract class _AgentStore with Store {
       });
     } on Exception {
       waitForAgentResponse = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+      setErrorMsg(code: 8);
     }
   }
 

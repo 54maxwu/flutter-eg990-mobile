@@ -39,3 +39,5 @@ lib/generated_plugin_registrant.dart
 /android/keystore.properties
 /android/mobileapp.keystore
 /config/
+/ios/GoogleService-Info.plist
+/ios/Runner/GoogleService-Info.plist
