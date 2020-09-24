@@ -1,6 +1,6 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TestAreaRoute extends StatefulWidget {
@@ -29,7 +29,7 @@ class _TestAreaRouteState extends State<TestAreaRoute> with AfterLayoutMixin {
         child: Text(
           '0926908818',
           style: TextStyle(
-            color: Themes.hintHyperLink,
+            color: themeColor.hintHyperLink,
             decoration: TextDecoration.underline,
           ),
         ),

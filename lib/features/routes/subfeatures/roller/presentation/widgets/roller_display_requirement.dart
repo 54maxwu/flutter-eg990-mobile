@@ -101,7 +101,7 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                     child: Text(
                       localeStr.wheelTextTitlePrize,
                       style: TextStyle(
-                        color: Themes.defaultAccentColor,
+                        color: themeColor.defaultAccentColor,
                         fontSize: FontSize.TITLE.value,
                       ),
                     ),
@@ -214,10 +214,10 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                     dataTexts[index],
                     style: TextStyle(
                       fontSize: FontSize.NORMAL.value,
-                      color: Themes.buttonTextPrimaryColor,
+                      color: themeColor.buttonTextPrimaryColor,
                     ),
                   ),
-                  disabledColor: Themes.buttonDisabledColor,
+                  disabledColor: themeColor.buttonDisabledColor,
                   visualDensity:
                       VisualDensity(horizontal: -2.0, vertical: -3.0),
                   onPressed: (applied || !canComplete)
@@ -230,7 +230,7 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                         })
               : TableCellTextWidget(
                   text: '${dataTexts[index]}',
-                  textColor: Themes.hintHighlightOrangeStrong,
+                  textColor: themeColor.hintHighlightOrangeStrong,
                 ),
         ),
       );

@@ -215,9 +215,6 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
                     padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 24.0),
                     child: RaisedButton(
                       child: Text(localeStr.btnLogin),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                      ),
                       onPressed: () {
                         if (_waiting) return;
                         _waiting = true;
@@ -264,7 +261,7 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
               child: Text(
                 localeStr.hintTitleLogin,
                 textAlign: TextAlign.left,
-                style: TextStyle(color: Themes.defaultHintColor),
+                style: TextStyle(color: themeColor.defaultHintColor),
               ),
             ),
             new CustomizeFieldWidget(

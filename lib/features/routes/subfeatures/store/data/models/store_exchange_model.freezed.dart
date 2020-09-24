@@ -9,6 +9,7 @@ part of 'store_exchange_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreExchangeModelTearOff {
   const _$StoreExchangeModelTearOff();
 
@@ -48,9 +49,11 @@ class _$StoreExchangeModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreExchangeModel = _$StoreExchangeModelTearOff();
 
+/// @nodoc
 mixin _$StoreExchangeModel {
   @JsonKey(name: 'current_page')
   int get currentPage;
@@ -74,6 +77,7 @@ mixin _$StoreExchangeModel {
   $StoreExchangeModelCopyWith<StoreExchangeModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreExchangeModelCopyWith<$Res> {
   factory $StoreExchangeModelCopyWith(
           StoreExchangeModel value, $Res Function(StoreExchangeModel) then) =
@@ -99,6 +103,7 @@ abstract class $StoreExchangeModelCopyWith<$Res> {
           List<StoreExchangeData> data});
 }
 
+/// @nodoc
 class _$StoreExchangeModelCopyWithImpl<$Res>
     implements $StoreExchangeModelCopyWith<$Res> {
   _$StoreExchangeModelCopyWithImpl(this._value, this._then);
@@ -141,6 +146,7 @@ class _$StoreExchangeModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreExchangeModelCopyWith<$Res>
     implements $StoreExchangeModelCopyWith<$Res> {
   factory _$StoreExchangeModelCopyWith(
@@ -168,6 +174,7 @@ abstract class _$StoreExchangeModelCopyWith<$Res>
           List<StoreExchangeData> data});
 }
 
+/// @nodoc
 class __$StoreExchangeModelCopyWithImpl<$Res>
     extends _$StoreExchangeModelCopyWithImpl<$Res>
     implements _$StoreExchangeModelCopyWith<$Res> {
@@ -212,6 +219,7 @@ class __$StoreExchangeModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreExchangeModel implements _StoreExchangeModel {
   const _$_StoreExchangeModel(
       {@JsonKey(name: 'current_page') this.currentPage,
@@ -369,6 +377,7 @@ abstract class _StoreExchangeModel implements StoreExchangeModel {
   _$StoreExchangeModelCopyWith<_StoreExchangeModel> get copyWith;
 }
 
+/// @nodoc
 class _$StoreExchangeDataTearOff {
   const _$StoreExchangeDataTearOff();
 
@@ -397,9 +406,11 @@ class _$StoreExchangeDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreExchangeData = _$StoreExchangeDataTearOff();
 
+/// @nodoc
 mixin _$StoreExchangeData {
   int get id;
   String get code;
@@ -415,6 +426,7 @@ mixin _$StoreExchangeData {
   $StoreExchangeDataCopyWith<StoreExchangeData> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreExchangeDataCopyWith<$Res> {
   factory $StoreExchangeDataCopyWith(
           StoreExchangeData value, $Res Function(StoreExchangeData) then) =
@@ -431,6 +443,7 @@ abstract class $StoreExchangeDataCopyWith<$Res> {
       String status});
 }
 
+/// @nodoc
 class _$StoreExchangeDataCopyWithImpl<$Res>
     implements $StoreExchangeDataCopyWith<$Res> {
   _$StoreExchangeDataCopyWithImpl(this._value, this._then);
@@ -465,6 +478,7 @@ class _$StoreExchangeDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreExchangeDataCopyWith<$Res>
     implements $StoreExchangeDataCopyWith<$Res> {
   factory _$StoreExchangeDataCopyWith(
@@ -483,6 +497,7 @@ abstract class _$StoreExchangeDataCopyWith<$Res>
       String status});
 }
 
+/// @nodoc
 class __$StoreExchangeDataCopyWithImpl<$Res>
     extends _$StoreExchangeDataCopyWithImpl<$Res>
     implements _$StoreExchangeDataCopyWith<$Res> {
@@ -519,6 +534,7 @@ class __$StoreExchangeDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreExchangeData implements _StoreExchangeData {
   const _$_StoreExchangeData(
       {this.id,

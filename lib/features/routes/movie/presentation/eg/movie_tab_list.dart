@@ -156,7 +156,7 @@ class MovieTabListState extends State<MovieTabList> {
             ],
             footer: MovieListFooter(
               extent: 40.0,
-              textColor: Themes.defaultAccentColor,
+              textColor: themeColor.defaultAccentColor,
             ),
             onLoad: (hasMore) ? () => _loadMore() : null,
           ),
@@ -179,7 +179,7 @@ class MovieTabListState extends State<MovieTabList> {
                 child: Icon(
                   Icons.expand_more,
                   size: 30.0,
-                  color: Themes.defaultAccentColor,
+                  color: themeColor.defaultAccentColor,
                 ),
               ),
             ),

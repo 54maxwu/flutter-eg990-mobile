@@ -22,9 +22,9 @@ abstract class _BetRecordStore with Store {
   }
 
   @observable
-  ObservableFuture<Either<Failure, List<BetRecordTypeModel>>> _typeFuture;
+  ObservableFuture<Either<Failure, List<BetRecordType>>> _typeFuture;
 
-  List<BetRecordTypeModel> typeList;
+  List<BetRecordType> typeList;
 
   Stream get dataStream => _dataController.stream;
 
@@ -36,7 +36,8 @@ abstract class _BetRecordStore with Store {
 
   String _lastError;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??

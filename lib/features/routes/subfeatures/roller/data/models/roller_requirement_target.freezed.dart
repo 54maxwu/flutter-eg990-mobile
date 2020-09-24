@@ -9,6 +9,7 @@ part of 'roller_requirement_target.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RollerRequirementTargetTearOff {
   const _$RollerRequirementTargetTearOff();
 
@@ -39,9 +40,11 @@ class _$RollerRequirementTargetTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RollerRequirementTarget = _$RollerRequirementTargetTearOff();
 
+/// @nodoc
 mixin _$RollerRequirementTarget {
   int get id;
   String get name;
@@ -59,6 +62,7 @@ mixin _$RollerRequirementTarget {
   $RollerRequirementTargetCopyWith<RollerRequirementTarget> get copyWith;
 }
 
+/// @nodoc
 abstract class $RollerRequirementTargetCopyWith<$Res> {
   factory $RollerRequirementTargetCopyWith(RollerRequirementTarget value,
           $Res Function(RollerRequirementTarget) then) =
@@ -76,6 +80,7 @@ abstract class $RollerRequirementTargetCopyWith<$Res> {
       int sort});
 }
 
+/// @nodoc
 class _$RollerRequirementTargetCopyWithImpl<$Res>
     implements $RollerRequirementTargetCopyWith<$Res> {
   _$RollerRequirementTargetCopyWithImpl(this._value, this._then);
@@ -112,6 +117,7 @@ class _$RollerRequirementTargetCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$RollerRequirementTargetCopyWith<$Res>
     implements $RollerRequirementTargetCopyWith<$Res> {
   factory _$RollerRequirementTargetCopyWith(_RollerRequirementTarget value,
@@ -131,6 +137,7 @@ abstract class _$RollerRequirementTargetCopyWith<$Res>
       int sort});
 }
 
+/// @nodoc
 class __$RollerRequirementTargetCopyWithImpl<$Res>
     extends _$RollerRequirementTargetCopyWithImpl<$Res>
     implements _$RollerRequirementTargetCopyWith<$Res> {
@@ -170,6 +177,7 @@ class __$RollerRequirementTargetCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_RollerRequirementTarget implements _RollerRequirementTarget {
   const _$_RollerRequirementTarget(
       {this.id,

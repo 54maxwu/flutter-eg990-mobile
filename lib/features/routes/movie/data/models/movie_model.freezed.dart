@@ -9,6 +9,7 @@ part of 'movie_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MovieModelTearOff {
   const _$MovieModelTearOff();
 
@@ -47,9 +48,11 @@ class _$MovieModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MovieModel = _$MovieModelTearOff();
 
+/// @nodoc
 mixin _$MovieModel {
   @JsonKey(name: 'bad_count')
   int get badCount;
@@ -73,6 +76,7 @@ mixin _$MovieModel {
   $MovieModelCopyWith<MovieModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $MovieModelCopyWith<$Res> {
   factory $MovieModelCopyWith(
           MovieModel value, $Res Function(MovieModel) then) =
@@ -94,6 +98,7 @@ abstract class $MovieModelCopyWith<$Res> {
       dynamic key});
 }
 
+/// @nodoc
 class _$MovieModelCopyWithImpl<$Res> implements $MovieModelCopyWith<$Res> {
   _$MovieModelCopyWithImpl(this._value, this._then);
 
@@ -137,6 +142,7 @@ class _$MovieModelCopyWithImpl<$Res> implements $MovieModelCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$MovieModelCopyWith<$Res> implements $MovieModelCopyWith<$Res> {
   factory _$MovieModelCopyWith(
           _MovieModel value, $Res Function(_MovieModel) then) =
@@ -159,6 +165,7 @@ abstract class _$MovieModelCopyWith<$Res> implements $MovieModelCopyWith<$Res> {
       dynamic key});
 }
 
+/// @nodoc
 class __$MovieModelCopyWithImpl<$Res> extends _$MovieModelCopyWithImpl<$Res>
     implements _$MovieModelCopyWith<$Res> {
   __$MovieModelCopyWithImpl(
@@ -204,6 +211,7 @@ class __$MovieModelCopyWithImpl<$Res> extends _$MovieModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MovieModel implements _MovieModel {
   const _$_MovieModel(
       {@JsonKey(name: 'bad_count') this.badCount,

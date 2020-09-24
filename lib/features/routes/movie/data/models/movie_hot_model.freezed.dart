@@ -9,6 +9,7 @@ part of 'movie_hot_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MovieHotModelTearOff {
   const _$MovieHotModelTearOff();
 
@@ -33,9 +34,11 @@ class _$MovieHotModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MovieHotModel = _$MovieHotModelTearOff();
 
+/// @nodoc
 mixin _$MovieHotModel {
   @JsonKey(name: 'good_count')
   int get goodCount;
@@ -49,6 +52,7 @@ mixin _$MovieHotModel {
   $MovieHotModelCopyWith<MovieHotModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $MovieHotModelCopyWith<$Res> {
   factory $MovieHotModelCopyWith(
           MovieHotModel value, $Res Function(MovieHotModel) then) =
@@ -63,6 +67,7 @@ abstract class $MovieHotModelCopyWith<$Res> {
       Object year});
 }
 
+/// @nodoc
 class _$MovieHotModelCopyWithImpl<$Res>
     implements $MovieHotModelCopyWith<$Res> {
   _$MovieHotModelCopyWithImpl(this._value, this._then);
@@ -93,6 +98,7 @@ class _$MovieHotModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$MovieHotModelCopyWith<$Res>
     implements $MovieHotModelCopyWith<$Res> {
   factory _$MovieHotModelCopyWith(
@@ -109,6 +115,7 @@ abstract class _$MovieHotModelCopyWith<$Res>
       Object year});
 }
 
+/// @nodoc
 class __$MovieHotModelCopyWithImpl<$Res>
     extends _$MovieHotModelCopyWithImpl<$Res>
     implements _$MovieHotModelCopyWith<$Res> {
@@ -141,6 +148,7 @@ class __$MovieHotModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MovieHotModel implements _MovieHotModel {
   const _$_MovieHotModel(
       {@JsonKey(name: 'good_count') this.goodCount,

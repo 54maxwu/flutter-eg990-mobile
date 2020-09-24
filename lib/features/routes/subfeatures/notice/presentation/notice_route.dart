@@ -48,15 +48,14 @@ class _NoticeRouteState extends State<NoticeRoute> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
+      onWillPop: () {
         debugPrint('pop notice route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(
         body: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/form/bankcard_form.dart';
 import '../../data/models/bankcard_model.dart';
@@ -65,11 +64,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
             ? _areaSelected
             : (_citySelected != null) ? _citySelected : '',
       );
-      if (dataForm.owner.hasInvalidChinese ||
-          dataForm.branch.hasInvalidChinese) {
-        callToast(localeStr.messageInvalidSymbol);
-        return;
-      }
       if (dataForm.isValid) {
         debugPrint('bankcard form: ${dataForm.toJson()}');
         if (widget.store.waitForNewCardResult)
@@ -183,10 +177,12 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleOwner,
                       errorMsg: localeStr.messageInvalidCardOwner,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 2, max: 12),
+                      validCondition: (value) => rangeCheck(
+                          value: value.length,
+                          min: InputLimit.NAME_MIN,
+                          max: InputLimit.NAME_MAX),
                       titleLetterSpacing: 4,
-                      maxInputLength: 12,
+                      maxInputLength: InputLimit.NAME_MAX,
                     ),
                     /* Bank Option */
                     CustomizeDropdownWidget(
@@ -208,10 +204,12 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleCardNumber,
                       errorMsg: localeStr.messageInvalidCardNumber,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 16, max: 19),
+                      validCondition: (value) => rangeCheck(
+                          value: value.length,
+                          min: InputLimit.CARD_MIN,
+                          max: InputLimit.CARD_MAX),
                       titleLetterSpacing: 4,
-                      maxInputLength: 19,
+                      maxInputLength: InputLimit.CARD_MAX,
                     ),
                     /* Branch Input Field */
                     new CustomizeFieldWidget(
@@ -221,10 +219,12 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleBankBranch,
                       errorMsg: localeStr.messageInvalidCardBankPoint,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 3, max: 10),
+                      validCondition: (value) => rangeCheck(
+                          value: value.length,
+                          min: InputLimit.NAME_MIN,
+                          max: InputLimit.NAME_MAX),
                       titleLetterSpacing: 4,
-                      maxInputLength: 10,
+                      maxInputLength: InputLimit.NAME_MAX,
                     ),
                   ],
                 ),

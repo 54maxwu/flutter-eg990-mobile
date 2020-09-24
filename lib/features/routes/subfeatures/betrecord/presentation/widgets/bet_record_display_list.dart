@@ -31,7 +31,7 @@ class BetRecordDisplayList extends StatelessWidget {
   ];
 
   final BorderSide _borderSide =
-      BorderSide(color: Themes.defaultBorderColor, width: 1.5);
+      BorderSide(color: themeColor.defaultBorderColor, width: 1.5);
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +78,8 @@ class BetRecordDisplayList extends StatelessWidget {
         return Container(
           decoration: new BoxDecoration(
             color: (index % 2 == 1)
-                ? Themes.defaultCardColor
-                : Themes.chartBgColor,
+                ? themeColor.defaultCardColor
+                : themeColor.chartBgColor,
             border: (index % 2 == 1)
                 ? null
                 : Border.symmetric(vertical: _borderSide),

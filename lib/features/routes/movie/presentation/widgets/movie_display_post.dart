@@ -232,7 +232,7 @@ class _MovieDisplayPostState extends State<MovieDisplayPost> {
                         text: widget.movie.title,
                         style: TextStyle(
                           fontSize: FontSize.MESSAGE.value,
-                          color: Themes.defaultAccentColor,
+                          color: themeColor.defaultAccentColor,
                         ),
                       ),
                     ],
@@ -249,7 +249,7 @@ class _MovieDisplayPostState extends State<MovieDisplayPost> {
                         localeStr.movieHintTextFree,
                         style: TextStyle(
                           fontSize: FontSize.SMALLER.value,
-                          color: Themes.iconColorGreen,
+                          color: themeColor.iconColorGreen,
                         ),
                       )
                     : (widget.movie.isPurchased || _justBuy)
@@ -257,14 +257,14 @@ class _MovieDisplayPostState extends State<MovieDisplayPost> {
                             localeStr.movieHintTextPurchased,
                             style: TextStyle(
                               fontSize: FontSize.SMALLER.value,
-                              color: Themes.defaultTextColor,
+                              color: themeColor.defaultTextColor,
                             ),
                           )
                         : Text(
                             localeStr.movieHintTextNotPurchased,
                             style: TextStyle(
                               fontSize: FontSize.SMALLER.value,
-                              color: Themes.hintHighlightRed,
+                              color: themeColor.hintHighlightRed,
                             ),
                           ),
               ),

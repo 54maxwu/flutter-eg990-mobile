@@ -75,7 +75,8 @@ class _PromoDisplayState extends State<PromoDisplay>
     try {
       if (_tabController != null) _tabController.dispose();
     } catch (e) {
-      MyLogger.warn(msg: '${e.runtimeType}', tag: "PromoDisplay", error: e);
+      MyLogger.warn(
+          msg: 'Dispose tab controller has exception: $e', tag: "PromoDisplay");
     }
     super.dispose();
   }
@@ -90,8 +91,8 @@ class _PromoDisplayState extends State<PromoDisplay>
         Container(
           padding: const EdgeInsets.only(right: 6.0, left: 5.0),
           child: TabBar(
-            unselectedLabelColor: Themes.promoTabTextColor,
-            labelColor: Themes.promoTabSelectedTextColor,
+            unselectedLabelColor: themeColor.promoTabTextColor,
+            labelColor: themeColor.promoTabSelectedTextColor,
             labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
             labelPadding: const EdgeInsets.only(top: 4.0),
             indicatorColor: Colors.transparent,
@@ -107,8 +108,8 @@ class _PromoDisplayState extends State<PromoDisplay>
                 height: (tabItemWidth < 72) ? tabItemWidth * 1.14 : 72,
                 decoration: BoxDecoration(
                   color: c == _current
-                      ? Themes.promoTabSelectedBgColor
-                      : Themes.promoTabBgColor,
+                      ? themeColor.promoTabSelectedBgColor
+                      : themeColor.promoTabBgColor,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Stack(
@@ -123,8 +124,8 @@ class _PromoDisplayState extends State<PromoDisplay>
                                 ? 6.0
                                 : 3.0,
                             color: c == _current
-                                ? Themes.promoTabSelectedIconColor
-                                : Themes.promoTabIconColor,
+                                ? themeColor.promoTabSelectedIconColor
+                                : themeColor.promoTabIconColor,
                             loadStateChanged: (ExtendedImageState state) {
                               switch (state.extendedImageLoadState) {
                                 case LoadState.completed:
@@ -132,7 +133,7 @@ class _PromoDisplayState extends State<PromoDisplay>
                                 case LoadState.failed:
                                   return Icon(
                                     Icons.broken_image,
-                                    color: Themes.promoTabIconColor,
+                                    color: themeColor.promoTabIconColor,
                                   );
                                 default:
                                   return null;
@@ -143,7 +144,7 @@ class _PromoDisplayState extends State<PromoDisplay>
                           child: Padding(
                             padding: const EdgeInsets.only(top: 3.0),
                             child: Text(
-                              c.value.label,
+                              c.label,
                               style: TextStyle(fontSize: FontSize.NORMAL.value),
                             ),
                           ),
@@ -156,7 +157,7 @@ class _PromoDisplayState extends State<PromoDisplay>
                         height: 2,
                         width: tabItemWidth,
                         child: ColoredBox(
-                          color: Themes.defaultAccentColor,
+                          color: themeColor.defaultAccentColor,
                         ),
                       ),
                     ),
@@ -184,7 +185,7 @@ class _PromoDisplayState extends State<PromoDisplay>
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    print('open promo id: ${widget.showPromoId}');
+    debugPrint('open promo id: ${widget.showPromoId}');
     if (contentWidget == null) {
       contentWidget = new TabsPageControlWidget(
         pageController: _pageController,
@@ -210,7 +211,7 @@ class _PromoDisplayState extends State<PromoDisplay>
       Future.delayed(Duration(milliseconds: 500), () {
         var promo = widget.promos
             .firstWhere((element) => element.id == widget.showPromoId);
-        print('debug show promo on home image click: $promo');
+        debugPrint('debug show promo on home image click: $promo');
         if (promo != null) {
           showDialog(
               context: context,

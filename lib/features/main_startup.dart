@@ -65,7 +65,8 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
       child: WillPopScope(
         onWillPop: () async {
           MyLogger.debug(
-              msg: 'pop screen ${ScreenNavigate.screenIndex}',
+              msg: 'pop screen ${ScreenNavigate.screenIndex}'
+                  'current route: ${RouterNavigate.current}',
               tag: 'MainStartup');
           if (ScreenNavigate.screenIndex == 1) {
             // Stop rotate sensor and clear web view cache
@@ -73,8 +74,10 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
             ScreenNavigate.switchScreen(screen: ScreenEnum.Feature);
           } else if (ScreenNavigate.screenIndex == 2) {
             ScreenNavigate.switchScreen();
-          } else {
+          } else if (RouterNavigate.current == '/') {
             return Future(() => true);
+          } else {
+            RouterNavigate.navigateBack();
           }
           return Future(() => false);
         },

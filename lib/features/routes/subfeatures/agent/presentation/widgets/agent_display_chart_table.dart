@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/table_fixed_widget.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/models/agent_chart_model.dart';

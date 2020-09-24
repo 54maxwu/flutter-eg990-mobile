@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 class BalanceActionDialog extends StatelessWidget {
   final bool isTransferIn;
@@ -61,7 +60,7 @@ class BalanceActionDialog extends StatelessWidget {
                 children: <Widget>[
                   RaisedButton(
                     child: Text(localeStr.btnCancel),
-                    color: Themes.pagerButtonColor,
+                    color: themeColor.pagerButtonColor,
                     onPressed: () {
                       Navigator.of(context).pop();
                     },

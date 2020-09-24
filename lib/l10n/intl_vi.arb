@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "85Bet Mobile",
+  "title": "EG990 Mobile",
   "@title": {
-    "description": "85Bet Demo",
+    "description": "EG990 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -35,8 +35,8 @@
   "@pageTitleRouter": {
     "type": "text"
   },
-  "pageTitleRank": "Cấp độ VIP",
-  "@pageTitleRank": {
+  "pageTitleVip": "VIP",
+  "@pageTitleVip": {
     "type": "text"
   },
   "pageTitleStore": "Trung tâm mua sắm",
@@ -59,7 +59,7 @@
   "@pageTitleDeposit": {
     "type": "text"
   },
-  "pageTitlePromo": "ƯU ĐÃI",
+  "pageTitlePromo": "KHUYẾN MÃI",
   "@pageTitlePromo": {
     "type": "text"
   },
@@ -167,6 +167,22 @@
         "example": "100.00"
       }
     }
+  },
+  "themeColorHintSelect": "Chọn màu chủ đề",
+  "@themeColorHintSelect": {
+    "type": "text"
+  },
+  "themeColorDefault": "Đặt trước",
+  "@themeColorDefault": {
+    "type": "text"
+  },
+  "themeColorDark": "Tối",
+  "@themeColorDark": {
+    "type": "text"
+  },
+  "themeColorLight": "Màu sáng",
+  "@themeColorLight": {
+    "type": "text"
   },
   "workInProgress": "Sắp có!",
   "@workInProgress": {
@@ -393,6 +409,10 @@
   "@messageActionFillForm": {
     "type": "text"
   },
+  "messageActionCheckTerms": "Vui lòng đọc và đánh dấu để đồng ý với các quy tắc cá cược",
+  "@messageActionCheckTerms": {
+    "type": "text"
+  },
   "messageLogout": "{name}，xin vui lòng đăng nhập lại",
   "@messageLogout": {
     "type": "text",
@@ -500,7 +520,7 @@
   "@messageInvalidPhone": {
     "type": "text"
   },
-  "messageInvalidPostCode": "Mã bưu điện không chính xác(5~6)",
+  "messageInvalidPostCode": "Mã bưu điện không chính xác(5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
@@ -525,11 +545,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Mật khẩu dài 6 ~ 20 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài 6 ~ 18 ký tự",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 20 ký tự",
+  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -728,6 +748,10 @@
   "@messagePartFailed": {
     "type": "text"
   },
+  "messageSentVerify": "mã xác minh đã gửi",
+  "@messageSentVerify": {
+    "type": "text"
+  },
   "homeHintWelcomeLogin": "Xin chào! Hãy đăng nhập với tư cách thành viên",
   "@homeHintWelcomeLogin": {
     "type": "text"
@@ -745,6 +769,10 @@
       }
     }
   },
+  "homeHintFreeUsage": "Dùng miễn phí",
+  "@homeHintFreeUsage": {
+    "type": "text"
+  },
   "homeHintMemberCreditLeft": "Thăng bằng",
   "@homeHintMemberCreditLeft": {
     "type": "text"
@@ -753,7 +781,7 @@
   "@homeHintDefaultMarquee": {
     "type": "text"
   },
-  "homeUserTabCategoryMovie": "Rạp chiếu phim",
+  "homeUserTabCategoryMovie": "XEM PHIM",
   "@homeUserTabCategoryMovie": {
     "type": "text"
   },
@@ -845,6 +873,18 @@
   "@gameCategoryWebHint": {
     "type": "text"
   },
+  "gameCategoryMovieWeb": "XEM PHIM",
+  "@gameCategoryMovieWeb": {
+    "type": "text"
+  },
+  "gameCategoryMovieWebHint": "Bấm để xem phim",
+  "@gameCategoryMovieWebHint": {
+    "type": "text"
+  },
+  "gameCategoryAbout": "VỀ CHÚNG TÔI",
+  "@gameCategoryAbout": {
+    "type": "text"
+  },
   "userPwdFieldTitleOld": "Mật khẩu cũ：",
   "@userPwdFieldTitleOld": {
     "type": "text"
@@ -910,6 +950,14 @@
   "@registerFieldTitlePhone": {
     "type": "text"
   },
+  "registerFieldTitleVerify": "Mã xác minh điện thoại di động",
+  "@registerFieldTitleVerify": {
+    "type": "text"
+  },
+  "registerFieldHintVerify": "Vui lòng nhập mã xác minh di động của bạn",
+  "@registerFieldHintVerify": {
+    "type": "text"
+  },
   "registerFieldTitleRecommend": "Mã đại lý",
   "@registerFieldTitleRecommend": {
     "type": "text"
@@ -920,6 +968,10 @@
   },
   "registerButtonTitleRegister": "đăng ký",
   "@registerButtonTitleRegister": {
+    "type": "text"
+  },
+  "registerButtonTitleSendVerify": "Gửi mã xác minh điện thoại",
+  "@registerButtonTitleSendVerify": {
     "type": "text"
   },
   "registerCheckButtonNews": "Nhận thông tin ưu đãi",
@@ -1094,7 +1146,7 @@
   "@bankcardViewTitleBankName": {
     "type": "text"
   },
-  "bankcardViewTitleCardNumber": "Số thẻ",
+  "bankcardViewTitleCardNumber": "Số tài khoản",
   "@bankcardViewTitleCardNumber": {
     "type": "text"
   },
@@ -1206,8 +1258,8 @@
   "@centerViewTitleLotto": {
     "type": "text"
   },
-  "centerViewTitleVip": "Cấp độ VIP",
-  "@centerViewTitleVip": {
+  "centerViewTitleVipRank": "Cấp độ VIP",
+  "@centerViewTitleVipRank": {
     "type": "text"
   },
   "centerTextTitleAccount": "Tên tài khoản",
@@ -1597,6 +1649,10 @@
   },
   "depositPaymentNoPromo": "Từ bỏ đề nghị",
   "@depositPaymentNoPromo": {
+    "type": "text"
+  },
+  "depositHintRedirectBankcard": "Vui lòng điền thông tin thẻ ngân hàng trước",
+  "@depositHintRedirectBankcard": {
     "type": "text"
   },
   "depositHintTextAccount": "Nạp thông tin tài khoản, vui lòng liên hệ với dịch vụ",
@@ -2093,7 +2149,7 @@
   "@agentLedgerHeaderWithdraw": {
     "type": "text"
   },
-  "agentLedgerHeaderPromo": "ƯU ĐÃI",
+  "agentLedgerHeaderPromo": "KHUYẾN MÃI",
   "@agentLedgerHeaderPromo": {
     "type": "text"
   },

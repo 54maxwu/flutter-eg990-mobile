@@ -96,8 +96,7 @@ class _AgentRouteState extends State<AgentRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop agent route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

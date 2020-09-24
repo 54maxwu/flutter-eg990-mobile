@@ -9,6 +9,7 @@ part of 'store_exchange_history_form.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreExchangeHistoryFormTearOff {
   const _$StoreExchangeHistoryFormTearOff();
 
@@ -29,9 +30,11 @@ class _$StoreExchangeHistoryFormTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreExchangeHistoryForm = _$StoreExchangeHistoryFormTearOff();
 
+/// @nodoc
 mixin _$StoreExchangeHistoryForm {
   int get page;
 
@@ -61,6 +64,7 @@ mixin _$StoreExchangeHistoryForm {
   $StoreExchangeHistoryFormCopyWith<StoreExchangeHistoryForm> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreExchangeHistoryFormCopyWith<$Res> {
   factory $StoreExchangeHistoryFormCopyWith(StoreExchangeHistoryForm value,
           $Res Function(StoreExchangeHistoryForm) then) =
@@ -68,6 +72,7 @@ abstract class $StoreExchangeHistoryFormCopyWith<$Res> {
   $Res call({int page});
 }
 
+/// @nodoc
 class _$StoreExchangeHistoryFormCopyWithImpl<$Res>
     implements $StoreExchangeHistoryFormCopyWith<$Res> {
   _$StoreExchangeHistoryFormCopyWithImpl(this._value, this._then);
@@ -86,6 +91,7 @@ class _$StoreExchangeHistoryFormCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class $StoreExchangeHistoryInitCopyWith<$Res>
     implements $StoreExchangeHistoryFormCopyWith<$Res> {
   factory $StoreExchangeHistoryInitCopyWith(StoreExchangeHistoryInit value,
@@ -95,6 +101,7 @@ abstract class $StoreExchangeHistoryInitCopyWith<$Res>
   $Res call({int page});
 }
 
+/// @nodoc
 class _$StoreExchangeHistoryInitCopyWithImpl<$Res>
     extends _$StoreExchangeHistoryFormCopyWithImpl<$Res>
     implements $StoreExchangeHistoryInitCopyWith<$Res> {
@@ -116,6 +123,7 @@ class _$StoreExchangeHistoryInitCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
   const _$StoreExchangeHistoryInit({this.page});
 
@@ -205,6 +213,7 @@ abstract class StoreExchangeHistoryInit implements StoreExchangeHistoryForm {
   $StoreExchangeHistoryInitCopyWith<StoreExchangeHistoryInit> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreExchangeHistoryQueryCopyWith<$Res>
     implements $StoreExchangeHistoryFormCopyWith<$Res> {
   factory $StoreExchangeHistoryQueryCopyWith(StoreExchangeHistoryQuery value,
@@ -214,6 +223,7 @@ abstract class $StoreExchangeHistoryQueryCopyWith<$Res>
   $Res call({int page, int perPage, String search});
 }
 
+/// @nodoc
 class _$StoreExchangeHistoryQueryCopyWithImpl<$Res>
     extends _$StoreExchangeHistoryFormCopyWithImpl<$Res>
     implements $StoreExchangeHistoryQueryCopyWith<$Res> {
@@ -239,6 +249,7 @@ class _$StoreExchangeHistoryQueryCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
   const _$StoreExchangeHistoryQuery({this.page, this.perPage, this.search});
 

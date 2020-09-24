@@ -143,12 +143,12 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
                   Expanded(
                     child: RichText(
                       text: TextSpan(
-                        style: TextStyle(color: Themes.defaultTextColor),
+                        style: TextStyle(color: themeColor.defaultTextColor),
                         children: [
                           TextSpan(
                             text: '${localeStr.balanceHintTextTitle}\n',
                             style: TextStyle(
-                              color: Themes.defaultSubtitleColor,
+                              color: themeColor.defaultSubtitleColor,
                               fontWeight: FontWeight.bold,
                               height: 3,
                             ),

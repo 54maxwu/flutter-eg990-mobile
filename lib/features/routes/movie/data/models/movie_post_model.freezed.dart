@@ -9,6 +9,7 @@ part of 'movie_post_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MoviePostModelTearOff {
   const _$MoviePostModelTearOff();
 
@@ -24,9 +25,11 @@ class _$MoviePostModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MoviePostModel = _$MoviePostModelTearOff();
 
+/// @nodoc
 mixin _$MoviePostModel {
   MoviePostData get post;
   @JsonKey(name: 'hot', fromJson: decodeMovieHotModel)
@@ -35,6 +38,7 @@ mixin _$MoviePostModel {
   $MoviePostModelCopyWith<MoviePostModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $MoviePostModelCopyWith<$Res> {
   factory $MoviePostModelCopyWith(
           MoviePostModel value, $Res Function(MoviePostModel) then) =
@@ -47,6 +51,7 @@ abstract class $MoviePostModelCopyWith<$Res> {
   $MoviePostDataCopyWith<$Res> get post;
 }
 
+/// @nodoc
 class _$MoviePostModelCopyWithImpl<$Res>
     implements $MoviePostModelCopyWith<$Res> {
   _$MoviePostModelCopyWithImpl(this._value, this._then);
@@ -78,6 +83,7 @@ class _$MoviePostModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$MoviePostModelCopyWith<$Res>
     implements $MoviePostModelCopyWith<$Res> {
   factory _$MoviePostModelCopyWith(
@@ -93,6 +99,7 @@ abstract class _$MoviePostModelCopyWith<$Res>
   $MoviePostDataCopyWith<$Res> get post;
 }
 
+/// @nodoc
 class __$MoviePostModelCopyWithImpl<$Res>
     extends _$MoviePostModelCopyWithImpl<$Res>
     implements _$MoviePostModelCopyWith<$Res> {
@@ -116,6 +123,7 @@ class __$MoviePostModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MoviePostModel implements _MoviePostModel {
   const _$_MoviePostModel(
       {this.post,
@@ -168,6 +176,7 @@ abstract class _MoviePostModel implements MoviePostModel {
   _$MoviePostModelCopyWith<_MoviePostModel> get copyWith;
 }
 
+/// @nodoc
 class _$MoviePostDataTearOff {
   const _$MoviePostDataTearOff();
 
@@ -226,9 +235,11 @@ class _$MoviePostDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MoviePostData = _$MoviePostDataTearOff();
 
+/// @nodoc
 mixin _$MoviePostData {
   @JsonKey(name: 'bad_count')
   int get badCount;
@@ -263,6 +274,7 @@ mixin _$MoviePostData {
   $MoviePostDataCopyWith<MoviePostData> get copyWith;
 }
 
+/// @nodoc
 abstract class $MoviePostDataCopyWith<$Res> {
   factory $MoviePostDataCopyWith(
           MoviePostData value, $Res Function(MoviePostData) then) =
@@ -294,6 +306,7 @@ abstract class $MoviePostDataCopyWith<$Res> {
       dynamic year});
 }
 
+/// @nodoc
 class _$MoviePostDataCopyWithImpl<$Res>
     implements $MoviePostDataCopyWith<$Res> {
   _$MoviePostDataCopyWithImpl(this._value, this._then);
@@ -359,6 +372,7 @@ class _$MoviePostDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$MoviePostDataCopyWith<$Res>
     implements $MoviePostDataCopyWith<$Res> {
   factory _$MoviePostDataCopyWith(
@@ -392,6 +406,7 @@ abstract class _$MoviePostDataCopyWith<$Res>
       dynamic year});
 }
 
+/// @nodoc
 class __$MoviePostDataCopyWithImpl<$Res>
     extends _$MoviePostDataCopyWithImpl<$Res>
     implements _$MoviePostDataCopyWith<$Res> {
@@ -459,6 +474,7 @@ class __$MoviePostDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MoviePostData implements _MoviePostData {
   const _$_MoviePostData(
       {@JsonKey(name: 'bad_count') this.badCount,

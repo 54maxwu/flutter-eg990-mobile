@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/models/message_model.dart';
@@ -49,7 +49,7 @@ class MessageDisplayItemState extends State<MessageDisplayItem> {
         vertical: 12.0,
       ),
       decoration: new BoxDecoration(
-        color: Themes.defaultCardColor,
+        color: themeColor.defaultCardColor,
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       child: ConfigurableExpansionTile(
@@ -73,12 +73,12 @@ class MessageDisplayItemState extends State<MessageDisplayItem> {
                 child: (isRead)
                     ? Icon(
                         Icons.check_box,
-                        color: Themes.iconColorGreen,
+                        color: themeColor.iconColorGreen,
                         size: 18.0,
                       )
                     : Icon(
                         Icons.info,
-                        color: Themes.iconColorYellow,
+                        color: themeColor.iconColorYellow,
                         size: 18.0,
                       ),
               ),
@@ -111,7 +111,7 @@ class MessageDisplayItemState extends State<MessageDisplayItem> {
                 ),
                 child: Icon(
                   Icons.check_box,
-                  color: Themes.iconColorGreen,
+                  color: themeColor.iconColorGreen,
                   size: 18.0,
                 ),
               ),

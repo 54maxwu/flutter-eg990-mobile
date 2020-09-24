@@ -114,7 +114,7 @@ class _WebRouteState extends State<WebRoute> {
               ),
             ),
             Container(
-              color: Themes.defaultBackgroundColor,
+              color: themeColor.defaultBackgroundColor,
               child: Center(
                 child: CircularProgressIndicator(),
               ),

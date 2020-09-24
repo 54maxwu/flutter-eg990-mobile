@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customized_scroll_with_scrollbar.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 part 'table_fixed_cell_widget.dart';
 

@@ -19,21 +19,27 @@ import 'injection_container.dart' as di;
 
 FirebaseAnalytics _analytics;
 
-Future<void> mainCommon(String env) async {
+Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
   // Load the JSON config into memory
   await ConfigReader.initialize();
 
   switch (env) {
-    case Environment.dev:
-      debugPrint('App Config Version: ${ConfigReader.getVersion()}');
-      Global.addAnalytics = false;
-      break;
-    case Environment.release:
-      debugPrint('App Config Version: ${ConfigReader.getVersion()}');
-      Global.addAnalytics = true;
-      break;
+    case Environment.DEV:
+      {
+        Global.addAnalytics = false;
+        debugPrint(
+            'DEV Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
+        break;
+      }
+    case Environment.RELEASE:
+      {
+        Global.addAnalytics = true;
+        debugPrint(
+            'RELEASE Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
+        break;
+      }
   }
 
   // request permission
@@ -91,6 +97,7 @@ Future<void> mainCommon(String env) async {
   if (Global.addAnalytics) {
     _analytics = FirebaseAnalytics();
   }
+
   // run application
   runApp(new MainApp(_analytics));
 }

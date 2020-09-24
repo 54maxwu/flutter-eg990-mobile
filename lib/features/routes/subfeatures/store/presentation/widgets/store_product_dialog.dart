@@ -127,7 +127,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
       ),
       widthShrink: 24.0,
       roundParam: 8.0,
-      customBg: Themes.storeDialogBackground,
+      customBg: themeColor.storeDialogBackground,
       children: <Widget>[
         SingleChildScrollView(
           primary: true,
@@ -145,7 +145,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                       style: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                         fontWeight: FontWeight.bold,
-                        color: Themes.dialogTitleColor,
+                        color: themeColor.dialogTitleColor,
                       ),
                     ),
                   ],
@@ -186,11 +186,11 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                 ),
               if (_contentEnum != _ContentEnum.RESULT)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     widget.product.productName,
                     style: TextStyle(
-                      fontSize: FontSize.SUBTITLE.value,
+                      fontSize: FontSize.TITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -252,7 +252,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                               TextSpan(
                                 text: '${widget.product.productName}',
                                 style: TextStyle(
-                                  color: Themes.storeHighlightTextColor,
+                                  color: themeColor.storeHighlightTextColor,
                                   fontSize: FontSize.SUBTITLE.value,
                                   fontWeight: FontWeight.bold,
                                 ),

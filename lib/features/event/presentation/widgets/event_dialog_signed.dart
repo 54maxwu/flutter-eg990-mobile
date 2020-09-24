@@ -76,7 +76,8 @@ class EventDialogSigned extends StatelessWidget {
                         children: <TextSpan>[
                           TextSpan(
                             text: localeStr.eventSignUpHint1,
-                            style: TextStyle(color: Themes.secondaryTextColor2),
+                            style: TextStyle(
+                                color: themeColor.secondaryTextColor2),
                           ),
                           TextSpan(
                             text: ' $signCount ',
@@ -87,7 +88,8 @@ class EventDialogSigned extends StatelessWidget {
                           ),
                           TextSpan(
                             text: localeStr.eventSignUpHint2,
-                            style: TextStyle(color: Themes.secondaryTextColor2),
+                            style: TextStyle(
+                                color: themeColor.secondaryTextColor2),
                           ),
                         ],
                       ),

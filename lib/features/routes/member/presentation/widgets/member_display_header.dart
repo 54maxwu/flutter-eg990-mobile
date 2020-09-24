@@ -29,6 +29,7 @@ class MemberDisplayHeaderState extends State<MemberDisplayHeader> {
       newCredit = credit;
     else
       newCredit = formatValue(credit, creditSign: true, floorIfInt: true);
+    debugPrint('current credit: $_credit, new: $newCredit');
     if (newCredit != _credit)
       setState(() {
         _credit = newCredit;
@@ -60,7 +61,7 @@ class MemberDisplayHeaderState extends State<MemberDisplayHeader> {
             widget.userName,
             style: TextStyle(
               fontSize: FontSize.MESSAGE.value,
-              color: Themes.buttonTextPrimaryColor,
+              color: themeColor.buttonTextPrimaryColor,
             ),
           ),
         ),
@@ -83,7 +84,7 @@ class MemberDisplayHeaderState extends State<MemberDisplayHeader> {
                       style: TextStyle(
                         fontSize: FontSize.XLARGE.value,
                         fontWeight: FontWeight.w500,
-                        color: Themes.buttonTextPrimaryColor,
+                        color: themeColor.buttonTextPrimaryColor,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -107,18 +108,18 @@ class MemberDisplayHeaderState extends State<MemberDisplayHeader> {
                         padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 2.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Themes.buttonBorderColor,
+                            color: themeColor.buttonBorderColor,
                             width: 2.0,
                             style: BorderStyle.solid,
                           ),
                           borderRadius: BorderRadius.circular(14.0),
-                          color: Themes.memberLinearColor3,
+                          color: themeColor.memberLinearColor3,
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           localeStr.btnRefresh,
-                          style:
-                              TextStyle(color: Themes.buttonTextPrimaryColor),
+                          style: TextStyle(
+                              color: themeColor.buttonTextPrimaryColor),
                           textAlign: TextAlign.center,
                         ),
                       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:relative_layout/relative_layout.dart';
 
 import 'grid_plugin_favorite.dart';
@@ -61,7 +60,7 @@ class GridItemPlatform extends StatelessWidget {
               maxLines: 1,
               style: TextStyle(
                 fontSize: FontSize.SMALLER.value,
-                color: Themes.defaultGridTextColor,
+                color: themeColor.defaultGridTextColor,
               ),
             ),
           ),

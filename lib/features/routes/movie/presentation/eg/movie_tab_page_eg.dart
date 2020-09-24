@@ -69,7 +69,7 @@ class _MovieTabPageEgState extends State<MovieTabPageEg> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: Divider(
-              color: Themes.defaultAccentColor,
+              color: themeColor.defaultAccentColor,
               thickness: 2.0,
               height: 8.0,
             ),

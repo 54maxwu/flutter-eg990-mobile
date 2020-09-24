@@ -29,7 +29,8 @@ class StoreProductDetail extends StatelessWidget {
             constraints: BoxConstraints.tight(
                 Size(imageSize + 24, Global.device.comfortButtonHeight + 8.0)),
             decoration: BoxDecoration(
-              border: Border.all(width: 1.0, color: Themes.defaultDividerColor),
+              border:
+                  Border.all(width: 1.0, color: themeColor.defaultDividerColor),
               borderRadius: const BorderRadius.all(const Radius.circular(36.0)),
             ),
             alignment: Alignment.center,
@@ -39,7 +40,7 @@ class StoreProductDetail extends StatelessWidget {
                   TextSpan(
                     text: localeStr.storeProductWindowTextRemain + '   ',
                     style: TextStyle(
-                      color: Themes.storeDialogSpanText,
+                      color: themeColor.storeDialogSpanText,
                       fontSize: FontSize.SUBTITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
@@ -47,7 +48,7 @@ class StoreProductDetail extends StatelessWidget {
                   TextSpan(
                     text: '${product.remain}',
                     style: TextStyle(
-                      color: Themes.storeHighlightTextColor,
+                      color: themeColor.storeHighlightTextColor,
                       fontSize: FontSize.SUBTITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
@@ -61,7 +62,7 @@ class StoreProductDetail extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: Divider(
             height: 1.0,
-            color: Themes.defaultDividerColor,
+            color: themeColor.defaultDividerColor,
           ),
         ),
         Padding(
@@ -83,13 +84,13 @@ class StoreProductDetail extends StatelessWidget {
                     text: localeStr.storeProductWindowHint2,
                     style: TextStyle(
                       fontSize: FontSize.SUBTITLE.value,
-                      color: Themes.storeDialogSpanText,
+                      color: themeColor.storeDialogSpanText,
                     ),
                   ),
                   TextSpan(
                     text: '${product.point}',
                     style: TextStyle(
-                      color: Themes.storeHighlightTextColor,
+                      color: themeColor.storeHighlightTextColor,
                       fontSize: FontSize.SUBTITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
@@ -97,7 +98,7 @@ class StoreProductDetail extends StatelessWidget {
                   TextSpan(
                     text: localeStr.storeProductWindowHint3,
                     style: TextStyle(
-                      color: Themes.storeDialogSpanText,
+                      color: themeColor.storeDialogSpanText,
                       fontSize: FontSize.SUBTITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
@@ -107,23 +108,27 @@ class StoreProductDetail extends StatelessWidget {
             )),
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Expanded(
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(36.0),
-                  ),
-                  onPressed: (!canExchange) ? null : () => onExchange(),
-                  child: Text(
-                    (canExchange)
-                        ? localeStr.storeTextItemButton
-                        : localeStr.storeTextItemButtonDisabled,
-                  ),
-                ),
+          child: FlatButton(
+            visualDensity: const VisualDensity(horizontal: 3.0, vertical: -2.0),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: themeColor.storeButtonColor, width: 2.0),
+              borderRadius: new BorderRadius.circular(6.0),
+            ),
+            disabledColor: themeColor.defaultHintColor,
+            child: RichText(
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                text: (canExchange)
+                    ? localeStr.storeTextItemButton
+                    : localeStr.storeTextItemButtonDisabled,
+                style: TextStyle(
+                    fontSize: FontSize.SUBTITLE.value,
+                    color: themeColor.storeButtonColor,
+                    fontWeight: FontWeight.bold),
               ),
-            ],
+            ),
+            onPressed: (!canExchange) ? null : () => onExchange(),
           ),
         ),
       ],

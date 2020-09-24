@@ -1,4 +1,5 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_settings.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:get_it/get_it.dart';
 
@@ -35,6 +36,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   /// App User
   sl.registerLazySingleton<AppGlobalStreams>(() => AppGlobalStreams());
+  sl.registerLazySingleton<ThemeSettings>(() => ThemeSettings());
 
   /// Core
   sl.registerLazySingleton(() => DioApiService());
@@ -51,6 +53,9 @@ Future<void> init() async {
   sl.registerLazySingleton<HomeLocalStorage>(
     () => HomeLocalStorageImpl(),
   );
+  sl.registerLazySingleton<JwtInterface>(
+    () => JwtInterfaceImpl(dioApiService: sl()),
+  );
   sl.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(
         dioApiService: sl(),
@@ -61,6 +66,9 @@ Future<void> init() async {
   sl.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
+  sl.registerLazySingleton<UserInfoRepository>(
+    () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
   sl.registerLazySingleton<EventRepository>(
     () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
@@ -70,12 +78,6 @@ Future<void> init() async {
   sl.registerLazySingleton<PromoRepository>(
     () => PromoRepositoryImpl(
         dioApiService: sl(), localStorage: sl(), networkInfo: sl()),
-  );
-  sl.registerLazySingleton<JwtInterface>(
-    () => JwtInterfaceImpl(dioApiService: sl()),
-  );
-  sl.registerLazySingleton<MemberRepository>(
-    () => MemberRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
   sl.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
@@ -140,7 +142,7 @@ Future<void> init() async {
     () => UpdateStore(sl<UpdateRepository>()),
   );
   sl.registerLazySingleton(
-    () => EventStore(sl<EventRepository>()),
+    () => EventStore(sl<EventRepository>(), sl<UserInfoRepository>()),
   );
   sl.registerLazySingleton(
     () => HomeStore(sl<HomeRepository>()),
@@ -158,7 +160,7 @@ Future<void> init() async {
     () => PromoStore(sl<PromoRepository>()),
   );
   sl.registerFactory(
-    () => MemberCreditStore(sl<MemberRepository>()),
+    () => MemberCreditStore(sl<UserInfoRepository>()),
   );
   sl.registerFactory(
     () => DepositStore(sl<DepositRepository>()),

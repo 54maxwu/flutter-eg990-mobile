@@ -75,7 +75,7 @@ class _TestInputDialogState extends State<TestInputDialog> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(2.0)),
             ),
-            color: Themes.dialogBgColor,
+            color: themeColor.dialogBgColor,
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minWidth: dialogWidth,

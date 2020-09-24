@@ -25,7 +25,8 @@ abstract class _PromoStore with Store {
 
   String _lastError;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??
@@ -57,7 +58,7 @@ abstract class _PromoStore with Store {
       _promoFuture = ObservableFuture(_repository.getPromos());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _promoFuture.then((result) {
-//        print('promo store result: $result');
+//        debugPrint('promo store result: $result');
         result.fold(
           (failure) {
             setErrorMsg(msg: failure.message, showOnce: true);

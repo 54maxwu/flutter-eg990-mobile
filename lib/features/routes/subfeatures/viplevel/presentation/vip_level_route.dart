@@ -55,10 +55,9 @@ class _VipLevelRouteState extends State<VipLevelRoute> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        debugPrint('pop vip-level route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+      onWillPop: () {
+        debugPrint('pop vip route');
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

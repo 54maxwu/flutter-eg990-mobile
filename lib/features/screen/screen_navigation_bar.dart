@@ -133,7 +133,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(width: 1.0, color: Themes.defaultAccentColor),
+          top: BorderSide(width: 1.0, color: themeColor.defaultAccentColor),
         ),
       ),
       child: StreamBuilder<bool>(
@@ -167,9 +167,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
         type: BottomNavigationBarType.fixed,
         selectedFontSize: FontSize.NORMAL.value,
         unselectedFontSize: FontSize.NORMAL.value,
-        unselectedItemColor: Themes.navigationColor,
-        fixedColor: Themes.navigationColorFocus,
-        backgroundColor: Themes.defaultAppbarColor,
+        unselectedItemColor: themeColor.navigationColor,
+        fixedColor: themeColor.navigationColorFocus,
+        backgroundColor: themeColor.defaultAppbarColor,
         items: List.generate(_tabs.length, (index) {
           var itemValue = _tabs[index].value;
           return _createBarItem(itemValue, labels[index], false, _store);
@@ -180,11 +180,21 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
 
   BottomNavigationBarItem _createBarItem(RouteListItem itemValue, String title,
       bool addBadge, FeatureScreenStore store) {
+    Widget icon = (itemValue.imageName != null)
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: SizedBox(
+              width: 30.0,
+              height: 30.0,
+              child: networkImageBuilder(itemValue.imageName),
+            ),
+          )
+        : Icon(itemValue.iconData, size: 30);
     return BottomNavigationBarItem(
       icon: (addBadge)
           ? Badge(
-              showBadge: _eventStore.hasNewMessage,
-              badgeColor: Themes.hintHighlightRed,
+              showBadge: getAppGlobalStreams.hasNewMessage,
+              badgeColor: themeColor.hintHighlightRed,
               badgeContent: Container(
                 margin: const EdgeInsets.all(1.0),
                 child: Icon(
@@ -195,9 +205,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
               ),
               padding: EdgeInsets.zero,
               position: BadgePosition.topRight(top: -5, right: -6),
-              child: Icon(itemValue.iconData, size: 30),
+              child: icon,
             )
-          : Icon(itemValue.iconData, size: 30),
+          : icon,
       title: Padding(
         padding: EdgeInsets.only(top: 2.0),
         child:

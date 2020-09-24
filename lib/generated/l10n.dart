@@ -33,12 +33,12 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `85Bet Mobile`
+  /// `EG990 Mobile`
   String get title {
     return Intl.message(
-      '85Bet Mobile',
+      'EG990 Mobile',
       name: 'title',
-      desc: '85Bet Demo',
+      desc: 'EG990 Demo',
       args: [],
     );
   }
@@ -113,11 +113,11 @@ class S {
     );
   }
 
-  /// `Vip Tier`
-  String get pageTitleRank {
+  /// `VIP`
+  String get pageTitleVip {
     return Intl.message(
-      'Vip Tier',
-      name: 'pageTitleRank',
+      'VIP',
+      name: 'pageTitleVip',
       desc: '',
       args: [],
     );
@@ -430,6 +430,46 @@ class S {
       name: 'toolBarMemberCredit',
       desc: '',
       args: [value],
+    );
+  }
+
+  /// `Select Theme Color`
+  String get themeColorHintSelect {
+    return Intl.message(
+      'Select Theme Color',
+      name: 'themeColorHintSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default`
+  String get themeColorDefault {
+    return Intl.message(
+      'Default',
+      name: 'themeColorDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark`
+  String get themeColorDark {
+    return Intl.message(
+      'Dark',
+      name: 'themeColorDark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get themeColorLight {
+    return Intl.message(
+      'Light',
+      name: 'themeColorLight',
+      desc: '',
+      args: [],
     );
   }
 
@@ -983,6 +1023,16 @@ class S {
     );
   }
 
+  /// `Please read and agree the bet terms`
+  String get messageActionCheckTerms {
+    return Intl.message(
+      'Please read and agree the bet terms',
+      name: 'messageActionCheckTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{name}, please log in again`
   String messageLogout(Object name) {
     return Intl.message(
@@ -1143,10 +1193,10 @@ class S {
     );
   }
 
-  /// `Error Post Code(5~6)`
+  /// `Error Post Code(5~8)`
   String get messageInvalidPostCode {
     return Intl.message(
-      'Error Post Code(5~6)',
+      'Error Post Code(5~8)',
       name: 'messageInvalidPostCode',
       desc: '',
       args: [],
@@ -1193,20 +1243,20 @@ class S {
     );
   }
 
-  /// `Password should be 6 ~ 20 words`
+  /// `Password should be 6 ~ 18 words`
   String get messageInvalidPassword {
     return Intl.message(
-      'Password should be 6 ~ 20 words',
+      'Password should be 6 ~ 18 words',
       name: 'messageInvalidPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be 8 ~ 20 words`
+  /// `Password should be 8 ~ 18 words`
   String get messageInvalidPasswordNew {
     return Intl.message(
-      'Password should be 8 ~ 20 words',
+      'Password should be 8 ~ 18 words',
       name: 'messageInvalidPasswordNew',
       desc: '',
       args: [],
@@ -1663,6 +1713,16 @@ class S {
     );
   }
 
+  /// `Verify Code has sent`
+  String get messageSentVerify {
+    return Intl.message(
+      'Verify Code has sent',
+      name: 'messageSentVerify',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome！ Please login first`
   String get homeHintWelcomeLogin {
     return Intl.message(
@@ -1690,6 +1750,16 @@ class S {
       name: 'homeHintWelcomeMember',
       desc: '',
       args: [name],
+    );
+  }
+
+  /// `Free of charge`
+  String get homeHintFreeUsage {
+    return Intl.message(
+      'Free of charge',
+      name: 'homeHintFreeUsage',
+      desc: '',
+      args: [],
     );
   }
 
@@ -1933,11 +2003,41 @@ class S {
     );
   }
 
-  /// `Click me to open 85Bet website`
+  /// `Click me to open EG990 website`
   String get gameCategoryWebHint {
     return Intl.message(
-      'Click me to open 85Bet website',
+      'Click me to open EG990 website',
       name: 'gameCategoryWebHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch Movie`
+  String get gameCategoryMovieWeb {
+    return Intl.message(
+      'Watch Movie',
+      name: 'gameCategoryMovieWeb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click me to watch movie`
+  String get gameCategoryMovieWebHint {
+    return Intl.message(
+      'Click me to watch movie',
+      name: 'gameCategoryMovieWebHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get gameCategoryAbout {
+    return Intl.message(
+      'About Us',
+      name: 'gameCategoryAbout',
       desc: '',
       args: [],
     );
@@ -2093,16 +2193,6 @@ class S {
     );
   }
 
-  /// `Recommended Code`
-  String get registerFieldTitleRecommend {
-    return Intl.message(
-      'Recommended Code',
-      name: 'registerFieldTitleRecommend',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Verification Code`
   String get registerFieldTitleVerify {
     return Intl.message(
@@ -2123,10 +2213,20 @@ class S {
     );
   }
 
-  /// `Dotmap Refresh`
+  /// `Recommended Code`
+  String get registerFieldTitleRecommend {
+    return Intl.message(
+      'Recommended Code',
+      name: 'registerFieldTitleRecommend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh`
   String get registerButtonTitleRefresh {
     return Intl.message(
-      'Dotmap Refresh',
+      'Refresh',
       name: 'registerButtonTitleRefresh',
       desc: '',
       args: [],
@@ -2138,6 +2238,16 @@ class S {
     return Intl.message(
       'Register',
       name: 'registerButtonTitleRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Verify Code`
+  String get registerButtonTitleSendVerify {
+    return Intl.message(
+      'Send Verify Code',
+      name: 'registerButtonTitleSendVerify',
       desc: '',
       args: [],
     );
@@ -2834,10 +2944,10 @@ class S {
   }
 
   /// `Vip Tier`
-  String get centerViewTitleVip {
+  String get centerViewTitleVipRank {
     return Intl.message(
       'Vip Tier',
-      name: 'centerViewTitleVip',
+      name: 'centerViewTitleVipRank',
       desc: '',
       args: [],
     );
@@ -3738,6 +3848,16 @@ class S {
     return Intl.message(
       'Without Promo',
       name: 'depositPaymentNoPromo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add a bankcard first`
+  String get depositHintRedirectBankcard {
+    return Intl.message(
+      'Please add a bankcard first',
+      name: 'depositHintRedirectBankcard',
       desc: '',
       args: [],
     );

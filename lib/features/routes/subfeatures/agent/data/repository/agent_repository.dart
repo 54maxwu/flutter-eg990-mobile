@@ -154,6 +154,7 @@ class AgentRepositoryImpl implements AgentRepository {
         break;
       case TransactionDateSelected.yesterday:
         startDate = now.subtract(Duration(days: 1)).toDateString;
+        endDate = now.subtract(Duration(days: 1)).toDateEndString;
         break;
       case TransactionDateSelected.month:
         var lastMonth = now.subtract(Duration(days: 30));

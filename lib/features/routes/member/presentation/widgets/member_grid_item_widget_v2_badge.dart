@@ -1,21 +1,21 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 import '../data/member_grid_item_v2.dart';
 import '../state/member_credit_store.dart';
 
 typedef onMemberGridItemV2Tap = void Function(MemberGridItemV2);
 
-enum MemberGridItemBadgeType { NEW_MESSAGE }
+enum MemberGridItemV2BadgeType { NEW_MESSAGE }
 
 class MemberGridItemWidgetV2Badge extends StatefulWidget {
   final MemberGridItemV2 item;
   final onMemberGridItemV2Tap onItemTap;
   final MemberCreditStore store;
-  final MemberGridItemBadgeType type;
+  final MemberGridItemV2BadgeType type;
 
   MemberGridItemWidgetV2Badge({
     @required this.item,
@@ -37,7 +37,7 @@ class _MemberGridItemWidgetV2BadgeState
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Themes.defaultGridColor,
+        color: themeColor.defaultGridColor,
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       margin: const EdgeInsets.all(2.0),
@@ -50,7 +50,7 @@ class _MemberGridItemWidgetV2BadgeState
             child: Observer(
               builder: (_) => Badge(
                 showBadge: widget.store.hasNewMessage,
-                badgeColor: Themes.hintHighlightRed,
+                badgeColor: themeColor.hintHighlightRed,
                 badgeContent: Container(
                   margin: const EdgeInsets.all(1.0),
                   child: Icon(
@@ -64,7 +64,7 @@ class _MemberGridItemWidgetV2BadgeState
                 child: networkImageBuilder(
                   itemData.imageName,
                   imgScale: 2.0,
-                  imgColor: Themes.memberIconColor,
+                  imgColor: themeColor.memberIconColor,
                 ),
               ),
             ),
@@ -76,7 +76,7 @@ class _MemberGridItemWidgetV2BadgeState
               itemData.title ?? itemData.route?.pageTitle ?? '?',
               style: TextStyle(
                 fontSize: FontSize.SUBTITLE.value - 1,
-                color: Themes.iconTextColor,
+                color: themeColor.iconTextColor,
               ),
               maxLines: 2,
               textAlign: TextAlign.center,

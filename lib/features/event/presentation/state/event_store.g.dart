@@ -39,21 +39,6 @@ mixin _$EventStore on _EventStore, Store {
     });
   }
 
-  final _$hasNewMessageAtom = Atom(name: '_EventStore.hasNewMessage');
-
-  @override
-  bool get hasNewMessage {
-    _$hasNewMessageAtom.reportRead();
-    return super.hasNewMessage;
-  }
-
-  @override
-  set hasNewMessage(bool value) {
-    _$hasNewMessageAtom.reportWrite(value, super.hasNewMessage, () {
-      super.hasNewMessage = value;
-    });
-  }
-
   final _$errorMessageAtom = Atom(name: '_EventStore.errorMessage');
 
   @override
@@ -69,20 +54,18 @@ mixin _$EventStore on _EventStore, Store {
     });
   }
 
+  final _$getUserCreditAsyncAction = AsyncAction('_EventStore.getUserCredit');
+
+  @override
+  Future<void> getUserCredit() {
+    return _$getUserCreditAsyncAction.run(() => super.getUserCredit());
+  }
+
   final _$getWebsiteListAsyncAction = AsyncAction('_EventStore.getWebsiteList');
 
   @override
   Future<void> getWebsiteList() {
     return _$getWebsiteListAsyncAction.run(() => super.getWebsiteList());
-  }
-
-  final _$getNewMessageCountAsyncAction =
-      AsyncAction('_EventStore.getNewMessageCount');
-
-  @override
-  Future<void> getNewMessageCount() {
-    return _$getNewMessageCountAsyncAction
-        .run(() => super.getNewMessageCount());
   }
 
   final _$getEventAsyncAction = AsyncAction('_EventStore.getEvent');
@@ -111,7 +94,6 @@ mixin _$EventStore on _EventStore, Store {
     return '''
 showEventOnHome: ${showEventOnHome},
 hasSignedEvent: ${hasSignedEvent},
-hasNewMessage: ${hasNewMessage},
 errorMessage: ${errorMessage}
     ''';
   }

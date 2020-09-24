@@ -73,14 +73,13 @@ class _BetRecordRouteState extends State<BetRecordRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        debugPrint('pop bets route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        debugPrint('pop bet-record route');
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

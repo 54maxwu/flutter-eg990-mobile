@@ -1,8 +1,8 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/data/models/store_banner_model.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:meta/meta.dart' show required;
 
 /// Create a [Carousel] widget to display banner images
@@ -37,14 +37,14 @@ class _StoreDisplayBannerState extends State<StoreDisplayBanner> {
               dotSize: (imageWidgets.length > 1) ? 5.0 : 0.0,
               dotSpacing: 16.0,
               dotVerticalPadding: 4.0,
-              dotColor: Themes.defaultWidgetColor,
-              dotIncreasedColor: Themes.defaultAccentColor,
+              dotColor: themeColor.defaultWidgetColor,
+              dotIncreasedColor: themeColor.defaultAccentColor,
               indicatorBgPadding: 4.0,
               dotBgColor: Colors.transparent,
               borderRadius: false,
               autoplay: imageWidgets.length > 1,
               animationDuration: Duration(milliseconds: 1000),
-              autoplayDuration: Duration(seconds: 10),
+              autoplayDuration: Duration(seconds: 8),
             );
           return SizedBox.shrink();
         });

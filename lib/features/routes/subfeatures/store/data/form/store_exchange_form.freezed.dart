@@ -9,6 +9,7 @@ part of 'store_exchange_form.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreExchangeFormTearOff {
   const _$StoreExchangeFormTearOff();
 
@@ -35,9 +36,11 @@ class _$StoreExchangeFormTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreExchangeForm = _$StoreExchangeFormTearOff();
 
+/// @nodoc
 mixin _$StoreExchangeForm {
   @JsonKey(name: 'productid')
   int get productId;
@@ -53,6 +56,7 @@ mixin _$StoreExchangeForm {
   $StoreExchangeFormCopyWith<StoreExchangeForm> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreExchangeFormCopyWith<$Res> {
   factory $StoreExchangeFormCopyWith(
           StoreExchangeForm value, $Res Function(StoreExchangeForm) then) =
@@ -68,6 +72,7 @@ abstract class $StoreExchangeFormCopyWith<$Res> {
       String address});
 }
 
+/// @nodoc
 class _$StoreExchangeFormCopyWithImpl<$Res>
     implements $StoreExchangeFormCopyWith<$Res> {
   _$StoreExchangeFormCopyWithImpl(this._value, this._then);
@@ -100,6 +105,7 @@ class _$StoreExchangeFormCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreExchangeFormCopyWith<$Res>
     implements $StoreExchangeFormCopyWith<$Res> {
   factory _$StoreExchangeFormCopyWith(
@@ -117,6 +123,7 @@ abstract class _$StoreExchangeFormCopyWith<$Res>
       String address});
 }
 
+/// @nodoc
 class __$StoreExchangeFormCopyWithImpl<$Res>
     extends _$StoreExchangeFormCopyWithImpl<$Res>
     implements _$StoreExchangeFormCopyWith<$Res> {
@@ -151,6 +158,7 @@ class __$StoreExchangeFormCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreExchangeForm implements _StoreExchangeForm {
   const _$_StoreExchangeForm(
       {@JsonKey(name: 'productid') this.productId,

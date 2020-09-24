@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 class DialogWidget extends StatefulWidget {
   final Key key;
@@ -105,9 +105,9 @@ class DialogWidgetState extends State<DialogWidget> {
     else if (widget.noBackground)
       bgColor = Colors.transparent;
     else if (widget.transparentBg)
-      bgColor = Themes.dialogBgTransparent;
+      bgColor = themeColor.dialogBgTransparent;
     else
-      bgColor = Themes.dialogBgColor;
+      bgColor = themeColor.dialogBgColor;
     super.initState();
   }
 
@@ -155,7 +155,7 @@ class DialogWidgetState extends State<DialogWidget> {
                               child: IconButton(
                                 icon: Icon(
                                   Icons.close,
-                                  color: Themes.dialogCloseIconColor,
+                                  color: themeColor.dialogCloseIconColor,
                                 ),
                                 onPressed: () {
                                   if (widget.onClose != null) widget.onClose();

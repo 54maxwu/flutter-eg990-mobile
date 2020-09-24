@@ -9,6 +9,7 @@ part of 'roller_prize_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RollerPrizeModelTearOff {
   const _$RollerPrizeModelTearOff();
 
@@ -31,9 +32,11 @@ class _$RollerPrizeModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RollerPrizeModel = _$RollerPrizeModelTearOff();
 
+/// @nodoc
 mixin _$RollerPrizeModel {
   int get id;
   String get prize;
@@ -48,6 +51,7 @@ mixin _$RollerPrizeModel {
   $RollerPrizeModelCopyWith<RollerPrizeModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $RollerPrizeModelCopyWith<$Res> {
   factory $RollerPrizeModelCopyWith(
           RollerPrizeModel value, $Res Function(RollerPrizeModel) then) =
@@ -61,6 +65,7 @@ abstract class $RollerPrizeModelCopyWith<$Res> {
       @JsonKey(name: 'alert_pic') int alertPic});
 }
 
+/// @nodoc
 class _$RollerPrizeModelCopyWithImpl<$Res>
     implements $RollerPrizeModelCopyWith<$Res> {
   _$RollerPrizeModelCopyWithImpl(this._value, this._then);
@@ -90,6 +95,7 @@ class _$RollerPrizeModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$RollerPrizeModelCopyWith<$Res>
     implements $RollerPrizeModelCopyWith<$Res> {
   factory _$RollerPrizeModelCopyWith(
@@ -105,6 +111,7 @@ abstract class _$RollerPrizeModelCopyWith<$Res>
       @JsonKey(name: 'alert_pic') int alertPic});
 }
 
+/// @nodoc
 class __$RollerPrizeModelCopyWithImpl<$Res>
     extends _$RollerPrizeModelCopyWithImpl<$Res>
     implements _$RollerPrizeModelCopyWith<$Res> {
@@ -136,6 +143,7 @@ class __$RollerPrizeModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_RollerPrizeModel implements _RollerPrizeModel {
   const _$_RollerPrizeModel(
       {this.id,

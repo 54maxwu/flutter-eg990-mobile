@@ -49,7 +49,7 @@ class _MovieDialogMobileState extends State<MovieDialogMobile>
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
                 child: Text(
                   localeStr.userVerifyButtonText(''),
-                  style: TextStyle(color: Themes.defaultAccentColor),
+                  style: TextStyle(color: themeColor.defaultAccentColor),
                 ),
               ),
               new Form(
@@ -98,7 +98,7 @@ class _MovieDialogMobileState extends State<MovieDialogMobile>
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Icon(
                         Icons.info,
-                        color: Themes.hintHighlight,
+                        color: themeColor.hintHighlight,
                         size: 16.0,
                       ),
                     ),
@@ -106,7 +106,7 @@ class _MovieDialogMobileState extends State<MovieDialogMobile>
                       child: Text(
                         localeStr.userVerifyFieldInfo,
                         style: TextStyle(
-                          color: Themes.hintHighlight,
+                          color: themeColor.hintHighlight,
                         ),
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.ellipsis,

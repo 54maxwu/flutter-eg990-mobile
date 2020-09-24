@@ -50,7 +50,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
   void updateField() {
     if (_store == null) return;
     List<String> initTexts = _store.accountEntity.getInitInput;
-    print('field data: $initTexts');
+    debugPrint('field data: $initTexts');
     _accountFieldKey.currentState.setInput = initTexts[0];
     _nameFieldKey.currentState.setInput = initTexts[1];
     _birthFieldKey.currentState.setInput = initTexts[2];
@@ -59,7 +59,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
     _wechatFieldKey.currentState.setInput = initTexts[5];
 //    if (initTexts[6] != '-1') _cgpFieldKey.currentState.setInput = initTexts[6];
     if (initTexts[7] != '-1') _cpwFieldKey.currentState.setInput = initTexts[7];
-    print('field updated');
+    debugPrint('field updated');
   }
 
   void checkAndPost(BuildContext context, Function postCall) {
@@ -91,7 +91,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       key: _streamKey,
       stream: _store.accountStream,
       builder: (context, snapshot) {
-//        print('account stream snapshot: $snapshot');
+//        debugPrint('account stream snapshot: $snapshot');
         if (_storeData != _store.accountEntity) {
           _storeData = _store.accountEntity;
           if (layoutReady) updateField();
@@ -118,7 +118,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
               child: Text(
                 localeStr.centerViewTitleData,
                 style: TextStyle(
-                  color: Themes.secondaryTextColor1,
+                  color: themeColor.secondaryTextColor2,
                 ),
               ),
             ),
@@ -181,7 +181,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           ? localeStr.centerTextButtonBind
                           : null,
                       suffixAction: (input) {
-                        print('request bind birth date: $input');
+                        debugPrint('request bind birth date: $input');
                         checkAndPost(context, () {
                           if (input.isValidDate)
                             _store.bindBirth(input);
@@ -225,7 +225,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           ? localeStr.centerTextButtonBind
                           : null,
                       suffixAction: (input) {
-                        print('request bind email: $input');
+                        debugPrint('request bind email: $input');
                         checkAndPost(context, () {
                           if (input.isEmail)
                             _store.bindEmail(input);
@@ -249,15 +249,18 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           ? localeStr.centerTextButtonBind
                           : null,
                       suffixAction: (input) {
-                        print('request bind wechat: $input');
+                        debugPrint('request bind wechat: $input');
                         checkAndPost(context, () {
                           _store.bindWechat(input);
                         });
                       },
                       readOnly: _storeData.canBindWechat == false,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 6, max: 20),
+                      validCondition: (value) => rangeCheck(
+                          value: value.length,
+                          min: InputLimit.WECHAT_MIN,
+                          max: InputLimit.WECHAT_MAX),
                       errorMsg: localeStr.messageInvalidWechat,
+                      maxInputLength: InputLimit.WECHAT_MAX,
                     ),
                   ],
                 ),
@@ -274,7 +277,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
 //                      ? localeStr.centerTextButtonBind
 //                      : null,
 //                  suffixAction: (_) {
-//                    print('cgp url: ${_store.cgpUrl}');
+//                    debugPrint('cgp url: ${_store.cgpUrl}');
 //                    if (_store.cgpUrl != null && _store.cgpUrl.isNotEmpty)
 //                      RouterNavigate.navigateToPage(
 //                        RoutePage.centerWeb,
@@ -295,14 +298,14 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                   ? localeStr.centerTextButtonBind
                   : null,
               suffixAction: (_) {
-                print('request bind cpw');
+                debugPrint('request bind cpw');
                 showDialog(
                   context: context,
                   barrierDismissible: false,
                   builder: (context) => new CenterDialogCpw(store: _store),
                 );
               },
-              useSameBgColor: Themes.isDarkTheme == false,
+              useSameBgColor: themeColor.isDarkTheme == false,
               readOnly: true,
             ),
           ],

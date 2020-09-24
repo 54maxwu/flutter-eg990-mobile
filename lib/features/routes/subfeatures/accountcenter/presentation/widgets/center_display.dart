@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/data/models/center_category.dart';
 
 import 'center_display_account.dart';
 import 'center_display_lotto.dart';
@@ -11,11 +14,14 @@ class CenterDisplay extends StatefulWidget {
 }
 
 class _CenterDisplayState extends State<CenterDisplay> {
-  final List<String> tabs = [
-    localeStr.centerViewTitleData,
-    localeStr.centerViewTitleLotto,
-    localeStr.centerViewTitleVip,
+  final MemberGridItem pageItem = MemberGridItem.accountCenter;
+  final List<CenterCategoryEnum> tabs = [
+    CenterCategoryEnum.info,
+    CenterCategoryEnum.lotto,
+    CenterCategoryEnum.vip,
   ];
+  final int tabsPerRow = 3;
+  final double expectTabHeight = 36.0;
 
   int _clicked = 0;
   double gridRatio;
@@ -32,42 +38,26 @@ class _CenterDisplayState extends State<CenterDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 6,
-              childAspectRatio: gridRatio,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: TypesGridWidget<CenterCategoryEnum>(
+              types: tabs,
+              titleKey: 'label',
+              onTypeGridTap: (_, type) {
+                int index = tabs.indexOf(type);
+                if (index != _clicked) {
+                  setState(() {
+                    _clicked = index;
+                  });
+                }
+              },
+              tabsPerRow: tabsPerRow,
+              expectTabHeight: expectTabHeight,
             ),
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: tabs.length,
-            itemBuilder: (_, index) {
-              return ConstrainedBox(
-                constraints: BoxConstraints.tightFor(
-                  height: Global.device.comfortButtonHeight,
-                ),
-                child: RaisedButton(
-                  visualDensity: VisualDensity.compact,
-                  color: (_clicked == index)
-                      ? Themes.buttonPrimaryColor
-                      : Themes.buttonSecondaryColor,
-                  textColor: (_clicked == index)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.defaultTextColor,
-                  child: Text(tabs[index]),
-                  onPressed: () {
-                    if (_clicked == index) return;
-                    setState(() {
-                      _clicked = index;
-                    });
-                  },
-                ),
-              );
-            },
           ),
           Expanded(
             child: IndexedStack(

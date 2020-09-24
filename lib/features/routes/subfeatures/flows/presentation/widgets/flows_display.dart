@@ -130,12 +130,12 @@ class FlowsDisplayState extends State<FlowsDisplay> {
   Widget _buildEmptyTable() {
     return SingleChildScrollView(
       child: ColoredBox(
-        color: Themes.chartBgColor,
+        color: themeColor.chartBgColor,
         child: Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           columnWidths: _tableWidthMap,
           border: TableBorder.all(
-            color: Themes.chartBorderColor,
+            color: themeColor.chartBorderColor,
             width: 2.0,
             style: BorderStyle.solid,
           ),
@@ -149,12 +149,12 @@ class FlowsDisplayState extends State<FlowsDisplay> {
   Widget _buildTable() {
     return SingleChildScrollView(
       child: ColoredBox(
-        color: Themes.chartBgColor,
+        color: themeColor.chartBgColor,
         child: Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           columnWidths: _tableWidthMap,
           border: TableBorder.all(
-            color: Themes.chartBorderColor,
+            color: themeColor.chartBorderColor,
             width: 2.0,
             style: BorderStyle.solid,
           ),

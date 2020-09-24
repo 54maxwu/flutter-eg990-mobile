@@ -4,6 +4,11 @@ import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeDisplayTabWebsite extends StatelessWidget {
+  final String url;
+  final String linkHint;
+
+  HomeDisplayTabWebsite({@required this.url, @required this.linkHint});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,15 +18,15 @@ class HomeDisplayTabWebsite extends StatelessWidget {
         FlatButton(
           onPressed: () {
             // open web site
-            launch(Global.CURRENT_BASE);
+            launch(url);
           },
           child: RichText(
             maxLines: 3,
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: localeStr.gameCategoryWebHint,
+              text: linkHint,
               style: TextStyle(
-                color: Themes.hintHyperLink,
+                color: themeColor.hintHyperLink,
                 fontSize: FontSize.MESSAGE.value,
                 decoration: TextDecoration.underline,
               ),

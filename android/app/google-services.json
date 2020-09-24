@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:71741613638:android:ccbefee573409a575d0c47",
         "android_client_info": {
-          "package_name": "com.eg990.mobile"
+          "package_name": "com.eg990.mobile.debug"
         }
       },
       "oauth_client": [

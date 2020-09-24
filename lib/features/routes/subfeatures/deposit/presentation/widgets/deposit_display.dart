@@ -107,6 +107,8 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
               padding: const EdgeInsets.only(top: 6.0),
               child: TypesGridWidget<PaymentType>(
                 types: widget.store.paymentTypes,
+                tabsPerRow: 3,
+                expectTabHeight: 36.0,
                 titleKey: 'label',
                 onTypeGridTap: (_, type) => updateContent(type),
               ),

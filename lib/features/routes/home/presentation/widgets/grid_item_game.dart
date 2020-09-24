@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:relative_layout/relative_layout.dart';
 
 import 'grid_plugin_favorite.dart';
@@ -12,7 +11,7 @@ class GridItemGame extends StatelessWidget {
   final bool isFavorite;
   final double itemSize;
   final double textHeight;
-  final bool twoLineText;
+  final double textWidthFactor;
   final PluginTapAction pluginTapAction;
   final bool isIos;
 
@@ -22,7 +21,7 @@ class GridItemGame extends StatelessWidget {
     @required this.isFavorite,
     @required this.itemSize,
     @required this.textHeight,
-    @required this.twoLineText,
+    @required this.textWidthFactor,
     @required this.pluginTapAction,
     @required this.isIos,
   });
@@ -49,39 +48,19 @@ class GridItemGame extends StatelessWidget {
             alignment: Alignment.center,
           ),
           child: Container(
-            margin: const EdgeInsets.only(bottom: 14.0),
-            padding: (twoLineText)
-                ? (isIos)
-                    ? const EdgeInsets.only(bottom: 4.0)
-                    : const EdgeInsets.only(bottom: 6.0)
-                : EdgeInsets.zero,
             constraints: BoxConstraints.tightFor(
-              width: itemSize * 0.9,
-              height: textHeight,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        label ?? '?',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: (twoLineText) ? 2 : 1,
-                        style: TextStyle(
-                          fontSize: FontSize.SMALLER.value,
-                          color: Themes.defaultGridTextColor,
-                        ),
-                      ),
-                    ),
-                  ],
+                width: itemSize * textWidthFactor, height: textHeight),
+            child: RichText(
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                text: label ?? '?',
+                style: TextStyle(
+                  color: themeColor.defaultGridTextColor,
+                  fontSize: FontSize.SMALLER.value,
                 ),
-              ],
+              ),
             ),
           ),
         ),

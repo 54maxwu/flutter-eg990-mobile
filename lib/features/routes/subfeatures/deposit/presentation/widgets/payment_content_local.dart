@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/form/deposit_form.dart';
@@ -79,10 +78,6 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
           gateway: '1',
           remark: _noteFieldKey.currentState.getInput,
         );
-        if (dataForm.name.hasInvalidChinese) {
-          callToast(localeStr.messageInvalidSymbol);
-          return;
-        }
         if (dataForm.isValid == false) {
           callToast(localeStr.messageActionFillForm);
           return;
@@ -107,22 +102,22 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
   }
 
   void _generateBankDataList() {
-//    debugPrint('bank map: ${widget.bankMap}');
+    debugPrint('bank map: ${widget.bankMap}');
     _bankNames = widget.bankMap.values.toList()..sort();
-//    debugPrint('bank names sorted: $_bankNames\n\n');
+    debugPrint('bank names sorted: $_bankNames\n\n');
     _bankIds = _bankNames
         .map((value) => widget.bankMap.entries
             .singleWhere((element) => element.value == value)
             .key)
         .toList();
-//    debugPrint('bank ids sorted: $_bankIds\n\n');
+    debugPrint('bank ids sorted: $_bankIds\n\n');
   }
 
   @override
   void initState() {
 //    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
 //            _titleWidthFactor -
-//        Themes.minusSize;
+//        ThemeInterface.minusSize;
 
     if (widget.infoList.isNotEmpty) {
       _selectedBankInfo = widget.infoList.first;
@@ -200,7 +195,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         style: TextStyle(
-                          color: Themes.hintDarkRed,
+                          color: themeColor.hintDarkRed,
                           fontSize: FontSize.MESSAGE.value,
                           fontWeight: FontWeight.w500,
                           height: 1.5,
@@ -210,16 +205,16 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                               text: '${localeStr.bankcardViewTitleOwner}:\r\r'),
                           TextSpan(
                             text: '${_selectedBankInfo.accountName}\n',
-                            style:
-                                TextStyle(color: Themes.hintHighlightDarkRed),
+                            style: TextStyle(
+                                color: themeColor.hintHighlightDarkRed),
                           ),
                           TextSpan(
                               text:
                                   '${localeStr.bankcardViewTitleCardNumber}:\r\r'),
                           TextSpan(
                             text: '${_selectedBankInfo.bankAccountNo}\n',
-                            style:
-                                TextStyle(color: Themes.hintHighlightDarkRed),
+                            style: TextStyle(
+                                color: themeColor.hintHighlightDarkRed),
                           ),
                           TextSpan(
                               text: '${localeStr.bankcardViewTitleBank}:\r\r'),
@@ -280,7 +275,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
               padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
               child: Text(
                 localeStr.depositHintTextAccount,
-                style: TextStyle(color: Themes.hintHighlight),
+                style: TextStyle(color: themeColor.hintHighlight),
               ),
             ),
 
@@ -317,10 +312,13 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                 prefixText: localeStr.depositPaymentEditTitleName,
                 titleWidthFactor: _titleWidthFactor,
                 horizontalInset: _fieldInset,
+                titleLetterSpacing: 1.0,
                 maxInputLength: InputLimit.NAME_MAX,
                 errorMsg: localeStr.messageInvalidDepositName,
-                validCondition: (value) =>
-                    rangeCheck(value: value.length, min: 2, max: 12),
+                validCondition: (value) => rangeCheck(
+                    value: value.length,
+                    min: InputLimit.NAME_MIN,
+                    max: InputLimit.NAME_MAX),
               ),
             ),
 
@@ -388,7 +386,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 //              padding: EdgeInsets.fromLTRB(_valueTextPadding, 24.0, 0.0, 16.0),
 //              child: Text(
 //                localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
-//                style: TextStyle(color: Themes.defaultHintColor),
+//                style: TextStyle(color: themeColor.defaultHintColor),
 //              ),
 //            ),
 
@@ -420,7 +418,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                 localeStr.depositHintTextAmount(
                     NumberFormat.simpleCurrency(decimalDigits: 0)
                         .format(_localData.max.strToInt)),
-                style: TextStyle(color: Themes.hintHighlight),
+                style: TextStyle(color: themeColor.hintHighlight),
               ),
             ),
 

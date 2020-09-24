@@ -158,7 +158,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
                 TextSpan(
                   text: localeStr.storeRequestWindowPoints,
                   style: TextStyle(
-                    color: Themes.storeDialogSpanText,
+                    color: themeColor.storeDialogSpanText,
                     fontSize: FontSize.SUBTITLE.value,
                     fontWeight: FontWeight.bold,
                   ),
@@ -168,7 +168,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
                       '${localeStr.storeTextItemPoint(widget.memberPoints)} - '
                       '${localeStr.storeTextItemPoint(widget.product.point)}',
                   style: TextStyle(
-                    color: Themes.storeHighlightTextColor,
+                    color: themeColor.storeHighlightTextColor,
                     fontSize: FontSize.SUBTITLE.value,
                     fontWeight: FontWeight.bold,
                   ),
@@ -184,7 +184,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
             vertical: 8.0,
             horizontal: 10.0,
           ),
-          color: Themes.defaultWidgetColor,
+          color: themeColor.defaultWidgetColor,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 6.0),
@@ -241,7 +241,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
             vertical: 8.0,
             horizontal: 10.0,
           ),
-          color: Themes.defaultWidgetColor,
+          color: themeColor.defaultWidgetColor,
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 12.0),
@@ -311,14 +311,14 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
                         TextSpan(
                           text: ' *  ',
                           style: TextStyle(
-                            color: Themes.hintHighlightRed,
+                            color: themeColor.hintHighlightRed,
                             fontSize: FontSize.SUBTITLE.value,
                           ),
                         ),
                         TextSpan(
                           text: title,
                           style: TextStyle(
-                            color: Themes.defaultHintColor,
+                            color: themeColor.defaultHintColor,
                             fontSize: FontSize.SUBTITLE.value,
                           ),
                         ),
@@ -337,7 +337,7 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
               persistHint: false,
               maxInputLength: maxLength,
               minusHeight: 20,
-              subTheme: Themes.isDarkTheme,
+              subTheme: themeColor.isDarkTheme,
             ),
           ),
         ],
@@ -361,14 +361,14 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
                   TextSpan(
                     text: ' *  ',
                     style: TextStyle(
-                      color: Themes.hintHighlightRed,
+                      color: themeColor.hintHighlightRed,
                       fontSize: FontSize.SUBTITLE.value,
                     ),
                   ),
                   TextSpan(
                     text: localeStr.storeRequestWindowFieldTitleAddress,
                     style: TextStyle(
-                      color: Themes.defaultHintColor,
+                      color: themeColor.defaultHintColor,
                       fontSize: FontSize.SUBTITLE.value,
                     ),
                   ),

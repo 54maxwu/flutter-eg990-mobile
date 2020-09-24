@@ -22,6 +22,9 @@ abstract class _DepositStore with Store {
   @observable
   ObservableFuture<void> _initFuture;
 
+  @observable
+  bool hasCard;
+
   List<PaymentType> paymentTypes;
 
   Map<int, List<PaymentPromoData>> promoMap;
@@ -46,7 +49,8 @@ abstract class _DepositStore with Store {
 
   bool _errorState = false;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??
@@ -79,6 +83,7 @@ abstract class _DepositStore with Store {
       errorMessage = null;
       // Fetch from the repository and wrap the regular Future into an observable.
       _initFuture = ObservableFuture(Future.wait([
+        if (hasCard == null || !hasCard) Future.value(checkBankcard()),
         if (paymentTypes == null)
           Future.value(getPaymentTypes()).whenComplete(() {
             if (infoList == null) getDepositInfo();
@@ -91,6 +96,30 @@ abstract class _DepositStore with Store {
       await _initFuture;
     } on Exception {
       setErrorMsg(code: 1);
+    }
+  }
+
+  @action
+  Future<void> checkBankcard() async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      hasCard = null;
+      // Fetch from the repository and wrap the regular Future into an observable.
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      return await _repository.checkBankcard().then((result) {
+//        debugPrint('payment store type result: $result');
+        return result.fold(
+          (failure) {
+            setErrorMsg(msg: failure.message, showOnce: true);
+            _errorState = true;
+          },
+          (data) => hasCard = data,
+        );
+      });
+    } on Exception {
+      _errorState = true;
+      setErrorMsg(code: 2);
     }
   }
 

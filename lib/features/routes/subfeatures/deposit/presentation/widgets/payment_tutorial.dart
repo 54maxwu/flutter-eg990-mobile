@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/entity/payment_enum_data.dart';
@@ -44,7 +44,7 @@ class PaymentTutorial extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(2.0)),
             ),
-            color: Themes.dialogBgColor,
+            color: themeColor.dialogBgColor,
             child: Container(
               constraints: BoxConstraints(
                 minWidth: dialogWidth,
@@ -67,7 +67,7 @@ class PaymentTutorial extends StatelessWidget {
                                   title,
                                   style: TextStyle(
                                     fontSize: FontSize.TITLE.value,
-                                    color: Themes.dialogTitleColor,
+                                    color: themeColor.dialogTitleColor,
                                   ),
                                 ),
                                 SizedBox(height: 6.0),

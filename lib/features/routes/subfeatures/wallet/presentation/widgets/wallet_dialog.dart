@@ -34,7 +34,7 @@ class _WalletDialogState extends State<WalletDialog> {
       key: _dialogKey,
       maxHeight: 186.0,
       widthShrink: 64.0,
-      transparentBg: Themes.isDarkTheme,
+      transparentBg: themeColor.isDarkTheme,
       onClose: () {
         widget.store.showingDialog = false;
         widget.store.closeStream();
@@ -127,7 +127,7 @@ class _WalletDialogState extends State<WalletDialog> {
                         child: Icon(
                           Icons.check,
                           size: 64,
-                          color: Themes.defaultAccentColor,
+                          color: themeColor.defaultAccentColor,
                         ),
                       ),
                     ),
@@ -166,7 +166,7 @@ class _WalletDialogState extends State<WalletDialog> {
                         child: Icon(
                           Icons.error,
                           size: 64,
-                          color: Themes.defaultErrorColor,
+                          color: themeColor.defaultErrorColor,
                         ),
                       ),
                     ),

@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/bloc_widget_export.dart';
 import 'package:flutter_eg990_mobile/features/general/toast_widget_export.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 
 import 'test_basic_chip_widget.dart';
@@ -31,7 +31,7 @@ class _TestScreenState extends State<TestScreen> {
           return Future(() => true);
         },
         child: Scaffold(
-          backgroundColor: Themes.defaultBackgroundColor,
+          backgroundColor: themeColor.defaultBackgroundColor,
           body: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

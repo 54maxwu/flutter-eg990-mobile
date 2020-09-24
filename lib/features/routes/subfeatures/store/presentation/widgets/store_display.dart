@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 
 import '../state/point_store.dart';
 import 'store_display_banner.dart';
@@ -26,7 +26,7 @@ class _StoreDisplayState extends State<StoreDisplay> {
     imageHeight = 530 / imageContainerScale;
     print('store banner height: $imageHeight');
 
-    availableHeight = Global.device.featureContentHeight - 8;
+    availableHeight = Global.device.featureContentHeight - 4.0;
     contentHeight = availableHeight - imageHeight;
     print('store content height: $contentHeight');
     super.initState();

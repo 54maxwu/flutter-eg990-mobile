@@ -46,7 +46,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
                 child: Text(
                   localeStr.userVerifyButtonText(''),
-                  style: TextStyle(color: Themes.defaultAccentColor),
+                  style: TextStyle(color: themeColor.defaultAccentColor),
                 ),
               ),
               new Form(
@@ -65,7 +65,8 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       suffixText: localeStr.userVerifyButtonText('\n'),
                       suffixLetterWidth: 3.6,
                       suffixAction: (input) {
-                        print('post request: ${widget.store.waitForResponse}');
+                        debugPrint(
+                            'post request: ${widget.store.waitForResponse}');
                         if (widget.store.waitForResponse == false)
                           widget.store.postVerifyRequest(
                               _phoneFieldKey.currentState.getInput);
@@ -96,7 +97,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Icon(
                         Icons.info,
-                        color: Themes.hintHighlight,
+                        color: themeColor.hintHighlight,
                         size: 16.0,
                       ),
                     ),
@@ -104,7 +105,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       child: Text(
                         localeStr.userVerifyFieldInfo,
                         style: TextStyle(
-                          color: Themes.hintHighlight,
+                          color: themeColor.hintHighlight,
                         ),
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.ellipsis,
@@ -137,7 +138,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-//      print('The user wants to login with $_username and $_password');
+//      debugPrint('The user wants to login with $_username and $_password');
       String verifyCode = _verifyFieldKey?.currentState?.getInput ?? '';
       if (verifyCode.isNotEmpty)
         widget.store.postVerify(widget.mobile, verifyCode);

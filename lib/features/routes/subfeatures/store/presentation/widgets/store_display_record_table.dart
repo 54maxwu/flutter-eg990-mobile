@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_span_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 import '../../data/models/store_exchange_model.dart';
 
@@ -51,12 +51,12 @@ class StoreDisplayRecordTable extends StatelessWidget {
           };
 
     return ColoredBox(
-      color: Themes.chartBgColor,
+      color: themeColor.chartBgColor,
       child: Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: _tableWidthMap,
         border: TableBorder.all(
-          color: Themes.chartBorderColor,
+          color: themeColor.chartBorderColor,
           width: 1.0,
           style: BorderStyle.solid,
         ),
@@ -91,22 +91,22 @@ class StoreDisplayRecordTable extends StatelessWidget {
                     TextSpan(
                       text:
                           '${localeStr.storeRecordTableDetailName(data.name)}; ',
-                      style: TextStyle(color: Themes.defaultHintSubColor),
+                      style: TextStyle(color: themeColor.defaultHintSubColor),
                     ),
                     TextSpan(
                       text:
                           '${localeStr.storeRecordTableDetailPhone(data.phone)};\n',
-                      style: TextStyle(color: Themes.defaultHintSubColor),
+                      style: TextStyle(color: themeColor.defaultHintSubColor),
                     ),
                     TextSpan(
                       text:
                           '${localeStr.storeRecordTableDetailPostCode(data.code)}; ',
-                      style: TextStyle(color: Themes.defaultHintSubColor),
+                      style: TextStyle(color: themeColor.defaultHintSubColor),
                     ),
                     TextSpan(
                       text:
                           '${localeStr.storeRecordTableDetailAddress(data.address)};',
-                      style: TextStyle(color: Themes.defaultHintSubColor),
+                      style: TextStyle(color: themeColor.defaultHintSubColor),
                     ),
                   ],
                 ),
@@ -129,13 +129,13 @@ class StoreDisplayRecordTable extends StatelessWidget {
   TableRow _buildHeaderRow() {
     return TableRow(
       decoration: BoxDecoration(
-        color: Themes.defaultAccentColor,
+        color: themeColor.defaultAccentColor,
       ),
       children: List.generate(
         _headerRowTexts.length,
         (index) => TableCellTextWidget(
           text: _headerRowTexts[index],
-          textColor: Themes.chartPrimaryHeaderTextColor,
+          textColor: themeColor.chartPrimaryHeaderTextColor,
         ),
       ),
     );

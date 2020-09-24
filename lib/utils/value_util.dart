@@ -11,7 +11,7 @@ bool rangeCheck({@required num value, @required int min, int max = 0}) {
 }
 
 final String creditSymbol = '￥';
-final NumberFormat numFormat = new NumberFormat("###0.00", "en_US");
+final NumberFormat numFormat = new NumberFormat("#,##0.00", "en_US");
 final NumberFormat creditFormat =
     new NumberFormat("$creditSymbol#,##0.00", "en_US");
 final RegExp replaceRegex = RegExp('$creditSymbol|,');
@@ -29,6 +29,20 @@ String formatNum(
     return s.substring(0, s.indexOf('.'));
   else
     return s;
+}
+
+String formatAsCreditNum(
+  num n, {
+  bool floorIfInt = true,
+  bool floorIfZero = true,
+}) {
+  final s = creditFormat.format(n);
+  if (!floorIfZero && s.strToDouble == 0)
+    return s.replaceAll(creditSymbol, '');
+  else if (floorIfInt && s.endsWith('.00'))
+    return s.substring(0, s.indexOf('.')).replaceAll(creditSymbol, '');
+  else
+    return s.replaceAll(creditSymbol, '');
 }
 
 String intToStr(int value, {bool creditSign = false}) =>

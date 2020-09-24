@@ -55,9 +55,8 @@ class _RegisterRouteState extends State<RegisterRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        print('pop register route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        debugPrint('pop register route');
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

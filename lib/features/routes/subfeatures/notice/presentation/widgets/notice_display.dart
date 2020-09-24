@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/warning_display.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/notice/data/models/notice_type.dart';
 
 import '../state/notice_store.dart';
 import 'notice_display_content.dart';
@@ -15,21 +17,19 @@ class NoticeDisplay extends StatefulWidget {
 }
 
 class _NoticeDisplayState extends State<NoticeDisplay> {
-  final List<String> tabs = [
-    localeStr.noticeTabGeneral,
-    localeStr.noticeTabMaintenance,
+  final int tabsPerRow = 3;
+  final double expectTabHeight = 36.0;
+
+  final List<NoticeTypeEnum> tabs = [
+    NoticeTypeEnum.general,
+    NoticeTypeEnum.maintenance,
   ];
 
   int _clicked = 0;
-  double gridRatio;
 
   @override
-  void initState() {
-    double gridItemWidth = (Global.device.width - 6 * 5 - 12) / 3;
-    gridRatio = gridItemWidth / 36;
-    debugPrint('grid item width: $gridItemWidth, gridRatio: $gridRatio');
-    if (gridRatio > 4.16) gridRatio = 4.16;
-    super.initState();
+  void didUpdateWidget(NoticeDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -37,48 +37,33 @@ class _NoticeDisplayState extends State<NoticeDisplay> {
     if (widget.store.dataModel == null || widget.store.dataModel.code != '0')
       return WarningDisplay(message: widget.store.dataModel.msg);
     else
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 6,
-                childAspectRatio: gridRatio,
+      return SizedBox(
+        width: Global.device.width - 12.0,
+        child: ListView(
+          primary: true,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
+              child: TypesGridWidget<NoticeTypeEnum>(
+                types: tabs,
+                titleKey: 'label',
+                onTypeGridTap: (_, type) {
+                  int index = tabs.indexOf(type);
+                  if (index != _clicked) {
+                    setState(() {
+                      _clicked = index;
+                    });
+                  }
+                },
+                tabsPerRow: tabsPerRow,
+                itemSpace: 0,
+                expectTabHeight: expectTabHeight,
               ),
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: tabs.length,
-              itemBuilder: (_, index) {
-                return ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(
-                    height: Global.device.comfortButtonHeight,
-                  ),
-                  child: RaisedButton(
-                    visualDensity: VisualDensity.compact,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(24.0),
-                    ),
-                    color: (_clicked == index)
-                        ? Themes.buttonPrimaryColor
-                        : Themes.buttonSecondaryColor,
-                    textColor: (_clicked == index)
-                        ? Themes.buttonTextPrimaryColor
-                        : Themes.defaultTextColor,
-                    child: Text(tabs[index]),
-                    onPressed: () {
-                      if (_clicked == index) return;
-                      setState(() {
-                        _clicked = index;
-                      });
-                    },
-                  ),
-                );
-              },
             ),
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: IndexedStack(
                 index: _clicked,
                 children: <Widget>[

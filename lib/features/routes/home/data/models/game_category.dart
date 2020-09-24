@@ -15,6 +15,7 @@ enum HomeCategoryEnum {
   RECOMMEND,
   FAVORITE,
   PROMO,
+  MOVIE_WEBSITE,
   WEBSITE,
   UNDEFINE,
 }
@@ -22,6 +23,7 @@ enum HomeCategoryEnum {
 class HomeCategoryInfo {
   final HomeCategoryEnum id;
   final String imageUrl;
+  final String assetPath;
   final GamePageType pageType;
 
   ///
@@ -31,6 +33,7 @@ class HomeCategoryInfo {
   const HomeCategoryInfo({
     @required this.id,
     this.imageUrl,
+    this.assetPath,
     this.pageType = GamePageType.Games,
   });
 }
@@ -107,6 +110,12 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
     imageUrl: '',
     pageType: GamePageType.Promo,
   ));
+  static const GameCategory movieWebsite =
+      const GameCategory.define(HomeCategoryInfo(
+    id: HomeCategoryEnum.MOVIE_WEBSITE,
+    imageUrl: '',
+    pageType: GamePageType.MovieWebsite,
+  ));
   static const GameCategory website =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.WEBSITE,
@@ -171,6 +180,8 @@ extension HomeCategoryExtension on HomeCategoryInfo {
         return localeStr.homeUserTabCategoryFavorite;
       case HomeCategoryEnum.PROMO:
         return localeStr.pageTitlePromo;
+      case HomeCategoryEnum.MOVIE_WEBSITE:
+        return localeStr.gameCategoryMovieWeb;
       case HomeCategoryEnum.WEBSITE:
         return localeStr.gameCategoryWeb;
       default:

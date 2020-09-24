@@ -8,6 +8,7 @@ import '../model/payment_promo.dart';
 import '../model/payment_type.dart';
 
 class DepositApi {
+  static const String GET_CARD = "api/bankcard";
   static const String GET_PAYMENT = "api/getPayment";
   static const String GET_PAYMENT_PROMO = "api/getPromo";
   static const String GET_DEPOSIT_INFO = "/api/getShowAcc";
@@ -18,6 +19,7 @@ class DepositApi {
 }
 
 abstract class DepositRepository {
+  Future<Either<Failure, bool>> checkBankcard();
   Future<Either<Failure, List<PaymentType>>> getPayment();
 
   Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo();
@@ -39,6 +41,35 @@ class DepositRepositoryImpl implements DepositRepository {
   DepositRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
     Future.sync(() => jwtInterface.checkJwt('/'));
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkBankcard() async {
+    final result = await requestModel<RequestCodeModel>(
+      request: dioApiService.get(
+        DepositApi.GET_CARD,
+        userToken: jwtInterface.token,
+      ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      tag: 'remote-BANKCARD',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (data) {
+        if (data.isSuccess && data.data.toString().isNotEmpty) {
+          MyLogger.print(msg: 'bankcard map: ${data.data}', tag: tag);
+          if (data.data is Map)
+            return Right(true);
+          else if (data.data is String)
+            return Right(true);
+          else
+            return Left(Failure.dataType());
+        } else {
+          return Right(false);
+        }
+      },
+    );
   }
 
   @override

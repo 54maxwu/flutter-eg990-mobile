@@ -42,6 +42,6 @@ extension DepositDataFormExtension on DepositDataForm {
       amount != '-1' &&
       amount.isNotEmpty &&
       name.isNotEmpty &&
-      localBank != -1 &&
+//      localBank != -1 &&
       localBankCard.isNotEmpty;
 }

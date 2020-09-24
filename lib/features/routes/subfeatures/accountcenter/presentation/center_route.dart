@@ -124,8 +124,7 @@ class _CenterRouteState extends State<CenterRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop center route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

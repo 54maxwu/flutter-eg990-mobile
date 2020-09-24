@@ -3,7 +3,7 @@ import 'dart:io' show File;
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
@@ -60,7 +60,7 @@ Future<Widget> networkImageWidget(
                 if (addPendingIconOnError) return Image.asset(Res.iconPending);
                 return Icon(
                   Icons.broken_image,
-                  color: Themes.iconSubColor1,
+                  color: themeColor.iconSubColor1,
                 );
               default:
                 return null;
@@ -107,7 +107,7 @@ FutureBuilder networkImageBuilder(
         MyLogger.warn(
             msg: 'network image builder error: ${snapshot.error}',
             error: snapshot.error);
-        return Icon(Icons.broken_image, color: Themes.iconSubColor1);
+        return Icon(Icons.broken_image, color: themeColor.iconSubColor1);
       } else {
         return SizedBox.shrink();
       }

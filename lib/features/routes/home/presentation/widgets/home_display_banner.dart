@@ -20,7 +20,7 @@ class HomeDisplayBanner extends StatelessWidget {
       return _buildCarousel();
     } else {
       return Container(
-        color: Themes.defaultBackgroundColor,
+        color: themeColor.defaultBackgroundColor,
         alignment: Alignment.center,
         margin: const EdgeInsets.only(bottom: 34.0),
         child: WarningDisplay(
@@ -46,7 +46,7 @@ class HomeDisplayBanner extends StatelessWidget {
       showIndicator: false,
 //      dotSize: 3.0,
 //      dotSpacing: 16.0,
-//      dotColor: Themes.defaultAccentColor,
+//      dotColor: themeColor.defaultAccentColor,
 //      indicatorBgPadding: 4.0,
 //      dotBgColor: Colors.white12,
       borderRadius: false,

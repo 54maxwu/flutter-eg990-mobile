@@ -115,7 +115,7 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.AGENT_ABOUT:
         return localeStr.pageTitleMemberAgentAbout;
       case RouteEnum.VIP:
-        return localeStr.centerViewTitleVip;
+        return localeStr.pageTitleVip;
       case RouteEnum.STORE:
         return localeStr.pageTitleStore;
       case RouteEnum.ROLLER:

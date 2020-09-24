@@ -10,12 +10,16 @@ import 'home_store_inherit_widget.dart';
 
 class HomeDisplayTabRecommend extends StatefulWidget {
   final double pageMaxWidth;
+  final double textWidthFactor;
   final HomeSearchPlatformClicked onPlatformClicked;
+  final bool addFavoritePlugin;
 
   const HomeDisplayTabRecommend({
     Key key,
     @required this.pageMaxWidth,
+    @required this.textWidthFactor,
     @required this.onPlatformClicked,
+    this.addFavoritePlugin = true,
   }) : super(key: key);
 
   @override
@@ -26,18 +30,19 @@ class HomeDisplayTabRecommend extends StatefulWidget {
 class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   final String tag = 'HomeDisplayTabRecommend';
   final bool _isIos = Global.device.isIos;
-//  final bool _isIos = true;
+  final int _itemsPerRow = 3;
+  final int _fixedItemHeight = 128;
 
   HomeStore _store;
-  double labelHeightFactor;
-  double itemSize;
-  double gridRatio;
-  double baseTextSize;
-  int availableCharacters;
-  bool twoLineText = true;
-  int plusGrid = 0;
+  double _itemSize;
+  double _gridRatio;
+  double _baseTextSize;
+  double _textHeight;
+  int _availableCharacters;
+  bool _twoLineText = true;
+  int _plusGrid = 0;
   Widget _grid;
-  List recommends;
+  List _recommends;
 
   /// Pass in a [itemData] on grid item tap.
   /// [itemData] should be [GamePlatformEntity] or [GameEntity]
@@ -68,24 +73,19 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
 
   @override
   void initState() {
-    plusGrid = (Global.device.widthScale > 2.0)
+    _plusGrid = (Global.device.widthScale > 2.0)
         ? 2
         : (Global.device.widthScale > 1.5) ? 1 : 0;
 
-    labelHeightFactor = 1.6;
-    if (plusGrid > 0) {
-      if (Global.device.widthScale > 2.0) {
-        labelHeightFactor = 1.75;
-      } else {
-        labelHeightFactor = 1.675;
-      }
-    }
+    _itemSize = widget.pageMaxWidth / (_itemsPerRow + _plusGrid) * 1.05;
+    _gridRatio = _itemSize / _fixedItemHeight / Global.device.widthScale;
 
-    itemSize = widget.pageMaxWidth / (3 + plusGrid) * 0.95;
-    baseTextSize = (_isIos) ? FontSize.NORMAL.value + 1 : FontSize.NORMAL.value;
-    availableCharacters = (itemSize * 0.9 / baseTextSize).floor();
+    _baseTextSize =
+        (_isIos) ? FontSize.NORMAL.value + 2 : FontSize.NORMAL.value;
+    _availableCharacters =
+        (_itemSize * widget.textWidthFactor / _baseTextSize).floor();
     print(
-        'recommend item available characters: ${(itemSize * 0.9 / baseTextSize)}');
+        'recommend item available characters: ${(_itemSize * widget.textWidthFactor / _baseTextSize)}');
     super.initState();
   }
 
@@ -105,8 +105,8 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
       initialData: _store.recommends,
       builder: (_, snapshot) {
         if (snapshot.data == null) _store.getRecommend();
-        if (snapshot != null || snapshot.data != recommends) {
-          recommends = snapshot.data;
+        if (snapshot != null || snapshot.data != _recommends) {
+          _recommends = snapshot.data;
           _grid = _createGrid();
         }
         _grid ??= Center(child: CircularProgressIndicator());
@@ -116,35 +116,30 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   }
 
   Widget _createGrid() {
-    if (recommends == null || recommends.isEmpty) return SizedBox.shrink();
-    twoLineText = recommends.any(
+    if (_recommends == null || _recommends.isEmpty) return SizedBox.shrink();
+    _twoLineText = _recommends.any(
       (element) {
         if (element is GameEntity)
-          return element.isLongText(availableCharacters);
+          return element.isLongText(_availableCharacters);
         else if (element is GamePlatformEntity)
-          return element.isLongText(availableCharacters);
+          return element.isLongText(_availableCharacters);
         else
           return false;
       },
     );
-    print('recommend grid two line text: $twoLineText');
-
-    if (twoLineText) {
-      var expectHeight = 115 + (baseTextSize * 1.5) / 2.25;
-      gridRatio = itemSize / expectHeight / Global.device.widthScale;
-    } else
-      gridRatio = itemSize / 115 / Global.device.widthScale;
-    print('recommend item size: $itemSize, ratio: $gridRatio');
+    _textHeight = (_twoLineText) ? _baseTextSize * 2.5 : _baseTextSize * 1.75;
+    print(
+        'recommend grid two line text: $_twoLineText, text height: $_textHeight');
 
     return GridView.count(
       physics: BouncingScrollPhysics(),
       padding: const EdgeInsets.only(bottom: 2.0),
-      crossAxisCount: 3 + plusGrid,
-      childAspectRatio: gridRatio + (plusGrid * 0.05),
-      mainAxisSpacing: (plusGrid > 0) ? 6.0 : (twoLineText) ? 4.0 : 0.0,
+      crossAxisCount: 3 + _plusGrid,
+      childAspectRatio: _gridRatio + (_plusGrid * 0.05),
+      mainAxisSpacing: (_plusGrid > 0) ? 6.0 : 4.0,
       shrinkWrap: true,
       children:
-          recommends.map<Widget>((entity) => _createGridItem(entity)).toList(),
+          _recommends.map<Widget>((entity) => _createGridItem(entity)).toList(),
     );
   }
 
@@ -153,7 +148,6 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
   Widget _createGridItem(dynamic entity) {
     String label;
     String imgUrl;
-    double textHeight;
     bool favor = false;
 
     if (entity is GameEntity) {
@@ -169,16 +163,10 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
           msg: '${UnknownConditionException()}!! Grid item: $entity', tag: tag);
     }
 
-    if (twoLineText)
-      textHeight = baseTextSize * labelHeightFactor * 2.5;
-    else
-      textHeight = baseTextSize * labelHeightFactor;
-
-    return Container(
-      padding: const EdgeInsets.only(top: 6.0),
+    return ConstrainedBox(
       constraints: BoxConstraints.tight(Size(
-        itemSize,
-        itemSize + textHeight,
+        _itemSize,
+        _itemSize + _textHeight,
       )),
       child: GestureDetector(
         onTap: () => _onItemTap(entity),
@@ -187,10 +175,10 @@ class _HomeDisplayTabRecommendState extends State<HomeDisplayTabRecommend> {
           imgUrl: imgUrl,
           label: label,
           isFavorite: favor,
-          itemSize: itemSize,
-          textHeight: textHeight,
-          twoLineText: twoLineText,
-          pluginTapAction: (imgUrl != null && label != null)
+          itemSize: _itemSize,
+          textHeight: _textHeight,
+          textWidthFactor: widget.textWidthFactor,
+          pluginTapAction: (widget.addFavoritePlugin)
               ? (isFavorite) => _setFavorite(entity, isFavorite)
               : null,
           isIos: _isIos,

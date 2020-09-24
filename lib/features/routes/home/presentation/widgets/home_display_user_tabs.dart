@@ -1,9 +1,9 @@
-import 'dart:async' show StreamController;
+import 'dart:async' show StreamController, Timer;
 
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
-import 'package:flutter_eg990_mobile/features/routes/movie/presentation/eg/movie_tab_eg_route.dart';
 
 import '../../data/models/game_category_model.dart';
 import '../state/home_store.dart';
@@ -12,6 +12,7 @@ import 'home_display_tab_favorite.dart';
 import 'home_display_tab_page.dart';
 import 'home_display_tab_recommend.dart';
 import 'home_store_inherit_widget.dart';
+import 'home_tab_item.dart';
 
 ///
 /// Main view of the game area
@@ -34,21 +35,22 @@ class HomeDisplayUserTabs extends StatefulWidget {
 }
 
 class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AfterLayoutMixin {
   final GlobalKey _tabBarKey = new GlobalKey(debugLabel: 'tabbar2');
   final StreamController<List<String>> _updateController =
       StreamController<List<String>>.broadcast();
 
   HomeStore _store;
+  Timer _timer;
   TabController _tabController;
   PageController _pageController;
   Widget _tabBar;
 
+  Map<String, GlobalKey<HomeTabItemState>> _tabKeyMap;
+  Map<String, HomeTabItem> _tabItemMap;
   int _currentIndex;
   String _preType;
   String _currentType;
-
-  Map<String, Widget> iconBuilders;
 
   void showPlatform(int index, String platformClassName) {
     print('jump to page $index and search $platformClassName');
@@ -68,18 +70,29 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
     } on Exception {}
   }
 
-  @override
-  void initState() {
-    super.initState();
+  void initializeTabController() {
     if (widget.tabs != null) {
-//      print('game tabs = ${widget.tabs}');
-//      print('game tabs count = ${widget.tabs.length}');
+//      debugPrint('game tabs = ${widget.tabs}');
+//      debugPrint('game tabs count = ${widget.tabs.length}');
       _currentType = widget.tabs[0].type;
       _pageController = new PageController();
       _tabController =
           new TabController(length: widget.tabs.length, vsync: this);
       _tabController.addListener(() => _tabListener());
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeTabController();
+  }
+
+  @override
+  void didUpdateWidget(HomeDisplayUserTabs oldWidget) {
+    debugPrint('home display user-tab update');
+    super.didUpdateWidget(oldWidget);
+    if (_tabController == null) initializeTabController();
   }
 
   @override
@@ -107,16 +120,39 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
 
   @override
   Widget build(BuildContext context) {
-    if (_tabController == null)
-      return Center(child: CircularProgressIndicator());
-    iconBuilders ??= new Map();
-    final store = HomeStoreInheritedWidget.of(context).store;
-    _tabBar ??= _buildTabBar(store);
+    _store = HomeStoreInheritedWidget.of(context).store;
+    if (_store == null) {
+      _tabBar = Center(
+        child: WarningDisplay(
+          message:
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
+        ),
+      );
+    } else if (_tabController != null) {
+      // build tab bar when game category is not null
+      _tabBar = _buildTabBar(_store);
+    } else if (_tabController == null && _timer == null) {
+      // set a period check timer and wait for data initialized
+      _timer ??= Timer.periodic(Duration(milliseconds: 500), (_) {
+//        debugPrint('home display tab running check...');
+        if (_store != null && _store.waitForInitializeData == false) {
+          if (mounted) {
+            setState(() {
+              _tabBar = SizedBox.shrink();
+            });
+            _timer?.cancel();
+            debugPrint('home display tab check timer canceled');
+          }
+        }
+      });
+    }
+    _tabBar ??= Center(child: CircularProgressIndicator());
     return _tabBar;
   }
 
   Widget _buildTabBar(HomeStore store) {
-    _store ??= HomeStoreInheritedWidget.of(context).store;
+    _tabKeyMap = new Map();
+    _tabItemMap = new Map();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6.0),
       child: Row(
@@ -128,7 +164,7 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
           Padding(
             padding: const EdgeInsets.fromLTRB(0.0, 2.0, 10.0, 12.0),
             child: Material(
-              color: Themes.homeTabBgColor,
+              color: themeColor.homeTabBgColor,
               borderRadius: BorderRadius.circular(6.0),
               child: Container(
                 /* Tab bar constraints */
@@ -145,6 +181,8 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                     key: _tabBarKey,
                     labelStyle: TextStyle(fontSize: FontSize.NORMAL.value + 1),
                     labelPadding: const EdgeInsets.only(top: 2.0),
+                    unselectedLabelColor: themeColor.homeTabTextColor,
+                    labelColor: themeColor.homeTabSelectedTextColor,
                     indicatorColor: Colors.transparent, // hide indicator
                     controller: _tabController,
                     isScrollable: true,
@@ -179,8 +217,9 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                       switch (category.pageType) {
                         case GamePageType.Games:
                           return HomeDisplayTabPage(
-                            pageMaxWidth: widget.sizeCalc.pageMaxWidth,
                             category: category.type,
+                            pageMaxWidth: widget.sizeCalc.pageMaxWidth,
+                            textWidthFactor: widget.sizeCalc.textWidthFactor,
                             addSearchListener: true,
                             addPlugin: true,
                           );
@@ -188,6 +227,7 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                         case GamePageType.Recommend:
                           return new HomeDisplayTabRecommend(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
+                            textWidthFactor: widget.sizeCalc.textWidthFactor,
                             onPlatformClicked: (platform) {
                               print('clicked recommend platform: $platform');
                               int pageIndex = widget.tabs.indexWhere(
@@ -201,6 +241,7 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                         case GamePageType.Favorite:
                           return new HomeDisplayTabFavorite(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
+                            textWidthFactor: widget.sizeCalc.textWidthFactor,
                             onPlatformClicked: (platform) {
                               print('clicked favorite platform: $platform');
                               int pageIndex = widget.tabs.indexWhere(
@@ -211,16 +252,14 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                             },
                           );
                           break;
-                        case GamePageType.MovieEg:
-                        case GamePageType.MovieNew:
-                          return new MovieTabEgRoute(
-                            displaySize: widget.sizeCalc,
-                          );
-                          break;
-                        case GamePageType.Promo:
-                        case GamePageType.Website:
+//                        case GamePageType.MovieEg:
+//                        case GamePageType.MovieNew:
+//                          return new MovieTabEgRoute(
+//                            displaySize: widget.sizeCalc,
+//                          );
+//                          break;
+                        default:
                           return SizedBox.shrink();
-                          break;
                       }
                     }).toList(),
                   ),
@@ -234,9 +273,23 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
   }
 
   Widget _createTab(GameCategoryModel category) {
+    GlobalKey<HomeTabItemState> key;
+    if (_tabKeyMap.containsKey(category.type)) {
+      key = _tabKeyMap[category.type];
+    } else {
+      key = new GlobalKey<HomeTabItemState>(debugLabel: category.type);
+      _tabKeyMap[category.type] = key;
+      _tabItemMap[category.type] = new HomeTabItem(
+          key: key,
+          category: category,
+          iconSize: widget.sizeCalc.barItemIconSize,
+          isFirst: widget.tabs.indexOf(category) == 0);
+    }
+//    debugPrint('creating tab: $category');
     return RotatedBox(
       quarterTurns: 3, // rotate back to normal display
-      child: Tab(
+      child: SizedBox(
+        height: widget.sizeCalc.barItemHeight,
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -245,58 +298,27 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
             border: Border(
               bottom: BorderSide(
                 width: 2.0,
-                color: Themes.homeTabDividerColor,
+                color: themeColor.homeTabDividerColor,
               ),
             ),
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                width: 24.0,
-                height: 20.0,
-                padding: const EdgeInsets.only(left: 4.0),
-                child: StreamBuilder<List<String>>(
-                  stream: _updateController.stream,
-                  initialData: [_currentType],
-                  builder: (ctx, update) {
-                    String type = category.type;
-                    // if the type does not need to update then return old icon
-                    if (iconBuilders.containsKey(type) == false ||
-                        update.data.contains(type)) {
-//                      print('updating tab icon: $type');
-                      // use local images to avoid flashes
-                      Widget builder = Image.asset(
-                        'assets/${category.iconUrl}',
-                        color: type == _currentType
-                            ? Themes.defaultAccentColor
-                            : Themes.defaultTabUnselectedColor,
-                      );
-                      iconBuilders[type] = builder;
-                      return builder;
-                    } else {
-                      return iconBuilders[type];
-                    }
-                  },
-                ),
-              ),
-              Container(
-                constraints: BoxConstraints(
-                  minWidth: FontSize.NORMAL.value * 5,
-                ),
-                padding: const EdgeInsets.only(left: 6.0, right: 4.0),
-                alignment: Alignment.center,
-                child: Text(
-                  category.label,
-                  maxLines: 1,
-                  overflow: TextOverflow.visible,
-                ),
-              ),
-            ],
-          ),
+          width: widget.sizeCalc.barItemWidth,
+          child: _tabItemMap[category.type],
         ),
       ),
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    _updateController.stream.listen((update) {
+      debugPrint('update control listener: $update');
+      if (update[0].isNotEmpty && _tabKeyMap.containsKey(update[0])) {
+        _tabKeyMap[update[0]].currentState.setSelected = false;
+      }
+      if (update[1].isNotEmpty && _tabKeyMap.containsKey(update[1])) {
+        _tabKeyMap[update[1]].currentState.setSelected = true;
+      }
+    });
   }
 }

@@ -7,7 +7,7 @@ class ScreenMenuBar extends StatefulWidget implements PreferredSizeWidget {
   _ScreenMenuBarState createState() => _ScreenMenuBarState();
 
   @override
-  Size get preferredSize => Size(Global.device.width, Global.APP_BAR_HEIGHT);
+  Size get preferredSize => Size(Global.device.width, Global.APP_MENU_HEIGHT);
 }
 
 class _ScreenMenuBarState extends State<ScreenMenuBar> {
@@ -55,17 +55,17 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
     ];
   }
 
-//  @override
-//  void didUpdateWidget(ScreenMenuBar oldWidget) {
-//    _viewState = null;
-//    _eventStore = null;
-//    if (_disposers != null) {
-//      _disposers.forEach((d) => d());
-//      _disposers.clear();
-//      _disposers = null;
-//    }
-//    super.didUpdateWidget(oldWidget);
-//  }
+  @override
+  void didUpdateWidget(ScreenMenuBar oldWidget) {
+    _viewState = null;
+    _eventStore = null;
+    if (_disposers != null) {
+      _disposers.forEach((d) => d());
+      _disposers.clear();
+      _disposers = null;
+    }
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   void dispose() {
@@ -84,32 +84,32 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       titleSpacing: 0,
       centerTitle: false,
       /* Appbar Title */
-//      flexibleSpace: FlexibleSpaceBar(
-//        centerTitle: true,
-//        title: Observer(builder: (_) {
-//          final page = viewState.store.pageInfo ?? RoutePage.template.value;
-//          return Container(
-//            width: Global.device.width / 5,
-//            height: Global.APP_BAR_HEIGHT / 2,
-//            child: FittedBox(
-//              child: Text(
-//                page.title,
-//                style: TextStyle(fontSize: FontSize.MESSAGE.value),
-//              ),
-//            ),
-//          );
-//        }),
-//        titlePadding: EdgeInsetsDirectional.only(
-//          start: Global.APP_BAR_HEIGHT / 3,
-//          bottom: (Global.APP_BAR_HEIGHT / 3) - 4,
-//        ),
-//      ),
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        title: Observer(builder: (_) {
+          final page = _viewState.store.pageInfo ?? RoutePage.home.value;
+          return Container(
+            width: Global.device.width / 5,
+            height: Global.APP_MENU_HEIGHT / 2,
+            child: FittedBox(
+              child: Text(
+                (page.id == RouteEnum.HOME) ? '' : page.id.title,
+                style: TextStyle(fontSize: FontSize.MESSAGE.value),
+              ),
+            ),
+          );
+        }),
+        titlePadding: EdgeInsetsDirectional.only(
+          start: Global.APP_MENU_HEIGHT / 3,
+          bottom: (Global.APP_MENU_HEIGHT / 3) - 4,
+        ),
+      ),
       /* App bar Left Actions */
       leading: Observer(
         builder: (_) {
           if (_viewState.store.showMenuDrawer) {
             return IconButton(
-              icon: Icon(Icons.menu, color: Themes.drawerIconColor),
+              icon: Icon(Icons.menu, color: themeColor.drawerIconColor),
               tooltip: localeStr.btnMenu,
               onPressed: () {
                 _viewState.scaffoldKey.currentState.openDrawer();
@@ -117,7 +117,8 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
             );
           } else {
             return IconButton(
-              icon: Icon(Icons.arrow_back, color: Themes.drawerIconSubColor),
+              icon:
+                  Icon(Icons.arrow_back, color: themeColor.drawerIconSubColor),
               tooltip: localeStr.btnBack,
               onPressed: () {
                 RouterNavigate.navigateBack();

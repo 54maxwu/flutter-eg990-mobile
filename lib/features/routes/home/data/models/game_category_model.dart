@@ -45,6 +45,7 @@ enum GamePageType {
   MovieEg,
   MovieNew,
   Promo,
+  MovieWebsite,
   Website,
 }
 
@@ -63,6 +64,8 @@ const GameCategoryModel cockfightingCategory = GameCategoryModel(
     type: 'cockfighting', ch: '斗鸡', info: GameCategory.cockfighting);
 const GameCategoryModel promoCategory =
     GameCategoryModel(type: 'promo', ch: '优惠', info: GameCategory.promo);
+const GameCategoryModel movieWebCategory = GameCategoryModel(
+    type: 'movieweb', ch: '影城', info: GameCategory.movieWebsite);
 const GameCategoryModel websiteCategory =
     GameCategoryModel(type: 'website', ch: '开启网页版', info: GameCategory.website);
 
@@ -83,6 +86,7 @@ const Map<String, GameCategory> _categoryMap = {
   'recommend': GameCategory.recommend,
   'favorite': GameCategory.favorite,
   'promo': GameCategory.promo,
+  'movieweb': GameCategory.movieWebsite,
   'website': GameCategory.website,
 };
 
@@ -93,13 +97,15 @@ const _promoIcon = const IconData(0xf06b, fontFamily: 'FontAwesome');
 //const _promoIcon = const IconData(0xe965, fontFamily: 'IconMoon');
 const _websiteIcon = const IconData(0xf08e, fontFamily: 'FontAwesome');
 //const _websiteIcon = const IconData(0xe905, fontFamily: 'IconMoon');
+const _movieWebsiteIcon = const IconData(0xf08e, fontFamily: 'FontAwesome');
+//const _movieWebsiteIcon = const IconData(0xe977, fontFamily: 'IconMoon');
 const _unknownIcon = const IconData(0xe145, fontFamily: 'MaterialIcons');
 
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
 
   String get iconUrl => info.value.imageUrl ?? '';
-
+  String get assetPath => info.value.assetPath;
   GamePageType get pageType => info.value.pageType;
 
   IconData get iconCode {
@@ -107,6 +113,8 @@ extension GameCategoryModelExtension on GameCategoryModel {
     switch (type) {
       case 'promo':
         return _promoIcon;
+      case 'movieweb':
+        return _movieWebsiteIcon;
       case 'website':
         return _websiteIcon;
       default:

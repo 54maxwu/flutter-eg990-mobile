@@ -17,9 +17,9 @@ class PromoListItem extends StatelessWidget {
     double screenScale = (Global.device.width / 360).ceilToDouble();
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 8.0, color: Themes.defaultCardColor),
+        border: Border.all(width: 8.0, color: themeColor.defaultCardColor),
         borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
-        color: Themes.defaultCardColor,
+        color: themeColor.defaultCardColor,
       ),
       margin: const EdgeInsets.all(6.0),
       child: Container(
@@ -50,7 +50,7 @@ class PromoListItem extends StatelessWidget {
                   GestureDetector(
                     child: Text(localeStr.promoDetailText),
                     onTap: () {
-                      print('clicked promo: ${promo.name}');
+                      debugPrint('clicked promo: ${promo.name}');
                       showDialog(
                           context: context,
                           barrierDismissible: false,

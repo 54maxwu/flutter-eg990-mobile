@@ -102,9 +102,8 @@ class _BankcardRouteState extends State<BankcardRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        debugPrint('pop bankcard/withdraw route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        debugPrint('pop bankcard route');
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

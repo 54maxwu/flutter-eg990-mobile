@@ -49,7 +49,6 @@ class RoutePage extends Vnum<RouteInfo> {
     route: Routes.promoRoute,
     isFeature: true,
     bottomNavIndex: 2,
-    hideAppbarActions: false,
   ));
 
   static const RoutePage service = const RoutePage.define(RouteInfo(
@@ -57,7 +56,6 @@ class RoutePage extends Vnum<RouteInfo> {
     route: Routes.serviceRoute,
     isFeature: true,
     bottomNavIndex: 3,
-    hideAppbarActions: false,
     disableLanguageDropDown: true,
   ));
 

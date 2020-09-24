@@ -92,7 +92,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
     locale = Global.lang;
     super.initState();
     if (_store != null) {
-      _store.getWebsiteList();
+//      _store.getWebsiteList();
       _store.getAds();
     }
     setNetworkListener();

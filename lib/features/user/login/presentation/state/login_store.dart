@@ -45,7 +45,8 @@ abstract class _LoginStore with Store {
 
   String _lastError;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??
@@ -115,14 +116,11 @@ abstract class _LoginStore with Store {
             (failure) {
               waitForLogin = false;
               if (failure.message == 'accountError')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorAccount);
+                errorMessage = localeStr.messageErrorAccount;
               else if (failure.message == 'pwdError')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorPassword);
+                errorMessage = localeStr.messageErrorPassword;
               else if (failure.message == 'pwdErrorFive')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorPasswordHint);
+                errorMessage = localeStr.messageErrorPasswordHint;
               else
                 setErrorMsg(msg: failure.message, showOnce: true);
             },

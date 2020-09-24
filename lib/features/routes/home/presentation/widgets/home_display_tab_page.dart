@@ -20,13 +20,15 @@ import 'home_store_inherit_widget.dart';
 class HomeDisplayTabPage extends StatefulWidget {
   final String category;
   final double pageMaxWidth;
+  final double textWidthFactor;
   final bool addSearchListener;
   final bool addPlugin;
 
   HomeDisplayTabPage({
     Key key,
-    @required this.pageMaxWidth,
     @required this.category,
+    @required this.pageMaxWidth,
+    @required this.textWidthFactor,
     this.addSearchListener = false,
     this.addPlugin = false,
   }) : super(key: key);
@@ -39,10 +41,10 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
     with AfterLayoutMixin {
   final String _tag = 'HomeDisplayTabsPage';
   final bool _isIos = Global.device.isIos;
-  final int _platformsPerRow = 3; //2;
-  final int _fixedPlatformItemHeight = 104; //128;
-  final int _gamesPerRow = 3; //2;
-  final int _fixedGameItemHeight = 94; //115;
+  final int _platformsPerRow = 3;
+  final int _fixedPlatformItemHeight = 114;
+  final int _gamesPerRow = 3;
+  final int _fixedGameItemHeight = 114;
   final FontSize _gFontSize = FontSize.MESSAGE;
 
   HomeStore _store;
@@ -138,23 +140,24 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
         : (Global.device.widthScale > 1.5) ? 1 : 0;
 
     _platformItemSize =
-        widget.pageMaxWidth / (_platformsPerRow + _plusGrid) * 1.05;
+        widget.pageMaxWidth / (_platformsPerRow + _plusGrid) * 1.15;
     _platformGridRatio =
         _platformItemSize / _fixedPlatformItemHeight / Global.device.widthScale;
     debugPrint(
         'platform item size: $_platformItemSize, ratio: $_platformGridRatio');
 //
     if (_plusGrid > 0)
-      _gameItemSize = widget.pageMaxWidth / (_gamesPerRow + _plusGrid) * 0.9;
-    else
       _gameItemSize = widget.pageMaxWidth / (_gamesPerRow + _plusGrid) * 0.95;
+    else
+      _gameItemSize = widget.pageMaxWidth / (_gamesPerRow + _plusGrid) * 1.15;
     _gameGridRatio =
         _gameItemSize / _fixedGameItemHeight / Global.device.widthScale;
     debugPrint('game item size: $_gameItemSize, ratio: $_gameGridRatio');
 
     _baseTextSize = (_isIos) ? _gFontSize.value + 2 : _gFontSize.value;
     _platformTextHeight = _baseTextSize * 1.25;
-    _gAvailableCharacters = (_gameItemSize * 0.9 / _baseTextSize).floor();
+    _gAvailableCharacters =
+        (_gameItemSize * widget.textWidthFactor / _baseTextSize).floor();
     debugPrint('game item available characters: $_gAvailableCharacters');
     super.initState();
   }
@@ -220,7 +223,7 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
         // action button to show platform grid
         Container(
           alignment: Alignment.bottomRight,
-          padding: EdgeInsets.only(right: 8.0, bottom: 8.0),
+          padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
           child: FloatingActionButton(
             backgroundColor: Colors.black54,
             mini: true,
@@ -338,8 +341,6 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
     }
 
     return Container(
-      padding:
-          (!_isGameGrid) ? const EdgeInsets.only(top: 6.0) : EdgeInsets.zero,
       constraints: (!_isGameGrid)
           ? BoxConstraints.tight(Size(
               _platformItemSize,
@@ -374,7 +375,7 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
                 itemSize: _gameItemSize,
                 isIos: _isIos,
                 textHeight: _gameTextHeight,
-                twoLineText: _twoLineText,
+                textWidthFactor: widget.textWidthFactor,
                 pluginTapAction:
                     (widget.addPlugin && imgUrl != null && label != null)
                         ? (isFavorite) => _setFavorite(entity, isFavorite)

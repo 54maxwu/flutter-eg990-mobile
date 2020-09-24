@@ -82,11 +82,18 @@ class _FlowsRouteState extends State<FlowsRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-        alignment: Alignment.topCenter,
-        child: FlowsDisplay(contentKey),
+    return WillPopScope(
+      onWillPop: () {
+        debugPrint('pop flows route');
+        RouterNavigate.navigateBack();
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          alignment: Alignment.topCenter,
+          child: FlowsDisplay(contentKey),
+        ),
       ),
     );
   }

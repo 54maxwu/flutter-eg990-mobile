@@ -66,10 +66,12 @@ class _CenterDisplayAccountPasswordState
                   hint: localeStr.userPwdFieldHintOld,
                   prefixText: localeStr.userPwdFieldTitleOld,
                   titleLetterSpacing: 8,
-                  maxInputLength: 20,
+                  maxInputLength: InputLimit.PASSWORD_MAX,
                   errorMsg: localeStr.messageInvalidPassword,
-                  validCondition: (value) =>
-                      rangeCheck(value: value.length, min: 6, max: 20),
+                  validCondition: (value) => rangeCheck(
+                      value: value.length,
+                      min: InputLimit.PASSWORD_MIN_OLD,
+                      max: InputLimit.PASSWORD_MAX),
                 ),
                 new CustomizeFieldWidget(
                   key: _newPwdFieldKey,
@@ -77,10 +79,12 @@ class _CenterDisplayAccountPasswordState
                   hint: localeStr.userPwdFieldHintNew,
                   prefixText: localeStr.userPwdFieldTitleNew,
                   titleLetterSpacing: 8,
-                  maxInputLength: 20,
+                  maxInputLength: InputLimit.PASSWORD_MAX,
                   errorMsg: localeStr.messageInvalidPasswordNew,
-                  validCondition: (value) =>
-                      rangeCheck(value: value.length, min: 8, max: 20),
+                  validCondition: (value) => rangeCheck(
+                      value: value.length,
+                      min: InputLimit.PASSWORD_MIN,
+                      max: InputLimit.PASSWORD_MAX),
                 ),
                 new CustomizeFieldWidget(
                   key: _conPwdFieldKey,
@@ -88,7 +92,7 @@ class _CenterDisplayAccountPasswordState
                   hint: localeStr.userPwdFieldHintConfirm,
                   prefixText: localeStr.userPwdFieldTitleConfirm,
                   titleLetterSpacing: 3,
-                  maxInputLength: 20,
+                  maxInputLength: InputLimit.PASSWORD_MAX,
                   errorMsg: localeStr.messageInvalidConfirmPassword,
                   validCondition: (value) =>
                       _conPwdFieldKey.currentState.getInput ==
@@ -126,7 +130,7 @@ class _CenterDisplayAccountPasswordState
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-//      print('The user wants to login with $_username and $_password');
+//      debugPrint('The user wants to login with $_username and $_password');
       CenterPasswordForm pwdForm = CenterPasswordForm(
         oldPwd: _oldPwdFieldKey.currentState.getInput,
         newPwd: _newPwdFieldKey.currentState.getInput,

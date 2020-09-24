@@ -9,6 +9,7 @@ part of 'member_grid_data.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MemberGridDataTearOff {
   const _$MemberGridDataTearOff();
 
@@ -31,9 +32,11 @@ class _$MemberGridDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MemberGridData = _$MemberGridDataTearOff();
 
+/// @nodoc
 mixin _$MemberGridData {
   RouteEnum get id;
   IconData get iconData;
@@ -45,6 +48,7 @@ mixin _$MemberGridData {
   $MemberGridDataCopyWith<MemberGridData> get copyWith;
 }
 
+/// @nodoc
 abstract class $MemberGridDataCopyWith<$Res> {
   factory $MemberGridDataCopyWith(
           MemberGridData value, $Res Function(MemberGridData) then) =
@@ -58,6 +62,7 @@ abstract class $MemberGridDataCopyWith<$Res> {
       RoutePage route});
 }
 
+/// @nodoc
 class _$MemberGridDataCopyWithImpl<$Res>
     implements $MemberGridDataCopyWith<$Res> {
   _$MemberGridDataCopyWithImpl(this._value, this._then);
@@ -92,6 +97,7 @@ class _$MemberGridDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$MemberGridDataCopyWith<$Res>
     implements $MemberGridDataCopyWith<$Res> {
   factory _$MemberGridDataCopyWith(
@@ -107,6 +113,7 @@ abstract class _$MemberGridDataCopyWith<$Res>
       RoutePage route});
 }
 
+/// @nodoc
 class __$MemberGridDataCopyWithImpl<$Res>
     extends _$MemberGridDataCopyWithImpl<$Res>
     implements _$MemberGridDataCopyWith<$Res> {
@@ -143,6 +150,7 @@ class __$MemberGridDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MemberGridData
     with DiagnosticableTreeMixin
     implements _MemberGridData {

@@ -64,7 +64,11 @@ class _TransferRouteState extends State<TransferRoute> {
           print('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            callToastInfo(result.msg, icon: Icons.check_circle_outline);
+            callToastInfo(
+                (result.msg.isNotEmpty && result.msg.hasChinese)
+                    ? result.msg
+                    : localeStr.messageSuccess,
+                icon: Icons.check_circle_outline);
           } else {
             callToastError(result.msg);
           }
@@ -88,14 +92,13 @@ class _TransferRouteState extends State<TransferRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        print('pop transfer route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        debugPrint('pop transfer route');
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(
         body: Container(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/pager_widget.dart';
@@ -92,14 +93,14 @@ class _DealsRouteState extends State<DealsRoute> {
         (_) => _store.waitForPageData,
         // Run some logic with the content of the observed field
         (bool wait) {
-          print('reaction on wait deals: $wait');
+          debugPrint('reaction on wait deals: $wait');
           if (wait) {
             toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
             if (_store.dataModel != null) {
-              print(
+              debugPrint(
                   'updating deals record, page: ${_store.dataModel.currentPage}');
               try {
                 if (_store.dataModel.total > 0) {
@@ -133,86 +134,93 @@ class _DealsRouteState extends State<DealsRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsDateEnum.LIST,
-                    optionStrings: _selectorDateStrings,
-                    changeNotify: (data) {
-                      _selectedDate = data;
-                      print('selected date: $data');
-                    },
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsTypeEnum.LIST,
-                    optionStrings: _selectorTypeStrings,
-                    changeNotify: (data) {
-                      _selectedType = data;
-                      print('selected type: $data');
-                    },
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsStatusEnum.LIST,
-                    optionStrings: _selectorStatusStrings,
-                    changeNotify: (data) {
-                      _selectedStatus = data;
-                      print('selected status: $data');
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-              child: Row(
+    return WillPopScope(
+      onWillPop: () {
+        debugPrint('pop deals route');
+        RouterNavigate.navigateBack();
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
-                    child: SizedBox(
-                      height: Global.device.comfortButtonHeight,
-                      child: RaisedButton(
-                        child: Text(localeStr.btnQueryNow),
-                        onPressed: () => getPageData(1),
-                      ),
+                    flex: 1,
+                    child: CustomizeDropdownWidget(
+                      optionValues: DealsDateEnum.LIST,
+                      optionStrings: _selectorDateStrings,
+                      changeNotify: (data) {
+                        _selectedDate = data;
+                        debugPrint('selected date: $data');
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: CustomizeDropdownWidget(
+                      optionValues: DealsTypeEnum.LIST,
+                      optionStrings: _selectorTypeStrings,
+                      changeNotify: (data) {
+                        _selectedType = data;
+                        debugPrint('selected type: $data');
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: CustomizeDropdownWidget(
+                      optionValues: DealsStatusEnum.LIST,
+                      optionStrings: _selectorStatusStrings,
+                      changeNotify: (data) {
+                        _selectedStatus = data;
+                        debugPrint('selected status: $data');
+                      },
                     ),
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.0, 6.0, 2.0, 10.0),
-              child: DealsDisplay(contentKey),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                PagerWidget(
-                  pagerKey,
-                  horizontalInset: 36.0,
-                  onAction: (page) => getPageData(page),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: SizedBox(
+                        height: Global.device.comfortButtonHeight,
+                        child: RaisedButton(
+                          child: Text(localeStr.btnQueryNow),
+                          onPressed: () => getPageData(1),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(2.0, 6.0, 2.0, 10.0),
+                child: DealsDisplay(contentKey),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  PagerWidget(
+                    pagerKey,
+                    horizontalInset: 36.0,
+                    onAction: (page) => getPageData(page),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

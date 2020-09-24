@@ -5,8 +5,6 @@ part of 'feature_screen_view.dart';
 ///@version 2020/6/2
 ///
 class ScreenDrawer extends StatelessWidget {
-  const ScreenDrawer();
-
   static final List<ScreenDrawerItem> _menuItems = [
     ScreenDrawerItem.promo,
     ScreenDrawerItem.service,
@@ -37,7 +35,8 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.test,
   ];
 
-  bool _itemTapped(ScreenDrawerItem item, {FeatureScreenStore store}) {
+  bool _itemTapped(ScreenDrawerItem item,
+      {FeatureScreenStore store, EventStore eventStore}) {
     if (item == ScreenDrawerItem.logout) {
       getAppGlobalStreams.logout();
       return true;
@@ -46,14 +45,25 @@ class ScreenDrawer extends StatelessWidget {
       ScreenNavigate.switchScreen(screen: ScreenEnum.Test);
       return true;
     }
-//    if (item == ScreenDrawerItem.sign) {
-//      store.setForceShowEvent = true;
-//      return true;
-//    }
+
+    if (item.value.id == RouteEnum.SIGN) {
+      if (store == null) return false;
+      if (store.hasUser == false)
+        callToastError(localeStr.messageErrorNotLogin);
+      else
+        eventStore?.setForceShowEvent = true;
+    }
+
     var route = item.value.route;
     if (route == null) {
       callToastInfo(localeStr.workInProgress);
-    } else if (route == RoutePage.tutorial || route == RoutePage.agentAbout) {
+    } else if (item.value.id == RouteEnum.SERVICE) {
+      RouterNavigate.replacePage(
+        route,
+        arg: WebRouteArguments(startUrl: Global.currentService),
+      );
+      return true;
+    } else if (route.value.routeArg is WebRouteArguments) {
       // open web page
       RouterNavigate.replacePage(route, arg: route.value.routeArg);
       return true;
@@ -84,7 +94,8 @@ class ScreenDrawer extends StatelessWidget {
           children: <Widget>[
             /* Drawer Header */
             DrawerHeader(
-              decoration: BoxDecoration(color: Themes.sideMenuSecondaryColor),
+              decoration:
+                  BoxDecoration(color: themeColor.sideMenuSecondaryColor),
               margin: const EdgeInsets.only(bottom: 4.0),
               child: (viewState.store.hasUser)
                   ? Column(
@@ -107,13 +118,13 @@ class ScreenDrawer extends StatelessWidget {
                       children: <Widget>[
                         Text(localeStr.messageWelcome,
                             style: TextStyle(
-                              color: Themes.sideMenuHeaderTextColor,
+                              color: themeColor.sideMenuHeaderTextColor,
                             )),
                         SizedBox(height: 8),
                         ButtonTheme(
                           child: RaisedButton(
-                            color: Themes.sideMenuButtonColor,
-                            textColor: Themes.sideMenuButtonTextColor,
+                            color: themeColor.sideMenuButtonColor,
+                            textColor: themeColor.sideMenuButtonTextColor,
                             child: Text(localeStr.pageTitleLogin2),
                             onPressed: () {
                               if (viewState.scaffoldKey.currentState
@@ -153,7 +164,9 @@ class ScreenDrawer extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         if ((item == ScreenDrawerItem.sign)
-                            ? _itemTapped(item, store: viewState.store)
+                            ? _itemTapped(item,
+                                store: viewState.store,
+                                eventStore: viewState.eventStore)
                             : _itemTapped(item)) {
                           // close the drawer
                           if (viewState.scaffoldKey.currentState.isDrawerOpen)
@@ -174,7 +187,7 @@ class ScreenDrawer extends StatelessWidget {
                     'version: ${Global.device.appVersionSide}',
                     style: TextStyle(
                       fontSize: FontSize.SMALL.value,
-                      color: Themes.defaultHintSubColor,
+                      color: themeColor.defaultHintSubColor,
                     ),
                   ),
                 ],
@@ -187,53 +200,53 @@ class ScreenDrawer extends StatelessWidget {
   }
 
   Widget _buildListItem(RouteListItem itemValue) {
-    bool shrink =
-        itemValue.iconData != null && itemValue.iconData.codePoint == 0xf219;
+    bool shrink = itemValue.imageName != null ||
+        (itemValue.iconData != null && itemValue.iconData.codePoint == 0xf219);
     return Padding(
       padding: (shrink)
-          ? const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 16.0)
-          : const EdgeInsets.fromLTRB(10.0, 0.0, 8.0, 16.0),
+          ? const EdgeInsets.fromLTRB(9.0, 0.0, 8.0, 16.0)
+          : const EdgeInsets.fromLTRB(12.0, 0.0, 8.0, 16.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Transform.scale(
-            scale: 1.05,
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Themes.sideMenuIconColor)),
-              child: Transform.scale(
-                scale: (shrink) ? 0.7 : 0.75,
-                child: Container(
-                  margin: (shrink)
-                      ? const EdgeInsets.only(right: 4.0)
-                      : EdgeInsets.zero,
-                  child: (itemValue.imageName != null)
-                      ? SizedBox(
-                          width: 24.0,
-                          height: 24.0,
-                          child: networkImageBuilder(
-                            itemValue.imageName,
-                            imgColor: Themes.sideMenuIconColor,
-                          ),
-                        )
-                      : Icon(
-                          itemValue.iconData,
-                          color: Themes.sideMenuIconColor,
-                        ),
+          (itemValue.imageName != null)
+              ? SizedBox(
+                  width: 36.0,
+                  height: 36.0,
+                  child: networkImageBuilder(
+                    itemValue.imageName,
+                    imgColor: themeColor.sideMenuIconColor,
+                  ),
+                )
+              : Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: themeColor.sideMenuIconColor)),
+                  child: Transform.scale(
+                    scale: (shrink) ? 0.7 : 0.75,
+                    child: Container(
+                      margin: (shrink)
+                          ? const EdgeInsets.only(right: 4.0)
+                          : EdgeInsets.zero,
+                      child: Icon(
+                        itemValue.iconData,
+                        color: themeColor.sideMenuIconColor,
+                        size: 28.0,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+              (itemValue.id == RouteEnum.MEMBER)
+                  ? localeStr.pageTitleCenter
+                  : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
               style: TextStyle(
                 fontSize: FontSize.SUBTITLE.value,
-                color: Themes.sideMenuIconTextColor,
+                color: themeColor.sideMenuIconTextColor,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

@@ -28,10 +28,9 @@ class _MemberRouteState extends State<MemberRoute> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
+      onWillPop: () {
         debugPrint('pop member route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        RouterNavigate.navigateBack();
         return Future(() => true);
       },
       child: Scaffold(

@@ -104,7 +104,7 @@ class PaymentContentState extends State<PaymentContent> {
               Text(
                 '${localeStr.depositHintTextTitle}：',
                 style: TextStyle(
-                  color: Themes.hintHighlightNotice,
+                  color: themeColor.hintHighlightNotice,
                   fontSize: FontSize.SUBTITLE.value,
                   fontWeight: FontWeight.w600,
                 ),
@@ -150,7 +150,7 @@ class PaymentContentState extends State<PaymentContent> {
         style: {
           "span": HtmlStyle.Style(
             fontSize: HtmlStyle.FontSize.medium,
-            color: Themes.hintHighlightDarkRed,
+            color: themeColor.hintHighlightDarkRed,
           ),
         },
       );
@@ -160,7 +160,7 @@ class PaymentContentState extends State<PaymentContent> {
         style: {
           "span": HtmlStyle.Style(
             fontSize: HtmlStyle.FontSize.medium,
-            color: Themes.defaultHintSubColor,
+            color: themeColor.defaultHintSubColor,
           ),
         },
       );

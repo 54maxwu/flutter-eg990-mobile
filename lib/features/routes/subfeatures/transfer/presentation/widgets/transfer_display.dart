@@ -213,13 +213,13 @@ class _TransferDisplayState extends State<TransferDisplay> {
             RichText(
               text: TextSpan(
                 style: TextStyle(
-                  color: Themes.defaultTextColor,
+                  color: themeColor.defaultTextColor,
                 ),
                 children: [
                   TextSpan(
                     text: '${localeStr.balanceHintTextTitle}\n',
                     style: TextStyle(
-                      color: Themes.defaultSubtitleColor,
+                      color: themeColor.defaultSubtitleColor,
                       fontWeight: FontWeight.bold,
                       height: 3,
                     ),

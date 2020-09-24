@@ -9,6 +9,7 @@ part of 'store_product_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreProductModelTearOff {
   const _$StoreProductModelTearOff();
 
@@ -31,9 +32,11 @@ class _$StoreProductModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreProductModel = _$StoreProductModelTearOff();
 
+/// @nodoc
 mixin _$StoreProductModel {
   @JsonKey(name: 'productid', defaultValue: -1)
   int get productId;
@@ -49,6 +52,7 @@ mixin _$StoreProductModel {
   $StoreProductModelCopyWith<StoreProductModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreProductModelCopyWith<$Res> {
   factory $StoreProductModelCopyWith(
           StoreProductModel value, $Res Function(StoreProductModel) then) =
@@ -62,6 +66,7 @@ abstract class $StoreProductModelCopyWith<$Res> {
       @JsonKey(name: 'new') String isNew});
 }
 
+/// @nodoc
 class _$StoreProductModelCopyWithImpl<$Res>
     implements $StoreProductModelCopyWith<$Res> {
   _$StoreProductModelCopyWithImpl(this._value, this._then);
@@ -91,6 +96,7 @@ class _$StoreProductModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreProductModelCopyWith<$Res>
     implements $StoreProductModelCopyWith<$Res> {
   factory _$StoreProductModelCopyWith(
@@ -106,6 +112,7 @@ abstract class _$StoreProductModelCopyWith<$Res>
       @JsonKey(name: 'new') String isNew});
 }
 
+/// @nodoc
 class __$StoreProductModelCopyWithImpl<$Res>
     extends _$StoreProductModelCopyWithImpl<$Res>
     implements _$StoreProductModelCopyWith<$Res> {
@@ -137,6 +144,7 @@ class __$StoreProductModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreProductModel implements _StoreProductModel {
   const _$_StoreProductModel(
       {@JsonKey(name: 'productid', defaultValue: -1) this.productId,

@@ -36,7 +36,8 @@ abstract class _UpdateStore with Store {
 
   String _lastError;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??
@@ -79,10 +80,9 @@ abstract class _UpdateStore with Store {
   }
 
   bool isNewVersion() {
-    int current = Global.device.appVersion
-        .replaceAll('.', '')
-        .replaceAll('+', '')
-        .strToInt;
+    // if contains chars that have not been replaced, current will be -1
+    int current =
+        Global.device.appVersion.replaceAll(RegExp(r'[.|+|R]'), '').strToInt;
     debugPrint('current version as int: $current');
     int server =
         _updateVersion.replaceAll('.', '').replaceAll('+', '').strToInt;

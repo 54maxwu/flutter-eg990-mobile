@@ -9,6 +9,7 @@ part of 'roller_requirement_current.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RollerRequirementCurrentTearOff {
   const _$RollerRequirementCurrentTearOff();
 
@@ -23,9 +24,11 @@ class _$RollerRequirementCurrentTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RollerRequirementCurrent = _$RollerRequirementCurrentTearOff();
 
+/// @nodoc
 mixin _$RollerRequirementCurrent {
   int get day;
   int get week;
@@ -35,6 +38,7 @@ mixin _$RollerRequirementCurrent {
   $RollerRequirementCurrentCopyWith<RollerRequirementCurrent> get copyWith;
 }
 
+/// @nodoc
 abstract class $RollerRequirementCurrentCopyWith<$Res> {
   factory $RollerRequirementCurrentCopyWith(RollerRequirementCurrent value,
           $Res Function(RollerRequirementCurrent) then) =
@@ -42,6 +46,7 @@ abstract class $RollerRequirementCurrentCopyWith<$Res> {
   $Res call({int day, int week, int month, dynamic key});
 }
 
+/// @nodoc
 class _$RollerRequirementCurrentCopyWithImpl<$Res>
     implements $RollerRequirementCurrentCopyWith<$Res> {
   _$RollerRequirementCurrentCopyWithImpl(this._value, this._then);
@@ -66,6 +71,7 @@ class _$RollerRequirementCurrentCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$RollerRequirementCurrentCopyWith<$Res>
     implements $RollerRequirementCurrentCopyWith<$Res> {
   factory _$RollerRequirementCurrentCopyWith(_RollerRequirementCurrent value,
@@ -75,6 +81,7 @@ abstract class _$RollerRequirementCurrentCopyWith<$Res>
   $Res call({int day, int week, int month, dynamic key});
 }
 
+/// @nodoc
 class __$RollerRequirementCurrentCopyWithImpl<$Res>
     extends _$RollerRequirementCurrentCopyWithImpl<$Res>
     implements _$RollerRequirementCurrentCopyWith<$Res> {
@@ -102,6 +109,7 @@ class __$RollerRequirementCurrentCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_RollerRequirementCurrent implements _RollerRequirementCurrent {
   const _$_RollerRequirementCurrent(
       {this.day, this.week, this.month, this.key});

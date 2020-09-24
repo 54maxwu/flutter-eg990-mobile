@@ -91,7 +91,7 @@ class _RollerDisplayOrderState extends State<RollerDisplayOrder> {
                     child: Text(
                       localeStr.wheelTextTitlePrize,
                       style: TextStyle(
-                        color: Themes.defaultAccentColor,
+                        color: themeColor.defaultAccentColor,
                         fontSize: FontSize.TITLE.value,
                       ),
                     ),
@@ -182,7 +182,7 @@ class _RollerDisplayOrderState extends State<RollerDisplayOrder> {
           dataTexts.length,
           (index) => TableCellTextWidget(
             text: '${dataTexts[index]}',
-            textColor: Themes.hintHighlightOrangeStrong,
+            textColor: themeColor.hintHighlightOrangeStrong,
           ),
         ),
       );

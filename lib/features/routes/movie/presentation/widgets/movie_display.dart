@@ -136,7 +136,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
               },
             ),
             Divider(
-              color: Themes.defaultAccentColor,
+              color: themeColor.defaultAccentColor,
               thickness: 2.0,
               height: 8.0,
             ),
@@ -170,7 +170,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                   SliverToBoxAdapter(
                     child: Container(
                       height: FontSize.NORMAL.value * 2,
-                      color: Themes.defaultAccentColor,
+                      color: themeColor.defaultAccentColor,
                       margin: const EdgeInsets.only(bottom: 2.0, top: 4.0),
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: Row(
@@ -180,12 +180,12 @@ class _MovieDisplayState extends State<MovieDisplay> {
                           Icon(
                             const IconData(0xf06d, fontFamily: 'FontAwesome'),
                             size: 16.0,
-                            color: Themes.buttonTextPrimaryColor,
+                            color: themeColor.buttonTextPrimaryColor,
                           ),
                           Text(
                             localeStr.movieSeparatorTextHot,
-                            style:
-                                TextStyle(color: Themes.buttonTextPrimaryColor),
+                            style: TextStyle(
+                                color: themeColor.buttonTextPrimaryColor),
                           ),
                         ],
                       ),
@@ -240,7 +240,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                 ],
                 footer: MovieListFooter(
                   extent: 40.0,
-                  textColor: Themes.defaultAccentColor,
+                  textColor: themeColor.defaultAccentColor,
                 ),
                 onLoad: (_canLoadMore) ? () => _loadMore() : null,
               ),

@@ -122,105 +122,108 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      ///Background Container
-      constraints: BoxConstraints.tight(Size(_bgWidth, _bgHeight)),
-      decoration: BoxDecoration(
-        color: Themes.defaultBackgroundColor,
-        borderRadius: BorderRadius.all(Radius.circular(16.0)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black54,
-            spreadRadius: 0.7,
-            blurRadius: 3.5,
-            offset: Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      margin: EdgeInsets.fromLTRB(14.0, 10.0, 14.0, _bgMarginBottom),
+    return Align(
       alignment: Alignment.topCenter,
+      child: Container(
+        ///Background Container
+        constraints: BoxConstraints.tight(Size(_bgWidth, _bgHeight)),
+        decoration: BoxDecoration(
+          color: themeColor.defaultBackgroundColor,
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black54,
+              spreadRadius: 0.7,
+              blurRadius: 3.5,
+              offset: Offset(0, 5), // changes position of shadow
+            ),
+          ],
+        ),
+        margin: EdgeInsets.fromLTRB(14.0, 10.0, 14.0, _bgMarginBottom),
+        alignment: Alignment.topCenter,
 //      child: Placeholder(),
-      child: Stack(
-        fit: StackFit.expand,
-        alignment: AlignmentDirectional.topCenter,
-        children: <Widget>[
-          Row(
-            /// Background Top Icon
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  height: 120, // same as icon height
-                  decoration: BoxDecoration(
-                    color: Themes.walletCardBackground,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: AlignmentDirectional.topCenter,
+          children: <Widget>[
+            Row(
+              /// Background Top Icon
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    height: 120, // same as icon height
+                    decoration: BoxDecoration(
+                      color: themeColor.walletCardBgColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0),
+                        topRight: Radius.circular(16.0),
+                      ),
+                    ),
+                    child: Image.asset(
+                      Res.walletBgIcon,
+                      alignment: Alignment.topLeft,
+                      fit: BoxFit.none,
+                      color: themeColor.walletCardIconBgColor,
                     ),
                   ),
-                  child: Image.asset(
-                    Res.walletBgIcon,
-                    alignment: Alignment.topLeft,
-                    fit: BoxFit.none,
-                    color: Themes.walletCardIconBackground,
-                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12.0,
-                  horizontal: 8.0,
-                ),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: _bgHeight - 24,
-                    maxHeight: _bgHeight - 24,
-                    maxWidth: _bgWidth - 18,
-                  ),
-                  child: Column(
-                    /// Wallet Content
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            Res.walletBgIconSmall,
-                            color: Themes.iconColor,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Text(
-                              localeStr.walletViewTitleMy,
-                              style: TextStyle(fontSize: FontSize.LARGE.value),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 8.0),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: _bgHeight - 24,
+                      maxHeight: _bgHeight - 24,
+                      maxWidth: _bgWidth - 40,
+                    ),
+                    child: Column(
+                      /// Wallet Content
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset(
+                              Res.walletBgIconSmall,
+                              color: themeColor.iconColor,
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
-                        child: _buildWalletBox(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: _buildOptions(),
-                      ),
-                    ],
+                            Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Text(
+                                localeStr.walletViewTitleMy,
+                                style:
+                                    TextStyle(fontSize: FontSize.LARGE.value),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
+                          child: _buildWalletBox(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: _buildOptions(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -236,7 +239,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
         minWidth: _bgWidth - 32,
       ),
       decoration: BoxDecoration(
-        color: Themes.walletBoxBackground,
+        color: themeColor.walletBoxBackgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(24.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -259,7 +262,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
                   localeStr.walletViewTitleRemain,
-                  style: TextStyle(color: Themes.walletCreditTitleColor),
+                  style: TextStyle(color: themeColor.walletCreditTitleColor),
                 ),
               ),
               Padding(
@@ -267,7 +270,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Themes.iconSubColor2,
+                    color: themeColor.iconSubColor2,
                   ),
                   child: Icon(
                     const IconData(0xf155, fontFamily: 'FontAwesome'),
@@ -282,7 +285,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                   style: TextStyle(
                     fontSize: FontSize.XLARGE.value,
                     fontWeight: FontWeight.bold,
-                    color: Themes.defaultAccentColor,
+                    color: themeColor.defaultAccentColor,
                   ),
                   overflow: TextOverflow.visible,
                 ),
@@ -369,8 +372,8 @@ class _WalletDisplayState extends State<WalletDisplay> {
                       style: TextStyle(
                         fontSize: FontSize.TITLE.value,
                         color: (_selected == radioValue)
-                            ? Themes.defaultAccentColor
-                            : Themes.walletRadioColor,
+                            ? themeColor.defaultAccentColor
+                            : themeColor.walletRadioColor,
                       ),
                     ),
                     if (_walletType == radioValue)
@@ -378,7 +381,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                         padding: const EdgeInsets.only(top: 2.0, left: 2.0),
                         child: Icon(
                           Icons.check_circle,
-                          color: Themes.defaultSelectableWidgetColor,
+                          color: themeColor.defaultSelectableWidgetColor,
                           size: 14,
                         ),
                       )
@@ -400,7 +403,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                   child: Text(
                     radioHint,
                     style: TextStyle(
-                      color: Themes.defaultHintSubColor,
+                      color: themeColor.defaultHintSubColor,
                     ),
                   ),
                 );

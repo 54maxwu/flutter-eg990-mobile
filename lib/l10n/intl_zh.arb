@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "zh",
-  "title": "85Bet Mobile",
+  "title": "EG990 Mobile",
   "@title": {
-    "description": "85Bet Demo",
+    "description": "EG990 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -35,8 +35,8 @@
   "@pageTitleRouter": {
     "type": "text"
   },
-  "pageTitleRank": "VIP阶层",
-  "@pageTitleRank": {
+  "pageTitleVip": "VIP",
+  "@pageTitleVip": {
     "type": "text"
   },
   "pageTitleStore": "商城",
@@ -167,6 +167,22 @@
         "example": "100.00"
       }
     }
+  },
+  "themeColorHintSelect": "选择主题颜色",
+  "@themeColorHintSelect": {
+    "type": "text"
+  },
+  "themeColorDefault": "预设",
+  "@themeColorDefault": {
+    "type": "text"
+  },
+  "themeColorDark": "深色",
+  "@themeColorDark": {
+    "type": "text"
+  },
+  "themeColorLight": "浅色",
+  "@themeColorLight": {
+    "type": "text"
   },
   "workInProgress": "功能即将上线!",
   "@workInProgress": {
@@ -393,6 +409,10 @@
   "@messageActionFillForm": {
     "type": "text"
   },
+  "messageActionCheckTerms": "请阅读并勾选同意投注規则",
+  "@messageActionCheckTerms": {
+    "type": "text"
+  },
   "messageLogout": "{name}，请重新登入",
   "@messageLogout": {
     "type": "text",
@@ -500,7 +520,7 @@
   "@messageInvalidPhone": {
     "type": "text"
   },
-  "messageInvalidPostCode": "邮递区号错误(5~6碼)",
+  "messageInvalidPostCode": "邮递区号错误(5~8碼)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
@@ -525,11 +545,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "密码为6~20个字",
+  "messageInvalidPassword": "密码为6~18个字",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "密码为8~20个字",
+  "messageInvalidPasswordNew": "密码为8~18个字",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -728,6 +748,10 @@
   "@messagePartFailed": {
     "type": "text"
   },
+  "messageSentVerify": "已发送验证码",
+  "@messageSentVerify": {
+    "type": "text"
+  },
   "homeHintWelcomeLogin": "您好！ 请登入会员",
   "@homeHintWelcomeLogin": {
     "type": "text"
@@ -744,6 +768,10 @@
         "example": "user"
       }
     }
+  },
+  "homeHintFreeUsage": "免费使用",
+  "@homeHintFreeUsage": {
+    "type": "text"
   },
   "homeHintMemberCreditLeft": "总余额",
   "@homeHintMemberCreditLeft": {
@@ -841,8 +869,20 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "点我开启85Bet网页版",
+  "gameCategoryWebHint": "点我开启EG990网页版",
   "@gameCategoryWebHint": {
+    "type": "text"
+  },
+  "gameCategoryMovieWeb": "观看电影",
+  "@gameCategoryMovieWeb": {
+    "type": "text"
+  },
+  "gameCategoryMovieWebHint": "点我观看电影",
+  "@gameCategoryMovieWebHint": {
+    "type": "text"
+  },
+  "gameCategoryAbout": "关于我们",
+  "@gameCategoryAbout": {
     "type": "text"
   },
   "userPwdFieldTitleOld": "旧密码：",
@@ -910,6 +950,14 @@
   "@registerFieldTitlePhone": {
     "type": "text"
   },
+  "registerFieldTitleVerify": "手机验证码",
+  "@registerFieldTitleVerify": {
+    "type": "text"
+  },
+  "registerFieldHintVerify": "请输入手机验证码",
+  "@registerFieldHintVerify": {
+    "type": "text"
+  },
   "registerFieldTitleRecommend": "推荐码",
   "@registerFieldTitleRecommend": {
     "type": "text"
@@ -920,6 +968,10 @@
   },
   "registerButtonTitleRegister": "注册",
   "@registerButtonTitleRegister": {
+    "type": "text"
+  },
+  "registerButtonTitleSendVerify": "发送手机验证码",
+  "@registerButtonTitleSendVerify": {
     "type": "text"
   },
   "registerCheckButtonNews": "接收优惠活动信息",
@@ -1206,8 +1258,8 @@
   "@centerViewTitleLotto": {
     "type": "text"
   },
-  "centerViewTitleVip": "Vip阶层",
-  "@centerViewTitleVip": {
+  "centerViewTitleVipRank": "Vip阶层",
+  "@centerViewTitleVipRank": {
     "type": "text"
   },
   "centerTextTitleAccount": "用户名：",
@@ -1597,6 +1649,10 @@
   },
   "depositPaymentNoPromo": "放弃申请优惠",
   "@depositPaymentNoPromo": {
+    "type": "text"
+  },
+  "depositHintRedirectBankcard": "充值请先填写银行卡资讯",
+  "@depositHintRedirectBankcard": {
     "type": "text"
   },
   "depositHintTextAccount": "充值帐号资讯请联络客服",

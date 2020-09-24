@@ -80,14 +80,15 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   @override
   void initState() {
     _fieldInset = widget.parentPadding;
-    _fieldPrefixBg =
-        (widget.transparent) ? Colors.transparent : Themes.fieldPrefixBgColor;
+    _fieldPrefixBg = (widget.transparent)
+        ? Colors.transparent
+        : themeColor.fieldPrefixBgColor;
 //    _phoneCodeContainerHeight =
-//        ((Global.device.isIos) ? Themes.fieldHeight + 8 : Themes.fieldHeight) -
-//            Themes.minusSize;
+//        ((Global.device.isIos) ? ThemeInterface.fieldHeight + 8 : ThemeInterface.fieldHeight) -
+//            ThemeInterface.minusSize;
     _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
-            Themes.prefixTextWidthFactor -
-        Themes.minusSize +
+            ThemeInterface.prefixTextWidthFactor -
+        ThemeInterface.minusSize +
         24.0;
     super.initState();
   }
@@ -122,7 +123,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
           debugPrint('reaction on register result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            callToastInfo(localeStr.messageSuccess,
+            callToastInfo(
+                (result.msg.isNotEmpty && result.msg.hasChinese)
+                    ? result.msg
+                    : localeStr.messageSuccess,
                 icon: Icons.check_circle_outline);
           } else {
             callToastError(result.msg);
@@ -174,7 +178,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 child: new CustomizeTitledContainer(
                   prefixText: localeStr.registerFieldTitleAccount,
                   prefixBgColor: _fieldPrefixBg,
-                  backgroundColor: Themes.fieldPrefixBgColor,
+                  backgroundColor: themeColor.fieldPrefixBgColor,
                   requiredInput: true,
                   roundCorner: false,
                   child: new CustomizeFieldWidget(
@@ -206,7 +210,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                       visible: _showAccountError,
                       child: Text(
                         localeStr.messageInvalidAccount,
-                        style: TextStyle(color: Themes.defaultErrorColor),
+                        style: TextStyle(color: themeColor.defaultErrorColor),
                       ),
                     ),
                   ),
@@ -253,7 +257,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                       visible: _showPasswordError,
                       child: Text(
                         localeStr.messageInvalidPassword,
-                        style: TextStyle(color: Themes.defaultErrorColor),
+                        style: TextStyle(color: themeColor.defaultErrorColor),
                       ),
                     ),
                   ),
@@ -298,7 +302,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                       visible: _showConfirmError,
                       child: Text(
                         localeStr.messageInvalidAccount,
-                        style: TextStyle(color: Themes.defaultErrorColor),
+                        style: TextStyle(color: themeColor.defaultErrorColor),
                       ),
                     ),
                   ),
@@ -325,7 +329,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //                        Container(
 //                          width: 64.0,
 //                          height: _phoneCodeContainerHeight,
-//                          color: Themes.fieldInputBgColor,
+//                          color: themeColor.fieldInputBgColor,
 //                          alignment: Alignment.center,
 //                          child: Text(
 //                            '+84',
@@ -365,7 +369,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //                        visible: _showPhoneError,
 //                        child: Text(
 //                          localeStr.messageInvalidPhone,
-//                          style: TextStyle(color: Themes.defaultErrorColor),
+//                          style: TextStyle(color: themeColor.defaultErrorColor),
 //                        ),
 //                      ),
 //                    ),
@@ -380,7 +384,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 child: new CustomizeTitledContainer(
                   prefixText: localeStr.registerFieldTitleRecommend,
                   prefixBgColor: _fieldPrefixBg,
-                  backgroundColor: Themes.fieldPrefixBgColor,
+                  backgroundColor: themeColor.fieldPrefixBgColor,
                   roundCorner: false,
                   child: new CustomizeFieldWidget(
                     key: _introFieldKey,
@@ -412,7 +416,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //            widgetPadding: EdgeInsets.zero,
 //            textPadding: const EdgeInsets.only(left: 8.0),
 //            label: localeStr.registerCheckButtonNews,
-//            boxBackgroundColor: Themes.fieldInputBgColor,
+//            boxBackgroundColor: themeColor.fieldInputBgColor,
 //            textSize: FontSize.SUBTITLE.value,
 //            scale: 1.75,
 //          ),
@@ -428,7 +432,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //            widgetPadding: EdgeInsets.zero,
 //            textPadding: const EdgeInsets.only(left: 8.0),
 //            label: localeStr.registerCheckButtonTerms,
-//            boxBackgroundColor: Themes.fieldInputBgColor,
+//            boxBackgroundColor: themeColor.fieldInputBgColor,
 //            textSize: FontSize.SUBTITLE.value,
 //            maxLines: 2,
 //            scale: 1.75,
@@ -473,7 +477,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //                padding: EdgeInsets.zero,
 //                icon: Icon(
 //                  const IconData(0xf27a, fontFamily: 'FontAwesome'),
-//                  color: Themes.defaultTextColor,
+//                  color: themeColor.defaultTextColor,
 //                ),
 //                onPressed: () {
 //                  RouterNavigate.navigateToPage(

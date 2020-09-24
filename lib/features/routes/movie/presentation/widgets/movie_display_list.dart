@@ -84,14 +84,14 @@ class _MovieDisplayListState extends State<MovieDisplayList> {
                 Icon(
                   const IconData(0xf087, fontFamily: 'FontAwesome'),
                   size: 16.0,
-                  color: Themes.defaultWidgetColor,
+                  color: themeColor.defaultWidgetColor,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 6.0),
                   child: Text(
                     '${movie.goodCount}',
                     style: TextStyle(
-                      color: Themes.defaultWidgetColor,
+                      color: themeColor.defaultWidgetColor,
                     ),
                   ),
                 ),

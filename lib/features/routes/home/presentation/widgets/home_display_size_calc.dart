@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/core/internal/font_size.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/features/themes/font_size.dart';
 
 class HomeDisplaySizeCalc {
-  final double bannerImageScale = 600.0 / Global.device.width;
+  final double _bannerImageScale = 600.0 / Global.device.width;
+  final double _expectBannerHeight = 231.0;
   final double marqueeHeight = 36.0;
   final double shortcutTitleHeight = 36.0;
   final double shortcutMaxIconSize = 28.0;
@@ -11,8 +12,11 @@ class HomeDisplaySizeCalc {
   final double shortcutMinTextHeight = FontSize.NORMAL.value * 1.75;
   final double shortcutMaxTextHeight = FontSize.NORMAL.value * 2.75;
   final double _barItemInset = 8.0;
+  final double barItemIconSize = 24.0;
+  final double textWidthFactor = 0.85;
 
   double _bannerHeight;
+  double _expandedBannerHeight;
 
   double _shortcutMaxHeight;
   double _shortcutMinHeight;
@@ -20,6 +24,7 @@ class HomeDisplaySizeCalc {
   double _barMinWidth;
   double _barMaxWidth;
   double _barItemWidth;
+  double _barItemHeight;
   double _tabWidthFactor;
 
   double _tabPageMinWidth;
@@ -30,8 +35,13 @@ class HomeDisplaySizeCalc {
     debugPrint('--------HomeDisplaySizeCalc--------');
     double availableWidth =
         Global.device.width - Global.device.safeHorizontalPadding;
-    _barMaxWidth = (availableWidth * 0.3).floorToDouble();
+    _barMaxWidth = (availableWidth * 0.35).floorToDouble();
     _barMinWidth = _barMaxWidth - _barItemInset;
+    if (_barMinWidth < 120) {
+      double diff = 120 - _barMinWidth;
+      _barMinWidth = 120;
+      _barMaxWidth += diff;
+    }
     _tabWidthFactor = (Global.device.widthScale > 1.5) ? 1.5 : 1.0;
     debugPrint('available width: $availableWidth');
     debugPrint('tab bar width: $_barMinWidth~$_barMaxWidth');
@@ -39,22 +49,33 @@ class HomeDisplaySizeCalc {
     if (_barMaxWidth > 180) _barMaxWidth = 180;
     if (_barMinWidth > _barMaxWidth) _barMinWidth = _barMaxWidth - 16;
     debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
+    _barItemHeight = (barItemIconSize * 1.5 + 4.0) * Global.device.widthScale;
     _barItemWidth = _barMinWidth - _barItemInset;
 
-    _shortcutMaxHeight = shortcutMaxIconSize +
-        shortcutMaxTextHeight +
+    _shortcutMaxHeight = shortcutMaxTextHeight +
+        shortcutMaxIconSize +
         shortcutTitleHeight +
-        10 +
-        16;
+//        10.0 +
+        16.0;
     _shortcutMinHeight = _shortcutMaxHeight - 16.0;
     debugPrint('----');
-    _bannerHeight = 231 / bannerImageScale;
-    debugPrint('banner height: $_bannerHeight');
+    double expandBannerHeight =
+        _expectBannerHeight * 1.6 * Global.device.heightScale;
+    _bannerHeight = _expectBannerHeight / _bannerImageScale;
+    _expandedBannerHeight =
+        (expandBannerHeight + shortcutMaxHeight) / _bannerImageScale;
+    if (_expandedBannerHeight > 400) {
+      _expandedBannerHeight = 400;
+    }
+    debugPrint(
+        'banner height: $_bannerHeight, expanded: $_expandedBannerHeight');
     debugPrint('shortcut box height: $_shortcutMinHeight~$_shortcutMaxHeight');
     debugPrint('shortcut box title height: $shortcutTitleHeight');
 
     double availableHeight =
         Global.device.featureContentHeight - _bannerHeight - _shortcutMaxHeight;
+//    double availableHeight =
+//        Global.device.featureContentHeight - _expandedBannerHeight;
     debugPrint('----');
     debugPrint('content available height: $availableHeight');
 
@@ -70,7 +91,19 @@ class HomeDisplaySizeCalc {
     debugPrint('-----------------------------------');
   }
 
+  void updatePageHeight(bool expandBanner) {
+    double availableHeight = (expandBanner)
+        ? Global.device.featureContentHeight - _expandedBannerHeight
+        : Global.device.featureContentHeight - _bannerHeight;
+    debugPrint('----');
+    debugPrint('content available height: $availableHeight');
+
+    _tabPageMaxHeight = availableHeight;
+    debugPrint('tab page height: $_barMinWidth~$_barMaxWidth');
+  }
+
   double get bannerHeight => _bannerHeight;
+  double get expandedBannerHeight => _expandedBannerHeight;
 
   double get shortcutMaxHeight => _shortcutMaxHeight;
   double get shortcutMaxHeightUser => _shortcutMaxHeight - shortcutTitleHeight;
@@ -80,6 +113,7 @@ class HomeDisplaySizeCalc {
   double get barMinWidth => _barMinWidth;
   double get barMaxHeight => _tabPageMaxHeight;
   double get barItemWidth => _barItemWidth;
+  double get barItemHeight => _barItemHeight;
 
   double get pageMaxWidth => _tabPageMaxWidth;
   double get pageMinWidth => _tabPageMinWidth;

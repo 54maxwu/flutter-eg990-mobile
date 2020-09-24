@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/hex_color.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/roller/data/models/roller_requirement_model.dart';
@@ -123,7 +122,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                       width: buttonWidgetWidth,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Themes.hintHighlightDarkRed,
+                        color: themeColor.hintHighlightDarkRed,
                         borderRadius: const BorderRadius.all(
                           const Radius.circular(30.0),
                         ),
@@ -138,13 +137,13 @@ class _RollerDisplayState extends State<RollerDisplay> {
                         minWidth: buttonWidgetWidth / 2.25,
                         height: buttonWidgetHeight * 0.85,
                         buttonColor: secondBlockColor,
-                        disabledColor: Themes.buttonDisabledColorDark,
+                        disabledColor: themeColor.buttonDisabledColorDark,
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         padding: const EdgeInsets.only(top: 6.0, bottom: 8.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0),
                           side: BorderSide(
-                            color: Themes.hintHighlightDarkRed,
+                            color: themeColor.hintHighlightDarkRed,
                             width: 3.0,
                           ),
                         ),
@@ -161,7 +160,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                                   child: Text(
                                     localeStr.wheelTextTitlePrize,
                                     style: TextStyle(
-                                      color: Themes.hintHighlightDarkRed,
+                                      color: themeColor.hintHighlightDarkRed,
                                       fontSize: FontSize.TITLE.value,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -190,7 +189,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                                   child: Text(
                                     localeStr.wheelTextTitleRecord,
                                     style: TextStyle(
-                                      color: Themes.hintHighlightDarkRed,
+                                      color: themeColor.hintHighlightDarkRed,
                                       fontSize: FontSize.TITLE.value,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -227,7 +226,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                         vertical: 16.0,
                       ),
                       decoration: BoxDecoration(
-                        color: Themes.dialogBgTransparent,
+                        color: themeColor.dialogBgTransparent,
                         borderRadius: const BorderRadius.all(
                           const Radius.circular(12.0),
                         ),

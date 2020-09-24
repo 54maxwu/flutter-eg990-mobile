@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/models/bet_record_model.dart';
@@ -55,12 +55,12 @@ class BetRecordDisplayTable extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: _availableWidth,
       ),
-      color: Themes.chartBgColor,
+      color: themeColor.chartBgColor,
       child: Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: _tableWidthMap,
         border: TableBorder.all(
-          color: Themes.chartBorderColor,
+          color: themeColor.chartBorderColor,
           width: 2.0,
           style: BorderStyle.solid,
         ),

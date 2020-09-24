@@ -15,8 +15,8 @@ class PromoListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    print('promo list view: $category');
-//    print('promo list view list: $list');
+//    debugPrint('promo list view: $category');
+//    debugPrint('promo list view list: $list');
     if (list == null || list.isEmpty) return SizedBox.shrink();
     return ListView.builder(
       itemCount: list.length,

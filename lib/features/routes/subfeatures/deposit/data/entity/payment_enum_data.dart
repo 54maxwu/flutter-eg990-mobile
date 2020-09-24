@@ -13,14 +13,3 @@ abstract class PaymentTutorialItem with _$PaymentTutorialItem {
     @required TutorialItemType type,
   }) = _PaymentTutorialItem;
 }
-
-@freezed
-abstract class PaymentEnumData with _$PaymentEnumData {
-  const factory PaymentEnumData({
-    @required String title,
-    @required String jsonKey,
-//    @required String jsonKey2,
-    String tutorialTitle,
-    List<PaymentTutorialItem> tutorialItem,
-  }) = _PaymentEnumData;
-}

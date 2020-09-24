@@ -5,5 +5,5 @@ import 'main_release.reflectable.dart';
 Future<void> main() async {
   // setup reflectable support (build target defined in build.yaml)
   initializeReflectable();
-  await mainCommon(Environment.release);
+  await mainCommon(Environment.RELEASE);
 }

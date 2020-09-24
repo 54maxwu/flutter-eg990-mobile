@@ -64,8 +64,8 @@ class $Router {
   /// side menu route
   DownloadAreaRoute downloadAreaRoute;
   NoticeRoute noticeRoute;
-  VipLevelRoute levelRoute;
   StoreRoute storeRoute;
+  VipLevelRoute levelRoute;
   RollerRoute rollerRoute;
 
   /// test route

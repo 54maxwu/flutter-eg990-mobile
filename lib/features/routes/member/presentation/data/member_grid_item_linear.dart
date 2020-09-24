@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/core/internal/hex_color.dart';
 import 'package:flutter_eg990_mobile/features/router/route_page.dart';
+import 'package:flutter_eg990_mobile/features/themes/hex_color.dart';
 import 'package:vnum/vnum.dart';
 
 import 'member_grid_data.dart';

@@ -16,7 +16,7 @@ class HomeDisplayMarquee extends StatelessWidget {
       constraints: BoxConstraints.tight(
         Size(Global.device.width, 30.0),
       ),
-      color: Themes.defaultMarqueeBarColor,
+      color: themeColor.defaultMarqueeBarColor,
       padding: const EdgeInsets.only(top: 3.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -43,7 +43,7 @@ class HomeDisplayMarquee extends StatelessWidget {
                     text: snapshot.data,
                     style: TextStyle(
                       fontSize: FontSize.NORMAL.value,
-                      color: Themes.defaultMarqueeTextColor,
+                      color: themeColor.defaultMarqueeTextColor,
                     ),
                     loop: true,
                     velocity: 0.8,
@@ -74,7 +74,7 @@ class HomeDisplayMarquee extends StatelessWidget {
                   localeStr.pageTitleNotice,
                   style: TextStyle(
                     fontSize: FontSize.NORMAL.value,
-                    color: Themes.buttonTextPrimaryColor,
+                    color: themeColor.buttonTextPrimaryColor,
                   ),
                 ),
                 visualDensity: VisualDensity(horizontal: -2.0, vertical: -3.0),

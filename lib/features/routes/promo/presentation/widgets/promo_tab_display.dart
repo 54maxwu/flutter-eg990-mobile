@@ -1,7 +1,7 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 import '../../data/models/promo_category.dart';
 import '../../data/models/promo_freezed.dart';
@@ -61,13 +61,13 @@ class _PromoTabDisplayState extends State<PromoTabDisplay>
       physics: BouncingScrollPhysics(),
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 16.0, 9.0, 0.0),
           child: TypesGridWidget<PromoCategoryEnum>(
             types: categories,
             titleKey: 'label',
             onTypeGridTap: (_, type) => updateContent(type),
             tabsPerRow: 4,
-            itemSpace: 2.0,
+            itemSpace: 0,
             expectTabHeight: 30.0,
           ),
         ),
@@ -75,20 +75,28 @@ class _PromoTabDisplayState extends State<PromoTabDisplay>
           padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 8.0),
           child: Container(
             constraints: BoxConstraints(minHeight: 100),
-            decoration: Themes.layerShadowDecorRoundBottom,
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: List<Widget>.generate(_contentList.length, (index) {
-                return PromoTabListItem(_contentList[index], (promo) {
-                  showDialog(
-                    context: context,
-                    builder: (context) => new PromoDetail(promo),
-                  );
-                });
-              }),
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(color: themeColor.defaultBorderColor),
+                left: BorderSide(color: themeColor.defaultBorderColor),
+              ),
+            ),
+            child: Container(
+              decoration: ThemeInterface.layerShadowDecorRoundBottom,
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: List<Widget>.generate(_contentList.length, (index) {
+                  return PromoTabListItem(_contentList[index], (promo) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => new PromoDetail(promo),
+                    );
+                  });
+                }),
+              ),
             ),
           ),
         ),

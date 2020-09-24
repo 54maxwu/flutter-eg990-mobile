@@ -33,7 +33,7 @@ class FlowsDisplayList extends StatelessWidget {
   ];
 
   final BorderSide _borderSide =
-      BorderSide(color: Themes.defaultBorderColor, width: 1.5);
+      BorderSide(color: themeColor.defaultBorderColor, width: 1.5);
 
   List<String> countTotal() {
     double totalAmount = 0;
@@ -90,8 +90,8 @@ class FlowsDisplayList extends StatelessWidget {
         return Container(
           decoration: new BoxDecoration(
             color: (index % 2 == 1)
-                ? Themes.defaultCardColor
-                : Themes.chartBgColor,
+                ? themeColor.defaultCardColor
+                : themeColor.chartBgColor,
             border: (index % 2 == 1)
                 ? null
                 : Border.symmetric(vertical: _borderSide),

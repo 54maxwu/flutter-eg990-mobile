@@ -157,10 +157,12 @@ class _HomeDisplayState extends State<HomeDisplay> {
                           _shortcutWidget = HomeShortcutWidget(
                             key: _shortcutWidgetKey,
                             sizeCalc: _sizeCalc,
+                            eventStore: _eventStore,
                           );
                         } else if (snapshot.data) {
                           _shortcutWidgetKey.currentState.updateUser();
                           _store.checkHomeTabs();
+                          _eventStore.getUserCredit();
                           RouterNavigate.resetCheckUser();
                         }
                         return _shortcutWidget;

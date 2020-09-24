@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/font_size.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 ///
 /// Separate checkbox widget to prevent screen flash
@@ -116,7 +117,7 @@ class CheckboxWidgetState extends State<CheckboxWidget> {
                     child: Text(
                       widget.label,
                       style: TextStyle(
-                        color: Themes.defaultTextColor,
+                        color: themeColor.defaultTextColor,
                         fontSize: widget.textSize ?? FontSize.NORMAL.value,
                       ),
                       maxLines: widget.maxLines,

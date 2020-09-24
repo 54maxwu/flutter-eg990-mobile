@@ -30,7 +30,8 @@ abstract class _RegisterStore with Store {
 
   String _lastError;
 
-  void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
+  void setErrorMsg(
+      {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
     errorMessage = msg ??
@@ -54,7 +55,7 @@ abstract class _RegisterStore with Store {
             (result) => result.fold(
               (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (model) {
-//                print('register result: $model');
+//                debugPrint('register result: $model');
                 registerResult = model;
                 if (model.isSuccess) {
                   Future.delayed(Duration(milliseconds: 500), () {
@@ -83,11 +84,11 @@ abstract class _RegisterStore with Store {
       await _repository.login(form).then(
             (result) => result.fold(
               (failure) {
-                print('auto login failed: $failure');
+                debugPrint('auto login failed: $failure');
                 _loginController.sink.add('');
               },
               (UserModel model) {
-                print('login result: $model');
+                debugPrint('login result: $model');
                 _loginController.sink.add(model.entity);
               },
             ),

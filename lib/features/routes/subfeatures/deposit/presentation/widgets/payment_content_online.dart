@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_enum.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_enum_data.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_tutorial.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -108,8 +108,8 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
     } else {
       switch (_onlineData.payment) {
         case 8:
-          _tutorialItem = PaymentEnum.cgp.value.tutorialItem.last;
-          _tutorialItem2 = PaymentEnum.cgp.value.tutorialItem.first;
+          _tutorialItem = PaymentTutorial.cgPay.value.tutorials.last;
+          _tutorialItem2 = PaymentTutorial.cgPay.value.tutorials.first;
           break;
         default:
           _tutorialItem = null;
@@ -122,8 +122,8 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
   @override
   void initState() {
 //    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
-//            Themes.prefixTextWidthFactor -
-//        Themes.minusSize;
+//            ThemeInterface.prefixTextWidthFactor -
+//        ThemeInterface.minusSize;
 //    debugPrint(
 //        'dropdown keys: ${widget.dataList.map((item) => item.key).toList()}');
 //    debugPrint(
@@ -186,7 +186,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
 //              padding: const EdgeInsets.only(top: 8.0),
 //              child: Text(
 //                localeStr.depositHintTextAccount,
-//                style: TextStyle(color: Themes.hintHighlight),
+//                style: TextStyle(color: themeColor.hintHighlight),
 //              ),
 //            ),
 
@@ -231,7 +231,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
 //              padding: EdgeInsets.fromLTRB(_valueTextPadding, 24.0, 0.0, 16.0),
 //              child: Text(
 //                localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
-//                style: TextStyle(color: Themes.defaultHintColor),
+//                style: TextStyle(color: themeColor.defaultHintColor),
 //              ),
 //            ),
 
@@ -244,7 +244,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
                   localeStr.depositHintTextAmount(
                       NumberFormat.simpleCurrency(decimalDigits: 0)
                           .format(_onlineData.max)),
-                  style: TextStyle(color: Themes.hintHighlight),
+                  style: TextStyle(color: themeColor.hintHighlight),
                 ),
               ),
 
@@ -279,7 +279,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
                     children: [
                       Expanded(
                         child: RaisedButton(
-                          color: Themes.hintHighlightOrangeStrong,
+                          color: themeColor.hintHighlightOrangeStrong,
                           child: Text(_tutorialItem.value),
                           onPressed: () => launch(_tutorialItem.link),
                         ),

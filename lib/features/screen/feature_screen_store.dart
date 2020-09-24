@@ -31,13 +31,12 @@ abstract class _FeatureScreenStore with Store {
       _loginStateController.sink.add(userStatus.loggedIn);
       if (userStatus.loggedIn) {
         getNewMessageCount();
-        await _eventStore.getEvent();
+        getEvent();
       } else {
         _eventStore.showEventOnHome = false;
         _eventStore.forceShowEvent = false;
         _eventStore.hasSignedEvent = false;
         _eventStore.signedTimes = null;
-        _eventStore.hasNewMessage = false;
       }
     });
 

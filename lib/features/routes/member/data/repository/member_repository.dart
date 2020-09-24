@@ -7,7 +7,6 @@ class MemberApi {
 
 abstract class MemberRepository {
   Future<Either<Failure, String>> updateCredit(String account);
-
   Future<Either<Failure, bool>> checkNewMessage();
 }
 

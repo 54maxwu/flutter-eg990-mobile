@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/res.dart';
@@ -17,25 +18,30 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
   List<StoreProductModel> products;
   int memberPoints;
   int rowItemCount;
-  Widget pointWidget;
+  Widget _pointWidget;
 
-  double productImageSize;
+  final double expectItemHeight = 284;
+  double _gridRatio;
+  double _productImageSize;
 
   @override
   void initState() {
     rowItemCount = (Global.device.widthScale > 1.5)
         ? (2 * Global.device.widthScale).floor()
         : 2;
-    double gridItemWidth =
+    double itemWidth =
         (Global.device.width - 8 * (rowItemCount + 1) - 24) / rowItemCount;
-    productImageSize = gridItemWidth - 32;
-    debugPrint('product image size: $productImageSize');
+    _gridRatio = itemWidth / expectItemHeight;
+    debugPrint('grid item width: $itemWidth, gridRatio: $_gridRatio');
+    _productImageSize = itemWidth - 12;
+    debugPrint('product image size: $_productImageSize');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     _store ??= PointStoreInheritedWidget.of(context).store;
+    _pointWidget ??= PointStoreInheritedWidget.of(context).pointWidget;
     if (_store == null) {
       return Center(
         child: WarningDisplay(
@@ -52,36 +58,8 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
       shrinkWrap: true,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Text(
-                localeStr.storeTextTitlePoint,
-                style: TextStyle(color: Themes.defaultHintColor),
-              ),
-              StreamBuilder<num>(
-                stream: _store.pointStream,
-                initialData: _store.memberPoints,
-                builder: (_, snapshot) {
-                  debugPrint('store point stream: ${snapshot?.data}');
-                  if (snapshot == null || snapshot.data == null)
-                    return SizedBox.shrink();
-                  if (memberPoints != snapshot.data || pointWidget == null) {
-                    memberPoints = snapshot.data;
-                    pointWidget = Padding(
-                      padding: const EdgeInsets.only(left: 3.0, top: 2.0),
-                      child: Text(
-                        '$memberPoints',
-                        style: TextStyle(color: Themes.storeHighlightTextColor),
-                      ),
-                    );
-                  }
-                  return pointWidget;
-                },
-              )
-            ],
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+          child: _pointWidget,
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
@@ -90,7 +68,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
               crossAxisCount: rowItemCount,
               crossAxisSpacing: 12.0,
               mainAxisSpacing: 16.0,
-              childAspectRatio: 0.63,
+              childAspectRatio: _gridRatio,
             ),
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
@@ -101,29 +79,27 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                 decoration: BoxDecoration(
                   borderRadius:
                       const BorderRadius.all(const Radius.circular(12.0)),
-                  color: Themes.defaultCardColor,
+                  color: themeColor.storeProductBgColor,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 8.0,
-                  ),
+                      vertical: 4.0, horizontal: 8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ConstrainedBox(
                         constraints: BoxConstraints.tight(
-                            Size(productImageSize, productImageSize)),
+                            Size(_productImageSize, _productImageSize)),
                         child: Stack(
                           children: <Widget>[
                             Container(
-                              margin: const EdgeInsets.all(4.0),
+                              margin:
+                                  const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0),
                               child: networkImageBuilder(
-                                'images/mall_product/${product.pic}.jpg',
-                                fit: BoxFit.fill,
-                                roundCorner: true,
-                                roundParam: 12.0,
-                              ),
+                                  'images/mall_product/${product.pic}.jpg',
+                                  fit: BoxFit.fill,
+                                  roundCorner: true,
+                                  roundParam: 12.0),
                             ),
                             if (product.isNewProduct)
                               Image.asset(
@@ -135,30 +111,32 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 2.0),
+                        padding: const EdgeInsets.only(top: 2.0),
                         child: Text(product.productName,
                             textAlign: TextAlign.center),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 2.0),
+                        padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
                           localeStr.storeTextItemHint,
                           style: TextStyle(
-                            color: Themes.defaultHintColor,
-                          ),
+                              color: themeColor.defaultHintColor,
+                              fontSize: FontSize.SMALLER.value),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
+                        padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
-                          localeStr.storeTextItemPoint(product.point),
+                          localeStr.storeTextItemPoint(
+                              '${formatAsCreditNum(product.point)} '),
                           style: TextStyle(
-                            color: Themes.storeHighlightTextColor,
-                          ),
+                              color: themeColor.storeHighlightTextColor,
+                              fontSize: FontSize.SUBTITLE.value,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 12.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[

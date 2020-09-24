@@ -9,6 +9,7 @@ part of 'store_rules_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreRulesModelTearOff {
   const _$StoreRulesModelTearOff();
 
@@ -22,9 +23,11 @@ class _$StoreRulesModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreRulesModel = _$StoreRulesModelTearOff();
 
+/// @nodoc
 mixin _$StoreRulesModel {
   List<StorePlatformDollar> get platformRules;
   List<StoreRuleData> get rules;
@@ -32,6 +35,7 @@ mixin _$StoreRulesModel {
   $StoreRulesModelCopyWith<StoreRulesModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreRulesModelCopyWith<$Res> {
   factory $StoreRulesModelCopyWith(
           StoreRulesModel value, $Res Function(StoreRulesModel) then) =
@@ -40,6 +44,7 @@ abstract class $StoreRulesModelCopyWith<$Res> {
       {List<StorePlatformDollar> platformRules, List<StoreRuleData> rules});
 }
 
+/// @nodoc
 class _$StoreRulesModelCopyWithImpl<$Res>
     implements $StoreRulesModelCopyWith<$Res> {
   _$StoreRulesModelCopyWithImpl(this._value, this._then);
@@ -62,6 +67,7 @@ class _$StoreRulesModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreRulesModelCopyWith<$Res>
     implements $StoreRulesModelCopyWith<$Res> {
   factory _$StoreRulesModelCopyWith(
@@ -72,6 +78,7 @@ abstract class _$StoreRulesModelCopyWith<$Res>
       {List<StorePlatformDollar> platformRules, List<StoreRuleData> rules});
 }
 
+/// @nodoc
 class __$StoreRulesModelCopyWithImpl<$Res>
     extends _$StoreRulesModelCopyWithImpl<$Res>
     implements _$StoreRulesModelCopyWith<$Res> {
@@ -96,6 +103,7 @@ class __$StoreRulesModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreRulesModel implements _StoreRulesModel {
   const _$_StoreRulesModel({this.platformRules, this.rules});
 
@@ -144,6 +152,7 @@ abstract class _StoreRulesModel implements StoreRulesModel {
   _$StoreRulesModelCopyWith<_StoreRulesModel> get copyWith;
 }
 
+/// @nodoc
 class _$StoreRuleDataTearOff {
   const _$StoreRuleDataTearOff();
 
@@ -162,9 +171,11 @@ class _$StoreRuleDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreRuleData = _$StoreRuleDataTearOff();
 
+/// @nodoc
 mixin _$StoreRuleData {
   @JsonKey(name: 'rule_id')
   int get ruleId;
@@ -175,6 +186,7 @@ mixin _$StoreRuleData {
   $StoreRuleDataCopyWith<StoreRuleData> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreRuleDataCopyWith<$Res> {
   factory $StoreRuleDataCopyWith(
           StoreRuleData value, $Res Function(StoreRuleData) then) =
@@ -186,6 +198,7 @@ abstract class $StoreRuleDataCopyWith<$Res> {
       String status});
 }
 
+/// @nodoc
 class _$StoreRuleDataCopyWithImpl<$Res>
     implements $StoreRuleDataCopyWith<$Res> {
   _$StoreRuleDataCopyWithImpl(this._value, this._then);
@@ -210,6 +223,7 @@ class _$StoreRuleDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreRuleDataCopyWith<$Res>
     implements $StoreRuleDataCopyWith<$Res> {
   factory _$StoreRuleDataCopyWith(
@@ -223,6 +237,7 @@ abstract class _$StoreRuleDataCopyWith<$Res>
       String status});
 }
 
+/// @nodoc
 class __$StoreRuleDataCopyWithImpl<$Res>
     extends _$StoreRuleDataCopyWithImpl<$Res>
     implements _$StoreRuleDataCopyWith<$Res> {
@@ -249,6 +264,7 @@ class __$StoreRuleDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreRuleData implements _StoreRuleData {
   const _$_StoreRuleData(
       {@JsonKey(name: 'rule_id') this.ruleId,
@@ -319,6 +335,7 @@ abstract class _StoreRuleData implements StoreRuleData {
   _$StoreRuleDataCopyWith<_StoreRuleData> get copyWith;
 }
 
+/// @nodoc
 class _$StorePlatformDollarTearOff {
   const _$StorePlatformDollarTearOff();
 
@@ -333,9 +350,11 @@ class _$StorePlatformDollarTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StorePlatformDollar = _$StorePlatformDollarTearOff();
 
+/// @nodoc
 mixin _$StorePlatformDollar {
   @JsonKey(name: 'ch')
   String get platform;
@@ -345,6 +364,7 @@ mixin _$StorePlatformDollar {
   $StorePlatformDollarCopyWith<StorePlatformDollar> get copyWith;
 }
 
+/// @nodoc
 abstract class $StorePlatformDollarCopyWith<$Res> {
   factory $StorePlatformDollarCopyWith(
           StorePlatformDollar value, $Res Function(StorePlatformDollar) then) =
@@ -354,6 +374,7 @@ abstract class $StorePlatformDollarCopyWith<$Res> {
       @JsonKey(name: 'doller') num dollar});
 }
 
+/// @nodoc
 class _$StorePlatformDollarCopyWithImpl<$Res>
     implements $StorePlatformDollarCopyWith<$Res> {
   _$StorePlatformDollarCopyWithImpl(this._value, this._then);
@@ -374,6 +395,7 @@ class _$StorePlatformDollarCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StorePlatformDollarCopyWith<$Res>
     implements $StorePlatformDollarCopyWith<$Res> {
   factory _$StorePlatformDollarCopyWith(_StorePlatformDollar value,
@@ -385,6 +407,7 @@ abstract class _$StorePlatformDollarCopyWith<$Res>
       @JsonKey(name: 'doller') num dollar});
 }
 
+/// @nodoc
 class __$StorePlatformDollarCopyWithImpl<$Res>
     extends _$StorePlatformDollarCopyWithImpl<$Res>
     implements _$StorePlatformDollarCopyWith<$Res> {
@@ -407,6 +430,7 @@ class __$StorePlatformDollarCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StorePlatformDollar implements _StorePlatformDollar {
   const _$_StorePlatformDollar(
       {@JsonKey(name: 'ch') this.platform,

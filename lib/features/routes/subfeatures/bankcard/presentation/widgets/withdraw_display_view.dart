@@ -106,10 +106,12 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                     persistHint: false,
                     prefixText: localeStr.withdrawViewTitlePwd,
                     titleLetterSpacing: 4,
-                    maxInputLength: 20,
+                    maxInputLength: InputLimit.PASSWORD_MAX,
                     errorMsg: localeStr.messageInvalidWithdrawPassword,
-                    validCondition: (value) =>
-                        rangeCheck(value: value.length, min: 4, max: 20),
+                    validCondition: (value) => rangeCheck(
+                        value: value.length,
+                        min: 4,
+                        max: InputLimit.PASSWORD_MAX),
                   ),
                 ],
               ),
@@ -164,7 +166,7 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                             padding: const EdgeInsets.only(left: 8.0, top: 4.0),
                             child: Icon(
                               const IconData(0xf05a, fontFamily: 'FontAwesome'),
-                              color: Themes.hintHyperLink,
+                              color: themeColor.hintHyperLink,
                               size: FontSize.NORMAL.value,
                             ),
                           ),
@@ -181,14 +183,14 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                                     TextSpan(
                                       text: hintTexts[hintIndex],
                                       style: TextStyle(
-                                        color: Themes.hintHyperLink,
+                                        color: themeColor.hintHyperLink,
                                       ),
                                     ),
                                     if (hintIndex == 1)
                                       TextSpan(
                                         text: _flowLimit,
                                         style: TextStyle(
-                                          color: Themes.hintHyperLink,
+                                          color: themeColor.hintHyperLink,
                                         ),
                                       ),
                                   ],

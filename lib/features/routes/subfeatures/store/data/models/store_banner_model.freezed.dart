@@ -9,6 +9,7 @@ part of 'store_banner_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$StoreBannerModelTearOff {
   const _$StoreBannerModelTearOff();
 
@@ -23,9 +24,11 @@ class _$StoreBannerModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StoreBannerModel = _$StoreBannerModelTearOff();
 
+/// @nodoc
 mixin _$StoreBannerModel {
   String get title;
   String get pic;
@@ -35,6 +38,7 @@ mixin _$StoreBannerModel {
   $StoreBannerModelCopyWith<StoreBannerModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $StoreBannerModelCopyWith<$Res> {
   factory $StoreBannerModelCopyWith(
           StoreBannerModel value, $Res Function(StoreBannerModel) then) =
@@ -43,6 +47,7 @@ abstract class $StoreBannerModelCopyWith<$Res> {
       {String title, String pic, @JsonKey(name: 'end_time') String expire});
 }
 
+/// @nodoc
 class _$StoreBannerModelCopyWithImpl<$Res>
     implements $StoreBannerModelCopyWith<$Res> {
   _$StoreBannerModelCopyWithImpl(this._value, this._then);
@@ -65,6 +70,7 @@ class _$StoreBannerModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$StoreBannerModelCopyWith<$Res>
     implements $StoreBannerModelCopyWith<$Res> {
   factory _$StoreBannerModelCopyWith(
@@ -75,6 +81,7 @@ abstract class _$StoreBannerModelCopyWith<$Res>
       {String title, String pic, @JsonKey(name: 'end_time') String expire});
 }
 
+/// @nodoc
 class __$StoreBannerModelCopyWithImpl<$Res>
     extends _$StoreBannerModelCopyWithImpl<$Res>
     implements _$StoreBannerModelCopyWith<$Res> {
@@ -99,6 +106,7 @@ class __$StoreBannerModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_StoreBannerModel implements _StoreBannerModel {
   const _$_StoreBannerModel(
       {this.title, this.pic, @JsonKey(name: 'end_time') this.expire});

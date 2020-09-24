@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/balance/presentation/enum/balance_grid_action.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
+import '../enum/balance_grid_action.dart';
 import 'balance_action_dialog.dart';
 
 class BalanceGridItem extends StatefulWidget {
@@ -33,8 +33,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
     stopAnim();
     if (_credit == credit) return;
     _credit = credit;
-    isMaintaining = credit == '$creditSymbol-1.00';
-    if (isMaintaining || _credit == '---') {
+    isMaintaining = credit == '￥-1.00';
+    if (isMaintaining) {
       canTransferIn = false;
       canTransferOut = false;
     } else {
@@ -43,7 +43,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
       if (credit == 'x' || dCredit < 0) canTransferIn = false;
     }
     setState(() {});
-    debugPrint('${widget.platform} credit updated');
+    print('${widget.platform} credit updated');
   }
 
   String _credit = '---';
@@ -62,7 +62,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
 
   void stopAnim() {
     if (_controller.isAnimating) {
-      debugPrint('stop anim');
+      print('stop anim');
       _controller.forward(from: 0);
       _controller.stop(canceled: true);
     }
@@ -99,7 +99,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
       borderRadius: BorderRadius.circular(6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Themes.balanceCardBackground,
+          color: themeColor.balanceCardBackground,
           borderRadius: BorderRadius.circular(6.0),
           boxShadow: [
             BoxShadow(
@@ -120,7 +120,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
               Text(
                 widget.platform.toUpperCase(),
                 style: TextStyle(
-                  color: Themes.balanceCardTitleColor,
+                  color: themeColor.balanceCardTitleColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -132,8 +132,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
                       btn1Text,
                       style: TextStyle(
                         color: (canTransferOut)
-                            ? Themes.balanceAction2TextColor
-                            : Themes.balanceActionDisableTextColor,
+                            ? themeColor.balanceAction2TextColor
+                            : themeColor.balanceActionDisableTextColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -159,8 +159,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
                     ' / ',
                     style: TextStyle(
                       color: (canTransferOut || canTransferIn)
-                          ? Themes.balanceActionTextColor
-                          : Themes.balanceActionDisableTextColor,
+                          ? themeColor.balanceActionTextColor
+                          : themeColor.balanceActionDisableTextColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -169,8 +169,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
                       btn2Text,
                       style: TextStyle(
                         color: (canTransferIn)
-                            ? Themes.balanceActionTextColor
-                            : Themes.balanceActionDisableTextColor,
+                            ? themeColor.balanceActionTextColor
+                            : themeColor.balanceActionDisableTextColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -203,7 +203,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
                           ? localeStr.balanceStatusMaintenance
                           : _credit,
                       style: TextStyle(
-                        color: Themes.defaultGridTextColor,
+                        color: themeColor.defaultGridTextColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -214,8 +214,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
                       child: Icon(
                         Icons.refresh,
                         color: (canRefresh)
-                            ? Themes.defaultHintColor
-                            : Themes.defaultHintSubColor,
+                            ? themeColor.defaultWidgetColor
+                            : themeColor.defaultDisabledColor,
                         size: 18,
                       ),
                     ),

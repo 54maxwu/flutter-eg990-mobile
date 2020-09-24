@@ -85,8 +85,9 @@ class MoviePluginRateState extends State<MoviePluginRate> {
                     ? const IconData(0xf087, fontFamily: 'FontAwesome')
                     : const IconData(0xf088, fontFamily: 'FontAwesome'),
             size: 16.0,
-            color:
-                (_clicked) ? Themes.secondaryTextColor1 : Themes.iconSubColor2,
+            color: (_clicked)
+                ? themeColor.secondaryTextColor1
+                : themeColor.iconSubColor2,
           ),
           SizedBox(width: 4.0),
           if (widget.type != MoviePluginType.FAVORITE)
@@ -94,8 +95,8 @@ class MoviePluginRateState extends State<MoviePluginRate> {
               '${(_clicked) ? _getRateCount() + 1 : _getRateCount()}',
               style: TextStyle(
                 color: (_clicked)
-                    ? Themes.secondaryTextColor1
-                    : Themes.iconSubColor2,
+                    ? themeColor.secondaryTextColor1
+                    : themeColor.iconSubColor2,
               ),
             ),
           if (widget.type == MoviePluginType.FAVORITE)
@@ -103,8 +104,8 @@ class MoviePluginRateState extends State<MoviePluginRate> {
               localeStr.movieCategoryLabelCollect,
               style: TextStyle(
                 color: (_clicked)
-                    ? Themes.secondaryTextColor1
-                    : Themes.iconSubColor2,
+                    ? themeColor.secondaryTextColor1
+                    : themeColor.iconSubColor2,
               ),
             ),
         ],

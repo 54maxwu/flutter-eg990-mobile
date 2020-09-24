@@ -71,6 +71,11 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
+        Row(
+          children: [
+            Expanded(child: Text(Global.device.appVersionOrigin)),
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 12.0),
           child: RaisedButton(

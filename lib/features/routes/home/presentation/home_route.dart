@@ -89,7 +89,6 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
 
   @override
   Widget build(BuildContext context) {
-    ///TODO call get ads data here
     return Scaffold(
       body: Container(
         alignment: Alignment.topCenter,

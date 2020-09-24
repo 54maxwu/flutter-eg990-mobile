@@ -4,6 +4,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_color_enum.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'main_startup.dart';
 import 'router/app_global_streams.dart';
 import 'routes/home/presentation/state/home_store.dart';
+import 'themes/theme_settings.dart';
 
 class MainApp extends StatefulWidget {
   final FirebaseAnalytics analytics;
@@ -76,24 +78,28 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     MyLogger.info(msg: 'app build', tag: tag);
-    return MaterialApp(
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        S.delegate
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      localeResolutionCallback: (deviceLocale, supportedLocales) {
+    return StreamBuilder<ThemeColorEnum>(
+        stream: getAppGlobalStreams.themeStream,
+        initialData: ThemeInterface.theme.colorEnum,
+        builder: (context, snapshot) {
+          return MaterialApp(
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              S.delegate
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
 //        if (Platform.isAndroid) {
 //          for (var supp in supportedLocales) {
 //            if (supp.languageCode == deviceLocale.languageCode) return supp;
 //          }
 //        }
-        return Locale.fromSubtags(languageCode: Global.lang);
-      },
-      localeListResolutionCallback: (deviceLocales, supportedLocales) {
-        debugPrint('device locales: $deviceLocales');
-        debugPrint('supported locales: $supportedLocales');
+              return Locale.fromSubtags(languageCode: Global.lang);
+            },
+            localeListResolutionCallback: (deviceLocales, supportedLocales) {
+              debugPrint('device locales: $deviceLocales');
+              debugPrint('supported locales: $supportedLocales');
 //        if (Platform.isAndroid) {
 //          for (var loc in deviceLocales) {
 //            for (var supp in supportedLocales) {
@@ -101,22 +107,23 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 //            }
 //          }
 //        }
-        return Locale.fromSubtags(languageCode: Global.lang);
-      },
-      theme: appTheme.defaultTheme,
-      // Tell MaterialApp to use our ExtendedNavigator instead of
-      // the native one by assigning it to it's builder
+              return Locale.fromSubtags(languageCode: Global.lang);
+            },
+            theme: ThemeInterface.theme.data,
+            // Tell MaterialApp to use our ExtendedNavigator instead of
+            // the native one by assigning it to it's builder
 //    builder: ExtendedNavigator<ScreenRouter>(router: ScreenRouter()),
-      builder: BotToastInit(),
+            builder: BotToastInit(),
 //            builder: (context, child) {
 //              child = myBuilder(context,child);  //do something
 //              child = botToastBuilder(context,child);
 //              return child;
 //            },
-      navigatorObservers: (firebaseObserver != null)
-          ? [BotToastNavigatorObserver(), firebaseObserver]
-          : [BotToastNavigatorObserver()],
-      home: new MainStartup(),
-    );
+            navigatorObservers: (firebaseObserver != null)
+                ? [BotToastNavigatorObserver(), firebaseObserver]
+                : [BotToastNavigatorObserver()],
+            home: new MainStartup(),
+          );
+        });
   }
 }

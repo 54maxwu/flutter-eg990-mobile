@@ -9,6 +9,7 @@ part of 'roller_record_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RollerRecordModelTearOff {
   const _$RollerRecordModelTearOff();
 
@@ -35,9 +36,11 @@ class _$RollerRecordModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RollerRecordModel = _$RollerRecordModelTearOff();
 
+/// @nodoc
 mixin _$RollerRecordModel {
   int get id;
   @JsonKey(name: 'accountid')
@@ -54,6 +57,7 @@ mixin _$RollerRecordModel {
   $RollerRecordModelCopyWith<RollerRecordModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $RollerRecordModelCopyWith<$Res> {
   factory $RollerRecordModelCopyWith(
           RollerRecordModel value, $Res Function(RollerRecordModel) then) =
@@ -69,6 +73,7 @@ abstract class $RollerRecordModelCopyWith<$Res> {
       int count});
 }
 
+/// @nodoc
 class _$RollerRecordModelCopyWithImpl<$Res>
     implements $RollerRecordModelCopyWith<$Res> {
   _$RollerRecordModelCopyWithImpl(this._value, this._then);
@@ -101,6 +106,7 @@ class _$RollerRecordModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$RollerRecordModelCopyWith<$Res>
     implements $RollerRecordModelCopyWith<$Res> {
   factory _$RollerRecordModelCopyWith(
@@ -118,6 +124,7 @@ abstract class _$RollerRecordModelCopyWith<$Res>
       int count});
 }
 
+/// @nodoc
 class __$RollerRecordModelCopyWithImpl<$Res>
     extends _$RollerRecordModelCopyWithImpl<$Res>
     implements _$RollerRecordModelCopyWith<$Res> {
@@ -152,6 +159,7 @@ class __$RollerRecordModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_RollerRecordModel implements _RollerRecordModel {
   const _$_RollerRecordModel(
       {this.id,

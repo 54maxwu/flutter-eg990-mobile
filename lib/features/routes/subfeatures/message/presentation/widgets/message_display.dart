@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
+import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart'
+    show getAppGlobalStreams;
+import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 
 import '../state/message_store.dart';
@@ -22,9 +25,15 @@ class _MessageDisplayState extends State<MessageDisplay> {
   bool waitDelayedCheck = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     _eventStore = sl.get<EventStore>();
-    debugPrint('screen has new message: ${_eventStore?.hasNewMessage}');
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _eventStore = FeatureScreenInheritedWidget.of(context)?.eventStore;
+    debugPrint('screen has new message: ${getAppGlobalStreams.hasNewMessage}');
 
     itemKeys ??= new List();
     listItems ??= widget.store.messageList.map((message) {

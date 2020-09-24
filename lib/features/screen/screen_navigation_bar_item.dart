@@ -33,6 +33,7 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
       ScreenNavigationBarItem.define(RouteListItem(
     id: RouteEnum.PROMO,
     iconData: const IconData(0xf06b, fontFamily: 'FontAwesome'),
+//    iconData: const IconData(0xe966, fontFamily: 'IconMoon'),
     route: RoutePage.promo,
   ));
   static ScreenNavigationBarItem service =

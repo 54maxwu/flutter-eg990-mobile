@@ -2,6 +2,8 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/data/entity/store_tabs.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/presentation/widgets/point_widget.dart';
 
 import '../state/point_store.dart';
 import 'point_store_inherit_widget.dart';
@@ -28,10 +30,10 @@ class StoreDisplayTabs extends StatefulWidget {
 class _StoreDisplayTabsState extends State<StoreDisplayTabs>
     with SingleTickerProviderStateMixin, AfterLayoutMixin {
   final GlobalKey routeKey = new GlobalKey();
-  final List<String> _tabs = [
-    localeStr.storeTextTitleProduct,
-    localeStr.storeTextTitleRule,
-    localeStr.storeTextTitleRecord,
+  final List<StoreTabsEnum> _tabs = [
+    StoreTabsEnum.product,
+    StoreTabsEnum.rules,
+    StoreTabsEnum.records,
   ];
 
   TabController _tabController;
@@ -64,7 +66,9 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
     try {
       if (_tabController != null) _tabController.dispose();
     } catch (e) {
-      MyLogger.warn(msg: '${e.runtimeType}', tag: "StoreDisplayTabs", error: e);
+      MyLogger.warn(
+          msg: 'Dispose tab controller has exception: $e',
+          tag: "StoreDisplayTabs");
     }
     super.dispose();
   }
@@ -76,11 +80,11 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
       children: <Widget>[
         /* Tab Bar */
         TabBar(
-          unselectedLabelColor: Themes.secondaryTextColor1,
-          labelColor: Themes.buttonTextPrimaryColor,
+          unselectedLabelColor: themeColor.secondaryTextColor1,
+          labelColor: themeColor.buttonTextPrimaryColor,
           labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
           labelPadding: EdgeInsets.zero,
-          indicatorColor: Themes.defaultAccentColor,
+          indicatorColor: themeColor.defaultAccentColor,
           indicatorSize: TabBarIndicatorSize.label,
           indicatorWeight: 2.0,
           indicatorPadding: const EdgeInsets.only(bottom: 1.0),
@@ -90,16 +94,16 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
             return Container(
               constraints: BoxConstraints.tight(_tabSize),
               color: (index == _tabIndex)
-                  ? Themes.defaultAccentColor
+                  ? themeColor.defaultAccentColor
                   : Colors.black87,
               alignment: Alignment.center,
               child: Text(
-                _tabs[index],
+                _tabs[index].label,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: (index == _tabIndex)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.buttonTextSubColor,
+                      ? themeColor.buttonTextPrimaryColor
+                      : themeColor.buttonTextSubColor,
                 ),
               ),
             );
@@ -128,12 +132,11 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
   Widget _buildContentView() {
     _contentMaxHeight = widget.parentHeight - _tabSize.height - 8;
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: _contentMaxHeight,
-      ),
+      constraints: BoxConstraints(maxHeight: _contentMaxHeight),
       child: PointStoreInheritedWidget(
         key: routeKey,
         store: widget.store,
+        pointWidget: PointWidget(widget.store),
         child: new TabsPageControlWidget(
           pageController: _pageController,
           tabController: _tabController,

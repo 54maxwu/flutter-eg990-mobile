@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 ///
 ///
@@ -47,21 +47,21 @@ class CustomizeTitledContainer extends StatefulWidget {
     this.childAlignment = Alignment.centerLeft,
     this.parentWidth,
     this.padding,
-    this.horizontalInset = Themes.horizontalInset,
+    this.horizontalInset = ThemeInterface.horizontalInset,
     this.heightFactor = 1,
     this.roundCorner = true,
-    this.backgroundColor = Themes.fieldInputBgColor,
+    this.backgroundColor,
     this.prefixText,
     this.prefixTextSize,
     this.prefixTextMaxLines,
     this.prefixIconData,
-    this.prefixItemColor = Themes.fieldPrefixColor,
-    this.prefixBgColor = Themes.fieldPrefixBgColor,
-    this.titleWidthFactor = Themes.prefixTextWidthFactor,
-    this.titleLetterSpacing = Themes.prefixTextSpacing,
-    this.iconWidthFactor = Themes.prefixIconWidthFactor,
-    this.minusHeight = Themes.minusSize,
-    this.minusPrefixWidth = Themes.minusSize,
+    this.prefixItemColor,
+    this.prefixBgColor,
+    this.titleWidthFactor = ThemeInterface.prefixTextWidthFactor,
+    this.titleLetterSpacing = ThemeInterface.prefixTextSpacing,
+    this.iconWidthFactor = ThemeInterface.prefixIconWidthFactor,
+    this.minusHeight = ThemeInterface.minusSize,
+    this.minusPrefixWidth = ThemeInterface.minusSize,
     this.requiredInput = false,
     this.debug = false,
   }) : super(key: key);
@@ -79,6 +79,10 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
   BoxConstraints _prefixConstraints;
   int _currentPrefixMaxLines;
 
+  Color _fieldBgColor;
+  Color _prefixBgColor;
+  Color _prefixColor;
+
   void updateVariables() {
     _viewWidth = (widget.parentWidth ?? Global.device.width).roundToDouble() -
         widget.horizontalInset;
@@ -90,10 +94,11 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
         widget.minusPrefixWidth;
     if (_prefixWidth < 56.0) _prefixWidth = 56.0;
 
-    _smallWidgetHeight =
-        ((Global.device.isIos) ? Themes.fieldHeight + 8 : Themes.fieldHeight) *
-                widget.heightFactor -
-            widget.minusHeight;
+    _smallWidgetHeight = ((Global.device.isIos)
+                ? ThemeInterface.fieldHeight + 8
+                : ThemeInterface.fieldHeight) *
+            widget.heightFactor -
+        widget.minusHeight;
     if (widget.prefixIconData != null) _smallWidgetHeight += 8.0;
 
     // update constraints
@@ -118,6 +123,9 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
   void initState() {
     updateVariables();
     super.initState();
+    _fieldBgColor = widget.backgroundColor ?? themeColor.fieldInputBgColor;
+    _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixColor;
+    _prefixBgColor = widget.prefixBgColor ?? themeColor.fieldPrefixBgColor;
   }
 
   @override
@@ -151,7 +159,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
             Container(
               constraints: _prefixConstraints,
               decoration: BoxDecoration(
-                color: widget.prefixBgColor,
+                color: _prefixBgColor,
                 borderRadius: (widget.roundCorner)
                     ? BorderRadius.only(
                         topLeft: Radius.circular(4.0),
@@ -165,7 +173,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
             child: Container(
               alignment: widget.childAlignment,
               decoration: BoxDecoration(
-                color: widget.backgroundColor,
+                color: _fieldBgColor,
                 borderRadius: (widget.roundCorner)
                     ? BorderRadius.only(
                         topRight: Radius.circular(4.0),
@@ -191,8 +199,8 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
             padding: const EdgeInsets.symmetric(horizontal: 2.0),
             child: Icon(
               widget.prefixIconData,
-              size: Themes.fieldIconSize,
-              color: widget.prefixItemColor,
+              size: ThemeInterface.fieldIconSize,
+              color: _prefixColor,
             ),
           ),
           Padding(
@@ -206,7 +214,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing,
                     letterSpacing: widget.titleLetterSpacing,
-                    color: widget.prefixItemColor,
+                    color: _prefixColor,
                   ),
                   children: [
                     TextSpan(text: widget.prefixText),
@@ -216,7 +224,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                         style: TextStyle(
                           fontSize:
                               widget.prefixTextSize ?? FontSize.NORMAL.value,
-                          color: Themes.hintHighlightRed,
+                          color: themeColor.hintHighlightRed,
                         ),
                       ),
                   ],
@@ -239,7 +247,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
                 letterSpacing: widget.titleLetterSpacing,
-                color: widget.prefixItemColor,
+                color: _prefixColor,
               ),
               children: [
                 TextSpan(text: widget.prefixText),
@@ -248,7 +256,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                     text: ' *',
                     style: TextStyle(
                       fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
-                      color: Themes.hintHighlightRed,
+                      color: themeColor.hintHighlightRed,
                     ),
                   ),
               ],
@@ -260,8 +268,8 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
       _prefixWidget = Center(
         child: Icon(
           widget.prefixIconData,
-          size: Themes.fieldIconSize,
-          color: widget.prefixItemColor,
+          size: ThemeInterface.fieldIconSize,
+          color: _prefixColor,
         ),
       );
     }

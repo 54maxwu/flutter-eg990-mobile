@@ -319,11 +319,11 @@ class HomeRepositoryImpl implements HomeRepository {
       ),
       tag: 'remote-RECOMMEND',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        print('check recommend data type: ${data.runtimeType}');
+        debugPrint('check recommend data type: ${data.runtimeType}');
         if (data is List) return Right(_decodeMixedData(data));
         if (data is String && data.startsWith('[') && data.endsWith(']'))
           return Right(_decodeMixedData(jsonDecode(data)));
@@ -347,7 +347,7 @@ class HomeRepositoryImpl implements HomeRepository {
       }
     }).toList();
     decodedList.removeWhere((element) => element == '');
-//    print('decoded recommend games: $decodedList');
+//    debugPrint('decoded recommend games: $decodedList');
     return decodedList;
   }
 
@@ -365,11 +365,11 @@ class HomeRepositoryImpl implements HomeRepository {
       ),
       tag: 'remote-FAVORITE',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        print('check favorite data type: ${data.runtimeType}');
+        debugPrint('check favorite data type: ${data.runtimeType}');
         Map map = new Map();
         if (data is Map)
           map = data;
@@ -380,7 +380,7 @@ class HomeRepositoryImpl implements HomeRepository {
 
         List dataList = new List();
         map.forEach((key, value) {
-//            print('$key data is List: ${value is List}');
+//            debugPrint('$key data is List: ${value is List}');
           if (value is List)
             dataList.addAll(value);
           else
@@ -410,7 +410,7 @@ class HomeRepositoryImpl implements HomeRepository {
       ),
       tag: 'remote-FAVORITE',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
@@ -442,7 +442,7 @@ class HomeRepositoryImpl implements HomeRepository {
       ),
       tag: 'remote-FAVORITE',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {

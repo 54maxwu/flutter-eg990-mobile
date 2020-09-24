@@ -4,6 +4,7 @@ import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/pager_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
 import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 
 import '../../data/enum/bet_record_time_enum.dart';
@@ -37,15 +38,13 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
   final GlobalKey<CustomizeFieldWidgetState> _endTimeKey =
       new GlobalKey(debugLabel: 'end');
 
+  final int tabsPerRow = 5;
   double gridRatio;
-  List<String> categories;
+  List<BetRecordType> categories;
   List<String> platforms;
 
   /// current tab
-  String _category;
-
-  /// current tab index, controls tab color
-  int _categorySelected;
+  BetRecordType _category;
 
   /// platform drop down widget's current value
   String _platform;
@@ -75,6 +74,8 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
   /// table type, has effect on table and pager's height
   bool allDataTable = true;
 
+  bool _lockAction = false;
+
   void getPageData(int page, bool force) {
     if (widget.store == null) return;
     if (widget.store.waitForRecordResponse) return;
@@ -88,9 +89,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
       return;
     }
     BetRecordForm form = BetRecordForm(
-      categoryId: widget.store.typeList
-          .singleWhere((type) => type.label == _category)
-          .categoryId,
+      categoryId: _category.categoryId,
       platform: (_platform == platforms[_allPlatformIndex])
           ? 'all'
           : _platform.toLowerCase(),
@@ -108,11 +107,10 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
   }
 
   /// update drop down values when tab change
-  void switchCategory(int categoryIndex) {
-    if (_categorySelected == categoryIndex) return;
+  void switchCategory(BetRecordType selected, {bool force = false}) {
+    if ((_category == selected || _lockAction) && !force) return;
     // set selected category
-    _categorySelected = categoryIndex;
-    _category = categories[_categorySelected];
+    _category = selected;
 
     // reset platform drop down
     _platform = null;
@@ -120,10 +118,15 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
     if (_platformKey.currentState != null)
       _platformKey.currentState.setSelected = _platform;
 
-    // build platform list
-    Map platformMap = widget.store.typeList
-        .singleWhere((element) => element.label == _category)
-        .platformMap;
+    _createPlatformList(!force);
+
+    // update view
+    setState(() {});
+  }
+
+  void _createPlatformList(bool resetSelected) {
+    // find category's platform list
+    Map platformMap = _category.platformMap;
     platforms = (platformMap != null && platformMap.isNotEmpty)
         ? platformMap.values.map((value) => '$value').toList()
         : [];
@@ -171,19 +174,22 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
   @override
   void initState() {
     if (widget.store != null) {
-      categories = (widget.store.hasValidData)
-          ? widget.store.typeList.map((e) => e.label).toList()
-          : [];
+      categories = widget.store.typeList ?? [];
+      debugPrint('bet categories: ${categories.length}');
       if (categories.isNotEmpty) {
-        switchCategory(0);
-        print('bet categories: ${categories.length}');
+        if (_category != null) {
+          switchCategory(_category, force: true);
+        } else {
+          switchCategory(categories.first, force: true);
+        }
       }
     }
     _timeSelected = BetRecordTimeEnum.today;
 
-    double gridItemWidth = (Global.device.width - 8 * 6 - 12) / 4;
-    gridRatio = gridItemWidth / 36;
-    print('grid item width: $gridItemWidth, gridRatio: $gridRatio');
+    double gridItemWidth =
+        ((Global.device.width - 24) - 8 * (tabsPerRow + 2) - 12) / tabsPerRow;
+    gridRatio = gridItemWidth / Global.device.comfortButtonHeight;
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $gridRatio');
     if (gridRatio > 4.16) gridRatio = 4.16;
 
     super.initState();
@@ -201,39 +207,27 @@ class _BetRecordDisplayState extends State<BetRecordDisplay>
     }
     tableWidget ??= _buildTableWidget([]);
     return Container(
-      padding: const EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 4.0),
+      padding: const EdgeInsets.only(bottom: 4.0),
       alignment: Alignment.topCenter,
       child: ListView(
         shrinkWrap: true,
-        children: <Widget>[
+        physics: BouncingScrollPhysics(),
+        children: [
           /* Category Tabs */
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 10.0,
-              childAspectRatio: gridRatio,
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+            child: TypesGridWidget<BetRecordType>(
+              types: categories,
+              titleKey: 'label',
+              onTypeGridTap: (_, type) {
+                switchCategory(type);
+              },
+              tabsPerRow: tabsPerRow,
+              itemSpaceHorFactor: 1.0,
+              expectTabHeight: 36.0,
             ),
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              return ConstrainedBox(
-                constraints: const BoxConstraints.tightFor(height: 24),
-                child: RaisedButton(
-                  color: (_categorySelected == index)
-                      ? Themes.buttonPrimaryColor
-                      : Themes.buttonSecondaryColor,
-                  textColor: (_categorySelected == index)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.defaultTextColor,
-                  child: Text(categories[index]),
-                  onPressed: () => switchCategory(index),
-                ),
-              );
-            },
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: 8.0),
           /* Platform Option */
           if (platforms != null && platforms.isNotEmpty)
             CustomizeDropdownWidget(

@@ -2,7 +2,7 @@ import 'dart:async' show StreamController;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
 import '../../data/models/movie_category_model.dart';
@@ -118,10 +118,10 @@ class MovieCategoryGridItemState extends State<MovieCategoryGridItem> {
                     fontSize: FontSize.SMALL.value,
                     color: (widget.categoryEnum == MovieCategoryEnum.EXPAND ||
                             widget.categoryEnum == MovieCategoryEnum.FOLD)
-                        ? Themes.defaultAccentColor
+                        ? themeColor.defaultAccentColor
                         : (_isHighlight)
-                            ? Themes.secondaryTextColor1
-                            : Themes.secondaryTextColor2,
+                            ? themeColor.secondaryTextColor1
+                            : themeColor.secondaryTextColor2,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

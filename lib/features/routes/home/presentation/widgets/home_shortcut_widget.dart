@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
-import 'package:flutter_eg990_mobile/features/routes/home/presentation/state/home_store.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';
-import 'home_store_inherit_widget.dart';
 
 ///
 /// Creates a widget to show member info under Marquee
@@ -18,10 +16,12 @@ import 'home_store_inherit_widget.dart';
 ///
 class HomeShortcutWidget extends StatefulWidget {
   final HomeDisplaySizeCalc sizeCalc;
+  final EventStore eventStore;
 
   HomeShortcutWidget({
     Key key,
     @required this.sizeCalc,
+    @required this.eventStore,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,9 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   double _leftAreaMinWidth;
   double _leftAreaTextSize;
 
-  HomeStore _store;
+  bool _smallerWidget = false;
+  Size _iconSize;
+
   LoginStatus _userData;
   bool isUserContent = false;
   Widget _contentWidget;
@@ -62,8 +64,8 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     print('updating member area data...');
     setState(() {
       _userData = getAppGlobalStreams.lastStatus;
-      print('member area user: $_userData');
-      if (_userData.loggedIn) _store?.getCredit();
+      debugPrint('member area user: $_userData');
+      if (_userData.loggedIn) widget.eventStore?.getUserCredit();
     });
   }
 
@@ -97,18 +99,23 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     _userData = getAppGlobalStreams.lastStatus;
     print('updating member area height: $_areaHeight');
     super.initState();
+    _smallerWidget = _areaHeight < widget.sizeCalc.shortcutMaxHeight;
+    _iconSize = (_smallerWidget)
+        ? Size(widget.sizeCalc.shortcutMinIconSize,
+            widget.sizeCalc.shortcutMinIconSize)
+        : Size(widget.sizeCalc.shortcutMaxIconSize,
+            widget.sizeCalc.shortcutMaxIconSize);
   }
 
   @override
   Widget build(BuildContext context) {
-    _store ??= HomeStoreInheritedWidget.of(context).store;
     if (isUserContent != _userData.loggedIn) {
       isUserContent = _userData.loggedIn;
       _contentWidget = _buildContent(context);
     }
     _contentWidget ??= _buildContent(context);
     _widgetBorder ??= BorderSide(
-      color: Themes.homeBoxDividerColor,
+      color: themeColor.homeBoxDividerColor,
       width: 2.0,
       style: BorderStyle.solid,
     );
@@ -124,7 +131,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Themes.homeBoxBgColor,
+              color: themeColor.homeBoxBgColor,
               border: Border.fromBorderSide(_widgetBorder),
               borderRadius: BorderRadius.circular(4.0),
             ),
@@ -139,7 +146,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             Container(
               height: widget.sizeCalc.shortcutTitleHeight,
               decoration: BoxDecoration(
-                color: Themes.defaultAccentColor,
+                color: themeColor.defaultAccentColor,
                 border: Border.fromBorderSide(_widgetBorder),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(4.0),
@@ -153,7 +160,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: Text(
                       localeStr.homeHintWelcomeLogin,
-                      style: TextStyle(color: Themes.homeBoxHintTextColor),
+                      style: TextStyle(color: themeColor.homeBoxHintTextColor),
                     ),
                   ),
                 ],
@@ -173,17 +180,13 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   maxWidth: _leftAreaMaxWidth,
                   minWidth: _leftAreaMinWidth,
                 )
-              : BoxConstraints.tightFor(
-                  width: (Global.device.width > 400)
-                      ? _areaHeight * Global.device.widthScale
-                      : _areaHeight,
-                ),
+              : BoxConstraints.tightFor(width: _leftAreaMinWidth - 12.0),
           alignment: Alignment.center,
           child: _buildLeftContent(context),
         ),
         VerticalDivider(
           thickness: 2.0,
-          color: Themes.homeBoxDividerColor,
+          color: themeColor.homeBoxDividerColor,
         ),
         _buildRightContent(),
       ],
@@ -197,14 +200,14 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         margin: const EdgeInsets.fromLTRB(12.0, 8.0, 4.0, 8.0),
         child: RaisedButton(
           visualDensity: VisualDensity(horizontal: 3.0),
-          color: Themes.homeBoxIconColor,
+          color: themeColor.homeBoxBgColor,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Themes.defaultAccentColor),
+            side: BorderSide(color: themeColor.defaultAccentColor),
             borderRadius: BorderRadius.circular(4.0),
           ),
           child: Text(
             localeStr.pageTitleLogin2,
-            style: TextStyle(color: Themes.homeBoxButtonTextColor),
+            style: TextStyle(color: themeColor.homeBoxButtonTextColor),
           ),
           onPressed: () => showDialog(
             context: context,
@@ -238,7 +241,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                         TextSpan(
                           text: '${_userData.currentUser.account}\r',
                           style: TextStyle(
-                            color: Themes.homeBoxInfoTextColor,
+                            color: themeColor.homeBoxInfoTextColor,
                             fontSize: _leftAreaTextSize,
                           ),
                         ),
@@ -257,8 +260,8 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 StreamBuilder<String>(
-                  stream: _store.creditStream,
-                  initialData: _store.userCredit,
+                  stream: getAppGlobalStreams.creditStream,
+                  initialData: getAppGlobalStreams.getCredit(addSymbol: true),
                   builder: (_, snapshot) {
                     if (_currentCredit != snapshot.data) {
                       _currentCredit = snapshot.data;
@@ -289,14 +292,16 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             style: TextStyle(fontSize: _leftAreaTextSize),
           ),
           TextSpan(
-            text: formatValue(
-              _currentCredit,
-              floorIfInt: true,
-              floorIfZero: false,
-              creditSign: false,
-            ),
+            text: (_currentCredit.contains('-'))
+                ? _currentCredit
+                : formatValue(
+                    _currentCredit,
+                    floorIfInt: true,
+                    floorIfZero: false,
+                    creditSign: false,
+                  ),
             style: TextStyle(
-              color: Themes.homeBoxInfoTextColor,
+              color: themeColor.homeBoxInfoTextColor,
               fontSize: _leftAreaTextSize,
             ),
           ),
@@ -309,45 +314,42 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     return Expanded(
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.only(top: 6.0, bottom: 2.0),
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            _createIconButton(
-              Res.homeMemberAreaIconDeposit,
-              localeStr.pageTitleDeposit,
-              () {
-                (isUserContent)
-                    ? RouterNavigate.navigateToPage(RoutePage.deposit)
-                    : toastLogin();
-              },
+            Expanded(
+              flex: 1,
+              child: _createIconButton(
+                page: RoutePage.depositFeature,
+                isUserOnly: true,
+                imageUrl: Res.homeMemberAreaIconDeposit,
+              ),
             ),
-            _createIconButton(
-              Res.homeMemberAreaIconWithdraw,
-              localeStr.pageTitleMemberWithdraw,
-              () {
-                (isUserContent)
-                    ? RouterNavigate.navigateToPage(
-                        RoutePage.withdraw,
-                        arg: BankcardRouteArguments(withdraw: true),
-                      )
-                    : toastLogin();
-              },
+            Expanded(
+              flex: 1,
+              child: _createIconButton(
+                page: RoutePage.withdraw,
+                isUserOnly: true,
+                imageUrl: Res.homeMemberAreaIconWithdraw,
+              ),
             ),
-            _createIconButton(
-              Res.homeMemberAreaIconTransfer,
-              localeStr.pageTitleMemberTransfer,
-              () {
-                (isUserContent)
-                    ? RouterNavigate.navigateToPage(RoutePage.transfer)
-                    : toastLogin();
-              },
+            Expanded(
+              flex: 1,
+              child: _createIconButton(
+                page: RoutePage.transfer,
+                isUserOnly: true,
+                imageUrl: Res.homeMemberAreaIconTransfer,
+              ),
             ),
-            _createIconButton(
-              Res.homeMemberAreaIconVip,
-              'VIP',
-              () => RouterNavigate.navigateToPage(RoutePage.vipLevel),
+            Expanded(
+              flex: 1,
+              child: _createIconButton(
+                page: RoutePage.vipLevel,
+                imageUrl: Res.homeMemberAreaIconVip,
+                isLast: true,
+              ),
             ),
           ],
         ),
@@ -355,35 +357,70 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     );
   }
 
-  Widget _createIconButton(String urlIconName, String label, Function func) {
-    return GestureDetector(
-      onTap: func,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ConstrainedBox(
-            constraints: BoxConstraints.tightFor(
-              height:
-                  (_areaHeight >= widget.sizeCalc.shortcutMaxHeight) ? 28 : 24,
-            ),
-            child: networkImageBuilder(
-              urlIconName,
-              imgColor: Themes.homeBoxIconColor,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: (label.hasChinese) ? 4.0 : 6.0),
-            child: Text(
-              label,
-              style: TextStyle(
-                color: Themes.homeBoxIconTextColor,
-                fontSize: (_areaHeight >= widget.sizeCalc.shortcutMaxHeight)
-                    ? FontSize.NORMAL.value
-                    : FontSize.SMALLER.value,
+  Widget _createIconButton({
+    RoutePage page,
+    bool isUserOnly = false,
+    String replaceLabel,
+    String imageUrl,
+    IconData iconData,
+    bool isLast = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 2.0, 2.0),
+      child: GestureDetector(
+        onTap: () {
+          if (isUserOnly && !isUserContent && page != null) {
+            toastLogin();
+          } else if (page != null) {
+            RouterNavigate.navigateToPage(page);
+          } else {
+            callToastInfo(localeStr.workInProgress);
+          }
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            (imageUrl != null)
+                ? Container(
+                    constraints: BoxConstraints.tight(_iconSize),
+                    child: networkImageBuilder(imageUrl))
+                : Container(
+                    constraints: BoxConstraints.tight(_iconSize / 6 * 5),
+                    padding: const EdgeInsets.all(6.0),
+                    child: Transform.scale(
+                      scale: 0.75,
+                      child: (iconData != null)
+                          ? Icon(
+                              iconData,
+                              color: themeColor.homeBoxIconColor,
+                            )
+                          : Icon(
+                              Icons.broken_image,
+                              color: themeColor.homeBoxIconColor,
+                            ),
+                    ),
+                  ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
+                child: RichText(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                    text: replaceLabel ?? page.pageTitle ?? '',
+                    style: TextStyle(
+                      fontSize: _smallerWidget
+                          ? FontSize.SMALLER.value
+                          : FontSize.NORMAL.value,
+                      color: themeColor.homeBoxIconTextColor,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

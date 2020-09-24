@@ -37,12 +37,14 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
   Widget _createButtons() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      child: ButtonTheme(
-        height: 30,
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(4.0),
-        ),
+      child: ButtonTheme.fromButtonThemeData(
+        data: Theme.of(context).buttonTheme.copyWith(
+              height: 30,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(4.0),
+              ),
+            ),
         child: Row(
           children: <Widget>[
 //            RaisedButton(
@@ -50,7 +52,7 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //                localeStr.pageTitleLogin,
 //                style: TextStyle(
 //                  fontSize: FontSize.NORMAL.value + 1,
-//                  color: Themes.buttonTextPrimaryColor,
+//                  color: themeColor.buttonTextPrimaryColor,
 //                ),
 //              ),
 //              visualDensity: VisualDensity(horizontal: -3.0),
@@ -59,10 +61,23 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //            SizedBox(width: 4.0),
             RaisedButton(
               child: new Text(
+                localeStr.pageTitleLogin,
+                style: TextStyle(
+                  fontSize: FontSize.NORMAL.value + 1,
+                  color: themeColor.buttonTextPrimaryColor,
+                ),
+              ),
+              visualDensity: VisualDensity(horizontal: -3.0),
+              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login,
+                  arg: LoginRouteArguments(returnHomeAfterLogin: true)),
+            ),
+            SizedBox(width: 4.0),
+            RaisedButton(
+              child: new Text(
                 localeStr.pageTitleRegister,
                 style: TextStyle(
                   fontSize: FontSize.NORMAL.value + 1,
-                  color: Themes.buttonTextPrimaryColor,
+                  color: themeColor.buttonTextPrimaryColor,
                 ),
               ),
               visualDensity: VisualDensity(horizontal: -3.0),

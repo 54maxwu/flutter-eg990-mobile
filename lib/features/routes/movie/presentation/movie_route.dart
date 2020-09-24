@@ -52,25 +52,32 @@ class _MovieRouteState extends State<MovieRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.topCenter,
-        child: Observer(
-          // Observe using specific widget
-          builder: (_) {
-            switch (_store.egRouteState) {
-              case MovieStoreState.loading:
-                return LoadingWidget();
-              case MovieStoreState.loaded:
-                return MovieStoreInheritedWidget(
-                  store: _store,
-                  size: null,
-                  child: MovieDisplay(),
-                );
-              default:
-                return SizedBox.shrink();
-            }
-          },
+    return WillPopScope(
+      onWillPop: () {
+        debugPrint('pop movie route');
+        RouterNavigate.navigateBack();
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Container(
+          alignment: Alignment.topCenter,
+          child: Observer(
+            // Observe using specific widget
+            builder: (_) {
+              switch (_store.egRouteState) {
+                case MovieStoreState.loading:
+                  return LoadingWidget();
+                case MovieStoreState.loaded:
+                  return MovieStoreInheritedWidget(
+                    store: _store,
+                    size: null,
+                    child: MovieDisplay(),
+                  );
+                default:
+                  return SizedBox.shrink();
+              }
+            },
+          ),
         ),
       ),
     );

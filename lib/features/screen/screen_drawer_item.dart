@@ -15,12 +15,14 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem promo = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.PROMO,
+    imageName: 'images/aside/43.png',
     iconData: const IconData(0xf06b, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe965, fontFamily: 'IconMoon'),
     route: RoutePage.promo,
   ));
   static ScreenDrawerItem service = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.SERVICE,
+    imageName: 'images/aside/59.png',
     iconData: const IconData(0xf27a, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe967, fontFamily: 'IconMoon'),
     route: RoutePage.service,
@@ -33,13 +35,14 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem agentAbout = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.AGENT_ABOUT,
-    imageName: 'images/footer/ftico_agent.png',
+    imageName: 'images/aside/65.png',
     route: RoutePage.agentAbout,
   ));
 
   /// USER
   static ScreenDrawerItem member = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.MEMBER,
+    imageName: 'images/aside/39.png',
     iconData: const IconData(0xf2bd, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe961, fontFamily: 'IconMoon'),
     route: RoutePage.member,
@@ -47,6 +50,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem deposit = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.DEPOSIT,
+    imageName: 'images/aside/41.png',
     iconData: const IconData(0xf09d, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe95d, fontFamily: 'IconMoon'),
     route: RoutePage.deposit,
@@ -54,6 +58,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem message = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.MESSAGE,
+    imageName: 'images/aside/45.png',
     iconData: const IconData(0xf0e0, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe968, fontFamily: 'IconMoon'),
     route: RoutePage.message,
@@ -72,7 +77,9 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem notice = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.NOTICE,
+    imageName: 'images/aside/47.png',
     iconData: const IconData(0xf028, fontFamily: 'FontAwesome'),
+//    iconData: const IconData(0xe967, fontFamily: 'IconMoon'),
     route: RoutePage.sideNoticeBoard,
     isUserOnly: true,
   ));
@@ -86,29 +93,33 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   static ScreenDrawerItem wallet = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.WALLET,
     iconData: const IconData(0xf155, fontFamily: 'FontAwesome'),
+//    iconData: const IconData(0xe964, fontFamily: 'IconMoon'),
     route: RoutePage.sideWallet,
     isUserOnly: true,
   ));
   static ScreenDrawerItem vip = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.VIP,
+    imageName: 'images/aside/63.png',
     iconData: const IconData(0xf219, fontFamily: 'FontAwesome'),
 //    iconData: const IconData(0xe96d, fontFamily: 'IconMoon'),
     route: RoutePage.sideVipLevel,
   ));
   static ScreenDrawerItem store = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.STORE,
+    imageName: 'images/aside/49.png',
     iconData: const IconData(0xf290, fontFamily: 'FontAwesome'),
     isUserOnly: true,
     route: RoutePage.pointStore,
   ));
   static ScreenDrawerItem roller = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.ROLLER,
-    imageName: 'images/moreShow_lucky.png',
+    imageName: 'images/aside/51.png',
     route: RoutePage.roller,
     isUserOnly: true,
   ));
   static ScreenDrawerItem sign = ScreenDrawerItem.define(RouteListItem(
     id: RouteEnum.SIGN,
+    imageName: 'images/aside/57.png',
     iconData: const IconData(0xf274, fontFamily: 'FontAwesome'),
     isUserOnly: true,
   ));

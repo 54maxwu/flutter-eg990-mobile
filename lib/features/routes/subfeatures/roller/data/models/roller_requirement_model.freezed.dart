@@ -9,6 +9,7 @@ part of 'roller_requirement_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RollerRequirementModelTearOff {
   const _$RollerRequirementModelTearOff();
 
@@ -31,9 +32,11 @@ class _$RollerRequirementModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RollerRequirementModel = _$RollerRequirementModelTearOff();
 
+/// @nodoc
 mixin _$RollerRequirementModel {
   @JsonKey(name: 'type', fromJson: decodeRollerRequirementType)
   List<RollerRequirementType> get types;
@@ -47,6 +50,7 @@ mixin _$RollerRequirementModel {
   $RollerRequirementModelCopyWith<RollerRequirementModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $RollerRequirementModelCopyWith<$Res> {
   factory $RollerRequirementModelCopyWith(RollerRequirementModel value,
           $Res Function(RollerRequirementModel) then) =
@@ -62,6 +66,7 @@ abstract class $RollerRequirementModelCopyWith<$Res> {
           bool hasData});
 }
 
+/// @nodoc
 class _$RollerRequirementModelCopyWithImpl<$Res>
     implements $RollerRequirementModelCopyWith<$Res> {
   _$RollerRequirementModelCopyWithImpl(this._value, this._then);
@@ -92,6 +97,7 @@ class _$RollerRequirementModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$RollerRequirementModelCopyWith<$Res>
     implements $RollerRequirementModelCopyWith<$Res> {
   factory _$RollerRequirementModelCopyWith(_RollerRequirementModel value,
@@ -109,6 +115,7 @@ abstract class _$RollerRequirementModelCopyWith<$Res>
           bool hasData});
 }
 
+/// @nodoc
 class __$RollerRequirementModelCopyWithImpl<$Res>
     extends _$RollerRequirementModelCopyWithImpl<$Res>
     implements _$RollerRequirementModelCopyWith<$Res> {
@@ -141,6 +148,7 @@ class __$RollerRequirementModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_RollerRequirementModel implements _RollerRequirementModel {
   const _$_RollerRequirementModel(
       {@JsonKey(name: 'type', fromJson: decodeRollerRequirementType)

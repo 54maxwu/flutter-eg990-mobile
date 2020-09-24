@@ -65,13 +65,13 @@ class RollerDisplayRules extends StatelessWidget {
             minWidth: buttonWidgetWidth / 1.5,
             height: buttonWidgetHeight * 0.85,
             buttonColor: secondBlockColor,
-            disabledColor: Themes.buttonDisabledColorDark,
+            disabledColor: themeColor.buttonDisabledColorDark,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             padding: const EdgeInsets.only(top: 6.0, bottom: 8.0),
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0),
               side: BorderSide(
-                color: Themes.hintHighlightDarkRed,
+                color: themeColor.hintHighlightDarkRed,
                 width: 3.0,
               ),
             ),
@@ -82,7 +82,7 @@ class RollerDisplayRules extends StatelessWidget {
               child: Text(
                 localeStr.wheelTextTitleGet,
                 style: TextStyle(
-                  color: Themes.hintHighlightDarkRed,
+                  color: themeColor.hintHighlightDarkRed,
                   fontSize: FontSize.TITLE.value,
                   fontWeight: FontWeight.bold,
                 ),

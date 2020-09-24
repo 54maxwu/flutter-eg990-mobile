@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 typedef OnTypeGridTap = void Function(int, dynamic);
 
@@ -14,7 +14,9 @@ class TypesGridWidget<T extends DataOperator> extends StatefulWidget {
   final OnTypeGridTap onTypeGridTap;
   final int tabsPerRow;
   final double itemSpace;
+  final double itemSpaceHorFactor;
   final double expectTabHeight;
+  final double horizontalInset;
 
   TypesGridWidget({
     Key key,
@@ -23,7 +25,9 @@ class TypesGridWidget<T extends DataOperator> extends StatefulWidget {
     @required this.onTypeGridTap,
     this.tabsPerRow = 3,
     this.itemSpace = 8.0,
-    this.expectTabHeight = 42.0,
+    this.itemSpaceHorFactor = 2.0,
+    this.expectTabHeight = 36.0,
+    this.horizontalInset = 48.0,
   }) : super(key: key);
 
   @override
@@ -34,11 +38,15 @@ class _TypesGridWidgetState extends State<TypesGridWidget> {
   int _clicked = 0;
   double _gridRatio;
 
+  final BorderSide borderSide =
+      BorderSide(color: themeColor.defaultBorderColor);
+  final BorderSide borderSideTrans = BorderSide(color: Colors.transparent);
+
   @override
   void initState() {
     // screen width - widget padding - cross space = available width
     double itemWidth = (Global.device.width -
-            48 -
+            widget.horizontalInset -
             widget.itemSpace * (widget.tabsPerRow + 2)) /
         widget.tabsPerRow;
     _gridRatio = itemWidth / widget.expectTabHeight;
@@ -63,7 +71,7 @@ class _TypesGridWidgetState extends State<TypesGridWidget> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: widget.tabsPerRow,
         crossAxisSpacing: widget.itemSpace,
-        mainAxisSpacing: widget.itemSpace * 2,
+        mainAxisSpacing: widget.itemSpace * widget.itemSpaceHorFactor,
         childAspectRatio: _gridRatio,
       ),
       physics: BouncingScrollPhysics(),
@@ -78,16 +86,16 @@ class _TypesGridWidgetState extends State<TypesGridWidget> {
           child: RaisedButton(
             visualDensity: VisualDensity.compact,
             color: (_clicked == index)
-                ? Themes.buttonPrimaryColor
-                : Themes.buttonSecondaryColor,
+                ? themeColor.buttonPrimaryColor
+                : themeColor.buttonSecondaryColor,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Text(
                 type[widget.titleKey],
                 style: TextStyle(
                   color: (_clicked == index)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.buttonTextSubColor,
+                      ? themeColor.buttonTextPrimaryColor
+                      : themeColor.buttonTextSubColor,
                 ),
                 maxLines: 2,
                 textAlign: TextAlign.center,

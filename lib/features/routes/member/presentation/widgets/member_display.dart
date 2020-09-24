@@ -22,6 +22,10 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
   final GlobalKey<MemberDisplayHeaderState> headerKey =
       new GlobalKey<MemberDisplayHeaderState>(debugLabel: 'header');
+  final int _itemPerRow = 3;
+  final double _itemSpace = 4.0;
+  final double _iconSize = 32 * Global.device.widthScale;
+  double _gridRatio;
 
   double headerMaxHeight;
   double headerMinHeight = 160;
@@ -62,14 +66,15 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
 
   @override
   void initState() {
-    headerMaxHeight =
-        (Global.device.height - Global.APP_BAR_HEIGHT * 2) / 7 * 2;
+    headerMaxHeight = Global.device.featureContentHeight / 7 * 2;
     debugPrint('header height, max: $headerMaxHeight, min: $headerMinHeight');
     if (headerMaxHeight > 200) headerMaxHeight = 200;
     if (headerMaxHeight < headerMinHeight) headerMaxHeight = headerMinHeight;
-    double gridItemWidth = (Global.device.width - 4 * 5 - 12) / 3;
-    gridRatio = gridItemWidth / 90;
-    debugPrint('grid item width: $gridItemWidth, gridRatio: $gridRatio');
+    double gridItemWidth =
+        ((Global.device.width - 32) - _itemSpace * (_itemPerRow + 2) - 12) /
+            _itemPerRow;
+    _gridRatio = gridItemWidth / (_iconSize * 2.5);
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
   }
 
@@ -122,7 +127,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
           initialData: false,
           builder: (context, snapshot) {
             if (snapshot.data) {
-              widget.store.getCredit();
+              widget.store.getUserCredit();
               widget.store.getNewMessageCount();
               try {
                 final featureInherit =
@@ -146,9 +151,9 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
               end: Alignment.centerRight,
               stops: [0.0, 0.5, 1.0],
               colors: [
-                Themes.memberLinearColor1,
-                Themes.memberLinearColor2,
-                Themes.memberLinearColor3
+                themeColor.memberLinearColor1,
+                themeColor.memberLinearColor2,
+                themeColor.memberLinearColor3
               ],
               tileMode: TileMode.clamp,
             ),
@@ -157,7 +162,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
             key: headerKey,
             userName: widget.store.user.account,
             vipLevel: widget.store.user.vip,
-            onRefresh: () => widget.store.getCredit(),
+            onRefresh: () => widget.store.getUserCredit(),
           ),
         ),
         /* Features Grid */
@@ -166,18 +171,16 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
             padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 2.0),
             child: GridView.count(
               physics: BouncingScrollPhysics(),
-              crossAxisCount: 3,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 4.0,
-              childAspectRatio: gridRatio,
+              crossAxisCount: _itemPerRow,
+              mainAxisSpacing: _itemSpace,
+              crossAxisSpacing: _itemSpace,
+              childAspectRatio: _gridRatio,
               shrinkWrap: true,
               children: gridItems
                   .map((item) => GestureDetector(
                         onTap: () => _itemTapped(item),
                         child: _createGridItem(
-                          item.value,
-                          item == gridItems[6],
-                        ),
+                            item.value, item.value.id == RouteEnum.MESSAGE),
                       ))
                   .toList(),
             ),
@@ -190,7 +193,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   Widget _createGridItem(RouteListItem itemValue, bool addBadge) {
     return Container(
       decoration: BoxDecoration(
-        color: Themes.defaultGridColor,
+        color: themeColor.defaultGridColor,
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       margin: const EdgeInsets.all(2.0),
@@ -204,7 +207,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
               child: Observer(
                 builder: (_) => Badge(
                   showBadge: widget.store.hasNewMessage,
-                  badgeColor: Themes.hintHighlightRed,
+                  badgeColor: themeColor.hintHighlightRed,
                   badgeContent: Container(
                     margin: const EdgeInsets.all(1.0),
                     child: Icon(
@@ -215,21 +218,27 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
                   ),
                   padding: EdgeInsets.zero,
                   position: BadgePosition.topRight(top: -2, right: -6),
-                  child: networkImageBuilder(
-                    itemValue.imageName,
-                    imgScale: 2.0,
-                    imgColor: Themes.memberIconColor,
+                  child: Container(
+                    width: _iconSize * 0.85,
+                    height: _iconSize * 0.85,
+                    child: networkImageBuilder(
+                      itemValue.imageName,
+                      imgScale: 2.0,
+                      imgColor: themeColor.memberIconColor,
+                    ),
                   ),
                 ),
               ),
             ),
           if (!addBadge)
-            Padding(
+            Container(
+                width: _iconSize * 1.5,
+                height: _iconSize * 1.5,
                 padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 6.0),
                 child: networkImageBuilder(
                   itemValue.imageName,
                   imgScale: 2.0,
-                  imgColor: Themes.memberIconColor,
+                  imgColor: themeColor.memberIconColor,
                 )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 2.0),
@@ -237,7 +246,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
               itemValue.title ?? itemValue.route?.pageTitle ?? '??',
               style: TextStyle(
                 fontSize: FontSize.SUBTITLE.value - 1,
-                color: Themes.iconTextColor,
+                color: themeColor.iconTextColor,
               ),
             ),
           ),
@@ -248,48 +257,6 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
 
   @override
   void afterFirstLayout(BuildContext context) {
-    widget.store.getCredit();
+    widget.store.getUserCredit();
   }
 }
-
-//  Widget _createGridItem(MemberGridData data) {
-//    return GestureDetector(
-//      onTap: () => itemTapped(data),
-//      child: Container(
-//        decoration: BoxDecoration(
-//          color: Colors.black45,
-//          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-//        ),
-//        margin: const EdgeInsets.all(2.0),
-//        child: Column(
-//          mainAxisSize: MainAxisSize.min,
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: <Widget>[
-//            Padding(
-//              padding: const EdgeInsets.only(top: 4.0),
-//              child: Container(
-//                padding: const EdgeInsets.all(10.0),
-//                decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                    begin: Alignment.topCenter,
-//                    end: Alignment.bottomCenter,
-//                    colors: [data.iconDecorColorStart, data.iconDecorColorEnd],
-//                    tileMode: TileMode.clamp,
-//                  ),
-//                  shape: BoxShape.circle,
-//                ),
-//                child: Icon(data.iconData),
-//              ),
-//            ),
-//            Padding(
-//              padding: const EdgeInsets.only(top: 6.0),
-//              child: Text(
-//                data.title,
-//                style: TextStyle(fontSize: FontSize.SUBTITLE.value - 1),
-//              ),
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
-//  }

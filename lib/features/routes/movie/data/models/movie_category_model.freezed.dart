@@ -9,6 +9,7 @@ part of 'movie_category_model.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MovieCategoryModelTearOff {
   const _$MovieCategoryModelTearOff();
 
@@ -25,9 +26,11 @@ class _$MovieCategoryModelTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MovieCategoryModel = _$MovieCategoryModelTearOff();
 
+/// @nodoc
 mixin _$MovieCategoryModel {
   int get tid;
   String get name;
@@ -38,6 +41,7 @@ mixin _$MovieCategoryModel {
   $MovieCategoryModelCopyWith<MovieCategoryModel> get copyWith;
 }
 
+/// @nodoc
 abstract class $MovieCategoryModelCopyWith<$Res> {
   factory $MovieCategoryModelCopyWith(
           MovieCategoryModel value, $Res Function(MovieCategoryModel) then) =
@@ -45,6 +49,7 @@ abstract class $MovieCategoryModelCopyWith<$Res> {
   $Res call({int tid, String name, String status, int sort, int count});
 }
 
+/// @nodoc
 class _$MovieCategoryModelCopyWithImpl<$Res>
     implements $MovieCategoryModelCopyWith<$Res> {
   _$MovieCategoryModelCopyWithImpl(this._value, this._then);
@@ -71,6 +76,7 @@ class _$MovieCategoryModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$MovieCategoryModelCopyWith<$Res>
     implements $MovieCategoryModelCopyWith<$Res> {
   factory _$MovieCategoryModelCopyWith(
@@ -80,6 +86,7 @@ abstract class _$MovieCategoryModelCopyWith<$Res>
   $Res call({int tid, String name, String status, int sort, int count});
 }
 
+/// @nodoc
 class __$MovieCategoryModelCopyWithImpl<$Res>
     extends _$MovieCategoryModelCopyWithImpl<$Res>
     implements _$MovieCategoryModelCopyWith<$Res> {
@@ -108,6 +115,7 @@ class __$MovieCategoryModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_MovieCategoryModel implements _MovieCategoryModel {
   const _$_MovieCategoryModel(
       {this.tid, this.name, this.status, this.sort, this.count});

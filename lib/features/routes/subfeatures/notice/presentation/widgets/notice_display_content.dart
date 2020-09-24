@@ -24,7 +24,7 @@ class NoticeDisplayContent extends StatelessWidget {
               vertical: 12.0,
             ),
             decoration: new BoxDecoration(
-              color: Themes.defaultCardColor,
+              color: themeColor.defaultCardColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Column(
@@ -33,7 +33,7 @@ class NoticeDisplayContent extends StatelessWidget {
                 Text(
                   data.date.replaceAll(' ~ ', ' ~ \n'),
                   style: TextStyle(
-                    color: Themes.defaultAccentColor,
+                    color: themeColor.defaultAccentColor,
                     fontSize: FontSize.TITLE.value,
                   ),
                 ),

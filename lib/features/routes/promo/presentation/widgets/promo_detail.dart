@@ -27,10 +27,10 @@ class _PromoDetailState extends State<PromoDetail> {
   final double dialogWidth = Global.device.width - 24;
   final double dialogHeight = Global.device.height - 32;
 
-  final String htmlBgColor = Themes.dialogBgColor.toHexNoAlpha();
-  final String htmlTextColor = Themes.dialogTextColor.toHexNoAlpha();
-  final String htmlTitleColor = Themes.dialogTitleColor.toHexNoAlpha();
-  final String htmlBorderColor = Themes.defaultDisabledColor.toHexNoAlpha();
+  final String htmlBgColor = themeColor.dialogBgColor.toHexNoAlpha();
+  final String htmlTextColor = themeColor.dialogTextColor.toHexNoAlpha();
+  final String htmlTitleColor = themeColor.dialogTitleColor.toHexNoAlpha();
+  final String htmlBorderColor = themeColor.defaultDisabledColor.toHexNoAlpha();
 
   WebViewController _controller;
   double _viewHeight = 1;
@@ -90,7 +90,7 @@ class _PromoDetailState extends State<PromoDetail> {
                       _viewHeight = (height > dialogHeight)
                           ? dialogHeight
                           : (height < _viewMinHeight) ? _viewMinHeight : height;
-                      print('view height: $_viewHeight');
+                      debugPrint('view height: $_viewHeight');
                       Future.delayed(
                         Duration(milliseconds: 150),
                         () => setState(() {
@@ -122,7 +122,7 @@ class _PromoDetailState extends State<PromoDetail> {
       _htmlPromoApply(),
       _htmlPromoRules(),
     ].join('<br>');
-    print('promo detail:\n$detail');
+    debugPrint('promo detail:\n$detail');
 
     return '<html>'
         '<head><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></head>'

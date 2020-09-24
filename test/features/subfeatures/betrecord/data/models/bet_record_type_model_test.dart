@@ -20,8 +20,7 @@ void main() {
     List<BetRecordTypeModel> modelList = new List();
     mapList.forEach((value) {
       print('category data: $value');
-      BetRecordTypeModel model =
-          BetRecordTypeModel.jsonToBetRecordTypeModel(value);
+      BetRecordTypeModel model = BetRecordTypeModel.jsonToBetRecordType(value);
       print('platform data: ${mapList2[model.categoryId.toString()]}');
       modelList.add(
           model.copyWith(platformMap: mapList2[model.categoryId.toString()]));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/gradient_button.dart';
 
 import '../../data/models/promo_freezed.dart' show PromoEntity;
 
@@ -17,12 +18,12 @@ class PromoTabListItem extends StatelessWidget {
     double screenScale = (Global.device.width / 360).ceilToDouble();
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 8.0, color: Themes.defaultCardColor),
+        border: Border.all(width: 8.0, color: themeColor.defaultCardColor),
         borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
-        color: Themes.defaultCardColor,
+        color: themeColor.defaultCardColor,
       ),
-      margin: const EdgeInsets.all(6.0),
-      child: Container(
+//      margin: const EdgeInsets.all(6.0),
+      child: ColoredBox(
         color: Color(0xfff1f1f1),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -37,13 +38,24 @@ class PromoTabListItem extends StatelessWidget {
             /* Promo Text*/
             Container(
               padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [
+                    themeColor.buttonLinearLightColor2,
+                    themeColor.buttonLinearLightColor1,
+                  ],
+                  tileMode: TileMode.clamp,
+                ),
+              ),
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Text(
                       promo.name,
-                      style: TextStyle(color: Themes.dialogTitleColor),
+                      style: TextStyle(color: themeColor.dialogTitleColor),
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       maxLines: 2,
@@ -51,9 +63,9 @@ class PromoTabListItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    child: RaisedButton(
+                    child: GradientButton(
+                      colorType: GradientButtonColor.GOLD_DIAG,
                       child: Text(localeStr.promoDetailText),
-                      visualDensity: VisualDensity(horizontal: 3.0),
                       onPressed: () {
                         debugPrint('clicked promo: ${promo.name}');
                         onShowDetail(promo);

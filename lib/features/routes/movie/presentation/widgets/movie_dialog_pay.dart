@@ -21,7 +21,7 @@ class MovieDialogPay extends StatelessWidget {
   Widget build(BuildContext context) {
     return DialogWidget(
       maxHeight: 212.0,
-      customBg: Themes.dialogBgColor1,
+      customBg: themeColor.dialogBgColor1,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 14.0),
@@ -35,7 +35,7 @@ class MovieDialogPay extends StatelessWidget {
                   Text(
                     localeStr.movieDialogTitlePay,
                     style: TextStyle(
-                      color: Themes.defaultAccentColor,
+                      color: themeColor.defaultAccentColor,
                       fontSize: FontSize.MESSAGE.value,
                     ),
                   ),
@@ -45,7 +45,7 @@ class MovieDialogPay extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: horPadding / 1.5),
                 child: Divider(
                   height: 24.0,
-                  color: Themes.defaultTextColor,
+                  color: themeColor.defaultTextColor,
                   thickness: 1.0,
                 ),
               ),
