@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/pager_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/transactions/presentation/widgets/transaction_display_table.dart';
 
 import '../data/enum/transaction_date_enum.dart';
 import 'state/transaction_store.dart';
-import 'widgets/transaction_display.dart';
+import 'widgets/transaction_display_table.dart';
 
 class TransactionRoute extends StatefulWidget {
   @override
@@ -20,17 +20,10 @@ class _TransactionRouteState extends State<TransactionRoute> {
 
   final GlobalKey<CustomizeDropdownWidgetState> _selectorKey =
       new GlobalKey(debugLabel: 'selector');
-  final GlobalKey<TransactionDisplayState> contentKey =
+  final GlobalKey<TransactionDisplayTableState> contentKey =
       new GlobalKey(debugLabel: 'content');
   final GlobalKey<PagerWidgetState> pagerKey =
       new GlobalKey(debugLabel: 'pager');
-
-  final List<String> _selectorStrings = [
-    localeStr.spinnerDateAll,
-    localeStr.spinnerDateToday,
-    localeStr.spinnerDateYesterday,
-    localeStr.spinnerDateMonth,
-  ];
 
   final List<TransactionDateSelected> _selectorValues = [
     TransactionDateSelected.all,
@@ -39,6 +32,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
     TransactionDateSelected.month,
   ];
 
+  List<String> _selectorStrings;
   TransactionDateSelected _selected;
 
   void getPageData(int page) {
@@ -46,11 +40,27 @@ class _TransactionRouteState extends State<TransactionRoute> {
     _store.getRecord(page: page, selection: _selected);
   }
 
+  void _updateDropdown() {
+    _selectorStrings = [
+      localeStr.spinnerDateAll,
+      localeStr.spinnerDateToday,
+      localeStr.spinnerDateYesterday,
+      localeStr.spinnerDateMonth,
+    ];
+  }
+
   @override
   void initState() {
     _store ??= sl.get<TransactionStore>();
+    _updateDropdown();
     _selected = _selectorValues[0];
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(TransactionRoute oldWidget) {
+    _updateDropdown();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -119,7 +129,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop transaction route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(
@@ -168,7 +178,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 10.0),
-                child: TransactionDisplay(contentKey),
+                child: TransactionDisplayTable(contentKey),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,

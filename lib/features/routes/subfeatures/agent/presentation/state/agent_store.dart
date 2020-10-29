@@ -95,6 +95,7 @@ abstract class _AgentStore with Store {
       {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
+    debugPrint('store action error: $msg, type: $type, code: $code');
     errorMessage = msg ??
         Failure.internal(FailureCode(
           type: type ?? FailureType.AGENT,

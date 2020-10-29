@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
@@ -18,6 +18,14 @@ class MoreDialog extends StatelessWidget {
   MoreDialog(this.store, this.eventStore);
 
   static final List<MoreGridItem> gridItems = [
+    MoreGridItem.download,
+    MoreGridItem.tutorial,
+    MoreGridItem.service,
+    MoreGridItem.agentAbout,
+    MoreGridItem.vip,
+  ];
+
+  static final List<MoreGridItem> userGridItems = [
     MoreGridItem.notice,
     MoreGridItem.download,
     MoreGridItem.tutorial,
@@ -26,9 +34,10 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.store,
     MoreGridItem.roller,
     MoreGridItem.task,
+    MoreGridItem.collect,
     MoreGridItem.sign,
     MoreGridItem.agentAbout,
-    MoreGridItem.collect,
+    MoreGridItem.vip,
   ];
 
   final double _titleHeight = 54.0;
@@ -39,18 +48,14 @@ class MoreDialog extends StatelessWidget {
     if (itemValue.route != null) {
       if (itemValue.isUserOnly && store.hasUser == false) {
         // navigate to login page
-        RouterNavigate.navigateToPage(RoutePage.login);
-      } else if (itemValue.id == RouteEnum.SERVICE) {
-        RouterNavigate.replacePage(
-          itemValue.route,
-          arg: WebRouteArguments(startUrl: Global.currentService),
-        );
+        AppNavigator.navigateTo(RoutePage.login);
       } else if (itemValue.id == RouteEnum.TUTORIAL ||
-          itemValue.id == RouteEnum.AGENT_ABOUT) {
-        RouterNavigate.replacePage(itemValue.route);
+          itemValue.id == RouteEnum.AGENT_ABOUT ||
+          itemValue.id == RouteEnum.SERVICE) {
+        AppNavigator.replaceWith(itemValue.route);
       } else {
         // navigate to route
-        RouterNavigate.navigateToPage(itemValue.route);
+        AppNavigator.navigateTo(itemValue.route);
       }
       Future.delayed(
         Duration(milliseconds: 100),
@@ -69,6 +74,8 @@ class MoreDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<MoreGridItem> items = (store.hasUser) ? userGridItems : gridItems;
+
     // screen width - widget padding - cross space = available width
     double itemWidth = (Global.device.width - 48) / 3;
     double gridRatio = itemWidth / _expectItemHeight;
@@ -79,85 +86,80 @@ class MoreDialog extends StatelessWidget {
         : FontSize.NORMAL.value;
     int availableCharacters = (itemWidth * 0.95 - 16.0 / baseTextSize).round();
     bool hasDoubleLineText =
-        gridItems.any((element) => element.isLongText(availableCharacters));
+        items.any((element) => element.isLongText(availableCharacters));
     debugPrint('item hasDoubleLineText: $hasDoubleLineText');
 
-    int row = gridItems.length ~/ 3;
-    if (gridItems.length % 3 > 0) row += 1;
+    int row = items.length ~/ 3;
+    if (items.length % 3 > 0) row += 1;
     int _generateGrid = row * 3;
     debugPrint('grid row: $row, generate: $_generateGrid');
 
-    // 16.0 = border radius
-    double _height =
-        (_titleHeight + row * _expectItemHeight).ceilToDouble() + 16.0;
+    double _totalHeight = itemWidth / gridRatio * row;
+    double _height = _titleHeight + _totalHeight + 6.0;
     debugPrint('dialog height: $_height');
 
     return DialogWidget(
       maxHeight: _height,
       customBg: themeColor.moreDialogColor,
+      padding: Global.device.dialogInset +
+          EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
       children: <Widget>[
         Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: _titleHeight,
-                    decoration: BoxDecoration(
-                      color: themeColor.dialogTitleBgColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16.0),
-                        topRight: Radius.circular(16.0),
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      localeStr.pageTitleMore,
-                      style: TextStyle(
-                        fontSize: FontSize.TITLE.value,
-                        color: themeColor.dialogTitleColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             Container(
-              height: _expectItemHeight * row + 16.0,
+              height: _titleHeight,
               decoration: BoxDecoration(
+                color: themeColor.dialogTitleBgColor,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16.0),
-                  bottomRight: Radius.circular(16.0),
+                  topLeft: Radius.circular(16.0),
+                  topRight: Radius.circular(16.0),
                 ),
               ),
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: gridRatio,
+              alignment: Alignment.center,
+              child: Text(
+                localeStr.pageTitleMore,
+                style: TextStyle(
+                  fontSize: FontSize.TITLE.value,
+                  color: themeColor.dialogTitleColor,
                 ),
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: _generateGrid,
-                itemBuilder: (context, index) {
-                  var itemValue = (index < gridItems.length)
-                      ? gridItems[index].value
-                      : null;
-                  return GestureDetector(
-                    onTap: (itemValue != null)
-                        ? () => _itemTapped(context, itemValue)
-                        : null,
-                    child: _createGridItem(
-                      itemValue,
-                      hasDoubleLineText: hasDoubleLineText,
-                      fixedMarginLeft: index % 3 == 2,
-                      fixedMarginBottom: (index / 3).floor() == 1,
-                      cornerBorderLeft: index == _generateGrid - 3,
-                      cornerBorderRight: index == _generateGrid - 1,
-                    ),
-                  );
-                },
+              ),
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(16.0),
+                    bottomRight: Radius.circular(16.0),
+                  ),
+                ),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: gridRatio,
+                  ),
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _generateGrid,
+                  itemBuilder: (context, index) {
+                    var itemValue =
+                        (index < items.length) ? items[index].value : null;
+                    return GestureDetector(
+                      onTap: (itemValue != null)
+                          ? () => _itemTapped(context, itemValue)
+                          : null,
+                      child: _createGridItem(
+                        itemValue,
+                        hasDoubleLineText: hasDoubleLineText,
+                        fixedMarginLeft: index % 3 == 2,
+                        fixedMarginBottom: (index / 3).floor() == 1,
+                        cornerBorderLeft: index == _generateGrid - 3,
+                        cornerBorderRight: index == _generateGrid - 1,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -192,7 +194,7 @@ class MoreDialog extends StatelessWidget {
         color: themeColor.moreGridColor,
         borderRadius: cornerBorder,
       ),
-      margin: EdgeInsets.fromLTRB((fixedMarginLeft) ? 0.2 : 0.5, 0.5, 0.0,
+      margin: EdgeInsets.fromLTRB((fixedMarginLeft) ? 1.0 : 0.75, 0.5, 0.0,
           (fixedMarginBottom) ? 0.2 : 0.5),
       alignment: Alignment.center,
       child: Column(

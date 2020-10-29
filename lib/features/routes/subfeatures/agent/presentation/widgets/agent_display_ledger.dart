@@ -102,7 +102,6 @@ class _AgentDisplayLedgerState extends State<AgentDisplayLedger>
           new CustomizeFieldWidget(
             key: _fieldKey,
             horizontalInset: 16.0,
-            fieldType: FieldType.Account,
             hint: localeStr.agentLedgerFieldTitleAccount,
             persistHint: false,
             prefixText: localeStr.agentLedgerHeaderAccount,

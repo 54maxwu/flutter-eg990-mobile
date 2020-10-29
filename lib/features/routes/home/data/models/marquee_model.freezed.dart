@@ -17,10 +17,10 @@ class _$MarqueeModelTearOff {
   _MarqueeModel call(
       {@required int id,
       @JsonKey(name: 'content_cn') String content,
-      @required String url,
-      @JsonKey(name: 'created_at', required: true) String createdAt,
-      @JsonKey(name: 'updated_at', required: true) String updatedAt,
-      @required String showDate}) {
+      String url = '',
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      String showDate}) {
     return _MarqueeModel(
       id: id,
       content: content,
@@ -42,9 +42,9 @@ mixin _$MarqueeModel {
   @JsonKey(name: 'content_cn')
   String get content;
   String get url;
-  @JsonKey(name: 'created_at', required: true)
+  @JsonKey(name: 'created_at')
   String get createdAt;
-  @JsonKey(name: 'updated_at', required: true)
+  @JsonKey(name: 'updated_at')
   String get updatedAt;
   String get showDate;
 
@@ -60,8 +60,8 @@ abstract class $MarqueeModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'content_cn') String content,
       String url,
-      @JsonKey(name: 'created_at', required: true) String createdAt,
-      @JsonKey(name: 'updated_at', required: true) String updatedAt,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
       String showDate});
 }
 
@@ -104,8 +104,8 @@ abstract class _$MarqueeModelCopyWith<$Res>
       {int id,
       @JsonKey(name: 'content_cn') String content,
       String url,
-      @JsonKey(name: 'created_at', required: true) String createdAt,
-      @JsonKey(name: 'updated_at', required: true) String updatedAt,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
       String showDate});
 }
 
@@ -144,26 +144,26 @@ class _$_MarqueeModel implements _MarqueeModel {
   const _$_MarqueeModel(
       {@required this.id,
       @JsonKey(name: 'content_cn') this.content,
-      @required this.url,
-      @JsonKey(name: 'created_at', required: true) this.createdAt,
-      @JsonKey(name: 'updated_at', required: true) this.updatedAt,
-      @required this.showDate})
+      this.url = '',
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt,
+      this.showDate})
       : assert(id != null),
-        assert(url != null),
-        assert(showDate != null);
+        assert(url != null);
 
   @override
   final int id;
   @override
   @JsonKey(name: 'content_cn')
   final String content;
+  @JsonKey(defaultValue: '')
   @override
   final String url;
   @override
-  @JsonKey(name: 'created_at', required: true)
+  @JsonKey(name: 'created_at')
   final String createdAt;
   @override
-  @JsonKey(name: 'updated_at', required: true)
+  @JsonKey(name: 'updated_at')
   final String updatedAt;
   @override
   final String showDate;
@@ -214,10 +214,10 @@ abstract class _MarqueeModel implements MarqueeModel {
   const factory _MarqueeModel(
       {@required int id,
       @JsonKey(name: 'content_cn') String content,
-      @required String url,
-      @JsonKey(name: 'created_at', required: true) String createdAt,
-      @JsonKey(name: 'updated_at', required: true) String updatedAt,
-      @required String showDate}) = _$_MarqueeModel;
+      String url,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      String showDate}) = _$_MarqueeModel;
 
   @override
   int get id;
@@ -227,10 +227,10 @@ abstract class _MarqueeModel implements MarqueeModel {
   @override
   String get url;
   @override
-  @JsonKey(name: 'created_at', required: true)
+  @JsonKey(name: 'created_at')
   String get createdAt;
   @override
-  @JsonKey(name: 'updated_at', required: true)
+  @JsonKey(name: 'updated_at')
   String get updatedAt;
   @override
   String get showDate;

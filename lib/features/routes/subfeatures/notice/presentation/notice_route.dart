@@ -50,7 +50,7 @@ class _NoticeRouteState extends State<NoticeRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop notice route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

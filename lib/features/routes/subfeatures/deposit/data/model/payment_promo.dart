@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -51,9 +52,9 @@ extension PaymentPromoTypeJsonExtension on PaymentPromoTypeJson {
   List<PaymentPromoData> getDataList(bool localData) {
     try {
       if (localData)
-        print('processing promo local: $local');
+        debugPrint('processing promo local: $local');
       else
-        print('processing promo other: $other');
+        debugPrint('processing promo other: $other');
 
       if ((localData &&
           (local.toString().isEmpty || local.toString() == '[]'))) {
@@ -69,18 +70,18 @@ extension PaymentPromoTypeJsonExtension on PaymentPromoTypeJson {
       Map<String, dynamic> jsonMap = (localData)
           ? json.decode(json.encode(local))
           : json.decode(json.encode(other));
-      print(
+      debugPrint(
           'deposit promo map keys: ${jsonMap.keys}, type: ${jsonMap.runtimeType}');
 
       if (jsonMap == null || jsonMap.keys.length < 1) {
         MyLogger.warn(msg: 'PaymentPromo map has no keys', tag: 'PaymentPromo');
-//        print('PaymentPromo map has no keys!!');
+//        debugPrint('PaymentPromo map has no keys!!');
         return [];
       }
 
       List<PaymentPromoData> list = jsonMap.keys.map((k) {
-//        print('parsing: ${jsonMap[k]}');
-//        print('parsed: ${PaymentPromo.jsonToPaymentPromoData(jsonMap[k])}');
+//        debugPrint('parsing: ${jsonMap[k]}');
+//        debugPrint('parsed: ${PaymentPromo.jsonToPaymentPromoData(jsonMap[k])}');
         return PaymentPromo.jsonToPaymentPromoData(jsonMap[k]);
       }).toList();
       return list;
@@ -88,7 +89,7 @@ extension PaymentPromoTypeJsonExtension on PaymentPromoTypeJson {
       MyLogger.error(
           msg: 'get Payment Promo Data List has exception: $e',
           tag: 'PaymentPromo');
-      print('stack: $s');
+      debugPrint('stack: $s');
       return [];
     }
   }

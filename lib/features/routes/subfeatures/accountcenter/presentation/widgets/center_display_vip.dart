@@ -25,6 +25,9 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
   List<int> blockValue;
 
   Widget contentWidget;
+  double contentWidth;
+  double titleWidth;
+
   Size circleSize = const Size(90.0, 90.0);
   double progressBarHeight = 18.0;
   double progressGroupMaxWidth;
@@ -32,30 +35,50 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
 
   void updateData() {
     titles = vipData.getBlockTitles;
-//    print('vip block title: $titles');
+//    debugPrint('vip block title: $titles');
 
     blockKeys = vipData.getBlockKeys;
-//    print('vip block keys: $blockKeys');
+    // debugPrint('vip block keys: $blockKeys');
+
+    blockValue = List.from(blockKeys.map((key) {
+      debugPrint('data key: $key, data: ${vipData[key]}');
+      return '${vipData[key]}'.strToInt;
+    }));
+    // debugPrint('vip block value: $blockValue');
+
+    // if block value equals -1, block should not be build
+    if (blockValue.contains(-1)) {
+      List<int> removeIndex = new List();
+      for (int i = 0; i < blockValue.length; i++) {
+        if (blockValue[i] == -1) {
+          removeIndex.add(i);
+        }
+      }
+      removeIndex.forEach((index) {
+        titles.removeAt(index);
+        blockKeys.removeAt(index);
+        blockValue.removeAt(index);
+      });
+    }
 
     sortedLevelKeys ??= new List();
     levelRequirements = vipData.getLevelRequirements;
     levelRequirements.forEach((key, value) {
       sortedLevelKeys.add(key);
-//      print('vip level $key requirements: $value');
+//      debugPrint('vip level $key requirements: $value');
     });
 
     sortedLevelKeys.sort((a, b) => a.compareTo(b));
-//    print('vip levels: $sortedLevelKeys');
+//    debugPrint('vip levels: $sortedLevelKeys');
 
     levelLabels = vipData.getLevelLabels;
-//    print('vip level labels: $levelLabels');
-
-    blockValue = List.from(blockKeys.map((key) => '${vipData[key]}'.strToInt));
-//    print('vip block value: $blockValue');
+//    debugPrint('vip level labels: $levelLabels');
   }
 
   @override
   void initState() {
+    contentWidth = Global.device.width - 16.0;
+    titleWidth = (contentWidth * 0.4).floorToDouble();
     progressGroupMaxWidth = circleSize.width + FontSize.NORMAL.value * 6 + 16;
     super.initState();
   }
@@ -75,7 +98,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
       key: _streamKey,
       stream: _store.vipStream,
       builder: (_, snapshot) {
-//        print('vip stream snapshot: $snapshot');
+//        debugPrint('vip stream snapshot: $snapshot');
         if (contentWidget == null || _store.accountVip != vipData) {
           vipData = _store.accountVip;
           updateData();
@@ -87,7 +110,6 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
   }
 
   Widget _buildView() {
-    print('build vip view');
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: SingleChildScrollView(
@@ -103,7 +125,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
             itemBuilder: (_, index) {
               /// prepare block data
               String blockKey = blockKeys[index];
-              print('sorting block: $blockKey');
+              debugPrint('sorting block: $blockKey');
               List<String> blockLevelLabels = new List.from(levelLabels);
               List<int> blockLevelRequirements =
                   new List.generate(sortedLevelKeys.length, (index) {
@@ -139,10 +161,10 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
                 blockLevelLabels.add(split[0]);
               });
 
-              print('----------sorted: ${titles[index]}----------');
-              print('sorted level labels: $blockLevelLabels');
-              print('sorted level values: $blockLevelRequirements');
-              print('--------------------------------------\n\n\n');
+              debugPrint('----------sorted: ${titles[index]}----------');
+              debugPrint('sorted level labels: $blockLevelLabels');
+              debugPrint('sorted level values: $blockLevelRequirements');
+              debugPrint('--------------------------------------\n\n\n');
 
               /// generate block
               return _generateBlock(
@@ -160,7 +182,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
 
   Widget _generateBlock(String title, List<String> labelList,
       List<int> requiredList, int current) {
-    print('$title block: $labelList \<-\> $requiredList');
+    debugPrint('$title block: $labelList \<-\> $requiredList');
     if (labelList.length != requiredList.length)
       MyLogger.warn(msg: '$title block data length not match');
 
@@ -176,70 +198,61 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
         isLast: i == requiredList.length - 1,
         labelOnRight: i % 2 == 1,
       ));
-//      print('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
+//      debugPrint('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
     }
 
     return Padding(
       /// block's padding
       padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: themeColor.vipCardBackgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: themeColor.vipTitleBackgroundColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8.0),
-                          ),
-                        ),
-                        child: Padding(
-                          /// add padding to make container higher
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 14.0, // 12 + Number font height diff
-                            horizontal: 8.0,
-                          ),
-                          child: Text(
-                            title,
-                            textAlign: TextAlign.left,
-                            style:
-                                TextStyle(color: themeColor.vipIconTextColor),
-                          ),
-                        ),
-                      ),
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                Container(
+                    width: titleWidth,
+                    padding: EdgeInsets.fromLTRB(8.0, 12.0, 8.0, 14.0),
+                    decoration: BoxDecoration(
+                      color: themeColor.vipTitleBackgroundColor,
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(8.0)),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: themeColor.vipTitleBackgroundSubColor,
-                          borderRadius:
-                              BorderRadius.only(topRight: Radius.circular(8.0)),
-                        ),
-                        child: Padding(
-                          /// add padding to make container higher
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0, // 12 + Chinese font height diff
-                            horizontal: 8.0,
-                          ),
-                          child: Text('$current'),
-                        ),
+                    child: RichText(
+                      text: TextSpan(
+                        text: title,
+                        style: TextStyle(color: themeColor.vipIconTextColor),
                       ),
+                      textAlign: TextAlign.left,
+                    )),
+                Positioned(
+                  left: titleWidth,
+                  top: 0,
+                  bottom: 0,
+                  width: contentWidth - titleWidth - 16.0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    decoration: BoxDecoration(
+                      color: themeColor.vipTitleBackgroundSubColor,
+                      borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(8.0)),
                     ),
-                  ],
+                    alignment: Alignment.centerLeft,
+                    child: Text('$current'),
+                  ),
                 ),
-              ] +
-              progressWidgets,
+              ],
+            ),
+            Column(
+              children: progressWidgets,
+            ),
+          ],
         ),
       ),
     );
@@ -254,7 +267,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
     bool isLast = false,
     bool labelOnRight = false,
   }) {
-//    print('generating progress widget: $required, isFirst: $isFirst');
+//    debugPrint('generating progress widget: $required, isFirst: $isFirst');
     if (isLast) {
       progressGroupMaxHeight = circleSize.height;
     } else {

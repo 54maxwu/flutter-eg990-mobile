@@ -2,7 +2,7 @@ import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart'
     show getAppGlobalStreams;
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/user_entity.dart';
 
@@ -17,12 +17,12 @@ abstract class _FeatureScreenStore with Store {
 
   _FeatureScreenStore(this._eventStore) {
     // initialize route observe
-    _streamRoute = ObservableStream(RouterNavigate.routeStream);
+    _streamRoute = ObservableStream(AppNavigator.routeStream);
     _streamRoute.listen((route) {
       pageInfo = route;
-      debugPrint('current feature page: $pageInfo');
+      debugPrint('current stream page: $pageInfo');
     });
-    pageInfo ??= RouterNavigate.current.toRoutePage.value;
+    pageInfo ??= AppNavigator.current.toRoutePage.value;
 
     // initialize user status observe
     _streamUser = ObservableStream(getAppGlobalStreams.userStream);
@@ -64,8 +64,9 @@ abstract class _FeatureScreenStore with Store {
       ? pageInfo.bottomNavIndex
       : -1;
 
-  bool get showMenuDrawer =>
-      (pageInfo != null) ? pageInfo.isFeature || pageInfo.showDrawer : true;
+  bool get showMenuDrawer => (pageInfo != null)
+      ? pageInfo.bottomNavIndex >= 0 || pageInfo.showDrawer
+      : true;
 
   /// User
   /* observe user change */

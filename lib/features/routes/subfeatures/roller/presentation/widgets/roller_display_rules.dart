@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart' as HtmlStyle;
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 class RollerDisplayRules extends StatelessWidget {
   final double buttonWidgetWidth = Global.device.width - 16;
@@ -19,32 +18,15 @@ class RollerDisplayRules extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Html(
-                data: """$rules""",
-                style: {
-                  "h1": HtmlStyle.Style(
-                    fontSize: HtmlStyle.FontSize(18.0),
-                    fontWeight: FontWeight.normal,
-                    color: titleColor,
-                    textAlign: TextAlign.center,
-                    alignment: Alignment.topCenter,
-                  ),
-                  "p": HtmlStyle.Style(
-                    fontSize: HtmlStyle.FontSize(17.25),
-                    fontWeight: FontWeight.normal,
-                    color: contentColor,
-                    textAlign: TextAlign.center,
-                    alignment: Alignment.topCenter,
-                  ),
-                },
-              ),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: HtmlWidget(rules)),
+            ],
+          ),
         ),
 //        /// Debug Widget
 //        Padding(

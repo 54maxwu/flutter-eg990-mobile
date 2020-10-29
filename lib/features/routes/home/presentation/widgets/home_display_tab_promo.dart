@@ -13,7 +13,7 @@ class HomeDisplayTabPromo extends StatelessWidget {
       // do something to prevent reroute again on back press
       onNavigateCallBack();
       // route to promo page
-      RouterNavigate.navigateToPage(
+      AppNavigator.navigateTo(
         RoutePage.promo,
         arg: (showPromoId != null)
             ? PromoRouteArguments(openPromoId: showPromoId)

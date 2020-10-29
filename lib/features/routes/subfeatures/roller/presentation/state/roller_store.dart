@@ -25,15 +25,15 @@ abstract class _RollerStore with Store {
 
   _RollerStore(this._repository) {
     _orderController.stream.listen((event) {
-      print('roller orders: ${event?.length ?? 0}');
+      debugPrint('roller orders: ${event?.length ?? 0}');
       orders = event;
     });
     _recordController.stream.listen((event) {
-      print('roller records: ${event?.length ?? 0}');
+      debugPrint('roller records: ${event?.length ?? 0}');
       records = event;
     });
     _requirementController.stream.listen((event) {
-      print('roller requirements types: ${event?.types ?? 0}');
+      debugPrint('roller requirements types: ${event?.types ?? 0}');
       requirement = event;
     });
   }
@@ -77,6 +77,7 @@ abstract class _RollerStore with Store {
       {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
+    debugPrint('store action error: $msg, type: $type, code: $code');
     errorMessage = msg ??
         Failure.internal(FailureCode(
           type: type ?? FailureType.ROLLER,
@@ -108,12 +109,12 @@ abstract class _RollerStore with Store {
       _dataFuture = ObservableFuture(_repository.getRollerData());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _dataFuture.then((result) {
-//        print('roller init data result: $result');
+//        debugPrint('roller init data result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
-            print('roller prize data: ${data.prizes}');
-            print('roller init data, prize: ${data.prizes.length}');
+            debugPrint('roller prize data: ${data.prizes}');
+            debugPrint('roller init data, prize: ${data.prizes.length}');
             rollerData = data;
           },
         );

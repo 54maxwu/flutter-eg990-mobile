@@ -3,10 +3,12 @@ import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
-class BalanceActionDialog extends StatelessWidget {
+typedef BalanceDialogCall = Future<bool> Function();
+
+class BalanceActionDialog extends StatefulWidget {
   final bool isTransferIn;
   final String targetPlatform;
-  final Function onConfirm;
+  final BalanceDialogCall onConfirm;
 
   BalanceActionDialog({
     @required this.targetPlatform,
@@ -16,14 +18,21 @@ class BalanceActionDialog extends StatelessWidget {
         assert(targetPlatform != null && targetPlatform.isNotEmpty);
 
   @override
+  _BalanceActionDialogState createState() => _BalanceActionDialogState();
+}
+
+class _BalanceActionDialogState extends State<BalanceActionDialog> {
+  bool _waiting = false;
+
+  @override
   Widget build(BuildContext context) {
-    String actionText = (isTransferIn)
+    String actionText = (widget.isTransferIn)
         ? localeStr.balanceTransferInText
         : localeStr.balanceTransferOutText;
     return DialogWidget(
-      heightFactor: 0.175,
-      minHeight: 120,
-      maxHeight: 180,
+      heightFactor: 0.25,
+      minHeight: 144,
+      maxHeight: 168,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 14.0, 16.0, 12.0),
@@ -49,12 +58,26 @@ class BalanceActionDialog extends StatelessWidget {
                     child: Text(
                       localeStr.balanceTransferAlertMsg(
                         actionText.toLowerCase(),
-                        targetPlatform.toUpperCase(),
+                        widget.targetPlatform.toUpperCase(),
                       ),
                     ),
                   ),
                 ],
               ),
+              if (_waiting)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 18.0,
+                        height: 18.0,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  ),
+                ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
@@ -62,16 +85,23 @@ class BalanceActionDialog extends StatelessWidget {
                     child: Text(localeStr.btnCancel),
                     color: themeColor.pagerButtonColor,
                     onPressed: () {
+                      if (_waiting) return;
                       Navigator.of(context).pop();
                     },
                   ),
                   SizedBox(width: 12),
                   RaisedButton(
                     child: Text(actionText),
-                    onPressed: () {
-                      if (onConfirm != null) {
-                        onConfirm();
-                        Navigator.of(context).pop();
+                    onPressed: () async {
+                      if (_waiting) return;
+                      if (widget.onConfirm != null) {
+                        setState(() {
+                          _waiting = true;
+                        });
+                        // wait for the action complete and close the dialog
+                        await widget
+                            .onConfirm()
+                            .whenComplete(() => Navigator.of(context).pop());
                       }
                     },
                   )

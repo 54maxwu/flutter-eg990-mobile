@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
-import 'package:relative_layout/relative_layout.dart';
 
 import 'grid_plugin_favorite.dart';
 
@@ -30,12 +30,12 @@ class GridItemMix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RelativeLayout(
-      children: <Widget>[
-        LayoutId(
-          id: RelativeId('img', alignment: Alignment.topCenter),
-          child: Container(
-//            margin: const EdgeInsets.only(bottom: 12.0),
+    return SizedBox(
+      width: itemSize,
+      height: itemSize + textHeight,
+      child: Stack(
+        children: <Widget>[
+          ConstrainedBox(
             constraints: BoxConstraints.tight(Size(itemSize, itemSize)),
             child: (imgUrl != null)
                 ? Transform.scale(
@@ -45,40 +45,46 @@ class GridItemMix extends StatelessWidget {
                   )
                 : Center(child: Icon(Icons.broken_image)),
           ),
-        ),
-        LayoutId(
-          id: RelativeId(
-            'lb',
-            below: 'img',
-            alignment: Alignment.center,
-          ),
-          child: Container(
-            constraints: BoxConstraints.tightFor(
+          Positioned(
+            top: itemSize * 0.95,
+            left: ((itemSize * (1 - textWidthFactor)) / 3).floorToDouble(),
+            child: SizedBox(
               width: itemSize * textWidthFactor,
-              height: textHeight, // move up 6 pix
-            ),
-            child: RichText(
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: label ?? '?',
-                style: TextStyle(
-                  color: themeColor.defaultGridTextColor,
-                  fontSize: FontSize.SMALLER.value,
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: AutoSizeText.rich(
+                      TextSpan(
+                        text: label ?? '?',
+                        style: TextStyle(
+                          color: themeColor.defaultGridTextColor,
+                        ),
+                      ),
+                      maxLines:
+                          (textHeight > FontSize.NORMAL.value * 2) ? 2 : 1,
+                      minFontSize: FontSize.SMALL.value - 4,
+                      maxFontSize: FontSize.NORMAL.value,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-        ),
-        if (pluginTapAction != null)
-          LayoutId(
-            id: RelativeId('fav', alignment: Alignment.topLeft),
-            child: GridPluginFavorite(
-              initValue: isFavorite,
-              onTap: (checked) => pluginTapAction(checked),
+          if (pluginTapAction != null)
+            Positioned(
+              left: 0,
+              top: 0,
+              child: GridPluginFavorite(
+                initValue: isFavorite,
+                onTap: (checked) => pluginTapAction(checked),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import 'state/point_store.dart';
 import 'widgets/store_display.dart';
 
 ///
-/// Main View of [Router.storeRoute]
+/// Main View of [AutoRouter.storeRoute]
 ///@author H.C.CHIANG
 ///@version 2020/6/7
 ///
@@ -37,7 +37,7 @@ class _StoreRouteState extends State<StoreRoute> {
         (_) => _store.waitForInitializeData,
         // Run some logic with the content of the observed field
         (bool wait) {
-          print('point store initialize wait result: $wait');
+          debugPrint('point store initialize wait result: $wait');
           if (wait) {
             toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
@@ -72,7 +72,7 @@ class _StoreRouteState extends State<StoreRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop store route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

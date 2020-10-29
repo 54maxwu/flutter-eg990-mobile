@@ -56,7 +56,7 @@ class _RegisterRouteState extends State<RegisterRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop register route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

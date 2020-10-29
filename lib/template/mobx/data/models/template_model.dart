@@ -1,4 +1,4 @@
-import 'package:dataclass/dataclass.dart';
+import 'package:flutter_eg990_mobile/core/gen/dataclass.dart';
 
 part 'template_model.g.dart';
 

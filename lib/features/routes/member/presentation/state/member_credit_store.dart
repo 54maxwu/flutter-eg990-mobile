@@ -77,7 +77,7 @@ abstract class _MemberCreditStore with Store {
       if (user == null) return;
       credit = creditResetStr;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _infoRepository.updateCredit(user.account).then(
+      await _infoRepository.updateCredit().then(
             (result) => result.fold(
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);

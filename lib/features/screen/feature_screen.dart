@@ -1,22 +1,32 @@
 import 'dart:async' show StreamSubscription;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/network/util/network_info.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
-import 'package:flutter_eg990_mobile/features/screen/network_changed_dialog.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 import '../routes/home/presentation/state/home_store.dart';
+import 'feature_screen_inherited_widget.dart';
 import 'feature_screen_store.dart';
-import 'feature_screen_view.dart';
+import 'network_changed_dialog.dart';
+import 'screen_drawer.dart';
+import 'screen_menu_bar.dart';
+import 'screen_navigation_bar.dart';
 
 ///
 /// Main app screen
 ///
 /// Include [FeatureScreenStore] which holds current page info and user data.
 /// Uses [WillPopScope] to maintain [FeatureScreenView]
+///
+/// Creates the app scaffold with:
+/// top navigation bar [ScreenMenuBar]
+/// top navigation bar drawer [ScreenDrawer]
+/// bottom navigation bar [ScreenNavigationBar]
+/// body [Navigator] to show [AutoRouter] page
 ///
 class FeatureScreen extends StatefulWidget {
   const FeatureScreen();
@@ -28,6 +38,8 @@ class FeatureScreen extends StatefulWidget {
 class _FeatureScreenState extends State<FeatureScreen> {
   final String tag = 'FeatureScreen';
   final FeatureScreenStore _store = FeatureScreenStore(sl());
+  final GlobalKey<NavigatorState> featureNavKey =
+      new GlobalKey(debugLabel: 'featureNavKey');
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   StreamSubscription<ConnectivityResult> networkSubscript;
@@ -73,12 +85,11 @@ class _FeatureScreenState extends State<FeatureScreen> {
     try {
       sl?.get<HomeStore>()?.getInitializeData(force: true);
       Future.delayed(
-          Duration(milliseconds: (RouterNavigate.current == '/') ? 2000 : 100),
-          () {
+          Duration(milliseconds: (AppNavigator.isAtHome) ? 2000 : 100), () {
         // refresh widget under scaffold (ex. menu bar, nav bar...)
         _scaffoldKey?.currentState?.setState(() {});
         // refresh current route widget
-        RouterNavigate.navigator.reassemble();
+        ExtendedNavigator.root.reassemble();
       });
     } catch (e) {
       MyLogger.error(msg: 'update feature screen has error: $e');
@@ -129,7 +140,19 @@ class _FeatureScreenState extends State<FeatureScreen> {
               scaffoldKey: _scaffoldKey,
               store: _store,
               eventStore: sl(),
-              child: FeatureScreenView(),
+              child: Scaffold(
+                key: _scaffoldKey,
+                appBar: ScreenMenuBar(),
+                drawer: new ScreenDrawer(),
+                bottomNavigationBar: ScreenNavigationBar(),
+                /* Feature Route Navigator */
+                body: ExtendedNavigator(
+                  key: featureNavKey,
+                  initialRoute: FeatureScreenRoutes.homeRoute,
+                  router: FeatureScreenRouter(),
+                  name: FEATURE_NAV_NAME,
+                ),
+              ),
             );
           }),
       onWillPop: () async {
@@ -151,7 +174,6 @@ class _FeatureScreenState extends State<FeatureScreen> {
       Global.initLocale = false;
       _store.closeStreams();
     } on Exception {}
-    Future.delayed(Duration(milliseconds: 200), () => PlatformUtil.restart());
     super.dispose();
     networkSubscript?.cancel();
   }

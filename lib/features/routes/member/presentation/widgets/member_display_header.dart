@@ -105,23 +105,25 @@ class MemberDisplayHeaderState extends State<MemberDisplayHeader> {
                           minWidth: FontSize.NORMAL.value * 2.5,
                           maxWidth: FontSize.NORMAL.value * 3,
                         ),
-                        padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 2.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: themeColor.buttonBorderColor,
-                            width: 2.0,
-                            style: BorderStyle.solid,
-                          ),
-                          borderRadius: BorderRadius.circular(14.0),
-                          color: themeColor.memberLinearColor3,
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          localeStr.btnRefresh,
-                          style: TextStyle(
-                              color: themeColor.buttonTextPrimaryColor),
-                          textAlign: TextAlign.center,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Icon(Icons.refresh,
+                            color: themeColor.defaultAppbarColor),
+                        // decoration: BoxDecoration(
+                        //   border: Border.all(
+                        //     color: themeColor.buttonBorderColor,
+                        //     width: 2.0,
+                        //     style: BorderStyle.solid,
+                        //   ),
+                        //   borderRadius: BorderRadius.circular(14.0),
+                        //   color: themeColor.memberLinearColor3,
+                        // ),
+                        // alignment: Alignment.center,
+                        // child: Text(
+                        //   localeStr.btnRefresh,
+                        //   style: TextStyle(
+                        //       color: themeColor.buttonTextPrimaryColor),
+                        //   textAlign: TextAlign.center,
+                        // ),
                       ),
                     ),
                   ),

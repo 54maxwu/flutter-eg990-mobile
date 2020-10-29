@@ -1,3 +1,4 @@
+import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -37,7 +38,7 @@ List<RollerRequirementType> decodeRollerRequirementType(dynamic str) {
       tag: 'RollerRequirementModel',
     );
   } catch (e) {
-    print('decode roller requirement type has exception: $e');
+    MyLogger.error(msg: 'decode roller requirement type has exception: $e');
     return [];
   }
 }
@@ -50,7 +51,7 @@ List<RollerRequirementCurrent> decodeRollerRequirementCurrent(dynamic str) {
       tag: 'RollerRequirementModel',
     );
   } catch (e) {
-    print('decode roller requirement current has exception: $e');
+    MyLogger.error(msg: 'decode roller requirement current has exception: $e');
     return [];
   }
 }
@@ -68,7 +69,7 @@ Map<String, List<RollerRequirementTarget>> decodeRollerRequirementTarget(
           addKey: false,
         )));
   } catch (e) {
-    print('decode roller requirement target has exception: $e');
+    debugPrint('decode roller requirement target has exception: $e');
     return Map();
   }
 }

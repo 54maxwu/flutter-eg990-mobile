@@ -1,42 +1,32 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/badge/badge.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/presentation/widgets/corner_clipper.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/presentation/state/member_credit_store.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../data/member_grid_data.dart';
 import '../data/member_grid_item.dart';
+import '../state/member_credit_store.dart';
 
 typedef onMemberGridItemTap = void Function(MemberGridItem);
 
 enum MemberGridItemBadgeType { NEW_MESSAGE }
-
-LinearGradient _itemLinearGradient = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  colors: [
-    themeColor.memberLinearColor3,
-    themeColor.memberLinearColor2,
-    themeColor.memberLinearColor1,
-  ],
-  stops: [0.1, 0.5, 1.0],
-  tileMode: TileMode.clamp,
-);
 
 class MemberGridItemBadgeWidget extends StatelessWidget {
   final MemberCreditStore store;
   final MemberGridItemBadgeType type;
   final MemberGridItem item;
   final onMemberGridItemTap onItemTap;
+  final Gradient itemGradient;
   final double iconSize;
   final double textHeight;
 
   MemberGridItemBadgeWidget({
-    @required this.item,
-    @required this.onItemTap,
     @required this.store,
     @required this.type,
+    @required this.item,
+    @required this.onItemTap,
+    @required this.itemGradient,
     this.iconSize,
     this.textHeight,
   });
@@ -52,7 +42,7 @@ class MemberGridItemBadgeWidget extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            gradient: _itemLinearGradient,
+            gradient: itemGradient,
           ),
           child: Stack(
             alignment: Alignment.center,
@@ -66,8 +56,8 @@ class MemberGridItemBadgeWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color:
-                          itemData.iconDecorColor ?? themeColor.memberIconColor,
+                      color: itemData.iconDecorColor ??
+                          themeColor.memberIconDecorColor,
                     ),
                     child: Observer(
                       builder: (_) => Badge(
@@ -78,14 +68,12 @@ class MemberGridItemBadgeWidget extends StatelessWidget {
                             child: Icon(
                                 const IconData(0xf129,
                                     fontFamily: 'FontAwesome'),
-                                color: Colors.white,
                                 size: 10.0)),
                         padding: EdgeInsets.zero,
-                        position: BadgePosition.topRight(top: -2, right: -4),
-                        child: DecoratedBox(
-                            decoration: ThemeInterface.roundIconDecorLight,
-                            child: Icon(itemData.iconData,
-                                size: iconSize ?? 24.0)),
+                        position: BadgePosition.topEnd(top: -2, end: -4),
+                        child: Icon(itemData.iconData,
+                            size: iconSize ?? 24.0,
+                            color: themeColor.memberIconColor),
                       ),
                     ),
                   ),
@@ -95,7 +83,9 @@ class MemberGridItemBadgeWidget extends StatelessWidget {
                     height: textHeight,
                     child: Text(
                       itemData.label,
-                      style: TextStyle(fontSize: FontSize.SUBTITLE.value - 1),
+                      style: TextStyle(
+                          fontSize: FontSize.SUBTITLE.value - 1,
+                          color: themeColor.memberIconLabelColor),
                       maxLines: 2,
                       overflow: TextOverflow.visible,
                       textAlign: TextAlign.center,

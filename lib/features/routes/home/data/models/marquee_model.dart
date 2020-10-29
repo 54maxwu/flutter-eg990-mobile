@@ -10,16 +10,18 @@ abstract class MarqueeModel with _$MarqueeModel {
   const factory MarqueeModel({
     @required int id,
     @JsonKey(name: 'content_cn') String content,
-    @required String url,
-    @JsonKey(name: 'created_at', required: true) String createdAt,
-    @JsonKey(name: 'updated_at', required: true) String updatedAt,
-    @required String showDate,
+    @Default('') String url,
+    @JsonKey(name: 'created_at') String createdAt,
+    @JsonKey(name: 'updated_at') String updatedAt,
+    String showDate,
   }) = _MarqueeModel;
 
   static MarqueeModel jsonToMarqueeModel(Map<String, dynamic> jsonMap) =>
       _$_MarqueeModel(
         id: jsonMap['id'] as int,
-        content: jsonMap[Global.jsonContentKey] as String,
+        content: (jsonMap.containsKey('content')
+            ? jsonMap['content']
+            : jsonMap[Global.jsonContentKey]) as String,
         url: jsonMap['url'] as String,
         createdAt: jsonMap['created_at'] as String,
         updatedAt: jsonMap['updated_at'] as String,

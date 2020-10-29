@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_fixed_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_fixed_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -78,7 +78,7 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
         cellDimensions: cellDimensions,
       ),
       contentCellBuilder: (i, j) {
-//        print('i:$i, j:$j');
+//        debugPrint('i:$i, j:$j');
         if (j == rowHeaders.length - 1)
           return TableFixedCellWidget.content(
             formatNum(sumRow[i]),

@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/device.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 
-import 'router/app_navigate.dart';
+import 'router/app_navigator_export.dart';
+import 'router/app_navigator_names.dart';
 import 'screen/web_game_screen_store.dart';
 import 'update/presentation/state/update_store.dart';
 
@@ -26,6 +28,8 @@ class MainStartup extends StatefulWidget {
 
 class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   final String keyId = 'Navi';
+  final GlobalKey<NavigatorState> screenNavKey =
+      new GlobalKey(debugLabel: 'screenNavKey');
 
   Future<bool> updateFuture;
   UpdateStore updateStore;
@@ -65,33 +69,35 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
       child: WillPopScope(
         onWillPop: () async {
           MyLogger.debug(
-              msg: 'pop screen ${ScreenNavigate.screenIndex}'
-                  'current route: ${RouterNavigate.current}',
+              msg: 'pop screen ${AppNavigator.screenIndex}'
+                  ' route: ${AppNavigator.current}',
               tag: 'MainStartup');
-          if (ScreenNavigate.screenIndex == 1) {
+          if (AppNavigator.screenIndex != 0) {
             // Stop rotate sensor and clear web view cache
-            sl.get<WebGameScreenStore>()?.stopSensor();
-            ScreenNavigate.switchScreen(screen: ScreenEnum.Feature);
-          } else if (ScreenNavigate.screenIndex == 2) {
-            ScreenNavigate.switchScreen();
-          } else if (RouterNavigate.current == '/') {
+            if (AppNavigator.screenIndex == 1) {
+              sl.get<WebGameScreenStore>()?.stopSensor();
+            }
+            AppNavigator.switchScreen(Screens.Feature);
+          } else if (AppNavigator.isAtHome) {
             return Future(() => true);
           } else {
-            RouterNavigate.navigateBack();
+            AppNavigator.back();
           }
           return Future(() => false);
         },
         child: Scaffold(
-          body: ExtendedNavigator<ScreenRouter>(
-            initialRoute: ScreenRoutes.featureScreen,
-            router: ScreenRouter(),
+          // body: Navigator(
+          //   key: ScreenRouter.navigator.key,
+          //   onGenerateRoute: ScreenRouter.onGenerateRoute,
+          //   initialRoute: ScreenRouter.featureScreen,
+          // ),
+          body: ExtendedNavigator(
+            key: screenNavKey,
+            initialRoute: MainStartupRoutes.featureScreen,
+            router: MainStartupRouter(),
+            name: SCREEN_NAV_NAME,
           ),
         ),
-//        body: Navigator(
-//          key: ScreenRouter.navigator.key,
-//          onGenerateRoute: ScreenRouter.onGenerateRoute,
-//          initialRoute: ScreenRouter.featureScreen,
-//        ),
       ),
     );
   }

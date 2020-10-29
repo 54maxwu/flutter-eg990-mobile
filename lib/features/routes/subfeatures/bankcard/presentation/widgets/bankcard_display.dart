@@ -20,8 +20,7 @@ class BankcardDisplay extends StatefulWidget {
 class _BankcardDisplayState extends State<BankcardDisplay> {
   final String tag = 'BankcardDisplay';
 
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
 
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =
@@ -62,7 +61,9 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         province: _provinceSelected ?? '',
         area: (_areaSelected != null)
             ? _areaSelected
-            : (_citySelected != null) ? _citySelected : '',
+            : (_citySelected != null)
+                ? _citySelected
+                : '',
       );
       if (dataForm.isValid) {
         debugPrint('bankcard form: ${dataForm.toJson()}');
@@ -172,7 +173,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                     /* Name Input Field */
                     new CustomizeFieldWidget(
                       key: _nameFieldKey,
-                      fieldType: FieldType.ChineseOnly,
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleOwner,
@@ -214,7 +214,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                     /* Branch Input Field */
                     new CustomizeFieldWidget(
                       key: _branchFieldKey,
-                      fieldType: FieldType.ChineseOnly,
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleBankBranch,

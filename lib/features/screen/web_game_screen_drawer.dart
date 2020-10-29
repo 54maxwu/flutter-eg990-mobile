@@ -106,10 +106,7 @@ class _WebGameScreenDrawerState extends State<WebGameScreenDrawer>
                       onTap: () {
                         switch (index) {
                           case 0: // [ScreenDrawerItem.backHome]
-                            ScreenNavigate.switchScreen(
-                              force: true,
-                              screen: ScreenEnum.Feature,
-                            );
+                            AppNavigator.switchScreen(Screens.Feature);
                             break;
                           case 1: // [ScreenDrawerItem.rotate]
                             widget.store.rotateScreenLeft();

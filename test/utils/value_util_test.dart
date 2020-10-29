@@ -74,7 +74,7 @@ void main() {
   });
 
   test('test string verify', () {
-    expect(Global.EG_BASE_URL.isUrl, true);
+    expect(Global.CURRENT_BASE.isUrl, true);
     expect('a1234@'.isEmail, false);
     expect('a1234@yahoo.com'.isEmail, true);
     var html =

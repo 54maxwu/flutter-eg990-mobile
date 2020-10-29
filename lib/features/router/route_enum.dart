@@ -4,10 +4,7 @@ enum RouteEnum {
   HOME,
   PROMO,
   SERVICE,
-
-  ///
-  MOVIE_EG,
-  MOVIE_NEW,
+  SERVICE_WEB,
 
   ///
   MEMBER,
@@ -22,8 +19,10 @@ enum RouteEnum {
   TRANSFER_RECORD,
   DEALS,
   BETS,
-  FLOW,
+  ROLLBACK,
   AGENT,
+  AGENT_LOGIN,
+  AGENT_REGISTER,
 
   ///
   NOTICE,
@@ -34,6 +33,7 @@ enum RouteEnum {
   STORE,
   SIGN,
   WEBSITE,
+  LINE_QR,
 
   ///
   MORE,
@@ -67,13 +67,8 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.PROMO:
         return localeStr.pageTitlePromo;
       case RouteEnum.SERVICE:
+      case RouteEnum.SERVICE_WEB:
         return localeStr.pageTitleService;
-
-      /// Home Category Page
-      case RouteEnum.MOVIE_EG:
-        return localeStr.pageTitleMovieEG;
-      case RouteEnum.MOVIE_NEW:
-        return localeStr.pageTitleMovie;
 
       /// Member
       case RouteEnum.MEMBER:
@@ -100,10 +95,14 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleMemberDeals;
       case RouteEnum.BETS:
         return localeStr.pageTitleMemberBets;
-      case RouteEnum.FLOW:
+      case RouteEnum.ROLLBACK:
         return localeStr.pageTitleMemberFlow;
       case RouteEnum.AGENT:
         return localeStr.pageTitleMemberAgent;
+      case RouteEnum.AGENT_LOGIN:
+        return localeStr.pageTitleMemberAgentLogin;
+      case RouteEnum.AGENT_REGISTER:
+        return localeStr.pageTitleMemberAgentRegister;
 
       /// Side
       case RouteEnum.NOTICE:
@@ -124,6 +123,8 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleSign;
       case RouteEnum.WEBSITE:
         return localeStr.gameCategoryWeb;
+      case RouteEnum.LINE_QR:
+        return 'LINE';
 
       /// More
       case RouteEnum.MORE:
@@ -190,7 +191,7 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.memberGridTitleBet;
       case RouteEnum.DEALS:
         return localeStr.memberGridTitleDeal;
-      case RouteEnum.FLOW:
+      case RouteEnum.ROLLBACK:
         return localeStr.memberGridTitleFlow;
       case RouteEnum.AGENT:
         return localeStr.memberGridTitleAgent;

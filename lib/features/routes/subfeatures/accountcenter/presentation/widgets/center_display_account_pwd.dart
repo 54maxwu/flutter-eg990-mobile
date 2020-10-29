@@ -17,8 +17,7 @@ class CenterDisplayAccountPassword extends StatefulWidget {
 
 class _CenterDisplayAccountPasswordState
     extends State<CenterDisplayAccountPassword> {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
   final GlobalKey<CustomizeFieldWidgetState> _oldPwdFieldKey =
       new GlobalKey(debugLabel: 'oldpwd');
   final GlobalKey<CustomizeFieldWidgetState> _newPwdFieldKey =

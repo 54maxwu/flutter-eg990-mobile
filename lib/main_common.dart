@@ -4,6 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
+import 'package:flutter_eg990_mobile/features/main_app_with_firebase.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
@@ -78,10 +79,11 @@ Future<void> mainCommon(Environment env) async {
   // check app language setting
   try {
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-    if (box.containsKey('lang')) {
-      Global.setLanguage = box.get('lang', defaultValue: 'zh');
+    if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
+      Global.setLanguage =
+          box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
     } else {
-      box.put('lang', Global.lang);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
     }
   } catch (e) {
     debugPrint('read app language setting has error!! $e');
@@ -99,7 +101,9 @@ Future<void> mainCommon(Environment env) async {
   }
 
   // run application
-  runApp(new MainApp(_analytics));
+  runApp((_analytics != null)
+      ? new MainAppWithFirebase(analytics: _analytics)
+      : new MainApp());
 }
 
 void _setupLogging() {

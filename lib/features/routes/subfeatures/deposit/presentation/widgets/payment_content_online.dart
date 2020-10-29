@@ -30,8 +30,7 @@ class PaymentContentOnline extends StatefulWidget {
 class _PaymentContentOnlineState extends State<PaymentContentOnline>
     with AfterLayoutMixin {
   final String tag = 'PaymentContentOnline';
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
   final GlobalKey<CustomizeDropdownWidgetState> _bankOptionKey =

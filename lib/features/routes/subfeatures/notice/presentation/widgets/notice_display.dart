@@ -57,8 +57,9 @@ class _NoticeDisplayState extends State<NoticeDisplay> {
                     });
                   }
                 },
+                round: true,
                 tabsPerRow: tabsPerRow,
-                itemSpace: 0,
+                itemSpace: 6.0,
                 expectTabHeight: expectTabHeight,
               ),
             ),

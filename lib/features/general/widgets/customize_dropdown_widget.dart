@@ -401,7 +401,8 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing,
-                    letterSpacing: widget.titleLetterSpacing,
+                    letterSpacing:
+                        (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
                     color: _prefixColor,
                   ),
                   children: [
@@ -434,7 +435,8 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
               style: TextStyle(
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
-                letterSpacing: widget.titleLetterSpacing,
+                letterSpacing:
+                    (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [

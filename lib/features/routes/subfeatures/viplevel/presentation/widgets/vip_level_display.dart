@@ -9,8 +9,6 @@ class VipLevelDisplay extends StatelessWidget {
 
   VipLevelDisplay(this.data);
 
-  final MemberGridItem pageItem = MemberGridItem.vip;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(

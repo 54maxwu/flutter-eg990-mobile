@@ -95,7 +95,7 @@ class _EventDialogState extends State<EventDialog> {
                                 ),
                                 onPressed: () async {
                                   final result = await widget.onSign();
-                                  print('sign event result = $result');
+                                  debugPrint('sign event result = $result');
                                   if (result) {
                                     signed = true;
                                     count += 1;

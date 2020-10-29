@@ -24,6 +24,9 @@ class ThemeLight implements ThemeColorInterface {
   Color defaultLayeredBackgroundColor = Color(0xffffffff);
 
   @override
+  Color defaultLayeredBackgroundColorAlpha = Color(0x80ffffff);
+
+  @override
   Color defaultPrimaryColor = Color(0xff8a755a);
 
   @override
@@ -159,6 +162,9 @@ class ThemeLight implements ThemeColorInterface {
   Color secondaryTextColor2 = Color(0xff303030);
 
   @override
+  Color defaultTitleColor = Color(0xff303030);
+
+  @override
   Color defaultSubtitleColor = Color(0xff7f4f00);
 
   @override
@@ -252,7 +258,7 @@ class ThemeLight implements ThemeColorInterface {
   Color buttonSubColor = Color(0xff969696);
 
   @override
-  Color buttonTextSubColor = Color(0xffc8c8c8);
+  Color buttonTextSubColor = Color(0xff202020);
 
   @override
   Color buttonDisabledColor = Color(0xff606060);
@@ -279,10 +285,22 @@ class ThemeLight implements ThemeColorInterface {
   Color buttonLinearColor2 = Color(0xffc1a180);
 
   @override
-  Color pagerButtonColor = Color(0xff828282);
+  Color pagerButtonColor = Color(0xffd8d8d8);
 
   @override
-  Color pagerButtonSelectedColor = Color(0xff3b3b3b);
+  Color pagerButtonSelectedColor = Color(0xffdcc4ac);
+
+  @override
+  Color centerButtonColor = Color(0xf0ffffff);
+
+  @override
+  Color centerButtonTextColor = Color(0xffe88200);
+
+  @override
+  Color centerButtonBorderColor = Color(0xfffec017);
+
+  @override
+  Color centerButtonStackColor = Color.fromRGBO(255, 152, 0, 0.1);
 
   ///
   /// Input field color
@@ -354,6 +372,18 @@ class ThemeLight implements ThemeColorInterface {
    * Specific Page Color                                             *
    *******************************************************************/
   ///
+  /// Linear App Bar Color
+  ///
+  @override
+  Color barLinearColor1 = Color(0xffc0a280);
+
+  @override
+  Color barLinearColor2 = Color(0xff8a755a);
+
+  @override
+  Color barLinearColor3 = Color(0xff8a755a);
+
+  ///
   /// Home page color
   ///
   @override
@@ -369,7 +399,7 @@ class ThemeLight implements ThemeColorInterface {
   Color homeTabBgColor = Color(0xfffdeddd);
 
   @override
-  Color homeTabDividerColor = Color(0xffab988a);
+  Color homeTabDividerColor = Color(0xffb08552);
 
   @override
   Color homeTabIconColor = Color(0xfff0f0f0);
@@ -410,6 +440,18 @@ class ThemeLight implements ThemeColorInterface {
   @override
   Color homeBoxButtonTextColor = Color(0xff383838);
 
+  @override
+  Color homeTabSelectedLinearColor1 = Color(0xff76685f);
+
+  @override
+  Color homeTabSelectedLinearColor2 = Color(0xffa8998f);
+
+  @override
+  Color homeTabLinearColor1 = Color(0xfffdeddd);
+
+  @override
+  Color homeTabLinearColor2 = Color(0xffdcc4ac);
+
   ///
   /// Promo page color
   ///
@@ -431,11 +473,23 @@ class ThemeLight implements ThemeColorInterface {
   @override
   Color promoTabSelectedTextColor = Color(0xffffffff);
 
+  @override
+  Color promoLinearColor1 = Color(0xfffdeddd);
+
+  @override
+  Color promoLinearColor2 = Color(0xffc0a280);
+
   ///
   /// Member page color
   ///
   @override
-  Color memberIconColor = Color(0xffc1a180);
+  Color memberIconColor = Color(0xffffffff);
+
+  @override
+  Color memberIconLabelColor = Color(0xff383838);
+
+  @override
+  Color memberIconDecorColor = Color(0xffc1a180);
 
   @override
   Color memberLinearColor1 = Color(0xa0feeede);
@@ -474,6 +528,15 @@ class ThemeLight implements ThemeColorInterface {
   Color balanceCardBackground = Color.fromRGBO(241, 218, 168, 0.8);
 
   @override
+  Color balanceCardLinear1Color = Color(0xffb68f72);
+
+  @override
+  Color balanceCardLinear2Color = Color(0xffffe6b9);
+
+  @override
+  Color balanceCardLinear3Color = Color(0xffd9935c);
+
+  @override
   Color balanceCardTitleColor = Color(0xff464242);
 
   @override
@@ -505,6 +568,9 @@ class ThemeLight implements ThemeColorInterface {
 
   @override
   Color walletBoxBorderColor = Color(0xffd0d0d0);
+
+  @override
+  Color walletBoxTitleColor = Color(0xffe7c080);
 
   @override
   Color walletBoxButtonColor = Color.fromRGBO(193, 161, 128, 1.0);
@@ -579,8 +645,62 @@ class ThemeLight implements ThemeColorInterface {
   Color storeProductBgColor = Color(0xffc4c4c4);
 
   @override
+  Color storeProductBorderColor = Color(0xffc4c4c4);
+
+  @override
+  Color storeRuleTitleColor = Color(0xff3598db);
+
+  @override
+  Color storeRuleHighlightColor = Color(0xffe03e2d);
+
+  @override
+  Color storeRuleTextColor = Color(0xff8d8d8d);
+
+  @override
   Color storeButtonColor = Color(0xffcfa972);
 
   @override
   Color storeHighlightTextColor = Color(0xffe6304a);
+
+  ///
+  /// Roller page color
+  ///
+  @override
+  Color rollerBackgroundBlockTop = Color(0xffd2080e);
+
+  @override
+  Color rollerBackgroundBlock = Color(0xffe7c080);
+
+  @override
+  Color rollerRuleTitleColor = Color(0xffe60000);
+
+  @override
+  Color rollerRuleHighlightColor = Color(0xfff1c04f);
+
+  @override
+  Color rollerRuleBackgroundColor = Colors.black45;
+
+  @override
+  Color rollerRuleTextColor = Color(0xffecf0f1);
+
+  @override
+  Color rollerTextButtonColor = Color(0xffde4d41);
+
+  @override
+  Color rollerTextCountColor = Color(0xffffffff);
+
+  @override
+  Color rollerDialogTitleColor = Color(0xffffffff);
+
+  @override
+  Color rollerDialogTitleBgColor = Color(0xffd2080e);
+
+  @override
+  Color rollerTableHeaderColor = Color(0xffffffff);
+
+  @override
+  Color rollerTableTextColor = Color(0xffffffff);
+
+  @override
+  Color rollerTableDividerColor = Color(0xffde4d41);
 }

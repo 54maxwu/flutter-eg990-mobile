@@ -14,10 +14,10 @@ class Global {
   /// APP Language
   static bool initLocale = false;
 
-  // zh, th, en, vi
+  // zh, en, vi, th
   static String _language = 'zh';
 
-  // content_cn, content_th, content_us, content_vn
+  // content_cn, content_us, content_vn, content_th
   static String _jsonContentKey = 'content_cn';
 
   static String get lang => _language;
@@ -36,6 +36,9 @@ class Global {
       case 'vi':
         _jsonContentKey = 'content_vn';
         break;
+      case 'th':
+        _jsonContentKey = 'content_th';
+        break;
     }
   }
 
@@ -52,9 +55,12 @@ class Global {
   static const String CACHE_LOGIN_FORM = 'CACHE_LOGIN_FORM';
   static const String CACHE_APP_DATA = 'CACHE_APP_DATA';
 
+  static const String CACHE_APP_DATA_KEY_LANG = 'lang';
+  static const String CACHE_APP_DATA_KEY_THEME = 'theme';
+
   /// Other static value
   static const double APP_MENU_HEIGHT = kToolbarHeight - 8.0;
-  static const double APP_NAV_HEIGHT = kToolbarHeight + 8.0;
+  static const double APP_NAV_HEIGHT = kToolbarHeight + 12.0;
   static const double APP_BARS_HEIGHT = Global.APP_MENU_HEIGHT + APP_NAV_HEIGHT;
   static const double TEST_DEVICE_HEIGHT = 785.45;
   static const double TEST_DEVICE_WIDTH = 392.72;

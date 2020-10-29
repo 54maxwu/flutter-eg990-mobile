@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'
     show
+        FilteringTextInputFormatter,
         LengthLimitingTextInputFormatter,
-        TextInputFormatter,
-        WhitelistingTextInputFormatter;
+        TextInputFormatter;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart' show RegexExtension;
 
 part '../enum/input_field_type.dart';
 
@@ -14,13 +13,14 @@ typedef ValidCondition = bool Function(String);
 typedef SuffixTapCall = void Function(String);
 
 ///
-///
+/// TODO integrate customized widget
 /// TODO separate prefix and suffix widget
 ///
 class CustomizeFieldWidget extends StatefulWidget {
   /* Field Settings */
   final FieldType fieldType;
   final double fieldTextSize;
+  final Color fieldTextColor;
   final String hint;
   final bool persistHint;
   final bool coloredHint;
@@ -68,6 +68,7 @@ class CustomizeFieldWidget extends StatefulWidget {
     Key key,
     this.fieldType = FieldType.Normal,
     this.fieldTextSize,
+    this.fieldTextColor,
     this.hint = '',
     this.persistHint = true,
     this.coloredHint = false,
@@ -123,7 +124,6 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
   Widget _suffixWidget;
   BoxConstraints _suffixConstraints;
 
-  int _lastTextLength = 0;
   int _currentMaxLines;
   int _currentPrefixMaxLines;
   bool _isValid = true;
@@ -145,14 +145,60 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     setState(() {});
   }
 
+  void _onDateInputChanged() {
+    String input = _controller.text;
+    int pos = input.length;
+    String newText = input;
+    if (pos == 5 && input[pos - 1] != '-') {
+      newText = input.replaceRange(pos - 1, pos, '-' + input[pos - 1]);
+    } else if (pos == 8 && input[pos - 1] != '-') {
+      newText = input.replaceRange(pos - 1, pos, '-' + input[pos - 1]);
+    }
+    if (newText != input) {
+      _controller.text = newText;
+      _controller.selection =
+          TextSelection.fromPosition(new TextPosition(offset: newText.length));
+    }
+  }
+
+  void _onInputChanged(String value) {
+    if (widget.debug) {
+      debugPrint('input value: $value');
+      debugPrint('controller text: ${_controller.text}');
+      debugPrint('controller selection: ${_controller.selection}');
+    }
+
+    // fix cursor position
+    if (_controller.selection.baseOffset ==
+            _controller.selection.extentOffset &&
+        _controller.selection.baseOffset != _controller.text.length) {
+      _controller.selection = new TextSelection.fromPosition(
+          new TextPosition(offset: value.length));
+      debugPrint('fixed controller selection: ${_controller.selection}');
+    }
+
+    setState(() {
+      _isValid = widget.validCondition(value) ?? true;
+    });
+
+    if (widget.onInputChanged != null) {
+      if (widget.debug) {
+        debugPrint(
+            '${widget.hint} input: $value, code: ${value.codeUnits}, valid: $_isValid');
+      }
+    }
+  }
+
   void _updateFieldStyle() {
-    Color textColor = (widget.useSameBgColor)
-        ? themeColor.fieldInputHintSubColor
-        : (widget.readOnly)
-            ? themeColor.defaultTextColor
-            : (widget.subTheme)
-                ? themeColor.fieldInputSubColor
-                : themeColor.fieldInputColor;
+    Color textColor = (widget.fieldTextColor != null)
+        ? widget.fieldTextColor
+        : (widget.useSameBgColor)
+            ? themeColor.fieldInputHintSubColor
+            : (widget.readOnly)
+                ? themeColor.defaultTextColor
+                : (widget.subTheme)
+                    ? themeColor.fieldInputSubColor
+                    : themeColor.fieldInputColor;
 
     _fieldTextStyle = TextStyle(
       fontSize: (widget.fieldTextSize != null)
@@ -200,7 +246,8 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
 
     _fieldInset = (widget.centerFieldText)
         ? EdgeInsets.only(left: 2.0)
-        : EdgeInsets.symmetric(horizontal: 8.0, vertical: fieldInsetHeight);
+        : EdgeInsets.fromLTRB(8.0, fieldInsetHeight, 8.0,
+            (Global.lang == 'zh') ? fieldInsetHeight - 2 : fieldInsetHeight);
 
     _updateFieldStyle();
 
@@ -217,6 +264,9 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       _controller.addListener(() {
         widget.onInputChanged(_controller.text);
       });
+    }
+    if (widget.fieldType == FieldType.Date) {
+      _controller.addListener(() => _onDateInputChanged());
     }
   }
 
@@ -293,13 +343,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             inputFormatters: _formatterList(),
             obscureText: widget.fieldType == FieldType.Password,
             readOnly: widget.readOnly,
-            onChanged: (value) {
-              setState(() {
-                _isValid = widget.validCondition(value) ?? true;
-              });
-              if (widget.debug)
-                debugPrint('${widget.hint} input: $value, valid: $_isValid');
-            },
+            onChanged: (value) => _onInputChanged(value),
             style: _fieldTextStyle,
             cursorColor: (widget.subTheme)
                 ? themeColor.fieldCursorSubColor
@@ -343,18 +387,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             inputFormatters: _formatterList(),
             obscureText: widget.fieldType == FieldType.Password,
             readOnly: widget.readOnly,
-            onChanged: (value) {
-              if (widget.fieldType == FieldType.Date) {
-                if (_dateInputChecked(value) == false) return;
-              }
-              setState(() {
-                _isValid = widget.validCondition(value) ?? true;
-              });
-              if (widget.onInputChanged != null) if (widget.debug) {
-                debugPrint(
-                    '${widget.hint} input: $value, code: ${value.codeUnits}, valid: $_isValid');
-              }
-            },
+            onChanged: (value) => _onInputChanged(value),
             style: _fieldTextStyle,
             cursorColor: (widget.subTheme)
                 ? themeColor.fieldCursorSubColor
@@ -419,7 +452,9 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing / 2,
-                    letterSpacing: widget.titleLetterSpacing / 4,
+                    letterSpacing: (Global.lang == 'zh')
+                        ? widget.titleLetterSpacing / 4
+                        : 0 / 4,
                     color: _prefixColor,
                   ),
                   children: [
@@ -452,7 +487,8 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               style: TextStyle(
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
-                letterSpacing: widget.titleLetterSpacing,
+                letterSpacing:
+                    (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [
@@ -624,49 +660,5 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
     }
-  }
-
-  final dateMask = 'xxxx-xx-xx';
-
-  final dateSeparator = '-';
-
-  bool _dateInputChecked(String input) {
-    if (input.isValidDate || input.length < 4) {
-      _lastTextLength = input.length;
-      debugPrint('field date checked');
-      return true;
-    }
-    if (input.length < _lastTextLength) {
-      // is deleting
-      debugPrint('date helper deleting: $input');
-      // delete separator
-      if (input.endsWith(dateSeparator)) {
-        _controller.text = input.substring(0, input.length - 1);
-      }
-      debugPrint('date helper new text: ${_controller.text}');
-    } else if (input.length > _lastTextLength) {
-      // is typing
-      debugPrint('date helper typing: $input');
-      var position = input.length;
-
-      if (position < dateMask.length && dateMask[position] == dateSeparator) {
-        _controller.text = input + dateSeparator;
-        debugPrint('date helper new text: ${_controller.text}');
-      }
-      if (position == 5 && input.contains(dateSeparator) == false) {
-        _controller.text = input.replaceRange(
-            position - 1, position, dateSeparator + input[position - 1]);
-      }
-    }
-    _lastTextLength = _controller.text.length;
-    if (input == _controller.text) return true;
-    try {
-      _fieldKey.currentState.didChange(_controller.text);
-      setInput = _controller.text;
-    } on Exception catch (e) {
-      debugPrint('field state error: $e');
-      setState(() {});
-    }
-    return false;
   }
 }

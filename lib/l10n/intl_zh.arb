@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "zh",
-  "title": "EG990 Mobile",
+  "title": "BKK365 Mobile",
   "@title": {
-    "description": "EG990 Demo",
+    "description": "BKK365 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -143,6 +143,18 @@
   "@pageTitleMemberFlow": {
     "type": "text"
   },
+  "pageTitleMemberAgentRegister": "代理会员注册",
+  "@pageTitleMemberAgentRegister": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLogin": "代理会员登入",
+  "@pageTitleMemberAgentLogin": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLoginHint": "代理会员请登入",
+  "@pageTitleMemberAgentLoginHint": {
+    "type": "text"
+  },
   "pageTitleMemberAgent": "代理",
   "@pageTitleMemberAgent": {
     "type": "text"
@@ -188,8 +200,20 @@
   "@workInProgress": {
     "type": "text"
   },
+  "networkChangedHint": "偵測到網路狀態變更，是否要刷新頁面?",
+  "@networkChangedHint": {
+    "type": "text"
+  },
   "exitAppHint": "再按一次关闭APP",
   "@exitAppHint": {
+    "type": "text"
+  },
+  "gameToolHintUsage": "单击显示，长按隐藏 ↗",
+  "@gameToolHintUsage": {
+    "type": "text"
+  },
+  "gameToolHintRestore": "双击可恢复显示",
+  "@gameToolHintRestore": {
     "type": "text"
   },
   "btnMenu": "选单",
@@ -268,6 +292,10 @@
   "@btnBind": {
     "type": "text"
   },
+  "btnQuery": "查询",
+  "@btnQuery": {
+    "type": "text"
+  },
   "btnQueryNow": "立即查询",
   "@btnQueryNow": {
     "type": "text"
@@ -282,6 +310,14 @@
   },
   "btnOff": "关",
   "@btnOff": {
+    "type": "text"
+  },
+  "btnGo": "前往",
+  "@btnGo": {
+    "type": "text"
+  },
+  "btnCopy": "复制",
+  "@btnCopy": {
     "type": "text"
   },
   "sideBtnBackHome": "回首页",
@@ -356,11 +392,11 @@
   "@hintReferralInput": {
     "type": "text"
   },
-  "hintName": "输入用户名",
+  "hintName": "请输入用户名",
   "@hintName": {
     "type": "text"
   },
-  "hintEmail": "输入信箱",
+  "hintEmail": "请输入信箱",
   "@hintEmail": {
     "type": "text"
   },
@@ -389,8 +425,12 @@
   "@messageWelcome": {
     "type": "text"
   },
-  "messageWelcomeHint": "请先登入/注册",
+  "messageWelcomeHint": "您好! 请先登入/注册",
   "@messageWelcomeHint": {
+    "type": "text"
+  },
+  "messageLoginHint": "请先登入/注册",
+  "@messageWelcomeHintShort": {
     "type": "text"
   },
   "messageRegisterFailed": "注册失败",
@@ -516,9 +556,14 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "电话格式错误(10碼)",
+  "messageInvalidPhone": "电话格式错误({num}碼)",
   "@messageInvalidPhone": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "10"
+      }
+    }
   },
   "messageInvalidPostCode": "邮递区号错误(5~8碼)",
   "@messageInvalidPostCode": {
@@ -578,7 +623,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "卡号为6~19个字",
+  "messageInvalidCardNumber": "卡号为16~19个字",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -706,6 +751,10 @@
   },
   "messageErrorAccount": "帐号错误",
   "@messageErrorAccount": {
+    "type": "text"
+  },
+  "messageRepeatAccount": "帐号重复注册",
+  "@messageRepeatAccount": {
     "type": "text"
   },
   "messageErrorPassword": "密码错误",
@@ -869,7 +918,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "点我开启EG990网页版",
+  "gameCategoryWebHint": "点我开启BKK365网页版",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -948,6 +997,22 @@
   },
   "registerFieldTitlePhone": "手机号",
   "@registerFieldTitlePhone": {
+    "type": "text"
+  },
+  "registerFieldTitleEmail": "电子信箱",
+  "@registerFieldTitleEmail": {
+    "type": "text"
+  },
+  "registerFieldTitleZalo": "Zalo",
+  "@registerFieldTitleZalo": {
+    "type": "text"
+  },
+  "registerFieldTitleLine": "Line",
+  "@registerFieldTitleLine": {
+    "type": "text"
+  },
+  "registerFieldTitleQQ": "QQ",
+  "@registerFieldTitleQQ": {
     "type": "text"
   },
   "registerFieldTitleVerify": "手机验证码",
@@ -1210,6 +1275,10 @@
   "@withdrawViewHint2": {
     "type": "text"
   },
+  "walletViewTitle": "中心钱包",
+  "@walletViewTitle": {
+    "type": "text"
+  },
   "walletViewTitleMy": "我的钱包",
   "@walletViewTitleMy": {
     "type": "text"
@@ -1248,6 +1317,10 @@
   },
   "walletViewMessageSetting": "更改钱包设置",
   "@walletViewMessageSetting": {
+    "type": "text"
+  },
+  "messageNoMessages": "目前没有站内信息",
+  "@messageNoMessages": {
     "type": "text"
   },
   "centerViewTitleData": "个人资料",
@@ -1418,7 +1491,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "总计:￥{value}",
+  "betsTextTotal": "总计: ￥ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1517,6 +1590,10 @@
   },
   "dealsHeaderAmount": "金额",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "depositPaymentNoData": "查無可使用的充值方式",
+  "@depositPaymentNoData": {
     "type": "text"
   },
   "depositPaymentTitleBank": "银行充值",
@@ -1989,6 +2066,51 @@
   "@flowHeaderTextTotal": {
     "type": "text"
   },
+  "agentActionLoginHint": "请先登入您的代理帐号",
+  "@agentActionLoginHint": {
+    "type": "text"
+  },
+  "agentActionLogin": "代理登入",
+  "@agentActionLogin": {
+    "type": "text"
+  },
+  "agentActionRegister": "代理注册",
+  "@agentActionRegister": {
+    "type": "text"
+  },
+  "agentRegisterSuccess": "代理已送审，请静候",
+  "@agentRegisterSuccess": {
+    "type": "text"
+  },
+  "agentAccountLevelCompany": "公司",
+  "@agentAccountLevelCompany": {
+    "type": "text"
+  },
+  "agentAccountLevelGrandMaster": "大总代",
+  "@agentAccountLevelGrandMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelMaster": "总代",
+  "@agentAccountLevelMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelAgent": "代理",
+  "@agentAccountLevelAgent": {
+    "type": "text"
+  },
+  "agentAccountLevelMember": "会员",
+  "@agentAccountLevelMember": {
+    "type": "text"
+  },
+  "agentTitleAccount": "{level}帐号",
+  "@agentTitleAccount": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
   "agentTabTitleInfo": "资讯",
   "@agentTabTitleInfo": {
     "type": "text"
@@ -2003,6 +2125,19 @@
   },
   "agentTabTitleLedger": "存/提",
   "@agentTabTitleLedger": {
+    "type": "text"
+  },
+  "agentTabTitleDownlineList": "{level}列表",
+  "@agentTabTitleDownlineList": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
+  "agentTabTitleCard": "编辑银行卡",
+  "@agentTabTitleCard": {
     "type": "text"
   },
   "agentTabTitleAds": "广告",
@@ -2133,8 +2268,16 @@
   "@agentCommissionHeaderReceive": {
     "type": "text"
   },
-  "agentLedgerFieldTitleAccount": "请输入帐号",
+  "agentLedgerFieldTitleAccount": "帐号",
   "@agentLedgerFieldTitleAccount": {
+    "type": "text"
+  },
+  "agentLedgerFieldTitleDepositCheck": "有存款会员",
+  "@agentLedgerFieldTitleDepositCheck": {
+    "type": "text"
+  },
+  "agentLedgerHeaderNo": "序号",
+  "@agentLedgerHeaderNo": {
     "type": "text"
   },
   "agentLedgerHeaderAccount": "帐号",
@@ -2155,6 +2298,78 @@
   },
   "agentLedgerHeaderRefund": "退水",
   "@agentLedgerHeaderRefund": {
+    "type": "text"
+  },
+  "agentLedgerHeaderRegDate": "注册时间",
+  "@agentLedgerHeaderRegDate": {
+    "type": "text"
+  },
+  "agentLedgerHeaderLastLogin": "最后登入时间",
+  "@agentLedgerHeaderLastLogin": {
+    "type": "text"
+  },
+  "agentBankcardHint": "添加银行卡后如需修改需洽询公司修改",
+  "@agentBankcardHint": {
+    "type": "text"
+  },
+  "agentAddDownlineHint": "※ {level}仅能添加{downline}帐号",
+  "@agentAddDownlineHint": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "Slot"
+      },
+      "downline": {
+        "example": "AG"
+      }
+    }
+  },
+  "agentDownlineButtonAdd": "新增下线",
+  "@agentDownlineButtonAdd": {
+    "type": "text"
+  },
+  "agentDownlineButtonProportion": "更新占成",
+  "@agentDownlineButtonProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderAccount": "帐号",
+  "@agentDownlineHeaderAccount": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus": "状态",
+  "@agentDownlineHeaderStatus": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus0": "启用",
+  "@agentDownlineHeaderStatus0": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus1": "禁用",
+  "@agentDownlineHeaderStatus1": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdateHint": "更新占成\n(添加下线帐号后可直接编辑占成)",
+  "@agentDownlineHeaderUpdateHint": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdate": "更新占成",
+  "@agentDownlineHeaderUpdate": {
+    "type": "text"
+  },
+  "agentDownlineHeaderMore": "更多",
+  "@agentDownlineHeaderMore": {
+    "type": "text"
+  },
+  "agentDownlineHeaderCategory": "類別",
+  "@agentDownlineHeaderCategory": {
+    "type": "text"
+  },
+  "agentDownlineHeaderProportion": "占成",
+  "@agentDownlineHeaderProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderFee": "手续费/平台费",
+  "@agentDownlineHeaderFee": {
     "type": "text"
   },
   "agentAdTabAvailable": "可使用广告",
@@ -2467,7 +2682,11 @@
   "@storeRequestWindowFieldTitleAddress": {
     "type": "text"
   },
-  "storeExchangeResultWindowTitleSuccess": "会员兑换成功",
+  "storeRequestWindowSpinnerHint": "请选择",
+  "@storeRequestWindowSpinnerHint": {
+    "type": "text"
+  },
+  "storeExchangeResultWindowTitleSuccess": "兑换成功",
   "@storeExchangeResultWindowTitleSuccess": {
     "type": "text"
   },
@@ -2617,8 +2836,44 @@
       }
     }
   },
-  "networkChangedHint": "偵測到網路狀態變更，是否要刷新頁面?",
-  "@networkChangedHint": {
+  "serviceRouteHint": "需要帮助或联系我们",
+  "@serviceRouteHint": {
+    "type": "text"
+  },
+  "serviceButtonContact": "联系客服",
+  "@serviceButtonContact": {
+    "type": "text"
+  },
+  "serviceTitleCustomerService": "在线客服服务",
+  "@serviceTitleCustomerService": {
+    "type": "text"
+  },
+  "serviceDescCustomerService": "24小时服务不间断",
+  "@serviceTitleCustomerServiceDesc": {
+    "type": "text"
+  },
+  "serviceTitleEmail": "电子信箱",
+  "@serviceTitleEmail": {
+    "type": "text"
+  },
+  "serviceTitlePhone": "手机号",
+  "@serviceTitlePhone": {
+    "type": "text"
+  },
+  "serviceTitleSkype": "Skype",
+  "@serviceTitleSkype": {
+    "type": "text"
+  },
+  "serviceTitleLine": "Line",
+  "@serviceTitleLine": {
+    "type": "text"
+  },
+  "serviceTitleZalo": "Zalo",
+  "@serviceTitleZalo": {
+    "type": "text"
+  },
+  "serviceTitleFacebook": "Facebook",
+  "@serviceTitleFacebook": {
     "type": "text"
   }
 }

@@ -38,13 +38,10 @@ class _WebRouteState extends State<WebRoute> {
     return WillPopScope(
       onWillPop: () async {
         debugPrint('pop web route');
-        if (RouterNavigate.current == Routes.serviceRoute ||
-            RouterNavigate.current == Routes.depositWebPage ||
-            RouterNavigate.current == Routes.centerWebPage ||
-            RouterNavigate.current == Routes.moreWebPage) {
+        if (AppNavigator.isWebRoute) {
           Future.delayed(
             Duration(milliseconds: 200),
-            () => RouterNavigate.navigateBack(),
+            () => AppNavigator.back(),
           );
         }
         return Future(() => true);

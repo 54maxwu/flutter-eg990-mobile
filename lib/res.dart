@@ -2,10 +2,14 @@
 class Res {
   //  static const String fontawesome_webfont = "assets/fonts/fontawesome_webfont.ttf";
   static const String wallpaper = "";
+  static const String bg_movie = "assets/video/bg_reg.mp4";
+
 //  static const String shadow = "assets/images/shadow.png";
-  static const String homeBoxUserAreaBg = "assets/images/index_member.jpg";
+  static const String homeBoxUserAreaBg = "";
+
   static const String iconBarLogo = "assets/images/icon_bar_logo.png";
   static const String iconPending = "assets/images/icon_pending.png";
+  static const String iconLine = "assets/images/icon_line.png";
 
 //  static const String tbico_casino = "assets/images/index/tbico_casino.png";
 //  static const String tbico_slot = "assets/images/index/tbico_slot.png";
@@ -49,13 +53,4 @@ class Res {
   static const String roller_top = "assets/images/roller/top_bg.jpg";
   static const String roller_wheel_8 = "assets/images/roller/wheel8.png";
   static const String roller_btn_go = "assets/images/roller/go.png";
-
-//  static const String movie_eg_base = "assets/images/movie_eg/";
-//  static const String movie_eg_dark_base = "assets/images/movie_eg_dark/";
-  static const String movie_new_base = "assets/images/movie_new/";
-  static const String movie_new_dark_base = "assets/images/movie_new_dark/";
-  static const String movie_category_action_expand =
-      "assets/images/movie_new/expand.png";
-  static const String movie_category_action_fold =
-      "assets/images/movie_new/fold.png";
 }

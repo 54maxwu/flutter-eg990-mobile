@@ -24,11 +24,11 @@ class _StoreDisplayState extends State<StoreDisplay> {
     double imageContainerScale = 1920 / Global.device.width;
     // origin pic size is w1920*h530
     imageHeight = 530 / imageContainerScale;
-    print('store banner height: $imageHeight');
+    debugPrint('store banner height: $imageHeight');
 
     availableHeight = Global.device.featureContentHeight - 4.0;
     contentHeight = availableHeight - imageHeight;
-    print('store content height: $contentHeight');
+    debugPrint('store content height: $contentHeight');
     super.initState();
   }
 

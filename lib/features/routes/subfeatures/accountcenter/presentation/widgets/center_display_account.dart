@@ -2,7 +2,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/entity/center_account_entity.dart'
@@ -21,8 +21,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
     with AfterLayoutMixin {
   static final Key _streamKey = new Key('accountstream');
 
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'dataform');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'dataform');
 
   final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
       new GlobalKey(debugLabel: 'account');
@@ -142,15 +141,13 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.centerTextTitleAccount,
+                      maxInputLength: InputLimit.ACCOUNT_MAX,
                       titleLetterSpacing: 4,
                       suffixText: localeStr.centerTextButtonChangePwd,
                       suffixAction: (account) {
-                        RouterNavigate.navigateToPage(
-                          RoutePage.centerPassword,
-                          arg: CenterDisplayAccountPasswordArguments(
-                            store: _store,
-                          ),
-                        );
+                        AppNavigator.navigateTo(RoutePage.centerPassword,
+                            arg: CenterDisplayAccountPasswordArguments(
+                                store: _store));
                       },
                       readOnly: true,
                     ),
@@ -160,12 +157,13 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: localeStr.centerHintNoName,
                       persistHint: false,
                       coloredHint: true,
+                      maxInputLength: InputLimit.NAME_MAX,
                       prefixText: localeStr.centerTextTitleName,
                       suffixText: (_storeData.canBindCard)
                           ? localeStr.centerTextButtonBind
                           : null,
                       suffixAction: (_) {
-                        RouterNavigate.navigateToPage(RoutePage.bankcard);
+                        AppNavigator.navigateTo(RoutePage.bankcard);
                       },
                       readOnly: true,
                     ),
@@ -173,7 +171,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                     new CustomizeFieldWidget(
                       key: _birthFieldKey,
                       fieldType: FieldType.Date,
-                      maxInputLength: 10,
+                      maxInputLength: InputLimit.DATE,
                       hint: localeStr.centerTextTitleDateHint,
                       persistHint: false,
                       prefixText: localeStr.centerTextTitleBirth,
@@ -183,13 +181,15 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       suffixAction: (input) {
                         debugPrint('request bind birth date: $input');
                         checkAndPost(context, () {
-                          if (input.isValidDate)
+                          if (input.isDate)
                             _store.bindBirth(input);
                           else
                             callToast(localeStr.messageInvalidFormat);
                         });
                       },
                       readOnly: _storeData.canBindBirthDate == false,
+                      errorMsg: localeStr.messageInvalidFormat,
+                      validCondition: (input) => input.isDate,
                     ),
                     /* Phone Field */
                     new CustomizeFieldWidget(
@@ -197,6 +197,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.centerTextTitlePhone,
+                      maxInputLength: InputLimit.PHONE_MAX,
                       titleLetterSpacing: 4,
                       suffixText: (_storeData.canVerifyPhone)
                           ? localeStr.centerTextButtonSend
@@ -236,7 +237,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       readOnly: _storeData.canBindMail == false,
                       validCondition: (value) => value.isEmail,
                       errorMsg: localeStr.messageInvalidEmail,
-                      maxInputLength: 50,
+                      maxInputLength: InputLimit.ADDRESS_MAX,
                     ),
                     /* WeChat Field */
                     new CustomizeFieldWidget(
@@ -279,7 +280,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
 //                  suffixAction: (_) {
 //                    debugPrint('cgp url: ${_store.cgpUrl}');
 //                    if (_store.cgpUrl != null && _store.cgpUrl.isNotEmpty)
-//                      RouterNavigate.navigateToPage(
+//                      AppNavigator.navigateToPage(
 //                        RoutePage.centerWeb,
 //                        arg: WebRouteArguments(startUrl: _store.cgpUrl[0]),
 //                      );
@@ -292,6 +293,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
               key: _cpwFieldKey,
               hint: '',
               persistHint: false,
+              maxInputLength: InputLimit.WECHAT_MAX,
               prefixText: localeStr.centerTextTitleCpw,
               titleLetterSpacing: 0,
               suffixText: (_storeData.canBindCpw)

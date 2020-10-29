@@ -79,7 +79,7 @@ class _CenterRouteState extends State<CenterRoute> {
                   localeStr.messageTaskSuccess(localeStr.centerTextButtonEdit),
                   icon: Icons.check_circle_outline,
                 );
-                RouterNavigate.navigateBack();
+                AppNavigator.back();
                 break;
               case CenterStoreAction.verify_request:
               case CenterStoreAction.verify:
@@ -124,7 +124,7 @@ class _CenterRouteState extends State<CenterRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop center route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

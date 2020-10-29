@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "en",
-  "title": "EG990 Mobile",
+  "title": "BKK365 Mobile",
   "@title": {
-    "description": "EG990 Demo",
+    "description": "BKK365 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -143,6 +143,18 @@
   "@pageTitleMemberFlow": {
     "type": "text"
   },
+  "pageTitleMemberAgentRegister": "Agent Member Register",
+  "@pageTitleMemberAgentRegister": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLogin": "Agent Member Login",
+  "@pageTitleMemberAgentLogin": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLoginHint": "Login agent member",
+  "@pageTitleMemberAgentLoginHint": {
+    "type": "text"
+  },
   "pageTitleMemberAgent": "Agent",
   "@pageTitleMemberAgent": {
     "type": "text"
@@ -188,8 +200,20 @@
   "@workInProgress": {
     "type": "text"
   },
+  "networkChangedHint": "Detect network status has changed, do you want to refresh?",
+  "@networkChangedHint": {
+    "type": "text"
+  },
   "exitAppHint": "Press again to exit APP",
   "@exitAppHint": {
+    "type": "text"
+  },
+  "gameToolHintUsage": "Tap to show，Long-Press to hide ↗",
+  "@gameToolHintUsage": {
+    "type": "text"
+  },
+  "gameToolHintRestore": "Double-Tap to restore",
+  "@gameToolHintRestore": {
     "type": "text"
   },
   "btnMenu": "Menu",
@@ -268,6 +292,10 @@
   "@btnBind": {
     "type": "text"
   },
+  "btnQuery": "Search",
+  "@btnQuery": {
+    "type": "text"
+  },
   "btnQueryNow": "Search",
   "@btnQueryNow": {
     "type": "text"
@@ -282,6 +310,14 @@
   },
   "btnOff": "Off",
   "@btnOff": {
+    "type": "text"
+  },
+  "btnGo": "Go",
+  "@btnGo": {
+    "type": "text"
+  },
+  "btnCopy": "Copy",
+  "@btnCopy": {
     "type": "text"
   },
   "sideBtnBackHome": "Return",
@@ -316,7 +352,7 @@
   "@spinnerDateCustom": {
     "type": "text"
   },
-  "hintActionSelect": "Please select",
+  "hintActionSelect": "Select",
   "@hintActionSelect": {
     "type": "text"
   },
@@ -389,8 +425,12 @@
   "@messageWelcome": {
     "type": "text"
   },
-  "messageWelcomeHint": "please login / register",
+  "messageWelcomeHint": "Welcome! Please login / register",
   "@messageWelcomeHint": {
+    "type": "text"
+  },
+  "messageLoginHint": "Please login / register",
+  "@messageWelcomeHintShort": {
     "type": "text"
   },
   "messageRegisterFailed": "Registration failed",
@@ -516,9 +556,14 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "Error Phone Number(10)",
+  "messageInvalidPhone": "Error Phone Number({num})",
   "@messageInvalidPhone": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "6"
+      }
+    }
   },
   "messageInvalidPostCode": "Error Post Code(5~8)",
   "@messageInvalidPostCode": {
@@ -545,11 +590,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Password should be 6 ~ 18 words",
+  "messageInvalidPassword": "Password should be 6~18 words",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Password should be 8 ~ 18 words",
+  "messageInvalidPasswordNew": "Password should be 8~18 words",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -578,7 +623,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 6 ~ 19 characters",
+  "messageInvalidCardNumber": "The card number is 16 ~ 19 characters",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -706,6 +751,10 @@
   },
   "messageErrorAccount": "Account Error",
   "@messageErrorAccount": {
+    "type": "text"
+  },
+  "messageRepeatAccount": "Account name repeat",
+  "@messageRepeatAccount": {
     "type": "text"
   },
   "messageErrorPassword": "Password Error",
@@ -869,7 +918,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "Click me to open EG990 website",
+  "gameCategoryWebHint": "Click me to open BKK365 website",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -948,6 +997,22 @@
   },
   "registerFieldTitlePhone": "Mobile number",
   "@registerFieldTitlePhone": {
+    "type": "text"
+  },
+  "registerFieldTitleEmail": "E-Mail",
+  "@registerFieldTitleEmail": {
+    "type": "text"
+  },
+  "registerFieldTitleZalo": "Zalo",
+  "@registerFieldTitleZalo": {
+    "type": "text"
+  },
+  "registerFieldTitleLine": "Line",
+  "@registerFieldTitleLine": {
+    "type": "text"
+  },
+  "registerFieldTitleQQ": "QQ",
+  "@registerFieldTitleQQ": {
     "type": "text"
   },
   "registerFieldTitleVerify": "Verification Code",
@@ -1210,6 +1275,10 @@
   "@withdrawViewHint2": {
     "type": "text"
   },
+  "walletViewTitle": "Wallet",
+  "@walletViewTitle": {
+    "type": "text"
+  },
   "walletViewTitleMy": "My Wallet",
   "@walletViewTitleMy": {
     "type": "text"
@@ -1248,6 +1317,10 @@
   },
   "walletViewMessageSetting": "change wallet settings",
   "@walletViewMessageSetting": {
+    "type": "text"
+  },
+  "messageNoMessages": "No messages",
+  "@messageNoMessages": {
     "type": "text"
   },
   "centerViewTitleData": "Profile",
@@ -1334,7 +1407,7 @@
   "@centerLuckyNumberError": {
     "type": "text"
   },
-  "centerLuckyHint": "Bind the Liuhe Lucky Code, you can participate in the Liuhe Lottery Match Code, wonderful gift for you !!!",
+  "centerLuckyHint": "Bind the Lucky Code, you can participate in the Lottery Match Code, wonderful gift for you !!!",
   "@centerLuckyHint": {
     "type": "text"
   },
@@ -1358,7 +1431,7 @@
   "@centerDialogCpwRightTitle": {
     "type": "text"
   },
-  "centerDialogCpwRightHint": "(please wait for data update after bind wallet)",
+  "centerDialogCpwRightHint": "(please wait for data update)",
   "@centerDialogCpwRightHint": {
     "type": "text"
   },
@@ -1374,7 +1447,7 @@
   "@transactionViewSpinnerTitle": {
     "type": "text"
   },
-  "transactionHeaderSerial": "Serial Number",
+  "transactionHeaderSerial": "No.",
   "@transactionHeaderSerial": {
     "type": "text"
   },
@@ -1382,15 +1455,15 @@
   "@transactionHeaderDate": {
     "type": "text"
   },
-  "transactionHeaderType": "Category",
+  "transactionHeaderType": "Type",
   "@transactionHeaderType": {
     "type": "text"
   },
-  "transactionHeaderDesc": "Description",
+  "transactionHeaderDesc": "Notice",
   "@transactionHeaderDesc": {
     "type": "text"
   },
-  "transactionHeaderAmount": "Amount",
+  "transactionHeaderAmount": "Value",
   "@transactionHeaderAmount": {
     "type": "text"
   },
@@ -1418,7 +1491,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Total: $ {value}",
+  "betsTextTotal": "Total: ￥ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1517,6 +1590,10 @@
   },
   "dealsHeaderAmount": "Amount",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "depositPaymentNoData": "No available payment method",
+  "@depositPaymentNoData": {
     "type": "text"
   },
   "depositPaymentTitleBank": "Bank Deposit",
@@ -1659,7 +1736,7 @@
   "@depositHintTextAccount": {
     "type": "text"
   },
-  "depositHintTextAmount": "Single Deposit Limit: ￥{value}",
+  "depositHintTextAmount": "Single Deposit Limit: ￥ {value}",
   "@depositHintTextAmount": {
     "type": "text",
     "placeholders": {
@@ -1748,11 +1825,11 @@
       }
     }
   },
-  "depositHintTextUnionA": "A. Download the Bank of China App or UnionPay Wallet App on your phone;\n",
+  "depositHintTextUnionA": "A. Download the China Bank App or UnionPay Wallet App on your phone;\n",
   "@depositHintTextUnionA": {
     "type": "text"
   },
-  "depositHintTextUnionB": "B. Log in to the Bank of China Mobile App and use the payment function in the upper right corner or the payment function in the mobile payment module;\n",
+  "depositHintTextUnionB": "B. Login to the China Bank App and use the payment function in the upper right corner or the payment function in the mobile payment module;\n",
   "@depositHintTextUnionB": {
     "type": "text"
   },
@@ -1800,11 +1877,11 @@
       }
     }
   },
-  "depositNewbieQuick0": "Debit Card Teaching",
+  "depositNewbieQuick0": "Debit Card Tutorial",
   "@ depositNewbieQuick0": {
     "type": "text"
   },
-  "depositNewbieAli0": "Alipay to Bank Card Teaching",
+  "depositNewbieAli0": "Alipay Tutorial",
   "@ depositNewbieAli0": {
     "type": "text"
   },
@@ -1868,7 +1945,7 @@
   "@ depositNewbieUnion4": {
     "type": "text"
   },
-  "depositNewbieWechat0": "Code Scan Teaching",
+  "depositNewbieWechat0": "Code Scan Tutorial",
   "@ depositNewbieWechat0": {
     "type": "text"
   },
@@ -1896,11 +1973,11 @@
   "@balanceStatusMaintenance": {
     "type": "text"
   },
-  "balanceTransferInText": "Transfer In",
+  "balanceTransferInText": "In",
   "@balanceTransferInText": {
     "type": "text"
   },
-  "balanceTransferOutText": "Transfer Out",
+  "balanceTransferOutText": "Out",
   "@balanceTransferOutText": {
     "type": "text"
   },
@@ -1989,6 +2066,51 @@
   "@flowHeaderTextTotal": {
     "type": "text"
   },
+  "agentActionLoginHint": "Please login your agent account",
+  "@agentActionLoginHint": {
+    "type": "text"
+  },
+  "agentActionLogin": "Agent Login",
+  "@agentActionLogin": {
+    "type": "text"
+  },
+  "agentActionRegister": "Agent Register",
+  "@agentActionRegister": {
+    "type": "text"
+  },
+  "agentRegisterSuccess": "The agent has been submitted for review, please wait",
+  "@agentRegisterSuccess": {
+    "type": "text"
+  },
+  "agentAccountLevelCompany": "Company",
+  "@agentAccountLevelCompany": {
+    "type": "text"
+  },
+  "agentAccountLevelGrandMaster": "Grand-Master",
+  "@agentAccountLevelGrandMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelMaster": "Master",
+  "@agentAccountLevelMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelAgent": "Agent",
+  "@agentAccountLevelAgent": {
+    "type": "text"
+  },
+  "agentAccountLevelMember": "Member",
+  "@agentAccountLevelMember": {
+    "type": "text"
+  },
+  "agentTitleAccount": "{level} Account",
+  "@agentTitleAccount": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
   "agentTabTitleInfo": "Info",
   "@agentTabTitleInfo": {
     "type": "text"
@@ -2003,6 +2125,19 @@
   },
   "agentTabTitleLedger": "Ledger",
   "@agentTabTitleLedger": {
+    "type": "text"
+  },
+  "agentTabTitleDownlineList": "{level} List",
+  "@agentTabTitleDownlineList": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
+  "agentTabTitleCard": "Edit bank card",
+  "@agentTabTitleCard": {
     "type": "text"
   },
   "agentTabTitleAds": "Ads",
@@ -2069,7 +2204,7 @@
   "@agentTextChartCheckFull": {
     "type": "text"
   },
-  "agentChartTableSpinner": "form",
+  "agentChartTableSpinner": "Form",
   "@agentChartTableSpinner": {
     "type": "text"
   },
@@ -2133,8 +2268,16 @@
   "@agentCommissionHeaderReceive": {
     "type": "text"
   },
-  "agentLedgerFieldTitleAccount": "please enter agent name",
+  "agentLedgerFieldTitleAccount": "Account",
   "@agentLedgerFieldTitleAccount": {
+    "type": "text"
+  },
+  "agentLedgerFieldTitleDepositCheck": "Deposit members",
+  "@agentLedgerFieldTitleDepositCheck": {
+    "type": "text"
+  },
+  "agentLedgerHeaderNo": "No",
+  "@agentLedgerHeaderNo": {
     "type": "text"
   },
   "agentLedgerHeaderAccount": "Account",
@@ -2157,6 +2300,78 @@
   "@agentLedgerHeaderRefund": {
     "type": "text"
   },
+  "agentLedgerHeaderRegDate": "Registered",
+  "@agentLedgerHeaderRegDate": {
+    "type": "text"
+  },
+  "agentLedgerHeaderLastLogin": "Last Login",
+  "@agentLedgerHeaderLastLogin": {
+    "type": "text"
+  },
+  "agentBankcardHint": "You will have to contact us to edit card info after you add the card",
+  "@agentBankcardHint": {
+    "type": "text"
+  },
+  "agentAddDownlineHint": "※ {level} account can only add {downline} account as downline",
+  "@agentAddDownlineHint": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "Slot"
+      },
+      "downline": {
+        "example": "AG"
+      }
+    }
+  },
+  "agentDownlineButtonAdd": "Add Downline",
+  "@agentDownlineButtonAdd": {
+    "type": "text"
+  },
+  "agentDownlineButtonProportion": "Update Proportion",
+  "@agentDownlineButtonProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderAccount": "Account",
+  "@agentDownlineHeaderAccount": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus": "Status",
+  "@agentDownlineHeaderStatus": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus0": "Enabled",
+  "@agentDownlineHeaderStatus0": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus1": "Disabled",
+  "@agentDownlineHeaderStatus1": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdateHint": "Update Proportion\n(You can edit the proportion directly after adding the account)",
+  "@agentDownlineHeaderUpdateHint": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdate": "Update Proportion",
+  "@agentDownlineHeaderUpdate": {
+    "type": "text"
+  },
+  "agentDownlineHeaderMore": "More",
+  "@agentDownlineHeaderMore": {
+    "type": "text"
+  },
+  "agentDownlineHeaderCategory": "Category",
+  "@agentDownlineHeaderCategory": {
+    "type": "text"
+  },
+  "agentDownlineHeaderProportion": "Proportion",
+  "@agentDownlineHeaderProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderFee": "Handling fee/\nPlatform fee",
+  "@agentDownlineHeaderFee": {
+    "type": "text"
+  },
   "agentAdTabAvailable": "Available",
   "@agentAdTabAvailable": {
     "type": "text"
@@ -2177,7 +2392,7 @@
   "@noticeTabMaintenance": {
     "type": "text"
   },
-  "wheelTextTitleCount": "Cumulative Lucky Draw: {num} times",
+  "wheelTextTitleCount": "Available draws: {num} times",
   "@wheelTextTitleCount": {
     "type": "text",
     "placeholders": {
@@ -2621,8 +2836,44 @@
       }
     }
   },
-  "networkChangedHint": "Detect network status has changed, do you want to refresh?",
-  "@networkChangedHint": {
+  "serviceRouteHint": "Need Help? Please contact us",
+  "@serviceRouteHint": {
+    "type": "text"
+  },
+  "serviceButtonContact": "Contact Customer Service",
+  "@serviceButtonContact": {
+    "type": "text"
+  },
+  "serviceTitleCustomerService": "Online customer service",
+  "@serviceTitleCustomerService": {
+    "type": "text"
+  },
+  "serviceDescCustomerService": "24 hours uninterrupted service",
+  "@serviceTitleCustomerServiceDesc": {
+    "type": "text"
+  },
+  "serviceTitleEmail": "E-Mail",
+  "@serviceTitleEmail": {
+    "type": "text"
+  },
+  "serviceTitlePhone": "手机号",
+  "@serviceTitlePhone": {
+    "type": "text"
+  },
+  "serviceTitleSkype": "Skype",
+  "@serviceTitleSkype": {
+    "type": "text"
+  },
+  "serviceTitleLine": "Line",
+  "@serviceTitleLine": {
+    "type": "text"
+  },
+  "serviceTitleZalo": "Zalo",
+  "@serviceTitleZalo": {
+    "type": "text"
+  },
+  "serviceTitleFacebook": "Facebook",
+  "@serviceTitleFacebook": {
     "type": "text"
   }
 }

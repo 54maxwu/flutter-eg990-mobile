@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/features/general/widgets/warning_display.da
 import 'state/deposit_store.dart';
 import 'widgets/deposit_display.dart';
 
-/// Main View of [Router.promoRoute]
+/// Main View of [AutoRouter.promoRoute]
 ///@author H.C.CHIANG
 ///@version 2020/3/12
 class DepositRoute extends StatefulWidget {
@@ -39,7 +39,7 @@ class _DepositRouteState extends State<DepositRoute> {
         // Run some logic with the content of the observed field
         (bool hasCard) {
           if (hasCard != null && !hasCard && mounted) {
-            RouterNavigate.replacePage(RoutePage.bankcard);
+            AppNavigator.replaceWith(RoutePage.bankcard);
             callToast(localeStr.depositHintRedirectBankcard,
                 duration: ToastDuration.LONG);
           }
@@ -66,7 +66,7 @@ class _DepositRouteState extends State<DepositRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop deposit route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

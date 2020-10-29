@@ -87,7 +87,7 @@ class _LoginRouteState extends State<LoginRoute> {
         : WillPopScope(
             onWillPop: () {
               debugPrint('pop login route');
-              RouterNavigate.navigateBack();
+              AppNavigator.back();
               return Future(() => true);
             },
             child: Scaffold(

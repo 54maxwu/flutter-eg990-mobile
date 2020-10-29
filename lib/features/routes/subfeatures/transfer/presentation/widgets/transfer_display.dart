@@ -20,8 +20,7 @@ class TransferDisplay extends StatefulWidget {
 class _TransferDisplayState extends State<TransferDisplay> {
   final String tag = 'TransferDisplay';
 
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
 
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =
@@ -121,7 +120,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       clearValueOnMenuChanged: true,
                       changeNotify: (data) {
                         if (data == null) return;
-                        print('display selected: $data');
+                        debugPrint('display selected: $data');
                         // platform credit can only transfer to member wallet
                         if (data != '0') {
                           _site2List = [widget.store.platforms.first];
@@ -163,7 +162,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       clearValueOnMenuChanged: true,
                       changeNotify: (data) {
                         if (data == null) return;
-                        print('display selected: $data');
+                        debugPrint('display selected: $data');
                         // set site2 selected
                         _site2Selected = data;
                         widget.store.setSite2Value('');
@@ -177,11 +176,12 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       persistHint: false,
                       prefixText: localeStr.transferViewTitleAmount,
                       titleWidthFactor: 0.3,
-                      maxInputLength: 6,
+                      maxInputLength: InputLimit.AMOUNT,
                     ),
                     /* Amount Chip */
                     new CustomizeInputChipContainer(
                       prefixTitle: localeStr.transferViewTitleOption,
+                      prefixTextMaxLines: (Global.lang == 'zh') ? 1 : 2,
                       titleWidthFactor: 0.3,
                       titleLetterSpacing: 0,
                       labels: chipLabels,

@@ -50,9 +50,9 @@ class _RollerRouteState extends State<RollerRoute> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         debugPrint('pop roller route');
-        RouterNavigate.navigateBack();
+        Future.delayed(Duration(milliseconds: 100), () => AppNavigator.back());
         return Future(() => true);
       },
       child: Scaffold(

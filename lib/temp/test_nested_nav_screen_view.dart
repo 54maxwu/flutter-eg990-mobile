@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/general/toast_widget_export.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/temp/test_router.gr.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
@@ -79,8 +80,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
         Padding(
           padding: const EdgeInsets.only(top: 12.0),
           child: RaisedButton(
-            onPressed: () =>
-                ScreenNavigate.switchScreen(screen: ScreenEnum.Feature),
+            onPressed: () => AppNavigator.switchScreen(Screens.Feature),
             child: Text('Return Home'),
           ),
         ),
@@ -96,12 +96,12 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
           children: <Widget>[
             RaisedButton(
               onPressed: () =>
-                  testNavigator.pushNamed(TestRoutes.testPermissionScreen),
+                  context.navigator.push(TestRouterRoutes.testPermissionScreen),
               child: Text('Permission'),
             ),
             RaisedButton(
               onPressed: () =>
-                  testNavigator.pushNamed(TestRoutes.testHomeSizeCalc),
+                  context.navigator.push(TestRouterRoutes.testHomeSizeCalc),
               child: Text('Home Calc'),
             ),
           ],
@@ -300,7 +300,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
             RaisedButton(
                 child: Text('push'),
                 onPressed: () =>
-                    testNavigator.pushNamed(TestRoutes.testInputRoute)),
+                    context.navigator.push(TestRouterRoutes.testInputRoute)),
           ],
         ),
       ],
@@ -314,8 +314,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
         Padding(
           padding: const EdgeInsets.only(top: 12.0),
           child: RaisedButton(
-            onPressed: () =>
-                ScreenNavigate.switchScreen(screen: ScreenEnum.Feature),
+            onPressed: () => AppNavigator.switchScreen(Screens.Feature),
             child: Text('Return Home'),
           ),
         ),
@@ -331,7 +330,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
           children: <Widget>[
             RaisedButton(
               onPressed: () =>
-                  testNavigator.pushNamed(TestRoutes.testPermissionScreen),
+                  context.navigator.push(TestRouterRoutes.testPermissionScreen),
               child: Text('Permission'),
             ),
             RaisedButton(
@@ -477,7 +476,7 @@ class _TestNestedNavScreenViewState extends State<TestNestedNavScreenView> {
             RaisedButton(
                 child: Text('push'),
                 onPressed: () =>
-                    testNavigator.pushNamed(TestRoutes.testInputRoute)),
+                    context.navigator.push(TestRouterRoutes.testInputRoute)),
           ],
         ),
       ],

@@ -55,12 +55,12 @@
         "status": "\u5df2\u5151\u6362"
       }
     ],
-    "first_page_url": "http:\/\/www.eg990.com:8775\/api\/listexchange?page=1",
+    "first_page_url": "http:\/\/www.eg990.com\/api\/listexchange?page=1",
     "from": 1,
     "last_page": 2,
-    "last_page_url": "http:\/\/www.eg990.com:8775\/api\/listexchange?page=2",
-    "next_page_url": "http:\/\/www.eg990.com:8775\/api\/listexchange?page=2",
-    "path": "http:\/\/www.eg990.com:8775\/api\/listexchange",
+    "last_page_url": "http:\/\/www.eg990.com\/api\/listexchange?page=2",
+    "next_page_url": "http:\/\/www.eg990.com\/api\/listexchange?page=2",
+    "path": "http:\/\/www.eg990.com\/api\/listexchange",
     "per_page": 5,
     "prev_page_url": null,
     "to": 5,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart' as HtmlStyle;
+import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 import '../state/point_store.dart';
 import 'point_store_inherit_widget.dart';
@@ -35,7 +34,7 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
     _tableCellWidth = (1.0 / _store.rulesModel.platformRules.length)
         .toStringAsFixed(3)
         .strToDouble;
-    print('table cell width: $_tableCellWidth');
+    debugPrint('table cell width: $_tableCellWidth');
 
     _tableWidthMap = {
       //指定索引及固定列宽
@@ -152,16 +151,8 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 2.0),
-          child: Html(
-            data: """$_htmlContent""",
-            style: {
-              "span": HtmlStyle.Style(
-                fontSize: HtmlStyle.FontSize.large,
-                color: themeColor.defaultAccentColor,
-              ),
-            },
-          ),
+          padding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 4.0),
+          child: HtmlWidget(_htmlContent),
         ),
       ],
     );

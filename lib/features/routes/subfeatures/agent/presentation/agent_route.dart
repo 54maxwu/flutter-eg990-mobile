@@ -96,7 +96,7 @@ class _AgentRouteState extends State<AgentRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop agent route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

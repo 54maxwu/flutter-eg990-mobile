@@ -1,4 +1,16 @@
-part of 'feature_screen_view.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog_signed.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/badge/badge.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/routes/more/more_dialog.dart';
+
+import 'feature_screen_inherited_widget.dart';
+import 'feature_screen_store.dart';
+import 'screen_navigation_bar_item.dart';
 
 ///
 ///@author H.C.CHIANG
@@ -33,7 +45,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   void _itemTapped(int index, bool hasUser) {
     var item = _tabs[index];
     debugPrint('tapped item: ${item.value}');
-    if (item == ScreenNavigationBarItem.more) {
+    if (item.value.id == RouteEnum.MORE) {
       showDialog(
         context: context,
         barrierDismissible: true,
@@ -44,15 +56,15 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     } else {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
-        RouterNavigate.navigateToPage(RoutePage.login);
-      else if (item == ScreenNavigationBarItem.service)
-        RouterNavigate.navigateToPage(value.route,
+        AppNavigator.navigateTo(RoutePage.login);
+      else if (item.value.id == RouteEnum.SERVICE)
+        AppNavigator.navigateTo(value.route,
             arg: WebRouteArguments(
               startUrl: Global.currentService,
               hideBars: true,
             ));
       else
-        RouterNavigate.navigateToPage(value.route);
+        AppNavigator.navigateTo(value.route);
     }
   }
 
@@ -151,35 +163,72 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   }
 
   Widget _buildWidget(bool hasUser) {
-    List<String> labels = _tabs.map((e) => e.value.title).toList();
     return Observer(builder: (_) {
       // observe nav index to change icon icon color (setState does not work).
       final index = _store.navIndex;
       if (index >= 0) _navIndex = index;
       // monitor observable value to show event dialog
       if (_eventStore.showEventOnHome) _checkShowEvent();
+      // if (_navIndex == 10) {  // Agent route navigate bar
+      //   List<String> labels = _agentTabs.map((e) => e.value.title).toList();
+      //   return BottomNavigationBar(
+      //     onTap: (index) {
+      //       debugPrint('store state user: ${_store.userStatus}');
+      //       if (index == 1) return;
+      //       if (index == 0) AppNavigator.navigateClean();
+      //     },
+      //     currentIndex: 1,
+      //     type: BottomNavigationBarType.fixed,
+      //     selectedFontSize: FontSize.NORMAL.value,
+      //     unselectedFontSize: FontSize.NORMAL.value,
+      //     unselectedItemColor: themeColor.navigationColor,
+      //     fixedColor: themeColor.navigationColorFocus,
+      //     backgroundColor: themeColor.defaultAppbarColor,
+      //     items: List.generate(_agentTabs.length, (index) {
+      //       var itemValue = _agentTabs[index].value;
+      //       return _createBarItem(
+      //           itemValue: itemValue,
+      //           title: labels[index],
+      //           store: _store,
+      //           highlight: index == 1);
+      //     }),
+      //   );
+      // } else {
+      List<String> labels = _tabs.map((e) => e.value.title).toList();
       return BottomNavigationBar(
+        currentIndex: _navIndex,
         onTap: (index) {
           debugPrint('store state user: ${_store.userStatus}');
           _itemTapped(index, _store.hasUser);
         },
-        currentIndex: _navIndex,
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: FontSize.NORMAL.value,
+        backgroundColor: themeColor.defaultAppbarColor,
         unselectedFontSize: FontSize.NORMAL.value,
+        selectedFontSize: FontSize.NORMAL.value,
         unselectedItemColor: themeColor.navigationColor,
         fixedColor: themeColor.navigationColorFocus,
-        backgroundColor: themeColor.defaultAppbarColor,
         items: List.generate(_tabs.length, (index) {
           var itemValue = _tabs[index].value;
-          return _createBarItem(itemValue, labels[index], false, _store);
+          return _createBarItem(
+              itemValue: itemValue,
+              title: labels[index],
+              store: _store,
+              highlight: index == _navIndex);
         }),
       );
+      // }
     });
   }
 
-  BottomNavigationBarItem _createBarItem(RouteListItem itemValue, String title,
-      bool addBadge, FeatureScreenStore store) {
+  BottomNavigationBarItem _createBarItem({
+    RouteListItem itemValue,
+    String title,
+    bool addBadge = false,
+    FeatureScreenStore store,
+    bool highlight = false,
+  }) {
+    // debugPrint(
+    //     'navigate item $itemValue title: ${title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?'}');
     Widget icon = (itemValue.imageName != null)
         ? ClipRRect(
             borderRadius: BorderRadius.circular(30.0),
@@ -204,15 +253,11 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
                 ),
               ),
               padding: EdgeInsets.zero,
-              position: BadgePosition.topRight(top: -5, right: -6),
+              position: BadgePosition.topEnd(top: -5, end: -6),
               child: icon,
             )
           : icon,
-      title: Padding(
-        padding: EdgeInsets.only(top: 2.0),
-        child:
-            Text(title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?'),
-      ),
+      label: title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
     );
   }
 }

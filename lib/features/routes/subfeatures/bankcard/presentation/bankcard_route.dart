@@ -103,7 +103,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop bankcard route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

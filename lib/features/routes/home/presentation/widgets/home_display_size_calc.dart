@@ -9,10 +9,8 @@ class HomeDisplaySizeCalc {
   final double shortcutTitleHeight = 36.0;
   final double shortcutMaxIconSize = 28.0;
   final double shortcutMinIconSize = 24.0;
-  final double shortcutMinTextHeight = FontSize.NORMAL.value * 1.75;
-  final double shortcutMaxTextHeight = FontSize.NORMAL.value * 2.75;
   final double _barItemInset = 8.0;
-  final double barItemIconSize = 24.0;
+  final double barItemIconSize = 28.0;
   final double textWidthFactor = 0.85;
 
   double _bannerHeight;
@@ -20,6 +18,8 @@ class HomeDisplaySizeCalc {
 
   double _shortcutMaxHeight;
   double _shortcutMinHeight;
+  double _shortcutMinTextHeight;
+  double _shortcutMaxTextHeight;
 
   double _barMinWidth;
   double _barMaxWidth;
@@ -50,9 +50,16 @@ class HomeDisplaySizeCalc {
     if (_barMinWidth > _barMaxWidth) _barMinWidth = _barMaxWidth - 16;
     debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
     _barItemHeight = (barItemIconSize * 1.5 + 4.0) * Global.device.widthScale;
+    if (Global.lang != 'zh') _barItemHeight = _barItemHeight * 1.25;
     _barItemWidth = _barMinWidth - _barItemInset;
 
-    _shortcutMaxHeight = shortcutMaxTextHeight +
+    _shortcutMinTextHeight = (Global.lang != 'zh' && Global.lang != 'th')
+        ? FontSize.NORMAL.value * 2.75
+        : FontSize.NORMAL.value * 1.75;
+    _shortcutMaxTextHeight = (Global.lang != 'zh' && Global.lang != 'th')
+        ? FontSize.NORMAL.value * 3.5
+        : FontSize.NORMAL.value * 2.75;
+    _shortcutMaxHeight = _shortcutMaxTextHeight +
         shortcutMaxIconSize +
         shortcutTitleHeight +
 //        10.0 +

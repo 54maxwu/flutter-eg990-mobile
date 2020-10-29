@@ -20,8 +20,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
     with AfterLayoutMixin {
   static final GlobalKey<DialogWidgetState> _dialogKey =
       new GlobalKey(debugLabel: 'dialog');
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
 
   final GlobalKey<CustomizeFieldWidgetState> _phoneFieldKey =
       new GlobalKey(debugLabel: 'phone');
@@ -60,6 +59,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       fieldType: FieldType.Numbers,
                       hint: '',
                       persistHint: false,
+                      maxInputLength: InputLimit.PHONE_MAX,
                       prefixText: localeStr.centerTextTitlePhone,
                       titleLetterSpacing: 3,
                       suffixText: localeStr.userVerifyButtonText('\n'),
@@ -80,7 +80,7 @@ class _CenterDialogMobileState extends State<CenterDialogMobile>
                       persistHint: false,
                       prefixText: localeStr.userVerifyFieldTitle,
                       titleLetterSpacing: 3,
-                      maxInputLength: 12,
+                      maxInputLength: InputLimit.VERIFY,
                     ),
                   ],
                 ),

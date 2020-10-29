@@ -12,8 +12,7 @@ class TestBasicInputWidget extends StatefulWidget {
 
 class _TestBasicInputWidgetState extends State<TestBasicInputWidget>
     with SingleTickerProviderStateMixin {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
   Key _k1 = new GlobalKey();
   Key _k2 = new GlobalKey();
   String _email, _password;

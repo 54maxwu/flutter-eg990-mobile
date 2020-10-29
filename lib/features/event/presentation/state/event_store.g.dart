@@ -54,18 +54,27 @@ mixin _$EventStore on _EventStore, Store {
     });
   }
 
-  final _$getUserCreditAsyncAction = AsyncAction('_EventStore.getUserCredit');
-
-  @override
-  Future<void> getUserCredit() {
-    return _$getUserCreditAsyncAction.run(() => super.getUserCredit());
-  }
-
   final _$getWebsiteListAsyncAction = AsyncAction('_EventStore.getWebsiteList');
 
   @override
   Future<void> getWebsiteList() {
     return _$getWebsiteListAsyncAction.run(() => super.getWebsiteList());
+  }
+
+  final _$getNewMessageCountAsyncAction =
+      AsyncAction('_EventStore.getNewMessageCount');
+
+  @override
+  Future<void> getNewMessageCount() {
+    return _$getNewMessageCountAsyncAction
+        .run(() => super.getNewMessageCount());
+  }
+
+  final _$getUserCreditAsyncAction = AsyncAction('_EventStore.getUserCredit');
+
+  @override
+  Future<void> getUserCredit() {
+    return _$getUserCreditAsyncAction.run(() => super.getUserCredit());
   }
 
   final _$getEventAsyncAction = AsyncAction('_EventStore.getEvent');

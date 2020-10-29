@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DownloadAreaRoute extends StatelessWidget {
@@ -32,7 +32,7 @@ class DownloadAreaRoute extends StatelessWidget {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop download route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

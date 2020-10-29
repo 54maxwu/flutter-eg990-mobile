@@ -131,7 +131,7 @@ class PaymentTutorial extends StatelessWidget {
                     case 81:
                       await launch(
                           'https://www.gamewallet.asia/version.php?fn=gp_a&latest');
-//                RouterNavigate.navigateToPage(
+//                AppNavigator.navigateToPage(
 //                  RoutePage.depositWeb,
 //                  arg: 'https://www.gamewallet.asia/version.php?fn=gp_a&latest',
 //                );

@@ -1,6 +1,6 @@
-import 'package:flutter/widgets.dart' show IconData;
 import 'package:flutter_eg990_mobile/features/router/route_list_item.dart';
 import 'package:flutter_eg990_mobile/features/router/route_page.dart';
+import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:vnum/vnum.dart';
@@ -11,59 +11,57 @@ export 'package:flutter_eg990_mobile/features/router/route_list_item.dart';
 class MoreGridItem extends Vnum<RouteListItem> {
   /// Case Definition
   static MoreGridItem notice = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.NOTICE,
-    iconData: const IconData(0xf028, fontFamily: 'FontAwesome'),
+    iconData: IconCode.drawerNotice,
     route: RoutePage.noticeBoard,
   ));
   static MoreGridItem download = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.DOWNLOAD,
-    iconData: const IconData(0xf0ed, fontFamily: 'FontAwesome'),
-    route: RoutePage.downloadArea,
+    iconData: IconCode.drawerDownload,
+    route: RoutePage.sideDownload,
   ));
   static MoreGridItem tutorial = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.TUTORIAL,
-    iconData: const IconData(0xf059, fontFamily: 'FontAwesome'),
-    route: RoutePage.tutorial,
+    iconData: IconCode.drawerTutorial,
+    route: RoutePage.moreTutorial,
+  ));
+  static MoreGridItem vip = MoreGridItem.define(RouteListItem(
+    iconData: IconCode.gridVip,
+    route: RoutePage.vipLevel,
   ));
   static MoreGridItem service = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.SERVICE,
-    iconData: const IconData(0xf025, fontFamily: 'FontAwesome'),
+    iconData: IconCode.navService,
     route: RoutePage.service,
   ));
   static MoreGridItem routeChange = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.ROUTE_CHANGE,
-    iconData: const IconData(0xf1eb, fontFamily: 'FontAwesome'),
+    routeId: RouteEnum.ROUTE_CHANGE,
+    iconData: IconCode.moreRouteChange,
   ));
   static MoreGridItem store = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.STORE,
-    iconData: const IconData(0xf290, fontFamily: 'FontAwesome'),
-    isUserOnly: true,
-    route: RoutePage.pointStore,
+    iconData: IconCode.drawerStore,
+    route: RoutePage.sideStore,
+    userOnly: true,
   ));
   static MoreGridItem roller = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.ROLLER,
+    iconData: IconCode.drawerRoller,
     imageName: 'images/moreShow_lucky.png',
-    route: RoutePage.roller,
+    route: RoutePage.sideRoller,
   ));
   static MoreGridItem task = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.TASK,
+    routeId: RouteEnum.TASK,
     imageName: 'images/moreShow_mission.png',
-    isUserOnly: true,
+    userOnly: true,
   ));
   static MoreGridItem sign = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.SIGN,
+    routeId: RouteEnum.SIGN,
     imageName: 'images/flico_sign.png?1',
-    isUserOnly: true,
+    userOnly: true,
   ));
   static MoreGridItem agentAbout = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.AGENT_ABOUT,
     imageName: 'images/footer/ftico_agent.png',
-    route: RoutePage.agentAbout,
+    route: RoutePage.moreAgentAbout,
   ));
   static MoreGridItem collect = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.COLLECT,
+    routeId: RouteEnum.COLLECT,
     imageName: Res.flico_word,
-    isUserOnly: true,
+    userOnly: true,
   ));
 
   /// Used for defining cases

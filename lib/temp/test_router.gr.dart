@@ -4,21 +4,22 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen_view.dart';
-import 'package:flutter_eg990_mobile/temp/test_permission_screen.dart';
-import 'package:flutter_eg990_mobile/temp/test_input_route.dart';
-import 'package:flutter_eg990_mobile/temp/test_home_size_calc.dart';
+// ignore_for_file: public_member_api_docs
 
-abstract class TestRoutes {
-  static const testScreenInnerView = '/test-screen-inner-view';
-  static const testPermissionScreen = '/test-permission-screen';
-  static const testInputRoute = '/test-input-route';
-  static const testHomeSizeCalc = '/test-home-size-calc';
-  static const all = {
-    testScreenInnerView,
+import 'package:auto_route/auto_route.dart';
+
+import 'test_home_size_calc.dart';
+import 'test_input_route.dart';
+import 'test_nested_nav_screen_view.dart';
+import 'test_permission_screen.dart';
+
+class TestRouterRoutes {
+  static const String testNestedNavScreenView = '/';
+  static const String testPermissionScreen = '/test-permission-screen';
+  static const String testInputRoute = '/test-input-route';
+  static const String testHomeSizeCalc = '/test-home-size-calc';
+  static const all = <String>{
+    testNestedNavScreenView,
     testPermissionScreen,
     testInputRoute,
     testHomeSizeCalc,
@@ -27,40 +28,40 @@ abstract class TestRoutes {
 
 class TestRouter extends RouterBase {
   @override
-  Set<String> get allRoutes => TestRoutes.all;
-
-  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
-  static ExtendedNavigatorState get navigator =>
-      ExtendedNavigator.ofRouter<TestRouter>();
-
+  List<RouteDef> get routes => _routes;
+  final _routes = <RouteDef>[
+    RouteDef(TestRouterRoutes.testNestedNavScreenView,
+        page: TestNestedNavScreenView),
+    RouteDef(TestRouterRoutes.testPermissionScreen, page: TestPermissionScreen),
+    RouteDef(TestRouterRoutes.testInputRoute, page: TestInputRoute),
+    RouteDef(TestRouterRoutes.testHomeSizeCalc, page: TestHomeSizeCalc),
+  ];
   @override
-  Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case TestRoutes.testScreenInnerView:
-        return CupertinoPageRoute<dynamic>(
-          builder: (context) => TestNestedNavScreenView(),
-          settings: settings,
-        );
-      case TestRoutes.testPermissionScreen:
-        return CupertinoPageRoute<dynamic>(
-          builder: (context) => TestPermissionScreen(),
-          settings: settings,
-        );
-      case TestRoutes.testInputRoute:
-        return CupertinoPageRoute<dynamic>(
-          builder: (context) => TestInputRoute(),
-          settings: settings,
-        );
-      case TestRoutes.testHomeSizeCalc:
-        return CupertinoPageRoute<dynamic>(
-          builder: (context) => TestHomeSizeCalc(),
-          settings: settings,
-        );
-      default:
-        return unknownRoutePage(settings.name);
-    }
-  }
+  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, AutoRouteFactory>{
+    TestNestedNavScreenView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => TestNestedNavScreenView(),
+        settings: data,
+      );
+    },
+    TestPermissionScreen: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => TestPermissionScreen(),
+        settings: data,
+      );
+    },
+    TestInputRoute: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => TestInputRoute(),
+        settings: data,
+      );
+    },
+    TestHomeSizeCalc: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => TestHomeSizeCalc(),
+        settings: data,
+      );
+    },
+  };
 }
-
-ExtendedNavigatorState get testNavigator =>
-    ExtendedNavigator.ofRouter<TestRouter>();

@@ -4,7 +4,7 @@ import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'state/member_credit_store.dart';
 import 'widgets/member_display.dart';
 
-/// Main View of [Router.memberRoute]
+/// Main View of [AutoRouter.memberRoute]
 /// @author H.C.CHIANG
 /// @version 2020/5/15
 class MemberRoute extends StatefulWidget {
@@ -30,7 +30,7 @@ class _MemberRouteState extends State<MemberRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop member route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

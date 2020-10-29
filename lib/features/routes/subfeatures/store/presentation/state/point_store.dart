@@ -26,7 +26,7 @@ abstract class _PointStore with Store {
 
   _PointStore(this._repository) {
     _pointController.stream.listen((event) {
-      print('member point: $event');
+      debugPrint('member point: $event');
       if (event == null) errorMessage = Failure.jsonFormat().message;
       memberPoints = event;
     });
@@ -77,6 +77,7 @@ abstract class _PointStore with Store {
       {String msg, bool showOnce = false, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
     if (msg.isNotEmpty) _lastError = msg;
+    debugPrint('store action error: $msg, type: $type, code: $code');
     errorMessage = msg ??
         Failure.internal(FailureCode(
           type: type ?? FailureType.STORE,
@@ -158,7 +159,7 @@ abstract class _PointStore with Store {
       errorMessage = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getProvinces().then((result) {
-//        print('province map result: $result');
+//        debugPrint('province map result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
@@ -180,7 +181,7 @@ abstract class _PointStore with Store {
       errorMessage = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getMapByCode(provinceCode).then((result) {
-//        print('city map result: $result');
+//        debugPrint('city map result: $result');
         result.fold(
           (failure) {
             if (showError)
@@ -205,7 +206,7 @@ abstract class _PointStore with Store {
       errorMessage = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getMapByCode(cityCode).then((result) {
-//        print('area map result: $result');
+//        debugPrint('area map result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
@@ -227,7 +228,7 @@ abstract class _PointStore with Store {
       waitForExchange = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.postExchange(form).then((result) {
-//        print('store exchange result: $result');
+//        debugPrint('store exchange result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (model) {

@@ -9,9 +9,6 @@ enum HomeCategoryEnum {
   CARD,
   GIFT,
   COCKFIGHTING,
-  MOVIE,
-  EG_MOVIE,
-  NEW_MOVIE,
   RECOMMEND,
   FAVORITE,
   PROMO,
@@ -74,20 +71,6 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.COCKFIGHTING,
     imageUrl: 'images/phone_nav_cockfighting_Color1.png',
-  ));
-
-  /// MOVIES
-  static const GameCategory egMovie =
-      const GameCategory.define(HomeCategoryInfo(
-    id: HomeCategoryEnum.EG_MOVIE,
-    imageUrl: 'images/index/tbico_movie.png',
-    pageType: GamePageType.MovieEg,
-  ));
-  static const GameCategory newMovie =
-      const GameCategory.define(HomeCategoryInfo(
-    id: HomeCategoryEnum.NEW_MOVIE,
-    imageUrl: 'images/index/tbico_movie.png',
-    pageType: GamePageType.MovieNew,
   ));
 
   /// USER
@@ -170,10 +153,6 @@ extension HomeCategoryExtension on HomeCategoryInfo {
         return localeStr.gameCategoryGift;
       case HomeCategoryEnum.COCKFIGHTING:
         return localeStr.gameCategoryCockFighting;
-      case HomeCategoryEnum.EG_MOVIE:
-        return localeStr.homeUserTabCategoryEgMovie;
-      case HomeCategoryEnum.NEW_MOVIE:
-        return localeStr.homeUserTabCategoryNewMovie;
       case HomeCategoryEnum.RECOMMEND:
         return localeStr.homeUserTabCategoryRecommend;
       case HomeCategoryEnum.FAVORITE:

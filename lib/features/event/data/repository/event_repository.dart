@@ -1,5 +1,5 @@
-import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/service/data/model/service_model.dart';
 
 import '../models/ad_model.dart';
 import '../models/event_model.dart';
@@ -9,12 +9,16 @@ class EventApi {
   static const String AD = "api/getAd";
   static const String GET_EVENT = "api/showActive";
   static const String POST_SIGN = "api/memSign";
+  
+  static const String GET_NEW_MESSAGE_COUNT = 'api/stationCount';
 }
 
 abstract class EventRepository {
-  Future<Either<Failure, bool>> getWebsiteList();
+  Future<Either<Failure, ServiceModel>> getWebsiteList();
 
   Future<Either<Failure, List<AdModel>>> getAds();
+  
+  Future<Either<Failure, bool>> checkNewMessage();
 
   Future<Either<Failure, EventModel>> getEvent();
 
@@ -31,10 +35,11 @@ class EventRepositoryImpl implements EventRepository {
     Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
+  
   @override
-  Future<Either<Failure, bool>> getWebsiteList() async {
+  Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.get(EventApi.GET_WEB_LIST),
+      request: dioApiService.get(EventApi.GET_NEW_MESSAGE_COUNT),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-EVENT',
     );
@@ -42,16 +47,12 @@ class EventRepositoryImpl implements EventRepository {
     return result.fold(
       (failure) => Left(failure),
       (model) {
-        if (model.isSuccess == false) return Left(Failure.event());
-        if (model.data != null && model.data is Map) {
-          String service = (model.data as Map).containsKey('cs')
-              ? model.data['cs']
-              : Global.CURRENT_BASE;
-          debugPrint('cs url: $service');
-          Global.currentService = service;
+        if (model.isSuccess == false) return Right(false);
+        Map<String, dynamic> data = model.data;
+        if (data != null && data.containsKey('count') && data['count'] > 0)
           return Right(true);
-        }
-        return Left(Failure.dataType());
+        else
+          return Right(false);
       },
     );
   }
@@ -64,7 +65,10 @@ class EventRepositoryImpl implements EventRepository {
       tag: 'remote-EVENT_AD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold((failure) => Left(failure), (models) => Right(models));
+    return result.fold(
+      (failure) => Left(failure),
+      (models) => Right(models),
+    );
   }
 
   @override
@@ -102,6 +106,26 @@ class EventRepositoryImpl implements EventRepository {
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),
+    );
+  }
+
+  @override
+  Future<Either<Failure, ServiceModel>> getWebsiteList() async {
+    final result = await requestModel<RequestCodeModel>(
+      request: dioApiService.get(EventApi.GET_WEB_LIST),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      tag: 'remote-EVENT',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (model) {
+        if (model.isSuccess == false) return Left(Failure.event());
+        if (model.data != null && model.data is Map) {
+          return Right(ServiceModel.jsonToServiceModel(model.data));
+        }
+        return Left(Failure.dataType());
+      },
     );
   }
 }

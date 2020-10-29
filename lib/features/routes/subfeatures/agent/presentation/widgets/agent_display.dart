@@ -38,7 +38,7 @@ class _AgentDisplayState extends State<AgentDisplay> {
     double gridItemWidth = (Global.device.width - 6 * 7 - 16) / 5;
     gridRatio = gridItemWidth / 36 / Global.device.widthScale;
     if (gridRatio > 1.75) gridRatio = 1.75;
-    print('grid item width: $gridItemWidth, gridRatio: $gridRatio');
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $gridRatio');
     contentMaxHeight = Global.device.height -
         Global.APP_BARS_HEIGHT -
         24 -

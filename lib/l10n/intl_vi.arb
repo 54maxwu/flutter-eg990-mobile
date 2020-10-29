@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "EG990 Mobile",
+  "title": "BKK365 Mobile",
   "@title": {
-    "description": "EG990 Demo",
+    "description": "BKK365 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -47,7 +47,7 @@
   "@pageTitleSign": {
     "type": "text"
   },
-  "pageTitleRoller": "Vòng xoay may mắn",
+  "pageTitleRoller": "Vòng xoay",
   "@pageTitleRoller": {
     "type": "text"
   },
@@ -59,7 +59,7 @@
   "@pageTitleDeposit": {
     "type": "text"
   },
-  "pageTitlePromo": "KHUYẾN MÃI",
+  "pageTitlePromo": "Ưu Đãi",
   "@pageTitlePromo": {
     "type": "text"
   },
@@ -143,6 +143,18 @@
   "@pageTitleMemberFlow": {
     "type": "text"
   },
+  "pageTitleMemberAgentRegister": "Đăng ký thành viên đại lý",
+  "@pageTitleMemberAgentRegister": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLogin": "Đăng nhập thành viên đại lý",
+  "@pageTitleMemberAgentLogin": {
+    "type": "text"
+  },
+  "pageTitleMemberAgentLoginHint": "Đăng nhập đại lý",
+  "@pageTitleMemberAgentLoginHint": {
+    "type": "text"
+  },
   "pageTitleMemberAgent": "Đại lý",
   "@pageTitleMemberAgent": {
     "type": "text"
@@ -159,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "VDK {value}",
+  "toolBarMemberCredit": "￥ {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -168,7 +180,7 @@
       }
     }
   },
-  "themeColorHintSelect": "Chọn màu chủ đề",
+  "themeColorHintSelect": "Giao Diện",
   "@themeColorHintSelect": {
     "type": "text"
   },
@@ -176,11 +188,11 @@
   "@themeColorDefault": {
     "type": "text"
   },
-  "themeColorDark": "Tối",
+  "themeColorDark": "Đen",
   "@themeColorDark": {
     "type": "text"
   },
-  "themeColorLight": "Màu sáng",
+  "themeColorLight": "Trắng",
   "@themeColorLight": {
     "type": "text"
   },
@@ -188,8 +200,20 @@
   "@workInProgress": {
     "type": "text"
   },
+  "networkChangedHint": "Đã phát hiện thấy thay đổi trạng thái mạng. Bạn có muốn làm mới trang không?",
+  "@networkChangedHint": {
+    "type": "text"
+  },
   "exitAppHint": "Nhấn lại để đóng ứng dụng",
   "@exitAppHint": {
+    "type": "text"
+  },
+  "gameToolHintUsage": "Nhấp để hiển thị, nhấn và giữ để ẩn ↗",
+  "@gameToolHintUsage": {
+    "type": "text"
+  },
+  "gameToolHintRestore": "Nhấp đúp để khôi phục màn hình",
+  "@gameToolHintRestore": {
     "type": "text"
   },
   "btnMenu": "Thực đơn",
@@ -268,6 +292,10 @@
   "@btnBind": {
     "type": "text"
   },
+  "btnQuery": "Hỏi thăm",
+  "@btnQuery": {
+    "type": "text"
+  },
   "btnQueryNow": "Hỏi thăm ngay",
   "@btnQueryNow": {
     "type": "text"
@@ -282,6 +310,14 @@
   },
   "btnOff": "Tắt",
   "@btnOff": {
+    "type": "text"
+  },
+  "btnGo": "Đi đến",
+  "@btnGo": {
+    "type": "text"
+  },
+  "btnCopy": "sao chép",
+  "@btnCopy": {
     "type": "text"
   },
   "sideBtnBackHome": "Trang Chủ",
@@ -316,7 +352,7 @@
   "@spinnerDateCustom": {
     "type": "text"
   },
-  "hintActionSelect": "Vui lòng chọn",
+  "hintActionSelect": "---",
   "@hintActionSelect": {
     "type": "text"
   },
@@ -344,16 +380,16 @@
   "@hintPasswordInput": {
     "type": "text"
   },
-  "hintPhoneInput": "Vui lòng nhập số điện thoại",
+  "hintConfirmedInput": "nhập lại mật khẩu",
+  "@hintConfirmedInput": {
+    "type": "text"
+  },
+  "hintPhoneInput": "Nhập số điện thoại",
   "@hintPhoneInput": {
     "type": "text"
   },
   "hintReferralInput": "Vui lòng nhập mã giới thiệu",
   "@hintReferralInput": {
-    "type": "text"
-  },
-  "hintConfirmedInput": "Vui lòng nhập mật khẩu xác nhận",
-  "@hintConfirmedInput": {
     "type": "text"
   },
   "hintName": "Vui lòng nhập tài khoản thành viên",
@@ -389,8 +425,12 @@
   "@messageWelcome": {
     "type": "text"
   },
-  "messageWelcomeHint": "Vui lòng Đăng nhập /Đăng ký",
+  "messageWelcomeHint": "Chào Mừng! Vui lòng Đăng nhập / Đăng ký",
   "@messageWelcomeHint": {
+    "type": "text"
+  },
+  "messageLoginHint": "Vui lòng Đăng nhập / Đăng ký",
+  "@messageWelcomeHintShort": {
     "type": "text"
   },
   "messageRegisterFailed": "đăng ký thất bại",
@@ -516,9 +556,14 @@
   "@messageInvalidEmail": {
     "type": "text"
   },
-  "messageInvalidPhone": "Lỗi định dạng điện thoại(10)",
+  "messageInvalidPhone": "Lỗi định dạng điện thoại({num})",
   "@messageInvalidPhone": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "6"
+      }
+    }
   },
   "messageInvalidPostCode": "Mã bưu điện không chính xác(5~8)",
   "@messageInvalidPostCode": {
@@ -578,7 +623,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 6 ~ 19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là 16 ~ 19 ký tự",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -708,6 +753,10 @@
   "@messageErrorAccount": {
     "type": "text"
   },
+  "messageRepeatAccount": "Đăng ký tài khoản trùng lặp",
+  "@messageRepeatAccount": {
+    "type": "text"
+  },
   "messageErrorPassword": "sai mật khẩu",
   "@messageErrorPassword": {
     "type": "text"
@@ -769,7 +818,7 @@
       }
     }
   },
-  "homeHintFreeUsage": "Dùng miễn phí",
+  "homeHintFreeUsage": "Sử dụng miễn phí",
   "@homeHintFreeUsage": {
     "type": "text"
   },
@@ -948,6 +997,22 @@
   },
   "registerFieldTitlePhone": "Số điện thoại",
   "@registerFieldTitlePhone": {
+    "type": "text"
+  },
+  "registerFieldTitleEmail": "E-Mail",
+  "@registerFieldTitleEmail": {
+    "type": "text"
+  },
+  "registerFieldTitleZalo": "Zalo",
+  "@registerFieldTitleZalo": {
+    "type": "text"
+  },
+  "registerFieldTitleLine": "Line",
+  "@registerFieldTitleLine": {
+    "type": "text"
+  },
+  "registerFieldTitleQQ": "QQ",
+  "@registerFieldTitleQQ": {
     "type": "text"
   },
   "registerFieldTitleVerify": "Mã xác minh điện thoại di động",
@@ -1210,6 +1275,10 @@
   "@withdrawViewHint2": {
     "type": "text"
   },
+  "walletViewTitle": "Ví trung tâm",
+  "@walletViewTitle": {
+    "type": "text"
+  },
   "walletViewTitleMy": "Túi của tôi",
   "@walletViewTitleMy": {
     "type": "text"
@@ -1250,6 +1319,10 @@
   "@walletViewMessageSetting": {
     "type": "text"
   },
+  "messageNoMessages": "Hiện tại không có thông tin trạm",
+  "@messageNoMessages": {
+    "type": "text"
+  },
   "centerViewTitleData": "Thông tin khách hàng",
   "@centerViewTitleData": {
     "type": "text"
@@ -1266,7 +1339,7 @@
   "@centerTextTitleAccount": {
     "type": "text"
   },
-  "centerTextTitleName": "Đổi mật khẩu",
+  "centerTextTitleName": "Họ tên",
   "@centerTextTitleName": {
     "type": "text"
   },
@@ -1306,7 +1379,7 @@
   "@centerTextTitleCpw": {
     "type": "text"
   },
-  "centerTextButtonChangePwd": "Thay đổi mật khẩu",
+  "centerTextButtonChangePwd": "Đổi mật khẩu",
   "@centerTextButtonChangePwd": {
     "type": "text"
   },
@@ -1374,23 +1447,23 @@
   "@transactionViewSpinnerTitle": {
     "type": "text"
   },
-  "transactionHeaderSerial": "Số sêri",
+  "transactionHeaderSerial": "Số",
   "@transactionHeaderSerial": {
     "type": "text"
   },
-  "transactionHeaderDate": "Ngày tháng",
+  "transactionHeaderDate": "Ngày",
   "@transactionHeaderDate": {
     "type": "text"
   },
-  "transactionHeaderType": "Thể loại",
+  "transactionHeaderType": "Các loại",
   "@transactionHeaderType": {
     "type": "text"
   },
-  "transactionHeaderDesc": "Mô tả",
+  "transactionHeaderDesc": "Để ý",
   "@transactionHeaderDesc": {
     "type": "text"
   },
-  "transactionHeaderAmount": "tiền",
+  "transactionHeaderAmount": "Số tiền",
   "@transactionHeaderAmount": {
     "type": "text"
   },
@@ -1418,7 +1491,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Tổng cộng: VDK {value}",
+  "betsTextTotal": "Tổng cộng: ￥ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1427,7 +1500,7 @@
       }
     }
   },
-  "betsHeaderDate": "Thời gian",
+  "betsHeaderDate": "thời gian",
   "@betsHeaderDate": {
     "type": "text"
   },
@@ -1439,7 +1512,7 @@
   "@betsHeaderPlatform": {
     "type": "text"
   },
-  "betsHeaderGame": "Tên TRÒ CHƠI",
+  "betsHeaderGame": "Tên trò chơi",
   "@betsHeaderGame": {
     "type": "text"
   },
@@ -1517,6 +1590,10 @@
   },
   "dealsHeaderAmount": "Số tiền",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "depositPaymentNoData": "Kiểm tra xem không có phương thức nạp tiền nào",
+  "@depositPaymentNoData": {
     "type": "text"
   },
   "depositPaymentTitleBank": "Nạp tiền ngân hàng",
@@ -1896,11 +1973,11 @@
   "@balanceStatusMaintenance": {
     "type": "text"
   },
-  "balanceTransferInText": "Chuyển khoản",
+  "balanceTransferInText": "Đi vào",
   "@balanceTransferInText": {
     "type": "text"
   },
-  "balanceTransferOutText": "Chuyển ra ngoài",
+  "balanceTransferOutText": "Ngoài",
   "@balanceTransferOutText": {
     "type": "text"
   },
@@ -1989,6 +2066,51 @@
   "@flowHeaderTextTotal": {
     "type": "text"
   },
+  "agentActionLoginHint": "Đăng nhập đại lý",
+  "@agentActionLoginHint": {
+    "type": "text"
+  },
+  "agentActionLogin": "Đăng nhập đại lý",
+  "@agentActionLogin": {
+    "type": "text"
+  },
+  "agentActionRegister": "Đăng ký đại lý",
+  "@agentActionRegister": {
+    "type": "text"
+  },
+  "agentRegisterSuccess": "Đại lý đã được gửi để xem xét, vui lòng đợi",
+  "@agentRegisterSuccess": {
+    "type": "text"
+  },
+  "agentAccountLevelCompany": "công ty",
+  "@agentAccountLevelCompany": {
+    "type": "text"
+  },
+  "agentAccountLevelGrandMaster": "Tổng thống lớn",
+  "@agentAccountLevelGrandMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelMaster": "Tổng số thế hệ",
+  "@agentAccountLevelMaster": {
+    "type": "text"
+  },
+  "agentAccountLevelAgent": "Ủy quyền",
+  "@agentAccountLevelAgent": {
+    "type": "text"
+  },
+  "agentAccountLevelMember": "hội viên",
+  "@agentAccountLevelMember": {
+    "type": "text"
+  },
+  "agentTitleAccount": "{level} số tài khoản",
+  "@agentTitleAccount": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
   "agentTabTitleInfo": "Thông tin",
   "@agentTabTitleInfo": {
     "type": "text"
@@ -2003,6 +2125,19 @@
   },
   "agentTabTitleLedger": "Lưu / nâng",
   "@agentTabTitleLedger": {
+    "type": "text"
+  },
+  "agentTabTitleDownlineList": "{level} Danh sách",
+  "@agentTabTitleDownlineList": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "agent"
+      }
+    }
+  },
+  "agentTabTitleCard": "Chỉnh sửa thẻ ngân hàng",
+  "@agentTabTitleCard": {
     "type": "text"
   },
   "agentTabTitleAds": "quảng cáo",
@@ -2137,6 +2272,14 @@
   "@agentLedgerFieldTitleAccount": {
     "type": "text"
   },
+  "agentLedgerFieldTitleDepositCheck": "Gửi tiền cho thành viên",
+  "@agentLedgerFieldTitleDepositCheck": {
+    "type": "text"
+  },
+  "agentLedgerHeaderNo": "Số sê-ri",
+  "@agentLedgerHeaderNo": {
+    "type": "text"
+  },
   "agentLedgerHeaderAccount": "Tài khoản",
   "@agentLedgerHeaderAccount": {
     "type": "text"
@@ -2155,6 +2298,78 @@
   },
   "agentLedgerHeaderRefund": "Nước ngược",
   "@agentLedgerHeaderRefund": {
+    "type": "text"
+  },
+  "agentLedgerHeaderRegDate": "Thời gian đăng ký",
+  "@agentLedgerHeaderRegDate": {
+    "type": "text"
+  },
+  "agentLedgerHeaderLastLogin": "Lần đăng nhập cuối cùng",
+  "@agentLedgerHeaderLastLogin": {
+    "type": "text"
+  },
+  "agentBankcardHint": "Sau khi thêm thẻ ngân hàng, nếu bạn cần sửa đổi, vui lòng liên hệ với công ty để được sửa đổi",
+  "@agentBankcardHint": {
+    "type": "text"
+  },
+  "agentAddDownlineHint": "※ {level} chỉ có thể thêm tài khoản {downline}",
+  "@agentAddDownlineHint": {
+    "type": "text",
+    "placeholders": {
+      "level": {
+        "example": "Slot"
+      },
+      "downline": {
+        "example": "AG"
+      }
+    }
+  },
+  "agentDownlineButtonAdd": "Thêm ngoại tuyến",
+  "@agentDownlineButtonAdd": {
+    "type": "text"
+  },
+  "agentDownlineButtonProportion": "Cập nhật tài khoản",
+  "@agentDownlineButtonProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderAccount": "số tài khoản",
+  "@agentDownlineHeaderAccount": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus": "trạng thái",
+  "@agentDownlineHeaderStatus": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus0": "Kích hoạt",
+  "@agentDownlineHeaderStatus0": {
+    "type": "text"
+  },
+  "agentDownlineHeaderStatus1": "Vô hiệu hóa",
+  "@agentDownlineHeaderStatus1": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdateHint": "Cập nhật tài khoản\n(Bạn có thể trực tiếp chỉnh sửa tài khoản sau khi thêm tài khoản)",
+  "@agentDownlineHeaderUpdateHint": {
+    "type": "text"
+  },
+  "agentDownlineHeaderUpdate": "Cập nhật tài khoản",
+  "@agentDownlineHeaderUpdate": {
+    "type": "text"
+  },
+  "agentDownlineHeaderMore": "Hơn",
+  "@agentDownlineHeaderMore": {
+    "type": "text"
+  },
+  "agentDownlineHeaderCategory": "thể loại",
+  "@agentDownlineHeaderCategory": {
+    "type": "text"
+  },
+  "agentDownlineHeaderProportion": "Chiếm",
+  "@agentDownlineHeaderProportion": {
+    "type": "text"
+  },
+  "agentDownlineHeaderFee": "Phí xử lý /\n phí nền tảng",
+  "@agentDownlineHeaderFee": {
     "type": "text"
   },
   "agentAdTabAvailable": "Quảng cáo có sẵn",
@@ -2467,7 +2682,11 @@
   "@storeRequestWindowFieldTitleAddress": {
     "type": "text"
   },
-  "storeExchangeResultWindowTitleSuccess": "Thay dổi thanh  viên thành công",
+  "storeRequestWindowSpinnerHint": "Xin hãy lựa chọn",
+  "@storeRequestWindowSpinnerHint": {
+    "type": "text"
+  },
+  "storeExchangeResultWindowTitleSuccess": "Trao đổi thành công",
   "@storeExchangeResultWindowTitleSuccess": {
     "type": "text"
   },
@@ -2617,8 +2836,44 @@
       }
     }
   },
-  "networkChangedHint": "Đã phát hiện thấy thay đổi trạng thái mạng. Bạn có muốn làm mới trang không?",
-  "@networkChangedHint": {
+  "serviceRouteHint": "Cần giúp đỡ hoặc liên hệ với chúng tôi",
+  "@serviceRouteHint": {
+    "type": "text"
+  },
+  "serviceButtonContact": "liên hệ với dịch vụ khách hàng",
+  "@serviceButtonContact": {
+    "type": "text"
+  },
+  "serviceTitleCustomerService": "Dịch vụ khách hàng trực tuyến",
+  "@serviceTitleCustomerService": {
+    "type": "text"
+  },
+  "serviceDescCustomerService": "24 giờ dịch vụ không bị gián đoạn",
+  "@serviceTitleCustomerServiceDesc": {
+    "type": "text"
+  },
+  "serviceTitleEmail": "E-Mail",
+  "@serviceTitleEmail": {
+    "type": "text"
+  },
+  "serviceTitlePhone": "số điện thoại",
+  "@serviceTitlePhone": {
+    "type": "text"
+  },
+  "serviceTitleSkype": "Skype",
+  "@serviceTitleSkype": {
+    "type": "text"
+  },
+  "serviceTitleLine": "Line",
+  "@serviceTitleLine": {
+    "type": "text"
+  },
+  "serviceTitleZalo": "Zalo",
+  "@serviceTitleZalo": {
+    "type": "text"
+  },
+  "serviceTitleFacebook": "Facebook",
+  "@serviceTitleFacebook": {
     "type": "text"
   }
 }

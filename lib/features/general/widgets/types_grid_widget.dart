@@ -17,6 +17,7 @@ class TypesGridWidget<T extends DataOperator> extends StatefulWidget {
   final double itemSpaceHorFactor;
   final double expectTabHeight;
   final double horizontalInset;
+  final bool round;
 
   TypesGridWidget({
     Key key,
@@ -28,6 +29,7 @@ class TypesGridWidget<T extends DataOperator> extends StatefulWidget {
     this.itemSpaceHorFactor = 2.0,
     this.expectTabHeight = 36.0,
     this.horizontalInset = 48.0,
+    this.round = false,
   }) : super(key: key);
 
   @override
@@ -85,6 +87,10 @@ class _TypesGridWidgetState extends State<TypesGridWidget> {
           ),
           child: RaisedButton(
             visualDensity: VisualDensity.compact,
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  new BorderRadius.circular((widget.round) ? 24.0 : 4.0),
+            ),
             color: (_clicked == index)
                 ? themeColor.buttonPrimaryColor
                 : themeColor.buttonSecondaryColor,

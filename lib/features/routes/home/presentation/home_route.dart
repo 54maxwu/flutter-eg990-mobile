@@ -8,7 +8,7 @@ import 'widgets/home_display.dart';
 import 'widgets/home_store_inherit_widget.dart';
 
 ///
-/// Main View of [Router.homeRoute]
+/// Main View of [AutoRouter.homeRoute]
 /// @author H.C.CHIANG
 /// @version 2020/6/18
 ///
@@ -70,10 +70,7 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
             MyLogger.info(msg: 'opening game: $url', tag: 'HomeRoute');
             Future.delayed(Duration(milliseconds: 300), () {
               _store.clearGameUrl();
-              ScreenNavigate.switchScreen(
-                screen: ScreenEnum.Game,
-                webUrl: '$url',
-              );
+              AppNavigator.switchScreen(Screens.Game, webUrl: '$url');
             });
           }
         },

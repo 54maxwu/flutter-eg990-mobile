@@ -68,9 +68,9 @@ class DioApiService {
         'content-type': 'application/json, text/plain, */*',
       },
       // 連線伺服器超時時間，單位是毫秒.
-      connectTimeout: 10000,
+      connectTimeout: 1000 * 60,
       // 響應流上前後兩次接受到數據的間隔，單位為毫秒。
-      receiveTimeout: 5000,
+      receiveTimeout: 1000 * 5,
       // 表示期望以那種格式(方式)接受響應數據。接受4種類型 `json`, `stream`, `plain`, `bytes`. 預設值是 `json`,
       responseType: ResponseType.json,
     );
@@ -97,28 +97,24 @@ class DioApiService {
   /// [data]：請求參數
   /// [options]：請求配置
   /// [cancelToken]：取消標識
-  Future<Response<dynamic>> get(url,
-      {data,
-      options,
-      cancelToken,
-      String userToken,
-      Map<String, dynamic> headers}) async {
+  Future<Response<dynamic>> get(
+    url, {
+    data,
+    options,
+    cancelToken,
+    String userToken,
+    String agentToken,
+    Map<String, dynamic> headers,
+  }) async {
     try {
-      if (userToken != null)
-        return await _dio.get(url,
-            queryParameters: data,
-            options: Options(headers: {
-              'JWT-TOKEN': userToken,
-            }),
-            cancelToken: cancelToken);
-      else if (headers != null)
-        return await _dio.get(url,
-            queryParameters: data,
-            options: Options(headers: headers),
-            cancelToken: cancelToken);
-      else
-        return await _dio.get(url,
-            queryParameters: data, options: options, cancelToken: cancelToken);
+      return await _dio.get(url,
+          queryParameters: data,
+          options: (userToken != null)
+              ? Options(headers: {'JWT-TOKEN': userToken})
+              : (agentToken != null)
+                  ? Options(headers: {'JWT-TOKEN-AGENT': agentToken})
+                  : (headers != null) ? Options(headers: headers) : options,
+          cancelToken: cancelToken);
     } on DioError catch (e) {
       throw getErrorType(e);
     }
@@ -129,17 +125,24 @@ class DioApiService {
   /// [data]：請求參數
   /// [options]：請求配置
   /// [cancelToken]：取消標識
-  Future<Response<dynamic>> post(url,
-      {param, data, options, cancelToken, String userToken}) async {
+  Future<Response<dynamic>> post(
+    url, {
+    param,
+    data,
+    options,
+    cancelToken,
+    String userToken,
+    String agentToken,
+  }) async {
     try {
       return await _dio.post(url,
           queryParameters: param,
           data: data,
           options: (userToken != null)
-              ? Options(headers: {
-                  'JWT-TOKEN': userToken,
-                })
-              : options,
+              ? Options(headers: {'JWT-TOKEN': userToken})
+              : (agentToken != null)
+                  ? Options(headers: {'JWT-TOKEN-AGENT': agentToken})
+                  : options,
           cancelToken: cancelToken);
     } on DioError catch (e) {
       throw getErrorType(e);

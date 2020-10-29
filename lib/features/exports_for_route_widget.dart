@@ -9,4 +9,4 @@ export '../utils/value_util.dart';
 export 'export_internal_file.dart';
 export 'general/widgets/loading_widget.dart';
 export 'router/app_global_streams.dart';
-export 'router/app_navigate.dart';
+export 'router/app_navigator_export.dart';

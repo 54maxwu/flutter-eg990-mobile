@@ -29,7 +29,7 @@ class _PointWidgetState extends State<PointWidget> {
           stream: widget.store.pointStream,
           initialData: widget.store.memberPoints,
           builder: (_, snapshot) {
-            print('store point stream: ${snapshot?.data}');
+            debugPrint('store point stream: ${snapshot?.data}');
             if (snapshot == null || snapshot.data == null)
               return SizedBox.shrink();
             return Padding(

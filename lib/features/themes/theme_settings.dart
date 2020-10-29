@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart' show ThemeData;
+import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 
@@ -17,8 +18,12 @@ class ThemeSettings implements ThemeInterface {
   ThemeColorInterface _interface;
 
   ThemeColorEnum get colorEnum => _themeEnum;
+
   ThemeData get data => _data;
+
   ThemeColorInterface get interface => _interface;
+
+  bool get isDefaultColor => ThemeColorEnum.DEFAULT.label == _themeEnum.label;
 
   ThemeSettings() {
     _themeEnum = _default;
@@ -26,7 +31,7 @@ class ThemeSettings implements ThemeInterface {
     _data = _interface.data;
   }
 
-  bool setTheme(ThemeColorEnum themeEnum) {
+  bool setTheme(ThemeColorEnum themeEnum, {bool notify = true}) {
     if (_themeEnum == themeEnum) return null;
     try {
       _themeEnum = themeEnum;
@@ -38,7 +43,17 @@ class ThemeSettings implements ThemeInterface {
       debugPrint('change app theme error: $e');
       return false;
     } finally {
-      getAppGlobalStreams.notifyThemeChange(_themeEnum);
+      if (notify) {
+        getAppGlobalStreams.notifyThemeChange(_themeEnum);
+        Future.microtask(() async {
+          Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
+          if (box != null) {
+            await box.put(Global.CACHE_APP_DATA_KEY_THEME, themeEnum.value);
+            debugPrint(
+                'box theme: ${box.get(Global.CACHE_APP_DATA_KEY_THEME)}');
+          }
+        });
+      }
     }
   }
 }

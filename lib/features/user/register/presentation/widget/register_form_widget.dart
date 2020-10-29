@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/user_entity.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/widgets/login_navigate.dart';
 
@@ -23,8 +23,7 @@ class RegisterFormWidget extends StatefulWidget {
 }
 
 class _RegisterFormWidgetState extends State<RegisterFormWidget> {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
 
   final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
       new GlobalKey(debugLabel: 'name');
@@ -44,7 +43,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   double _fieldInset;
 //  double _phoneCodeContainerHeight;
-  double _valueTextPadding;
+  double _errorTextPadding;
   Color _fieldPrefixBg;
 
   RegisterStore _store;
@@ -86,10 +85,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //    _phoneCodeContainerHeight =
 //        ((Global.device.isIos) ? ThemeInterface.fieldHeight + 8 : ThemeInterface.fieldHeight) -
 //            ThemeInterface.minusSize;
-    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
+    _errorTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
             ThemeInterface.prefixTextWidthFactor -
         ThemeInterface.minusSize +
-        24.0;
+        10.0;
     super.initState();
   }
 
@@ -205,7 +204,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
+                    padding: EdgeInsets.only(left: _errorTextPadding),
                     child: Visibility(
                       visible: _showAccountError,
                       child: Text(
@@ -252,7 +251,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
+                    padding: EdgeInsets.only(left: _errorTextPadding),
                     child: Visibility(
                       visible: _showPasswordError,
                       child: Text(
@@ -272,7 +271,6 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 child: new CustomizeTitledContainer(
                   prefixText: localeStr.registerFieldTitleConfirm,
                   prefixBgColor: _fieldPrefixBg,
-                  titleLetterSpacing: 2.0,
                   backgroundColor: Colors.transparent,
                   requiredInput: true,
                   roundCorner: false,
@@ -297,11 +295,11 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
+                    padding: EdgeInsets.only(left: _errorTextPadding),
                     child: Visibility(
                       visible: _showConfirmError,
                       child: Text(
-                        localeStr.messageInvalidAccount,
+                        localeStr.messageInvalidConfirmPassword,
                         style: TextStyle(color: themeColor.defaultErrorColor),
                       ),
                     ),
@@ -480,7 +478,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //                  color: themeColor.defaultTextColor,
 //                ),
 //                onPressed: () {
-//                  RouterNavigate.navigateToPage(
+//                  AppNavigator.navigateToPage(
 //                    RoutePage.service,
 //                    arg: WebRouteArguments(
 //                      startUrl: Global.currentService,
@@ -517,7 +515,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 callToastError(localeStr.messageErrorAutoLogin);
                 Future.delayed(
                   Duration(milliseconds: 500),
-                  () => RouterNavigate.navigateToPage(RoutePage.login),
+                  () => AppNavigator.navigateTo(RoutePage.login),
                 );
               }
             }

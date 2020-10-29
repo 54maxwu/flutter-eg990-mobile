@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/temp/test_router.gr.dart';
 
 class TestNestedNavScreen extends StatefulWidget {
@@ -11,6 +12,9 @@ class TestNestedNavScreen extends StatefulWidget {
 }
 
 class _TestNestedNavScreenState extends State<TestNestedNavScreen> {
+  final GlobalKey<NavigatorState> testNavKey =
+      new GlobalKey(debugLabel: 'testNavKey');
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,16 +22,12 @@ class _TestNestedNavScreenState extends State<TestNestedNavScreen> {
 //        appBar: ScreenMenuBar(),
 //        drawer: new ScreenDrawer(),
 //        bottomNavigationBar: ScreenNavigationBar(),
-        /* Main Content (switch placeholder with Router) */
-        body: ExtendedNavigator<TestRouter>(
-          initialRoute: TestRoutes.testScreenInnerView,
+        body: ExtendedNavigator(
+          key: testNavKey,
+          initialRoute: TestRouterRoutes.testNestedNavScreenView,
           router: TestRouter(),
+          name: TEST_NAV_NAME,
         ),
-//          body: Navigator(
-//            key: TestRouter.navigator.key,
-//            onGenerateRoute: TestRouter.onGenerateRoute,
-//            initialRoute: TestRouter.testScreenInnerView,
-//          ),
       ),
     );
   }

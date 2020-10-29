@@ -19,7 +19,8 @@ class _$GameModelTearOff {
       @required String category,
       @required String platform,
       @JsonKey(name: 'gameid') String gameId,
-      @required String cname,
+      String cname = '??',
+      String ename = '??',
       int favorite = 0,
       int sort = 0}) {
     return _GameModel(
@@ -28,6 +29,7 @@ class _$GameModelTearOff {
       platform: platform,
       gameId: gameId,
       cname: cname,
+      ename: ename,
       favorite: favorite,
       sort: sort,
     );
@@ -46,6 +48,7 @@ mixin _$GameModel {
   @JsonKey(name: 'gameid')
   String get gameId;
   String get cname;
+  String get ename;
   int get favorite;
   int get sort;
 
@@ -62,6 +65,7 @@ abstract class $GameModelCopyWith<$Res> {
       String platform,
       @JsonKey(name: 'gameid') String gameId,
       String cname,
+      String ename,
       int favorite,
       int sort});
 }
@@ -81,6 +85,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object platform = freezed,
     Object gameId = freezed,
     Object cname = freezed,
+    Object ename = freezed,
     Object favorite = freezed,
     Object sort = freezed,
   }) {
@@ -90,6 +95,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
       platform: platform == freezed ? _value.platform : platform as String,
       gameId: gameId == freezed ? _value.gameId : gameId as String,
       cname: cname == freezed ? _value.cname : cname as String,
+      ename: ename == freezed ? _value.ename : ename as String,
       favorite: favorite == freezed ? _value.favorite : favorite as int,
       sort: sort == freezed ? _value.sort : sort as int,
     ));
@@ -108,6 +114,7 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       String platform,
       @JsonKey(name: 'gameid') String gameId,
       String cname,
+      String ename,
       int favorite,
       int sort});
 }
@@ -128,6 +135,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object platform = freezed,
     Object gameId = freezed,
     Object cname = freezed,
+    Object ename = freezed,
     Object favorite = freezed,
     Object sort = freezed,
   }) {
@@ -137,6 +145,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
       platform: platform == freezed ? _value.platform : platform as String,
       gameId: gameId == freezed ? _value.gameId : gameId as String,
       cname: cname == freezed ? _value.cname : cname as String,
+      ename: ename == freezed ? _value.ename : ename as String,
       favorite: favorite == freezed ? _value.favorite : favorite as int,
       sort: sort == freezed ? _value.sort : sort as int,
     ));
@@ -150,13 +159,15 @@ class _$_GameModel implements _GameModel {
       @required this.category,
       @required this.platform,
       @JsonKey(name: 'gameid') this.gameId,
-      @required this.cname,
+      this.cname = '??',
+      this.ename = '??',
       this.favorite = 0,
       this.sort = 0})
       : assert(id != null),
         assert(category != null),
         assert(platform != null),
         assert(cname != null),
+        assert(ename != null),
         assert(favorite != null),
         assert(sort != null);
 
@@ -169,8 +180,12 @@ class _$_GameModel implements _GameModel {
   @override
   @JsonKey(name: 'gameid')
   final String gameId;
+  @JsonKey(defaultValue: '??')
   @override
   final String cname;
+  @JsonKey(defaultValue: '??')
+  @override
+  final String ename;
   @JsonKey(defaultValue: 0)
   @override
   final int favorite;
@@ -180,7 +195,7 @@ class _$_GameModel implements _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(id: $id, category: $category, platform: $platform, gameId: $gameId, cname: $cname, favorite: $favorite, sort: $sort)';
+    return 'GameModel(id: $id, category: $category, platform: $platform, gameId: $gameId, cname: $cname, ename: $ename, favorite: $favorite, sort: $sort)';
   }
 
   @override
@@ -199,6 +214,8 @@ class _$_GameModel implements _GameModel {
                 const DeepCollectionEquality().equals(other.gameId, gameId)) &&
             (identical(other.cname, cname) ||
                 const DeepCollectionEquality().equals(other.cname, cname)) &&
+            (identical(other.ename, ename) ||
+                const DeepCollectionEquality().equals(other.ename, ename)) &&
             (identical(other.favorite, favorite) ||
                 const DeepCollectionEquality()
                     .equals(other.favorite, favorite)) &&
@@ -214,6 +231,7 @@ class _$_GameModel implements _GameModel {
       const DeepCollectionEquality().hash(platform) ^
       const DeepCollectionEquality().hash(gameId) ^
       const DeepCollectionEquality().hash(cname) ^
+      const DeepCollectionEquality().hash(ename) ^
       const DeepCollectionEquality().hash(favorite) ^
       const DeepCollectionEquality().hash(sort);
 
@@ -228,7 +246,8 @@ abstract class _GameModel implements GameModel {
       @required String category,
       @required String platform,
       @JsonKey(name: 'gameid') String gameId,
-      @required String cname,
+      String cname,
+      String ename,
       int favorite,
       int sort}) = _$_GameModel;
 
@@ -243,6 +262,8 @@ abstract class _GameModel implements GameModel {
   String get gameId;
   @override
   String get cname;
+  @override
+  String get ename;
   @override
   int get favorite;
   @override

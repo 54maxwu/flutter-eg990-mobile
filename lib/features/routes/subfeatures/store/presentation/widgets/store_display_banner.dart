@@ -56,6 +56,7 @@ class _StoreDisplayBannerState extends State<StoreDisplayBanner> {
       widget.images,
       (banner) async => await networkImageWidget(banner.pic, fit: BoxFit.fill)
           .then((widget) => imageWidgets.add(widget)),
-    ).whenComplete(() => print('store banner count: ${imageWidgets.length}'));
+    ).whenComplete(
+        () => debugPrint('store banner count: ${imageWidgets.length}'));
   }
 }

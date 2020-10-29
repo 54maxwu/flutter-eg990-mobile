@@ -202,7 +202,7 @@ class CenterDialogCpw extends StatelessWidget {
                           child: Text(localeStr.btnBind),
                           onPressed: () {
                             if (hasUrl) {
-//                              RouterNavigate.navigateToPage(
+//                              AppNavigator.navigateToPage(
 //                                RoutePage.centerWeb,
 //                                arg: WebRouteArguments(
 //                                  startUrl: store.cpwUrl[0],

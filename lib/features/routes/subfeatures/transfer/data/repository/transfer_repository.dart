@@ -38,7 +38,7 @@ class TransferRepositoryImpl implements TransferRepository {
       jsonToModel: TransferPlatformModel.jsonToTransferPlatformModel,
       tag: 'remote-TRANSFORM',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (models) => Right(TransferPlatformList(list: models)),
@@ -56,7 +56,7 @@ class TransferRepositoryImpl implements TransferRepository {
       jsonToModel: TransferBalanceModel.jsonToTransferBalanceModel,
       tag: 'remote-TRANSFORM',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),
@@ -75,7 +75,7 @@ class TransferRepositoryImpl implements TransferRepository {
       jsonToModel: RequestStatusModel.jsonToStatusModel,
       tag: 'remote-TRANSFER',
     );
-//    print('test response type: ${result.runtimeType}, data: $result');
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),

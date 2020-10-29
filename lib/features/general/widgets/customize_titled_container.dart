@@ -213,11 +213,11 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing,
-                    letterSpacing: widget.titleLetterSpacing,
+                    letterSpacing:
+                        (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
                     color: _prefixColor,
                   ),
                   children: [
-                    TextSpan(text: widget.prefixText),
                     if (widget.requiredInput)
                       TextSpan(
                         text: ' *',
@@ -227,6 +227,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                           color: themeColor.hintHighlightRed,
                         ),
                       ),
+                    TextSpan(text: widget.prefixText),
                   ],
                 ),
               ),
@@ -246,11 +247,11 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
               style: TextStyle(
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
-                letterSpacing: widget.titleLetterSpacing,
+                letterSpacing:
+                    (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [
-                TextSpan(text: widget.prefixText),
                 if (widget.requiredInput)
                   TextSpan(
                     text: ' *',
@@ -259,6 +260,7 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                       color: themeColor.hintHighlightRed,
                     ),
                   ),
+                TextSpan(text: widget.prefixText),
               ],
             ),
           ),

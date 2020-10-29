@@ -2,7 +2,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 
 import '../../data/model/deposit_result.dart';
 import '../../data/model/payment_type.dart';
@@ -68,7 +68,7 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
             );
           } else if (result.code == 0 && result.url != null) {
             debugPrint('deposit display url: ${result.url}');
-            RouterNavigate.navigateToPage(
+            AppNavigator.navigateTo(
               RoutePage.depositWeb,
               arg: WebRouteArguments(startUrl: result.url),
             );
@@ -98,35 +98,49 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        child: ListView(
-          primary: true,
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 6.0),
-              child: TypesGridWidget<PaymentType>(
-                types: widget.store.paymentTypes,
-                tabsPerRow: 3,
-                expectTabHeight: 36.0,
-                titleKey: 'label',
-                onTypeGridTap: (_, type) => updateContent(type),
+        child: (widget.store.paymentTypes.isEmpty)
+            ? Center(
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    text: localeStr.depositPaymentNoData,
+                    style: TextStyle(
+                        color: themeColor.defaultTextColor,
+                        fontSize: FontSize.SUBTITLE.value),
+                  ),
+                ),
+              )
+            : ListView(
+                primary: true,
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: TypesGridWidget<PaymentType>(
+                      types: widget.store.paymentTypes,
+                      tabsPerRow: 3,
+                      expectTabHeight: 36.0,
+                      titleKey: 'label',
+                      onTypeGridTap: (_, type) => updateContent(type),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: PaymentContent(
+                      key: _contentKey,
+                      promos: widget.store.promoMap,
+                      infoList: widget.store.infoList,
+                      banks: widget.store.banks,
+                      rules: widget.store.depositRule,
+                      depositCall: widget.store.sendRequest,
+                      firstTypeKey: widget.store.paymentTypes.first.key,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: PaymentContent(
-                key: _contentKey,
-                promos: widget.store.promoMap,
-                infoList: widget.store.infoList,
-                banks: widget.store.banks,
-                rules: widget.store.depositRule,
-                depositCall: widget.store.sendRequest,
-                firstTypeKey: widget.store.paymentTypes.first.key,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

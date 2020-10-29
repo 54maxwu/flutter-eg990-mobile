@@ -28,8 +28,7 @@ class LoginDisplay extends StatefulWidget {
 }
 
 class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
   final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
       new GlobalKey(debugLabel: 'name');
   final GlobalKey<CustomizeFieldWidgetState> _pwdFieldKey =
@@ -209,7 +208,7 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
                   ),
 
                   ///
-                  /// normal button
+                  /// login button
                   ///
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 24.0),

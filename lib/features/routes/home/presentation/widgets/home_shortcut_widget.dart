@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
@@ -61,7 +62,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   }
 
   void updateUser() {
-    print('updating member area data...');
+    debugPrint('updating member area data...');
     setState(() {
       _userData = getAppGlobalStreams.lastStatus;
       debugPrint('member area user: $_userData');
@@ -84,7 +85,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     double availableWidth =
         (Global.device.width >= 600) ? 200 : Global.device.width / 3;
     _leftAreaMinWidth = FontSize.NORMAL.value * 6;
-    _leftAreaMaxWidth = FontSize.NORMAL.value * 9.5 + 10.0;
+    _leftAreaMaxWidth = FontSize.NORMAL.value * 8.5;
 
     if (Global.device.isIos) _leftAreaMinWidth += 8;
     if (Global.device.width > 600) {
@@ -97,7 +98,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
       _leftAreaMaxWidth = _leftAreaMinWidth;
 
     _userData = getAppGlobalStreams.lastStatus;
-    print('updating member area height: $_areaHeight');
+    debugPrint('updating member area height: $_areaHeight');
     super.initState();
     _smallerWidget = _areaHeight < widget.sizeCalc.shortcutMaxHeight;
     _iconSize = (_smallerWidget)
@@ -205,9 +206,12 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             side: BorderSide(color: themeColor.defaultAccentColor),
             borderRadius: BorderRadius.circular(4.0),
           ),
-          child: Text(
+          child: AutoSizeText(
             localeStr.pageTitleLogin2,
             style: TextStyle(color: themeColor.homeBoxButtonTextColor),
+            minFontSize: 10.0,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           onPressed: () => showDialog(
             context: context,
@@ -237,19 +241,11 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                     overflow: TextOverflow.visible,
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '${_userData.currentUser.account}\r',
-                          style: TextStyle(
-                            color: themeColor.homeBoxInfoTextColor,
-                            fontSize: _leftAreaTextSize,
-                          ),
-                        ),
-                        TextSpan(
-                          text: localeStr.homeHintWelcome,
-                          style: TextStyle(fontSize: _leftAreaTextSize),
-                        ),
-                      ],
+                      text: '${_userData.currentUser.account}',
+                      style: TextStyle(
+                        color: themeColor.homeBoxInfoTextColor,
+                        fontSize: _leftAreaTextSize,
+                      ),
                     ),
                   ),
                 ),
@@ -265,7 +261,8 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   builder: (_, snapshot) {
                     if (_currentCredit != snapshot.data) {
                       _currentCredit = snapshot.data;
-                      print('home page user credit updated: $_currentCredit');
+                      debugPrint(
+                          'home page user credit updated: $_currentCredit');
                       _infoWidget = _buildUserInfo();
                       _updateTextSize(true);
                     }
@@ -372,7 +369,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
           if (isUserOnly && !isUserContent && page != null) {
             toastLogin();
           } else if (page != null) {
-            RouterNavigate.navigateToPage(page);
+            AppNavigator.navigateTo(page);
           } else {
             callToastInfo(localeStr.workInProgress);
           }
@@ -402,22 +399,22 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
-                child: RichText(
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                    text: replaceLabel ?? page.pageTitle ?? '',
-                    style: TextStyle(
-                      fontSize: _smallerWidget
-                          ? FontSize.SMALLER.value
-                          : FontSize.NORMAL.value,
-                      color: themeColor.homeBoxIconTextColor,
+                  padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
+                  child: AutoSizeText.rich(
+                    TextSpan(
+                      text: replaceLabel ?? page.pageTitle ?? '',
+                      style: TextStyle(
+                        fontSize: _smallerWidget
+                            ? FontSize.SMALLER.value
+                            : FontSize.NORMAL.value,
+                        color: themeColor.homeBoxIconTextColor,
+                      ),
                     ),
-                  ),
-                ),
-              ),
+                    maxLines: 2,
+                    minFontSize: 10.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  )),
             ),
           ],
         ),

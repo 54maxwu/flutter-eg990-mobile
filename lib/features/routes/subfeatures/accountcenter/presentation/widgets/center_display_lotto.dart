@@ -14,8 +14,7 @@ class CenterDisplayLotto extends StatefulWidget {
 }
 
 class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'lottoform');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'lottoform');
 
   final Key _streamKey = new Key('lottostream');
 

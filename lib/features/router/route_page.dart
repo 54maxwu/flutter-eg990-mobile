@@ -1,287 +1,354 @@
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/core/error/exceptions.dart'
-    show UnknownConditionException;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/features/router/route_enum.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:vnum/vnum.dart';
 
+import 'auto_router.gr.dart';
+import 'route_enum.dart';
 import 'route_info.dart';
-import 'router.gr.dart';
 
-export 'package:flutter_eg990_mobile/features/router/route_enum.dart';
+export 'route_enum.dart';
+
+part 'route_page_ext.dart';
+
+const ROUTE_POSTFIX_SIDE = '-side';
 
 @VnumDefinition
 class RoutePage extends Vnum<RouteInfo> {
   /// Case Definition
   static const RoutePage home = const RoutePage.define(RouteInfo(
     id: RouteEnum.HOME,
-    route: Routes.homeRoute,
-    isFeature: true,
+    route: FeatureScreenRoutes.homeRoute,
     bottomNavIndex: 0,
     hideAppbarActions: false,
   ));
 
   static const RoutePage login = const RoutePage.define(RouteInfo(
     id: RouteEnum.LOGIN,
-    route: Routes.loginRoute,
-  ));
-
-//  static const RoutePage movieEg = const RoutePage.define(RouteInfo(
-//    id: RouteEnum.MOVIE_EG,
-//    route: Routes.movieRoute,
-//    disableLanguageDropDown: true,
-//  ));
-
-  static const RoutePage movieNew = const RoutePage.define(RouteInfo(
-    id: RouteEnum.MOVIE_NEW,
-    route: Routes.movieRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.loginRoute,
   ));
 
   static const RoutePage register = const RoutePage.define(RouteInfo(
     id: RouteEnum.REGISTER,
-    route: Routes.registerRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.registerRoute,
+    webPageName: ('/register'),
+    hideLanguageOption: true,
   ));
 
   static const RoutePage promo = const RoutePage.define(RouteInfo(
     id: RouteEnum.PROMO,
-    route: Routes.promoRoute,
-    isFeature: true,
+    route: FeatureScreenRoutes.promoRoute,
+    webPageName: ('/promo/0'),
     bottomNavIndex: 2,
+    hideAppbarActions: false,
   ));
 
   static const RoutePage service = const RoutePage.define(RouteInfo(
     id: RouteEnum.SERVICE,
-    route: Routes.serviceRoute,
-    isFeature: true,
+    route: FeatureScreenRoutes.serviceRoute,
+    webPageName: ('/customer_service'),
     bottomNavIndex: 3,
-    disableLanguageDropDown: true,
+    hideAppbarActions: false,
+    hideLanguageOption: true,
+  ));
+
+  static const RoutePage serviceWeb = const RoutePage.define(RouteInfo(
+    id: RouteEnum.SERVICE_WEB,
+    route: FeatureScreenRoutes.serviceWebRoute,
+    root: FeatureScreenRoutes.serviceRoute,
+    bottomNavIndex: 3,
+    hideAppbarActions: false,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage member = const RoutePage.define(RouteInfo(
     id: RouteEnum.MEMBER,
-    route: Routes.memberRoute,
-    isFeature: true,
+    route: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/myaccount'),
     bottomNavIndex: 4,
+    isUserOnly: true,
   ));
 
   static const RoutePage depositFeature = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
-    route: Routes.depositFeatureRoute,
-    parentRoute: Routes.homeRoute,
-    isFeature: true,
+    route: FeatureScreenRoutes.depositFeatureRoute,
+    webPageName: ('/deposit'),
     bottomNavIndex: 1,
+    isUserOnly: true,
   ));
 
   static const RoutePage deposit = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
-    route: Routes.depositRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.depositRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    isUserOnly: true,
   ));
 
   static const RoutePage depositWeb = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
-    route: Routes.depositWebPage,
-    parentRoute: Routes.depositRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.depositWebRoute,
+    root: FeatureScreenRoutes.depositRoute,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage transfer = const RoutePage.define(RouteInfo(
     id: RouteEnum.TRANSFER,
-    route: Routes.transferRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.transferRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/transfer'),
+    isUserOnly: true,
   ));
 
   static const RoutePage bankcard = const RoutePage.define(RouteInfo(
     id: RouteEnum.BANKCARD,
-    route: Routes.bankcardRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.bankcardRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/bankcard'),
+    isUserOnly: true,
   ));
 
   static const RoutePage withdraw = const RoutePage.define(RouteInfo(
     id: RouteEnum.WITHDRAW,
-    route: Routes.withdrawRoute,
+    route: FeatureScreenRoutes.withdrawRoute,
     routeArg: BankcardRouteArguments(withdraw: true),
-    parentRoute: Routes.memberRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/withdrawal'),
+    isUserOnly: true,
   ));
 
   static const RoutePage balance = const RoutePage.define(RouteInfo(
     id: RouteEnum.BALANCE,
-    route: Routes.balanceRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.balanceRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/platform'),
+    isUserOnly: true,
   ));
 
   static const RoutePage wallet = const RoutePage.define(RouteInfo(
     id: RouteEnum.WALLET,
-    route: Routes.walletRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.walletRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/wallet'),
+    isUserOnly: true,
   ));
 
   static const RoutePage message = const RoutePage.define(RouteInfo(
     id: RouteEnum.MESSAGE,
-    route: Routes.messageRoute,
-    parentRoute: Routes.memberRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.messageRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/station'),
+    hideLanguageOption: true,
+    isUserOnly: true,
   ));
 
   static const RoutePage center = const RoutePage.define(RouteInfo(
     id: RouteEnum.CENTER,
-    route: Routes.centerRoute,
-    parentRoute: Routes.memberRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.centerRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/center'),
+    hideLanguageOption: true,
+    isUserOnly: true,
   ));
 
   static const RoutePage centerPassword = const RoutePage.define(RouteInfo(
     id: RouteEnum.PASSWORD,
-    route: Routes.centerPasswordPage,
-    parentRoute: Routes.centerRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.centerPasswordRoute,
+    root: FeatureScreenRoutes.centerRoute,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage centerWeb = const RoutePage.define(RouteInfo(
     id: RouteEnum.CENTER,
-    route: Routes.centerWebPage,
-    parentRoute: Routes.centerRoute,
-    disableLanguageDropDown: true,
+    route: FeatureScreenRoutes.centerWebRoute,
+    root: FeatureScreenRoutes.centerRoute,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage transaction = const RoutePage.define(RouteInfo(
     id: RouteEnum.TRANSFER_RECORD,
-    route: Routes.transactionRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.transactionRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/transfer_record'),
+    isUserOnly: true,
   ));
 
   static const RoutePage betRecord = const RoutePage.define(RouteInfo(
     id: RouteEnum.BETS,
-    route: Routes.betRecordRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.betRecordRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/bet_history'),
+    isUserOnly: true,
   ));
 
   static const RoutePage deals = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEALS,
-    route: Routes.dealsRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.dealsRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/transaction'),
+    isUserOnly: true,
   ));
 
-  static const RoutePage flows = const RoutePage.define(RouteInfo(
-    id: RouteEnum.FLOW,
-    route: Routes.flowsRoute,
-    parentRoute: Routes.memberRoute,
-  ));
-
-  static const RoutePage agentFeature = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT,
-    route: Routes.agentFeatureRoute,
-    parentRoute: Routes.homeRoute,
-    isFeature: true,
-    bottomNavIndex: 1,
-    disableLanguageDropDown: true,
-  ));
-
-  static const RoutePage agent = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT,
-    route: Routes.agentRoute,
-    parentRoute: Routes.memberRoute,
-    disableLanguageDropDown: true,
-  ));
-
-  static const RoutePage tutorial = const RoutePage.define(RouteInfo(
-    id: RouteEnum.TUTORIAL,
-    route: Routes.moreWebPage,
-    routeArg: WebRouteArguments(
-      startUrl: '${Global.CURRENT_BASE}newbie',
-      hideBars: true,
-    ),
-    parentRoute: Routes.homeRoute,
-    disableLanguageDropDown: true,
+  static const RoutePage rollback = const RoutePage.define(RouteInfo(
+    id: RouteEnum.ROLLBACK,
+    route: FeatureScreenRoutes.rollbackRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/bet_rollback'),
+    isUserOnly: true,
   ));
 
   static const RoutePage noticeBoard = const RoutePage.define(RouteInfo(
     id: RouteEnum.NOTICE,
-    route: Routes.noticeRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.noticeRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    webPageName: ('/remind'),
   ));
 
   static const RoutePage vipLevel = const RoutePage.define(RouteInfo(
     id: RouteEnum.VIP,
-    route: Routes.levelRoute,
-    parentRoute: Routes.memberRoute,
+    route: FeatureScreenRoutes.vipLevelRoute,
+    root: FeatureScreenRoutes.memberRoute,
   ));
 
-  static const RoutePage agentAbout = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT_ABOUT,
-    route: Routes.moreWebPage,
-    routeArg: const WebRouteArguments(
-      startUrl: '${Global.CURRENT_BASE}agentPage',
-      hideBars: true,
-    ),
-    parentRoute: Routes.homeRoute,
-    disableLanguageDropDown: true,
+  ///
+  /// agent route
+  ///
+  static const RoutePage agentFeatureOld = const RoutePage.define(RouteInfo(
+    id: RouteEnum.AGENT,
+    route: FeatureScreenRoutes.agentFeatureRoute,
+    bottomNavIndex: 1,
+    hideLanguageOption: true,
+    isUserOnly: true,
   ));
 
+  static const RoutePage agentOld = const RoutePage.define(RouteInfo(
+    id: RouteEnum.AGENT,
+    route: FeatureScreenRoutes.agentRoute,
+    root: FeatureScreenRoutes.memberRoute,
+    hideLanguageOption: true,
+    isUserOnly: true,
+  ));
+  //
+  // static const RoutePage agentLogin = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT_LOGIN,
+  //   route: FeatureScreenRoutes.agentLoginRoute,
+  //   hideAppbarActions: true,
+  // ));
+  //
+  // static const RoutePage agentRegister = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT_REGISTER,
+  //   route: FeatureScreenRoutes.agentRegisterRoute,
+  //   root: FeatureScreenRoutes.agentLoginRoute,,
+  //   showDrawer: false,
+  //   hideAppbarActions: true,
+  // ));
+  //
+  // static const RoutePage agent = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT,
+  //   route: FeatureScreenRoutes.agentRoute,
+  //   showDrawer: false,
+  //   hideAppbarActions: true,
+  //   bottomNavIndex: 10,
+  // ));
+
+  ///
   /// side menu route
-  static const RoutePage downloadArea = const RoutePage.define(RouteInfo(
-    id: RouteEnum.DOWNLOAD,
-    route: Routes.downloadAreaRoute,
+  /// * important:
+  /// change route name if duplicate
+  ///
+  static const RoutePage sideStore = const RoutePage.define(RouteInfo(
+    id: RouteEnum.STORE,
+    route: FeatureScreenRoutes.storeRoute,
+    webPageName: ('/mall'),
     showDrawer: true,
-    disableLanguageDropDown: true,
+    hideLanguageOption: true,
+    isUserOnly: true,
+  ));
+
+  static const RoutePage sideRoller = const RoutePage.define(RouteInfo(
+    id: RouteEnum.ROLLER,
+    route: FeatureScreenRoutes.rollerRoute,
+    webPageName: ('/turntable'),
+    showDrawer: true,
+    hideLanguageOption: true,
+    isUserOnly: true,
+  ));
+
+  static const RoutePage sideDownload = const RoutePage.define(RouteInfo(
+    id: RouteEnum.DOWNLOAD,
+    route: FeatureScreenRoutes.downloadAreaRoute,
+    showDrawer: true,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage sideNoticeBoard = const RoutePage.define(RouteInfo(
     id: RouteEnum.NOTICE,
-    route: Routes.noticeRoute,
+    route: '${FeatureScreenRoutes.noticeRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
   ));
 
   static const RoutePage sideTutorial = const RoutePage.define(RouteInfo(
     id: RouteEnum.TUTORIAL,
-    route: Routes.moreWebPage,
+    route: '${FeatureScreenRoutes.moreRoute}$ROUTE_POSTFIX_SIDE-newbie',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
       hideBars: true,
     ),
+    webPageName: ('/newbie'),
     showDrawer: true,
-    disableLanguageDropDown: true,
-  ));
-
-  static const RoutePage sideWallet = const RoutePage.define(RouteInfo(
-    id: RouteEnum.WALLET,
-    route: Routes.walletRoute,
-    showDrawer: true,
+    hideLanguageOption: true,
   ));
 
   static const RoutePage sideVipLevel = const RoutePage.define(RouteInfo(
     id: RouteEnum.VIP,
-    route: Routes.levelRoute,
+    route: '${FeatureScreenRoutes.vipLevelRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
   ));
 
-  static const RoutePage pointStore = const RoutePage.define(RouteInfo(
-    id: RouteEnum.STORE,
-    route: Routes.storeRoute,
+  static const RoutePage sideWallet = const RoutePage.define(RouteInfo(
+    id: RouteEnum.WALLET,
+    route: '${FeatureScreenRoutes.walletRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
-    disableLanguageDropDown: true,
+    isUserOnly: true,
   ));
 
-  static const RoutePage roller = const RoutePage.define(RouteInfo(
-    id: RouteEnum.ROLLER,
-    route: Routes.rollerRoute,
-    showDrawer: true,
-    disableLanguageDropDown: true,
+  ///
+  /// more route
+  /// * important:
+  /// change route name if duplicate
+  ///
+  static const RoutePage moreAgentAbout = const RoutePage.define(RouteInfo(
+    id: RouteEnum.AGENT_ABOUT,
+    route: '${FeatureScreenRoutes.moreRoute}-agent0',
+    routeArg: const WebRouteArguments(
+      startUrl: '${Global.CURRENT_BASE}agentPage',
+      hideBars: true,
+    ),
+    hideLanguageOption: true,
   ));
 
+  static const RoutePage moreTutorial = const RoutePage.define(RouteInfo(
+    id: RouteEnum.TUTORIAL,
+    route: '${FeatureScreenRoutes.moreRoute}-newbie',
+    routeArg: const WebRouteArguments(
+      startUrl: '${Global.CURRENT_BASE}newbie',
+      hideBars: true,
+    ),
+    hideLanguageOption: true,
+  ));
+
+  ///
   /// test route
-//  static const RoutePage template = const RoutePage.define(RouteInfo(
-//    id: RouteEnum.TEMPLATE,
-//    route: Routes.templateRoute,
-//    disableLanguageDropDown: true,
-//  ));
+  ///
+  static const RoutePage template = const RoutePage.define(RouteInfo(
+    id: RouteEnum.TEMPLATE,
+    route: FeatureScreenRoutes.templateRoute,
+    hideLanguageOption: true,
+  ));
 
   static const RoutePage testArea = const RoutePage.define(RouteInfo(
-    id: RouteEnum.TEST,
-    route: Routes.testAreaRoute,
-    disableLanguageDropDown: true,
+    id: RouteEnum.TEST_UI,
+    route: FeatureScreenRoutes.testAreaRoute,
+    hideLanguageOption: true,
   ));
 
   /// Used for defining cases
@@ -294,72 +361,19 @@ class RoutePage extends Vnum<RouteInfo> {
   /// All value needs to be constant for this to work
   static List<Vnum> get listAll => Vnum.allCasesFor(RoutePage);
 
-  /// (optional) Extend your Vnums
-  //RouteInfo example() {
-  //  switch(value) {
-  //    default:
-  //      return RoutePage.example.value;
-  //  };
-  //}
+  String get pageName => value.route;
 
-  String get page => value.route;
+  RouteEnum get pageId => value.id;
 
   String get pageTitle => value.id.title;
 
-  String get pageRoot => value.parentRoute;
+  String get pageRoot => value.root;
 
-  bool get isFeature => value.isFeature;
+  bool get isUserOnly => value.isUserOnly;
 
   bool get hideBarAction => value.hideAppbarActions;
 
   int get navIndex => value.bottomNavIndex;
-}
 
-List<Vnum> _routes;
-
-extension PagesNameExtension on String {
-  /// Get route info by router name which generates in [Router.gr.dart]
-  RoutePage get toRoutePage {
-    _routes ??= RoutePage.listAll;
-    debugPrint("route vnum list length: ${_routes.length}");
-//      debugPrint("check routes list type: "
-//          "${RoutePage.listAll.every((vnum) => vnum is RoutePage && vnum.value is RouteInfo)}");
-    return _routes.singleWhere(
-      (page) => (page.value as RouteInfo).route == this,
-      orElse: () => getRoutePageByName,
-    );
-  }
-
-  RoutePage get getRoutePageByName {
-    debugPrint("asking route by name: $this");
-    switch (this) {
-      case '/':
-      case Routes.homeRoute:
-        return RoutePage.home;
-      case Routes.loginRoute:
-        return RoutePage.login;
-      case Routes.agentFeatureRoute:
-        return RoutePage.agentFeature;
-      case Routes.agentRoute:
-        return RoutePage.agent;
-      case Routes.depositFeatureRoute:
-        return RoutePage.depositFeature;
-      case Routes.depositRoute:
-        return RoutePage.deposit;
-      case Routes.promoRoute:
-        return RoutePage.promo;
-      case Routes.serviceRoute:
-        return RoutePage.service;
-      case Routes.memberRoute:
-        return RoutePage.member;
-      case Routes.centerRoute:
-        return RoutePage.center;
-//      case Routes.templateRoute:
-//        return RoutePage.template;
-      case Routes.testAreaRoute:
-        return RoutePage.testArea;
-      default:
-        throw UnknownConditionException();
-    }
-  }
+  bool get hasBottomNav => value.bottomNavIndex != -1;
 }

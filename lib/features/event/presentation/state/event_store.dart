@@ -23,7 +23,7 @@ abstract class _EventStore with Store {
 
   _EventStore(this._repository, this._infoRepository) {
     _adsController.stream.listen((event) {
-//      print('home stream ads: ${event.length}');
+//      debugPrint('event stream ads: ${event.length}');
       ads = event;
     });
   }
@@ -84,19 +84,30 @@ abstract class _EventStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.EVENT,
-          code: code,
-        )).message;
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.EVENT,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
+
+  @action
+  Future<void> getWebsiteList() async {
+    // Reset the possible previous error message.
+    errorMessage = null;
+    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+    await _repository.getWebsiteList().then((result) {
+      debugPrint('website list result: $result');
+      result.fold(
+        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+        (value) {},
+      );
+    });
   }
 
+  @action
   Future<void> getNewMessageCount() async {
     // Reset the possible previous error message.
     errorMessage = null;
@@ -118,7 +129,7 @@ abstract class _EventStore with Store {
       if (getAppGlobalStreams.hasUser == false) return;
       getAppGlobalStreams.resetCredit();
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _infoRepository.updateCredit(getAppGlobalStreams.userName).then(
+      await _infoRepository.updateCredit().then(
             (result) => result.fold(
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);
@@ -135,26 +146,12 @@ abstract class _EventStore with Store {
   }
 
   @action
-  Future<void> getWebsiteList() async {
-    // Reset the possible previous error message.
-    errorMessage = null;
-    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-    await _repository.getWebsiteList().then((result) {
-      debugPrint('website list result: $result');
-      result.fold(
-        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-        (value) {},
-      );
-    });
-  }
-
-  @action
   Future<void> getEvent() async {
     // Reset the possible previous error message.
     errorMessage = null;
     // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
     await _repository.getEvent().then((result) {
-      print('event result: $result');
+      debugPrint('event result: $result');
       result.fold(
         (failure) => setErrorMsg(msg: failure.message, showOnce: true),
         (model) {
@@ -164,7 +161,8 @@ abstract class _EventStore with Store {
           forceShowEvent = false;
           hasSignedEvent = !(_event.canSign);
           signedTimes = _event.signData?.times ?? 0;
-          print('event show: $showEventOnHome, has signed: $hasSignedEvent');
+          debugPrint(
+              'event show: $showEventOnHome, has signed: $hasSignedEvent');
         },
       );
     });
@@ -178,7 +176,7 @@ abstract class _EventStore with Store {
     return await _repository
         .signEvent(_event.eventData.id, _event.eventData.prize)
         .then((result) {
-      print('event result: $result');
+      debugPrint('event result: $result');
       return result.fold(
         (failure) {
           setErrorMsg(msg: failure.message, showOnce: true);
@@ -207,10 +205,10 @@ abstract class _EventStore with Store {
   }
 
   void debugEvent() {
-    print('Event: $_event');
-    print('Event can sign: ${_event.canSign}');
-    print('Has Event? $hasEvent');
-    print('Has Signed? $hasSignedEvent');
+    debugPrint('Event: $_event');
+    debugPrint('Event can sign: ${_event.canSign}');
+    debugPrint('Has Event? $hasEvent');
+    debugPrint('Has Signed? $hasSignedEvent');
   }
 
   @action
@@ -246,10 +244,10 @@ abstract class _EventStore with Store {
         Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
         if (box != null) {
           await box.putAll({skipAdsKey: saveValue});
-          print('box ads: ${box.get(skipAdsKey)}');
+          debugPrint('box ads: ${box.get(skipAdsKey)}');
         }
       }
-      print('box saved: $skipAdsKey - $saveValue');
+      debugPrint('box saved: $skipAdsKey - $saveValue');
     });
   }
 

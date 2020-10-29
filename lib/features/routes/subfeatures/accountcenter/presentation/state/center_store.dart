@@ -1,6 +1,5 @@
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
@@ -91,20 +90,16 @@ abstract class _CenterStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   bool _errorState = false;
 
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.CENTER,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.CENTER,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   CenterStoreState get state {

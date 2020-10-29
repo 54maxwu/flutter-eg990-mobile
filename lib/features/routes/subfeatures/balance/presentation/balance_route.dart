@@ -95,7 +95,7 @@ class _BalanceRouteState extends State<BalanceRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop balance route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

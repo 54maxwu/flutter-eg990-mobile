@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/screen/web_game_screen_store.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
@@ -15,7 +15,7 @@ import 'web_game_screen_float_button.dart';
 class WebGameScreen extends StatefulWidget {
   final String startUrl;
 
-  WebGameScreen({this.startUrl = 'https://www.eg990.com/'});
+  WebGameScreen({this.startUrl = Global.CURRENT_BASE});
 
   @override
   _WebGameScreenState createState() => _WebGameScreenState();
@@ -37,10 +37,7 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
   bool showVisibleHint = true;
 
   void _returnHome() {
-    ScreenNavigate.switchScreen(
-      force: true,
-      screen: ScreenEnum.Feature,
-    );
+    AppNavigator.switchScreen(Screens.Feature);
     _store.stopSensor();
   }
 
@@ -130,7 +127,7 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
               if (showToolHint) {
                 showToolHint = false;
                 Future.delayed(Duration(milliseconds: 1500), () {
-                  callToast('单击显示，长按隐藏 ↗');
+                  callToast(localeStr.gameToolHintUsage);
                 });
               }
               return GestureDetector(
@@ -138,7 +135,7 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
                   if (showVisibleHint) {
                     showVisibleHint = false;
                     Future.delayed(Duration(milliseconds: 300), () {
-                      callToast('双击可恢复显示');
+                      callToast(localeStr.gameToolHintRestore);
                     });
                   }
                   _toolKey.currentState?.hideTool();
