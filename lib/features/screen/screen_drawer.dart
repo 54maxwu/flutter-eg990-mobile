@@ -58,13 +58,6 @@ class ScreenDrawer extends StatelessWidget {
       case RouteEnum.WEBSITE:
         launch(Global.CURRENT_BASE);
         return true;
-      case RouteEnum.SERVICE:
-        AppNavigator.replaceWith(
-          item.value.route,
-          arg: WebRouteArguments(
-              startUrl: Global.currentService, hideBars: true),
-        );
-        return true;
       case RouteEnum.SIGN:
         if (eventStore == null) return false;
         if (store.hasUser == false) {
@@ -156,9 +149,9 @@ class ScreenDrawer extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(localeStr.messageWelcomeHint,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: themeColor.sideMenuHeaderTextColor,
-                            )),
+                                color: themeColor.sideMenuHeaderTextColor)),
                         SizedBox(height: 12.0),
                         RaisedButton(
                           visualDensity: VisualDensity(horizontal: 3.0),
@@ -206,8 +199,9 @@ class ScreenDrawer extends StatelessWidget {
                             : _itemTapped(item, context: context)) {
                           // if (_itemTapped(item, context: context)) {
                           // close the drawer
-                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
+                          if (viewState.scaffoldKey.currentState.isDrawerOpen) {
                             Navigator.of(context).pop();
+                          }
                         }
                       },
                       child: _buildListItem(item.value),

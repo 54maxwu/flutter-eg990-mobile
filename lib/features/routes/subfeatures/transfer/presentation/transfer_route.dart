@@ -65,12 +65,11 @@ class _TransferRouteState extends State<TransferRoute> {
           if (result == null) return;
           if (result.isSuccess) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.TRANSFER),
                 icon: Icons.check_circle_outline);
           } else {
-            callToastError(result.msg);
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.TRANSFER));
           }
         },
       ),

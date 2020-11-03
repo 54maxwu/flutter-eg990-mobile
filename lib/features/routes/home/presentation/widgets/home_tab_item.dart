@@ -45,10 +45,9 @@ class HomeTabItem extends StatefulWidget {
 }
 
 class HomeTabItemState extends State<HomeTabItem> {
-  final Size _iconSize =
-      Size(36.0, 30.0) * ((Global.device.widthScale + 1.0) / 2);
   final Size _cornerSize = Size(16.0, 12.0) * Global.device.heightScale;
 
+  Size _iconSize;
   Decoration _boxDecor;
   Decoration _boxSelectedDecor;
 
@@ -71,6 +70,8 @@ class HomeTabItemState extends State<HomeTabItem> {
   @override
   void initState() {
     _isSelected = widget.isFirst;
+    _iconSize = Size(widget.itemWidth + 4, widget.itemWidth) *
+        ((Global.device.widthScale + 1.0) / 2);
     super.initState();
   }
 
@@ -178,7 +179,7 @@ class HomeTabItemState extends State<HomeTabItem> {
               Expanded(
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: AutoSizeText(
                     widget.category.label,
                     style: TextStyle(fontSize: FontSize.NORMAL.value),

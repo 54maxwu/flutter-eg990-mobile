@@ -88,7 +88,7 @@ class StoreProductDetail extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '${product.point}',
+                    text: ' ${product.point} ',
                     style: TextStyle(
                       color: themeColor.storeHighlightTextColor,
                       fontSize: FontSize.SUBTITLE.value,
@@ -108,25 +108,28 @@ class StoreProductDetail extends StatelessWidget {
             )),
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-          child: FlatButton(
-            visualDensity: const VisualDensity(horizontal: 3.0, vertical: -2.0),
+          child: RaisedButton(
+            visualDensity: const VisualDensity(horizontal: 3.0),
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: themeColor.storeButtonColor, width: 2.0),
-              borderRadius: new BorderRadius.circular(6.0),
-            ),
-            disabledColor: themeColor.defaultHintColor,
+                borderRadius: new BorderRadius.circular(24.0)),
+            disabledColor: themeColor.buttonDisabledColor,
             child: RichText(
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              text: TextSpan(
-                text: (canExchange)
-                    ? localeStr.storeTextItemButton
-                    : localeStr.storeTextItemButtonDisabled,
-                style: TextStyle(
-                    fontSize: FontSize.SUBTITLE.value,
-                    color: themeColor.storeButtonColor,
-                    fontWeight: FontWeight.bold),
-              ),
+              text: (canExchange)
+                  ? TextSpan(
+                      text: localeStr.storeTextItemButton,
+                      style: TextStyle(
+                          fontSize: FontSize.SUBTITLE.value,
+                          color: themeColor.storeButtonColor,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : TextSpan(
+                      text: localeStr.storeTextItemButtonDisabled,
+                      style: TextStyle(
+                          fontSize: FontSize.SUBTITLE.value,
+                          color: themeColor.buttonDisabledTextColor),
+                    ),
             ),
             onPressed: (!canExchange) ? null : () => onExchange(),
           ),

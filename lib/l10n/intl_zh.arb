@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Zalo格式错误",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "请输入验证码",
   "@messageInvalidVerify": {
     "type": "text"
@@ -590,11 +594,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "密码为6~18个字",
+  "messageInvalidPassword": "密码为6~20个字",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "密码为8~18个字",
+  "messageInvalidPasswordNew": "密码为8~20个字",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "卡号为16~19个字",
+  "messageInvalidCardNumber": "卡号为6~19个字",
   "@messageInvalidCardNumber": {
     "type": "text"
   },

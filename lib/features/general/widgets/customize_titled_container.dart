@@ -218,16 +218,16 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                     color: _prefixColor,
                   ),
                   children: [
+                    TextSpan(text: widget.prefixText),
                     if (widget.requiredInput)
                       TextSpan(
-                        text: ' *',
+                        text: '*',
                         style: TextStyle(
                           fontSize:
                               widget.prefixTextSize ?? FontSize.NORMAL.value,
                           color: themeColor.hintHighlightRed,
                         ),
                       ),
-                    TextSpan(text: widget.prefixText),
                   ],
                 ),
               ),
@@ -252,15 +252,15 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                 color: _prefixColor,
               ),
               children: [
+                TextSpan(text: widget.prefixText),
                 if (widget.requiredInput)
                   TextSpan(
-                    text: ' *',
+                    text: '*',
                     style: TextStyle(
                       fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                       color: themeColor.hintHighlightRed,
                     ),
                   ),
-                TextSpan(text: widget.prefixText),
               ],
             ),
           ),

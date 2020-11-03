@@ -151,11 +151,13 @@ class JsonUtil {
     MyLogger.debug(
         msg: 'start decoding ${str.runtimeType} to model $T...', tag: tag);
     Map<String, dynamic> map;
-    if (str is Map == false) {
+    if (str is Map) {
+      map = str;
+    } else if (str is List) {
+      return jsonToModel({});
+    } else {
       var trimmed = (trim) ? trimJson(str) : str;
       map = jsonDecode(trimmed);
-    } else {
-      map = str;
     }
     // transfer decoded data to model data
     try {

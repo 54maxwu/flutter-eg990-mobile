@@ -26,7 +26,6 @@ class _TestNestedNavScreenState extends State<TestNestedNavScreen> {
           key: testNavKey,
           initialRoute: TestRouterRoutes.testNestedNavScreenView,
           router: TestRouter(),
-          name: TEST_NAV_NAME,
         ),
       ),
     );

@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Invalid Zalo account",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "Please enter a verification code",
   "@messageInvalidVerify": {
     "type": "text"
@@ -590,11 +594,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Password should be 6~18 words",
+  "messageInvalidPassword": "Password should be 6~20 words",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Password should be 8~18 words",
+  "messageInvalidPasswordNew": "Password should be 8~20 words",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 16 ~ 19 characters",
+  "messageInvalidCardNumber": "The card number is 6~19 characters",
   "@messageInvalidCardNumber": {
     "type": "text"
   },

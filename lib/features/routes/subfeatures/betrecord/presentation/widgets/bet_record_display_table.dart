@@ -132,7 +132,8 @@ class BetRecordDisplayTable extends StatelessWidget {
   TableRow _buildHeaderRow() {
     return (!isAllData)
         ? TableRow(
-            decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
+            decoration:
+                BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
             children: List.generate(
               _headerRowTexts.length,
               (index) => TableCellTextWidget(
@@ -140,7 +141,8 @@ class BetRecordDisplayTable extends StatelessWidget {
             ),
           )
         : TableRow(
-            decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
+            decoration:
+                BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
             children: List.generate(
               _platformHeaderRowTexts.length,
               (index) => TableCellTextWidget(

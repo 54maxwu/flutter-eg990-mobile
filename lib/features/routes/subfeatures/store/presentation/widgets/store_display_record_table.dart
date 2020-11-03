@@ -128,14 +128,13 @@ class StoreDisplayRecordTable extends StatelessWidget {
 
   TableRow _buildHeaderRow() {
     return TableRow(
-      decoration: BoxDecoration(
-        color: themeColor.defaultAccentColor,
-      ),
+      decoration: BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
       children: List.generate(
         _headerRowTexts.length,
         (index) => TableCellTextWidget(
           text: _headerRowTexts[index],
-          textColor: themeColor.chartPrimaryHeaderTextColor,
+          textColor: themeColor.chartSecondaryHeaderColor,
+          isHeader: true,
         ),
       ),
     );

@@ -134,8 +134,14 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
               Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
-    } else if (_tabController != null) {
+    } else if (_tabController != null || _tabKeyMap == null) {
       // build tab bar when game category is not null
+      if (_tabKeyMap != null) {
+        bool keysChecked = widget.tabs
+            .every((category) => _tabKeyMap.containsKey(category.type));
+        debugPrint('tab map check: $keysChecked');
+        if (keysChecked) return _tabBar;
+      }
       _tabBar = _buildTabBar(_store);
     } else if (_tabController == null && _timer == null) {
       // set a period check timer and wait for data initialized
@@ -233,7 +239,8 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
                         case GamePageType.Recommend:
                           return HomeDisplayTabPageMix.recommend(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
-                            textWidthFactor: widget.sizeCalc.textWidthFactor,
+                            itemLabelWidthFactor:
+                                widget.sizeCalc.textWidthFactor,
                             addFavoritePlugin: false,
                             onPlatformClicked: (platform) {
                               debugPrint(
@@ -306,7 +313,9 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
   void afterFirstLayout(BuildContext context) {
     _updateController.stream.listen((update) {
       debugPrint('update control listener: $update');
-      if (update[0].isNotEmpty && _tabKeyMap.containsKey(update[0])) {
+      if (update[0] != null &&
+          update[0].isNotEmpty &&
+          _tabKeyMap.containsKey(update[0])) {
         _tabKeyMap[update[0]].currentState.setSelected = false;
       }
       if (update[1].isNotEmpty && _tabKeyMap.containsKey(update[1])) {

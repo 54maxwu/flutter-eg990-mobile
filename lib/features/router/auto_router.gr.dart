@@ -148,11 +148,8 @@ class MainStartupRouter extends RouterBase {
 /// *************************************************************************
 
 extension MainStartupRouterExtendedNavigatorStateX on ExtendedNavigatorState {
-  Future<dynamic> pushFeatureScreen() => pushAndRemoveUntil<dynamic>(
-        MainStartupRoutes.featureScreen,
-        // true => same as push, false => push and clear stack
-        (route) => false,
-      );
+  Future<dynamic> pushFeatureScreen() =>
+      push<dynamic>(MainStartupRoutes.featureScreen);
 
   Future<dynamic> pushWebGameScreen({
     String startUrl = Global.CURRENT_BASE,
@@ -486,11 +483,8 @@ class FeatureScreenRouter extends RouterBase {
 /// *************************************************************************
 
 extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
-  Future<dynamic> pushHomeRoute() => pushAndRemoveUntil<dynamic>(
-        FeatureScreenRoutes.homeRoute,
-        // true => same as push, false => push and clear stack
-        (route) => false,
-      );
+  Future<dynamic> pushHomeRoute() =>
+      push<dynamic>(FeatureScreenRoutes.homeRoute);
 
   Future<dynamic> pushLoginRoute({
     bool returnHomeAfterLogin = false,

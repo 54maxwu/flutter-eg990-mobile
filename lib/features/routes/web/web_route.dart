@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -19,6 +21,8 @@ class _WebRouteState extends State<WebRoute> {
   @override
   void initState() {
     super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
     debugPrint('opening url: ${widget.startUrl}');
   }
 

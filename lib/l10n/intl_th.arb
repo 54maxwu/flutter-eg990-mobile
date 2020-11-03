@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "บัญชี Zalo ไม่ถูกต้อง",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "โปรดป้อนรหัสยืนยัน",
   "@messageInvalidVerify": {
     "type": "text"
@@ -590,11 +594,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~18 คำ",
+  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~20 คำ",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8~18 คำ",
+  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8~20 คำ",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "หมายเลขบัตรคือ 16~19 อักขระ",
+  "messageInvalidCardNumber": "หมายเลขบัตรคือ 6~19 อักขระ",
   "@messageInvalidCardNumber": {
     "type": "text"
   },

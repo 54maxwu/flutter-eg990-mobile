@@ -76,8 +76,11 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       debugPrint(
           'clicked platform: ${itemData.category}, from search: $fromSearch');
       if (fromSearch) {
-        // open requested platform's game view
-        _setGridContent(_buildGamesView(itemData));
+        if (itemData.isGameHall == false) {
+          _setGridContent(_buildGamesView(itemData));
+        } else {
+          _openGame(itemData.gameUrl);
+        }
       } else if (_isGameGrid) {
         // if current is showing games grid, change to platforms grid
         _setGridContent(_createPlatformGrid());

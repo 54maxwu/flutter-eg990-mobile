@@ -41,9 +41,9 @@ class LoginNavigate extends StatelessWidget {
             if (closeDialog) {
               Future.delayed(Duration(milliseconds: 100), () {
                 Navigator.of(context).pop();
-              }).whenComplete(() => AppNavigator.returnToHome(force: true));
+              }).whenComplete(() => AppNavigator.returnToHome());
             } else {
-              AppNavigator.returnToHome(force: true);
+              AppNavigator.returnToHome();
             }
           } else {
             AppNavigator.navigateTo(RoutePage.member);

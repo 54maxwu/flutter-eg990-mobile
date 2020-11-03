@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/data/error/error_message_map.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
@@ -123,12 +124,11 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
           if (result == null) return;
           if (result.isSuccess) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.REGISTER),
                 icon: Icons.check_circle_outline);
           } else {
-            callToastError(result.msg);
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.REGISTER));
           }
         },
       ),

@@ -43,7 +43,7 @@ extension GameEntityExtension on GameEntity {
   }
 
   String get imageUrl => '/images/index/gamelist/$id.jpg';
-  bool isLongText(int limit) => (Global.lang == 'zh')
+  bool isLongText(double limit) => (Global.lang == 'zh')
       ? cname.countLength > limit
       : ename.countLength > limit;
 }

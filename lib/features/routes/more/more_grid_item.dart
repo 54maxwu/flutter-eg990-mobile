@@ -12,7 +12,7 @@ class MoreGridItem extends Vnum<RouteListItem> {
   /// Case Definition
   static MoreGridItem notice = MoreGridItem.define(RouteListItem(
     iconData: IconCode.drawerNotice,
-    route: RoutePage.noticeBoard,
+    route: RoutePage.sideNoticeBoard,
   ));
   static MoreGridItem download = MoreGridItem.define(RouteListItem(
     iconData: IconCode.drawerDownload,
@@ -24,10 +24,11 @@ class MoreGridItem extends Vnum<RouteListItem> {
   ));
   static MoreGridItem vip = MoreGridItem.define(RouteListItem(
     iconData: IconCode.gridVip,
-    route: RoutePage.vipLevel,
+    imageName: 'images/moreShow_vip.png',
+    route: RoutePage.sideVipLevel,
   ));
   static MoreGridItem service = MoreGridItem.define(RouteListItem(
-    iconData: IconCode.navService,
+    iconData: IconCode.drawerService,
     route: RoutePage.service,
   ));
   static MoreGridItem routeChange = MoreGridItem.define(RouteListItem(

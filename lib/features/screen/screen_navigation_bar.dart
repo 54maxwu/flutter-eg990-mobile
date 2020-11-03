@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
@@ -57,12 +58,6 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
         AppNavigator.navigateTo(RoutePage.login);
-      else if (item.value.id == RouteEnum.SERVICE)
-        AppNavigator.navigateTo(value.route,
-            arg: WebRouteArguments(
-              startUrl: Global.currentService,
-              hideBars: true,
-            ));
       else
         AppNavigator.navigateTo(value.route);
     }
@@ -257,7 +252,30 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
               child: icon,
             )
           : icon,
-      label: title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+      title: Padding(
+          padding: (highlight)
+              ? const EdgeInsets.fromLTRB(9.0, 2.0, 3.0, 0.0)
+              : const EdgeInsets.fromLTRB(3.0, 2.0, 3.0, 0.0),
+          child: AutoSizeText(
+            title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+            style: TextStyle(
+              color: (highlight)
+                  ? themeColor.navigationColorFocus
+                  : themeColor.defaultTextColor,
+              fontSize: (Global.lang != 'zh')
+                  ? FontSize.SMALL.value
+                  : FontSize.NORMAL.value,
+            ),
+            minFontSize: (Global.lang != 'zh')
+                ? FontSize.SMALL.value - 4.0
+                : FontSize.NORMAL.value - 4.0,
+            maxFontSize: (Global.lang != 'zh')
+                ? FontSize.SMALL.value
+                : FontSize.NORMAL.value,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          )),
     );
   }
 }

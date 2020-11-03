@@ -63,6 +63,9 @@ class IconCode {
 
   static const drawerRoller = const IconData(0xf290, fontFamily: 'FontAwesome');
 
+  static const drawerService =
+      const IconData(0xf025, fontFamily: 'FontAwesome');
+
   // Icons.construction
   static const drawerTest = const IconData(0xe67a, fontFamily: 'MaterialIcons');
 

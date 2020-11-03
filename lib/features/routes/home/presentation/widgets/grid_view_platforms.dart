@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_platform.dart';
 import 'package:flutter_eg990_mobile/features/themes/font_size.dart';
 
-import 'grid_item_platform.dart';
+import 'grid_view_item.dart';
 
 typedef OnPlatformItemTap = void Function(GamePlatformEntity);
 typedef OnPlatformItemTapFavor = void Function(GamePlatformEntity, bool);
@@ -69,29 +69,23 @@ class GridViewPlatform extends StatelessWidget {
       {@required GamePlatformEntity platform,
       @required imgSize,
       @required textHeight}) {
-    return Container(
-      constraints: BoxConstraints.tight(Size(
-        imgSize,
-        imgSize + textHeight,
-      )),
-      child: GestureDetector(
-        onTap: () => onTap(platform),
-        child: GridItemPlatform2(
-          imgUrl: platform.imageUrl,
-          label: platform.label,
-          imageSize: imgSize,
-          fontSize: _basicFontSize,
-          labelHeight: textHeight,
-          labelMaxWidthFactor: labelWidthFactor,
-          verticalSpaceAroundLabel: _verticalEmptySpace,
-          isFavorite: platform.favorite == '1',
-          pluginTapAction: (addPlugin &&
-                  onFavorTap != null &&
-                  platform.imageUrl != null &&
-                  platform.label != null)
-              ? (isFavorite) => onFavorTap(platform, isFavorite)
-              : null,
-        ),
+    return GestureDetector(
+      onTap: () => onTap(platform),
+      child: GridViewItem.platform(
+        imgUrl: platform.imageUrl,
+        label: platform.label,
+        imageSize: imgSize,
+        fontSize: _basicFontSize,
+        labelHeight: textHeight,
+        labelMaxWidthFactor: labelWidthFactor,
+        verticalSpaceAroundLabel: _verticalEmptySpace,
+        isFavorite: platform.favorite == '1',
+        pluginTapAction: (addPlugin &&
+                onFavorTap != null &&
+                platform.imageUrl != null &&
+                platform.label != null)
+            ? (isFavorite) => onFavorTap(platform, isFavorite)
+            : null,
       ),
     );
   }

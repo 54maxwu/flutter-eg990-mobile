@@ -1315,6 +1315,16 @@ class S {
     );
   }
 
+  /// `Invalid Zalo account`
+  String get messageInvalidZalo {
+    return Intl.message(
+      'Invalid Zalo account',
+      name: 'messageInvalidZalo',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter a verification code`
   String get messageInvalidVerify {
     return Intl.message(
@@ -1345,20 +1355,20 @@ class S {
     );
   }
 
-  /// `Password should be 6~18 words`
+  /// `Password should be 6~20 words`
   String get messageInvalidPassword {
     return Intl.message(
-      'Password should be 6~18 words',
+      'Password should be 6~20 words',
       name: 'messageInvalidPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be 8~18 words`
+  /// `Password should be 8~20 words`
   String get messageInvalidPasswordNew {
     return Intl.message(
-      'Password should be 8~18 words',
+      'Password should be 8~20 words',
       name: 'messageInvalidPasswordNew',
       desc: '',
       args: [],
@@ -1415,10 +1425,10 @@ class S {
     );
   }
 
-  /// `The card number is 16 ~ 19 characters`
+  /// `The card number is 6~19 characters`
   String get messageInvalidCardNumber {
     return Intl.message(
-      'The card number is 16 ~ 19 characters',
+      'The card number is 6~19 characters',
       name: 'messageInvalidCardNumber',
       desc: '',
       args: [],

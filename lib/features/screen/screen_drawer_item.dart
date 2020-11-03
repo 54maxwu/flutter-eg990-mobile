@@ -20,7 +20,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem service = ScreenDrawerItem.define(RouteListItem(
     imageName: 'images/aside/59.png',
-    iconData: IconCode.navService,
+    iconData: IconCode.drawerService,
     route: RoutePage.service,
   ));
   static ScreenDrawerItem notice = ScreenDrawerItem.define(RouteListItem(

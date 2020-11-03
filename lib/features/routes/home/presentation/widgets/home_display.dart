@@ -200,7 +200,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
                         } else if (snapshot.data) {
                           _shortcutWidgetKey.currentState.updateUser();
                           _store.checkHomeTabs();
-                          _eventStore.getUserCredit();
                           AppNavigator.resetCheckUser();
                         }
                         return _shortcutWidget;
