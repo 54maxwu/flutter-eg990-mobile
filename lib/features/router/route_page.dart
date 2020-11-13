@@ -263,7 +263,7 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage sideStore = const RoutePage.define(RouteInfo(
     id: RouteEnum.STORE,
     route: FeatureScreenRoutes.storeRoute,
-    webPageName: ('/mall'),
+    webPageName: ('/mall/0'),
     showDrawer: true,
     hideLanguageOption: true,
     isUserOnly: true,
@@ -352,12 +352,12 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// test route
   ///
-  // static const RoutePage template = const RoutePage.define(RouteInfo(
-  //   id: RouteEnum.TEMPLATE,
-  //   route: FeatureScreenRoutes.templateRoute,
-  //   hideLanguageOption: true,
-  //   bottomNavIndex: 5,
-  // ));
+  static const RoutePage template = const RoutePage.define(RouteInfo(
+    id: RouteEnum.TEMPLATE,
+    route: FeatureScreenRoutes.templateRoute,
+    hideLanguageOption: true,
+    bottomNavIndex: 5,
+  ));
 
   static const RoutePage testArea = const RoutePage.define(RouteInfo(
     id: RouteEnum.TEST_UI,

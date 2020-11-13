@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/gen/dataclass.dart';
+import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/roller/data/models/roller_prize_model.dart';
 
 part 'roller_data_entity.g.dart';

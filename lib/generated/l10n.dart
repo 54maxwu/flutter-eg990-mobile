@@ -1345,10 +1345,10 @@ class S {
     );
   }
 
-  /// `Username should be 6 ~ 12 words`
+  /// `Username should be 6~12 words`
   String get messageInvalidAccount {
     return Intl.message(
-      'Username should be 6 ~ 12 words',
+      'Username should be 6~12 words',
       name: 'messageInvalidAccount',
       desc: '',
       args: [],
@@ -3305,10 +3305,10 @@ class S {
     );
   }
 
-  /// `Number range: 01 ~ 49`
+  /// `Number range: 01~49`
   String get centerLuckyNumberError {
     return Intl.message(
-      'Number range: 01 ~ 49',
+      'Number range: 01~49',
       name: 'centerLuckyNumberError',
       desc: '',
       args: [],
@@ -3975,20 +3975,20 @@ class S {
     );
   }
 
-  /// `Range: {num} ~ {num2}`
+  /// `Range: {num}~{num2}`
   String depositPaymentEditTitleAmountHintRange(Object num, Object num2) {
     return Intl.message(
-      'Range: $num ~ $num2',
+      'Range: $num~$num2',
       name: 'depositPaymentEditTitleAmountHintRange',
       desc: '',
       args: [num, num2],
     );
   }
 
-  /// `Range: {num} ~ {num2} (Step:{num3})`
+  /// `Range: {num}~{num2} (Step:{num3})`
   String depositPaymentEditTitleAmountHintRangeStep(Object num, Object num2, Object num3) {
     return Intl.message(
-      'Range: $num ~ $num2 (Step:$num3)',
+      'Range: $num~$num2 (Step:$num3)',
       name: 'depositPaymentEditTitleAmountHintRangeStep',
       desc: '',
       args: [num, num2, num3],

@@ -2,10 +2,12 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_carousel.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/entity/banner_entity.dart';
 
-typedef OnBannerClicked = void Function(bool, String);
+typedef OnBannerClicked = void Function(String);
 
 ///
 /// Create a [Carousel] widget to display banner images
@@ -59,14 +61,14 @@ class HomeDisplayBanner extends StatelessWidget {
       autoplayDuration: Duration(seconds: 10),
       jumpOnEndPage: true,
       onImageTap: (index) {
-        var url = bannerUrls[index];
+        String url = bannerUrls[index];
         debugPrint('clicked image $index, url: $url');
-        if (onBannerClicked != null) {
-          onBannerClicked(
-              url.contains('/api/open/'),
-              url
-                  .replaceAll(Global.CURRENT_BASE, '/')
-                  .replaceAll('/api/open/', ''));
+        if (url.contains(Global.DOMAIN_NAME)) {
+          if (onBannerClicked != null) {
+            onBannerClicked(url);
+          }
+        } else if (url.isUrl) {
+          launch(url);
         }
       },
     );

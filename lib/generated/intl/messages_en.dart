@@ -57,9 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(value) => "Request Success, Order No.${value}";
 
-  static m19(num, num2) => "Range: ${num} ~ ${num2}";
+  static m19(num, num2) => "Range: ${num}~${num2}";
 
-  static m20(num, num2, num3) => "Range: ${num} ~ ${num2} (Step:${num3})";
+  static m20(num, num2, num3) => "Range: ${num}~${num2} (Step:${num3})";
 
   static m21(value) => "Reality: ${value} VND";
 
@@ -269,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerLuckyButtonBind" : MessageLookupByLibrary.simpleMessage("Confirm Bind"),
     "centerLuckyButtonGenerate" : MessageLookupByLibrary.simpleMessage("Auto Generated"),
     "centerLuckyHint" : MessageLookupByLibrary.simpleMessage("Bind the Lucky Code, you can participate in the Lottery Match Code, wonderful gift for you !!!"),
-    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Number range: 01 ~ 49"),
+    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Number range: 01~49"),
     "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("Please fill in the numbers from 01 to 49 in the following 7 spaces"),
     "centerTextButtonBind" : MessageLookupByLibrary.simpleMessage("Bind"),
     "centerTextButtonChangePwd" : MessageLookupByLibrary.simpleMessage("Change Password"),
@@ -489,7 +489,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("User token error, please logout and login again"),
     "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("withdrawal failed"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("Change failed, please try again later"),
-    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6 ~ 12 words"),
+    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6~12 words"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("The name must be greater than 3 characters"),
     "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 6~19 characters"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("Wrong cardholder name"),

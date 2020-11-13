@@ -65,14 +65,20 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                 ? _citySelected
                 : '',
       );
+      debugPrint('bankcard form: ${dataForm.toJson()}');
       if (dataForm.isValid) {
-        debugPrint('bankcard form: ${dataForm.toJson()}');
-        if (widget.store.waitForNewCardResult)
+        if (widget.store.waitForNewCardResult) {
           callToast(localeStr.messageWait);
-        else
+        } else {
           widget.store.sendRequest(dataForm);
+        }
       } else {
-        callToast(localeStr.messageActionFillForm);
+        String info = '${localeStr.bankcardViewTitleOwner}: ${(dataForm.owner.isNotEmpty) ? dataForm.owner : "?"}\n' +
+            '${localeStr.bankcardViewTitleBankName}: ${(dataForm.bankId.isNotEmpty) ? bankMap[dataForm.bankId] : "?"}\n' +
+            '${localeStr.bankcardViewTitleCardNumber}: ${(dataForm.card.isNotEmpty) ? dataForm.card : "?"}\n' +
+            '${localeStr.bankcardViewTitleBankBranch}: ${(dataForm.branch.isNotEmpty) ? dataForm.branch : "?"}';
+        callToastInfo(localeStr.messageActionFillForm + '\n$info',
+            duration: ToastDuration.LONG);
       }
     }
   }

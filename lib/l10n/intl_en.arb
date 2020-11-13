@@ -590,7 +590,7 @@
       }
     }
   },
-  "messageInvalidAccount": "Username should be 6 ~ 12 words",
+  "messageInvalidAccount": "Username should be 6~12 words",
   "@messageInvalidAccount": {
     "type": "text"
   },
@@ -1407,7 +1407,7 @@
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "Number range: 01 ~ 49",
+  "centerLuckyNumberError": "Number range: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1685,7 +1685,7 @@
   "@depositPaymentEditTitleNote": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "Range: {num} ~ {num2}",
+  "depositPaymentEditTitleAmountHintRange": "Range: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -1697,7 +1697,7 @@
       }
     }
   },
-  "depositPaymentEditTitleAmountHintRangeStep": "Range: {num} ~ {num2} (Step:{num3})",
+  "depositPaymentEditTitleAmountHintRangeStep": "Range: {num}~{num2} (Step:{num3})",
   "@depositPaymentEditTitleAmountHintRangeStep": {
     "type": "text",
     "placeholders": {

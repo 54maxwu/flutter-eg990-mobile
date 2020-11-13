@@ -18,7 +18,8 @@ class WithdrawDisplayView extends StatefulWidget {
 class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
   final String tag = 'WithdrawDisplayView';
 
-  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
+  static final GlobalKey<FormState> _formKey =
+      new GlobalKey(debugLabel: 'form');
 
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =

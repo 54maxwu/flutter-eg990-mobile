@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/gen/dataclass.dart';
+import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:vnum/vnum.dart';
 
 part 'failure_code.g.dart';

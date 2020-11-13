@@ -47,7 +47,8 @@ import '../user/register/presentation/register_route.dart';
             initial: true,
             maintainState: true,
             children: <AutoRoute>[
-              MaterialRoute(page: HomeRoute, initial: true),
+              MaterialRoute(
+                  page: HomeRoute, initial: true, maintainState: true),
               MaterialRoute(page: LoginRoute, path: '/login'),
               MaterialRoute(page: RegisterRoute, path: '/register'),
               MaterialRoute(page: ServiceRoute, path: '/service'),
@@ -116,11 +117,6 @@ import '../user/register/presentation/register_route.dart';
 class $AutoRouter {}
 
 enum Screens { Feature, Game, Test, TestNav }
-
-// Future pushFeatureScreen() => pushNamedAndRemoveUntil(
-//   ScreenRoutes.featureScreen,
-//       (route) => false, // true => same as push, false => push and clear stack
-// );
 
 // Widget slideRightTransition(BuildContext context, Animation<double> animation,
 //     Animation<double> secondaryAnimation, Widget child) {

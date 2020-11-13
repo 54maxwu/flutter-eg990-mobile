@@ -57,9 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(value) => "ขอความสำเร็จหมายเลขคำสั่งซื้อ ${value}";
 
-  static m19(num, num2) => "ช่วง: ${num} ~ ${num2}";
+  static m19(num, num2) => "ช่วง: ${num}~${num2}";
 
-  static m20(num, num2, num3) => "ช่วง: ${num} ~ ${num2} (ขั้นตอน: ${num3})";
+  static m20(num, num2, num3) => "ช่วง: ${num}~${num2} (ขั้นตอน: ${num3})";
 
   static m22(value) => "ลงนามแล้ว ${value} วัน";
 
@@ -267,7 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerLuckyButtonBind" : MessageLookupByLibrary.simpleMessage("ยืนยันการผูก"),
     "centerLuckyButtonGenerate" : MessageLookupByLibrary.simpleMessage("สร้างอัตโนมัติ"),
     "centerLuckyHint" : MessageLookupByLibrary.simpleMessage("ผูกรหัสนำโชค คุณสามารถมีส่วนร่วมในรหัสจับคู่ลอตเตอรี ของขวัญที่ยอดเยี่ยมสำหรับคุณ !!!"),
-    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("ช่วงตัวเลข: 01 ~ 49"),
+    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("ช่วงตัวเลข: 01~49"),
     "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("กรุณากรอกตัวเลขตั้งแต่ 01 ถึง 49 ในช่องว่าง 7 ช่องต่อไปนี้"),
     "centerTextButtonBind" : MessageLookupByLibrary.simpleMessage("ผูก"),
     "centerTextButtonChangePwd" : MessageLookupByLibrary.simpleMessage("เปลี่ยนรหัสผ่าน"),
@@ -501,7 +501,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidPasswordArg" : m31,
     "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("รหัสผ่านควรมีความยาว 8~20 คำ"),
     "messageInvalidPhone" : m32,
-    "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("รหัสโพสต์ผิดพลาด (5 ~ 8)"),
+    "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("รหัสโพสต์ผิดพลาด (5~8)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("มีสัญลักษณ์ที่ไม่ถูกต้อง"),
     "messageInvalidVerify" : MessageLookupByLibrary.simpleMessage("โปรดป้อนรหัสยืนยัน"),
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("บัญชี WeChat ไม่ถูกต้อง"),

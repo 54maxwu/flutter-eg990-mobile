@@ -9,11 +9,13 @@ class LoginNavigate extends StatelessWidget {
   final bool returnHomePage;
   final bool closeDialog;
   final UserEntity user;
+  final Function callback;
 
   LoginNavigate({
     this.returnHomePage = true,
     this.closeDialog = false,
     this.user,
+    this.callback,
   });
 
   @override
@@ -48,6 +50,7 @@ class LoginNavigate extends StatelessWidget {
           } else {
             AppNavigator.navigateTo(RoutePage.member);
           }
+          callback();
         } catch (e) {
           MyLogger.warn(
             msg: 'Login Display has exception!!',

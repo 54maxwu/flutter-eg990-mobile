@@ -80,8 +80,14 @@ Future<void> mainCommon(Environment env) async {
   try {
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      Global.setLanguage =
-          box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
+      if (Global.lockLanguage == false) {
+        // set language as user preference
+        Global.setLanguage =
+            box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.lang) {
+        // override language if language is locked and different as default
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+      }
     } else {
       box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
     }

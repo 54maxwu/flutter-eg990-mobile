@@ -565,7 +565,7 @@
       }
     }
   },
-  "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5 ~ 8)",
+  "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
@@ -1407,7 +1407,7 @@
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "ช่วงตัวเลข: 01 ~ 49",
+  "centerLuckyNumberError": "ช่วงตัวเลข: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1685,7 +1685,7 @@
   "@depositPaymentEditTitleNote": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "ช่วง: {num} ~ {num2}",
+  "depositPaymentEditTitleAmountHintRange": "ช่วง: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -1697,7 +1697,7 @@
       }
     }
   },
-  "depositPaymentEditTitleAmountHintRangeStep": "ช่วง: {num} ~ {num2} (ขั้นตอน: {num3})",
+  "depositPaymentEditTitleAmountHintRangeStep": "ช่วง: {num}~{num2} (ขั้นตอน: {num3})",
   "@depositPaymentEditTitleAmountHintRangeStep": {
     "type": "text",
     "placeholders": {

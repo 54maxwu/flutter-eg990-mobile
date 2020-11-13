@@ -71,19 +71,14 @@ abstract class _PointStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    debugPrint('store action error: $msg, type: $type, code: $code');
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.STORE,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.STORE,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   PointStoreState get state {

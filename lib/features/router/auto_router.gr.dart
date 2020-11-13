@@ -286,6 +286,7 @@ class FeatureScreenRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomeRoute(),
         settings: data,
+        maintainState: true,
       );
     },
     LoginRoute: (data) {

@@ -1,14 +1,20 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/marquee_span_widget.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/entity/marquee_entity.dart';
 
+typedef OnMarqueeClicked = void Function(String);
+
 class HomeDisplayMarquee extends StatelessWidget {
   final List<MarqueeEntity> marquees;
+  final OnMarqueeClicked onMarqueeClicked;
 
-  HomeDisplayMarquee({this.marquees});
+  HomeDisplayMarquee({this.marquees, this.onMarqueeClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +54,15 @@ class HomeDisplayMarquee extends StatelessWidget {
                     startAfter: Duration(milliseconds: 1500),
                     callback: (index) {
                       // debugPrint('tapped marquee index: $index, data: ${marquees[index]}');
-                      if (marquees[index].url.isUrl) {
-                        String url = marquees[index].url;
-                        debugPrint('tapped marquee index: $index, url: $url');
-                        String pageName =
-                            url.substring(url.indexOf('.com/') + 4);
-                        // debugPrint('marquee url page name: $pageName');
-                        final route = pageName.urlToRoutePage;
-                        if (route != null) {
-                          if (route.isUserOnly &&
-                              getAppGlobalStreams.hasUser == false) {
-                            AppNavigator.navigateTo(RoutePage.login);
-                          } else {
-                            AppNavigator.navigateTo(route);
-                          }
+                      String url = marquees[index].url;
+                      debugPrint('clicked marquee $index, url: $url');
+                      if (url.isUrl == false) return;
+                      if (url.contains(Global.DOMAIN_NAME)) {
+                        if (onMarqueeClicked != null) {
+                          onMarqueeClicked(url);
                         }
+                      } else if (url.isUrl) {
+                        launch(url);
                       }
                     },
                   ),

@@ -404,7 +404,7 @@
   "@hintPassword": {
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8 đến 18 ký tự",
+  "hintConfirmed": "Độ dài từ 8~20 ký tự",
   "@hintConfirmed": {
     "type": "text"
   },
@@ -590,15 +590,15 @@
       }
     }
   },
-  "messageInvalidAccount": "Số tài khoản là 6 ~ 12 ký tự",
+  "messageInvalidAccount": "Số tài khoản là 6~12 ký tự",
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Mật khẩu dài 6 ~ 18 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài 6~20 ký tự",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
+  "messageInvalidPasswordNew": "Mật khẩu dài 8~20 ký tự",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -1403,11 +1403,11 @@
   "@centerHintNoName": {
     "type": "text"
   },
-  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01 ~ 49",
+  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01~49",
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "Dải số: 01 ~ 49",
+  "centerLuckyNumberError": "Dải số: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },

@@ -70,7 +70,7 @@ packages:
       name: bot_toast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "3.0.5"
   build:
     dependency: transitive
     description:
@@ -196,7 +196,7 @@ packages:
       name: connectivity
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   connectivity_for_web:
     dependency: transitive
     description:
@@ -294,7 +294,7 @@ packages:
       name: device_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2+9"
+    version: "1.0.0"
   device_info_platform_interface:
     dependency: transitive
     description:
@@ -399,7 +399,7 @@ packages:
       name: firebase_analytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "6.2.0"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
@@ -420,7 +420,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -434,7 +434,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   fixnum:
     dependency: transitive
     description:
@@ -482,7 +482,7 @@ packages:
       name: flutter_widget_from_html_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1+3"
+    version: "0.5.1+4"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -545,7 +545,7 @@ packages:
       name: hive_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.1"
+    version: "0.8.2"
   html:
     dependency: transitive
     description:
@@ -664,7 +664,7 @@ packages:
       name: mobx_codegen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1+3"
+    version: "1.1.2"
   mockito:
     dependency: "direct dev"
     description:
@@ -706,7 +706,7 @@ packages:
       name: package_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.3+2"
   path:
     dependency: transitive
     description:
@@ -734,7 +734,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.22"
+    version: "1.6.24"
   path_provider_linux:
     dependency: transitive
     description:
@@ -1005,7 +1005,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.8"
+    version: "5.7.10"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1061,7 +1061,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.1+2"
+    version: "1.0.0"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -1103,7 +1103,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   win32:
     dependency: transitive
     description:
