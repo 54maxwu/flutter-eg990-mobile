@@ -6514,6 +6514,66 @@ class S {
       args: [],
     );
   }
+
+  /// `CGPAY for Android`
+  String get downloadAndroidCgpay {
+    return Intl.message(
+      'CGPAY for Android',
+      name: 'downloadAndroidCgpay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CGPAY for IOS`
+  String get downloadIosCgpay {
+    return Intl.message(
+      'CGPAY for IOS',
+      name: 'downloadIosCgpay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DNS Repair for Android`
+  String get downloadAndroidDns {
+    return Intl.message(
+      'DNS Repair for Android',
+      name: 'downloadAndroidDns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DNS Repair for IOS`
+  String get downloadIosDns {
+    return Intl.message(
+      'DNS Repair for IOS',
+      name: 'downloadIosDns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(Android Only)`
+  String get downloadHintPlatformAndroid {
+    return Intl.message(
+      '(Android Only)',
+      name: 'downloadHintPlatformAndroid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(iOS Only)`
+  String get downloadHintPlatformIos {
+    return Intl.message(
+      '(iOS Only)',
+      name: 'downloadHintPlatformIos',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

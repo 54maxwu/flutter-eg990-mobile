@@ -2879,5 +2879,29 @@
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
     "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY cho Android",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY cho IOS",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "Sửa chữa DNS cho Android",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "Sửa chữa DNS cho IOS",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(Chỉ dành cho Android)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(Chỉ dành cho iOS)",
+  "@downloadHintPlatformIos": {
+    "type": "text"
   }
 }

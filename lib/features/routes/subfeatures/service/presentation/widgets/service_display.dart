@@ -150,7 +150,8 @@ class ServiceDisplay extends StatelessWidget {
                   style: TextStyle(fontSize: FontSize.SUBTITLE.value)),
               onPressed: () {
                 AppNavigator.navigateTo(RoutePage.serviceWeb,
-                    arg: WebRouteArguments(startUrl: data.cs, hideBars: true));
+                    arg: WebRouteArguments(
+                        startUrl: data.cs, hideHtmlBars: true));
               },
             ),
           ),
@@ -239,7 +240,7 @@ class ServiceDisplay extends StatelessWidget {
                     } else {
                       AppNavigator.navigateTo(RoutePage.serviceWeb,
                           arg: WebRouteArguments(
-                              startUrl: data, hideBars: true));
+                              startUrl: data, hideHtmlBars: true));
                     }
                   },
                 )

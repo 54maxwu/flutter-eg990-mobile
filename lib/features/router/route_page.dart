@@ -299,7 +299,7 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}$ROUTE_POSTFIX_SIDE-newbie',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     webPageName: ('/newbie'),
     showDrawer: true,
@@ -332,7 +332,7 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}-agent0',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}agentPage',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     hideLanguageOption: true,
     bottomNavIndex: 5,
@@ -343,7 +343,7 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}-newbie',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     hideLanguageOption: true,
     bottomNavIndex: 5,

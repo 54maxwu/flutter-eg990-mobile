@@ -2879,5 +2879,29 @@
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
     "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY Android版",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY IOS版",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "DNS修复 Android版",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "DNS修复 IOS版",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(安卓适用)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(苹果适用)",
+  "@downloadHintPlatformIos": {
+    "type": "text"
   }
 }

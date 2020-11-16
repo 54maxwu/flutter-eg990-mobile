@@ -2879,5 +2879,29 @@
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
     "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY for Android",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY for IOS",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "DNS Repair for Android",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "DNS Repair for IOS",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(Android Only)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(iOS Only)",
+  "@downloadHintPlatformIos": {
+    "type": "text"
   }
 }

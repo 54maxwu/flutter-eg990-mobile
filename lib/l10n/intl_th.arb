@@ -2879,5 +2879,29 @@
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
     "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY สำหรับ Android",
+  "@downloadAndroidCgpay": {
+    "พิมพ์": "text"
+  },
+  "downloadIosCgpay": "CGPAY สำหรับ IOS",
+  "@downloadIosCgpay": {
+    "พิมพ์": "text"
+  },
+  "downloadAndroidDns": "ซ่อมแซม DNS สำหรับ Android",
+  "@downloadAndroidDns": {
+    "พิมพ์": "text"
+  },
+  "downloadIosDns": "ซ่อมแซม DNS สำหรับ IOS",
+  "@downloadIosDns": {
+    "พิมพ์": "text"
+  },
+  "downloadHintPlatformAndroid": "(Android เท่านั้น)",
+  "@downloadHintPlatformAndroid": {
+    "พิมพ์": "text"
+  },
+  "downloadHintPlatformIos": "(iOS เท่านั้น)",
+  "@downloadHintPlatformIos": {
+    "พิมพ์": "text"
   }
 }

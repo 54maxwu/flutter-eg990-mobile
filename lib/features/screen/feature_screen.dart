@@ -124,11 +124,14 @@ class _FeatureScreenState extends State<FeatureScreen> {
   @override
   Widget build(BuildContext context) {
     MyLogger.debug(msg: 'build feature screen', tag: tag);
+    // debugPrint('test provider: ${Provider.of<NavigateProvider>(context)}');
+    // debugPrint(
+    //     'test provider key: ${Provider.of<NavigateProvider>(context).getRootNavigatorKey}');
     return WillPopScope(
       child: StreamBuilder<String>(
           stream: getAppGlobalStreams.languageStream,
           initialData: Global.lang,
-          builder: (context, snapshot) {
+          builder: (ctx, snapshot) {
             locale ??= snapshot.data;
             if (snapshot.data != locale) {
               locale = snapshot.data;
@@ -137,6 +140,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
             }
             return FeatureScreenInheritedWidget(
               scaffoldKey: _scaffoldKey,
+              nestedNavigatorKey: featureNavKey,
               store: _store,
               eventStore: sl(),
               child: Scaffold(
@@ -146,6 +150,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
                 bottomNavigationBar: ScreenNavigationBar(),
                 /* Feature Route Navigator */
                 body: ExtendedNavigator(
+                  key: featureNavKey,
                   initialRoute: FeatureScreenRoutes.homeRoute,
                   router: FeatureScreenRouter(),
                 ),

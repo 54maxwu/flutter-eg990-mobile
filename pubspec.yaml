@@ -27,6 +27,7 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_analytics: ^6.2.0
 
+  provider: ^4.3.2+2
   # Object Injectors https://pub.dev/packages/get_it
   get_it: ^5.0.1
   # Functional programming thingies https://pub.dev/packages/dartz
@@ -102,7 +103,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   #  cupertino_icons: ^0.1.3
   # WebView https://pub.dev/packages/webview_flutter
-  webview_flutter: ^1.0.6
+  #  webview_flutter: ^1.0.7
+  # Powerful Webview https://pub.dev/packages/flutter_inappwebview
+  flutter_inappwebview: ^4.0.0+4
   # Toast https://pub.dev/packages/bot_toast
   bot_toast: ^3.0.5
   # Advance Photo Viewer https://pub.dev/packages/carousel_pro

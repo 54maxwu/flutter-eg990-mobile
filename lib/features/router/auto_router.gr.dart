@@ -321,7 +321,8 @@ class FeatureScreenRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => WebRoute(
           startUrl: args.startUrl,
-          hideBars: args.hideBars,
+          showUrl: args.showUrl,
+          hideHtmlBars: args.hideHtmlBars,
         ),
         settings: data,
       );
@@ -510,20 +511,24 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushWebRoute({
     @required String startUrl,
-    bool hideBars = false,
+    bool showUrl = false,
+    bool hideHtmlBars = false,
   }) =>
       push<dynamic>(
         FeatureScreenRoutes.webRoute,
-        arguments: WebRouteArguments(startUrl: startUrl, hideBars: hideBars),
+        arguments: WebRouteArguments(
+            startUrl: startUrl, showUrl: showUrl, hideHtmlBars: hideHtmlBars),
       );
 
   Future<dynamic> pushServiceWebRoute({
     @required String startUrl,
-    bool hideBars = false,
+    bool showUrl = false,
+    bool hideHtmlBars = false,
   }) =>
       push<dynamic>(
         FeatureScreenRoutes.serviceWebRoute,
-        arguments: WebRouteArguments(startUrl: startUrl, hideBars: hideBars),
+        arguments: WebRouteArguments(
+            startUrl: startUrl, showUrl: showUrl, hideHtmlBars: hideHtmlBars),
       );
 
   Future<dynamic> pushMemberRoute({
@@ -539,11 +544,13 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushDepositWebRoute({
     @required String startUrl,
-    bool hideBars = false,
+    bool showUrl = false,
+    bool hideHtmlBars = false,
   }) =>
       push<dynamic>(
         FeatureScreenRoutes.depositWebRoute,
-        arguments: WebRouteArguments(startUrl: startUrl, hideBars: hideBars),
+        arguments: WebRouteArguments(
+            startUrl: startUrl, showUrl: showUrl, hideHtmlBars: hideHtmlBars),
       );
 
   Future<dynamic> pushTransferRoute() =>
@@ -587,11 +594,13 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushCenterWebRoute({
     @required String startUrl,
-    bool hideBars = false,
+    bool showUrl = false,
+    bool hideHtmlBars = false,
   }) =>
       push<dynamic>(
         FeatureScreenRoutes.centerWebRoute,
-        arguments: WebRouteArguments(startUrl: startUrl, hideBars: hideBars),
+        arguments: WebRouteArguments(
+            startUrl: startUrl, showUrl: showUrl, hideHtmlBars: hideHtmlBars),
       );
 
   Future<dynamic> pushTransactionRoute() =>
@@ -675,8 +684,12 @@ class RegisterRouteArguments {
 /// WebRoute arguments holder class
 class WebRouteArguments {
   final String startUrl;
-  final bool hideBars;
-  const WebRouteArguments({@required this.startUrl, this.hideBars = false});
+  final bool showUrl;
+  final bool hideHtmlBars;
+  const WebRouteArguments(
+      {@required this.startUrl,
+      this.showUrl = false,
+      this.hideHtmlBars = false});
 }
 
 /// MemberRoute arguments holder class
