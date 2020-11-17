@@ -1,8 +1,11 @@
-import 'package:flutter_ty_mobile/core/data/data_operator.dart';
-import 'package:flutter_ty_mobile/core/error/exceptions.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
+import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
+
+export 'package:hive/hive.dart' show Box;
 
 const String HIVE_ACTION_TAG = 'HIVE action';
 
@@ -22,19 +25,28 @@ extension HiveBoxExtension on Box {
     return this.length > 0;
   }
 
-  List<T> getData<T>({String identifier = 'hive data'}) {
-    if (!this.hasData()) throw HiveDataException();
+  void debug() {
+    debugPrint('debug hive box data: ${this.name}, length:${this.length}');
+    if (hasData()) {
+      this.toMap().forEach((key, value) {
+        debugPrint('$key, $value\n');
+      });
+    }
+  }
+
+  List<T> getData<T>({String logKeyword = 'hive data'}) {
+    if (this.hasData() == false) throw HiveDataException();
     try {
       var list = List<T>();
       for (var index = 0; index < length; index++) {
         list.add(getAt(index) as T);
       }
       MyLogger.print(
-          msg: 'get cached $identifier : $list', tag: HIVE_ACTION_TAG);
+          msg: 'get cached $logKeyword : $list', tag: HIVE_ACTION_TAG);
       return list;
     } on Exception catch (e) {
       MyLogger.error(
-          msg: 'get $identifier from hive has exception!!',
+          msg: 'get $logKeyword from hive has exception!!',
           tag: HIVE_ACTION_TAG,
           error: e);
       throw HiveDataException();
@@ -49,7 +61,7 @@ extension AddListToHiveExtension on List {
   }) {
     try {
       forEach((data) {
-//        print('writing $identifier to hive: $data');
+//        debugPrint('writing $identifier to hive: $data');
         box.add(data);
       });
     } on Exception catch (e, s) {
@@ -77,15 +89,14 @@ extension AddListToHiveExtension on List {
       if (newData == null) {
         box.deleteAt(index);
       } else if (newData != oldData) {
-        // if  data has changed, delete it from the box
-        box.deleteAt(index);
-        print('replacing hive $identifier: $newData');
+        // if data has changed, replace old data in box
+//        debugPrint('replacing hive $identifier: $newData');
         box.putAt(index, newData);
       }
       // remove data from leftovers after processed
       leftovers.remove(newData);
     }
-//    print('checking new data: $leftovers');
+//    debugPrint('checking new data: $leftovers');
     // if the list still has new data, add to hive
     if (leftovers.isNotEmpty)
       leftovers.addAllToHive(box: box, identifier: identifier);

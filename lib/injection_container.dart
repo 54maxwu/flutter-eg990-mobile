@@ -1,100 +1,41 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:flutter_ty_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/features/themes/theme_settings.dart';
+import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/network/dio_api_service.dart';
 import 'core/network/util/network_info.dart';
-import 'features/home/data/repository/home_repository_impl.dart';
-import 'features/home/data/source/home_local_data_source.dart';
-import 'features/home/data/source/home_remote_data_source.dart';
-import 'features/home/domain/repository/home_repository.dart';
-import 'features/home/domain/usecase/get_banner.dart';
-import 'features/home/domain/usecase/get_banner_image_info.dart';
-import 'features/home/domain/usecase/get_game_types.dart';
-import 'features/home/domain/usecase/get_games.dart';
-import 'features/home/domain/usecase/get_marquee.dart';
-import 'features/home/presentation/bloc/banner/home_banner_bloc.dart';
-import 'features/home/presentation/bloc/game/home_game_bloc.dart';
-import 'features/home/presentation/bloc/game_tabs/home_game_tabs_bloc.dart';
-import 'features/home/presentation/bloc/marquee/home_marquee_bloc.dart';
-import 'features/router/router_navigate.dart' show RouterWidgetStreams;
-import 'features/users/data/repository/user_repository_impl.dart';
-import 'features/users/data/source/user_data_source.dart';
-import 'features/users/domain/repository/user_repository.dart';
-import 'features/users/domain/usecase/get_user.dart';
-import 'features/users/presentation/bloc/user_login_bloc.dart';
-import 'features/users/presentation/user_data.dart';
+import 'features/event/event_inject.dart';
+import 'features/router/app_global_streams.dart';
+import 'features/routes/home/home_inject.dart';
+import 'features/routes/member/member_inject.dart';
+import 'features/routes/subfeatures/accountcenter/center_inject.dart';
+import 'features/routes/subfeatures/balance/balance_inject.dart';
+import 'features/routes/subfeatures/bankcard/bankcard_inject.dart';
+import 'features/routes/subfeatures/betrecord/bet_record_inject.dart';
+import 'features/routes/subfeatures/deals/deals_inject.dart';
+import 'features/routes/subfeatures/deposit/deposit_inject.dart';
+import 'features/routes/subfeatures/message/message_inject.dart';
+import 'features/routes/subfeatures/notice/notice_inject.dart';
+import 'features/routes/subfeatures/promo/promo_inject.dart';
+import 'features/routes/subfeatures/rollback/rollback_inject.dart';
+import 'features/routes/subfeatures/roller/roller_inject.dart';
+import 'features/routes/subfeatures/service/presentation/state/service_store.dart';
+import 'features/routes/subfeatures/store/store_inject.dart';
+import 'features/routes/subfeatures/transactions/transaction_inject.dart';
+import 'features/routes/subfeatures/transfer/transfer_inject.dart';
+import 'features/routes/subfeatures/viplevel/vip_level_inject.dart';
+import 'features/routes/subfeatures/wallet/wallet_inject.dart';
+import 'features/screen/web_game_screen_store.dart';
+import 'features/update/update_inject.dart';
+import 'features/user/user_repo_inject.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  sl.registerLazySingleton<RouterWidgetStreams>(() => RouterWidgetStreams());
-
-  /// Bloc
-  sl.registerFactory(
-    () => HomeBannerBloc(
-      homeBannerData: sl(),
-      homeBannerImageInfo: sl(),
-    ),
-  );
-  sl.registerFactory(
-    () => HomeMarqueeBloc(
-      homeMarqueeData: sl(),
-    ),
-  );
-  sl.registerFactory(
-    () => HomeGameTabsBloc(
-      gameTypesData: sl(),
-    ),
-  );
-  sl.registerFactory(
-    () => HomeGameBloc(
-      gamesData: sl(),
-    ),
-  );
-  sl.registerFactory(
-    () => UserLoginBloc(
-      userData: sl(),
-    ),
-  );
-
-  /// Use cases
-  sl.registerLazySingleton(() => GetHomeBannerData(sl()));
-  sl.registerLazySingleton(() => GetHomeBannerImage());
-  sl.registerLazySingleton(() => GetHomeMarqueeData(sl()));
-  sl.registerLazySingleton(() => GetGameTypesData(sl()));
-  sl.registerLazySingleton(() => GetGamesData(sl()));
-  sl.registerLazySingleton(() => GetUserData(sl()));
-  sl.registerLazySingleton(() => UserData(isLoggedIn: false));
-
-  /// Repository
-  sl.registerLazySingleton<HomeRepository>(
-    () => HomeRepositoryImpl(
-      localDataSource: sl(),
-      networkInfo: sl(),
-      remoteDataSource: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton<UserRepository>(
-    () => UserRepositoryImpl(
-      networkInfo: sl(),
-      remoteDataSource: sl(),
-    ),
-  );
-
-  /// Data sources
-  sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(dioApiService: sl()),
-  );
-
-  sl.registerLazySingleton<HomeLocalDataSource>(
-    () => HomeLocalDataSourceImpl(),
-  );
-
-  sl.registerLazySingleton<UserRemoteDataSource>(
-    () => UserRemoteDataSourceImpl(dioApiService: sl()),
-  );
+  /// App User
+  sl.registerLazySingleton<AppGlobalStreams>(() => AppGlobalStreams());
+  sl.registerLazySingleton<ThemeSettings>(() => ThemeSettings());
 
   /// Core
   sl.registerLazySingleton(() => DioApiService());
@@ -103,4 +44,180 @@ Future<void> init() async {
   /// External Package
   sl.registerSingleton(() => MyLogger());
   sl.registerLazySingleton(() => DataConnectionChecker());
+
+  /// Repository
+  sl.registerLazySingleton<UpdateRepository>(
+    () => UpdateRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<HomeLocalStorage>(
+    () => HomeLocalStorageImpl(),
+  );
+  sl.registerLazySingleton<JwtInterface>(
+    () => JwtInterfaceImpl(dioApiService: sl()),
+  );
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(
+        dioApiService: sl(),
+        jwtInterface: sl(),
+        networkInfo: sl(),
+        localStorage: sl()),
+  );
+  sl.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<UserInfoRepository>(
+    () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<EventRepository>(
+    () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<PromoLocalStorage>(
+    () => PromoLocalStorageImpl(),
+  );
+  sl.registerLazySingleton<PromoRepository>(
+    () => PromoRepositoryImpl(
+        dioApiService: sl(), localStorage: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<DepositRepository>(
+    () => DepositRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<TransferRepository>(
+    () => TransferRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<BankcardRepository>(
+    () => BankcardRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<WithdrawRepository>(
+    () => WithdrawRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<BalanceRepository>(
+    () => BalanceRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<WalletRepository>(
+    () => WalletRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<MessageRepository>(
+    () => MessageRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<CenterRepository>(
+    () => CenterRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<TransactionRepository>(
+    () => TransactionRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<BetRecordRepository>(
+    () => BetRecordRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<DealsRepository>(
+    () => DealsRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<RollbackRepository>(
+    () => RollbackRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<NoticeRepository>(
+    () => NoticeRepositoryImpl(dioApiService: sl()),
+  );
+  sl.registerLazySingleton<VipLevelRepository>(
+    () => VipLevelRepositoryImpl(dioApiService: sl()),
+  );
+  sl.registerLazySingleton<StoreRepository>(
+    () => StoreRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton<RollerRepository>(
+    () => RollerRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+
+  /// Mobx Store
+  sl.registerLazySingleton<WebGameScreenStore>(
+    () => WebGameScreenStore(),
+  );
+  sl.registerLazySingleton(
+    () => UpdateStore(sl<UpdateRepository>()),
+  );
+  sl.registerLazySingleton(
+    () => EventStore(sl<EventRepository>(), sl<UserInfoRepository>()),
+  );
+  sl.registerLazySingleton(
+    () => HomeStore(sl<HomeRepository>()),
+  );
+  sl.registerFactory(
+    () => LoginStore(sl<UserRepository>()),
+  );
+  sl.registerFactory(
+    () => RegisterStore(sl<UserRepository>()),
+  );
+  sl.registerFactory(
+    () => PromoStore(sl<PromoRepository>()),
+  );
+  sl.registerFactory(
+    () => MemberCreditStore(sl<UserInfoRepository>()),
+  );
+  sl.registerFactory(
+    () => DepositStore(sl<DepositRepository>()),
+  );
+  sl.registerFactory(
+    () => TransferStore(sl<TransferRepository>()),
+  );
+  sl.registerFactory(
+    () => BankcardStore(sl<BankcardRepository>()),
+  );
+  sl.registerFactory(
+    () => WithdrawStore(sl<WithdrawRepository>()),
+  );
+  sl.registerFactory(
+    () => BalanceStore(sl<BalanceRepository>(), sl<UserInfoRepository>()),
+  );
+  sl.registerFactory(
+    () => WalletStore(sl<WalletRepository>()),
+  );
+  sl.registerFactory(
+    () => MessageStore(sl<MessageRepository>()),
+  );
+  sl.registerFactory(
+    () => CenterStore(sl<CenterRepository>()),
+  );
+  sl.registerFactory(
+    () => TransactionStore(sl<TransactionRepository>()),
+  );
+  sl.registerFactory(
+    () => BetRecordStore(sl<BetRecordRepository>()),
+  );
+  sl.registerFactory(
+    () => DealsStore(sl<DealsRepository>()),
+  );
+  sl.registerFactory(
+    () => RollbackStore(sl<RollbackRepository>()),
+  );
+  sl.registerFactory(
+    () => NoticeStore(sl<NoticeRepository>()),
+  );
+  sl.registerFactory(
+    () => VipLevelStore(sl<VipLevelRepository>()),
+  );
+  sl.registerLazySingleton(
+    () => ServiceStore(sl<EventRepository>()),
+  );
+  sl.registerFactory(
+    () => PointStore(sl<StoreRepository>()),
+  );
+  sl.registerFactory(
+    () => RollerStore(sl<RollerRepository>()),
+  );
+
+  /// Test only
+  /* Template Mobx */
+//  sl.registerLazySingleton<TemplateRemoteDataSource>(
+//    () => TemplateRemoteDataSourceImpl(dioApiService: sl()),
+//  );
+//
+//  sl.registerLazySingleton<TemplateRepository>(
+//    () => TemplateRepositoryImpl(
+//      networkInfo: sl(),
+//      remoteDataSource: sl(),
+//    ),
+//  );
+//
+//  sl.registerLazySingleton<TemplateStore>(
+//    () => TemplateStore(sl<TemplateRepository>()),
+//  );
 }

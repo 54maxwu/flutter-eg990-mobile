@@ -1,35 +1,85 @@
-import 'package:equatable/equatable.dart';
-import 'package:to_string/to_string.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/core/network/handler/request_code_model.dart';
+import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart'
+    show RequestStatusModel;
+import 'package:super_enum/super_enum.dart';
 
-part 'failures.g.dart';
+import 'failure_code.dart';
 
-@ToString()
-abstract class Failure extends Equatable {
-  final List<dynamic> properties;
+export 'failure_code.dart';
 
-  Failure({
-    this.properties,
-  });
+part 'failures.super.dart';
 
-  @override
-  List<Object> get props => [properties];
+@superEnum
+enum _Failure {
+  @object
+  Network,
+  @object
+  NetworkLocation,
+  @object
+  Server,
+  @object
+  JsonFormat,
+  @object
+  DataType,
+  @object
+  CachedFile,
+  @Data(fields: [
+    DataField<String>('msg'),
+  ])
+  ErrorMessage,
+  @UseClass(RequestStatusModel)
+  ErrorStatus,
+  @UseClass(RequestCodeModel)
+  ErrorCode,
+  @UseClass(FailureCode)
+  Internal,
+  @UseClass(RequestStatusModel)
+  Login,
+  @UseClass(FailureType)
+  Token,
+  @object
+  Event,
+}
 
-  @override
-  String toString() {
-    return _$FailureToString(this);
+extension FailureExtension on Failure {
+  int get typeIndex => this._type.index;
+
+  String get message {
+    switch (this._type) {
+      case _Failure.Network:
+        return localeStr.messageErrorNoNetwork;
+      case _Failure.NetworkLocation:
+        return localeStr.messageWarnNetworkLocation;
+      case _Failure.Server:
+        return localeStr.messageErrorNoServerConnection;
+      case _Failure.JsonFormat:
+        return localeStr.messageErrorServerData;
+      case _Failure.Login:
+        return localeStr.messageLoginFailed +
+            '(${(this.props.first as RequestStatusModel).msg})';
+      case _Failure.Token:
+        return localeStr.messageErrorToken +
+            '(code: ${(this.props.first as FailureType).value})';
+      case _Failure.Event:
+        return localeStr.messageErrorEvent;
+      case _Failure.CachedFile:
+        return localeStr.messageErrorCachedFile;
+      case _Failure.Internal:
+        return localeStr.messageErrorInternal +
+            '(${(this.props.first as FailureCode).errorCode})';
+      case _Failure.ErrorMessage:
+        return '${this.props.first}';
+      case _Failure.ErrorStatus:
+        return '${(this.props.first as RequestStatusModel).msg}';
+      case _Failure.ErrorCode:
+        return '${(this.props.first as RequestCodeModel).msg}(code: ${(this.props.first as RequestCodeModel).code})';
+      case _Failure.DataType:
+        return localeStr.messageErrorServerData;
+      default:
+        return _OTHER_FAILURE_MESSAGE;
+    }
   }
 }
 
-class NetworkFailure extends Failure {}
-
-class ServerFailure extends Failure {}
-
-class DataSourceFailure extends Failure {}
-
-class CacheFailure extends Failure {}
-
-class DataTypeFailure extends Failure {}
-
-class CheckCachedFileFailure extends Failure {}
-
-class InternalFailure extends Failure {}
+const String _OTHER_FAILURE_MESSAGE = 'Unexpected error';

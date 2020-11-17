@@ -1,4 +1,4 @@
-# Flutter TY Mobile
+# Flutter EG990 Mobile
 ==================
 
 *   [概述](#overview)
@@ -10,7 +10,7 @@
 
 <h2 id="overview">概述</h2>
 
-New version of TY mobile app for multi platforms.
+EG990 mobile app for multi platforms.
 
 - - -
 
@@ -33,4 +33,4 @@ New version of TY mobile app for multi platforms.
 
 - - -
 作者：Raven Chiang   
-更新日期：2020.02
+更新日期：2020.08

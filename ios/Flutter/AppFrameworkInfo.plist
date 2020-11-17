@@ -21,6 +21,12 @@
   <key>CFBundleVersion</key>
   <string>1.0</string>
   <key>MinimumOSVersion</key>
-  <string>8.0</string>
+  <string>9.0</string>
+  <key>io.flutter.embedded_views_preview</key>
+  <string>YES</string>
+  <key>NSAppTransportSecurity</key>
+   <dict>
+        <key>NSAllowsArbitraryLoads</key><true/>
+   </dict>
 </dict>
 </plist>

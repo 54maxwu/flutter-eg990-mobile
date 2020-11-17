@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter_eg990_mobile/features/routes/home/data/models/banner_model.dart';
+import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ty_mobile/features/home/data/models/banner_model.dart';
-import 'package:flutter_ty_mobile/utils/json_decode_util.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -21,34 +21,27 @@ final BannerModel bannerModel = BannerModel(
     sort: 8);
 
 void main() {
-  test('test model data decode', () {
-    final map = json.decode(fixture('home/banner.json'));
-    final model = BannerModel.fromJson(map);
+  final map = json.decode(fixture('home/banner.json'));
+  final rawArray = fixture('home/banner_array.json');
+
+  test('test decode single banner model', () {
+    print('\nmap:\n$map');
+    print('\n\n');
+    final model = BannerModel.jsonToBannerModel(map);
+    print('decoded model:\n$model\n');
     expect(model.id, 1);
+    expect(model, equals(bannerModel));
   });
 
-  test('test model data to json', () {
-    final map = json.decode(fixture('home/banner.json'));
-    final jsonMap = bannerModel.toJson();
-    expect(map, jsonMap);
-  });
-
-  test(
-    'should transfer json data into model data',
-    () async {
-      final map = json.decode(fixture('home/banner.json'));
-      final model = BannerModel.fromJson(map);
-      expect(model, isA<BannerModel>());
-      print("test model: ${model.toString()}");
-    },
-  );
-
-  test('test model list data decode', () {
-    List<dynamic> list =
-        JsonDecodeUtil.decodeArray(fixture('home/banner_array.json'));
-    final dataList =
+  test('test decode banner model list', () {
+    print('\narray:\n$rawArray');
+    print('\n\n');
+    List<dynamic> list = JsonUtil.decodeArray(rawArray, trim: false);
+    final modelList =
         list.map((model) => BannerModel.jsonToBannerModel(model)).toList();
-    expect(dataList.length, 3);
-    expect(dataList.first, bannerModel);
+    print('decoded model list:\n$modelList\n');
+    expect(modelList.length, 3);
+    expect(modelList.last, equals(bannerModel));
+    expect(modelList.every((element) => element is BannerModel), true);
   });
 }
