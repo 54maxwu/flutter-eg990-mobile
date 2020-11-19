@@ -555,6 +555,46 @@ class S {
     );
   }
 
+  /// `Notify`
+  String get actionNotify {
+    return Intl.message(
+      'Notify',
+      name: 'actionNotify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get actionSetting {
+    return Intl.message(
+      'Settings',
+      name: 'actionSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get actionSearch {
+    return Intl.message(
+      'Search',
+      name: 'actionSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get actionBack {
+    return Intl.message(
+      'Back',
+      name: 'actionBack',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Menu`
   String get btnMenu {
     return Intl.message(

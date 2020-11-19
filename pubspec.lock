@@ -239,13 +239,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
-  css_text:
-    dependency: "direct main"
-    description:
-      name: css_text
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   csslib:
     dependency: transitive
     description:
@@ -323,6 +316,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  dio_http_cache:
+    dependency: "direct main"
+    description:
+      name: dio_http_cache
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.11"
   dotted_border:
     dependency: "direct main"
     description:
@@ -345,7 +345,7 @@ packages:
     source: hosted
     version: "1.0.6"
   equatable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: equatable
       url: "https://pub.dartlang.org"
@@ -448,6 +448,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.10.0"
+  formz:
+    dependency: "direct main"
+    description:
+      name: formz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   freezed:
     dependency: "direct dev"
     description:
@@ -581,6 +588,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  lint:
+    dependency: "direct dev"
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
   logging:
     dependency: "direct main"
     description:
@@ -749,13 +763,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  petitparser:
-    dependency: transitive
-    description:
-      name: petitparser
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.4"
   platform:
     dependency: transitive
     description:
@@ -840,13 +847,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.8"
-  relative_layout:
-    dependency: "direct main"
-    description:
-      name: relative_layout
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0+1"
   rxdart:
     dependency: "direct main"
     description:
@@ -894,6 +894,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.2"
+  sqflite:
+    dependency: transitive
+    description:
+      name: sqflite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.2+1"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2+1"
   stack_trace:
     dependency: transitive
     description:
@@ -929,13 +943,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
-  super_enum_generator:
-    dependency: "direct dev"
+  synchronized:
+    dependency: transitive
     description:
-      name: super_enum_generator
+      name: synchronized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0"
+    version: "2.2.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -1083,13 +1097,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
-  xml:
-    dependency: transitive
-    description:
-      name: xml
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.2.0"
   yaml:
     dependency: transitive
     description:
@@ -1098,5 +1105,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=2.10.0 <2.11.0"
-  flutter: ">=1.22.0 <2.0.0"
+  dart: ">=2.10.2 <2.11.0"
+  flutter: ">=1.22.2 <2.0.0"

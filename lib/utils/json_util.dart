@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
+import 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 
 typedef OnMarqueeTap = void Function(int);
 

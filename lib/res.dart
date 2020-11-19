@@ -8,6 +8,8 @@ class Res {
   static const String iconPending = "assets/images/icon_pending.png";
   static const String iconAbout = "assets/images/icon_about.png";
   static const String iconLine = "assets/images/icon_line.png";
+  static const String iconHotGame = "assets/images/icon_hot_game.png";
+  static const String iconLoudly = "assets/images/icon_loudly.png";
 
 //  static const String tbico_casino = "assets/images/index/tbico_casino.png";
 //  static const String tbico_slot = "assets/images/index/tbico_slot.png";

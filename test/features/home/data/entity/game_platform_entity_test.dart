@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_platform.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_platform.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

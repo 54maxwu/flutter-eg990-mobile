@@ -216,6 +216,22 @@
   "@gameToolHintRestore": {
     "type": "text"
   },
+  "actionNotify": "通知",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "设置",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "搜寻",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionBack": "返回",
+  "@actionBack": {
+    "type": "text"
+  },
   "btnMenu": "选单",
   "@btnMenu": {
     "type": "text"

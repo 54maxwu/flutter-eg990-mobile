@@ -1,5 +1,5 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/application/global.dart';
 
 const String _loginAPI = 'api/login';
 const String _gameAutoAPI = 'api/openUrl';

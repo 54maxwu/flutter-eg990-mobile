@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_eg990_mobile/core/base/task_extension.dart';
-import 'package:flutter_eg990_mobile/core/error/failures.dart';
+import 'package:flutter_eg990_mobile/domain/core/failures.dart';
+import 'package:flutter_eg990_mobile/infrastructure/core/task_extension.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<String> testFuture() async {

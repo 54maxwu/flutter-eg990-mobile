@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/device.dart';
+import 'package:flutter_eg990_mobile/application/device/device.dart';
 
 class DeviceTestWidget extends StatelessWidget {
   @override

@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
+import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 

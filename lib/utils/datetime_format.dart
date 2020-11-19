@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:intl/intl.dart';
 
 final DateFormat _datetimeFormat = DateFormat("yyyy-MM-dd HH:mm:ss");

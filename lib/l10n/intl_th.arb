@@ -216,6 +216,22 @@
   "@gameToolHintRestore": {
     "type": "text"
   },
+  "actionNotify": "แจ้งเตือน",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "การตั้งค่า",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "ค้นหา",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionBack": "ย้อนกลับ",
+  "@actionBack": {
+    "type": "text"
+  },
   "btnMenu": "เมนู",
   "@btnMenu": {
     "type": "text"

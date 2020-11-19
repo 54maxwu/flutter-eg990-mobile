@@ -91,6 +91,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "actionBack" : MessageLookupByLibrary.simpleMessage("ย้อนกลับ"),
+    "actionNotify" : MessageLookupByLibrary.simpleMessage("แจ้งเตือน"),
+    "actionSearch" : MessageLookupByLibrary.simpleMessage("ค้นหา"),
+    "actionSetting" : MessageLookupByLibrary.simpleMessage("การตั้งค่า"),
     "agentAccountLevelAgent" : MessageLookupByLibrary.simpleMessage("พร็อกซี"),
     "agentAccountLevelCompany" : MessageLookupByLibrary.simpleMessage("บริษัท"),
     "agentAccountLevelGrandMaster" : MessageLookupByLibrary.simpleMessage("ประธานาธิบดีใหญ่"),

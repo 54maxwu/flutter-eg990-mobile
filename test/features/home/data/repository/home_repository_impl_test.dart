@@ -1,6 +1,6 @@
 //import 'package:dartz/dartz.dart';
 //import 'package:flutter_test/flutter_test.dart';
-//import 'package:flutter_eg990_mobile/core/error/failures.dart';
+//import 'package:flutter_eg990_mobile/domain/core/failures.dart';
 //import 'package:flutter_eg990_mobile/core/network/util/network_info.dart';
 //import 'package:flutter_eg990_mobile/features/home/data/models/entities.dart';
 //import 'package:flutter_eg990_mobile/features/home/data/models/game_types_freezed.dart';

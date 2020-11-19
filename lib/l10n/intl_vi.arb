@@ -216,6 +216,22 @@
   "@gameToolHintRestore": {
     "type": "text"
   },
+  "actionNotify": "Thông báo",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "Cài đặt",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "Tìm kiếm",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionBack": "Quay lại",
+  "@actionBack": {
+    "type": "text"
+  },
   "btnMenu": "Thực đơn",
   "@btnMenu": {
     "type": "text"

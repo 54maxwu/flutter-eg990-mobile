@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';

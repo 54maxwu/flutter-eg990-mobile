@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
+import 'package:flutter_eg990_mobile/domain/interface/data_operator.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meta/meta.dart' show required;
 

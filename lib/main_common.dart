@@ -2,21 +2,22 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
-import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/themes/theme_color_enum.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'core/data/hive_actions.dart';
-import 'core/data/hive_adapters_export.dart';
-import 'core/internal/global.dart';
+import 'application/data/hive_actions.dart';
+import 'application/data/hive_adapters_export.dart';
+import 'application/device/orientation_helper.dart';
+import 'application/global.dart';
+import 'application/themes/theme_color_enum.dart';
+import 'application/themes/theme_interface.dart';
 import 'env/config_reader.dart';
 import 'env/environment.dart';
-import 'features/main_app.dart';
 import 'injection_container.dart' as di;
+import 'mylogger.dart';
+import 'presentation/core/main_app.dart';
 
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
@@ -60,7 +61,7 @@ Future<void> mainCommon(Environment env) async {
     Hive.registerAdapter(GamePlatformEntityAdapter());
     Hive.registerAdapter(CookieAdapter());
     Hive.registerAdapter(HiveCookieEntityAdapter());
-    Hive.registerAdapter(PromoEntityAdapter());
+    // Hive.registerAdapter(PromoEntityAdapter());
     Hive.registerAdapter(LoginHiveFormAdapter());
   } catch (e) {
     debugPrint('register hive adapter has error!! $e');

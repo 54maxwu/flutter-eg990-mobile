@@ -1,1 +1,0 @@
-enum BadgeShape { circle, square }

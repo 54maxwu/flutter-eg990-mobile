@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/general/bloc_widget_export.dart';
-import 'package:flutter_eg990_mobile/temp/blank_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/other/loading_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.dart';
 import 'package:flutter_eg990_mobile/template/mobx/presentation/state/template_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -67,8 +67,6 @@ class _TemplateRouteState extends State<TemplateRoute> {
           // Observe using specific widget
           builder: (_) {
             switch (_templateStore.state) {
-              case StoreState.initial:
-                return BlankWidget();
               case StoreState.loading:
                 return LoadingWidget();
               case StoreState.loaded:

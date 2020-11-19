@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
@@ -10,52 +11,80 @@ bool rangeCheck({@required num value, @required num min, num max = 0}) {
     return value >= min;
 }
 
-final String creditSymbol = 'VDK ';
+final String creditSymbol = '￥';
 final NumberFormat numFormat = new NumberFormat("###0.00", "en_US");
-final NumberFormat creditFormat =
+final NumberFormat creditFormat = new NumberFormat("#,##0.00", "en_US");
+final NumberFormat creditSignFormat =
     new NumberFormat("$creditSymbol#,##0.00", "en_US");
 final RegExp replaceRegex = RegExp('$creditSymbol|,');
 
-String formatNum(
-  num n, {
-  bool addCreditSign = false,
-  bool floorIfInt = false,
-  bool floorIfZero = true,
+/// [floor] floor value to double
+/// [floorToInt] floor value to int
+/// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
+/// [creditSign] add a credit sign as string prefix
+String formatValue(
+  dynamic value, {
+  bool floorToInt = false,
+  bool trimIfZero = true,
+  bool creditSign = false,
 }) {
-  final s = (addCreditSign) ? creditFormat.format(n) : numFormat.format(n);
-  // debugPrint(
-  //     'formatting num: $s, floor Int: $floorIfInt, floor zero: $floorIfZero');
-  if (!floorIfZero && s.strToDouble == 0)
-    return s;
-  else if (floorIfInt && (s.endsWith('.00') || s.endsWith('.0000')))
-    return s.substring(0, s.indexOf('.'));
-  else
-    return s;
+  try {
+    num n;
+    // parse dynamic value to num
+    if (value is num) {
+      n = value;
+    } else if (value is String) {
+      n = double.parse(value.replaceAll(replaceRegex, '').trim());
+    } else {
+      return (creditSign) ? '$creditSymbol$value' : '$value';
+    }
+
+    // format the num as credit
+    final s =
+        (creditSign) ? creditSignFormat.format(n) : creditFormat.format(n);
+    debugPrint('formatted value: $s');
+
+    // trim the string
+    if (n == 0) {
+      return (trimIfZero) ? s.substring(0, s.indexOf('.')) : s;
+    } else if (floorToInt) {
+      return s.substring(0, s.indexOf('.'));
+    } else {
+      return s;
+    }
+  } catch (e) {
+    MyLogger.warn(
+        msg: 'format value has exception', error: e, tag: 'formatValue');
+    return '$value';
+  }
 }
 
-String formatAsCreditNum(
+/// [addComma] use credit formatter if true, else use normal number formatter
+/// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
+String formatNum(
   num n, {
-  bool floorIfInt = true,
-  bool floorIfZero = true,
+  bool addComma = true,
+  bool trimIfZero = true,
 }) {
-  final s = creditFormat.format(n);
-  if (!floorIfZero && s.strToDouble == 0)
-    return s.replaceAll(creditSymbol, '');
-  else if (floorIfInt && s.endsWith('.00'))
-    return s.substring(0, s.indexOf('.')).replaceAll(creditSymbol, '');
-  else
-    return s.replaceAll(creditSymbol, '');
+  final s = (addComma) ? creditFormat.format(n) : numFormat.format(n);
+  if (s.strToDouble == 0) {
+    return (trimIfZero) ? '0' : s;
+  } else {
+    return s;
+  }
 }
 
 String intToStr(int value, {bool creditSign = false}) =>
     formatValue(value, creditSign: creditSign);
 
-String doubleToStr(double value,
-        {bool floor = false,
-        bool floorIfInt = false,
-        bool creditSign = false}) =>
-    formatValue(value,
-        floor: floor, floorIfInt: floorIfInt, creditSign: creditSign);
+String doubleToStr(
+  double value, {
+  bool creditSign = false,
+}) =>
+    formatValue(
+      value,
+      creditSign: creditSign,
+    );
 
 int stringToInt(String str, {bool printErrorStack = true}) {
   try {
@@ -67,9 +96,9 @@ int stringToInt(String str, {bool printErrorStack = true}) {
   } catch (e, s) {
     MyLogger.warn(
         msg: (printErrorStack)
-            ? 'parse value has exception, str: $str\nstack:\n$s'
-            : 'parse value has exception, str: $str',
-        tag: 'strToInt');
+            ? 'parse value to int has exception, str: $str\nstack:\n$s'
+            : 'parse value to int has exception, str: $str',
+        tag: 'stringToInt');
     return -1;
   }
 }
@@ -79,44 +108,14 @@ double stringToDouble(String str) {
     if (str == null || str.isEmpty) return double.parse('-1');
     return double.parse(str.replaceAll(replaceRegex, '').trim());
   } catch (e) {
-    MyLogger.warn(msg: 'parse value has exception', tag: 'strToDouble');
+    MyLogger.warn(
+        msg: 'parse value to double has exception', tag: 'stringToDouble');
     return double.parse('-1');
   }
 }
 
 bool valueIsEqual(String first, String second) {
   return stringToDouble(first).compareTo(stringToDouble(second)) == 0;
-}
-
-/// [floorValue] floor value to int
-/// [floorIfInt] floor value to int if value is not double
-/// [floorIfZero] floor value to int if value is 0
-/// [creditSign] add a credit sign as string prefix
-String formatValue(
-  dynamic value, {
-  bool floor = false,
-  bool floorIfInt = false,
-  bool floorIfZero = true,
-  bool creditSign = false,
-}) {
-  num formatted = (value is int || value is double)
-      ? value
-      : double.parse(value.replaceAll(replaceRegex, '').trim());
-  try {
-    var result = formatNum(
-      formatted,
-      addCreditSign: creditSign,
-      floorIfInt: floorIfInt || floor,
-      floorIfZero: floorIfZero,
-    );
-    // debugPrint('format value result: $result');
-    return (floor && result.contains('.'))
-        ? '${result.substring(0, result.indexOf('.'))}'.trim()
-        : result.trim();
-  } catch (e) {
-    MyLogger.warn(msg: 'trim value has exception', error: e, tag: 'trimValue');
-    return '$formatted';
-  }
 }
 
 extension ValueUtilExtension on String {

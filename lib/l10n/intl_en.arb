@@ -216,6 +216,22 @@
   "@gameToolHintRestore": {
     "type": "text"
   },
+  "actionNotify": "Notify",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "Settings",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "Search",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionBack": "Back",
+  "@actionBack": {
+    "type": "text"
+  },
   "btnMenu": "Menu",
   "@btnMenu": {
     "type": "text"

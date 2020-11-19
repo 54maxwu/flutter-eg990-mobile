@@ -1,5 +1,5 @@
-import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
-import 'package:flutter_eg990_mobile/core/network/handler/request_handler.dart';
+import 'package:flutter_eg990_mobile/infrastructure/core/dio_api_service.dart';
+import 'package:flutter_eg990_mobile/infrastructure/handler/request_handler.dart';
 import 'package:flutter_eg990_mobile/template/mobx/data/models/template_model.dart';
 import 'package:flutter_eg990_mobile/template/mobx/data/source/template_api.dart';
 import 'package:meta/meta.dart' show required;
