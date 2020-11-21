@@ -15,14 +15,26 @@ class _$GameEntityTearOff {
 
 // ignore: unused_element
   _GameEntity call(
-      {@required int id,
-      @required String cname,
-      @JsonKey(fromJson: decodeGameUrl, required: true) String gameUrl,
-      int favorite = 0,
-      int sort = 0}) {
+      {@required
+      @HiveField(0)
+          int id,
+      @required
+      @HiveField(1)
+          String cname,
+      @required
+      @HiveField(2)
+          String ename,
+      @HiveField(3)
+      @JsonKey(fromJson: _decodeGameUrl, required: true)
+          String gameUrl,
+      @HiveField(4)
+          int favorite = 0,
+      @HiveField(5)
+          int sort = 0}) {
     return _GameEntity(
       id: id,
       cname: cname,
+      ename: ename,
       gameUrl: gameUrl,
       favorite: favorite,
       sort: sort,
@@ -36,11 +48,18 @@ const $GameEntity = _$GameEntityTearOff();
 
 /// @nodoc
 mixin _$GameEntity {
+  @HiveField(0)
   int get id;
+  @HiveField(1)
   String get cname;
-  @JsonKey(fromJson: decodeGameUrl, required: true)
+  @HiveField(2)
+  String get ename;
+  @HiveField(3)
+  @JsonKey(fromJson: _decodeGameUrl, required: true)
   String get gameUrl;
+  @HiveField(4)
   int get favorite;
+  @HiveField(5)
   int get sort;
 
   $GameEntityCopyWith<GameEntity> get copyWith;
@@ -52,11 +71,19 @@ abstract class $GameEntityCopyWith<$Res> {
           GameEntity value, $Res Function(GameEntity) then) =
       _$GameEntityCopyWithImpl<$Res>;
   $Res call(
-      {int id,
-      String cname,
-      @JsonKey(fromJson: decodeGameUrl, required: true) String gameUrl,
-      int favorite,
-      int sort});
+      {@HiveField(0)
+          int id,
+      @HiveField(1)
+          String cname,
+      @HiveField(2)
+          String ename,
+      @HiveField(3)
+      @JsonKey(fromJson: _decodeGameUrl, required: true)
+          String gameUrl,
+      @HiveField(4)
+          int favorite,
+      @HiveField(5)
+          int sort});
 }
 
 /// @nodoc
@@ -71,6 +98,7 @@ class _$GameEntityCopyWithImpl<$Res> implements $GameEntityCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object cname = freezed,
+    Object ename = freezed,
     Object gameUrl = freezed,
     Object favorite = freezed,
     Object sort = freezed,
@@ -78,6 +106,7 @@ class _$GameEntityCopyWithImpl<$Res> implements $GameEntityCopyWith<$Res> {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as int,
       cname: cname == freezed ? _value.cname : cname as String,
+      ename: ename == freezed ? _value.ename : ename as String,
       gameUrl: gameUrl == freezed ? _value.gameUrl : gameUrl as String,
       favorite: favorite == freezed ? _value.favorite : favorite as int,
       sort: sort == freezed ? _value.sort : sort as int,
@@ -92,11 +121,19 @@ abstract class _$GameEntityCopyWith<$Res> implements $GameEntityCopyWith<$Res> {
       __$GameEntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
-      String cname,
-      @JsonKey(fromJson: decodeGameUrl, required: true) String gameUrl,
-      int favorite,
-      int sort});
+      {@HiveField(0)
+          int id,
+      @HiveField(1)
+          String cname,
+      @HiveField(2)
+          String ename,
+      @HiveField(3)
+      @JsonKey(fromJson: _decodeGameUrl, required: true)
+          String gameUrl,
+      @HiveField(4)
+          int favorite,
+      @HiveField(5)
+          int sort});
 }
 
 /// @nodoc
@@ -113,6 +150,7 @@ class __$GameEntityCopyWithImpl<$Res> extends _$GameEntityCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object cname = freezed,
+    Object ename = freezed,
     Object gameUrl = freezed,
     Object favorite = freezed,
     Object sort = freezed,
@@ -120,6 +158,7 @@ class __$GameEntityCopyWithImpl<$Res> extends _$GameEntityCopyWithImpl<$Res>
     return _then(_GameEntity(
       id: id == freezed ? _value.id : id as int,
       cname: cname == freezed ? _value.cname : cname as String,
+      ename: ename == freezed ? _value.ename : ename as String,
       gameUrl: gameUrl == freezed ? _value.gameUrl : gameUrl as String,
       favorite: favorite == freezed ? _value.favorite : favorite as int,
       sort: sort == freezed ? _value.sort : sort as int,
@@ -127,36 +166,59 @@ class __$GameEntityCopyWithImpl<$Res> extends _$GameEntityCopyWithImpl<$Res>
   }
 }
 
+@HiveType(typeId: 105)
+
 /// @nodoc
-class _$_GameEntity implements _GameEntity {
+class _$_GameEntity extends _GameEntity {
   const _$_GameEntity(
-      {@required this.id,
-      @required this.cname,
-      @JsonKey(fromJson: decodeGameUrl, required: true) this.gameUrl,
-      this.favorite = 0,
-      this.sort = 0})
+      {@required
+      @HiveField(0)
+          this.id,
+      @required
+      @HiveField(1)
+          this.cname,
+      @required
+      @HiveField(2)
+          this.ename,
+      @HiveField(3)
+      @JsonKey(fromJson: _decodeGameUrl, required: true)
+          this.gameUrl,
+      @HiveField(4)
+          this.favorite = 0,
+      @HiveField(5)
+          this.sort = 0})
       : assert(id != null),
         assert(cname != null),
+        assert(ename != null),
         assert(favorite != null),
-        assert(sort != null);
+        assert(sort != null),
+        super._();
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String cname;
   @override
-  @JsonKey(fromJson: decodeGameUrl, required: true)
+  @HiveField(2)
+  final String ename;
+  @override
+  @HiveField(3)
+  @JsonKey(fromJson: _decodeGameUrl, required: true)
   final String gameUrl;
   @JsonKey(defaultValue: 0)
   @override
+  @HiveField(4)
   final int favorite;
   @JsonKey(defaultValue: 0)
   @override
+  @HiveField(5)
   final int sort;
 
   @override
   String toString() {
-    return 'GameEntity(id: $id, cname: $cname, gameUrl: $gameUrl, favorite: $favorite, sort: $sort)';
+    return 'GameEntity(id: $id, cname: $cname, ename: $ename, gameUrl: $gameUrl, favorite: $favorite, sort: $sort)';
   }
 
   @override
@@ -167,6 +229,8 @@ class _$_GameEntity implements _GameEntity {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.cname, cname) ||
                 const DeepCollectionEquality().equals(other.cname, cname)) &&
+            (identical(other.ename, ename) ||
+                const DeepCollectionEquality().equals(other.ename, ename)) &&
             (identical(other.gameUrl, gameUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.gameUrl, gameUrl)) &&
@@ -182,6 +246,7 @@ class _$_GameEntity implements _GameEntity {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(cname) ^
+      const DeepCollectionEquality().hash(ename) ^
       const DeepCollectionEquality().hash(gameUrl) ^
       const DeepCollectionEquality().hash(favorite) ^
       const DeepCollectionEquality().hash(sort);
@@ -191,24 +256,44 @@ class _$_GameEntity implements _GameEntity {
       __$GameEntityCopyWithImpl<_GameEntity>(this, _$identity);
 }
 
-abstract class _GameEntity implements GameEntity {
+abstract class _GameEntity extends GameEntity {
+  const _GameEntity._() : super._();
   const factory _GameEntity(
-      {@required int id,
-      @required String cname,
-      @JsonKey(fromJson: decodeGameUrl, required: true) String gameUrl,
-      int favorite,
-      int sort}) = _$_GameEntity;
+      {@required
+      @HiveField(0)
+          int id,
+      @required
+      @HiveField(1)
+          String cname,
+      @required
+      @HiveField(2)
+          String ename,
+      @HiveField(3)
+      @JsonKey(fromJson: _decodeGameUrl, required: true)
+          String gameUrl,
+      @HiveField(4)
+          int favorite,
+      @HiveField(5)
+          int sort}) = _$_GameEntity;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get cname;
   @override
-  @JsonKey(fromJson: decodeGameUrl, required: true)
+  @HiveField(2)
+  String get ename;
+  @override
+  @HiveField(3)
+  @JsonKey(fromJson: _decodeGameUrl, required: true)
   String get gameUrl;
   @override
+  @HiveField(4)
   int get favorite;
   @override
+  @HiveField(5)
   int get sort;
   @override
   _$GameEntityCopyWith<_GameEntity> get copyWith;

@@ -13,6 +13,7 @@ abstract class GameModel with _$GameModel {
     @required String platform,
     @JsonKey(name: 'gameid') String gameId,
     @required String cname,
+    @Default('') String ename,
     @Default(0) int favorite,
     @Default(0) int sort,
   }) = _GameModel;
@@ -24,6 +25,7 @@ abstract class GameModel with _$GameModel {
         platform: jsonMap['platform'] as String,
         gameId: jsonMap['gameid'] as String,
         cname: jsonMap['cname'] as String,
+        ename: jsonMap['ename'] as String,
         favorite: '${jsonMap['favorite'] ?? 0}'.strToInt,
         sort: jsonMap['sort'] as int ?? 0,
       );
@@ -33,6 +35,7 @@ extension GameModelExtension on GameModel {
   GameEntity get entity => GameEntity(
         id: id,
         cname: cname,
+        ename: ename,
         gameUrl: '$platform/$category/$gameId',
         favorite: favorite,
         sort: sort,

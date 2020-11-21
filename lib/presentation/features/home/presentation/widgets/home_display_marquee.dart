@@ -60,7 +60,7 @@ class HomeDisplayMarqueeState extends State<HomeDisplayMarquee> {
           Container(
             padding: const EdgeInsets.fromLTRB(6.0, 0.0, 2.0, 2.0),
             height: 24.0,
-            child: Image.asset(Res.iconLoudly),
+            child: Image.asset(Res.marquee_loudly),
             // child: Icon(
             //   const IconData(0xf027, fontFamily: 'FontAwesome'),
             //   color: themeColor.defaultAccentColor,
@@ -103,7 +103,7 @@ class HomeDisplayMarqueeState extends State<HomeDisplayMarquee> {
             child: GestureDetector(
               onTap: () => {},
               // AppNavigator.navigateTo(RoutePage.sideNoticeBoard),
-              child: Image.asset(Res.iconHotGame),
+              child: Image.asset(Res.marquee_hot_game),
             ),
             // child: RaisedButton(
             //   visualDensity: VisualDensity.compact,

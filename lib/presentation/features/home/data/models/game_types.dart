@@ -1,42 +1,44 @@
+import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'game_category_model.dart';
-import 'game_platform.dart';
+import 'game_platform_model.dart';
 
 part 'game_types.freezed.dart';
 
 @freezed
 abstract class GameTypes with _$GameTypes {
   const factory GameTypes({
-    @JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-        List<GameCategoryModel> categories,
-    @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-        List<GamePlatform> platforms,
+    @JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+        List<GameCategoryEntity> categories,
+    @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+        List<GamePlatformEntity> platforms,
   }) = _GameTypes;
 
   static GameTypes jsonToGameTypes(Map<String, dynamic> jsonMap) =>
       _$_GameTypes(
         categories: jsonMap['category'] != null
-            ? decodeGameCategoryModel(jsonMap['category'])
+            ? _decodeGameCategories(jsonMap['category'])
             : [],
         platforms: jsonMap['list'] != null
-            ? decodeGamePlatformModel(jsonMap['list'])
+            ? _decodeGamePlatforms(jsonMap['list'])
             : [],
       );
 }
 
-List<GameCategoryModel> decodeGameCategoryModel(dynamic str) =>
+List<GameCategoryEntity> _decodeGameCategories(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
-      (jsonMap) => GameCategoryModel.jsonToGameCategoryModel(jsonMap),
+      (jsonMap) => GameCategoryModel.jsonToModel(jsonMap).entity,
       tag: 'GameCategoryModel',
     );
 
-List<GamePlatformModel> decodeGamePlatformModel(dynamic str) =>
+List<GamePlatformEntity> _decodeGamePlatforms(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
-      (jsonMap) => GamePlatform.jsonToGamePlatformModel(jsonMap),
+      (jsonMap) => GamePlatformModel.jsonToModel(jsonMap).entity,
       tag: 'GamePlatformModel',
     );
 
@@ -45,19 +47,4 @@ extension GameTypesExtension on GameTypes {
 
   String get debug =>
       'categories=${categories.length} platforms=${platforms.length}';
-
-  bool get platformReady => platforms.first is GamePlatformEntity;
-
-  GameTypes get shrink {
-    if (platforms.first is GamePlatformModel) {
-      return copyWith(
-          platforms: platforms.map((model) {
-        if (model is GamePlatformModel)
-          return model.entity;
-        else
-          return model;
-      }).toList());
-    } else
-      return this;
-  }
 }

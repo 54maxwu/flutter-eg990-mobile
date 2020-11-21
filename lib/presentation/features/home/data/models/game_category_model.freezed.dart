@@ -14,14 +14,10 @@ class _$GameCategoryModelTearOff {
   const _$GameCategoryModelTearOff();
 
 // ignore: unused_element
-  _GameCategoryModel call(
-      {@required @HiveField(0) String ch,
-      @required @HiveField(1) String type,
-      GameCategory info}) {
+  _GameCategoryModel call({@required String ch, @required String type}) {
     return _GameCategoryModel(
       ch: ch,
       type: type,
-      info: info,
     );
   }
 }
@@ -32,11 +28,8 @@ const $GameCategoryModel = _$GameCategoryModelTearOff();
 
 /// @nodoc
 mixin _$GameCategoryModel {
-  @HiveField(0)
   String get ch;
-  @HiveField(1)
   String get type;
-  GameCategory get info;
 
   $GameCategoryModelCopyWith<GameCategoryModel> get copyWith;
 }
@@ -46,8 +39,7 @@ abstract class $GameCategoryModelCopyWith<$Res> {
   factory $GameCategoryModelCopyWith(
           GameCategoryModel value, $Res Function(GameCategoryModel) then) =
       _$GameCategoryModelCopyWithImpl<$Res>;
-  $Res call(
-      {@HiveField(0) String ch, @HiveField(1) String type, GameCategory info});
+  $Res call({String ch, String type});
 }
 
 /// @nodoc
@@ -63,12 +55,10 @@ class _$GameCategoryModelCopyWithImpl<$Res>
   $Res call({
     Object ch = freezed,
     Object type = freezed,
-    Object info = freezed,
   }) {
     return _then(_value.copyWith(
       ch: ch == freezed ? _value.ch : ch as String,
       type: type == freezed ? _value.type : type as String,
-      info: info == freezed ? _value.info : info as GameCategory,
     ));
   }
 }
@@ -80,8 +70,7 @@ abstract class _$GameCategoryModelCopyWith<$Res>
           _GameCategoryModel value, $Res Function(_GameCategoryModel) then) =
       __$GameCategoryModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@HiveField(0) String ch, @HiveField(1) String type, GameCategory info});
+  $Res call({String ch, String type});
 }
 
 /// @nodoc
@@ -99,40 +88,29 @@ class __$GameCategoryModelCopyWithImpl<$Res>
   $Res call({
     Object ch = freezed,
     Object type = freezed,
-    Object info = freezed,
   }) {
     return _then(_GameCategoryModel(
       ch: ch == freezed ? _value.ch : ch as String,
       type: type == freezed ? _value.type : type as String,
-      info: info == freezed ? _value.info : info as GameCategory,
     ));
   }
 }
 
-@HiveType(typeId: 103)
-@Implements(DataOperator)
-
 /// @nodoc
-class _$_GameCategoryModel implements _GameCategoryModel {
-  const _$_GameCategoryModel(
-      {@required @HiveField(0) this.ch,
-      @required @HiveField(1) this.type,
-      this.info})
+class _$_GameCategoryModel extends _GameCategoryModel {
+  const _$_GameCategoryModel({@required this.ch, @required this.type})
       : assert(ch != null),
-        assert(type != null);
+        assert(type != null),
+        super._();
 
   @override
-  @HiveField(0)
   final String ch;
   @override
-  @HiveField(1)
   final String type;
-  @override
-  final GameCategory info;
 
   @override
   String toString() {
-    return 'GameCategoryModel(ch: $ch, type: $type, info: $info)';
+    return 'GameCategoryModel(ch: $ch, type: $type)';
   }
 
   @override
@@ -142,42 +120,29 @@ class _$_GameCategoryModel implements _GameCategoryModel {
             (identical(other.ch, ch) ||
                 const DeepCollectionEquality().equals(other.ch, ch)) &&
             (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
+                const DeepCollectionEquality().equals(other.type, type)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(ch) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(info);
+      const DeepCollectionEquality().hash(type);
 
   @override
   _$GameCategoryModelCopyWith<_GameCategoryModel> get copyWith =>
       __$GameCategoryModelCopyWithImpl<_GameCategoryModel>(this, _$identity);
-
-  @override
-  String operator [](String key) {
-    return type.toString();
-  }
 }
 
-abstract class _GameCategoryModel implements GameCategoryModel, DataOperator {
+abstract class _GameCategoryModel extends GameCategoryModel {
+  const _GameCategoryModel._() : super._();
   const factory _GameCategoryModel(
-      {@required @HiveField(0) String ch,
-      @required @HiveField(1) String type,
-      GameCategory info}) = _$_GameCategoryModel;
+      {@required String ch, @required String type}) = _$_GameCategoryModel;
 
   @override
-  @HiveField(0)
   String get ch;
   @override
-  @HiveField(1)
   String get type;
-  @override
-  GameCategory get info;
   @override
   _$GameCategoryModelCopyWith<_GameCategoryModel> get copyWith;
 }

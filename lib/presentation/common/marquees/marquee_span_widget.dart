@@ -310,9 +310,7 @@ class MarqueeSpanState extends State<MarqueeSpan>
 
   @override
   void initState() {
-    if (widget.reverse == false &&
-        widget.bounce == false &&
-        widget.callback != null) {
+    if (widget.reverse && widget.bounce == false && widget.callback != null) {
       MyLogger.warn(
           msg: 'marquee tap callback will not work on reversed text',
           tag: 'MarqueeSpan');

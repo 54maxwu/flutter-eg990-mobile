@@ -133,10 +133,9 @@ class __$BannerEntityCopyWithImpl<$Res> extends _$BannerEntityCopyWithImpl<$Res>
 }
 
 @HiveType(typeId: 101)
-@Implements(DataOperator)
 
 /// @nodoc
-class _$_BannerEntity implements _BannerEntity {
+class _$_BannerEntity extends _BannerEntity {
   const _$_BannerEntity(
       {@required @HiveField(0) this.id,
       @required @HiveField(1) this.pic,
@@ -147,7 +146,8 @@ class _$_BannerEntity implements _BannerEntity {
         assert(pic != null),
         assert(noPromo != null),
         assert(promoUrl != null),
-        assert(sort != null);
+        assert(sort != null),
+        super._();
 
   @override
   @HiveField(0)
@@ -200,14 +200,10 @@ class _$_BannerEntity implements _BannerEntity {
   @override
   _$BannerEntityCopyWith<_BannerEntity> get copyWith =>
       __$BannerEntityCopyWithImpl<_BannerEntity>(this, _$identity);
-
-  @override
-  String operator [](String key) {
-    return id.toString();
-  }
 }
 
-abstract class _BannerEntity implements BannerEntity, DataOperator {
+abstract class _BannerEntity extends BannerEntity {
+  const _BannerEntity._() : super._();
   const factory _BannerEntity(
       {@required @HiveField(0) int id,
       @required @HiveField(1) String pic,

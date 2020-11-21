@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_category_model.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_platform.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_platform_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_types.dart';
 import 'package:flutter_test/flutter_test.dart';
 

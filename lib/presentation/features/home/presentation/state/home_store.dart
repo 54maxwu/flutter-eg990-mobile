@@ -1,14 +1,15 @@
 import 'dart:collection' show HashMap;
 
+import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/presentation/streams/app_preference_streams.dart';
 
 import '../../data/entity/banner_entity.dart';
 import '../../data/entity/game_entity.dart';
 import '../../data/entity/marquee_entity.dart';
 import '../../data/form/platform_game_form.dart';
 import '../../data/models/game_category_model.dart';
-import '../../data/models/game_platform.dart';
+import '../../data/models/game_platform_model.dart';
 import '../../data/models/game_types.dart';
 import '../../data/repository/home_repository.dart';
 
@@ -21,13 +22,6 @@ enum HomeStoreState { initial, loading, loaded }
 abstract class _HomeStore with Store {
   final HomeRepository _repository;
 
-  // static StreamController<List<BannerEntity>> _bannerController =
-  //     StreamController<List<BannerEntity>>();
-  // static StreamController<List<MarqueeEntity>> _marqueeController =
-  //     StreamController<List<MarqueeEntity>>.broadcast();
-  //
-  // static StreamController<List<GameCategoryModel>> _tabController =
-  //     StreamController<List<GameCategoryModel>>.broadcast();
   // static StreamController<String> _gamesRetrieveController =
   //     StreamController<String>.broadcast();
   //
@@ -40,15 +34,6 @@ abstract class _HomeStore with Store {
   //     StreamController<String>.broadcast();
 
   _HomeStore(this._repository) {
-    debugPrint('init home store');
-//     _bannerController.stream.listen((event) {
-// //      debugPrint('home stream banners: ${event.length}');
-//       banners = event;
-//     });
-//     _marqueeController.stream.listen((event) {
-// //      debugPrint('home stream marquees: ${event.length}');
-//       marquees = event;
-//     });
 //     _gamesRetrieveController.stream.listen((event) {
 //       debugPrint('home stream games retrieve: $event');
 //     });
@@ -64,12 +49,6 @@ abstract class _HomeStore with Store {
 //     });
   }
 
-  // Stream<List<BannerEntity>> get bannerStream => _bannerController.stream;
-  //
-  // Stream<List<MarqueeEntity>> get marqueeStream => _marqueeController.stream;
-  //
-  // Stream<List<GameCategoryModel>> get tabStream => _tabController.stream;
-  //
   // Stream<String> get gamesStream => _gamesRetrieveController.stream;
   //
   // Stream<String> get showPlatformStream => _searchPlatformController.stream;
@@ -84,31 +63,22 @@ abstract class _HomeStore with Store {
   List<BannerEntity> banners;
 
   List<MarqueeEntity> marquees;
-//
-//   GameTypes _gameTypes;
-//
-//   // Key = category
-//   HashMap<String, List<GamePlatformEntity>> homePlatformMap;
-//   // Key = site/category
-//   HashMap<String, List<GameEntity>> _homeGamesMap;
-//
-//   bool hasPlatformGames(String key) =>
-//       _homeGamesMap != null && _homeGamesMap.containsKey(key);
-//
-//   List<GameEntity> getPlatformGames(String key) =>
-//       (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
-//
-//   /// home tab tab categories
-//   List<GameCategoryModel> homeTabs;
-//
-//   bool hasUser = false;
-//
-//   @computed
-//   List<GameCategoryModel> get homeUserTabs => homeTabs;
-// //      new List.from(
-// //        [recommendCategory, favoriteCategory] + homeTabs,
-// //           + [movieEgCategory, movieNewCategory],
-// //      );
+
+  GameTypes _gameTypes;
+
+  /// home tab tab categories
+  List<GameCategoryEntity> homeTabs;
+
+  // Key = category
+  HashMap<String, List<GamePlatformEntity>> homePlatformMap;
+  // // Key = site/category
+  // HashMap<String, List<GameEntity>> _homeGamesMap;
+  //
+  // bool hasPlatformGames(String key) =>
+  //     _homeGamesMap != null && _homeGamesMap.containsKey(key);
+  //
+  // List<GameEntity> getPlatformGames(String key) =>
+  //     (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
 //
 //   String searchPlatform = '';
 //
@@ -121,7 +91,7 @@ abstract class _HomeStore with Store {
   bool waitForInitializeData = false;
   bool waitForBanner = false;
   bool waitForMarquee = false;
-//   bool waitForGameTypes = false;
+  bool waitForGameTypes = false;
 //   bool waitForRecommend = false;
 //   bool waitForFavorite = false;
 
@@ -161,19 +131,18 @@ abstract class _HomeStore with Store {
         if (banners == null || (force && banners.isEmpty))
           Future.value(getBanners()),
         if (marquees == null || force) Future.value(getMarquees()),
-        // if (_gameTypes == null || force) Future.value(getGameTypes()),
+        if (_gameTypes == null || force) Future.value(getGameTypes()),
       ]));
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _initFuture.whenComplete(() {
         waitForInitializeData = false;
-//        debugPrint('banners: ${banners?.length}, '
-//            'marquees: ${marquees?.length}, '
-//            'gametypes: ${_gameTypes.categories.length}');
-//         if (force) checkHomeTabs();
+        // debugPrint('banners: ${banners?.length}, '
+        //     'marquees: ${marquees?.length}, '
+        //     'categories: ${_gameTypes.categories}');
+        // if (force) updateHomeTabs();
       });
     } on Exception {
       waitForInitializeData = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }
@@ -186,21 +155,17 @@ abstract class _HomeStore with Store {
       errorMessage = null;
       waitForBanner = true;
       // Fetch from the repository and wrap the regular Future into an observable.
-      debugPrint('requesting home banner data...');
       await _repository
           .getBanners()
           .then(
             (result) => result.fold(
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);
-                // _bannerController.sink.add([]);
                 banners = [];
               },
               (list) {
 //                debugPrint('home store banners: $list');
-                // creates a new list then add to stream
-                // otherwise the data will lost after navigate
-                // _bannerController.sink.add(List.from(list));
+                // creates a new object list otherwise the data memory might get cleaned
                 banners = List.from(list);
               },
             ),
@@ -208,7 +173,6 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForBanner = false);
     } on Exception {
       waitForBanner = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(type: FailureType.BANNER);
     }
   }
@@ -221,7 +185,6 @@ abstract class _HomeStore with Store {
       errorMessage = null;
       waitForMarquee = true;
       // Fetch from the repository and wrap the regular Future into an observable.
-      debugPrint('requesting home marquee data...');
       await _repository
           .getMarquees()
           .then(
@@ -229,29 +192,18 @@ abstract class _HomeStore with Store {
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);
                 marquees = [];
-                // _marqueeController.sink.add([]);
               },
               (list) {
 //            debugPrint('home store marquees: $list');
-                // creates a new list then add to stream
-                // otherwise the data will lost after navigate
+                // creates a new object list otherwise the data memory might get cleaned
                 if (list.isNotEmpty) {
-                  if (list.length == 1) {
-                    // repeat the text for marquee to run anim
+                  // repeat the text for marquee to run anim
+                  if (list.length == 1)
                     marquees = List.from(list)..addAll(list);
-                    // _marqueeController.sink.add(List.from(list)..addAll(list));
-                  } else {
+                  else
                     marquees = List.from(list);
-                    // _marqueeController.sink.add(List.from(list));
-                  }
                 } else {
                   marquees = [];
-                  // _marqueeController.sink.add([
-//                    MarqueeEntity(
-//                        id: 0,
-//                        content: localeStr.homeHintDefaultMarquee,
-//                        url: '')
-//                   ]);
                 }
               },
             ),
@@ -259,91 +211,92 @@ abstract class _HomeStore with Store {
           .whenComplete(() => waitForMarquee = false);
     } on Exception {
       waitForMarquee = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(type: FailureType.MARQUEE);
     }
   }
 
-//   @action
-//   Future<void> getGameTypes() async {
-//     if (waitForGameTypes) return;
-//     try {
-//       // Reset the possible previous error message.
-//       errorMessage = null;
-//       waitForGameTypes = true;
-//       // Fetch from the repository and wrap the regular Future into an observable.
-//       debugPrint('requesting home game types data...');
-//       await _repository
-//           .getGameTypes()
-//           .then(
-//             (result) => result.fold(
-//               (failure) {
-//                 setErrorMsg(msg: failure.message, showOnce: true);
-//                 _tabController.sink.add([]);
-//               },
-//               (data) {
-// //                debugPrint('home store game types: $data');
-//                 debugPrint('home stream game types: ${data.categories.length}');
-//                 debugPrint(
-//                     'home stream game platforms: ${data.platforms.length}');
-//                 // creates a new data instance then add to stream
-//                 // otherwise the data will lost after navigate
-//                 _gameTypes = new GameTypes(
-//                   categories: new List.from(data.categories),
-//                   platforms: new List.from(data.platforms)
-//                     ..removeWhere(
-//                         (element) => element.className == 'sb-lottery'),
-//                 );
-//                 _processHomeContent();
-//               },
-//             ),
-//           )
-//           .whenComplete(() => waitForGameTypes = false);
-//     } on Exception {
-//       waitForGameTypes = false;
-//       //errorMessage = "Couldn't fetch description. Is the device online?";
-//       setErrorMsg(type: FailureType.GAMES, code: 1);
-//     }
-//   }
-//
-//   void _processHomeContent() {
-//     homeTabs = new List.from(_gameTypes.categories, growable: true);
-//     if (homeTabs == null || homeTabs.isEmpty) return;
-//     final all = _gameTypes.platforms;
-//     List remove = new List();
-//     homePlatformMap = new HashMap();
-//     homeTabs.forEach((category) {
-//       var list = List<GamePlatformEntity>.from(
-//           all.where((platform) => category.type == platform.category));
-//       switch (category.type) {
-//         case 'gift':
-//         case 'movie':
-//           if (list == null || list.isEmpty) remove.add(category);
-//           break;
-//         default:
-//           if (list == null || list.isEmpty)
-//             homePlatformMap.putIfAbsent(
-//                 category.type, () => List<GamePlatformEntity>());
-//           else
-//             homePlatformMap.putIfAbsent(category.type, () => list);
-//           break;
-//       }
-//     });
-//     if (remove.isNotEmpty)
-//       remove.forEach((element) => homeTabs.remove(element));
-//
-//     customizePlatformMap();
-//     // homeTabs.add(cockfightingCategory);
-//     // homeTabs.add(promoCategory);
-//     // homeTabs.add(websiteCategory);
-//     // homeTabs.add(aboutCategory);
-//
-// //    homePlatformMap.keys.forEach((key) => MyLogger.debugPrint(
-// //        msg: '$key: ${homePlatformMap[key]}\n', tag: 'HomePlatformMap'));
-//
-//     checkHomeTabs();
-//   }
-//
+  @action
+  Future<void> getGameTypes() async {
+    if (waitForGameTypes) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      waitForGameTypes = true;
+      // Fetch from the repository and wrap the regular Future into an observable.
+      await _repository
+          .getGameTypes()
+          .then(
+            (result) => result.fold(
+              (failure) {
+                setErrorMsg(msg: failure.message, showOnce: true);
+                homeTabs = [];
+              },
+              (data) {
+                debugPrint('home game types: ${data.categories.length}');
+                debugPrint('home game platforms: ${data.platforms.length}');
+                // creates a new object list otherwise the data memory might get cleaned
+                _gameTypes = data.copyWith();
+                _createPlatformMap();
+              },
+            ),
+          )
+          .whenComplete(() => waitForGameTypes = false);
+    } on Exception {
+      waitForGameTypes = false;
+      setErrorMsg(type: FailureType.GAMES, code: 1);
+    }
+  }
+
+  void _createPlatformMap() {
+    if (_gameTypes == null || !_gameTypes.isValid) {
+      homeTabs = List();
+      homePlatformMap = HashMap();
+    }
+
+    final List<GameCategoryEntity> tabs =
+        new List.from(_gameTypes.categories, growable: true);
+    final HashMap<String, List<GamePlatformEntity>> platformMap = new HashMap();
+    List removeList = new List();
+
+    tabs.forEach((category) {
+      // get all platforms that belongs to category
+      var list = List<GamePlatformEntity>.from(_gameTypes.platforms
+          .where((platform) => category.type == platform.category));
+      debugPrint('mapping game category: ${category.type}');
+      switch (category.type) {
+        // add category to remove list if no platform
+        case 'gift':
+        case 'movie':
+          if (list == null || list.isEmpty) removeList.add(category);
+          break;
+        default:
+          // add platform list to map with category.type as key
+          if (list == null || list.isEmpty) {
+            platformMap.putIfAbsent(
+                category.type, () => List<GamePlatformEntity>());
+          } else {
+            platformMap.putIfAbsent(category.type, () => list);
+          }
+          break;
+      }
+    });
+    if (removeList.isNotEmpty) {
+      removeList.forEach((element) => tabs.remove(element));
+    }
+
+    // customizePlatformMap();
+    // homeTabs.add(cockfightingCategory);
+    // homeTabs.add(promoCategory);
+    // homeTabs.add(websiteCategory);
+    // homeTabs.add(aboutCategory);
+
+    // homePlatformMap.keys
+    //     .forEach((key) => debugPrint('$key: ${homePlatformMap[key]}\n'));
+
+    homeTabs = tabs;
+    homePlatformMap = platformMap;
+  }
+
 //   void customizePlatformMap() {
 //     List<String> classNames = ['s128-sport'];
 //     try {
@@ -365,20 +318,7 @@ abstract class _HomeStore with Store {
 // //          '${homePlatformMap[cockfightingCategory.type].length}');
 //     }
 //   }
-//
-//   void checkHomeTabs() {
-//     if (hasUser != getAppGlobalStreams.hasUser) {
-//       hasUser = getAppGlobalStreams.hasUser;
-// //      debugPrint('home store has user = $hasUser');
-//       getGameTypes();
-//     }
-//     if (hasUser) {
-//       _tabController.sink.add(homeUserTabs);
-//     } else {
-//       _tabController.sink.add(homeTabs);
-//     }
-//   }
-//
+
 //   @action
 //   Future<void> getGames(PlatformGameForm form, String key) async {
 //     try {
@@ -402,7 +342,6 @@ abstract class _HomeStore with Store {
 //             ),
 //           );
 //     } on Exception {
-//       //errorMessage = "Couldn't fetch description. Is the device online?";
 //       setErrorMsg(type: FailureType.GAMES, code: 2);
 //     }
 //   }
@@ -449,7 +388,6 @@ abstract class _HomeStore with Store {
 //           .whenComplete(() => waitForGameUrl = false);
 //     } on Exception {
 //       waitForGameUrl = false;
-//       //errorMessage = "Couldn't fetch description. Is the device online?";
 //       setErrorMsg(type: FailureType.GAMES, code: 3);
 //     }
 //   }
@@ -464,13 +402,7 @@ abstract class _HomeStore with Store {
   Future<void> closeStreams() {
     try {
       return Future.wait([
-        // _bannerController.close(),
-        // _marqueeController.close(),
-        // _tabController.close(),
-        // _gamesRetrieveController.close(),
-        // _searchPlatformController.close(),
-        // _gameTitleController.close(),
-        // _searchGameController.close(),
+        _repository.closeHiveBox(),
       ]);
     } catch (e) {
       MyLogger.warn(msg: 'close home stream error', error: e, tag: 'HomeStore');

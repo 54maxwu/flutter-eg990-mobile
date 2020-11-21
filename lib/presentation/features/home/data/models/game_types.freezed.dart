@@ -15,10 +15,10 @@ class _$GameTypesTearOff {
 
 // ignore: unused_element
   _GameTypes call(
-      {@JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-          List<GameCategoryModel> categories,
-      @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-          List<GamePlatform> platforms}) {
+      {@JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+          List<GameCategoryEntity> categories,
+      @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+          List<GamePlatformEntity> platforms}) {
     return _GameTypes(
       categories: categories,
       platforms: platforms,
@@ -32,10 +32,10 @@ const $GameTypes = _$GameTypesTearOff();
 
 /// @nodoc
 mixin _$GameTypes {
-  @JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-  List<GameCategoryModel> get categories;
-  @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-  List<GamePlatform> get platforms;
+  @JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+  List<GameCategoryEntity> get categories;
+  @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+  List<GamePlatformEntity> get platforms;
 
   $GameTypesCopyWith<GameTypes> get copyWith;
 }
@@ -45,10 +45,10 @@ abstract class $GameTypesCopyWith<$Res> {
   factory $GameTypesCopyWith(GameTypes value, $Res Function(GameTypes) then) =
       _$GameTypesCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-          List<GameCategoryModel> categories,
-      @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-          List<GamePlatform> platforms});
+      {@JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+          List<GameCategoryEntity> categories,
+      @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+          List<GamePlatformEntity> platforms});
 }
 
 /// @nodoc
@@ -67,10 +67,10 @@ class _$GameTypesCopyWithImpl<$Res> implements $GameTypesCopyWith<$Res> {
     return _then(_value.copyWith(
       categories: categories == freezed
           ? _value.categories
-          : categories as List<GameCategoryModel>,
+          : categories as List<GameCategoryEntity>,
       platforms: platforms == freezed
           ? _value.platforms
-          : platforms as List<GamePlatform>,
+          : platforms as List<GamePlatformEntity>,
     ));
   }
 }
@@ -82,10 +82,10 @@ abstract class _$GameTypesCopyWith<$Res> implements $GameTypesCopyWith<$Res> {
       __$GameTypesCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-          List<GameCategoryModel> categories,
-      @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-          List<GamePlatform> platforms});
+      {@JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+          List<GameCategoryEntity> categories,
+      @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+          List<GamePlatformEntity> platforms});
 }
 
 /// @nodoc
@@ -105,10 +105,10 @@ class __$GameTypesCopyWithImpl<$Res> extends _$GameTypesCopyWithImpl<$Res>
     return _then(_GameTypes(
       categories: categories == freezed
           ? _value.categories
-          : categories as List<GameCategoryModel>,
+          : categories as List<GameCategoryEntity>,
       platforms: platforms == freezed
           ? _value.platforms
-          : platforms as List<GamePlatform>,
+          : platforms as List<GamePlatformEntity>,
     ));
   }
 }
@@ -116,17 +116,17 @@ class __$GameTypesCopyWithImpl<$Res> extends _$GameTypesCopyWithImpl<$Res>
 /// @nodoc
 class _$_GameTypes implements _GameTypes {
   const _$_GameTypes(
-      {@JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
+      {@JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
           this.categories,
-      @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
+      @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
           this.platforms});
 
   @override
-  @JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-  final List<GameCategoryModel> categories;
+  @JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+  final List<GameCategoryEntity> categories;
   @override
-  @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-  final List<GamePlatform> platforms;
+  @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+  final List<GamePlatformEntity> platforms;
 
   @override
   String toString() {
@@ -158,17 +158,17 @@ class _$_GameTypes implements _GameTypes {
 
 abstract class _GameTypes implements GameTypes {
   const factory _GameTypes(
-      {@JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-          List<GameCategoryModel> categories,
-      @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-          List<GamePlatform> platforms}) = _$_GameTypes;
+      {@JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+          List<GameCategoryEntity> categories,
+      @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+          List<GamePlatformEntity> platforms}) = _$_GameTypes;
 
   @override
-  @JsonKey(name: 'category', fromJson: decodeGameCategoryModel)
-  List<GameCategoryModel> get categories;
+  @JsonKey(name: 'category', fromJson: _decodeGameCategories, defaultValue: [])
+  List<GameCategoryEntity> get categories;
   @override
-  @JsonKey(name: 'list', fromJson: decodeGamePlatformModel)
-  List<GamePlatform> get platforms;
+  @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: [])
+  List<GamePlatformEntity> get platforms;
   @override
   _$GameTypesCopyWith<_GameTypes> get copyWith;
 }

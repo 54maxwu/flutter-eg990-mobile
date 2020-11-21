@@ -16,10 +16,11 @@ void main() {
       category: "slot",
       platform: "eg",
       gameId: "candy",
-      cname: "糖果世界");
+      cname: "糖果世界",
+      ename: 'candy world');
 
-  final GameEntity gameEntity =
-      GameEntity(id: 4107, gameUrl: "eg/slot/candy", cname: "糖果世界");
+  final GameEntity gameEntity = GameEntity(
+      id: 4107, gameUrl: "eg/slot/candy", cname: "糖果世界", ename: 'candy world');
 
   test('test decode single game model', () {
     print('\nmap:\n$map');

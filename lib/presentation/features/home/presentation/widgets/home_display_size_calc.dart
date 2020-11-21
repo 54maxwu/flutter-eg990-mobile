@@ -34,7 +34,7 @@ class HomeDisplaySizeCalc {
         Global.device.width - Global.device.safeHorizontalPadding;
 
     /// Tab Bar
-    _barMaxWidth = (availableWidth * 0.4).floorToDouble();
+    _barMaxWidth = 72 * Global.device.widthScale;
     _barMinWidth = _barMaxWidth - _barItemInset;
     _tabWidthFactor = (Global.device.widthScale > 1.5) ? 1.5 : 1.0;
     // debugPrint('available width: $availableWidth');

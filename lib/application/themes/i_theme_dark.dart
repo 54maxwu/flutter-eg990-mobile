@@ -399,6 +399,9 @@ class ThemeDark implements ThemeColorInterface {
   Color homeTabBgColor = Color(0xff34302f);
 
   @override
+  Color homeTabBgSelectedColor = Color(0xff34302f);
+
+  @override
   Color homeTabDividerColor = Color(0xffb08552);
 
   @override

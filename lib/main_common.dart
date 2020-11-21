@@ -57,8 +57,9 @@ Future<void> mainCommon(Environment env) async {
   try {
     Hive.registerAdapter(BannerEntityAdapter());
     Hive.registerAdapter(MarqueeEntityAdapter());
-    Hive.registerAdapter(GameCategoryModelAdapter());
+    Hive.registerAdapter(GameCategoryEntityAdapter());
     Hive.registerAdapter(GamePlatformEntityAdapter());
+    Hive.registerAdapter(GameEntityAdapter());
     Hive.registerAdapter(CookieAdapter());
     Hive.registerAdapter(HiveCookieEntityAdapter());
     // Hive.registerAdapter(PromoEntityAdapter());

@@ -10,10 +10,9 @@ part 'shortcut_data.freezed.dart';
 abstract class ShortcutData with _$ShortcutData {
   const factory ShortcutData({
     @required RouteEnum id,
-    @required IconData iconData,
-    Color iconDecorColor,
-    Color iconDecorColorStart,
-    Color iconDecorColorEnd,
+    IconData iconData,
+    String assetPath,
+    String imageUrl,
     RoutePage route,
     @Default(true) bool isUserOnly,
   }) = _ShortcutData;

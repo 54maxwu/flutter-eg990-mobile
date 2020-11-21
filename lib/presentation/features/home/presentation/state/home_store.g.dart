@@ -69,6 +69,13 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getMarqueesAsyncAction.run(() => super.getMarquees());
   }
 
+  final _$getGameTypesAsyncAction = AsyncAction('_HomeStore.getGameTypes');
+
+  @override
+  Future<void> getGameTypes() {
+    return _$getGameTypesAsyncAction.run(() => super.getGameTypes());
+  }
+
   @override
   String toString() {
     return '''

@@ -183,6 +183,7 @@ abstract class ThemeColorInterface {
   Color defaultMarqueeTextColor;
   Color homeFavoriteColor;
   Color homeTabBgColor;
+  Color homeTabBgSelectedColor;
   Color homeTabDividerColor;
   Color homeTabIconColor;
   Color homeTabIconBgColor;

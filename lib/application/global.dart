@@ -16,7 +16,7 @@ class Global {
   // zh, th, en, vi
   static String _language = 'zh';
   // content_cn, content_th, content_us, content_vn
-  static String _jsonContentKey = 'content_zh';
+  static String _jsonContentKey = 'content_cn';
 
   static String get lang => _language;
 
@@ -33,6 +33,9 @@ class Global {
         break;
       case 'vi':
         _jsonContentKey = 'content_vn';
+        break;
+      case 'th':
+        _jsonContentKey = 'content_th';
         break;
       default:
         _jsonContentKey = 'content';

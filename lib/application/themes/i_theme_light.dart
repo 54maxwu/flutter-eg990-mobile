@@ -399,6 +399,9 @@ class ThemeLight implements ThemeColorInterface {
   Color homeTabBgColor = Color(0xfffdeddd);
 
   @override
+  Color homeTabBgSelectedColor = Color(0xfffdeddd);
+
+  @override
   Color homeTabDividerColor = Color(0xff1a77df);
 
   @override

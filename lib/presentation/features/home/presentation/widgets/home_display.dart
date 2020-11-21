@@ -1,14 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_shortcut_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/data/entity/login_status.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_display_tabs.dart';
 import 'package:provider/provider.dart';
 
 import 'home_display_banner.dart';
 import 'home_display_marquee.dart';
 import 'home_display_provider.dart';
+import 'home_shortcut_widget.dart';
 
 class HomeDisplay extends StatefulWidget {
   @override
@@ -18,10 +17,12 @@ class HomeDisplay extends StatefulWidget {
 class _HomeDisplayState extends State<HomeDisplay> {
   final GlobalKey<HomeDisplayBannerState> _bannerKey =
       new GlobalKey(debugLabel: 'banners');
-  final GlobalKey<HomeDisplayBannerState> _marqueeKey =
+  final GlobalKey<HomeDisplayMarqueeState> _marqueeKey =
       new GlobalKey(debugLabel: 'marquees');
-  final GlobalKey<HomeDisplayBannerState> _shortcutKey =
+  final GlobalKey<HomeShortcutWidgetState> _shortcutKey =
       new GlobalKey(debugLabel: 'shortcuts');
+  final GlobalKey<HomeDisplayTabsState> _tabviewKey =
+      new GlobalKey(debugLabel: 'tabview');
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +71,21 @@ class _HomeDisplayState extends State<HomeDisplay> {
               builder: (_, loggedIn, __) {
                 return HomeShortcutWidget(
                     key: _shortcutKey, loggedIn: loggedIn);
+              },
+            ),
+          ),
+          Container(
+            width: Global.device.width - 8.0,
+            height: context.select<HomeDisplayProvider, double>(
+                (provider) => provider.calc.pageMaxHeight),
+            child: Selector<HomeDisplayProvider, List>(
+              selector: (_, provider) => provider.homeStore.homeTabs,
+              builder: (_, tabs, __) {
+                if (tabs != null) {
+                  return HomeDisplayTabs(key: _tabviewKey, tabs: tabs);
+                } else {
+                  return LoadingWidget();
+                }
               },
             ),
           ),

@@ -6,9 +6,10 @@ part 'banner_entity.freezed.dart';
 part 'banner_entity.g.dart';
 
 @freezed
-abstract class BannerEntity with _$BannerEntity {
+abstract class BannerEntity implements _$BannerEntity, DataOperator {
+  const BannerEntity._();
+
   @HiveType(typeId: 101)
-  @Implements(DataOperator)
   const factory BannerEntity({
     @HiveField(0) @required int id,
     @HiveField(1) @required String pic,
@@ -17,8 +18,8 @@ abstract class BannerEntity with _$BannerEntity {
     @HiveField(4) @required int sort,
   }) = _BannerEntity;
 
-//  @override
-//  String operator [](String key) {
-//    return id.toString();
-//  }
+  @override
+  String operator [](String key) {
+    return id.toString();
+  }
 }

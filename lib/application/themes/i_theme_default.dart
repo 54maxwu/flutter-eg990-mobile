@@ -399,6 +399,9 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeTabBgColor = Color(0xffffffff);
 
   @override
+  Color homeTabBgSelectedColor = Color(0xffd2b79c);
+
+  @override
   Color homeTabDividerColor = Color(0xff1a77df);
 
   @override
@@ -408,7 +411,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeTabIconBgColor = Color(0xff1a77df);
 
   @override
-  Color homeTabTextColor = Color(0xff1a77df);
+  Color homeTabTextColor = Color(0xff9aa4c2);
 
   @override
   Color homeTabSelectedTextColor = Color(0xffffffff);

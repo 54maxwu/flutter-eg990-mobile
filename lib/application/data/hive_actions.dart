@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/domain/interface/data_operator.dart';
 import 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
+import 'package:flutter_eg990_mobile/domain/interface/data_operator.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
@@ -42,7 +42,7 @@ extension HiveBoxExtension on Box {
         list.add(getAt(index) as T);
       }
       MyLogger.print(
-          msg: 'get cached $logKeyword : $list', tag: HIVE_ACTION_TAG);
+          msg: 'get cached $logKeyword : ${list.length}', tag: HIVE_ACTION_TAG);
       return list;
     } on Exception catch (e) {
       MyLogger.error(

@@ -115,17 +115,17 @@ class __$MarqueeEntityCopyWithImpl<$Res>
 }
 
 @HiveType(typeId: 102)
-@Implements(DataOperator)
 
 /// @nodoc
-class _$_MarqueeEntity implements _MarqueeEntity {
+class _$_MarqueeEntity extends _MarqueeEntity {
   const _$_MarqueeEntity(
       {@required @HiveField(0) this.id,
       @required @HiveField(1) this.content,
       @required @HiveField(2) this.url})
       : assert(id != null),
         assert(content != null),
-        assert(url != null);
+        assert(url != null),
+        super._();
 
   @override
   @HiveField(0)
@@ -165,14 +165,10 @@ class _$_MarqueeEntity implements _MarqueeEntity {
   @override
   _$MarqueeEntityCopyWith<_MarqueeEntity> get copyWith =>
       __$MarqueeEntityCopyWithImpl<_MarqueeEntity>(this, _$identity);
-
-  @override
-  String operator [](String key) {
-    return id.toString();
-  }
 }
 
-abstract class _MarqueeEntity implements MarqueeEntity, DataOperator {
+abstract class _MarqueeEntity extends MarqueeEntity {
+  const _MarqueeEntity._() : super._();
   const factory _MarqueeEntity(
       {@required @HiveField(0) int id,
       @required @HiveField(1) String content,

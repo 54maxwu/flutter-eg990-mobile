@@ -9,10 +9,11 @@ void main() {
     id: 4107,
     gameUrl: "eg/slot/candy",
     cname: "糖果世界",
+    ename: "candy world",
   );
 
   final String gameJson =
-      '{"id": 4107, "category": "slot", "platform": "eg", "gameid": "candy", "cname": "糖果世界"}';
+      '{"id": 4107, "category": "slot", "platform": "eg", "gameid": "candy", "cname": "糖果世界", "ename": "candy world"}';
 
   test('test model data to entity data', () {
     final model = GameModel.jsonToGameModel(json.decode(gameJson));

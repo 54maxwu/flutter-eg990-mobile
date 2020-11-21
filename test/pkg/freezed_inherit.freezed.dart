@@ -147,8 +147,8 @@ class _$FreezedParentDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$FreezedParentData implements FreezedParentData {
-  _$FreezedParentData({this.account, this.credit});
+class _$FreezedParentData extends FreezedParentData {
+  _$FreezedParentData({this.account, this.credit}) : super._();
 
   factory _$FreezedParentData.fromJson(Map<String, dynamic> json) =>
       _$_$FreezedParentDataFromJson(json);
@@ -238,14 +238,10 @@ class _$FreezedParentData implements FreezedParentData {
   Map<String, dynamic> toJson() {
     return _$_$FreezedParentDataToJson(this)..['runtimeType'] = 'default';
   }
-
-  @override
-  String operator [](String key) {
-    return account.toString();
-  }
 }
 
-abstract class FreezedParentData implements FreezedParent {
+abstract class FreezedParentData extends FreezedParent {
+  FreezedParentData._() : super._();
   factory FreezedParentData({String account, String credit}) =
       _$FreezedParentData;
 
@@ -298,8 +294,8 @@ class _$FreezedChildDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$FreezedChildData implements FreezedChildData {
-  _$FreezedChildData({this.account, this.credit, this.status});
+class _$FreezedChildData extends FreezedChildData {
+  _$FreezedChildData({this.account, this.credit, this.status}) : super._();
 
   factory _$FreezedChildData.fromJson(Map<String, dynamic> json) =>
       _$_$FreezedChildDataFromJson(json);
@@ -394,14 +390,10 @@ class _$FreezedChildData implements FreezedChildData {
   Map<String, dynamic> toJson() {
     return _$_$FreezedChildDataToJson(this)..['runtimeType'] = 'child';
   }
-
-  @override
-  String operator [](String key) {
-    return account.toString();
-  }
 }
 
-abstract class FreezedChildData implements FreezedParent {
+abstract class FreezedChildData extends FreezedParent {
+  FreezedChildData._() : super._();
   factory FreezedChildData({String account, String credit, String status}) =
       _$FreezedChildData;
 

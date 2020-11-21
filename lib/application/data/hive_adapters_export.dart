@@ -4,10 +4,12 @@ export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/bann
     show BannerEntityAdapter;
 export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/marquee_entity.dart'
     show MarqueeEntityAdapter;
-export 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_category_model.dart'
-    show GameCategoryModelAdapter;
-export 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_platform.dart'
+export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart'
+    show GameCategoryEntityAdapter;
+export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart'
     show GamePlatformEntityAdapter;
+export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_entity.dart'
+    show GameEntityAdapter;
 // export 'package:flutter_eg990_mobile/presentation/features/subfeatures/promo/data/models/promo_freezed.dart'
 //     show PromoEntityAdapter;
 export 'package:flutter_eg990_mobile/presentation/features/user/data/form/login_form.dart'

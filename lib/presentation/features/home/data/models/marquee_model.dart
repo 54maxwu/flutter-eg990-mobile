@@ -1,4 +1,5 @@
 import 'package:flutter_eg990_mobile/application/global.dart';
+import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../entity/marquee_entity.dart';
@@ -16,7 +17,7 @@ abstract class MarqueeModel with _$MarqueeModel {
     @required String showDate,
   }) = _MarqueeModel;
 
-  static MarqueeModel jsonToMarqueeModel(Map<String, dynamic> jsonMap) =>
+  static MarqueeModel jsonToModel(Map<String, dynamic> jsonMap) =>
       _$_MarqueeModel(
         id: jsonMap['id'] as int,
         content: jsonMap[Global.jsonContentKey] as String,
@@ -28,5 +29,6 @@ abstract class MarqueeModel with _$MarqueeModel {
 }
 
 extension MarqueeModelExtension on MarqueeModel {
-  MarqueeEntity get entity => MarqueeEntity(id: id, content: content, url: url);
+  MarqueeEntity get entity =>
+      MarqueeEntity(id: id, content: content ?? '', url: url);
 }

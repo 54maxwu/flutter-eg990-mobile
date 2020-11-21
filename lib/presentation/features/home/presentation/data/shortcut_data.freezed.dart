@@ -16,18 +16,16 @@ class _$ShortcutDataTearOff {
 // ignore: unused_element
   _ShortcutData call(
       {@required RouteEnum id,
-      @required IconData iconData,
-      Color iconDecorColor,
-      Color iconDecorColorStart,
-      Color iconDecorColorEnd,
+      IconData iconData,
+      String assetPath,
+      String imageUrl,
       RoutePage route,
       bool isUserOnly = true}) {
     return _ShortcutData(
       id: id,
       iconData: iconData,
-      iconDecorColor: iconDecorColor,
-      iconDecorColorStart: iconDecorColorStart,
-      iconDecorColorEnd: iconDecorColorEnd,
+      assetPath: assetPath,
+      imageUrl: imageUrl,
       route: route,
       isUserOnly: isUserOnly,
     );
@@ -42,9 +40,8 @@ const $ShortcutData = _$ShortcutDataTearOff();
 mixin _$ShortcutData {
   RouteEnum get id;
   IconData get iconData;
-  Color get iconDecorColor;
-  Color get iconDecorColorStart;
-  Color get iconDecorColorEnd;
+  String get assetPath;
+  String get imageUrl;
   RoutePage get route;
   bool get isUserOnly;
 
@@ -59,9 +56,8 @@ abstract class $ShortcutDataCopyWith<$Res> {
   $Res call(
       {RouteEnum id,
       IconData iconData,
-      Color iconDecorColor,
-      Color iconDecorColorStart,
-      Color iconDecorColorEnd,
+      String assetPath,
+      String imageUrl,
       RoutePage route,
       bool isUserOnly});
 }
@@ -78,24 +74,16 @@ class _$ShortcutDataCopyWithImpl<$Res> implements $ShortcutDataCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object iconData = freezed,
-    Object iconDecorColor = freezed,
-    Object iconDecorColorStart = freezed,
-    Object iconDecorColorEnd = freezed,
+    Object assetPath = freezed,
+    Object imageUrl = freezed,
     Object route = freezed,
     Object isUserOnly = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as RouteEnum,
       iconData: iconData == freezed ? _value.iconData : iconData as IconData,
-      iconDecorColor: iconDecorColor == freezed
-          ? _value.iconDecorColor
-          : iconDecorColor as Color,
-      iconDecorColorStart: iconDecorColorStart == freezed
-          ? _value.iconDecorColorStart
-          : iconDecorColorStart as Color,
-      iconDecorColorEnd: iconDecorColorEnd == freezed
-          ? _value.iconDecorColorEnd
-          : iconDecorColorEnd as Color,
+      assetPath: assetPath == freezed ? _value.assetPath : assetPath as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       route: route == freezed ? _value.route : route as RoutePage,
       isUserOnly:
           isUserOnly == freezed ? _value.isUserOnly : isUserOnly as bool,
@@ -113,9 +101,8 @@ abstract class _$ShortcutDataCopyWith<$Res>
   $Res call(
       {RouteEnum id,
       IconData iconData,
-      Color iconDecorColor,
-      Color iconDecorColorStart,
-      Color iconDecorColorEnd,
+      String assetPath,
+      String imageUrl,
       RoutePage route,
       bool isUserOnly});
 }
@@ -134,24 +121,16 @@ class __$ShortcutDataCopyWithImpl<$Res> extends _$ShortcutDataCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object iconData = freezed,
-    Object iconDecorColor = freezed,
-    Object iconDecorColorStart = freezed,
-    Object iconDecorColorEnd = freezed,
+    Object assetPath = freezed,
+    Object imageUrl = freezed,
     Object route = freezed,
     Object isUserOnly = freezed,
   }) {
     return _then(_ShortcutData(
       id: id == freezed ? _value.id : id as RouteEnum,
       iconData: iconData == freezed ? _value.iconData : iconData as IconData,
-      iconDecorColor: iconDecorColor == freezed
-          ? _value.iconDecorColor
-          : iconDecorColor as Color,
-      iconDecorColorStart: iconDecorColorStart == freezed
-          ? _value.iconDecorColorStart
-          : iconDecorColorStart as Color,
-      iconDecorColorEnd: iconDecorColorEnd == freezed
-          ? _value.iconDecorColorEnd
-          : iconDecorColorEnd as Color,
+      assetPath: assetPath == freezed ? _value.assetPath : assetPath as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       route: route == freezed ? _value.route : route as RoutePage,
       isUserOnly:
           isUserOnly == freezed ? _value.isUserOnly : isUserOnly as bool,
@@ -163,14 +142,12 @@ class __$ShortcutDataCopyWithImpl<$Res> extends _$ShortcutDataCopyWithImpl<$Res>
 class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
   const _$_ShortcutData(
       {@required this.id,
-      @required this.iconData,
-      this.iconDecorColor,
-      this.iconDecorColorStart,
-      this.iconDecorColorEnd,
+      this.iconData,
+      this.assetPath,
+      this.imageUrl,
       this.route,
       this.isUserOnly = true})
       : assert(id != null),
-        assert(iconData != null),
         assert(isUserOnly != null);
 
   @override
@@ -178,11 +155,9 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
   @override
   final IconData iconData;
   @override
-  final Color iconDecorColor;
+  final String assetPath;
   @override
-  final Color iconDecorColorStart;
-  @override
-  final Color iconDecorColorEnd;
+  final String imageUrl;
   @override
   final RoutePage route;
   @JsonKey(defaultValue: true)
@@ -191,7 +166,7 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShortcutData(id: $id, iconData: $iconData, iconDecorColor: $iconDecorColor, iconDecorColorStart: $iconDecorColorStart, iconDecorColorEnd: $iconDecorColorEnd, route: $route, isUserOnly: $isUserOnly)';
+    return 'ShortcutData(id: $id, iconData: $iconData, assetPath: $assetPath, imageUrl: $imageUrl, route: $route, isUserOnly: $isUserOnly)';
   }
 
   @override
@@ -201,9 +176,8 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
       ..add(DiagnosticsProperty('type', 'ShortcutData'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('iconData', iconData))
-      ..add(DiagnosticsProperty('iconDecorColor', iconDecorColor))
-      ..add(DiagnosticsProperty('iconDecorColorStart', iconDecorColorStart))
-      ..add(DiagnosticsProperty('iconDecorColorEnd', iconDecorColorEnd))
+      ..add(DiagnosticsProperty('assetPath', assetPath))
+      ..add(DiagnosticsProperty('imageUrl', imageUrl))
       ..add(DiagnosticsProperty('route', route))
       ..add(DiagnosticsProperty('isUserOnly', isUserOnly));
   }
@@ -217,15 +191,12 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
             (identical(other.iconData, iconData) ||
                 const DeepCollectionEquality()
                     .equals(other.iconData, iconData)) &&
-            (identical(other.iconDecorColor, iconDecorColor) ||
+            (identical(other.assetPath, assetPath) ||
                 const DeepCollectionEquality()
-                    .equals(other.iconDecorColor, iconDecorColor)) &&
-            (identical(other.iconDecorColorStart, iconDecorColorStart) ||
+                    .equals(other.assetPath, assetPath)) &&
+            (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.iconDecorColorStart, iconDecorColorStart)) &&
-            (identical(other.iconDecorColorEnd, iconDecorColorEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.iconDecorColorEnd, iconDecorColorEnd)) &&
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.route, route) ||
                 const DeepCollectionEquality().equals(other.route, route)) &&
             (identical(other.isUserOnly, isUserOnly) ||
@@ -238,9 +209,8 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(iconData) ^
-      const DeepCollectionEquality().hash(iconDecorColor) ^
-      const DeepCollectionEquality().hash(iconDecorColorStart) ^
-      const DeepCollectionEquality().hash(iconDecorColorEnd) ^
+      const DeepCollectionEquality().hash(assetPath) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(route) ^
       const DeepCollectionEquality().hash(isUserOnly);
 
@@ -252,10 +222,9 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
 abstract class _ShortcutData implements ShortcutData {
   const factory _ShortcutData(
       {@required RouteEnum id,
-      @required IconData iconData,
-      Color iconDecorColor,
-      Color iconDecorColorStart,
-      Color iconDecorColorEnd,
+      IconData iconData,
+      String assetPath,
+      String imageUrl,
       RoutePage route,
       bool isUserOnly}) = _$_ShortcutData;
 
@@ -264,11 +233,9 @@ abstract class _ShortcutData implements ShortcutData {
   @override
   IconData get iconData;
   @override
-  Color get iconDecorColor;
+  String get assetPath;
   @override
-  Color get iconDecorColorStart;
-  @override
-  Color get iconDecorColorEnd;
+  String get imageUrl;
   @override
   RoutePage get route;
   @override

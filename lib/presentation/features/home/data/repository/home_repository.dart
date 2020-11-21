@@ -7,6 +7,7 @@ import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../entity/banner_entity.dart';
 import '../entity/game_entity.dart';
+import '../entity/game_category_entity.dart';
 import '../entity/marquee_entity.dart';
 import '../form/platform_game_form.dart';
 import '../models/banner_model.dart';
@@ -33,17 +34,13 @@ class HomeApi {
 }
 
 abstract class HomeRepository {
-  Future<Either<Failure, List<BannerEntity>>> getBanners();
+  Future<void> closeHiveBox();
 
-  Future<Either<Failure, List<BannerEntity>>> getCachedBanners();
+  Future<Either<Failure, List<BannerEntity>>> getBanners();
 
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees();
 
-  Future<Either<Failure, List<MarqueeEntity>>> getCachedMarquees();
-
   Future<Either<Failure, GameTypes>> getGameTypes();
-
-  Future<Either<Failure, GameTypes>> getCachedGameTypes();
 
   Future<Either<Failure, List<GameEntity>>> getGames(PlatformGameForm form);
 
@@ -65,10 +62,39 @@ class HomeRepositoryImpl implements HomeRepository {
   });
 
   @override
+  Future<void> closeHiveBox() async {
+    localStorage.closeBox(HomeBox.Banner);
+    localStorage.closeBox(HomeBox.Marquee);
+    localStorage.closeBox(HomeBox.Category);
+    localStorage.closeBox(HomeBox.Platform);
+  }
+
+  @override
   Future<Either<Failure, List<BannerEntity>>> getBanners() async {
     final connected = await networkInfo.isConnected;
-    if (!connected) return getCachedBanners();
+    final useCache = await localStorage.useBannerCache();
+    debugPrint('use banners cache: $useCache');
+    if (!connected || useCache) {
+      // Future.microtask(() => _remoteBanners()).whenComplete(
+      //     () => MyLogger.debug(msg: 'banners cache updated', tag: tag));
+      return _getCachedBanners();
+    }
+    return _remoteBanners();
+  }
 
+  Future<Either<Failure, List<BannerEntity>>> _getCachedBanners() async {
+    try {
+      // debugPrint('accessing banner local data source...');
+      var cached = await localStorage.getCachedBanners();
+      // debugPrint('data from cached source: $cached');
+      return (cached.isNotEmpty) ? Right(cached) : Left(Failure.network());
+    } on HiveDataException {
+      MyLogger.debug(msg: 'no cached banner', tag: tag);
+      return Right(new List<BannerEntity>(0));
+    }
+  }
+
+  Future<Either<Failure, List<BannerEntity>>> _remoteBanners() async {
     final result = await requestModelList<BannerModel>(
       request: dioApiService.get(HomeApi.BANNER),
       jsonToModel: BannerModel.jsonToBannerModel,
@@ -76,71 +102,31 @@ class HomeRepositoryImpl implements HomeRepository {
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
-      (failure) {
-        if (failure.typeIndex == 0)
-          return getCachedBanners();
-        else
-          return Left(failure);
+      (failure) => Left(failure),
+      (models) {
+        final list = models.map((model) => model.entity).toList();
+        localStorage.cacheBanners(list);
+        return Right(list);
       },
-      (models) => Right(_transformBannerModel(models)),
     );
-  }
-
-  List<BannerEntity> _transformBannerModel(List<BannerModel> data) {
-    final list = data.map((model) {
-      return model.entity;
-    }).toList();
-    MyLogger.log(msg: 'mapped banner model: ${list.length}', tag: tag);
-    // localStorage.cacheBanners(list);
-    return list;
-  }
-
-  @override
-  Future<Either<Failure, List<BannerEntity>>> getCachedBanners() async {
-    try {
-      debugPrint('accessing banner local data source...');
-      var cached = await localStorage.getCachedBanners();
-//      debugPrint('data from cached source: $cached');
-      if (cached.isNotEmpty)
-        return Right(cached);
-      else
-        return Left(Failure.network());
-    } on HiveDataException {
-      MyLogger.debug(msg: 'no cached banner', tag: tag);
-      return Right(new List<BannerEntity>(0));
-    }
   }
 
   @override
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees() async {
     final connected = await networkInfo.isConnected;
-    if (!connected) return getCachedMarquees();
-
-    final result = await requestModel<MarqueeModelList>(
-      request: dioApiService.get(HomeApi.MARQUEE),
-      jsonToModel: MarqueeModelList.jsonToMarqueeModelList,
-      tag: 'remote-MARQUEE',
-    );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (model) => Right(_transformMarqueeModelList(model.marquees)),
-    );
+    final useCache = await localStorage.useMarqueeCache();
+    debugPrint('use marquees cache: $useCache');
+    if (!connected || useCache) {
+      // Future.microtask(() => _remoteMarquees()).whenComplete(
+      //     () => MyLogger.debug(msg: 'marquees cache updated', tag: tag));
+      return _getCachedMarquees();
+    }
+    return _remoteMarquees();
   }
 
-  List<MarqueeEntity> _transformMarqueeModelList(List<MarqueeModel> data) {
-    final list = data.map((model) {
-      return model.entity;
-    }).toList();
-    MyLogger.log(msg: 'mapped marquee model: ${list.length}', tag: tag);
-    localStorage.cacheMarquees(list);
-    return list;
-  }
-
-  @override
-  Future<Either<Failure, List<MarqueeEntity>>> getCachedMarquees() async {
+  Future<Either<Failure, List<MarqueeEntity>>> _getCachedMarquees() async {
     try {
-      debugPrint('accessing marquee local data source...');
+      // debugPrint('accessing marquee local data source...');
       var cached = await localStorage.getCachedMarquees();
 //      debugPrint('data from cached source: $cached');
       if (cached.isNotEmpty)
@@ -153,11 +139,60 @@ class HomeRepositoryImpl implements HomeRepository {
     }
   }
 
+  Future<Either<Failure, List<MarqueeEntity>>> _remoteMarquees() async {
+    final result = await requestModel<MarqueeModelList>(
+      request: dioApiService.get(HomeApi.MARQUEE),
+      jsonToModel: MarqueeModelList.jsonToModelList,
+      tag: 'remote-MARQUEE',
+    );
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (model) {
+        final list = model.marquees.map((model) => model.entity).toList();
+        localStorage.cacheMarquees(list);
+        return Right(list);
+      },
+    );
+  }
+
   @override
   Future<Either<Failure, GameTypes>> getGameTypes() async {
     final connected = await networkInfo.isConnected;
-    if (!connected) return getCachedGameTypes();
+    final useCache = await localStorage.useGameTypesCache();
+    debugPrint('use game type cache: $useCache');
+    if (!connected || useCache) {
+      // Future.microtask(() => _remoteGameTypes()).whenComplete(
+      //     () => MyLogger.debug(msg: 'game-types cache updated', tag: tag));
+      return _getCachedGameTypes();
+    }
+    return _remoteGameTypes();
+  }
 
+  Future<Either<Failure, GameTypes>> _getCachedGameTypes() async {
+    try {
+      // debugPrint('accessing game-types local data source...');
+      final cached = await localStorage.getCachedGameTypes();
+      if (cached == null ||
+          cached.categories.isEmpty ||
+          cached.platforms.isEmpty) {
+        return Left(Failure.network());
+      }
+      // debugPrint('game-types from cached source: $cached');
+      final updatedCategories = cached.categories
+          .map((e) => e.copyWith(info: e.getCategory))
+          .toList();
+      return Right(GameTypes(
+        categories: updatedCategories,
+        platforms: cached.platforms,
+      ));
+    } on HiveDataException {
+      MyLogger.debug(msg: 'no cached game-types', tag: tag);
+      return Right(new GameTypes(categories: [], platforms: []));
+    }
+  }
+
+  Future<Either<Failure, GameTypes>> _remoteGameTypes() async {
     final result = await requestModel<GameTypes>(
       request: dioApiService.get(
         HomeApi.GAME_ALL,
@@ -171,39 +206,46 @@ class HomeRepositoryImpl implements HomeRepository {
     // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (model) => Right(_transformGameTypeModelList(model)),
+      (data) {
+        localStorage.cacheGameTypes(data);
+        return Right(data);
+      },
     );
-  }
-
-  GameTypes _transformGameTypeModelList(GameTypes data) {
-    final entity = data.shrink;
-    MyLogger.log(msg: 'mapped game-type model: ${entity.debug}', tag: tag);
-    localStorage.cacheGameTypes(entity);
-    return entity;
-  }
-
-  @override
-  Future<Either<Failure, GameTypes>> getCachedGameTypes() async {
-    try {
-      debugPrint('accessing game-types local data source...');
-      var cached = await localStorage.getCachedGameTypes();
-//      debugPrint('data from cached source: $cached');
-      if (cached != null &&
-          cached.categories.isNotEmpty &&
-          cached.platforms.isNotEmpty)
-        return Right(cached);
-      else
-        return Left(Failure.network());
-    } on HiveDataException {
-      MyLogger.debug(msg: 'no cached game-types', tag: tag);
-      return Right(new GameTypes(categories: [], platforms: []));
-    }
   }
 
   @override
   Future<Either<Failure, List<GameEntity>>> getGames(
     PlatformGameForm form,
   ) async {
+    final connected = await networkInfo.isConnected;
+    final useCache = await localStorage.useGamesCache(form.classname);
+    debugPrint('use game ${form.classname} cache: $useCache');
+    if (!connected || useCache) {
+      // Future.microtask(() => _remoteGames(form)).whenComplete(
+      //     () => MyLogger.debug(msg: 'game ${form.classname} cache updated', tag: tag));
+      return _getCachedGames(form.classname);
+    }
+    return _remoteGames(form);
+  }
+
+  Future<Either<Failure, List<GameEntity>>> _getCachedGames(
+      String classname) async {
+    try {
+      // debugPrint('accessing marquee local data source...');
+      var cached = await localStorage.getCachedGames(classname);
+//      debugPrint('data from cached source: $cached');
+      if (cached.isNotEmpty)
+        return Right(cached);
+      else
+        return Left(Failure.network());
+    } on HiveDataException {
+      MyLogger.debug(msg: 'no cached games', tag: tag);
+      return Right(new List<GameEntity>(0));
+    }
+  }
+
+  Future<Either<Failure, List<GameEntity>>> _remoteGames(
+      PlatformGameForm form) async {
     final result = await requestModelList<GameModel>(
       request: dioApiService.postForm(HomeApi.GAME_INDEX, form.toJson()),
       jsonToModel: GameModel.jsonToGameModel,
@@ -212,16 +254,12 @@ class HomeRepositoryImpl implements HomeRepository {
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (list) => Right(_transformGamesModel(list)),
+      (model) {
+        final list = model.map((model) => model.entity).toList();
+        localStorage.cacheGames(list, form.classname);
+        return Right(list);
+      },
     );
-  }
-
-  List<GameEntity> _transformGamesModel(List<GameModel> data) {
-    final list = data.map((model) {
-      return model.entity;
-    }).toList();
-    MyLogger.log(msg: 'mapped game models: ${list.length}', tag: tag);
-    return list;
   }
 
   @override

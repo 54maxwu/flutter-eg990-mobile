@@ -15,4 +15,6 @@ extension PlatformGameFormExtension on PlatformGameForm {
         'category': category,
         'platform': platform,
       };
+
+  String get classname => '$category-$platform';
 }

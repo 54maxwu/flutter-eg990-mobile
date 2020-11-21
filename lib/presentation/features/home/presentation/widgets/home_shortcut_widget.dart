@@ -123,10 +123,12 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
           children: <Widget>[
             SizedBox(
               height: display.shortcutMaxIconSize,
-              child: Icon(
-                item.value.iconData,
-                color: themeColor.homeBoxIconColor,
-              ),
+              child: (item.value.assetPath.isNotEmpty)
+                  ? Image.asset(item.value.assetPath)
+                  : Icon(
+                      item.value.iconData,
+                      color: themeColor.homeBoxIconColor,
+                    ),
             ),
             SizedBox(
               height: display.shortcutMaxTextHeight,

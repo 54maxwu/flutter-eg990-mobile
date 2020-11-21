@@ -34,7 +34,7 @@ void main() {
     'should transfer model data into entity data',
     () async {
       final map = json.decode(fixture('home/marquee.json'));
-      final model = MarqueeModel.jsonToMarqueeModel(map);
+      final model = MarqueeModel.jsonToModel(map);
       expect(model, isA<MarqueeModel>());
 
       final entity = MarqueeEntity(
@@ -50,7 +50,7 @@ void main() {
 
   test('test json to model', () {
     final map = json.decode(fixture('home/marquee_array_test.json'));
-    final model = MarqueeModelList.jsonToMarqueeModelList(map);
+    final model = MarqueeModelList.jsonToModelList(map);
     expect(model.marquees, marqueeModelList.marquees);
   });
 }

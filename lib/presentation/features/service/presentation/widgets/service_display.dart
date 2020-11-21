@@ -22,9 +22,9 @@ class ServiceDisplay extends StatelessWidget {
         maxHeight: Global.device.featureContentHeight,
         maxWidth: Global.device.width,
       ),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(Res.wallpaper), fit: BoxFit.fill)),
+      // decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //         image: AssetImage(Res.wallpaper), fit: BoxFit.fill)),
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
       child: ListView(
