@@ -21,7 +21,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultBackgroundColor = Color(0xffffffff);
 
   @override
-  Color defaultLayeredBackgroundColor = Color(0xffeaeaea);
+  Color defaultLayeredBackgroundColor = Color(0xfff8f8f8);
 
   @override
   Color defaultLayeredBackgroundColorAlpha = Color(0x80ffffff);

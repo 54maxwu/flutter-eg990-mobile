@@ -2,7 +2,7 @@ import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 
 enum RouteEnum {
   HOME,
-  PROMO,
+  GAMES,
   SERVICE,
   SERVICE_WEB,
 
@@ -25,6 +25,7 @@ enum RouteEnum {
   AGENT_REGISTER,
 
   ///
+  PROMO,
   NOTICE,
   DOWNLOAD,
   TUTORIAL,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:flutter_eg990_mobile/presentation/core/main_startup.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/presentation/home_route.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/pageview/games_page.dart';
 import 'package:flutter_eg990_mobile/presentation/features/member/member_route.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/main_screen.dart';
 
@@ -19,6 +20,7 @@ import 'package:flutter_eg990_mobile/presentation/screens/main_screen.dart';
             children: <AutoRoute>[
               MaterialRoute(
                   page: HomeRoute, initial: true, maintainState: true),
+              MaterialRoute(page: GamesPage),
               MaterialRoute(page: MemberRoute),
             ],
           ),

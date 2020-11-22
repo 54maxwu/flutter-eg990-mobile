@@ -38,9 +38,7 @@ abstract class GamePlatformEntity
       );
 
   @override
-  String operator [](String key) {
-    return className.toString();
-  }
+  String operator [](String key) => '$className';
 }
 
 String decodePlatformClassName(dynamic str) => (str.containsKey('class'))
@@ -51,11 +49,28 @@ String decodePlatformChName(dynamic str) => (str.containsKey('ch'))
     ? '${str['ch']}'
     : '${'${str['site']}'.toUpperCase()} ${str['type']}';
 
+const String _gamePlatformAssetPathPrefix = "assets/images/home/platforms/mob_";
+
 extension GamePlatformEntityExtension on GamePlatformEntity {
   bool get isGameHall => ['casino', 'sport', 'lottery'].contains(category);
+
   String get iconUrl => '/images/index/logo/${site.toUpperCase()}.png';
+
   String get imageUrl => '/images/nav/nav_${category}_$site.png';
+
+  String get assetUrl {
+    switch (category) {
+      case 'casino':
+        return "${_gamePlatformAssetPathPrefix}live_${site.toLowerCase()}.png";
+      case 'fish':
+        return "${_gamePlatformAssetPathPrefix}fish.png";
+      default:
+        return "$_gamePlatformAssetPathPrefix${category}_${site.toLowerCase()}.png";
+    }
+  }
+
   String get gameUrl => '$site/$category/0';
+
   String get label {
     switch (category) {
       case 'casino':

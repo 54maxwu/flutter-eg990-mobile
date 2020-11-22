@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
-import 'package:flutter_eg990_mobile/presentation/router/data/route_info.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../main_screen_provider.dart';
@@ -18,60 +17,12 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     ScreenNavigationBarItem.member,
   ];
 
-  // List<ReactionDisposer> _disposers;
+  List<ReactionDisposer> _disposers;
   MainScreenProvider _screenProvider;
 
-  // MainScreenNavBarTypes _barType;
-  // bool _hideNavBar = false;
+  MainScreenNavBarTypes _barType;
+  bool _hideNavBar = false;
   int _lastIndex = 0;
-
-  @override
-  void didUpdateWidget(ScreenNavigationBar oldWidget) {
-    // update app bar when language changed
-    // if (_disposers != null) {
-    //   _disposers.forEach((d) => d());
-    //   _disposers.clear();
-    //   _disposers = null;
-    // }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void didChangeDependencies() {
-    _screenProvider = null;
-    super.didChangeDependencies();
-  }
-
-  // @override
-  // void dispose() {
-  //   try {
-  //     _disposers.forEach((d) => d());
-  //     _disposers.clear();
-  //     _disposers = null;
-  //   } on Exception {}
-  //   super.dispose();
-  // }
-  //
-  // void initDisposers() {
-  //   _disposers = [
-  //     reaction(
-  //       (_) => _screenProvider.getPageInfo,
-  //       (RouteInfo page) {
-  //         if (mounted) {
-  //           if (_barType != page.navBarType ||
-  //               (_lastIndex != page.bottomNavIndex &&
-  //                   isValidIndex(page.bottomNavIndex))) {
-  //             _barType = page.navBarType;
-  //             setState(() {
-  //               _lastIndex = page.bottomNavIndex;
-  //               _hideNavBar = page.navBarType == MainScreenNavBarTypes.HIDE;
-  //             });
-  //           }
-  //         }
-  //       },
-  //     ),
-  //   ];
-  // }
 
   bool isValidIndex(int index) => index >= 0 && index < _tabs.length;
 
@@ -95,15 +46,48 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     // }
   }
 
+  void initDisposers() {
+    _disposers ??= [
+      reaction(
+        (_) => _screenProvider.getPageInfo,
+        (RouteInfo page) {
+          if (mounted) {
+            debugPrint('reaction on nav bar page info');
+            if (_barType != page.navBarType) {
+              _barType = page.navBarType;
+              setState(() {
+                _hideNavBar = page.navBarType == MainScreenNavBarTypes.HIDE;
+              });
+              debugPrint('nav bar type changed to ${_barType.index}');
+            }
+          }
+        },
+      ),
+    ];
+  }
+
+  @override
+  void didChangeDependencies() {
+    _screenProvider = null;
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    try {
+      _disposers.forEach((d) => d());
+      _disposers.clear();
+      _disposers = null;
+    } on Exception {}
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     _screenProvider ??= Provider.of<MainScreenProvider>(context);
-    // if (_disposers == null) initDisposers();
+    if (_disposers == null) initDisposers();
     return Visibility(
-      visible: context.select<MainScreenProvider, bool>((value) {
-        debugPrint('debug nav bar visibility: ${value.getPageInfo.hideNavBar}');
-        return !(value.getPageInfo.hideNavBar);
-      }),
+      visible: !_hideNavBar,
       maintainSize: false,
       maintainState: true,
       child: Container(

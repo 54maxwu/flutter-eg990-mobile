@@ -24,8 +24,8 @@ abstract class GameModel with _$GameModel {
         category: jsonMap['category'] as String,
         platform: jsonMap['platform'] as String,
         gameId: jsonMap['gameid'] as String,
-        cname: jsonMap['cname'] as String,
-        ename: jsonMap['ename'] as String,
+        cname: (jsonMap.containsKey('cname')) ? jsonMap['cname'] as String : '',
+        ename: (jsonMap.containsKey('ename')) ? jsonMap['ename'] as String : '',
         favorite: '${jsonMap['favorite'] ?? 0}'.strToInt,
         sort: jsonMap['sort'] as int ?? 0,
       );

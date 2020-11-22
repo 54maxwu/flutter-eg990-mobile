@@ -18,6 +18,7 @@ abstract class _MainScreenStore with Store {
 
   /// Route
   StreamSubscription<RouteInfo> routeSubscript;
+
   @observable
   RouteInfo currentPage;
 

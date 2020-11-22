@@ -5,6 +5,7 @@ import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.d
 import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_category_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_display_provider.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/pageview/platforms_page.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/tabs/tab_control.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs> {
       child: VerticalTabs(
         tabsWidth: Provider.of<HomeDisplayProvider>(context).calc.barMaxWidth,
         onSelect: (index) => tabControl.setTabIndex = index,
+        contentScrollAxis: Axis.horizontal,
         tabs: List<Tab>.generate(
             widget.tabs.length,
             (index) => Tab(
@@ -48,7 +50,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs> {
                   ),
                 )),
         contents: List.generate(widget.tabs.length,
-            (index) => Container(child: Text(widget.tabs[index].label))),
+            (index) => PlatformsPage(category: widget.tabs[index].type)),
       ),
     );
   }

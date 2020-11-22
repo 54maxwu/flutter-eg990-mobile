@@ -48,7 +48,7 @@ class AppNavigator {
       ExtendedNavigator.named('MainStartupRouter');
 
   static ExtendedNavigatorState get mainNavigate =>
-      ExtendedNavigator.named('FeatureScreenRouter');
+      ExtendedNavigator.named('MainScreenRouter');
 
   static ExtendedNavigatorState get testNavigate =>
       ExtendedNavigator.named('TestRouter');
@@ -145,8 +145,10 @@ class AppNavigator {
       //   featureNavigate.push(FeatureScreenRoutes.webRoute,
       //       arguments: arguments);
       // } else {
-      mainNavigate.push(page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
-          arguments: arguments);
+      mainNavigate.push(
+        page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
+        arguments: arguments,
+      );
       // }
 
       _setPath(page, parent: (_isWeb) ? page.pageRoot : _current);

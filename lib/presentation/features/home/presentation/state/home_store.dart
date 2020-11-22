@@ -71,15 +71,15 @@ abstract class _HomeStore with Store {
 
   // Key = category
   HashMap<String, List<GamePlatformEntity>> homePlatformMap;
-  // // Key = site/category
-  // HashMap<String, List<GameEntity>> _homeGamesMap;
-  //
-  // bool hasPlatformGames(String key) =>
-  //     _homeGamesMap != null && _homeGamesMap.containsKey(key);
-  //
-  // List<GameEntity> getPlatformGames(String key) =>
-  //     (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
-//
+  // Key = site/category
+  HashMap<String, List<GameEntity>> _homeGamesMap;
+
+  bool hasPlatformGames(String key) =>
+      _homeGamesMap != null && _homeGamesMap.containsKey(key);
+
+  List<GameEntity> getPlatformGames(String key) =>
+      (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
+
 //   String searchPlatform = '';
 //
 //   @observable
@@ -319,32 +319,35 @@ abstract class _HomeStore with Store {
 //     }
 //   }
 
-//   @action
-//   Future<void> getGames(PlatformGameForm form, String key) async {
-//     try {
-//       _homeGamesMap ??= new HashMap();
-//       if (_homeGamesMap.containsKey(key)) {
-//         _gamesRetrieveController.sink.add(key);
-//         return;
-//       }
-//       // Reset the possible previous error message.
-//       errorMessage = null;
-//       // Fetch from the repository and wrap the regular Future into an observable.
-//       debugPrint('requesting home platform games: $form');
-//       await _repository.getGames(form).then(
-//             (result) => result.fold(
-//               (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-//               (list) {
-//                 debugPrint('home store platform games: $list');
-//                 _homeGamesMap[key] = new List.from(list);
-//                 _gamesRetrieveController.sink.add(key);
-//               },
-//             ),
-//           );
-//     } on Exception {
-//       setErrorMsg(type: FailureType.GAMES, code: 2);
-//     }
-//   }
+  @action
+  Future<List<GameEntity>> getGames(PlatformGameForm form, String key) async {
+    try {
+      _homeGamesMap ??= new HashMap();
+      if (_homeGamesMap.containsKey(key)) {
+        return _homeGamesMap[key] ?? [];
+      }
+      // Reset the possible previous error message.
+      errorMessage = null;
+      // Fetch from the repository and wrap the regular Future into an observable.
+      debugPrint('requesting home platform games: $form');
+      return await _repository.getGames(form).then(
+            (result) => result.fold(
+              (failure) {
+                setErrorMsg(msg: failure.message, showOnce: true);
+                return _homeGamesMap[key] = [];
+              },
+              (list) {
+                debugPrint('home store platform games: $list');
+                _homeGamesMap[key] = new List.from(list);
+                return _homeGamesMap[key];
+              },
+            ),
+          );
+    } on Exception {
+      setErrorMsg(type: FailureType.GAMES, code: 2);
+      return _homeGamesMap[key] = [];
+    }
+  }
 //
 //   void setGameTitle({GamePlatformEntity platform, bool clear = false}) {
 //     if (clear) {

@@ -10,7 +10,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../core/main_startup.dart';
+import '../features/home/data/entity/game_platform_entity.dart';
 import '../features/home/presentation/home_route.dart';
+import '../features/home/presentation/state/home_store.dart';
+import '../features/home/presentation/widgets/pageview/games_page.dart';
 import '../features/member/member_route.dart';
 import '../screens/main_screen.dart';
 
@@ -93,9 +96,11 @@ extension MainStartupRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
 class MainScreenRoutes {
   static const String homeRoute = '/';
+  static const String gamesPage = '/games-page';
   static const String memberRoute = '/member-route';
   static const all = <String>{
     homeRoute,
+    gamesPage,
     memberRoute,
   };
 }
@@ -105,6 +110,7 @@ class MainScreenRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(MainScreenRoutes.homeRoute, page: HomeRoute),
+    RouteDef(MainScreenRoutes.gamesPage, page: GamesPage),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
   ];
   @override
@@ -115,6 +121,17 @@ class MainScreenRouter extends RouterBase {
         builder: (context) => HomeRoute(),
         settings: data,
         maintainState: true,
+      );
+    },
+    GamesPage: (data) {
+      final args = data.getArgs<GamesPageArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => GamesPage(
+          key: args.key,
+          store: args.store,
+          platform: args.platform,
+        ),
+        settings: data,
       );
     },
     MemberRoute: (data) {
@@ -133,6 +150,29 @@ class MainScreenRouter extends RouterBase {
 extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushHomeRoute() => push<dynamic>(MainScreenRoutes.homeRoute);
 
+  Future<dynamic> pushGamesPage({
+    Key key,
+    @required HomeStore store,
+    @required GamePlatformEntity platform,
+  }) =>
+      push<dynamic>(
+        MainScreenRoutes.gamesPage,
+        arguments:
+            GamesPageArguments(key: key, store: store, platform: platform),
+      );
+
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// GamesPage arguments holder class
+class GamesPageArguments {
+  final Key key;
+  final HomeStore store;
+  final GamePlatformEntity platform;
+  GamesPageArguments({this.key, @required this.store, @required this.platform});
 }

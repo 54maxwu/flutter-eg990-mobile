@@ -76,6 +76,13 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getGameTypesAsyncAction.run(() => super.getGameTypes());
   }
 
+  final _$getGamesAsyncAction = AsyncAction('_HomeStore.getGames');
+
+  @override
+  Future<List<GameEntity>> getGames(PlatformGameForm form, String key) {
+    return _$getGamesAsyncAction.run(() => super.getGames(form, key));
+  }
+
   @override
   String toString() {
     return '''

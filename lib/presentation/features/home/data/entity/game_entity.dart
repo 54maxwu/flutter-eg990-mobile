@@ -22,15 +22,15 @@ abstract class GameEntity with _$GameEntity, DataOperator {
     @HiveField(5) @Default(0) int sort,
   }) = _GameEntity;
 
-  static GameEntity jsonToGameEntity(Map<String, dynamic> jsonMap) =>
-      _$_GameEntity(
-        id: jsonMap['id'] as int,
-        cname: (jsonMap.containsKey('cname')) ? jsonMap['cname'] as String : '',
-        ename: (jsonMap.containsKey('ename')) ? jsonMap['ename'] as String : '',
-        gameUrl: _decodeGameUrl(jsonMap['gameUrl'] as Map<String, dynamic>),
-        favorite: jsonMap['favorite'] as int ?? 0,
-        sort: jsonMap['sort'] as int ?? 0,
-      );
+  // static GameEntity jsonToGameEntity(Map<String, dynamic> jsonMap) =>
+  //     _$_GameEntity(
+  //       id: jsonMap['id'] as int,
+  //       cname: (jsonMap.containsKey('cname')) ? jsonMap['cname'] as String : '',
+  //       ename: (jsonMap.containsKey('ename')) ? jsonMap['ename'] as String : '',
+  //       gameUrl: _decodeGameUrl(jsonMap['gameUrl'] as Map<String, dynamic>),
+  //       favorite: jsonMap['favorite'] as int ?? 0,
+  //       sort: jsonMap['sort'] as int ?? 0,
+  //     );
 
   @override
   String operator [](String key) => '$gameUrl';
@@ -47,6 +47,7 @@ extension GameEntityExtension on GameEntity {
     final info = gameUrl.split('/');
     data['category'] = info[1];
     data['cname'] = cname;
+    data['ename'] = ename;
     data['gameid'] = info[2];
     data['id'] = id;
     data['platform'] = info[0];

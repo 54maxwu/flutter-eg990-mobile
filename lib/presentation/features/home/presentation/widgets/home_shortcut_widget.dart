@@ -108,7 +108,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   Widget _createIconButton(ShortcutItem item) {
     final String label = item.value.label;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
+      height: display.shortcutMaxHeight - 8.0,
       child: GestureDetector(
         onTap: () {
           // (item.value.isUserOnly == false)
@@ -119,31 +119,26 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         },
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            SizedBox(
-              height: display.shortcutMaxIconSize,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
               child: (item.value.assetPath.isNotEmpty)
-                  ? Image.asset(item.value.assetPath)
+                  ? Image.asset(item.value.assetPath, scale: 1.5)
                   : Icon(
                       item.value.iconData,
                       color: themeColor.homeBoxIconColor,
+                      size: display.shortcutMaxIconSize,
                     ),
             ),
-            SizedBox(
-              height: display.shortcutMaxTextHeight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 4.0),
-                child: AutoSizeText(
-                  label,
-                  style: TextStyle(
-                    fontSize: FontSize.NORMAL.value,
-                    color: themeColor.homeBoxIconTextColor,
-                  ),
-                  minFontSize: FontSize.SMALLER.value,
-                  maxFontSize: FontSize.SUBTITLE.value,
-                ),
+            AutoSizeText(
+              label,
+              style: TextStyle(
+                fontSize: FontSize.NORMAL.value,
+                color: themeColor.homeBoxIconTextColor,
               ),
+              maxLines: 1,
+              minFontSize: FontSize.SMALLER.value,
+              maxFontSize: FontSize.SUBTITLE.value,
             ),
           ],
         ),

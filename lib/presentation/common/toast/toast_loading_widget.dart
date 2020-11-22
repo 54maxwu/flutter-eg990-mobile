@@ -4,10 +4,11 @@ import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 
 CancelFunc callToastLoading({
   String message,
+  bool clickClose = true,
   Duration maxDuration = const Duration(seconds: 15),
 }) {
   return BotToast.showCustomLoading(
-      clickClose: true,
+      clickClose: clickClose,
       ignoreContentClick: true,
       backButtonBehavior: BackButtonBehavior.none,
       duration: maxDuration,
@@ -22,10 +23,12 @@ CancelFunc callToastLoading({
 ///@version 2020/7/29
 class ToastLoadingWidget extends StatelessWidget {
   final String message;
+  final bool clickClose;
   final Duration maxDuration;
 
   ToastLoadingWidget({
     this.message,
+    this.clickClose = false,
     this.maxDuration = const Duration(seconds: 15),
   });
 
@@ -33,7 +36,7 @@ class ToastLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(Duration(milliseconds: 100), () {
       BotToast.showCustomLoading(
-          clickClose: false,
+          clickClose: clickClose,
           ignoreContentClick: true,
           backButtonBehavior: BackButtonBehavior.ignore,
           duration: maxDuration,

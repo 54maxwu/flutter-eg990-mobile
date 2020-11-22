@@ -23,7 +23,8 @@ class _$RouteInfoTearOff {
       MainScreenAppBarTypes appBarType = MainScreenAppBarTypes.BACK_AND_TITLE,
       MainScreenNavBarTypes navBarType = MainScreenNavBarTypes.HIDE,
       int bottomNavIndex = -1,
-      String webPageName}) {
+      String webPageName,
+      String title = ''}) {
     return _RouteInfo(
       id: id,
       route: route,
@@ -34,6 +35,7 @@ class _$RouteInfoTearOff {
       navBarType: navBarType,
       bottomNavIndex: bottomNavIndex,
       webPageName: webPageName,
+      title: title,
     );
   }
 }
@@ -66,6 +68,9 @@ mixin _$RouteInfo {
   /// for promo and banner to find nav destination
   String get webPageName;
 
+  /// override page title
+  String get title;
+
   $RouteInfoCopyWith<RouteInfo> get copyWith;
 }
 
@@ -82,7 +87,8 @@ abstract class $RouteInfoCopyWith<$Res> {
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
-      String webPageName});
+      String webPageName,
+      String title});
 }
 
 /// @nodoc
@@ -104,6 +110,7 @@ class _$RouteInfoCopyWithImpl<$Res> implements $RouteInfoCopyWith<$Res> {
     Object navBarType = freezed,
     Object bottomNavIndex = freezed,
     Object webPageName = freezed,
+    Object title = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as RouteEnum,
@@ -123,6 +130,7 @@ class _$RouteInfoCopyWithImpl<$Res> implements $RouteInfoCopyWith<$Res> {
           : bottomNavIndex as int,
       webPageName:
           webPageName == freezed ? _value.webPageName : webPageName as String,
+      title: title == freezed ? _value.title : title as String,
     ));
   }
 }
@@ -142,7 +150,8 @@ abstract class _$RouteInfoCopyWith<$Res> implements $RouteInfoCopyWith<$Res> {
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
-      String webPageName});
+      String webPageName,
+      String title});
 }
 
 /// @nodoc
@@ -165,6 +174,7 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
     Object navBarType = freezed,
     Object bottomNavIndex = freezed,
     Object webPageName = freezed,
+    Object title = freezed,
   }) {
     return _then(_RouteInfo(
       id: id == freezed ? _value.id : id as RouteEnum,
@@ -184,6 +194,7 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
           : bottomNavIndex as int,
       webPageName:
           webPageName == freezed ? _value.webPageName : webPageName as String,
+      title: title == freezed ? _value.title : title as String,
     ));
   }
 }
@@ -199,14 +210,16 @@ class _$_RouteInfo implements _RouteInfo {
       this.appBarType = MainScreenAppBarTypes.BACK_AND_TITLE,
       this.navBarType = MainScreenNavBarTypes.HIDE,
       this.bottomNavIndex = -1,
-      this.webPageName})
+      this.webPageName,
+      this.title = ''})
       : assert(id != null),
         assert(route != null),
         assert(root != null),
         assert(isUserOnly != null),
         assert(appBarType != null),
         assert(navBarType != null),
-        assert(bottomNavIndex != null);
+        assert(bottomNavIndex != null),
+        assert(title != null);
 
   @override
   final RouteEnum id;
@@ -243,10 +256,15 @@ class _$_RouteInfo implements _RouteInfo {
 
   /// for promo and banner to find nav destination
   final String webPageName;
+  @JsonKey(defaultValue: '')
+  @override
+
+  /// override page title
+  final String title;
 
   @override
   String toString() {
-    return 'RouteInfo(id: $id, route: $route, routeArg: $routeArg, root: $root, isUserOnly: $isUserOnly, appBarType: $appBarType, navBarType: $navBarType, bottomNavIndex: $bottomNavIndex, webPageName: $webPageName)';
+    return 'RouteInfo(id: $id, route: $route, routeArg: $routeArg, root: $root, isUserOnly: $isUserOnly, appBarType: $appBarType, navBarType: $navBarType, bottomNavIndex: $bottomNavIndex, webPageName: $webPageName, title: $title)';
   }
 
   @override
@@ -276,7 +294,9 @@ class _$_RouteInfo implements _RouteInfo {
                     .equals(other.bottomNavIndex, bottomNavIndex)) &&
             (identical(other.webPageName, webPageName) ||
                 const DeepCollectionEquality()
-                    .equals(other.webPageName, webPageName)));
+                    .equals(other.webPageName, webPageName)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)));
   }
 
   @override
@@ -290,7 +310,8 @@ class _$_RouteInfo implements _RouteInfo {
       const DeepCollectionEquality().hash(appBarType) ^
       const DeepCollectionEquality().hash(navBarType) ^
       const DeepCollectionEquality().hash(bottomNavIndex) ^
-      const DeepCollectionEquality().hash(webPageName);
+      const DeepCollectionEquality().hash(webPageName) ^
+      const DeepCollectionEquality().hash(title);
 
   @override
   _$RouteInfoCopyWith<_RouteInfo> get copyWith =>
@@ -307,7 +328,8 @@ abstract class _RouteInfo implements RouteInfo {
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
-      String webPageName}) = _$_RouteInfo;
+      String webPageName,
+      String title}) = _$_RouteInfo;
 
   @override
   RouteEnum get id;
@@ -339,6 +361,10 @@ abstract class _RouteInfo implements RouteInfo {
 
   /// for promo and banner to find nav destination
   String get webPageName;
+  @override
+
+  /// override page title
+  String get title;
   @override
   _$RouteInfoCopyWith<_RouteInfo> get copyWith;
 }

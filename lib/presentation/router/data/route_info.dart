@@ -31,6 +31,9 @@ abstract class RouteInfo with _$RouteInfo {
 
     /// for promo and banner to find nav destination
     String webPageName,
+
+    /// override page title
+    @Default('') String title,
   }) = _RouteInfo;
 }
 
@@ -38,11 +41,13 @@ extension RouteInfoExtension on RouteInfo {
   bool get hideNavBar => navBarType == MainScreenNavBarTypes.HIDE;
 
   String get pageTitle {
+    if (title.isNotEmpty) return title;
     switch (appBarType) {
       case MainScreenAppBarTypes.LOGO_AND_MESSAGE_CENTER:
         return '';
       case MainScreenAppBarTypes.TITLE_AND_SETTINGS:
       case MainScreenAppBarTypes.BACK_AND_TITLE:
+        return id.title.replaceAll('???', '');
       case MainScreenAppBarTypes.BACK_TITLE_SEARCH:
         return id.title;
       default:
