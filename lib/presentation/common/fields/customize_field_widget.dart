@@ -433,7 +433,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     if (widget.prefixText != null && widget.prefixIconData != null) {
       _prefixWidget = Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -444,7 +444,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 6.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: Align(
               alignment: Alignment.centerLeft,
               child: RichText(

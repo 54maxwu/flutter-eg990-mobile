@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:reflectable/reflectable.dart';
 
 import 'env/environment.dart';

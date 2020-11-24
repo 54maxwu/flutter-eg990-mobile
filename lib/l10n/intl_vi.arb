@@ -11,14 +11,6 @@
   "@pageTitleHome": {
     "type": "text"
   },
-  "pageTitleMovieEG": "Rạp chiếu phim 1",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "Rạp chiếu phim 2",
-  "@pageTitleMovie": {
-    "type": "text"
-  },
   "pageTitleDownload": "Khu vực tải ứng dụng",
   "@pageTitleDownload": {
     "type": "text"
@@ -61,6 +53,10 @@
   },
   "pageTitlePromo": "Ưu Đãi",
   "@pageTitlePromo": {
+    "type": "text"
+  },
+  "pageTitleSponsor": "nhà tài trợ",
+  "@pageTitleSponsor": {
     "type": "text"
   },
   "pageTitleService": "DỊCH VỤ",

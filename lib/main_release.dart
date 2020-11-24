@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/application/global.dart';
+// ignore: unused_import
 import 'package:reflectable/reflectable.dart';
 
 import 'env/environment.dart';

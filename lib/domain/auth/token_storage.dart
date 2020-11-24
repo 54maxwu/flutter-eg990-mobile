@@ -4,9 +4,9 @@ import 'package:flutter_eg990_mobile/application/data/hive_actions.dart'
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/infrastructure/core/dio_api_service.dart';
 import 'package:flutter_eg990_mobile/application/data/hive_cookie.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/data/repository/user_repository.dart'
-    show UserApi;
 import 'package:flutter_eg990_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/presentation/features/login/data/repository/login_repository.dart'
+    show LoginApi;
 import 'package:hive/hive.dart' show Box;
 
 /// Store user token in [Hive}
@@ -19,7 +19,7 @@ class TokenStorage {
   static Future<void> save(String account) async {
     Box box = await getHiveBox(Global.CACHED_COOKIE);
     var cookies = DioApiService.loadCookies(
-        Uri.parse('${Global.CURRENT_BASE}${UserApi.LOGIN}'));
+        Uri.parse('${Global.CURRENT_BASE}${LoginApi.LOGIN}'));
 //    for (var value in cookies) {
 //      debugPrint('cookie name: ${value.name}');
 //    }

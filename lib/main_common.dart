@@ -62,8 +62,8 @@ Future<void> mainCommon(Environment env) async {
     Hive.registerAdapter(GameEntityAdapter());
     Hive.registerAdapter(CookieAdapter());
     Hive.registerAdapter(HiveCookieEntityAdapter());
+    Hive.registerAdapter(LoginFormHiveAdapter());
     // Hive.registerAdapter(PromoEntityAdapter());
-    Hive.registerAdapter(LoginHiveFormAdapter());
   } catch (e) {
     debugPrint('register hive adapter has error!! $e');
   }

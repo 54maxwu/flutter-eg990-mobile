@@ -11,14 +11,6 @@
   "@pageTitleHome": {
     "type": "text"
   },
-  "pageTitleMovieEG": "EG Movie",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "New Movie",
-  "@pageTitleMovie": {
-    "type": "text"
-  },
   "pageTitleDownload": "APP Download",
   "@pageTitleDownload": {
     "type": "text"
@@ -61,6 +53,10 @@
   },
   "pageTitlePromo": "Offer",
   "@pageTitlePromo": {
+    "type": "text"
+  },
+  "pageTitleSponsor": "Sponsor",
+  "@pageTitleSponsor": {
     "type": "text"
   },
   "pageTitleService": "Support",

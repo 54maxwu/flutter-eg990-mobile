@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/core/failures.dart';
 import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_category_model.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_display_provider.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/pageview/platforms_page.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/tabs/tab_control.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/entity/game_category_entity.dart';
+import 'home_display_provider.dart';
+import 'pageview/platforms_page.dart';
+import 'tabs/tab_control.dart';
 import 'tabs/tab_item.dart';
 import 'tabs/vertical_tabs.dart';
 

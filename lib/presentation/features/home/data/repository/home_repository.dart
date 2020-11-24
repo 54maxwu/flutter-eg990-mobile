@@ -197,7 +197,7 @@ class HomeRepositoryImpl implements HomeRepository {
       request: dioApiService.get(
         HomeApi.GAME_ALL,
         data: {
-          "accountid": jwtInterface.accountId,
+          "accountid": jwtInterface.userId,
         },
       ),
       jsonToModel: GameTypes.jsonToGameTypes,

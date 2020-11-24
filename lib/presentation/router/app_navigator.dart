@@ -7,7 +7,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/presentation/common/toast/toast_error_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 import 'app_navigator_export.dart';

@@ -62,15 +62,15 @@ class MyThemeData {
           backgroundColor: interface.iconBgColorTrans,
           elevation: 2.0),
       buttonTheme: ButtonThemeData(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-          padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 8.0),
-          // set button minimum width, default is 88
-          minWidth: 60,
-          textTheme: ButtonTextTheme.primary,
-          buttonColor: interface.buttonPrimaryColor,
-          disabledColor: interface.buttonDisabledColor),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+        padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 8.0),
+        // set button minimum width, default is 88
+        minWidth: 60,
+        textTheme: ButtonTextTheme.primary,
+        buttonColor: interface.buttonPrimaryColor,
+        disabledColor: interface.buttonDisabledColor,
+      ),
 
       ///
       /// Text Theme
@@ -111,7 +111,7 @@ class MyThemeData {
       /// Input-Field Theme
       ///
       indicatorColor: interface.defaultIndicatorColor,
-      cursorColor: interface.iconColor,
+      cursorColor: interface.fieldInputColor,
       textSelectionHandleColor: interface.iconSubColor1,
       inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,

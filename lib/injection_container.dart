@@ -4,16 +4,16 @@ import 'package:get_it/get_it.dart';
 
 import 'application/themes/theme_settings.dart';
 import 'domain/auth/jwt_interface.dart';
+import 'domain/user/user_info_repository.dart';
 import 'infrastructure/core/dio_api_service.dart';
 import 'infrastructure/core/network_info.dart';
 import 'presentation/features/event/event_inject.dart';
 import 'presentation/features/home/home_inject.dart';
+import 'presentation/features/login/login_inject.dart';
 import 'presentation/features/service/service_inject.dart';
 import 'presentation/features/update/update_inject.dart';
-import 'presentation/features/user/data/repository/user_info_repository.dart';
-import 'presentation/features/user/data/repository/user_repository.dart';
-import 'presentation/features/user/presentation/state/user_info_store.dart';
 import 'presentation/screens/main_screen_store.dart';
+import 'presentation/screens/user/user_info_store.dart';
 import 'presentation/streams/app_preference_streams.dart';
 
 final sl = GetIt.instance;
@@ -46,9 +46,6 @@ Future<void> init() async {
   sl.registerLazySingleton<UserInfoRepository>(
       () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
   sl.registerLazySingleton(() => UserInfoStore(sl<UserInfoRepository>()));
-  sl.registerLazySingleton<UserRepository>(
-    () => UserRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
 
   sl.registerLazySingleton<EventRepository>(
     () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
@@ -63,10 +60,14 @@ Future<void> init() async {
       localStorage: sl()));
   sl.registerLazySingleton(() => HomeStore(sl<HomeRepository>()));
 
-  // sl.registerLazySingleton<ServiceRepository>(
-  //   () => ServiceRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  // );
-  // sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
+  sl.registerLazySingleton<ServiceRepository>(
+    () => ServiceRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
 
   /// Factory
+  sl.registerFactory<LoginRepository>(
+    () => LoginRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
+  sl.registerFactory<LoginStore>(() => LoginStore(sl(), sl()));
 }

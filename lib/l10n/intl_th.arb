@@ -11,14 +11,6 @@
   "@pageTitleHome": {
     "type": "text"
   },
-  "pageTitleMovieEG": "ภาพยนตร์ EG",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "หนังใหม่",
-  "@pageTitleMovie": {
-    "type": "text"
-  },
   "pageTitleDownload": "ดาวน์โหลด APP",
   "@pageTitleDownload": {
     "type": "text"
@@ -61,6 +53,10 @@
   },
   "pageTitlePromo": "ข้อเสนอ",
   "@pageTitlePromo": {
+    "type": "text"
+  },
+  "pageTitleSponsor": "สปอนเซอร์",
+  "@pageTitleSponsor": {
     "type": "text"
   },
   "pageTitleService": "การสนับสนุน",

@@ -5,8 +5,6 @@ import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/presentation/features/service/data/model/service_model.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator_export.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 
 enum _ButtonType { OPEN, COPY }
 
@@ -210,10 +208,11 @@ class ServiceDisplay extends StatelessWidget {
                   ),
                   onPressed: () {
                     debugPrint('button: $title, data: $data');
-                    // if (buttonType == _ButtonType.COPY) {
-                    //   Clipboard.setData(new ClipboardData(text: data))
-                    //       .whenComplete(() => callToast(localeStr.messageCopy));
-                    // } else {
+                    if (buttonType == _ButtonType.COPY) {
+                      Clipboard.setData(new ClipboardData(text: data))
+                          .whenComplete(() => callToast(localeStr.messageCopy));
+                    }
+                    // else {
                     //   AppNavigator.navigateTo(RoutePage.serviceWeb,
                     //       arg: WebRouteArguments(
                     //           startUrl: data, hideHtmlBars: true));

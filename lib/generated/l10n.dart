@@ -55,26 +55,6 @@ class S {
     );
   }
 
-  /// `EG Movie`
-  String get pageTitleMovieEG {
-    return Intl.message(
-      'EG Movie',
-      name: 'pageTitleMovieEG',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New Movie`
-  String get pageTitleMovie {
-    return Intl.message(
-      'New Movie',
-      name: 'pageTitleMovie',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `APP Download`
   String get pageTitleDownload {
     return Intl.message(
@@ -180,6 +160,16 @@ class S {
     return Intl.message(
       'Offer',
       name: 'pageTitlePromo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sponsor`
+  String get pageTitleSponsor {
+    return Intl.message(
+      'Sponsor',
+      name: 'pageTitleSponsor',
       desc: '',
       args: [],
     );

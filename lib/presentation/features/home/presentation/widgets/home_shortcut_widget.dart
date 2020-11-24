@@ -2,9 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/presentation/data/shortcut_item.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/main_screen_provider.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:provider/provider.dart';
 
 import 'home_display_provider.dart';
@@ -45,42 +47,48 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         children: [
           Expanded(
             flex: 3,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Selector<MainScreenProvider, String>(
-                  selector: (_, provider) => provider.userInfoStore.userName,
-                  builder: (_, name, __) {
-                    return AutoSizeText(
-                      (name.isNotEmpty && widget.loggedIn) ? name : '您還未登陸',
-                      style: TextStyle(
-                        color: themeColor.defaultTextColor,
-                        fontSize: FontSize.SUBTITLE.value,
-                      ),
-                      minFontSize: FontSize.SMALLER.value,
-                      maxFontSize: FontSize.TITLE.value,
-                    );
-                  },
-                ),
-                Selector<MainScreenProvider, String>(
-                  selector: (_, provider) => provider.userInfoStore.userCredit,
-                  builder: (_, credit, __) {
-                    return AutoSizeText(
-                      (credit.isNotEmpty && widget.loggedIn)
-                          ? credit
-                          : '請先登錄/註冊後查看',
-                      style: TextStyle(
-                        color: themeColor.defaultHintColor,
-                        fontSize: FontSize.NORMAL.value,
-                      ),
-                      minFontSize: FontSize.SMALL.value,
-                      maxFontSize: FontSize.SUBTITLE.value,
-                    );
-                  },
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () => (widget.loggedIn)
+                  ? null
+                  : AppNavigator.navigateTo(RoutePage.login),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Selector<MainScreenProvider, String>(
+                    selector: (_, provider) => provider.userInfoStore.userName,
+                    builder: (_, name, __) {
+                      return AutoSizeText(
+                        (name.isNotEmpty && widget.loggedIn) ? name : '您還未登陸',
+                        style: TextStyle(
+                          color: themeColor.defaultTextColor,
+                          fontSize: FontSize.SUBTITLE.value,
+                        ),
+                        minFontSize: FontSize.SMALLER.value,
+                        maxFontSize: FontSize.TITLE.value,
+                      );
+                    },
+                  ),
+                  Selector<MainScreenProvider, String>(
+                    selector: (_, provider) =>
+                        provider.userInfoStore.userCredit,
+                    builder: (_, credit, __) {
+                      return AutoSizeText(
+                        (credit.isNotEmpty && widget.loggedIn)
+                            ? credit
+                            : '請先登錄/註冊後查看',
+                        style: TextStyle(
+                          color: themeColor.defaultHintColor,
+                          fontSize: FontSize.NORMAL.value,
+                        ),
+                        minFontSize: FontSize.SMALL.value,
+                        maxFontSize: FontSize.SUBTITLE.value,
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -111,11 +119,11 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
       height: display.shortcutMaxHeight - 8.0,
       child: GestureDetector(
         onTap: () {
-          // (item.value.isUserOnly == false)
-          //     ? AppNavigator.navigateTo(item.value.route)
-          //     : (item.value.isUserOnly && isUserContent)
-          //         ? AppNavigator.navigateTo(item.value.route)
-          //         : toastLogin();
+          if (!infoStore.hasUser && item.value.isUserOnly) {
+            callToastInfo(localeStr.messageErrorNotLogin);
+          } else {
+            AppNavigator.navigateTo(item.value.route);
+          }
         },
         child: Column(
           mainAxisSize: MainAxisSize.max,

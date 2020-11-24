@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 
 class MemberRoute extends StatefulWidget {
   @override
@@ -55,10 +55,9 @@ class _MemberRouteState extends State<MemberRoute> {
         body: Container(
           padding: EdgeInsets.all(8.0),
           alignment: Alignment.center,
-          child: WarningDisplay(
-              message: 'has user: ${_store.hasUser}',
-              widthFactor: 1.0,
-              isFailureMsg: false),
+          child: Container(
+              child: Text(
+                  '${localeStr.workInProgress}\nhas user: ${_store.hasUser}')),
         ),
       ),
     );

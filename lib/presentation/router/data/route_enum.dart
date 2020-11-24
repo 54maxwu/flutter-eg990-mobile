@@ -3,11 +3,15 @@ import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 enum RouteEnum {
   HOME,
   GAMES,
-  SERVICE,
-  SERVICE_WEB,
 
   ///
+  PROMO,
+  SERVICE,
+  SERVICE_WEB,
+  SPONSOR,
   MEMBER,
+
+  ///
   DEPOSIT,
   TRANSFER,
   BANKCARD,
@@ -25,7 +29,6 @@ enum RouteEnum {
   AGENT_REGISTER,
 
   ///
-  PROMO,
   NOTICE,
   DOWNLOAD,
   TUTORIAL,
@@ -66,15 +69,19 @@ extension RouteEnumExtension on RouteEnum {
     switch (this) {
       case RouteEnum.HOME:
         return localeStr.pageTitleHome;
+
+      /// First Layer
       case RouteEnum.PROMO:
         return localeStr.pageTitlePromo;
+      case RouteEnum.SPONSOR:
+        return localeStr.pageTitleSponsor;
       case RouteEnum.SERVICE:
       case RouteEnum.SERVICE_WEB:
         return localeStr.pageTitleService;
-
-      /// Member
       case RouteEnum.MEMBER:
         return localeStr.pageTitleMember;
+
+      /// Member
       case RouteEnum.DEPOSIT:
         return localeStr.pageTitleDeposit;
       case RouteEnum.TRANSFER:
@@ -139,12 +146,12 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleCollect;
 
       /// User
-      case RouteEnum.PASSWORD:
-        return localeStr.pageTitleMemberPassword;
       case RouteEnum.LOGIN:
         return localeStr.pageTitleLogin;
       case RouteEnum.REGISTER:
         return localeStr.pageTitleRegister;
+      case RouteEnum.PASSWORD:
+        return localeStr.pageTitleMemberPassword;
       case RouteEnum.LOGOUT:
         return localeStr.memberGridTitleLogout;
 

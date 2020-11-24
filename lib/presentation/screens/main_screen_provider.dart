@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_eg990_mobile/presentation/features/event/presentation/state/event_store.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:flutter_eg990_mobile/presentation/router/data/route_info.dart';
 
 import 'main_screen_store.dart';

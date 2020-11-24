@@ -10,7 +10,7 @@ export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game
     show GamePlatformEntityAdapter;
 export 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_entity.dart'
     show GameEntityAdapter;
+export 'package:flutter_eg990_mobile/presentation/features/login/data/form/login_form_hive.dart'
+    show LoginFormHiveAdapter;
 // export 'package:flutter_eg990_mobile/presentation/features/subfeatures/promo/data/models/promo_freezed.dart'
 //     show PromoEntityAdapter;
-export 'package:flutter_eg990_mobile/presentation/features/user/data/form/login_form.dart'
-    show LoginHiveFormAdapter;

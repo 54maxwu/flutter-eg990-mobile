@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../core/main_startup.dart';
@@ -14,7 +15,11 @@ import '../features/home/data/entity/game_platform_entity.dart';
 import '../features/home/presentation/home_route.dart';
 import '../features/home/presentation/state/home_store.dart';
 import '../features/home/presentation/widgets/pageview/games_page.dart';
+import '../features/login/presentation/login_route.dart';
 import '../features/member/member_route.dart';
+import '../features/promo/presentation/promo_route.dart';
+import '../features/service/presentation/service_route.dart';
+import '../features/sponsor/presentation/sponsor_route.dart';
 import '../screens/main_screen.dart';
 
 class Routes {
@@ -97,10 +102,18 @@ extension MainStartupRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 class MainScreenRoutes {
   static const String homeRoute = '/';
   static const String gamesPage = '/games-page';
+  static const String loginRoute = '/login-route';
+  static const String promoRoute = '/promo-route';
+  static const String serviceRoute = '/service-route';
+  static const String sponsorRoute = '/sponsor-route';
   static const String memberRoute = '/member-route';
   static const all = <String>{
     homeRoute,
     gamesPage,
+    loginRoute,
+    promoRoute,
+    serviceRoute,
+    sponsorRoute,
     memberRoute,
   };
 }
@@ -111,6 +124,10 @@ class MainScreenRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(MainScreenRoutes.homeRoute, page: HomeRoute),
     RouteDef(MainScreenRoutes.gamesPage, page: GamesPage),
+    RouteDef(MainScreenRoutes.loginRoute, page: LoginRoute),
+    RouteDef(MainScreenRoutes.promoRoute, page: PromoRoute),
+    RouteDef(MainScreenRoutes.serviceRoute, page: ServiceRoute),
+    RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
   ];
   @override
@@ -131,6 +148,30 @@ class MainScreenRouter extends RouterBase {
           store: args.store,
           platform: args.platform,
         ),
+        settings: data,
+      );
+    },
+    LoginRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => LoginRoute(),
+        settings: data,
+      );
+    },
+    PromoRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => PromoRoute(),
+        settings: data,
+      );
+    },
+    ServiceRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ServiceRoute(),
+        settings: data,
+      );
+    },
+    SponsorRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SponsorRoute(),
         settings: data,
       );
     },
@@ -160,6 +201,18 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
         arguments:
             GamesPageArguments(key: key, store: store, platform: platform),
       );
+
+  Future<dynamic> pushLoginRoute() =>
+      push<dynamic>(MainScreenRoutes.loginRoute);
+
+  Future<dynamic> pushPromoRoute() =>
+      push<dynamic>(MainScreenRoutes.promoRoute);
+
+  Future<dynamic> pushServiceRoute() =>
+      push<dynamic>(MainScreenRoutes.serviceRoute);
+
+  Future<dynamic> pushSponsorRoute() =>
+      push<dynamic>(MainScreenRoutes.sponsorRoute);
 
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);

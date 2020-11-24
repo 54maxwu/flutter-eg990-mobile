@@ -54,10 +54,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultWidgetColor = Color(0xfff5f5f5);
 
   @override
-  Color defaultWidgetBgColor = Color(0xff1a77df);
+  Color defaultWidgetBgColor = Color(0xffd2b79c);
 
   @override
-  Color defaultSelectableWidgetColor = Color(0xff1a77df);
+  Color defaultSelectableWidgetColor = Color(0xffd2b79c);
 
   @override
   Color defaultDisabledColor = Color(0xff989898);
@@ -135,7 +135,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color dialogBgColor1 = Color(0xff2a2a2a);
 
   @override
-  Color dialogBgTransparent = Color(0x66bcbcbc);
+  Color dialogBgTransparent = Color(0x80000000);
 
   @override
   Color dialogTextColor = Color(0xff383838);
@@ -246,7 +246,7 @@ class ThemeDefault implements ThemeColorInterface {
   /// Button color
   ///
   @override
-  Color buttonPrimaryColor = Color(0xff2a60ba);
+  Color buttonPrimaryColor = Color(0xffd2b79c);
 
   @override
   Color buttonTextPrimaryColor = Color(0xffffffff);
@@ -273,16 +273,16 @@ class ThemeDefault implements ThemeColorInterface {
   Color buttonBorderColor = Color(0xffffffff);
 
   @override
-  Color buttonLinearLightColor1 = Color(0xfffdeddd);
+  Color buttonLinearLightColor1 = Color(0xff9aa4c2);
 
   @override
-  Color buttonLinearLightColor2 = Color(0xff91cbff);
+  Color buttonLinearLightColor2 = Color(0xffffffff);
 
   @override
-  Color buttonLinearColor1 = Color(0xfffceee3);
+  Color buttonLinearColor1 = Color(0xff515175);
 
   @override
-  Color buttonLinearColor2 = Color(0xff409cf3);
+  Color buttonLinearColor2 = Color(0xffc4c4c4);
 
   @override
   Color pagerButtonColor = Color(0xff828282);
@@ -318,10 +318,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color fieldInputHintColor = Color(0xff969696);
 
   @override
-  Color fieldPrefixBgColor = Color(0xffffffff);
+  Color fieldPrefixBgColor = Color(0xffd2b79c);
 
   @override
-  Color fieldPrefixColor = Color(0xff383838);
+  Color fieldPrefixColor = Color(0xfff8f8f8);
 
   @override
   Color fieldPrefixSubColor = Color(0xffffffff);

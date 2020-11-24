@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/presentation/features/event/data/models/ad_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/event/data/models/event_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/event/data/repository/event_repository.dart';
-import 'package:flutter_eg990_mobile/presentation/features/user/presentation/state/user_info_store.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart' show sl;
 

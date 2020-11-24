@@ -1,9 +1,14 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:flutter_eg990_mobile/presentation/core/main_startup.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/home_route.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/pageview/games_page.dart';
-import 'package:flutter_eg990_mobile/presentation/features/member/member_route.dart';
-import 'package:flutter_eg990_mobile/presentation/screens/main_screen.dart';
+
+import '../features/home/presentation/home_route.dart';
+import '../features/home/presentation/widgets/pageview/games_page.dart';
+import '../features/login/presentation/login_route.dart';
+import '../features/member/member_route.dart';
+import '../features/promo/presentation/promo_route.dart';
+import '../features/service/presentation/service_route.dart';
+import '../features/sponsor/presentation/sponsor_route.dart';
+import '../core/main_startup.dart';
+import '../screens/main_screen.dart';
 
 @AdaptiveAutoRouter(
   generateNavigationHelperExtension: true,
@@ -21,6 +26,10 @@ import 'package:flutter_eg990_mobile/presentation/screens/main_screen.dart';
               MaterialRoute(
                   page: HomeRoute, initial: true, maintainState: true),
               MaterialRoute(page: GamesPage),
+              MaterialRoute(page: LoginRoute),
+              MaterialRoute(page: PromoRoute),
+              MaterialRoute(page: ServiceRoute),
+              MaterialRoute(page: SponsorRoute),
               MaterialRoute(page: MemberRoute),
             ],
           ),

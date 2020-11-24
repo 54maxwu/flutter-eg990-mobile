@@ -30,6 +30,8 @@ class IconCode {
   static const navService = const IconData(0xf27a, fontFamily: 'FontAwesome');
   // static const navService = const IconData(0xe968, fontFamily: 'IconMoon');
 
+  static const navSponsor = const IconData(0xf28a, fontFamily: 'FontAwesome');
+
   static const navMember = const IconData(0xf2bd, fontFamily: 'FontAwesome');
   // static const navMember = const IconData(0xe962, fontFamily: 'IconMoon');
 

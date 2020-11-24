@@ -11,14 +11,6 @@
   "@pageTitleHome": {
     "type": "text"
   },
-  "pageTitleMovieEG": "EG影城",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "新影城",
-  "@pageTitleMovie": {
-    "type": "text"
-  },
   "pageTitleDownload": "APP下载区",
   "@pageTitleDownload": {
     "type": "text"
@@ -61,6 +53,10 @@
   },
   "pageTitlePromo": "优惠",
   "@pageTitlePromo": {
+    "type": "text"
+  },
+  "pageTitleSponsor": "赞助",
+  "@pageTitleSponsor": {
     "type": "text"
   },
   "pageTitleService": "客服",

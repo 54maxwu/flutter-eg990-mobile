@@ -2,17 +2,15 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/application/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart';
-import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
+import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 import 'package:hive/hive.dart';
 
 import '../entity/banner_entity.dart';
+import '../entity/game_category_entity.dart';
+import '../entity/game_entity.dart';
+import '../entity/game_platform_entity.dart';
 import '../entity/marquee_entity.dart';
-import '../models/game_category_model.dart';
-import '../models/game_platform_model.dart';
 import '../models/game_types.dart';
 
 abstract class HomeLocalStorage {

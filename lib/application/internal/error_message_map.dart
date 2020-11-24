@@ -3,12 +3,14 @@ import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import 'local_strings.dart';
 
+export 'package:flutter_eg990_mobile/presentation/router/data/route_enum.dart';
+
 class MessageMap {
   static String getSuccessMessage(String msgKey, RouteEnum from) {
     if (msgKey != null && msgKey.isNotEmpty && msgKey.hasChinese) return msgKey;
     switch (from) {
-      case RouteEnum.AGENT_REGISTER:
-        return localeStr.agentRegisterSuccess;
+      case RouteEnum.LOGIN:
+        return localeStr.messageWelcomeUser(msgKey);
       default:
         break;
     }
@@ -25,10 +27,18 @@ class MessageMap {
       case 'RepeatAccount':
       case 'accountRepeat':
         return localeStr.messageRepeatAccount;
+      case 'accountError':
+        return localeStr.messageErrorAccount;
+      case 'pwdError':
+        return localeStr.messageErrorPassword;
+      case 'pwdErrorFive':
+        return localeStr.messageErrorPasswordHint;
       default:
         break;
     }
     switch (from) {
+      case RouteEnum.LOGIN:
+        return localeStr.messageLoginFailed;
       case RouteEnum.REGISTER:
         return localeStr.messageRegisterFailed;
       case RouteEnum.BANKCARD:

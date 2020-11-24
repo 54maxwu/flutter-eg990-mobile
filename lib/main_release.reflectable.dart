@@ -8,9 +8,9 @@ import 'package:flutter_eg990_mobile/application/themes/theme_color_enum.dart'
     as prefix1;
 import 'package:flutter_eg990_mobile/application/themes/theme_color_interface.dart'
     as prefix9;
-import 'package:flutter_eg990_mobile/domain/core/failure_code.dart' as prefix7;
+import 'package:flutter_eg990_mobile/domain/core/failure_code.dart' as prefix5;
 import 'package:flutter_eg990_mobile/presentation/common/toast/toast_duration.dart'
-    as prefix5;
+    as prefix6;
 import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category.dart'
     as prefix3;
 import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_category_info.dart'
@@ -30,7 +30,7 @@ import 'package:flutter_eg990_mobile/presentation/router/route_page.dart'
 import 'package:flutter_eg990_mobile/presentation/screens/main_screen_bar_type.dart'
     as prefix11;
 import 'package:flutter_eg990_mobile/presentation/screens/navbar/screen_navigation_bar_item.dart'
-    as prefix6;
+    as prefix7;
 import 'package:vnum/vnum.dart' as prefix0;
 
 // ignore_for_file: prefer_adjacent_string_concatenation
@@ -54,9 +54,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             0,
             const prefix0.VnumTypeReflectable(),
-            const <int>[0, 1, 2, 79, 83, 84, 85, 86, 87, 88],
-            const <int>[89, 90, 91, 92, 93, 94, 95, 85, 86],
-            const <int>[79, 80, 81, 82, 83, 84],
+            const <int>[0, 1, 2, 86, 90, 91, 92, 93, 94, 95],
+            const <int>[96, 97, 98, 99, 100, 101, 102, 92, 93],
+            const <int>[86, 87, 88, 89, 90, 91],
             -1,
             {
               r'getByValue': () => prefix1.ThemeColorEnum.getByValue,
@@ -84,9 +84,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             519,
             1,
             const prefix0.VnumTypeReflectable(),
-            const <int>[3, 96, 94, 89, 92, 97, 98, 99, 100],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[96],
+            const <int>[3, 103, 101, 96, 99, 104, 105, 106, 107],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[103],
             -1,
             {r'allCasesFor': () => prefix0.Vnum.allCasesFor},
             {},
@@ -110,9 +110,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             2,
             const prefix0.VnumTypeReflectable(),
-            const <int>[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 111],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+            const <int>[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 118],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[108, 109, 110, 111, 112, 113, 114, 115, 116, 117],
             -1,
             {
               r'minus': () => prefix2.FontSize.minus,
@@ -142,9 +142,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             3,
             const prefix0.VnumTypeReflectable(),
-            const <int>[14, 15, 16, 17, 18, 19, 20, 112, 120, 121, 122],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[112, 113, 114, 115, 116, 117, 118, 119, 120],
+            const <int>[14, 15, 16, 17, 18, 19, 20, 119, 127, 128, 129],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[119, 120, 121, 122, 123, 124, 125, 126, 127],
             -1,
             {
               r'findCategoryById': () => prefix3.GameCategory.findCategoryById,
@@ -177,42 +177,50 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[
               21,
               22,
-              125,
-              126,
-              127,
-              128,
-              129,
-              130,
-              131,
-              132,
-              133,
-              134,
-              135,
-              136
+              23,
+              24,
+              25,
+              26,
+              136,
+              137,
+              138,
+              139,
+              140,
+              141,
+              142,
+              143,
+              144,
+              145,
+              146,
+              147
             ],
             const <int>[
-              89,
-              90,
-              91,
-              92,
-              93,
-              94,
-              95,
-              126,
-              127,
-              128,
-              129,
-              130,
-              131,
-              132,
-              133,
-              134
+              96,
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              137,
+              138,
+              139,
+              140,
+              141,
+              142,
+              143,
+              144,
+              145
             ],
-            const <int>[123, 124, 125],
+            const <int>[130, 131, 132, 133, 134, 135, 136],
             -1,
             {
               r'home': () => prefix4.RoutePage.home,
+              r'promo': () => prefix4.RoutePage.promo,
+              r'service': () => prefix4.RoutePage.service,
+              r'sponsor': () => prefix4.RoutePage.sponsor,
               r'member': () => prefix4.RoutePage.member,
+              r'login': () => prefix4.RoutePage.login,
               r'listAll': () => prefix4.RoutePage.listAll
             },
             {},
@@ -227,65 +235,13 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.NonGenericClassMirrorImpl(
-            r'ToastDuration',
-            r'.ToastDuration',
-            7,
-            5,
-            const prefix0.VnumTypeReflectable(),
-            const <int>[23, 24, 25, 140],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[137, 138, 139],
-            -1,
-            {
-              r'SHORT': () => prefix5.ToastDuration.SHORT,
-              r'DEFAULT': () => prefix5.ToastDuration.DEFAULT,
-              r'LONG': () => prefix5.ToastDuration.LONG
-            },
-            {},
-            {
-              r'define': (b) => (fromValue) =>
-                  b ? prefix5.ToastDuration.define(fromValue) : null
-            },
-            -1,
-            -1,
-            const <int>[-1],
-            null,
-            null),
-        r.NonGenericClassMirrorImpl(
-            r'ScreenNavigationBarItem',
-            r'.ScreenNavigationBarItem',
-            7,
-            6,
-            const prefix0.VnumTypeReflectable(),
-            const <int>[26, 27, 145],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[141, 142, 143, 144],
-            -1,
-            {
-              r'home': () => prefix6.ScreenNavigationBarItem.home,
-              r'member': () => prefix6.ScreenNavigationBarItem.member
-            },
-            {
-              r'home=': (value) => prefix6.ScreenNavigationBarItem.home = value,
-              r'member=': (value) =>
-                  prefix6.ScreenNavigationBarItem.member = value
-            },
-            {
-              r'define': (b) => (fromValue) =>
-                  b ? prefix6.ScreenNavigationBarItem.define(fromValue) : null
-            },
-            -1,
-            -1,
-            const <int>[-1],
-            null,
-            null),
-        r.NonGenericClassMirrorImpl(
             r'FailureType',
             r'.FailureType',
             7,
-            7,
+            5,
             const prefix0.VnumTypeReflectable(),
             const <int>[
+              27,
               28,
               29,
               30,
@@ -332,13 +288,10 @@ final _data = <r.Reflectable, r.ReflectorData>{
               71,
               72,
               73,
-              74,
-              193
+              195
             ],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
             const <int>[
-              146,
-              147,
               148,
               149,
               150,
@@ -383,62 +336,118 @@ final _data = <r.Reflectable, r.ReflectorData>{
               189,
               190,
               191,
-              192
+              192,
+              193,
+              194
             ],
             -1,
             {
-              r'UPDATE': () => prefix7.FailureType.UPDATE,
-              r'AUTH': () => prefix7.FailureType.AUTH,
-              r'USER': () => prefix7.FailureType.USER,
-              r'EVENT': () => prefix7.FailureType.EVENT,
-              r'LOGIN': () => prefix7.FailureType.LOGIN,
-              r'REGISTER': () => prefix7.FailureType.REGISTER,
-              r'WEB': () => prefix7.FailureType.WEB,
-              r'WEB_URL': () => prefix7.FailureType.WEB_URL,
-              r'SERVICE': () => prefix7.FailureType.SERVICE,
-              r'HOME': () => prefix7.FailureType.HOME,
-              r'BANNER': () => prefix7.FailureType.BANNER,
-              r'MARQUEE': () => prefix7.FailureType.MARQUEE,
-              r'GAMES': () => prefix7.FailureType.GAMES,
-              r'RECOMMENDS': () => prefix7.FailureType.RECOMMENDS,
-              r'FAVORITE': () => prefix7.FailureType.FAVORITE,
-              r'MOVIE_TAB': () => prefix7.FailureType.MOVIE_TAB,
-              r'MOVIE': () => prefix7.FailureType.MOVIE,
-              r'PROMO': () => prefix7.FailureType.PROMO,
-              r'MORE': () => prefix7.FailureType.MORE,
-              r'MEMBER': () => prefix7.FailureType.MEMBER,
-              r'DEPOSIT': () => prefix7.FailureType.DEPOSIT,
-              r'TRANSFER': () => prefix7.FailureType.TRANSFER,
-              r'BANKCARD': () => prefix7.FailureType.BANKCARD,
-              r'WITHDRAW': () => prefix7.FailureType.WITHDRAW,
-              r'BALANCE': () => prefix7.FailureType.BALANCE,
-              r'WALLET': () => prefix7.FailureType.WALLET,
-              r'MESSAGE': () => prefix7.FailureType.MESSAGE,
-              r'CENTER': () => prefix7.FailureType.CENTER,
-              r'TRANSACTIONS': () => prefix7.FailureType.TRANSACTIONS,
-              r'BETS': () => prefix7.FailureType.BETS,
-              r'DEALS': () => prefix7.FailureType.DEALS,
-              r'ROLLBACK': () => prefix7.FailureType.ROLLBACK,
-              r'AGENT': () => prefix7.FailureType.AGENT,
-              r'SIDE_MENU': () => prefix7.FailureType.SIDE_MENU,
-              r'DOWNLOAD_AREA': () => prefix7.FailureType.DOWNLOAD_AREA,
-              r'TUTORIAL': () => prefix7.FailureType.TUTORIAL,
-              r'NOTICE': () => prefix7.FailureType.NOTICE,
-              r'VIP_LEVEL': () => prefix7.FailureType.VIP_LEVEL,
-              r'STORE': () => prefix7.FailureType.STORE,
-              r'ROLLER': () => prefix7.FailureType.ROLLER,
-              r'INHERIT': () => prefix7.FailureType.INHERIT,
-              r'INJECTOR': () => prefix7.FailureType.INJECTOR,
-              r'TASK': () => prefix7.FailureType.TASK,
-              r'JSON': () => prefix7.FailureType.JSON,
-              r'TOKEN': () => prefix7.FailureType.TOKEN,
-              r'CREDIT': () => prefix7.FailureType.CREDIT,
-              r'NOT_DEFINED': () => prefix7.FailureType.NOT_DEFINED
+              r'UPDATE': () => prefix5.FailureType.UPDATE,
+              r'AUTH': () => prefix5.FailureType.AUTH,
+              r'USER': () => prefix5.FailureType.USER,
+              r'EVENT': () => prefix5.FailureType.EVENT,
+              r'LOGIN': () => prefix5.FailureType.LOGIN,
+              r'REGISTER': () => prefix5.FailureType.REGISTER,
+              r'WEB': () => prefix5.FailureType.WEB,
+              r'WEB_URL': () => prefix5.FailureType.WEB_URL,
+              r'SERVICE': () => prefix5.FailureType.SERVICE,
+              r'HOME': () => prefix5.FailureType.HOME,
+              r'BANNER': () => prefix5.FailureType.BANNER,
+              r'MARQUEE': () => prefix5.FailureType.MARQUEE,
+              r'GAMES': () => prefix5.FailureType.GAMES,
+              r'RECOMMENDS': () => prefix5.FailureType.RECOMMENDS,
+              r'FAVORITE': () => prefix5.FailureType.FAVORITE,
+              r'MOVIE_TAB': () => prefix5.FailureType.MOVIE_TAB,
+              r'MOVIE': () => prefix5.FailureType.MOVIE,
+              r'PROMO': () => prefix5.FailureType.PROMO,
+              r'MORE': () => prefix5.FailureType.MORE,
+              r'MEMBER': () => prefix5.FailureType.MEMBER,
+              r'DEPOSIT': () => prefix5.FailureType.DEPOSIT,
+              r'TRANSFER': () => prefix5.FailureType.TRANSFER,
+              r'BANKCARD': () => prefix5.FailureType.BANKCARD,
+              r'WITHDRAW': () => prefix5.FailureType.WITHDRAW,
+              r'BALANCE': () => prefix5.FailureType.BALANCE,
+              r'WALLET': () => prefix5.FailureType.WALLET,
+              r'MESSAGE': () => prefix5.FailureType.MESSAGE,
+              r'CENTER': () => prefix5.FailureType.CENTER,
+              r'TRANSACTIONS': () => prefix5.FailureType.TRANSACTIONS,
+              r'BETS': () => prefix5.FailureType.BETS,
+              r'DEALS': () => prefix5.FailureType.DEALS,
+              r'ROLLBACK': () => prefix5.FailureType.ROLLBACK,
+              r'AGENT': () => prefix5.FailureType.AGENT,
+              r'SIDE_MENU': () => prefix5.FailureType.SIDE_MENU,
+              r'DOWNLOAD_AREA': () => prefix5.FailureType.DOWNLOAD_AREA,
+              r'TUTORIAL': () => prefix5.FailureType.TUTORIAL,
+              r'NOTICE': () => prefix5.FailureType.NOTICE,
+              r'VIP_LEVEL': () => prefix5.FailureType.VIP_LEVEL,
+              r'STORE': () => prefix5.FailureType.STORE,
+              r'ROLLER': () => prefix5.FailureType.ROLLER,
+              r'INHERIT': () => prefix5.FailureType.INHERIT,
+              r'INJECTOR': () => prefix5.FailureType.INJECTOR,
+              r'TASK': () => prefix5.FailureType.TASK,
+              r'JSON': () => prefix5.FailureType.JSON,
+              r'TOKEN': () => prefix5.FailureType.TOKEN,
+              r'CREDIT': () => prefix5.FailureType.CREDIT,
+              r'NOT_DEFINED': () => prefix5.FailureType.NOT_DEFINED
             },
             {},
             {
               r'define': (b) => (fromValue) =>
-                  b ? prefix7.FailureType.define(fromValue) : null
+                  b ? prefix5.FailureType.define(fromValue) : null
+            },
+            -1,
+            -1,
+            const <int>[-1],
+            null,
+            null),
+        r.NonGenericClassMirrorImpl(
+            r'ToastDuration',
+            r'.ToastDuration',
+            7,
+            6,
+            const prefix0.VnumTypeReflectable(),
+            const <int>[74, 75, 76, 199],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[196, 197, 198],
+            -1,
+            {
+              r'SHORT': () => prefix6.ToastDuration.SHORT,
+              r'DEFAULT': () => prefix6.ToastDuration.DEFAULT,
+              r'LONG': () => prefix6.ToastDuration.LONG
+            },
+            {},
+            {
+              r'define': (b) => (fromValue) =>
+                  b ? prefix6.ToastDuration.define(fromValue) : null
+            },
+            -1,
+            -1,
+            const <int>[-1],
+            null,
+            null),
+        r.NonGenericClassMirrorImpl(
+            r'ScreenNavigationBarItem',
+            r'.ScreenNavigationBarItem',
+            7,
+            7,
+            const prefix0.VnumTypeReflectable(),
+            const <int>[77, 78, 79, 80, 81, 205, 206, 207],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[200, 201, 202, 203, 204, 205, 206],
+            -1,
+            {
+              r'home': () => prefix7.ScreenNavigationBarItem.home,
+              r'promo': () => prefix7.ScreenNavigationBarItem.promo,
+              r'service': () => prefix7.ScreenNavigationBarItem.service,
+              r'sponsor': () => prefix7.ScreenNavigationBarItem.sponsor,
+              r'member': () => prefix7.ScreenNavigationBarItem.member,
+              r'listAll': () => prefix7.ScreenNavigationBarItem.listAll,
+              r'mapAll': () => prefix7.ScreenNavigationBarItem.mapAll
+            },
+            {},
+            {
+              r'define': (b) => (fromValue) =>
+                  b ? prefix7.ScreenNavigationBarItem.define(fromValue) : null
             },
             -1,
             -1,
@@ -451,9 +460,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             8,
             const prefix0.VnumTypeReflectable(),
-            const <int>[75, 76, 77, 78, 202],
-            const <int>[89, 90, 91, 92, 93, 94, 95],
-            const <int>[194, 195, 196, 197, 198, 199, 200, 201],
+            const <int>[82, 83, 84, 85, 216],
+            const <int>[96, 97, 98, 99, 100, 101, 102],
+            const <int>[208, 209, 210, 211, 212, 213, 214, 215],
             -1,
             {
               r'deposit': () => prefix8.ShortcutItem.deposit,
@@ -524,111 +533,125 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), 3, 3, 3, null, null),
         r.VariableMirrorImpl(r'home', 33941, 4,
             const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
+        r.VariableMirrorImpl(r'promo', 33941, 4,
+            const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
+        r.VariableMirrorImpl(r'service', 33941, 4,
+            const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
+        r.VariableMirrorImpl(r'sponsor', 33941, 4,
+            const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
         r.VariableMirrorImpl(r'member', 33941, 4,
             const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
-        r.VariableMirrorImpl(r'SHORT', 33941, 5,
+        r.VariableMirrorImpl(r'login', 33941, 4,
+            const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
+        r.VariableMirrorImpl(r'UPDATE', 33941, 5,
             const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
-        r.VariableMirrorImpl(r'DEFAULT', 33941, 5,
+        r.VariableMirrorImpl(r'AUTH', 33941, 5,
             const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
-        r.VariableMirrorImpl(r'LONG', 33941, 5,
+        r.VariableMirrorImpl(r'USER', 33941, 5,
             const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
-        r.VariableMirrorImpl(r'home', 32789, 6,
+        r.VariableMirrorImpl(r'EVENT', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'LOGIN', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'REGISTER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'WEB', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'WEB_URL', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'SERVICE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'HOME', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'BANNER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MARQUEE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'GAMES', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'RECOMMENDS', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'FAVORITE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MOVIE_TAB', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MOVIE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'PROMO', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MORE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MEMBER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'DEPOSIT', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'TRANSFER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'BANKCARD', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'WITHDRAW', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'BALANCE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'WALLET', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'MESSAGE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'CENTER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'TRANSACTIONS', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'BETS', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'DEALS', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'ROLLBACK', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'AGENT', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'SIDE_MENU', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'DOWNLOAD_AREA', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'TUTORIAL', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'NOTICE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'VIP_LEVEL', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'STORE', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'ROLLER', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'INHERIT', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'INJECTOR', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'TASK', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'JSON', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'TOKEN', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'CREDIT', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'NOT_DEFINED', 33941, 5,
+            const prefix0.VnumTypeReflectable(), 5, 5, 5, null, null),
+        r.VariableMirrorImpl(r'SHORT', 33941, 6,
             const prefix0.VnumTypeReflectable(), 6, 6, 6, null, null),
-        r.VariableMirrorImpl(r'member', 32789, 6,
+        r.VariableMirrorImpl(r'DEFAULT', 33941, 6,
             const prefix0.VnumTypeReflectable(), 6, 6, 6, null, null),
-        r.VariableMirrorImpl(r'UPDATE', 33941, 7,
+        r.VariableMirrorImpl(r'LONG', 33941, 6,
+            const prefix0.VnumTypeReflectable(), 6, 6, 6, null, null),
+        r.VariableMirrorImpl(r'home', 33941, 7,
             const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'AUTH', 33941, 7,
+        r.VariableMirrorImpl(r'promo', 33941, 7,
             const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'USER', 33941, 7,
+        r.VariableMirrorImpl(r'service', 33941, 7,
             const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'EVENT', 33941, 7,
+        r.VariableMirrorImpl(r'sponsor', 33941, 7,
             const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'LOGIN', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'REGISTER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'WEB', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'WEB_URL', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'SERVICE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'HOME', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'BANNER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MARQUEE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'GAMES', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'RECOMMENDS', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'FAVORITE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MOVIE_TAB', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MOVIE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'PROMO', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MORE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MEMBER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'DEPOSIT', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'TRANSFER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'BANKCARD', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'WITHDRAW', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'BALANCE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'WALLET', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'MESSAGE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'CENTER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'TRANSACTIONS', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'BETS', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'DEALS', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'ROLLBACK', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'AGENT', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'SIDE_MENU', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'DOWNLOAD_AREA', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'TUTORIAL', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'NOTICE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'VIP_LEVEL', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'STORE', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'ROLLER', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'INHERIT', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'INJECTOR', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'TASK', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'JSON', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'TOKEN', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'CREDIT', 33941, 7,
-            const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
-        r.VariableMirrorImpl(r'NOT_DEFINED', 33941, 7,
+        r.VariableMirrorImpl(r'member', 33941, 7,
             const prefix0.VnumTypeReflectable(), 7, 7, 7, null, null),
         r.VariableMirrorImpl(r'deposit', 32789, 8,
             const prefix0.VnumTypeReflectable(), 8, 8, 8, null, null),
@@ -640,9 +663,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), 8, 8, 8, null, null),
         r.MethodMirrorImpl(r'getByValue', 131090, 0, 0, 0, 0, null,
             const <int>[0], const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 0, 80),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 1, 81),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 2, 82),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 0, 87),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 1, 88),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 2, 89),
         r.MethodMirrorImpl(r'listAll', 4325395, 0, -1, 10, 11, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'getSelectorDefault', 131091, 0, 0, 0, 0, null,
@@ -667,7 +690,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'toJson', 65538, 1, null, null, null, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 3, 95),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 3, 102),
         r.MethodMirrorImpl(r'allCasesFor', 4325394, 1, -1, 10, 11, null,
             const <int>[5], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'', 128, 1, -1, 16, 1, null, const <int>[],
@@ -678,38 +701,38 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[7, 8], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'fromJson', 1, 1, -1, 16, 1, null, const <int>[9],
             const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 4, 101),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 5, 102),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 6, 103),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 7, 104),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 8, 105),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 9, 106),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 4, 108),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 5, 109),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 6, 110),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 7, 111),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 8, 112),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 9, 113),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 10, 107),
+            const prefix0.VnumTypeReflectable(), 10, 114),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 11, 108),
+            const prefix0.VnumTypeReflectable(), 11, 115),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 12, 109),
+            const prefix0.VnumTypeReflectable(), 12, 116),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 13, 110),
+            const prefix0.VnumTypeReflectable(), 13, 117),
         r.MethodMirrorImpl(r'define', 128, 2, -1, 2, 2, null, const <int>[10],
             const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'findCategoryById', 131090, 3, 3, 3, 3, null,
             const <int>[11], const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 14, 113),
+            const prefix0.VnumTypeReflectable(), 14, 120),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 15, 114),
+            const prefix0.VnumTypeReflectable(), 15, 121),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 16, 115),
+            const prefix0.VnumTypeReflectable(), 16, 122),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 17, 116),
+            const prefix0.VnumTypeReflectable(), 17, 123),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 18, 117),
+            const prefix0.VnumTypeReflectable(), 18, 124),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 19, 118),
+            const prefix0.VnumTypeReflectable(), 19, 125),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 20, 119),
+            const prefix0.VnumTypeReflectable(), 20, 126),
         r.MethodMirrorImpl(r'listAll', 4325395, 3, -1, 10, 11, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'define', 128, 3, -1, 3, 3, null, const <int>[12],
@@ -717,9 +740,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'', 1, 3, -1, 3, 3, null, const <int>[13],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 21, 123),
+            const prefix0.VnumTypeReflectable(), 21, 130),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 22, 124),
+            const prefix0.VnumTypeReflectable(), 22, 131),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 23, 132),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 24, 133),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 25, 134),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 26, 135),
         r.MethodMirrorImpl(r'listAll', 4325395, 4, -1, 10, 11, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'pageName', 131075, 4, -1, 12, 12, null,
@@ -745,143 +776,149 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'', 1, 4, -1, 4, 4, null, const <int>[15],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 23, 137),
+            const prefix0.VnumTypeReflectable(), 27, 148),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 24, 138),
+            const prefix0.VnumTypeReflectable(), 28, 149),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 25, 139),
+            const prefix0.VnumTypeReflectable(), 29, 150),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 30, 151),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 31, 152),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 32, 153),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 33, 154),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 34, 155),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 35, 156),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 36, 157),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 37, 158),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 38, 159),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 39, 160),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 40, 161),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 41, 162),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 42, 163),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 43, 164),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 44, 165),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 45, 166),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 46, 167),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 47, 168),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 48, 169),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 49, 170),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 50, 171),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 51, 172),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 52, 173),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 53, 174),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 54, 175),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 55, 176),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 56, 177),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 57, 178),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 58, 179),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 59, 180),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 60, 181),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 61, 182),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 62, 183),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 63, 184),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 64, 185),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 65, 186),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 66, 187),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 67, 188),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 68, 189),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 69, 190),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 70, 191),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 71, 192),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 72, 193),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 73, 194),
         r.MethodMirrorImpl(r'define', 128, 5, -1, 5, 5, null, const <int>[16],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 26, 141),
-        r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 26, 142),
+            const prefix0.VnumTypeReflectable(), 74, 196),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 27, 143),
-        r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 27, 144),
+            const prefix0.VnumTypeReflectable(), 75, 197),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 76, 198),
         r.MethodMirrorImpl(r'define', 128, 6, -1, 6, 6, null, const <int>[17],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 28, 146),
+            const prefix0.VnumTypeReflectable(), 77, 200),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 29, 147),
+            const prefix0.VnumTypeReflectable(), 78, 201),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 30, 148),
+            const prefix0.VnumTypeReflectable(), 79, 202),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 31, 149),
+            const prefix0.VnumTypeReflectable(), 80, 203),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 32, 150),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 33, 151),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 34, 152),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 35, 153),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 36, 154),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 37, 155),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 38, 156),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 39, 157),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 40, 158),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 41, 159),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 42, 160),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 43, 161),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 44, 162),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 45, 163),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 46, 164),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 47, 165),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 48, 166),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 49, 167),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 50, 168),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 51, 169),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 52, 170),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 53, 171),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 54, 172),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 55, 173),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 56, 174),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 57, 175),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 58, 176),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 59, 177),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 60, 178),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 61, 179),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 62, 180),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 63, 181),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 64, 182),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 65, 183),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 66, 184),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 67, 185),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 68, 186),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 69, 187),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 70, 188),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 71, 189),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 72, 190),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 73, 191),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 74, 192),
-        r.MethodMirrorImpl(r'define', 128, 7, -1, 7, 7, null, const <int>[20],
+            const prefix0.VnumTypeReflectable(), 81, 204),
+        r.MethodMirrorImpl(r'listAll', 4325395, 7, -1, 10, 11, null,
+            const <int>[], const prefix0.VnumTypeReflectable(), null),
+        r.MethodMirrorImpl(r'mapAll', 4325395, 7, -1, 20, 21, null,
+            const <int>[], const prefix0.VnumTypeReflectable(), null),
+        r.MethodMirrorImpl(r'define', 128, 7, -1, 7, 7, null, const <int>[18],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 75, 194),
+            const prefix0.VnumTypeReflectable(), 82, 208),
         r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 75, 195),
+            const prefix0.VnumTypeReflectable(), 82, 209),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 76, 196),
+            const prefix0.VnumTypeReflectable(), 83, 210),
         r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 76, 197),
+            const prefix0.VnumTypeReflectable(), 83, 211),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 77, 198),
+            const prefix0.VnumTypeReflectable(), 84, 212),
         r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 77, 199),
+            const prefix0.VnumTypeReflectable(), 84, 213),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 78, 200),
+            const prefix0.VnumTypeReflectable(), 85, 214),
         r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 78, 201),
-        r.MethodMirrorImpl(r'define', 128, 8, -1, 8, 8, null, const <int>[21],
+            const prefix0.VnumTypeReflectable(), 85, 215),
+        r.MethodMirrorImpl(r'define', 128, 8, -1, 8, 8, null, const <int>[19],
             const prefix0.VnumTypeReflectable(), null)
       ],
       <m.ParameterMirror>[
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            79,
+            86,
             const prefix0.VnumTypeReflectable(),
             -1,
             12,
@@ -893,7 +930,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            87,
+            94,
             const prefix0.VnumTypeReflectable(),
             -1,
             12,
@@ -905,7 +942,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            88,
+            95,
             const prefix0.VnumTypeReflectable(),
             -1,
             12,
@@ -917,7 +954,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'o',
             16390,
-            89,
+            96,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -929,11 +966,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'invocation',
             32774,
-            91,
+            98,
             const prefix0.VnumTypeReflectable(),
             -1,
-            20,
-            20,
+            22,
+            22,
             null,
             null,
             null,
@@ -941,7 +978,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'object',
             16390,
-            96,
+            103,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -953,7 +990,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             6,
-            98,
+            105,
             const prefix0.VnumTypeReflectable(),
             null,
             -1,
@@ -965,7 +1002,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             6,
-            99,
+            106,
             const prefix0.VnumTypeReflectable(),
             null,
             -1,
@@ -977,7 +1014,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'baseType',
             16390,
-            99,
+            106,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -989,7 +1026,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'json',
             16390,
-            100,
+            107,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -1001,11 +1038,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            111,
+            118,
             const prefix0.VnumTypeReflectable(),
             -1,
-            21,
-            21,
+            23,
+            23,
             null,
             null,
             null,
@@ -1013,11 +1050,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'id',
             32774,
-            112,
+            119,
             const prefix0.VnumTypeReflectable(),
             -1,
-            22,
-            22,
+            24,
+            24,
             null,
             null,
             null,
@@ -1025,11 +1062,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            121,
+            128,
             const prefix0.VnumTypeReflectable(),
             -1,
-            23,
-            23,
+            25,
+            25,
             null,
             null,
             null,
@@ -1037,43 +1074,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            122,
-            const prefix0.VnumTypeReflectable(),
-            -1,
-            23,
-            23,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'fromValue',
-            32774,
-            135,
-            const prefix0.VnumTypeReflectable(),
-            -1,
-            24,
-            24,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'value',
-            32774,
-            136,
-            const prefix0.VnumTypeReflectable(),
-            -1,
-            24,
-            24,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'fromValue',
-            32774,
-            140,
+            129,
             const prefix0.VnumTypeReflectable(),
             -1,
             25,
@@ -1085,7 +1086,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            145,
+            146,
             const prefix0.VnumTypeReflectable(),
             -1,
             26,
@@ -1095,25 +1096,13 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
-            r'_home',
-            32870,
-            142,
+            r'value',
+            32774,
+            147,
             const prefix0.VnumTypeReflectable(),
-            6,
-            6,
-            6,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'_member',
-            32870,
-            144,
-            const prefix0.VnumTypeReflectable(),
-            6,
-            6,
-            6,
+            -1,
+            26,
+            26,
             null,
             null,
             null,
@@ -1121,7 +1110,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            193,
+            195,
             const prefix0.VnumTypeReflectable(),
             -1,
             9,
@@ -1133,11 +1122,35 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            202,
+            199,
             const prefix0.VnumTypeReflectable(),
             -1,
             27,
             27,
+            null,
+            null,
+            null,
+            null),
+        r.ParameterMirrorImpl(
+            r'fromValue',
+            32774,
+            207,
+            const prefix0.VnumTypeReflectable(),
+            -1,
+            28,
+            28,
+            null,
+            null,
+            null,
+            null),
+        r.ParameterMirrorImpl(
+            r'fromValue',
+            32774,
+            216,
+            const prefix0.VnumTypeReflectable(),
+            -1,
+            29,
+            29,
             null,
             null,
             null,
@@ -1145,7 +1158,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_deposit',
             32870,
-            195,
+            209,
             const prefix0.VnumTypeReflectable(),
             8,
             8,
@@ -1157,7 +1170,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_transfer',
             32870,
-            197,
+            211,
             const prefix0.VnumTypeReflectable(),
             8,
             8,
@@ -1169,7 +1182,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_withdraw',
             32870,
-            199,
+            213,
             const prefix0.VnumTypeReflectable(),
             8,
             8,
@@ -1181,7 +1194,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_vip',
             32870,
-            201,
+            215,
             const prefix0.VnumTypeReflectable(),
             8,
             8,
@@ -1197,9 +1210,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
         prefix2.FontSize,
         prefix3.GameCategory,
         prefix4.RoutePage,
-        prefix5.ToastDuration,
-        prefix6.ScreenNavigationBarItem,
-        prefix7.FailureType,
+        prefix5.FailureType,
+        prefix6.ToastDuration,
+        prefix7.ScreenNavigationBarItem,
         prefix8.ShortcutItem,
         int,
         const m.TypeValue<List<prefix0.Vnum<dynamic>>>().type,
@@ -1212,6 +1225,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
         prefix10.RouteEnum,
         prefix11.MainScreenAppBarTypes,
         prefix11.MainScreenNavBarTypes,
+        const m.TypeValue<List<prefix7.ScreenNavigationBarItem>>().type,
+        List,
         Invocation,
         double,
         prefix12.GameCategoryEnum,

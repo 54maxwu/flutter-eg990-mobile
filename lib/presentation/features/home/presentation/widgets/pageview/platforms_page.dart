@@ -1,14 +1,14 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
-import 'package:flutter_eg990_mobile/presentation/common/other/loading_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/state/home_store.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_display_provider.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/widgets/home_display_size_calc.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:provider/provider.dart';
+
+import '../../state/home_store.dart';
+import '../home_display_provider.dart';
+import '../home_display_size_calc.dart';
 
 class PlatformsPage extends StatefulWidget {
   final String category;
@@ -25,6 +25,8 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
   List<GamePlatformEntity> _platforms;
   bool _hasUser = false;
 
+  Widget _sliver;
+
   // final ScrollController _scrollController = new ScrollController();
   // double _bottomEdgePosition;
   // bool _atBottomEdge = false;
@@ -33,6 +35,12 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
   void didUpdateWidget(covariant PlatformsPage oldWidget) {
     _hasUser = null;
     super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    _sliver = null;
+    super.didChangeDependencies();
   }
 
   @override
@@ -63,34 +71,41 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
       //     }
       //     return false;
       //   },
-      return ListView.builder(
-          // controller: _scrollController,
-          physics: BouncingScrollPhysics(),
-          shrinkWrap: true,
-          padding: const EdgeInsets.only(bottom: Global.APP_NAV_HEIGHT * 0.6),
-          itemCount: _platforms.length,
-          itemBuilder: (_, index) {
-            return ListTile(
-              dense: true,
-              visualDensity: VisualDensity.compact,
-              onTap: () => _onItemTap(_platforms[index]),
-              title: Container(
-                constraints: BoxConstraints(
-                  minWidth: _display.pageMinWidth,
-                  maxWidth: _display.pageMaxWidth,
-                ),
-                alignment: Alignment.center,
-                child: Image.asset(_platforms[index].assetUrl,
-                    errorBuilder: (ctx, exc, _) {
+      _sliver ??= SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (_, index) => ListTile(
+            dense: true,
+            visualDensity: VisualDensity.compact,
+            onTap: () => _onItemTap(_platforms[index]),
+            title: Container(
+              constraints: BoxConstraints(
+                minWidth: _display.pageMinWidth,
+                maxWidth: _display.pageMaxWidth,
+              ),
+              alignment: Alignment.center,
+              child: Image.asset(
+                _platforms[index].assetUrl,
+                errorBuilder: (ctx, exc, _) {
                   // debugPrint(
                   //     'platform image not found: ${_platforms[index].assetUrl}');
                   return networkImageBuilder(
                       'images/nav/mob/mob_undefined.png');
-                }),
+                },
               ),
-            );
-          });
-      // );
+            ),
+          ),
+          childCount: _platforms.length,
+        ),
+      );
+      return Padding(
+        padding: EdgeInsets.only(bottom: Global.APP_NAV_HEIGHT * 0.6),
+        child: CustomScrollView(
+          // controller: _scrollController,
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
+          slivers: [_sliver],
+        ),
+      );
     }
     return Container(
       alignment: Alignment.center,
