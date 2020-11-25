@@ -9,7 +9,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/features/update/presentation/state/update_store.dart';
+import 'package:flutter_eg990_mobile/presentation/features/event/update/state/update_store.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/game/web_game_screen_store.dart';
 import 'package:provider/provider.dart';
 
@@ -36,8 +36,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
       new GlobalKey(debugLabel: 'screenNavKey');
   final GlobalKey<NavigatorState> _navKey = new GlobalKey(debugLabel: 'navKey');
 
-  Future<bool> updateFuture;
-  UpdateStore updateStore;
+  bool _isIos;
 
   void registerLocale(BuildContext context) {
     try {
@@ -56,14 +55,9 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   }
 
   void getDeviceInfo(BuildContext context) {
-    Global.device = Device(MediaQuery.of(context), Platform.isIOS);
+    _isIos = Platform.isIOS;
+    Global.device = Device(MediaQuery.of(context), _isIos);
     debugPrint('Device:\n----------\n${Global.device}\n----------');
-  }
-
-  @override
-  void initState() {
-    updateStore ??= sl.get<UpdateStore>();
-    super.initState();
   }
 
   @override
@@ -71,6 +65,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
     if (Global.device == null) getDeviceInfo(context);
     if (Global.initLocale == false) registerLocale(context);
     return SafeArea(
+      top: !_isIos,
       child: WillPopScope(
         onWillPop: () async {
           MyLogger.debug(
@@ -91,11 +86,6 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
           return Future(() => false);
         },
         child: Scaffold(
-          // body: Navigator(
-          //   key: ScreenRouter.navigator.key,
-          //   onGenerateRoute: ScreenRouter.onGenerateRoute,
-          //   initialRoute: ScreenRouter.featureScreen,
-          // ),
           body: ChangeNotifierProvider(
             create: (_) => NavigateProvider(initKey: _navKey),
             child: ExtendedNavigator(
@@ -112,9 +102,11 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
 
   @override
   void afterFirstLayout(BuildContext context) {
+    /// TODO move the update check to app resume
+    final updateStore = sl.get<UpdateStore>();
     if (updateStore != null) {
       updateStore.dialogClosed();
-//      updateFuture ??=
+      // final Future<bool> updateFuture =
 //          Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
 //      updateFuture.then((hasUpdate) {
 //        if (hasUpdate) {

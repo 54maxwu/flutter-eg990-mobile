@@ -1,5 +1,5 @@
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/game_platform_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/game_platform_model.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

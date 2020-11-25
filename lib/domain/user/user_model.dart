@@ -1,8 +1,8 @@
 import 'package:flutter_eg990_mobile/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'login/login_form_data.dart';
 import 'user.dart';
-import '../../presentation/features/login/data/form/login_form_data.dart';
 
 part 'user_model.freezed.dart';
 

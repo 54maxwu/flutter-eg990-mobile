@@ -7,19 +7,18 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/sector/home/platform/game_platform_entity.dart';
 import '../core/main_startup.dart';
-import '../features/home/data/entity/game_platform_entity.dart';
-import '../features/home/presentation/home_route.dart';
-import '../features/home/presentation/state/home_store.dart';
-import '../features/home/presentation/widgets/pageview/games_page.dart';
-import '../features/login/presentation/login_route.dart';
+import '../features/home/home_route.dart';
+import '../features/home/state/home_store.dart';
+import '../features/home/widgets/pageview/games_page.dart';
+import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
-import '../features/promo/presentation/promo_route.dart';
-import '../features/service/presentation/service_route.dart';
-import '../features/sponsor/presentation/sponsor_route.dart';
+import '../features/promo/promo_route.dart';
+import '../features/service/service_route.dart';
+import '../features/sponsor/sponsor_route.dart';
 import '../screens/main_screen.dart';
 
 class Routes {

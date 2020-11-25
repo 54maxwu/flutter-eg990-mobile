@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/application/data/hive_actions.dart'
+import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart'
     show getHiveBox;
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/infrastructure/core/dio_api_service.dart';
-import 'package:flutter_eg990_mobile/application/data/hive_cookie.dart';
+import 'package:flutter_eg990_mobile/domain/auth/hive_cookie.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/features/login/data/repository/login_repository.dart'
+import 'package:flutter_eg990_mobile/domain/user/login/login_repository.dart'
     show LoginApi;
 import 'package:hive/hive.dart' show Box;
 

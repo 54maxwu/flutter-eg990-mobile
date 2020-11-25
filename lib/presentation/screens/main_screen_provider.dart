@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_eg990_mobile/presentation/features/event/presentation/state/event_store.dart';
+import 'package:flutter_eg990_mobile/presentation/features/event/ads/state/ads_store.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:flutter_eg990_mobile/presentation/router/data/route_info.dart';
 
@@ -20,7 +20,7 @@ class MainScreenProvider
     with ChangeNotifier
     implements MainScreenProviderInterface {
   final MainScreenStore screenStore;
-  final EventStore eventStore;
+  final AdStore adStore;
   final UserInfoStore userInfoStore;
 
   GlobalKey<ScaffoldState> _scaffoldKey;
@@ -30,7 +30,7 @@ class MainScreenProvider
     @required GlobalKey<ScaffoldState> scaffoldKey,
     @required GlobalKey<NavigatorState> navigatorKey,
     @required this.screenStore,
-    @required this.eventStore,
+    @required this.adStore,
     @required this.userInfoStore,
   }) {
     _scaffoldKey = scaffoldKey;

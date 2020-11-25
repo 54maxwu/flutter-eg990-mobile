@@ -4,14 +4,20 @@ import 'package:get_it/get_it.dart';
 
 import 'application/themes/theme_settings.dart';
 import 'domain/auth/jwt_interface.dart';
+import 'domain/sector/ads/ads_repository.dart';
+import 'domain/sector/home/home_local_storage.dart';
+import 'domain/sector/home/home_repository.dart';
+import 'domain/sector/service/service_repository.dart';
+import 'domain/sector/update_repository.dart';
+import 'domain/user/login/login_repository.dart';
 import 'domain/user/user_info_repository.dart';
 import 'infrastructure/core/dio_api_service.dart';
 import 'infrastructure/core/network_info.dart';
-import 'presentation/features/event/event_inject.dart';
-import 'presentation/features/home/home_inject.dart';
-import 'presentation/features/login/login_inject.dart';
-import 'presentation/features/service/service_inject.dart';
-import 'presentation/features/update/update_inject.dart';
+import 'presentation/features/event/ads/state/ads_store.dart';
+import 'presentation/features/event/update/state/update_store.dart';
+import 'presentation/features/home/state/home_store.dart';
+import 'presentation/features/login/state/login_store.dart';
+import 'presentation/features/service/state/service_store.dart';
 import 'presentation/screens/main_screen_store.dart';
 import 'presentation/screens/user/user_info_store.dart';
 import 'presentation/streams/app_preference_streams.dart';
@@ -47,10 +53,9 @@ Future<void> init() async {
       () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
   sl.registerLazySingleton(() => UserInfoStore(sl<UserInfoRepository>()));
 
-  sl.registerLazySingleton<EventRepository>(
-    () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
-  sl.registerLazySingleton(() => EventStore(sl<EventRepository>()));
+  sl.registerLazySingleton<AdsRepository>(
+      () => AdsRepositoryImpl(dioApiService: sl()));
+  sl.registerLazySingleton(() => AdStore(sl<AdsRepository>()));
 
   sl.registerLazySingleton<HomeLocalStorage>(() => HomeLocalStorageImpl());
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(
@@ -61,8 +66,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => HomeStore(sl<HomeRepository>()));
 
   sl.registerLazySingleton<ServiceRepository>(
-    () => ServiceRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
+      () => ServiceRepositoryImpl(dioApiService: sl()));
   sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
 
   /// Factory

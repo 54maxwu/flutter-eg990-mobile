@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/domain/user/login_status.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
 import 'package:flutter_eg990_mobile/domain/user/user_info_repository.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/presentation/router/app_navigator_export.dart';

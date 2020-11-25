@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_eg990_mobile/presentation/features/home/data/entity/marquee_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/marquee_model.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/marquee_model_list.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/marquee/marquee_entity.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/marquee/marquee_model.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/marquee/marquee_model_list.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';

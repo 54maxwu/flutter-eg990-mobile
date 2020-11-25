@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route_annotations.dart';
 
-import '../features/home/presentation/home_route.dart';
-import '../features/home/presentation/widgets/pageview/games_page.dart';
-import '../features/login/presentation/login_route.dart';
+import '../features/home/home_route.dart';
+import '../features/home/widgets/pageview/games_page.dart';
+import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
-import '../features/promo/presentation/promo_route.dart';
-import '../features/service/presentation/service_route.dart';
-import '../features/sponsor/presentation/sponsor_route.dart';
+import '../features/promo/promo_route.dart';
+import '../features/service/service_route.dart';
+import '../features/sponsor/sponsor_route.dart';
 import '../core/main_startup.dart';
 import '../screens/main_screen.dart';
 

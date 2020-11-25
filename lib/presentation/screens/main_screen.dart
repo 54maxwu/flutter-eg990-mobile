@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/infrastructure/core/network_info.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/network_changed_dialog.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/state/home_store.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/state/home_store.dart';
 import 'package:flutter_eg990_mobile/presentation/streams/app_preference_streams.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 import 'package:provider/provider.dart';
@@ -124,7 +124,7 @@ class _MainScreenState extends State<MainScreen> with AfterLayoutMixin {
         scaffoldKey: _scaffoldKey,
         navigatorKey: featureNavKey,
         screenStore: _store,
-        eventStore: sl(),
+        adStore: sl(),
         userInfoStore: sl(),
       );
     }
@@ -132,7 +132,7 @@ class _MainScreenState extends State<MainScreen> with AfterLayoutMixin {
       scaffoldKey: _scaffoldKey,
       navigatorKey: featureNavKey,
       screenStore: _store,
-      eventStore: sl(),
+      adStore: sl(),
       userInfoStore: sl(),
     );
     super.didChangeDependencies();

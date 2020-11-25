@@ -8,7 +8,7 @@ import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/presentation/state/home_store.dart';
+import 'package:flutter_eg990_mobile/presentation/features/home/state/home_store.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'main_startup.dart';

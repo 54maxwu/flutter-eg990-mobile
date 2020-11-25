@@ -2,7 +2,7 @@ import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:flutter_eg990_mobile/domain/core/value_objects.dart';
 import 'package:meta/meta.dart';
 
-import '../../presentation/features/login/data/form/login_form_data.dart';
+import 'login/login_form_data.dart';
 
 part 'user.g.dart';
 

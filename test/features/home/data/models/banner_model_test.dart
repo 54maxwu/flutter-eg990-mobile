@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_eg990_mobile/presentation/features/home/data/models/banner_model.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/banner/banner_model.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 
