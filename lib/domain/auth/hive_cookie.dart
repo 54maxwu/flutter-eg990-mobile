@@ -5,7 +5,7 @@ import 'package:meta/meta.dart' show required;
 
 part 'hive_cookie.g.dart';
 
-@HiveType(typeId: 108)
+@HiveType(typeId: 80)
 class HiveCookieEntity {
   @HiveField(0)
   final String account;

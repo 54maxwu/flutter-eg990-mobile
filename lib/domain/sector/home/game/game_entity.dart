@@ -10,7 +10,7 @@ part 'game_entity.g.dart';
 abstract class GameEntity with _$GameEntity, DataOperator {
   const GameEntity._();
 
-  @HiveType(typeId: 105)
+  @HiveType(typeId: 113)
   const factory GameEntity({
     @HiveField(0) @required int id,
     @HiveField(1) @required String cname,

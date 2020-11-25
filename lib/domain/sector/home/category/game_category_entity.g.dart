@@ -8,7 +8,7 @@ part of 'game_category_entity.dart';
 
 class GameCategoryEntityAdapter extends TypeAdapter<_$_GameCategoryEntity> {
   @override
-  final int typeId = 103;
+  final int typeId = 111;
 
   @override
   _$_GameCategoryEntity read(BinaryReader reader) {

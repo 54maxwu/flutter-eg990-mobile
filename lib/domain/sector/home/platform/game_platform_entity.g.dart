@@ -8,7 +8,7 @@ part of 'game_platform_entity.dart';
 
 class GamePlatformEntityAdapter extends TypeAdapter<_$_GamePlatformEntity> {
   @override
-  final int typeId = 104;
+  final int typeId = 112;
 
   @override
   _$_GamePlatformEntity read(BinaryReader reader) {

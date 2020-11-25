@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/application/data/app_cache.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_color_enum.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
@@ -33,10 +34,8 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     switch (state) {
-      case AppLifecycleState.paused:
-        MyLogger.info(msg: 'app paused', tag: tag);
-//        SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
-//        exit(0); // exit the app on paused
+      case AppLifecycleState.detached:
+        MyLogger.info(msg: 'app detached', tag: tag);
         break;
       case AppLifecycleState.resumed:
         MyLogger.info(msg: 'app resumed', tag: tag);
@@ -44,8 +43,11 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       case AppLifecycleState.inactive:
         MyLogger.info(msg: 'app inactive', tag: tag);
         break;
-      case AppLifecycleState.detached:
-        MyLogger.info(msg: 'app detached', tag: tag);
+      case AppLifecycleState.paused:
+        MyLogger.info(msg: 'app paused', tag: tag);
+        AppCache.closeBox();
+//        SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
+//        exit(0); // exit the app on paused
         break;
     }
   }

@@ -33,6 +33,13 @@ class RoutePage extends Vnum<RouteInfo> {
     appBarType: MainScreenAppBarTypes.TITLE_ONLY,
     navBarType: MainScreenNavBarTypes.HOME,
   ));
+  static const RoutePage promo_detail = const RoutePage.define(RouteInfo(
+    id: RouteEnum.PROMO_DETAIL,
+    route: MainScreenRoutes.promoDetailPage,
+    root: MainScreenRoutes.promoRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HOME,
+  ));
   static const RoutePage service = const RoutePage.define(RouteInfo(
     id: RouteEnum.SERVICE,
     route: MainScreenRoutes.serviceRoute,

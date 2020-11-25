@@ -17,6 +17,7 @@ class _PromoRouteState extends State<PromoRoute> {
   void initState() {
     _store ??= sl.get<PromoStore>();
     super.initState();
+    _store.initialize();
   }
 
   @override
@@ -53,8 +54,7 @@ class _PromoRouteState extends State<PromoRoute> {
       },
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(8.0),
-          alignment: Alignment.center,
+          alignment: Alignment.topCenter,
           child: Observer(
             // Observe using specific widget
             builder: (_) {
@@ -62,7 +62,7 @@ class _PromoRouteState extends State<PromoRoute> {
                 case PromoStoreState.loading:
                   return LoadingWidget();
                 case PromoStoreState.loaded:
-                  return PromoDisplay();
+                  return PromoDisplay(promos: _store.promos ?? []);
                 default:
                   return SizedBox.shrink();
               }

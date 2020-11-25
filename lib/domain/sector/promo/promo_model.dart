@@ -48,5 +48,6 @@ extension PromoModelExtension on PromoModel {
         postCategoryId: postCategoryId,
         categoryStr: categoryStr,
         status: status,
+        activeDate: actTime,
       );
 }

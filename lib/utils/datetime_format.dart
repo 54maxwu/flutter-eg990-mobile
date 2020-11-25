@@ -96,9 +96,6 @@ extension DateTimeExtensions on DateTime {
   bool isAfterHours(int hours) =>
       DateTime.now().isAfter(this.add(Duration(hours: hours)));
 
-  bool isAfterSeconds(int seconds) =>
-      DateTime.now().isAfter(this.add(Duration(seconds: seconds)));
-
   bool isDayPassed() => this.day < DateTime.now().day;
 
   int countHoursPassed() => DateTime.now().difference(this).inHours;

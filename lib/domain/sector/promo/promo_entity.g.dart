@@ -8,7 +8,7 @@ part of 'promo_entity.dart';
 
 class PromoEntityAdapter extends TypeAdapter<_$_PromoEntity> {
   @override
-  final int typeId = 201;
+  final int typeId = 121;
 
   @override
   _$_PromoEntity read(BinaryReader reader) {
@@ -29,13 +29,14 @@ class PromoEntityAdapter extends TypeAdapter<_$_PromoEntity> {
       postCategoryId: fields[9] as int,
       categoryStr: fields[10] as String,
       status: fields[11] as String,
+      activeDate: fields[12] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_PromoEntity obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -59,7 +60,9 @@ class PromoEntityAdapter extends TypeAdapter<_$_PromoEntity> {
       ..writeByte(10)
       ..write(obj.categoryStr)
       ..writeByte(11)
-      ..write(obj.status);
+      ..write(obj.status)
+      ..writeByte(12)
+      ..write(obj.activeDate);
   }
 
   @override

@@ -6,6 +6,7 @@ enum RouteEnum {
 
   ///
   PROMO,
+  PROMO_DETAIL,
   SERVICE,
   SERVICE_WEB,
   SPONSOR,
@@ -72,6 +73,7 @@ extension RouteEnumExtension on RouteEnum {
 
       /// First Layer
       case RouteEnum.PROMO:
+      case RouteEnum.PROMO_DETAIL:
         return localeStr.pageTitlePromo;
       case RouteEnum.SPONSOR:
         return localeStr.pageTitleSponsor;

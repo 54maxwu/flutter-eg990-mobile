@@ -172,7 +172,7 @@ class __$GamePlatformEntityCopyWithImpl<$Res>
   }
 }
 
-@HiveType(typeId: 104)
+@HiveType(typeId: 112)
 
 /// @nodoc
 class _$_GamePlatformEntity extends _GamePlatformEntity {

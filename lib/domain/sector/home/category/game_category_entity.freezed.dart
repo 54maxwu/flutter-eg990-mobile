@@ -98,7 +98,7 @@ class __$GameCategoryEntityCopyWithImpl<$Res>
   }
 }
 
-@HiveType(typeId: 103)
+@HiveType(typeId: 111)
 
 /// @nodoc
 class _$_GameCategoryEntity extends _GameCategoryEntity {

@@ -45,6 +45,7 @@ extension RouteInfoExtension on RouteInfo {
     switch (appBarType) {
       case MainScreenAppBarTypes.LOGO_AND_MESSAGE_CENTER:
         return '';
+      case MainScreenAppBarTypes.TITLE_ONLY:
       case MainScreenAppBarTypes.TITLE_AND_SETTINGS:
       case MainScreenAppBarTypes.BACK_AND_TITLE:
         return id.title.replaceAll('???', '');

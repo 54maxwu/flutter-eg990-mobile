@@ -15,7 +15,7 @@ abstract class GameCategoryEntity
     implements _$GameCategoryEntity, DataOperator {
   const GameCategoryEntity._();
 
-  @HiveType(typeId: 103)
+  @HiveType(typeId: 111)
   const factory GameCategoryEntity({
     @HiveField(0) @required String type,
     GameCategory info,

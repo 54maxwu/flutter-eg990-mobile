@@ -6,7 +6,7 @@ part 'promo_entity.g.dart';
 
 @freezed
 abstract class PromoEntity with _$PromoEntity {
-  @HiveType(typeId: 201)
+  @HiveType(typeId: 121)
   const factory PromoEntity({
     @HiveField(0) @required int id,
     @HiveField(1) @required String name,
@@ -20,5 +20,6 @@ abstract class PromoEntity with _$PromoEntity {
     @HiveField(9) @required int postCategoryId,
     @HiveField(10) @required String categoryStr,
     @HiveField(11) @required String status,
+    @HiveField(12) @required String activeDate,
   }) = _PromoEntity;
 }

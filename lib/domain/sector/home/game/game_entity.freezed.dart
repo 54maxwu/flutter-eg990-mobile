@@ -166,7 +166,7 @@ class __$GameEntityCopyWithImpl<$Res> extends _$GameEntityCopyWithImpl<$Res>
   }
 }
 
-@HiveType(typeId: 105)
+@HiveType(typeId: 113)
 
 /// @nodoc
 class _$_GameEntity extends _GameEntity {

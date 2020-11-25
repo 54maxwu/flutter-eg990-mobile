@@ -1,38 +1,40 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_form_hive.dart';
+part of 'hive_json_cache.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class LoginFormHiveAdapter extends TypeAdapter<LoginFormHive> {
+class HiveJsonCacheAdapter extends TypeAdapter<HiveJsonCache> {
   @override
-  final int typeId = 201;
+  final int typeId = 90;
 
   @override
-  LoginFormHive read(BinaryReader reader) {
+  HiveJsonCache read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return LoginFormHive(
-      username: fields[0] as String,
-      password: fields[1] as String,
-      save: fields[2] as bool,
-    );
+    return HiveJsonCache(
+      expiredInHours: fields[2] as int,
+      cacheMap: (fields[3] as Map)?.cast<String, dynamic>(),
+      cacheList: (fields[4] as List)?.cast<dynamic>(),
+    )..lastUpdate = fields[0] as DateTime;
   }
 
   @override
-  void write(BinaryWriter writer, LoginFormHive obj) {
+  void write(BinaryWriter writer, HiveJsonCache obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.username)
-      ..writeByte(1)
-      ..write(obj.password)
+      ..write(obj.lastUpdate)
       ..writeByte(2)
-      ..write(obj.save);
+      ..write(obj.expiredInHours)
+      ..writeByte(3)
+      ..write(obj.cacheMap)
+      ..writeByte(4)
+      ..write(obj.cacheList);
   }
 
   @override
@@ -41,7 +43,7 @@ class LoginFormHiveAdapter extends TypeAdapter<LoginFormHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LoginFormHiveAdapter &&
+      other is HiveJsonCacheAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

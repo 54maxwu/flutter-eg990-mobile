@@ -1,4 +1,6 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:flutter_eg990_mobile/domain/sector/promo/promo_local_storage.dart';
+import 'package:flutter_eg990_mobile/domain/sector/promo/promo_repository.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,6 +19,7 @@ import 'presentation/features/event/ads/state/ads_store.dart';
 import 'presentation/features/event/update/state/update_store.dart';
 import 'presentation/features/home/state/home_store.dart';
 import 'presentation/features/login/state/login_store.dart';
+import 'presentation/features/promo/state/promo_store.dart';
 import 'presentation/features/service/state/service_store.dart';
 import 'presentation/screens/main_screen_store.dart';
 import 'presentation/screens/user/user_info_store.dart';
@@ -31,6 +34,7 @@ Future<void> init() async {
   sl.registerSingleton(() => MyLogger());
   sl.registerLazySingleton<AppPreferenceStreams>(() => AppPreferenceStreams());
   sl.registerLazySingleton<ThemeSettings>(() => ThemeSettings());
+  sl.registerLazySingleton(() => MainScreenStore());
 
   ///
   /// Core
@@ -40,23 +44,27 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DataConnectionChecker());
 
   ///
-  /// Lazy Singletons
+  /// AUTH
   ///
-  sl.registerLazySingleton(() => MainScreenStore());
-
-  sl.registerLazySingleton<UpdateRepository>(() => UpdateRepositoryImpl(sl()));
-  sl.registerLazySingleton(() => UpdateStore(sl<UpdateRepository>()));
-
   sl.registerLazySingleton<JwtInterface>(
       () => JwtInterfaceImpl(dioApiService: sl()));
   sl.registerLazySingleton<UserInfoRepository>(
       () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
   sl.registerLazySingleton(() => UserInfoStore(sl<UserInfoRepository>()));
 
+  ///
+  /// EVENT
+  ///
+  sl.registerLazySingleton<UpdateRepository>(() => UpdateRepositoryImpl(sl()));
+  sl.registerLazySingleton(() => UpdateStore(sl<UpdateRepository>()));
+
   sl.registerLazySingleton<AdsRepository>(
       () => AdsRepositoryImpl(dioApiService: sl()));
   sl.registerLazySingleton(() => AdStore(sl<AdsRepository>()));
 
+  ///
+  /// HOME
+  ///
   sl.registerLazySingleton<HomeLocalStorage>(() => HomeLocalStorageImpl());
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(
       dioApiService: sl(),
@@ -65,13 +73,26 @@ Future<void> init() async {
       localStorage: sl()));
   sl.registerLazySingleton(() => HomeStore(sl<HomeRepository>()));
 
-  sl.registerLazySingleton<ServiceRepository>(
-      () => ServiceRepositoryImpl(dioApiService: sl()));
-  sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
-
-  /// Factory
+  ///
+  /// LOGIN
+  ///
   sl.registerFactory<LoginRepository>(
     () => LoginRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
   sl.registerFactory<LoginStore>(() => LoginStore(sl(), sl()));
+
+  ///
+  /// PROMO
+  ///
+  sl.registerFactory<PromoLocalStorage>(() => PromoLocalStorageImpl());
+  sl.registerFactory<PromoRepository>(() => PromoRepositoryImpl(
+      dioApiService: sl(), networkInfo: sl(), localStorage: sl()));
+  sl.registerFactory(() => PromoStore(sl<PromoRepository>()));
+
+  ///
+  /// SERVICE
+  ///
+  sl.registerLazySingleton<ServiceRepository>(
+      () => ServiceRepositoryImpl(dioApiService: sl()));
+  sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
 }

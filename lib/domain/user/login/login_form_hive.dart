@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 part 'login_form_hive.g.dart';
 
 @immutable
-@HiveType(typeId: 109)
+@HiveType(typeId: 201)
 class LoginFormHive {
   @HiveField(0)
   final String username;

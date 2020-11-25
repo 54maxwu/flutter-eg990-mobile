@@ -15,7 +15,7 @@ abstract class GamePlatformEntity
     implements _$GamePlatformEntity, DataOperator {
   const GamePlatformEntity._();
 
-  @HiveType(typeId: 104)
+  @HiveType(typeId: 112)
   const factory GamePlatformEntity({
     @HiveField(0) @required int id,
     @HiveField(1)

@@ -26,7 +26,8 @@ class _$PromoEntityTearOff {
       @required @HiveField(8) int sort,
       @required @HiveField(9) int postCategoryId,
       @required @HiveField(10) String categoryStr,
-      @required @HiveField(11) String status}) {
+      @required @HiveField(11) String status,
+      @required @HiveField(12) String activeDate}) {
     return _PromoEntity(
       id: id,
       name: name,
@@ -40,6 +41,7 @@ class _$PromoEntityTearOff {
       postCategoryId: postCategoryId,
       categoryStr: categoryStr,
       status: status,
+      activeDate: activeDate,
     );
   }
 }
@@ -74,6 +76,8 @@ mixin _$PromoEntity {
   String get categoryStr;
   @HiveField(11)
   String get status;
+  @HiveField(12)
+  String get activeDate;
 
   $PromoEntityCopyWith<PromoEntity> get copyWith;
 }
@@ -95,7 +99,8 @@ abstract class $PromoEntityCopyWith<$Res> {
       @HiveField(8) int sort,
       @HiveField(9) int postCategoryId,
       @HiveField(10) String categoryStr,
-      @HiveField(11) String status});
+      @HiveField(11) String status,
+      @HiveField(12) String activeDate});
 }
 
 /// @nodoc
@@ -120,6 +125,7 @@ class _$PromoEntityCopyWithImpl<$Res> implements $PromoEntityCopyWith<$Res> {
     Object postCategoryId = freezed,
     Object categoryStr = freezed,
     Object status = freezed,
+    Object activeDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as int,
@@ -145,6 +151,8 @@ class _$PromoEntityCopyWithImpl<$Res> implements $PromoEntityCopyWith<$Res> {
       categoryStr:
           categoryStr == freezed ? _value.categoryStr : categoryStr as String,
       status: status == freezed ? _value.status : status as String,
+      activeDate:
+          activeDate == freezed ? _value.activeDate : activeDate as String,
     ));
   }
 }
@@ -168,7 +176,8 @@ abstract class _$PromoEntityCopyWith<$Res>
       @HiveField(8) int sort,
       @HiveField(9) int postCategoryId,
       @HiveField(10) String categoryStr,
-      @HiveField(11) String status});
+      @HiveField(11) String status,
+      @HiveField(12) String activeDate});
 }
 
 /// @nodoc
@@ -195,6 +204,7 @@ class __$PromoEntityCopyWithImpl<$Res> extends _$PromoEntityCopyWithImpl<$Res>
     Object postCategoryId = freezed,
     Object categoryStr = freezed,
     Object status = freezed,
+    Object activeDate = freezed,
   }) {
     return _then(_PromoEntity(
       id: id == freezed ? _value.id : id as int,
@@ -220,11 +230,13 @@ class __$PromoEntityCopyWithImpl<$Res> extends _$PromoEntityCopyWithImpl<$Res>
       categoryStr:
           categoryStr == freezed ? _value.categoryStr : categoryStr as String,
       status: status == freezed ? _value.status : status as String,
+      activeDate:
+          activeDate == freezed ? _value.activeDate : activeDate as String,
     ));
   }
 }
 
-@HiveType(typeId: 201)
+@HiveType(typeId: 121)
 
 /// @nodoc
 class _$_PromoEntity implements _PromoEntity {
@@ -240,7 +252,8 @@ class _$_PromoEntity implements _PromoEntity {
       @required @HiveField(8) this.sort,
       @required @HiveField(9) this.postCategoryId,
       @required @HiveField(10) this.categoryStr,
-      @required @HiveField(11) this.status})
+      @required @HiveField(11) this.status,
+      @required @HiveField(12) this.activeDate})
       : assert(id != null),
         assert(name != null),
         assert(bannerMobile != null),
@@ -252,7 +265,8 @@ class _$_PromoEntity implements _PromoEntity {
         assert(sort != null),
         assert(postCategoryId != null),
         assert(categoryStr != null),
-        assert(status != null);
+        assert(status != null),
+        assert(activeDate != null);
 
   @override
   @HiveField(0)
@@ -290,10 +304,13 @@ class _$_PromoEntity implements _PromoEntity {
   @override
   @HiveField(11)
   final String status;
+  @override
+  @HiveField(12)
+  final String activeDate;
 
   @override
   String toString() {
-    return 'PromoEntity(id: $id, name: $name, bannerMobile: $bannerMobile, textContent: $textContent, placeContent: $placeContent, applyContent: $applyContent, ruleContent: $ruleContent, top: $top, sort: $sort, postCategoryId: $postCategoryId, categoryStr: $categoryStr, status: $status)';
+    return 'PromoEntity(id: $id, name: $name, bannerMobile: $bannerMobile, textContent: $textContent, placeContent: $placeContent, applyContent: $applyContent, ruleContent: $ruleContent, top: $top, sort: $sort, postCategoryId: $postCategoryId, categoryStr: $categoryStr, status: $status, activeDate: $activeDate)';
   }
 
   @override
@@ -330,7 +347,10 @@ class _$_PromoEntity implements _PromoEntity {
                 const DeepCollectionEquality()
                     .equals(other.categoryStr, categoryStr)) &&
             (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.activeDate, activeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.activeDate, activeDate)));
   }
 
   @override
@@ -347,7 +367,8 @@ class _$_PromoEntity implements _PromoEntity {
       const DeepCollectionEquality().hash(sort) ^
       const DeepCollectionEquality().hash(postCategoryId) ^
       const DeepCollectionEquality().hash(categoryStr) ^
-      const DeepCollectionEquality().hash(status);
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(activeDate);
 
   @override
   _$PromoEntityCopyWith<_PromoEntity> get copyWith =>
@@ -367,7 +388,8 @@ abstract class _PromoEntity implements PromoEntity {
       @required @HiveField(8) int sort,
       @required @HiveField(9) int postCategoryId,
       @required @HiveField(10) String categoryStr,
-      @required @HiveField(11) String status}) = _$_PromoEntity;
+      @required @HiveField(11) String status,
+      @required @HiveField(12) String activeDate}) = _$_PromoEntity;
 
   @override
   @HiveField(0)
@@ -405,6 +427,9 @@ abstract class _PromoEntity implements PromoEntity {
   @override
   @HiveField(11)
   String get status;
+  @override
+  @HiveField(12)
+  String get activeDate;
   @override
   _$PromoEntityCopyWith<_PromoEntity> get copyWith;
 }

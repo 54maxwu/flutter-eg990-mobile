@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:flutter_eg990_mobile/presentation/features/promo/widgets/promo_detail_page.dart';
 
 import '../features/home/home_route.dart';
 import '../features/home/widgets/pageview/games_page.dart';
@@ -28,6 +29,7 @@ import '../screens/main_screen.dart';
               MaterialRoute(page: GamesPage),
               MaterialRoute(page: LoginRoute),
               MaterialRoute(page: PromoRoute),
+              MaterialRoute(page: PromoDetailPage),
               MaterialRoute(page: ServiceRoute),
               MaterialRoute(page: SponsorRoute),
               MaterialRoute(page: MemberRoute),

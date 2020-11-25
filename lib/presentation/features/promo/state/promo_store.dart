@@ -38,13 +38,13 @@ abstract class _PromoStore with Store {
     }
     // Pending Future means "loading"
     // Fulfilled Future means "loaded"
-    return _promoFuture.status == FutureStatus.pending
+    return _promoFuture.status == FutureStatus.pending || promos == null
         ? PromoStoreState.loading
         : PromoStoreState.loaded;
   }
 
   @action
-  Future<void> getPromoList() async {
+  Future<void> initialize() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;

@@ -56,9 +56,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             0,
             const prefix0.VnumTypeReflectable(),
-            const <int>[0, 1, 2, 93, 97, 98, 99, 100, 101, 102],
-            const <int>[103, 104, 105, 106, 107, 108, 109, 99, 100],
-            const <int>[93, 94, 95, 96, 97, 98],
+            const <int>[0, 1, 2, 94, 98, 99, 100, 101, 102, 103],
+            const <int>[104, 105, 106, 107, 108, 109, 110, 100, 101],
+            const <int>[94, 95, 96, 97, 98, 99],
             -1,
             {
               r'getByValue': () => prefix1.ThemeColorEnum.getByValue,
@@ -86,9 +86,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             519,
             1,
             const prefix0.VnumTypeReflectable(),
-            const <int>[3, 110, 108, 103, 106, 111, 112, 113, 114],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[110],
+            const <int>[3, 111, 109, 104, 107, 112, 113, 114, 115],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[111],
             -1,
             {r'allCasesFor': () => prefix0.Vnum.allCasesFor},
             {},
@@ -112,9 +112,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             2,
             const prefix0.VnumTypeReflectable(),
-            const <int>[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 125],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[115, 116, 117, 118, 119, 120, 121, 122, 123, 124],
+            const <int>[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 126],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[116, 117, 118, 119, 120, 121, 122, 123, 124, 125],
             -1,
             {
               r'minus': () => prefix2.FontSize.minus,
@@ -144,9 +144,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             3,
             const prefix0.VnumTypeReflectable(),
-            const <int>[14, 15, 16, 17, 18, 19, 20, 126, 134, 135, 136],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[126, 127, 128, 129, 130, 131, 132, 133, 134],
+            const <int>[14, 15, 16, 17, 18, 19, 20, 127, 135, 136, 137],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[127, 128, 129, 130, 131, 132, 133, 134, 135],
             -1,
             {
               r'findCategoryById': () => prefix3.GameCategory.findCategoryById,
@@ -183,9 +183,28 @@ final _data = <r.Reflectable, r.ReflectorData>{
               24,
               25,
               26,
-              143,
-              144,
+              27,
               145,
+              146,
+              147,
+              148,
+              149,
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156
+            ],
+            const <int>[
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
               146,
               147,
               148,
@@ -196,29 +215,12 @@ final _data = <r.Reflectable, r.ReflectorData>{
               153,
               154
             ],
-            const <int>[
-              103,
-              104,
-              105,
-              106,
-              107,
-              108,
-              109,
-              144,
-              145,
-              146,
-              147,
-              148,
-              149,
-              150,
-              151,
-              152
-            ],
-            const <int>[137, 138, 139, 140, 141, 142, 143],
+            const <int>[138, 139, 140, 141, 142, 143, 144, 145],
             -1,
             {
               r'home': () => prefix4.RoutePage.home,
               r'promo': () => prefix4.RoutePage.promo,
+              r'promo_detail': () => prefix4.RoutePage.promo_detail,
               r'service': () => prefix4.RoutePage.service,
               r'sponsor': () => prefix4.RoutePage.sponsor,
               r'member': () => prefix4.RoutePage.member,
@@ -243,7 +245,6 @@ final _data = <r.Reflectable, r.ReflectorData>{
             5,
             const prefix0.VnumTypeReflectable(),
             const <int>[
-              27,
               28,
               29,
               30,
@@ -290,12 +291,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
               71,
               72,
               73,
-              202
+              74,
+              204
             ],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
             const <int>[
-              155,
-              156,
               157,
               158,
               159,
@@ -340,7 +340,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
               198,
               199,
               200,
-              201
+              201,
+              202,
+              203
             ],
             -1,
             {
@@ -408,9 +410,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             6,
             const prefix0.VnumTypeReflectable(),
-            const <int>[74, 75, 76, 77, 78, 208, 209, 210],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[203, 204, 205, 206, 207, 208, 209],
+            const <int>[75, 76, 77, 78, 79, 210, 211, 212],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[205, 206, 207, 208, 209, 210, 211],
             -1,
             {
               r'home': () => prefix6.ScreenNavigationBarItem.home,
@@ -437,9 +439,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             7,
             const prefix0.VnumTypeReflectable(),
-            const <int>[79, 80, 81, 214],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[211, 212, 213],
+            const <int>[80, 81, 82, 216],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[213, 214, 215],
             -1,
             {
               r'SHORT': () => prefix7.ToastDuration.SHORT,
@@ -463,22 +465,22 @@ final _data = <r.Reflectable, r.ReflectorData>{
             8,
             const prefix0.VnumTypeReflectable(),
             const <int>[
-              82,
               83,
               84,
               85,
               86,
               87,
               88,
-              215,
-              216,
-              224,
-              225,
+              89,
+              217,
+              218,
               226,
-              227
+              227,
+              228,
+              229
             ],
-            const <int>[103, 104, 105, 106, 107, 108, 109, 216, 225],
-            const <int>[215, 217, 218, 219, 220, 221, 222, 223, 224],
+            const <int>[104, 105, 106, 107, 108, 109, 110, 218, 227],
+            const <int>[217, 219, 220, 221, 222, 223, 224, 225, 226],
             -1,
             {
               r'filteredList': () => prefix8.PromoCategoryEnum.filteredList,
@@ -508,9 +510,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             7,
             9,
             const prefix0.VnumTypeReflectable(),
-            const <int>[89, 90, 91, 92, 236],
-            const <int>[103, 104, 105, 106, 107, 108, 109],
-            const <int>[228, 229, 230, 231, 232, 233, 234, 235],
+            const <int>[90, 91, 92, 93, 238],
+            const <int>[104, 105, 106, 107, 108, 109, 110],
+            const <int>[230, 231, 232, 233, 234, 235, 236, 237],
             -1,
             {
               r'deposit': () => prefix9.ShortcutItem.deposit,
@@ -582,6 +584,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.VariableMirrorImpl(r'home', 33941, 4,
             const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
         r.VariableMirrorImpl(r'promo', 33941, 4,
+            const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
+        r.VariableMirrorImpl(r'promo_detail', 33941, 4,
             const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
         r.VariableMirrorImpl(r'service', 33941, 4,
             const prefix0.VnumTypeReflectable(), 4, 4, 4, null, null),
@@ -725,9 +729,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), 9, 9, 9, null, null),
         r.MethodMirrorImpl(r'getByValue', 131090, 0, 0, 0, 0, null,
             const <int>[0], const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 0, 94),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 1, 95),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 2, 96),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 0, 95),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 1, 96),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 2, 97),
         r.MethodMirrorImpl(r'listAll', 4325395, 0, -1, 11, 12, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'getSelectorDefault', 131091, 0, 0, 0, 0, null,
@@ -752,7 +756,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'toJson', 65538, 1, null, null, null, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 3, 109),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 3, 110),
         r.MethodMirrorImpl(r'allCasesFor', 4325394, 1, -1, 11, 12, null,
             const <int>[5], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'', 128, 1, -1, 17, 1, null, const <int>[],
@@ -763,38 +767,38 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[7, 8], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'fromJson', 1, 1, -1, 17, 1, null, const <int>[9],
             const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 4, 115),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 5, 116),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 6, 117),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 7, 118),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 8, 119),
-        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 9, 120),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 4, 116),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 5, 117),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 6, 118),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 7, 119),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 8, 120),
+        r.ImplicitGetterMirrorImpl(const prefix0.VnumTypeReflectable(), 9, 121),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 10, 121),
+            const prefix0.VnumTypeReflectable(), 10, 122),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 11, 122),
+            const prefix0.VnumTypeReflectable(), 11, 123),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 12, 123),
+            const prefix0.VnumTypeReflectable(), 12, 124),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 13, 124),
+            const prefix0.VnumTypeReflectable(), 13, 125),
         r.MethodMirrorImpl(r'define', 128, 2, -1, 2, 2, null, const <int>[10],
             const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'findCategoryById', 131090, 3, 3, 3, 3, null,
             const <int>[11], const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 14, 127),
+            const prefix0.VnumTypeReflectable(), 14, 128),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 15, 128),
+            const prefix0.VnumTypeReflectable(), 15, 129),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 16, 129),
+            const prefix0.VnumTypeReflectable(), 16, 130),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 17, 130),
+            const prefix0.VnumTypeReflectable(), 17, 131),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 18, 131),
+            const prefix0.VnumTypeReflectable(), 18, 132),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 19, 132),
+            const prefix0.VnumTypeReflectable(), 19, 133),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 20, 133),
+            const prefix0.VnumTypeReflectable(), 20, 134),
         r.MethodMirrorImpl(r'listAll', 4325395, 3, -1, 11, 12, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'define', 128, 3, -1, 3, 3, null, const <int>[12],
@@ -802,17 +806,19 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'', 1, 3, -1, 3, 3, null, const <int>[13],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 21, 137),
+            const prefix0.VnumTypeReflectable(), 21, 138),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 22, 138),
+            const prefix0.VnumTypeReflectable(), 22, 139),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 23, 139),
+            const prefix0.VnumTypeReflectable(), 23, 140),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 24, 140),
+            const prefix0.VnumTypeReflectable(), 24, 141),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 25, 141),
+            const prefix0.VnumTypeReflectable(), 25, 142),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 26, 142),
+            const prefix0.VnumTypeReflectable(), 26, 143),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 27, 144),
         r.MethodMirrorImpl(r'listAll', 4325395, 4, -1, 11, 12, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'pageName', 131075, 4, -1, 13, 13, null,
@@ -838,111 +844,111 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'', 1, 4, -1, 4, 4, null, const <int>[15],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 27, 155),
+            const prefix0.VnumTypeReflectable(), 28, 157),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 28, 156),
+            const prefix0.VnumTypeReflectable(), 29, 158),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 29, 157),
+            const prefix0.VnumTypeReflectable(), 30, 159),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 30, 158),
+            const prefix0.VnumTypeReflectable(), 31, 160),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 31, 159),
+            const prefix0.VnumTypeReflectable(), 32, 161),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 32, 160),
+            const prefix0.VnumTypeReflectable(), 33, 162),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 33, 161),
+            const prefix0.VnumTypeReflectable(), 34, 163),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 34, 162),
+            const prefix0.VnumTypeReflectable(), 35, 164),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 35, 163),
+            const prefix0.VnumTypeReflectable(), 36, 165),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 36, 164),
+            const prefix0.VnumTypeReflectable(), 37, 166),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 37, 165),
+            const prefix0.VnumTypeReflectable(), 38, 167),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 38, 166),
+            const prefix0.VnumTypeReflectable(), 39, 168),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 39, 167),
+            const prefix0.VnumTypeReflectable(), 40, 169),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 40, 168),
+            const prefix0.VnumTypeReflectable(), 41, 170),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 41, 169),
+            const prefix0.VnumTypeReflectable(), 42, 171),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 42, 170),
+            const prefix0.VnumTypeReflectable(), 43, 172),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 43, 171),
+            const prefix0.VnumTypeReflectable(), 44, 173),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 44, 172),
+            const prefix0.VnumTypeReflectable(), 45, 174),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 45, 173),
+            const prefix0.VnumTypeReflectable(), 46, 175),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 46, 174),
+            const prefix0.VnumTypeReflectable(), 47, 176),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 47, 175),
+            const prefix0.VnumTypeReflectable(), 48, 177),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 48, 176),
+            const prefix0.VnumTypeReflectable(), 49, 178),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 49, 177),
+            const prefix0.VnumTypeReflectable(), 50, 179),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 50, 178),
+            const prefix0.VnumTypeReflectable(), 51, 180),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 51, 179),
+            const prefix0.VnumTypeReflectable(), 52, 181),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 52, 180),
+            const prefix0.VnumTypeReflectable(), 53, 182),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 53, 181),
+            const prefix0.VnumTypeReflectable(), 54, 183),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 54, 182),
+            const prefix0.VnumTypeReflectable(), 55, 184),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 55, 183),
+            const prefix0.VnumTypeReflectable(), 56, 185),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 56, 184),
+            const prefix0.VnumTypeReflectable(), 57, 186),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 57, 185),
+            const prefix0.VnumTypeReflectable(), 58, 187),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 58, 186),
+            const prefix0.VnumTypeReflectable(), 59, 188),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 59, 187),
+            const prefix0.VnumTypeReflectable(), 60, 189),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 60, 188),
+            const prefix0.VnumTypeReflectable(), 61, 190),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 61, 189),
+            const prefix0.VnumTypeReflectable(), 62, 191),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 62, 190),
+            const prefix0.VnumTypeReflectable(), 63, 192),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 63, 191),
+            const prefix0.VnumTypeReflectable(), 64, 193),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 64, 192),
+            const prefix0.VnumTypeReflectable(), 65, 194),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 65, 193),
+            const prefix0.VnumTypeReflectable(), 66, 195),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 66, 194),
+            const prefix0.VnumTypeReflectable(), 67, 196),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 67, 195),
+            const prefix0.VnumTypeReflectable(), 68, 197),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 68, 196),
+            const prefix0.VnumTypeReflectable(), 69, 198),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 69, 197),
+            const prefix0.VnumTypeReflectable(), 70, 199),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 70, 198),
+            const prefix0.VnumTypeReflectable(), 71, 200),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 71, 199),
+            const prefix0.VnumTypeReflectable(), 72, 201),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 72, 200),
+            const prefix0.VnumTypeReflectable(), 73, 202),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 73, 201),
+            const prefix0.VnumTypeReflectable(), 74, 203),
         r.MethodMirrorImpl(r'define', 128, 5, -1, 5, 5, null, const <int>[16],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 74, 203),
+            const prefix0.VnumTypeReflectable(), 75, 205),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 75, 204),
+            const prefix0.VnumTypeReflectable(), 76, 206),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 76, 205),
+            const prefix0.VnumTypeReflectable(), 77, 207),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 77, 206),
+            const prefix0.VnumTypeReflectable(), 78, 208),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 78, 207),
+            const prefix0.VnumTypeReflectable(), 79, 209),
         r.MethodMirrorImpl(r'listAll', 4325395, 6, -1, 11, 12, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'mapAll', 4325395, 6, -1, 21, 22, null,
@@ -950,11 +956,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'define', 128, 6, -1, 6, 6, null, const <int>[17],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 79, 211),
+            const prefix0.VnumTypeReflectable(), 80, 213),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 80, 212),
+            const prefix0.VnumTypeReflectable(), 81, 214),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 81, 213),
+            const prefix0.VnumTypeReflectable(), 82, 215),
         r.MethodMirrorImpl(r'define', 128, 7, -1, 7, 7, null, const <int>[18],
             const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'filteredList', 4325394, 8, -1, 23, 24, null,
@@ -962,19 +968,19 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.MethodMirrorImpl(r'[]', 131074, 8, -1, 13, 13, null, const <int>[20],
             const prefix0.VnumTypeReflectable(), null),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 82, 217),
+            const prefix0.VnumTypeReflectable(), 83, 219),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 83, 218),
+            const prefix0.VnumTypeReflectable(), 84, 220),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 84, 219),
+            const prefix0.VnumTypeReflectable(), 85, 221),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 85, 220),
+            const prefix0.VnumTypeReflectable(), 86, 222),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 86, 221),
+            const prefix0.VnumTypeReflectable(), 87, 223),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 87, 222),
+            const prefix0.VnumTypeReflectable(), 88, 224),
         r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 88, 223),
+            const prefix0.VnumTypeReflectable(), 89, 225),
         r.MethodMirrorImpl(r'listAll', 4325395, 8, -1, 25, 26, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'label', 131075, 8, -1, 13, 13, null, const <int>[],
@@ -983,10 +989,6 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), null),
         r.MethodMirrorImpl(r'', 1, 8, -1, 8, 8, null, const <int>[22],
             const prefix0.VnumTypeReflectable(), null),
-        r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 89, 228),
-        r.ImplicitSetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 89, 229),
         r.ImplicitGetterMirrorImpl(
             const prefix0.VnumTypeReflectable(), 90, 230),
         r.ImplicitSetterMirrorImpl(
@@ -999,6 +1001,10 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), 92, 234),
         r.ImplicitSetterMirrorImpl(
             const prefix0.VnumTypeReflectable(), 92, 235),
+        r.ImplicitGetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 93, 236),
+        r.ImplicitSetterMirrorImpl(
+            const prefix0.VnumTypeReflectable(), 93, 237),
         r.MethodMirrorImpl(r'define', 128, 9, -1, 9, 9, null, const <int>[23],
             const prefix0.VnumTypeReflectable(), null)
       ],
@@ -1006,7 +1012,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            93,
+            94,
             const prefix0.VnumTypeReflectable(),
             -1,
             13,
@@ -1017,18 +1023,6 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null),
         r.ParameterMirrorImpl(
             r'fromValue',
-            32774,
-            101,
-            const prefix0.VnumTypeReflectable(),
-            -1,
-            13,
-            13,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'value',
             32774,
             102,
             const prefix0.VnumTypeReflectable(),
@@ -1040,9 +1034,21 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
+            r'value',
+            32774,
+            103,
+            const prefix0.VnumTypeReflectable(),
+            -1,
+            13,
+            13,
+            null,
+            null,
+            null,
+            null),
+        r.ParameterMirrorImpl(
             r'o',
             16390,
-            103,
+            104,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -1054,7 +1060,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'invocation',
             32774,
-            105,
+            106,
             const prefix0.VnumTypeReflectable(),
             -1,
             27,
@@ -1066,23 +1072,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'object',
             16390,
-            110,
+            111,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'value',
-            6,
-            112,
-            const prefix0.VnumTypeReflectable(),
-            null,
-            -1,
-            -1,
             null,
             null,
             null,
@@ -1091,6 +1085,18 @@ final _data = <r.Reflectable, r.ReflectorData>{
             r'value',
             6,
             113,
+            const prefix0.VnumTypeReflectable(),
+            null,
+            -1,
+            -1,
+            null,
+            null,
+            null,
+            null),
+        r.ParameterMirrorImpl(
+            r'value',
+            6,
+            114,
             const prefix0.VnumTypeReflectable(),
             null,
             -1,
@@ -1102,7 +1108,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'baseType',
             16390,
-            113,
+            114,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -1114,7 +1120,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'json',
             16390,
-            114,
+            115,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -1126,7 +1132,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            125,
+            126,
             const prefix0.VnumTypeReflectable(),
             -1,
             28,
@@ -1138,7 +1144,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'id',
             32774,
-            126,
+            127,
             const prefix0.VnumTypeReflectable(),
             -1,
             29,
@@ -1149,18 +1155,6 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null),
         r.ParameterMirrorImpl(
             r'fromValue',
-            32774,
-            135,
-            const prefix0.VnumTypeReflectable(),
-            -1,
-            30,
-            30,
-            null,
-            null,
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'value',
             32774,
             136,
             const prefix0.VnumTypeReflectable(),
@@ -1172,9 +1166,21 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
+            r'value',
+            32774,
+            137,
+            const prefix0.VnumTypeReflectable(),
+            -1,
+            30,
+            30,
+            null,
+            null,
+            null,
+            null),
+        r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            153,
+            155,
             const prefix0.VnumTypeReflectable(),
             -1,
             31,
@@ -1186,7 +1192,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            154,
+            156,
             const prefix0.VnumTypeReflectable(),
             -1,
             31,
@@ -1198,7 +1204,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            202,
+            204,
             const prefix0.VnumTypeReflectable(),
             -1,
             10,
@@ -1210,7 +1216,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            210,
+            212,
             const prefix0.VnumTypeReflectable(),
             -1,
             32,
@@ -1222,7 +1228,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            214,
+            216,
             const prefix0.VnumTypeReflectable(),
             -1,
             33,
@@ -1234,7 +1240,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'includeCategoryList',
             2129926,
-            215,
+            217,
             const prefix0.VnumTypeReflectable(),
             -1,
             34,
@@ -1246,7 +1252,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'key',
             32774,
-            216,
+            218,
             const prefix0.VnumTypeReflectable(),
             -1,
             13,
@@ -1258,7 +1264,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            226,
+            228,
             const prefix0.VnumTypeReflectable(),
             -1,
             36,
@@ -1270,7 +1276,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'value',
             32774,
-            227,
+            229,
             const prefix0.VnumTypeReflectable(),
             -1,
             36,
@@ -1282,7 +1288,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'fromValue',
             32774,
-            236,
+            238,
             const prefix0.VnumTypeReflectable(),
             -1,
             37,
@@ -1294,7 +1300,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_deposit',
             32870,
-            229,
+            231,
             const prefix0.VnumTypeReflectable(),
             9,
             9,
@@ -1306,7 +1312,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_transfer',
             32870,
-            231,
+            233,
             const prefix0.VnumTypeReflectable(),
             9,
             9,
@@ -1318,7 +1324,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_withdraw',
             32870,
-            233,
+            235,
             const prefix0.VnumTypeReflectable(),
             9,
             9,
@@ -1330,7 +1336,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_vip',
             32870,
-            235,
+            237,
             const prefix0.VnumTypeReflectable(),
             9,
             9,
