@@ -40,7 +40,7 @@ class ServiceDisplay extends StatelessWidget {
                       color: themeColor.defaultPrimaryColor)),
               Text(localeStr.serviceRouteHint,
                   style: TextStyle(
-                      fontSize: FontSize.MESSAGE.value,
+                      fontSize: FontSize.SUBTITLE.value,
                       color: themeColor.defaultTextColor)),
             ],
           ),
@@ -95,7 +95,7 @@ class ServiceDisplay extends StatelessWidget {
                     children: [
                       Text('Zalo QRCODE',
                           style: TextStyle(
-                              fontSize: FontSize.MESSAGE.value,
+                              fontSize: FontSize.SUBTITLE.value,
                               color: themeColor.defaultTextColor)),
                       Container(
                           padding: const EdgeInsets.symmetric(vertical: 18.0),
@@ -110,7 +110,7 @@ class ServiceDisplay extends StatelessWidget {
                     children: [
                       Text('App QRCODE',
                           style: TextStyle(
-                              fontSize: FontSize.MESSAGE.value,
+                              fontSize: FontSize.SUBTITLE.value,
                               color: themeColor.defaultTextColor)),
                       Container(
                           padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -127,7 +127,7 @@ class ServiceDisplay extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
               child: Text(localeStr.serviceButtonContact,
-                  style: TextStyle(fontSize: FontSize.MESSAGE.value)),
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value)),
               onPressed: () {
                 // AppNavigator.navigateTo(RoutePage.serviceWeb,
                 //     arg: WebRouteArguments(
@@ -187,7 +187,7 @@ class ServiceDisplay extends StatelessWidget {
                 RaisedButton(
                   color: themeColor.defaultLayeredBackgroundColor,
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: themeColor.defaultMarqueeBarColor),
+                    side: BorderSide(color: themeColor.defaultBorderColor),
                     borderRadius: new BorderRadius.circular(4.0),
                   ),
                   child: RichText(
@@ -200,9 +200,9 @@ class ServiceDisplay extends StatelessWidget {
                           : localeStr.btnCopy,
                       style: TextStyle(
                         fontSize: (Global.lang == 'vi')
-                            ? FontSize.SUBTITLE.value
-                            : FontSize.MESSAGE.value,
-                        color: themeColor.defaultMarqueeBarColor,
+                            ? FontSize.MESSAGE.value
+                            : FontSize.SUBTITLE.value,
+                        color: themeColor.defaultTextColor,
                       ),
                     ),
                   ),

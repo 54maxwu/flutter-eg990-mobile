@@ -40,8 +40,8 @@ class PromoListItem extends StatelessWidget {
               bottom: 10.0,
               child: Container(
                 constraints: BoxConstraints(
-                  maxHeight: FontSize.SUBTITLE.value * 1.5,
-                  minWidth: FontSize.SUBTITLE.value * 13,
+                  maxHeight: FontSize.MESSAGE.value * 1.5,
+                  minWidth: FontSize.MESSAGE.value * 13,
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(

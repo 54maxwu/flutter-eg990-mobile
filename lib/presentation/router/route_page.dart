@@ -72,6 +72,26 @@ class RoutePage extends Vnum<RouteInfo> {
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
 
+  ///
+  /// SHORTCUTS
+  ///
+  // static const RoutePage login = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.LOGIN,
+  //   route: MainScreenRoutes.loginRoute,
+  //   appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+  //   navBarType: MainScreenNavBarTypes.HIDE,
+  // ));
+
+  ///
+  /// MEMBER
+  ///
+  static const RoutePage about_us = const RoutePage.define(RouteInfo(
+    id: RouteEnum.ABOUT_US,
+    route: MainScreenRoutes.aboutRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
+
   /// Used for defining cases
   const RoutePage.define(RouteInfo fromValue) : super.define(fromValue);
 

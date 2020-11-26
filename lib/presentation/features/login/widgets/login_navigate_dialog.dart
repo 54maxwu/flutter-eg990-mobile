@@ -47,7 +47,7 @@ class LoginNavigateDialog extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Text(
                   localeStr.messageWelcomeUser(username),
-                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                  style: TextStyle(fontSize: FontSize.MESSAGE.value),
                 ),
               ),
             ],

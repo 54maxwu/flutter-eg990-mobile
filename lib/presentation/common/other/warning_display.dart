@@ -60,7 +60,7 @@ class WarningDisplay extends StatelessWidget {
                   text: (isFailureMsg) ? message.split('-')[0].trim() : message,
                   style: TextStyle(
                     fontSize: (largerText)
-                        ? FontSize.SUBTITLE.value
+                        ? FontSize.MESSAGE.value
                         : (smallerText)
                             ? FontSize.SMALLER.value
                             : FontSize.NORMAL.value,

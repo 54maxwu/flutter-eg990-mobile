@@ -60,7 +60,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                         (name.isNotEmpty && widget.loggedIn) ? name : '您還未登陸',
                         style: TextStyle(
                           color: themeColor.defaultTextColor,
-                          fontSize: FontSize.SUBTITLE.value,
+                          fontSize: FontSize.MESSAGE.value,
                         ),
                         minFontSize: FontSize.SMALLER.value,
                         maxFontSize: FontSize.TITLE.value,
@@ -80,7 +80,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                           fontSize: FontSize.NORMAL.value,
                         ),
                         minFontSize: FontSize.SMALL.value,
-                        maxFontSize: FontSize.SUBTITLE.value,
+                        maxFontSize: FontSize.MESSAGE.value,
                       );
                     },
                   ),
@@ -143,7 +143,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               ),
               maxLines: 1,
               minFontSize: FontSize.SMALLER.value,
-              maxFontSize: FontSize.SUBTITLE.value,
+              maxFontSize: FontSize.MESSAGE.value,
             ),
           ],
         ),

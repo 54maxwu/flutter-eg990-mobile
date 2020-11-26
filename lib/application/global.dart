@@ -63,7 +63,7 @@ class Global {
 
   /// Other static value
   static const double APP_MENU_HEIGHT = kToolbarHeight - 8.0;
-  static const double APP_NAV_HEIGHT = kToolbarHeight + 12.0;
+  static const double APP_NAV_HEIGHT = kToolbarHeight + 6.0;
   static const double APP_BARS_HEIGHT = Global.APP_MENU_HEIGHT + APP_NAV_HEIGHT;
   static const double TEST_DEVICE_HEIGHT = 785.45;
   static const double TEST_DEVICE_WIDTH = 392.72;

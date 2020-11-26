@@ -14,23 +14,22 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-
+  
   static S current;
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       S.current = S();
-
+      
       return S.current;
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -43,6 +42,16 @@ class S {
       name: 'title',
       desc: 'Yabo Demo',
       args: [],
+    );
+  }
+
+  /// `Version {value}`
+  String appVersion(Object value) {
+    return Intl.message(
+      'Version $value',
+      name: 'appVersion',
+      desc: '',
+      args: [value],
     );
   }
 
@@ -106,11 +115,121 @@ class S {
     );
   }
 
-  /// `Store`
+  /// `VIP`
+  String get pageTitleVipAbout {
+    return Intl.message(
+      'VIP',
+      name: 'pageTitleVipAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mall`
   String get pageTitleStore {
     return Intl.message(
-      'Store',
+      'Mall',
       name: 'pageTitleStore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exchange Record`
+  String get pageTitleExchangeRecord {
+    return Intl.message(
+      'Exchange Record',
+      name: 'pageTitleExchangeRecord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gift Exchange, Bonus`
+  String get pageHintExchangeRecord {
+    return Intl.message(
+      'Gift Exchange, Bonus',
+      name: 'pageHintExchangeRecord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help Center`
+  String get pageTitleHelpCenter {
+    return Intl.message(
+      'Help Center',
+      name: 'pageTitleHelpCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Having problems? See here`
+  String get pageHintHelpCenter {
+    return Intl.message(
+      'Having problems? See here',
+      name: 'pageHintHelpCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite`
+  String get pageTitleInvite {
+    return Intl.message(
+      'Invite',
+      name: 'pageTitleInvite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite a friend and get bonus`
+  String get pageHintInvite {
+    return Intl.message(
+      'Invite a friend and get bonus',
+      name: 'pageHintInvite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join Us`
+  String get pageTitleJoinUs {
+    return Intl.message(
+      'Join Us',
+      name: 'pageTitleJoinUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Looking for partners`
+  String get pageHintJoinUs {
+    return Intl.message(
+      'Looking for partners',
+      name: 'pageHintJoinUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get pageTitleAboutUs {
+    return Intl.message(
+      'About Us',
+      name: 'pageTitleAboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to our website`
+  String get pageHintWebsite {
+    return Intl.message(
+      'Go to our website',
+      name: 'pageHintWebsite',
       desc: '',
       args: [],
     );
@@ -3987,8 +4106,7 @@ class S {
   }
 
   /// `Range: {num} ~ {num2} (Step:{num3})`
-  String depositPaymentEditTitleAmountHintRangeStep(
-      Object num, Object num2, Object num3) {
+  String depositPaymentEditTitleAmountHintRangeStep(Object num, Object num2, Object num3) {
     return Intl.message(
       'Range: $num ~ $num2 (Step:$num3)',
       name: 'depositPaymentEditTitleAmountHintRangeStep',

@@ -64,7 +64,7 @@ class LoginFormWidgetState extends State<LoginFormWidget>
             hint: localeStr.hintAccountInput,
             prefixIconData: Icons.person,
             prefixText: localeStr.registerFieldTitleAccount,
-            prefixTextSize: FontSize.SUBTITLE.value,
+            prefixTextSize: FontSize.MESSAGE.value,
             minusHeight: 16.0,
             maxInputLength: InputLimit.ACCOUNT_MAX,
             errorMsg: localeStr.messageInvalidAccount,
@@ -79,7 +79,7 @@ class LoginFormWidgetState extends State<LoginFormWidget>
             hint: localeStr.hintPasswordInput,
             prefixIconData: Icons.lock,
             prefixText: localeStr.registerFieldTitlePassword,
-            prefixTextSize: FontSize.SUBTITLE.value,
+            prefixTextSize: FontSize.MESSAGE.value,
             minusHeight: 16.0,
             maxInputLength: InputLimit.PASSWORD_MAX,
             errorMsg: localeStr.messageInvalidPassword,
@@ -96,7 +96,7 @@ class LoginFormWidgetState extends State<LoginFormWidget>
             child: Text(
               localeStr.btnLogin,
               style: TextStyle(
-                fontSize: FontSize.SUBTITLE.value,
+                fontSize: FontSize.MESSAGE.value,
                 color: themeColor.secondaryTextColor1,
               ),
             ),

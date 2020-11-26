@@ -26,7 +26,7 @@ class GameGridItem extends StatelessWidget {
               ),
             ),
             Container(
-              height: FontSize.SUBTITLE.value * 2.75,
+              height: FontSize.MESSAGE.value * 2.75,
               padding: const EdgeInsets.fromLTRB(8.0, 4.0, 4.0, 4.0),
               alignment: Alignment.centerLeft,
               child: AutoSizeText.rich(

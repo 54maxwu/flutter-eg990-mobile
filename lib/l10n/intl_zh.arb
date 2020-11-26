@@ -7,6 +7,15 @@
     "type": "text",
     "placeholders": {}
   },
+  "appVersion": "版本号 {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
+  },
   "pageTitleHome": "首页",
   "@pageTitleHome": {
     "type": "text"
@@ -31,8 +40,52 @@
   "@pageTitleVip": {
     "type": "text"
   },
-  "pageTitleStore": "商城",
+  "pageTitleVipAbout": "VIP特权",
+  "@pageTitleVipAbout": {
+    "type": "text"
+  },
+  "pageTitleStore": "亚博商城",
   "@pageTitleStore": {
+    "type": "text"
+  },
+  "pageTitleExchangeRecord": "兑奖纪录",
+  "@pageTitleExchangeRecord": {
+    "type": "text"
+  },
+  "pageHintExchangeRecord": "奖品兑换、红利记录",
+  "@pageHintExchangeRecord": {
+    "type": "text"
+  },
+  "pageTitleHelpCenter": "帮助中心",
+  "@pageTitleHelpCenter": {
+    "type": "text"
+  },
+  "pageHintHelpCenter": "存取款、投注有疑问，看这里",
+  "@pageHintHelpCenter": {
+    "type": "text"
+  },
+  "pageTitleInvite": "邀请好友",
+  "@pageTitleInvite": {
+    "type": "text"
+  },
+  "pageHintInvite": "邀请好友瓜分千万现金",
+  "@pageHintInvite": {
+    "type": "text"
+  },
+  "pageTitleJoinUs": "加入我们",
+  "@pageTitleJoinUs": {
+    "type": "text"
+  },
+  "pageHintJoinUs": "合营计划",
+  "@pageHintJoinUs": {
+    "type": "text"
+  },
+  "pageTitleAboutUs": "关于我们",
+  "@pageTitleAboutUs": {
+    "type": "text"
+  },
+  "pageHintWebsite": "开启网站页面",
+  "@pageHintWebsite": {
     "type": "text"
   },
   "pageTitleSign": "签到",
@@ -441,7 +494,7 @@
   "@messageWelcomeHint": {
     "type": "text"
   },
-  "messageLoginHint": "请先登入/注册",
+  "messageLoginHint": "点击登录/注册",
   "@messageWelcomeHintShort": {
     "type": "text"
   },

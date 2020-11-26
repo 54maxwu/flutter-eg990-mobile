@@ -7,6 +7,15 @@
     "type": "text",
     "placeholders": {}
   },
+  "appVersion": "Version {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
+  },
   "pageTitleHome": "Home",
   "@pageTitleHome": {
     "type": "text"
@@ -31,8 +40,52 @@
   "@pageTitleVip": {
     "type": "text"
   },
-  "pageTitleStore": "Store",
+  "pageTitleVipAbout": "VIP",
+  "@pageTitleVipAbout": {
+    "type": "text"
+  },
+  "pageTitleStore": "Mall",
   "@pageTitleStore": {
+    "type": "text"
+  },
+  "pageTitleExchangeRecord": "Exchange Record",
+  "@pageTitleExchangeRecord": {
+    "type": "text"
+  },
+  "pageHintExchangeRecord": "Gift Exchange, Bonus",
+  "@pageHintExchangeRecord": {
+    "type": "text"
+  },
+  "pageTitleHelpCenter": "Help Center",
+  "@pageTitleHelpCenter": {
+    "type": "text"
+  },
+  "pageHintHelpCenter": "Having problems? See here",
+  "@pageHintHelpCenter": {
+    "type": "text"
+  },
+  "pageTitleInvite": "Invite",
+  "@pageTitleInvite": {
+    "type": "text"
+  },
+  "pageHintInvite": "Invite a friend and get bonus",
+  "@pageHintInvite": {
+    "type": "text"
+  },
+  "pageTitleJoinUs": "Join Us",
+  "@pageTitleJoinUs": {
+    "type": "text"
+  },
+  "pageHintJoinUs": "Looking for partners",
+  "@pageHintJoinUs": {
+    "type": "text"
+  },
+  "pageTitleAboutUs": "About Us",
+  "@pageTitleAboutUs": {
+    "type": "text"
+  },
+  "pageHintWebsite": "Go to our website",
+  "@pageHintWebsite": {
     "type": "text"
   },
   "pageTitleSign": "Sign in",

@@ -31,6 +31,10 @@
   "@pageTitleVip": {
     "type": "text"
   },
+  "pageTitleVipAbout": "สิทธิพิเศษระดับ VIP",
+  "@pageTitleVipAbout": {
+    "type": "text"
+  },
   "pageTitleStore": "ร้านค้า",
   "@pageTitleStore": {
     "type": "text"

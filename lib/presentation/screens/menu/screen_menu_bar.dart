@@ -22,7 +22,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
   MainScreenAppBarTypes _barType;
   AppBarActionType _actionType;
 
-  bool get showBackAction => _barType.index > 1;
+  bool get showBackAction => _barType.index > 2;
 
   @override
   void didUpdateWidget(ScreenMenuBar oldWidget) {
@@ -90,6 +90,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       /// App bar Icon
       titleSpacing: 0,
       centerTitle: false,
+      elevation: 0.0,
       title: (_barType == MainScreenAppBarTypes.LOGO_AND_MESSAGE_CENTER)
           ? Container(
               width: Global.device.width * 0.2,
@@ -109,7 +110,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
             }),
             maxLines: 1,
             minFontSize: FontSize.NORMAL.value,
-            maxFontSize: FontSize.MESSAGE.value,
+            maxFontSize: FontSize.SUBTITLE.value,
             textAlign: TextAlign.center,
             overflow: TextOverflow.visible,
           ),

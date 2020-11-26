@@ -52,12 +52,13 @@ class _PromoDisplayState extends State<PromoDisplay>
       backgroundColor: themeColor.defaultLayeredBackgroundColor,
       appBar: AppBar(
         leadingWidth: 0.0,
+        elevation: 0.0,
         title: TabBar(
           key: _barKey,
           controller: _tabController,
           unselectedLabelColor: themeColor.defaultHintColor,
           labelColor: themeColor.defaultTextColor,
-          labelStyle: TextStyle(fontSize: FontSize.MESSAGE.value),
+          labelStyle: TextStyle(fontSize: FontSize.SUBTITLE.value),
           indicatorColor: themeColor.defaultAccentColor,
           indicatorSize: TabBarIndicatorSize.label,
           tabs: List.generate(_categories.length,

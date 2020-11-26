@@ -205,7 +205,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           ? widget.fieldTextSize
           : (widget.readOnly)
               ? FontSize.NORMAL.value
-              : FontSize.SUBTITLE.value,
+              : FontSize.MESSAGE.value,
       color: textColor,
       decorationColor: textColor,
     );

@@ -34,26 +34,26 @@ const $HttpFailure = _$HttpFailureTearOff();
 /// @nodoc
 mixin _$HttpFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result invalidToken(),
-    @required Result serverError(String code, String msg),
+  TResult when<TResult extends Object>({
+    @required TResult invalidToken(),
+    @required TResult serverError(String code, String msg),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result invalidToken(),
-    Result serverError(String code, String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidToken(),
+    TResult serverError(String code, String msg),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result invalidToken(InvalidToken value),
-    @required Result serverError(ServerError value),
+  TResult map<TResult extends Object>({
+    @required TResult invalidToken(InvalidToken value),
+    @required TResult serverError(ServerError value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result invalidToken(InvalidToken value),
-    Result serverError(ServerError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidToken(InvalidToken value),
+    TResult serverError(ServerError value),
+    @required TResult orElse(),
   });
 }
 
@@ -110,9 +110,9 @@ class _$InvalidToken implements InvalidToken {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result invalidToken(),
-    @required Result serverError(String code, String msg),
+  TResult when<TResult extends Object>({
+    @required TResult invalidToken(),
+    @required TResult serverError(String code, String msg),
   }) {
     assert(invalidToken != null);
     assert(serverError != null);
@@ -121,10 +121,10 @@ class _$InvalidToken implements InvalidToken {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result invalidToken(),
-    Result serverError(String code, String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidToken(),
+    TResult serverError(String code, String msg),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidToken != null) {
@@ -135,9 +135,9 @@ class _$InvalidToken implements InvalidToken {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result invalidToken(InvalidToken value),
-    @required Result serverError(ServerError value),
+  TResult map<TResult extends Object>({
+    @required TResult invalidToken(InvalidToken value),
+    @required TResult serverError(ServerError value),
   }) {
     assert(invalidToken != null);
     assert(serverError != null);
@@ -146,10 +146,10 @@ class _$InvalidToken implements InvalidToken {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result invalidToken(InvalidToken value),
-    Result serverError(ServerError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidToken(InvalidToken value),
+    TResult serverError(ServerError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidToken != null) {
@@ -231,9 +231,9 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result invalidToken(),
-    @required Result serverError(String code, String msg),
+  TResult when<TResult extends Object>({
+    @required TResult invalidToken(),
+    @required TResult serverError(String code, String msg),
   }) {
     assert(invalidToken != null);
     assert(serverError != null);
@@ -242,10 +242,10 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result invalidToken(),
-    Result serverError(String code, String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidToken(),
+    TResult serverError(String code, String msg),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -256,9 +256,9 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result invalidToken(InvalidToken value),
-    @required Result serverError(ServerError value),
+  TResult map<TResult extends Object>({
+    @required TResult invalidToken(InvalidToken value),
+    @required TResult serverError(ServerError value),
   }) {
     assert(invalidToken != null);
     assert(serverError != null);
@@ -267,10 +267,10 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result invalidToken(InvalidToken value),
-    Result serverError(ServerError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidToken(InvalidToken value),
+    TResult serverError(ServerError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -322,26 +322,26 @@ mixin _$DataFailure<T> {
   dynamic get data;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result decodeError(T type, dynamic data),
-    @required Result invalidResponse(T type, dynamic data),
+  TResult when<TResult extends Object>({
+    @required TResult decodeError(T type, dynamic data),
+    @required TResult invalidResponse(T type, dynamic data),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result decodeError(T type, dynamic data),
-    Result invalidResponse(T type, dynamic data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult decodeError(T type, dynamic data),
+    TResult invalidResponse(T type, dynamic data),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result decodeError(DataDecodeError<T> value),
-    @required Result invalidResponse(InvalidResponse<T> value),
+  TResult map<TResult extends Object>({
+    @required TResult decodeError(DataDecodeError<T> value),
+    @required TResult invalidResponse(InvalidResponse<T> value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result decodeError(DataDecodeError<T> value),
-    Result invalidResponse(InvalidResponse<T> value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult decodeError(DataDecodeError<T> value),
+    TResult invalidResponse(InvalidResponse<T> value),
+    @required TResult orElse(),
   });
 
   $DataFailureCopyWith<T, DataFailure<T>> get copyWith;
@@ -447,9 +447,9 @@ class _$DataDecodeError<T> implements DataDecodeError<T> {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result decodeError(T type, dynamic data),
-    @required Result invalidResponse(T type, dynamic data),
+  TResult when<TResult extends Object>({
+    @required TResult decodeError(T type, dynamic data),
+    @required TResult invalidResponse(T type, dynamic data),
   }) {
     assert(decodeError != null);
     assert(invalidResponse != null);
@@ -458,10 +458,10 @@ class _$DataDecodeError<T> implements DataDecodeError<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result decodeError(T type, dynamic data),
-    Result invalidResponse(T type, dynamic data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult decodeError(T type, dynamic data),
+    TResult invalidResponse(T type, dynamic data),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (decodeError != null) {
@@ -472,9 +472,9 @@ class _$DataDecodeError<T> implements DataDecodeError<T> {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result decodeError(DataDecodeError<T> value),
-    @required Result invalidResponse(InvalidResponse<T> value),
+  TResult map<TResult extends Object>({
+    @required TResult decodeError(DataDecodeError<T> value),
+    @required TResult invalidResponse(InvalidResponse<T> value),
   }) {
     assert(decodeError != null);
     assert(invalidResponse != null);
@@ -483,10 +483,10 @@ class _$DataDecodeError<T> implements DataDecodeError<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result decodeError(DataDecodeError<T> value),
-    Result invalidResponse(InvalidResponse<T> value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult decodeError(DataDecodeError<T> value),
+    TResult invalidResponse(InvalidResponse<T> value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (decodeError != null) {
@@ -579,9 +579,9 @@ class _$InvalidResponse<T> implements InvalidResponse<T> {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result decodeError(T type, dynamic data),
-    @required Result invalidResponse(T type, dynamic data),
+  TResult when<TResult extends Object>({
+    @required TResult decodeError(T type, dynamic data),
+    @required TResult invalidResponse(T type, dynamic data),
   }) {
     assert(decodeError != null);
     assert(invalidResponse != null);
@@ -590,10 +590,10 @@ class _$InvalidResponse<T> implements InvalidResponse<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result decodeError(T type, dynamic data),
-    Result invalidResponse(T type, dynamic data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult decodeError(T type, dynamic data),
+    TResult invalidResponse(T type, dynamic data),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidResponse != null) {
@@ -604,9 +604,9 @@ class _$InvalidResponse<T> implements InvalidResponse<T> {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result decodeError(DataDecodeError<T> value),
-    @required Result invalidResponse(InvalidResponse<T> value),
+  TResult map<TResult extends Object>({
+    @required TResult decodeError(DataDecodeError<T> value),
+    @required TResult invalidResponse(InvalidResponse<T> value),
   }) {
     assert(decodeError != null);
     assert(invalidResponse != null);
@@ -615,10 +615,10 @@ class _$InvalidResponse<T> implements InvalidResponse<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result decodeError(DataDecodeError<T> value),
-    Result invalidResponse(InvalidResponse<T> value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult decodeError(DataDecodeError<T> value),
+    TResult invalidResponse(InvalidResponse<T> value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidResponse != null) {
@@ -661,22 +661,22 @@ mixin _$ValueFailure<T> {
   T get data;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result invalidId(T data),
+  TResult when<TResult extends Object>({
+    @required TResult invalidId(T data),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result invalidId(T data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidId(T data),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result invalidId(InvalidUserId<T> value),
+  TResult map<TResult extends Object>({
+    @required TResult invalidId(InvalidUserId<T> value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result invalidId(InvalidUserId<T> value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidId(InvalidUserId<T> value),
+    @required TResult orElse(),
   });
 
   $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith;
@@ -770,8 +770,8 @@ class _$InvalidUserId<T> implements InvalidUserId<T> {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result invalidId(T data),
+  TResult when<TResult extends Object>({
+    @required TResult invalidId(T data),
   }) {
     assert(invalidId != null);
     return invalidId(data);
@@ -779,9 +779,9 @@ class _$InvalidUserId<T> implements InvalidUserId<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result invalidId(T data),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidId(T data),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidId != null) {
@@ -792,8 +792,8 @@ class _$InvalidUserId<T> implements InvalidUserId<T> {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result invalidId(InvalidUserId<T> value),
+  TResult map<TResult extends Object>({
+    @required TResult invalidId(InvalidUserId<T> value),
   }) {
     assert(invalidId != null);
     return invalidId(this);
@@ -801,9 +801,9 @@ class _$InvalidUserId<T> implements InvalidUserId<T> {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result invalidId(InvalidUserId<T> value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidId(InvalidUserId<T> value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidId != null) {

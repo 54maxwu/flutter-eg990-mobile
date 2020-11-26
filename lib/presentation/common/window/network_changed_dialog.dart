@@ -30,7 +30,7 @@ class NetworkChangedDialog extends StatelessWidget {
                     child: Text(
                       localeStr.networkChangedHint,
                       style: TextStyle(
-                          height: 1.4, fontSize: FontSize.SUBTITLE.value),
+                          height: 1.4, fontSize: FontSize.MESSAGE.value),
                       maxLines: 4,
                       overflow: TextOverflow.visible,
                     ),

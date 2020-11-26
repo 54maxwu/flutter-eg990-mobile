@@ -6,7 +6,6 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
@@ -21,7 +20,6 @@ class DioApiService {
   Dio _dio;
   BaseOptions _options;
   CancelToken _cancelToken = new CancelToken();
-  DioCacheManager _cacheManager;
   static const TAG = 'DioApiService';
 
   static DioApiService getInstance() {
@@ -33,14 +31,9 @@ class DioApiService {
 
   DioApiService() {
     _options = createOptions(Global.CURRENT_BASE);
-    _cacheManager = DioCacheManager(CacheConfig(
-      baseUrl: Global.CURRENT_BASE,
-      skipDiskCache: true,
-    ));
     _dio = new Dio(_options);
     _dio.transformer = FlutterTransformer(); // replace dio default transformer
     _dio.interceptors.add(DioLoggerInterceptor());
-    _dio.interceptors.add(_cacheManager.interceptor);
 //    _dio.interceptors.add(createDebugInterceptor());
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
@@ -237,14 +230,6 @@ class DioApiService {
       token.cancel("cancelled");
     } on DioError catch (e) {
       throw getErrorType(e);
-    }
-  }
-
-  void clearCache({String api}) {
-    if (api == null) {
-      _cacheManager?.clearAll();
-    } else {
-      _cacheManager.deleteByPrimaryKey(api);
     }
   }
 

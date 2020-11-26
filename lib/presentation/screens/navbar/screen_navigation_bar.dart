@@ -88,6 +88,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       maintainSize: false,
       maintainState: true,
       child: Container(
+        height: Global.APP_NAV_HEIGHT,
         decoration: BoxDecoration(
           boxShadow: ThemeInterface.layerShadowLight,
           borderRadius: BorderRadius.only(

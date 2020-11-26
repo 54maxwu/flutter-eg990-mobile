@@ -37,33 +37,33 @@ const $AuthFailure = _$AuthFailureTearOff();
 /// @nodoc
 mixin _$AuthFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result serverError(),
-    @required Result dataFormatError(),
-    @required Result invalidUsernameAndPasswordCombination(),
+  TResult when<TResult extends Object>({
+    @required TResult serverError(),
+    @required TResult dataFormatError(),
+    @required TResult invalidUsernameAndPasswordCombination(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result serverError(),
-    Result dataFormatError(),
-    Result invalidUsernameAndPasswordCombination(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult serverError(),
+    TResult dataFormatError(),
+    TResult invalidUsernameAndPasswordCombination(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result serverError(AuthServerError value),
-    @required Result dataFormatError(AuthDataFormatError value),
+  TResult map<TResult extends Object>({
+    @required TResult serverError(AuthServerError value),
+    @required TResult dataFormatError(AuthDataFormatError value),
     @required
-        Result invalidUsernameAndPasswordCombination(
+        TResult invalidUsernameAndPasswordCombination(
             InvalidUsernameAndPasswordCombination value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result serverError(AuthServerError value),
-    Result dataFormatError(AuthDataFormatError value),
-    Result invalidUsernameAndPasswordCombination(
+  TResult maybeMap<TResult extends Object>({
+    TResult serverError(AuthServerError value),
+    TResult dataFormatError(AuthDataFormatError value),
+    TResult invalidUsernameAndPasswordCombination(
         InvalidUsernameAndPasswordCombination value),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
 }
 
@@ -121,10 +121,10 @@ class _$AuthServerError implements AuthServerError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result serverError(),
-    @required Result dataFormatError(),
-    @required Result invalidUsernameAndPasswordCombination(),
+  TResult when<TResult extends Object>({
+    @required TResult serverError(),
+    @required TResult dataFormatError(),
+    @required TResult invalidUsernameAndPasswordCombination(),
   }) {
     assert(serverError != null);
     assert(dataFormatError != null);
@@ -134,11 +134,11 @@ class _$AuthServerError implements AuthServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result serverError(),
-    Result dataFormatError(),
-    Result invalidUsernameAndPasswordCombination(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult serverError(),
+    TResult dataFormatError(),
+    TResult invalidUsernameAndPasswordCombination(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -149,11 +149,11 @@ class _$AuthServerError implements AuthServerError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result serverError(AuthServerError value),
-    @required Result dataFormatError(AuthDataFormatError value),
+  TResult map<TResult extends Object>({
+    @required TResult serverError(AuthServerError value),
+    @required TResult dataFormatError(AuthDataFormatError value),
     @required
-        Result invalidUsernameAndPasswordCombination(
+        TResult invalidUsernameAndPasswordCombination(
             InvalidUsernameAndPasswordCombination value),
   }) {
     assert(serverError != null);
@@ -164,12 +164,12 @@ class _$AuthServerError implements AuthServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result serverError(AuthServerError value),
-    Result dataFormatError(AuthDataFormatError value),
-    Result invalidUsernameAndPasswordCombination(
+  TResult maybeMap<TResult extends Object>({
+    TResult serverError(AuthServerError value),
+    TResult dataFormatError(AuthDataFormatError value),
+    TResult invalidUsernameAndPasswordCombination(
         InvalidUsernameAndPasswordCombination value),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -221,10 +221,10 @@ class _$AuthDataFormatError implements AuthDataFormatError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result serverError(),
-    @required Result dataFormatError(),
-    @required Result invalidUsernameAndPasswordCombination(),
+  TResult when<TResult extends Object>({
+    @required TResult serverError(),
+    @required TResult dataFormatError(),
+    @required TResult invalidUsernameAndPasswordCombination(),
   }) {
     assert(serverError != null);
     assert(dataFormatError != null);
@@ -234,11 +234,11 @@ class _$AuthDataFormatError implements AuthDataFormatError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result serverError(),
-    Result dataFormatError(),
-    Result invalidUsernameAndPasswordCombination(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult serverError(),
+    TResult dataFormatError(),
+    TResult invalidUsernameAndPasswordCombination(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (dataFormatError != null) {
@@ -249,11 +249,11 @@ class _$AuthDataFormatError implements AuthDataFormatError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result serverError(AuthServerError value),
-    @required Result dataFormatError(AuthDataFormatError value),
+  TResult map<TResult extends Object>({
+    @required TResult serverError(AuthServerError value),
+    @required TResult dataFormatError(AuthDataFormatError value),
     @required
-        Result invalidUsernameAndPasswordCombination(
+        TResult invalidUsernameAndPasswordCombination(
             InvalidUsernameAndPasswordCombination value),
   }) {
     assert(serverError != null);
@@ -264,12 +264,12 @@ class _$AuthDataFormatError implements AuthDataFormatError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result serverError(AuthServerError value),
-    Result dataFormatError(AuthDataFormatError value),
-    Result invalidUsernameAndPasswordCombination(
+  TResult maybeMap<TResult extends Object>({
+    TResult serverError(AuthServerError value),
+    TResult dataFormatError(AuthDataFormatError value),
+    TResult invalidUsernameAndPasswordCombination(
         InvalidUsernameAndPasswordCombination value),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (dataFormatError != null) {
@@ -326,10 +326,10 @@ class _$InvalidUsernameAndPasswordCombination
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result serverError(),
-    @required Result dataFormatError(),
-    @required Result invalidUsernameAndPasswordCombination(),
+  TResult when<TResult extends Object>({
+    @required TResult serverError(),
+    @required TResult dataFormatError(),
+    @required TResult invalidUsernameAndPasswordCombination(),
   }) {
     assert(serverError != null);
     assert(dataFormatError != null);
@@ -339,11 +339,11 @@ class _$InvalidUsernameAndPasswordCombination
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result serverError(),
-    Result dataFormatError(),
-    Result invalidUsernameAndPasswordCombination(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult serverError(),
+    TResult dataFormatError(),
+    TResult invalidUsernameAndPasswordCombination(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidUsernameAndPasswordCombination != null) {
@@ -354,11 +354,11 @@ class _$InvalidUsernameAndPasswordCombination
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result serverError(AuthServerError value),
-    @required Result dataFormatError(AuthDataFormatError value),
+  TResult map<TResult extends Object>({
+    @required TResult serverError(AuthServerError value),
+    @required TResult dataFormatError(AuthDataFormatError value),
     @required
-        Result invalidUsernameAndPasswordCombination(
+        TResult invalidUsernameAndPasswordCombination(
             InvalidUsernameAndPasswordCombination value),
   }) {
     assert(serverError != null);
@@ -369,12 +369,12 @@ class _$InvalidUsernameAndPasswordCombination
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result serverError(AuthServerError value),
-    Result dataFormatError(AuthDataFormatError value),
-    Result invalidUsernameAndPasswordCombination(
+  TResult maybeMap<TResult extends Object>({
+    TResult serverError(AuthServerError value),
+    TResult dataFormatError(AuthDataFormatError value),
+    TResult invalidUsernameAndPasswordCombination(
         InvalidUsernameAndPasswordCombination value),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidUsernameAndPasswordCombination != null) {

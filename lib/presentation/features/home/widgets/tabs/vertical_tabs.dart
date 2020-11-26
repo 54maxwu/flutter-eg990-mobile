@@ -138,7 +138,7 @@ class _VerticalTabsState extends State<VerticalTabs>
                                                 ? widget.selectedTabTextStyle ??
                                                     TextStyle(
                                                         fontSize: FontSize
-                                                            .SUBTITLE.value)
+                                                            .MESSAGE.value)
                                                 : widget.tabTextStyle ??
                                                     TextStyle(
                                                         fontSize: FontSize

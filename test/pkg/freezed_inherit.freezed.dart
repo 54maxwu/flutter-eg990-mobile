@@ -57,26 +57,26 @@ mixin _$FreezedParent {
   String get credit;
 
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
   $FreezedParentCopyWith<FreezedParent> get copyWith;
@@ -186,9 +186,9 @@ class _$FreezedParentData extends FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   }) {
     assert($default != null);
     assert(child != null);
@@ -197,10 +197,10 @@ class _$FreezedParentData extends FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -211,9 +211,9 @@ class _$FreezedParentData extends FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   }) {
     assert($default != null);
     assert(child != null);
@@ -222,10 +222,10 @@ class _$FreezedParentData extends FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -338,9 +338,9 @@ class _$FreezedChildData extends FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   }) {
     assert($default != null);
     assert(child != null);
@@ -349,10 +349,10 @@ class _$FreezedChildData extends FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (child != null) {
@@ -363,9 +363,9 @@ class _$FreezedChildData extends FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   }) {
     assert($default != null);
     assert(child != null);
@@ -374,10 +374,10 @@ class _$FreezedChildData extends FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (child != null) {

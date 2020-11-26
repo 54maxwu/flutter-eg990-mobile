@@ -142,12 +142,12 @@ class _TypesGridWidgetState extends State<TypesGridWidget> {
                         color: (_clicked == index)
                             ? themeColor.defaultTabSelectedTextColor
                             : themeColor.defaultTabSelectedColor,
-                        fontSize: FontSize.SUBTITLE.value,
+                        fontSize: FontSize.MESSAGE.value,
                       ),
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       minFontSize: FontSize.SMALL.value - 4.0,
-                      maxFontSize: FontSize.SUBTITLE.value,
+                      maxFontSize: FontSize.MESSAGE.value,
                     ),
                   ),
                 ],

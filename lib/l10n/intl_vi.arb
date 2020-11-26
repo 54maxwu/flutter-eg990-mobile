@@ -31,6 +31,10 @@
   "@pageTitleVip": {
     "type": "text"
   },
+  "pageTitleVipAbout": "Đặc quyền VIP",
+  "@pageTitleVipAbout": {
+    "type": "text"
+  },
   "pageTitleStore": "Trung tâm mua sắm",
   "@pageTitleStore": {
     "type": "text"

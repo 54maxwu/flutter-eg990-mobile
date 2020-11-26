@@ -7,11 +7,13 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/sector/home/platform/game_platform_entity.dart';
 import '../../domain/sector/promo/promo_entity.dart';
 import '../core/main_startup.dart';
+import '../features/about_us/about_route.dart';
 import '../features/home/home_route.dart';
 import '../features/home/state/home_store.dart';
 import '../features/home/widgets/pageview/games_page.dart';
@@ -109,6 +111,7 @@ class MainScreenRoutes {
   static const String serviceRoute = '/service-route';
   static const String sponsorRoute = '/sponsor-route';
   static const String memberRoute = '/member-route';
+  static const String aboutRoute = '/about-route';
   static const all = <String>{
     homeRoute,
     gamesPage,
@@ -118,6 +121,7 @@ class MainScreenRoutes {
     serviceRoute,
     sponsorRoute,
     memberRoute,
+    aboutRoute,
   };
 }
 
@@ -133,6 +137,7 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.serviceRoute, page: ServiceRoute),
     RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
+    RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -192,6 +197,12 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    AboutRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AboutRoute(),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -235,6 +246,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
+
+  Future<dynamic> pushAboutRoute() =>
+      push<dynamic>(MainScreenRoutes.aboutRoute);
 }
 
 /// ************************************************************************

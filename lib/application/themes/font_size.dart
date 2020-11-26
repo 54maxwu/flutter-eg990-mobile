@@ -14,10 +14,10 @@ class FontSize extends Vnum<double> {
   static const FontSize NORMAL = const FontSize.define(14.0);
 
   /// font size = 16
-  static const FontSize SUBTITLE = const FontSize.define(16.0);
+  static const FontSize MESSAGE = const FontSize.define(16.0);
 
   /// font size = 18
-  static const FontSize MESSAGE = const FontSize.define(18.0);
+  static const FontSize SUBTITLE = const FontSize.define(18.0);
 
   /// font size = 20
   static const FontSize TITLE = const FontSize.define(20.0);

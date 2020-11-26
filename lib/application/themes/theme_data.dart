@@ -87,13 +87,13 @@ class MyThemeData {
 // input text color
           subtitle1: TextStyle(
               color: interface.defaultSubtitleColor,
-              fontSize: FontSize.MESSAGE.value),
+              fontSize: FontSize.SUBTITLE.value),
           subtitle2: TextStyle(
               color: interface.defaultHintColor,
-              fontSize: FontSize.SUBTITLE.value),
+              fontSize: FontSize.MESSAGE.value),
           bodyText1: TextStyle(
               color: interface.defaultTextColor,
-              fontSize: FontSize.SUBTITLE.value),
+              fontSize: FontSize.MESSAGE.value),
           bodyText2: TextStyle(
               color: interface.secondaryTextColor2,
               fontSize: FontSize.NORMAL.value),
@@ -149,7 +149,7 @@ class MyThemeData {
         labelPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         labelStyle: TextStyle(
             color: interface.defaultTextColor,
-            fontSize: FontSize.SUBTITLE.value),
+            fontSize: FontSize.MESSAGE.value),
         padding: const EdgeInsets.all(4.0),
         secondaryLabelStyle: TextStyle(
             color: interface.defaultAccentColor,

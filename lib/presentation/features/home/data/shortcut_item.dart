@@ -12,25 +12,21 @@ export 'shortcut_data.dart' show ShortcutDataExtension;
 class ShortcutItem extends Vnum<ShortcutData> {
   static ShortcutItem deposit = ShortcutItem.define(ShortcutData(
     id: RouteEnum.DEPOSIT,
-    iconData: IconCode.gridDeposit,
     assetPath: Res.f_icon_deposit,
     // route: RoutePage.home,
   ));
   static ShortcutItem transfer = ShortcutItem.define(ShortcutData(
     id: RouteEnum.TRANSFER,
-    iconData: IconCode.gridTransfer,
     assetPath: Res.f_icon_transfer,
     // route: RoutePage.home,
   ));
   static ShortcutItem withdraw = ShortcutItem.define(ShortcutData(
     id: RouteEnum.WITHDRAW,
-    iconData: IconCode.gridWithdraw,
     assetPath: Res.f_icon_withdraw,
     // route: RoutePage.home,
   ));
   static ShortcutItem vip = ShortcutItem.define(ShortcutData(
     id: RouteEnum.VIP,
-    iconData: IconCode.gridVip,
     assetPath: Res.f_icon_vip,
     // route: RoutePage.home,
   ));

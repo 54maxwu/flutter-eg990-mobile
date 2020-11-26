@@ -123,7 +123,7 @@ class _TabItemState extends State<TabItem> {
                                   color: themeColor.homeTabSelectedTextColor,
                                 ),
                                 maxLines: 1,
-                                minFontSize: FontSize.SUBTITLE.value,
+                                minFontSize: FontSize.MESSAGE.value,
                                 maxFontSize: FontSize.LARGE.value,
                               ),
                             )

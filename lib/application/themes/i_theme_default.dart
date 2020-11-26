@@ -36,7 +36,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultBorderColor = Color(0xff9aa7c2);
 
   @override
-  Color defaultDividerColor = Color(0xff4a4a4a);
+  Color defaultDividerColor = Color(0xff808080);
 
   @override
   Color defaultAppbarColor = Color(0xffffffff);
@@ -171,7 +171,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultHintColor = Color(0xffa5a9b3);
 
   @override
-  Color defaultHintSubColor = Color(0xffa8a8a8);
+  Color defaultHintSubColor = Color(0xffcbced8);
 
   @override
   Color defaultMessageColor = Color(0xff424242);

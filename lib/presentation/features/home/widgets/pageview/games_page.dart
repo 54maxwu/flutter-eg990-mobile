@@ -97,7 +97,7 @@ class _GamesPageState extends State<GamesPage>
             controller: _tabController,
             unselectedLabelColor: themeColor.defaultHintColor,
             labelColor: themeColor.defaultTextColor,
-            labelStyle: TextStyle(fontSize: FontSize.MESSAGE.value),
+            labelStyle: TextStyle(fontSize: FontSize.SUBTITLE.value),
             indicatorColor: themeColor.defaultAccentColor,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [

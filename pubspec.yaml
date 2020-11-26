@@ -40,15 +40,16 @@ dependencies:
   package_info: ^0.4.3+2
   # Device info
   device_info: ^1.0.0
+  # App settings launcher https://pub.dev/packages/app_settings
+#  app_settings: ^4.0.4
   # UUID
   uuid: ^2.2.2
 
   # Network Service
   # HTTP Request - Dio https://pub.dev/packages/dio
-  json_annotation: ^3.1.0
+  json_annotation: ^3.1.1
   dio: ^3.0.10
   dio_flutter_transformer: ^3.0.2
-  dio_http_cache: ^0.2.11
   # Cookie Manager https://pub.dev/packages/dio_cookie_manager
   dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.1
@@ -82,11 +83,10 @@ dependencies:
   # Device Related
   # Handle device permission https://pub.dev/packages/permission_handler
   permission_handler: ^5.0.1+1
-  # Custom Permission Dialog https://pub.dev/packages/easy_permission_validator
-  easy_permission_validator: ^2.0.1
   # Device Orientation https://pub.dev/packages/orientation
   orientation: ^1.2.0
   # Sensor Plugin https://pub.dev/packages/aeyrium_sensor
+  # platform specific orientation code example
   #  aeyrium_sensor: ^1.0.7
 
   # UI
@@ -102,6 +102,8 @@ dependencies:
   extended_image: ^1.3.0
   # Advance Photo Viewer https://pub.dev/packages/carousel_pro
   carousel_pro: ^1.0.0
+  # Scroller Load & Refresh https://pub.dev/packages/flutter_easyrefresh
+#  flutter_easyrefresh: ^2.1.6
   # Auto Resize Text
   auto_size_text: ^2.1.0
   # WebView https://pub.dev/packages/webview_flutter
@@ -112,14 +114,14 @@ dependencies:
   flutter_widget_from_html_core: ^0.5.1+4
   # QR Code generator https://pub.dev/packages/qr_flutter
   qr_flutter: ^3.2.0
+  # General setting page widgets https://github.com/yako-dev/flutter-settings-ui
+#  settings_ui: ^0.4.0
   # Configurable Expansion List Tile https://pub.dev/packages/configurable_expansion_tile
-  configurable_expansion_tile: ^1.0.0
-  # Scroller Load & Refresh https://pub.dev/packages/flutter_easyrefresh
-  flutter_easyrefresh: ^2.1.6
+#  configurable_expansion_tile: ^1.0.0
   # Official Video Player https://pub.dev/packages/video_player/example
   video_player: ^1.0.1
   # dot border
-  dotted_border: ^1.0.6
+#  dotted_border: ^1.0.7
   # custom round corner border
   custom_rounded_rectangle_border: ^0.0.1
 
@@ -148,7 +150,7 @@ dev_dependencies:
   hive_generator: ^0.8.2
   mobx_codegen: ^1.1.2
   json_serializable: ^3.5.0
-  freezed: ^0.12.2
+  freezed: ^0.12.3
   #  dataclass_generator: ^0.5.0+2
   auto_route_generator: ^0.6.10
   source_gen: any
@@ -174,6 +176,7 @@ flutter:
     - assets/images/nav/
     - assets/images/features/
     - assets/images/badges/
+    - assets/images/about/
     - assets/images/home/
     - assets/images/home/categories/
     - assets/images/home/platforms/

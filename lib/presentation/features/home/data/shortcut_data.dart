@@ -19,5 +19,5 @@ abstract class ShortcutData with _$ShortcutData {
 }
 
 extension ShortcutDataExtension on ShortcutData {
-  String get label => id.gridTitle ?? id.title;
+  String get label => id.title;
 }

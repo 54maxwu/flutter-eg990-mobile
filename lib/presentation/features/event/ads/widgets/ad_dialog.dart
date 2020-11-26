@@ -2,11 +2,10 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/domain/sector/ads/ad_model.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/checkbox_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/dialog_widget.dart';
-
-import '../../../../../domain/sector/ads/ad_model.dart';
 
 class AdDialog extends StatefulWidget {
   final List<AdModel> ads;
