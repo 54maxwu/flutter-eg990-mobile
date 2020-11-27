@@ -9,14 +9,14 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/features/event/update/state/update_store.dart';
-import 'package:flutter_eg990_mobile/presentation/screens/game/web_game_screen_store.dart';
 import 'package:provider/provider.dart';
 
 import '../router/app_navigator.dart';
 import '../router/auto_router.dart';
 import '../router/auto_router.gr.dart';
 import '../router/navigate_provider.dart';
+import '../screens/event/update/state/update_store.dart';
+import '../screens/game/web_game_screen_store.dart';
 
 ///
 /// Build the main ui using [ScreenRouter] and

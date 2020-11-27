@@ -24,7 +24,7 @@
 //                       );
 //                     }
 //                   },
-//                   child: networkImageBuilder(
+//                   child: NetworkImageBuilder(
 //                     'images/AD_ICON2.png',
 //                     imgScale: 3.0,
 //                   ),

@@ -19,6 +19,7 @@ import '../features/home/state/home_store.dart';
 import '../features/home/widgets/pageview/games_page.dart';
 import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
+import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -110,8 +111,9 @@ class MainScreenRoutes {
   static const String promoDetailPage = '/promo-detail-page';
   static const String serviceRoute = '/service-route';
   static const String sponsorRoute = '/sponsor-route';
-  static const String memberRoute = '/member-route';
   static const String aboutRoute = '/about-route';
+  static const String memberRoute = '/member-route';
+  static const String betRecordRoute = '/bet-record-route';
   static const all = <String>{
     homeRoute,
     gamesPage,
@@ -120,8 +122,9 @@ class MainScreenRoutes {
     promoDetailPage,
     serviceRoute,
     sponsorRoute,
-    memberRoute,
     aboutRoute,
+    memberRoute,
+    betRecordRoute,
   };
 }
 
@@ -136,8 +139,9 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.promoDetailPage, page: PromoDetailPage),
     RouteDef(MainScreenRoutes.serviceRoute, page: ServiceRoute),
     RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
-    RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
     RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
+    RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
+    RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -191,15 +195,21 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    AboutRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AboutRoute(),
+        settings: data,
+      );
+    },
     MemberRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => MemberRoute(),
         settings: data,
       );
     },
-    AboutRoute: (data) {
+    BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AboutRoute(),
+        builder: (context) => BetRecordRoute(),
         settings: data,
       );
     },
@@ -244,11 +254,14 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushSponsorRoute() =>
       push<dynamic>(MainScreenRoutes.sponsorRoute);
 
+  Future<dynamic> pushAboutRoute() =>
+      push<dynamic>(MainScreenRoutes.aboutRoute);
+
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
 
-  Future<dynamic> pushAboutRoute() =>
-      push<dynamic>(MainScreenRoutes.aboutRoute);
+  Future<dynamic> pushBetRecordRoute() =>
+      push<dynamic>(MainScreenRoutes.betRecordRoute);
 }
 
 /// ************************************************************************

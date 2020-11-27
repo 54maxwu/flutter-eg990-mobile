@@ -1,6 +1,6 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/res.dart';
@@ -88,7 +88,7 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
                 errorBuilder: (ctx, exc, _) {
                   // debugPrint(
                   //     'platform image not found: ${_platforms[index].assetUrl}');
-                  return networkImageBuilder(
+                  return NetworkImageBuilder(
                       'images/nav/mob/mob_undefined.png');
                 },
               ),

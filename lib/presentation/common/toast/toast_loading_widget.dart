@@ -4,7 +4,7 @@ import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 
 CancelFunc callToastLoading({
   String message,
-  bool clickClose = true,
+  bool clickClose = false,
   Duration maxDuration = const Duration(seconds: 15),
 }) {
   return BotToast.showCustomLoading(

@@ -4,7 +4,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/domain/sector/ads/ad_model.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/checkbox_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/dialog_widget.dart';
 
 class AdDialog extends StatefulWidget {
@@ -59,7 +59,7 @@ class _AdDialogState extends State<AdDialog> {
 //                        margin: const EdgeInsets.only(bottom: 24.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(16.0),
-                          child: networkImageBuilder(
+                          child: NetworkImageBuilder(
                             ad.picMobile,
                             fit: BoxFit.fill,
                             roundCorner: true,

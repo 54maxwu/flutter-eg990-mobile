@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/sector/promo/promo_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 
@@ -30,9 +30,9 @@ class PromoListItem extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            networkImageBuilder(
+            NetworkImageBuilder(
               promo.bannerMobile,
-              addPendingIconOnError: true,
+              addLoadingIcon: true,
               fit: BoxFit.fill,
               roundCorner: true,
             ),

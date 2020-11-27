@@ -55,11 +55,8 @@ class HomeDisplayBannerState extends State<HomeDisplayBanner> {
           key: _carouselKey,
           boxFit: BoxFit.fill,
           images: widget.banners
-              .map((banner) => networkImageBuilder(
-                    banner.pic,
-                    fit: BoxFit.fill,
-                    imgScale: 1.5,
-                  ))
+              .map((banner) =>
+                  NetworkImageBuilder(banner.pic, fit: BoxFit.fill, scale: 1.5))
               .toList(),
           showIndicator: true,
           indicatorSize: 24.0,

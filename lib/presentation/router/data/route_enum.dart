@@ -23,7 +23,7 @@ enum RouteEnum {
   WALLET,
   TRANSFER_RECORD,
   DEALS,
-  BETS,
+  BET_RECORD,
   ROLLBACK,
   AGENT,
   AGENT_LOGIN,
@@ -113,7 +113,7 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleVipAbout;
       case RouteEnum.STORE:
         return localeStr.pageTitleStore;
-      case RouteEnum.BETS:
+      case RouteEnum.BET_RECORD:
         return localeStr.pageTitleMemberBets;
       case RouteEnum.TRANSFER_RECORD:
         return localeStr.pageTitleMemberTransaction;

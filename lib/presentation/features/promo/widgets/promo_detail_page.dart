@@ -4,7 +4,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/promo/promo_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/common/other/loading_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/window/loading_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';

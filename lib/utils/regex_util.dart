@@ -30,7 +30,7 @@ final RegExp _ptLoginRegex = RegExp("^(?:https://login.greenjade88.com/.*\$)");
 /// Normal Regex
 ///
 final RegExp _imageRegex =
-    RegExp("^(?:${_serviceRegexString}images/.*(jpg|png))");
+    RegExp("^(?:${_serviceRegexString}images/.*(jpg|png|webp))");
 
 final RegExp _webResRegex = RegExp("^(?=.*(js|lib|gif|png|html)).*\$");
 

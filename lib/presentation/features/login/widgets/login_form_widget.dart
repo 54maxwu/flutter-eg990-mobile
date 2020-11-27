@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/presentation/common/fields/checkbox_widget.
 import 'package:flutter_eg990_mobile/presentation/common/fields/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 
-import '../form/login_form.dart';
+import '../../../../domain/user/login/login_form.dart';
 import '../../../../domain/user/login/login_form_data.dart';
 import '../../../../domain/user/login/login_form_hive.dart';
 

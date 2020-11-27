@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_info.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +66,7 @@ class _TabItemState extends State<TabItem> {
         child: Image.asset(_assetPath),
       );
     else if (_assetPath.isEmpty && _networkImage.isNotEmpty)
-      return networkImageBuilder(_networkImage);
+      return NetworkImageBuilder(_networkImage);
     else
       return Icon(
         _iconData,

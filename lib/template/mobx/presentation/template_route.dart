@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/presentation/common/other/loading_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/window/loading_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.dart';
 import 'package:flutter_eg990_mobile/template/mobx/presentation/state/template_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

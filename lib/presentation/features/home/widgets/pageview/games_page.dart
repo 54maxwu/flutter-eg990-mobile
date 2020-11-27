@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/game/game_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/common/other/loading_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/window/loading_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
 

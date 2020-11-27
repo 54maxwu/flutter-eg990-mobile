@@ -18,9 +18,10 @@ class MemberShortcutItem extends Vnum<MemberShortcutData> {
     assetPath: Res.f_icon_wallet,
     sType: MemberShortcutType.NORMAL,
   ));
-  static const MemberShortcutItem bets =
+  static const MemberShortcutItem bet_record =
       const MemberShortcutItem.define(MemberShortcutData(
-    id: RouteEnum.BETS,
+    id: RouteEnum.BET_RECORD,
+    route: RoutePage.bet_record,
     assetPath: Res.f_icon_bets,
     sType: MemberShortcutType.NORMAL,
   ));

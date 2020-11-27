@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/game/game_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 
 class GameGridItem extends StatelessWidget {
   final GameEntity game;
@@ -19,9 +19,9 @@ class GameGridItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
-              child: networkImageBuilder(
+              child: NetworkImageBuilder(
                 game.imageUrl,
-                addPendingIconOnError: true,
+                addLoadingIcon: true,
                 fit: BoxFit.fill,
               ),
             ),

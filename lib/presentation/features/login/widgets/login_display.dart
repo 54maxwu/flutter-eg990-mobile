@@ -39,8 +39,7 @@ class _LoginDisplayState extends State<LoginDisplay> {
           }
           switch (state) {
             case LoginState.loading:
-              _toast = callToastLoading(
-                  message: localeStr.messageWait, clickClose: false);
+              _toast = callToastLoading(message: localeStr.messageWait);
               break;
             case LoginState.complete:
               Future.delayed(Duration(milliseconds: 200), () {

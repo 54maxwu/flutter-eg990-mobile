@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/domain/sector/service/service_model.dart';
 
@@ -101,7 +101,7 @@ class ServiceDisplay extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 18.0),
                           height: 144,
                           width: 144,
-                          child: networkImageBuilder(data.zaloPic)),
+                          child: NetworkImageBuilder(data.zaloPic)),
                     ],
                   ),
                 ),
@@ -116,7 +116,7 @@ class ServiceDisplay extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 6.0),
                           height: 144,
                           width: 144,
-                          child: networkImageBuilder(data.appPic)),
+                          child: NetworkImageBuilder(data.appPic)),
                     ],
                   ),
                 ),
@@ -166,7 +166,7 @@ class ServiceDisplay extends StatelessWidget {
                   SizedBox(
                       width: 30.0,
                       height: 30.0,
-                      child: networkImageBuilder(imgUrl)),
+                      child: NetworkImageBuilder(imgUrl)),
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Container(

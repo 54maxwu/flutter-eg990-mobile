@@ -1,6 +1,6 @@
 import 'package:flutter_eg990_mobile/domain/user/user_model.dart';
 import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
-import 'package:flutter_eg990_mobile/presentation/features/login/form/login_form.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
 
 class LoginApi {
   static const String LOGIN = "api/login";

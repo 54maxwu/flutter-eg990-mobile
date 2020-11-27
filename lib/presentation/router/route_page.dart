@@ -85,6 +85,13 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// MEMBER
   ///
+  static const RoutePage bet_record = const RoutePage.define(RouteInfo(
+    id: RouteEnum.BET_RECORD,
+    route: MainScreenRoutes.betRecordRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
+
   static const RoutePage about_us = const RoutePage.define(RouteInfo(
     id: RouteEnum.ABOUT_US,
     route: MainScreenRoutes.aboutRoute,

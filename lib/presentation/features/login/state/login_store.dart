@@ -1,14 +1,13 @@
+import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
 import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/error_message_map.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_repository.dart';
-import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form_hive.dart';
 import 'package:flutter_eg990_mobile/domain/user/user_model.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
-
-import '../form/login_form.dart';
-import '../../../../domain/user/login/login_form_hive.dart';
 
 part 'login_store.g.dart';
 

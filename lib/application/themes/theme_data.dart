@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/application/themes/font_size.dart';
-import 'package:flutter_eg990_mobile/presentation/common/transition/my_page_transition_builder.dart';
 
+import 'my_page_transition_builder.dart';
 import 'theme_color_interface.dart';
 
 class MyThemeData {

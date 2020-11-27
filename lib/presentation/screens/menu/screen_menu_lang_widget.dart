@@ -3,7 +3,7 @@ import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/presentation/streams/app_preference_streams.dart';
@@ -52,9 +52,9 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
                   scale: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(36.0),
-                    child: networkImageBuilder(
+                    child: NetworkImageBuilder(
                       langImg[index],
-                      imgScale: (index == 3) ? 10.0 : 1,
+                      scale: (index == 3) ? 10.0 : 1,
                     ),
                   ),
                 ),
@@ -73,9 +73,9 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             scale: 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(36.0),
-              child: networkImageBuilder(
+              child: NetworkImageBuilder(
                 langImg[index],
-                imgScale: (index == 3) ? 10.0 : 1,
+                scale: (index == 3) ? 10.0 : 1,
               ),
             ),
           ),
