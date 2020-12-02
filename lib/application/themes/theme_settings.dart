@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart' show ThemeData;
 import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
-import 'package:flutter_eg990_mobile/presentation/streams/app_preference_streams.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/streams/app_preference_streams.dart';
 
 import 'theme_color_enum.dart';
 import 'theme_color_interface.dart';

@@ -1,8 +1,7 @@
 import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
 import 'package:flutter_eg990_mobile/domain/user/user_info_repository.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator_export.dart';
-import 'package:super_enum/super_enum.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 part 'user_info_store.g.dart';
 
@@ -14,28 +13,19 @@ abstract class _UserInfoStore with Store {
 
   _UserInfoStore(this._repository);
 
-  /// Streams
-  final StreamController<bool> _updateUserInfoOnNextBuild =
-      StreamController<bool>.broadcast();
-
-  Stream<bool> get updateUserInfoOnNextBuildStream =>
-      _updateUserInfoOnNextBuild.stream;
-
-  StreamSink<bool> get updateUserInfoOnNextBuildSink =>
-      _updateUserInfoOnNextBuild.sink;
-
   /// Info
   final String _creditResetStr = '$creditSymbol---';
 
   LoginStatus _userStatus = LoginStatus(loggedIn: false);
 
-  bool get hasUser => _userStatus.loggedIn;
-
   int get userLevel => (hasUser) ? _userStatus.user.vip : -1;
 
-  bool loggedIn = false;
+  @observable
+  bool askRecheckInfo = false;
 
   @observable
+  bool hasUser = false;
+
   String userName = '';
 
   @observable
@@ -57,6 +47,8 @@ abstract class _UserInfoStore with Store {
           type: type,
           code: code);
 
+  set setRecheck(bool recheck) => askRecheckInfo = recheck;
+
   void updateUser(LoginStatus status) {
     userName = (status.loggedIn) ? status.user.username.value : '';
     userCredit = (status.loggedIn)
@@ -64,7 +56,7 @@ abstract class _UserInfoStore with Store {
         : '';
     if (status != _userStatus) {
       _userStatus = status;
-      loggedIn = status.loggedIn;
+      hasUser = status.loggedIn;
       if (status.loggedIn) {
         // getUserCredit();
         getNewMessageCount();
@@ -157,15 +149,6 @@ abstract class _UserInfoStore with Store {
     //         : AppNavigator.returnToHome());
 
     updateUser(LoginStatus(loggedIn: false));
-    updateUserInfoOnNextBuildSink.add(true);
-  }
-
-  void closeStreams() async {
-    try {
-      await Future.sync(() => _updateUserInfoOnNextBuild.close());
-    } catch (e) {
-      MyLogger.warn(msg: 'close user info stream error', error: e, tag: tag);
-      return null;
-    }
+    setRecheck = true;
   }
 }

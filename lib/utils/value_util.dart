@@ -1,7 +1,33 @@
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:intl/intl.dart';
-import 'package:meta/meta.dart' show required;
+import 'package:meta/meta.dart' show immutable, required;
+
+@immutable
+class ValueRangeData {
+  final num value;
+  final num min;
+  final num max;
+
+  const ValueRangeData.empty()
+      : this.value = 0,
+        this.min = 0,
+        this.max = 0;
+
+  const ValueRangeData.min({@required this.value, @required this.min})
+      : this.max = 0;
+
+  const ValueRangeData(
+      {@required this.value, @required this.min, @required this.max});
+
+  bool get isInRange {
+    if (max != 0) {
+      return value >= min && value <= max;
+    } else {
+      return value >= min;
+    }
+  }
+}
 
 /// Check if the [value] is bigger than [min], and smaller than [max]
 bool rangeCheck({@required num value, @required num min, num max = 0}) {
@@ -53,8 +79,7 @@ String formatValue(
       return s;
     }
   } catch (e) {
-    MyLogger.warn(
-        msg: 'format value has exception', error: e, tag: 'formatValue');
+    MyLogger.warn(msg: 'format value has exception: $e', tag: 'formatValue');
     return '$value';
   }
 }

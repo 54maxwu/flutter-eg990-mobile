@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
-import 'package:flutter_eg990_mobile/presentation/common/marquees/marquee_span_widget.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/marquee/marquee_entity.dart';
+import 'package:flutter_eg990_mobile/presentation/common/marquees/marquee_span_widget.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 

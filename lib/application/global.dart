@@ -13,8 +13,10 @@ class Global {
 
   /// APP Language
   static bool initLocale = false;
+
   // zh, th, en, vi
   static String _language = 'zh';
+
   // content_cn, content_th, content_us, content_vn
   static String _jsonContentKey = 'content_cn';
 

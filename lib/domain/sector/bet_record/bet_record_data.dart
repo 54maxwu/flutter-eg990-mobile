@@ -16,7 +16,7 @@ abstract class BetRecordData with _$BetRecordData {
     dynamic key,
   }) = _BetRecordData;
 
-  static BetRecordData jsonToModel(Map<String, dynamic> jsonMap) =>
+  static BetRecordData parseJson(Map<String, dynamic> jsonMap) =>
       _$_BetRecordData(
         activeBet: jsonMap['activebet'] as String,
         validBet: jsonMap['validbet'] as String,

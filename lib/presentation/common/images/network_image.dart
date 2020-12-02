@@ -84,12 +84,12 @@ Future<dynamic> checkCachedImage(String url) async {
 }
 
 Future<Widget> networkImageWidget(
-    String url, {
-      BoxFit fit = BoxFit.contain,
-      double scale = 1.0,
-      Color color,
-      bool addLoadingIcon = true,
-    }) async {
+  String url, {
+  BoxFit fit = BoxFit.contain,
+  double scale = 1.0,
+  Color color,
+  bool addLoadingIcon = true,
+}) async {
   String imageUrl = (url.isUrl)
       ? url
       : '${Global.CURRENT_BASE}$url'.replaceAll('//images/', '/images/');
@@ -108,9 +108,7 @@ Future<Widget> networkImageWidget(
           loadStateChanged: (ExtendedImageState state) {
             switch (state.extendedImageLoadState) {
               case LoadState.loading:
-                return (addLoadingIcon)
-                    ? Image.asset(Res.refresh_2)
-                    : null;
+                return (addLoadingIcon) ? Image.asset(Res.refresh_2) : null;
               case LoadState.completed:
                 return state.completedWidget;
               case LoadState.failed:

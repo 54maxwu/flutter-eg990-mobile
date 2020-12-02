@@ -26,6 +26,7 @@ import 'failures.dart';
 @immutable
 abstract class ValueObject<T> {
   const ValueObject();
+
   Either<ValueFailure<T>, T> get value;
 
   /// Throws [UnexpectedValueError] containing the [ValueFailure]
@@ -53,9 +54,9 @@ class UniqueId extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory UniqueId() {
+  factory UniqueId(String identifier) {
     return UniqueId._(
-      right(Uuid().v1()),
+      right(Uuid().v5(Uuid.NAMESPACE_OID, identifier)),
     );
   }
 

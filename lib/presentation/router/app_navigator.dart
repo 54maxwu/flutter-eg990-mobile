@@ -1,18 +1,16 @@
 import 'dart:async' show StreamController;
 
 import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/application/device/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
-import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/common/toast/toast_error_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
-import 'app_navigator_export.dart';
-
-export 'auto_router.dart' show Screens;
+import 'auto_router.dart';
+import 'auto_router.gr.dart';
+import 'route_page.dart';
 
 class AppNavigator {
   static final String _tag = 'AppNavigator';
@@ -31,13 +29,15 @@ class AppNavigator {
   static bool _isWeb = false;
 
   static String get current => _current;
+
   static bool get isAtHome => _current == homeName;
+
   static bool get isWebRoute => _isWeb;
 
-  static StreamController<RouteInfo> _routeInfo =
-      StreamController<RouteInfo>.broadcast();
+  static StreamController<Either<String, RouteInfo>> _routeInfo =
+      StreamController<Either<String, RouteInfo>>.broadcast();
 
-  static Stream<RouteInfo> get routeStream => _routeInfo.stream;
+  static Stream<Either<String, RouteInfo>> get routeStream => _routeInfo.stream;
 
   static dispose() {
     MyLogger.warn(msg: 'disposing router stream!!', tag: _tag);
@@ -96,12 +96,15 @@ class AppNavigator {
         // restart app
         Future.delayed(Duration(milliseconds: 200), () {
           if (Global.device.isIos) {
-            callToastError(
-                'Encountered a fatal error!! Please restart your app manually');
+            _routeInfo.sink.add(Left(
+                'Encountered a fatal error!! Please restart your app manually'));
           } else {
-            callToastError('Encountered a fatal error, restarting in 2s...');
+            _routeInfo.sink
+                .add(Left('Encountered a fatal error, restarting in 2s...'));
             Future.delayed(
-                Duration(milliseconds: 2000), () => PlatformUtil.restart());
+              Duration(milliseconds: 2000),
+              () => PlatformUtil.restart(),
+            );
           }
         });
       } else {
@@ -235,9 +238,6 @@ class AppNavigator {
       } else if (_previous == homeName) {
         returnToHome();
       } else if (mainNavigate.canPop()) {
-        if (refreshList.contains(from.pageName)) {
-          callCheckUser();
-        }
         final dest = from.pageRoot.toRoutePage;
         if (dest != null) {
           debugPrint('popping route until: ${dest.pageName}');
@@ -268,7 +268,6 @@ class AppNavigator {
         // featureNavigate.popUntilRoot();
         // featureNavigate.replace(homeName);
       }
-      callCheckUser();
     } catch (e) {
       MyLogger.error(msg: 'navigate home has exception!! Error: $e', tag: _tag);
       switchScreen(Screens.Main);
@@ -280,13 +279,8 @@ class AppNavigator {
     _streamRouteInfo(dest.value);
   }
 
-  static callCheckUser() =>
-      sl.get<UserInfoStore>().updateUserInfoOnNextBuildSink.add(true);
-
-  static resetCheckUser() =>
-      sl.get<UserInfoStore>().updateUserInfoOnNextBuildSink.add(false);
-
-  static _streamRouteInfo(RouteInfo pageInfo) => _routeInfo.sink.add(pageInfo);
+  static _streamRouteInfo(RouteInfo pageInfo) =>
+      _routeInfo.sink.add(Right(pageInfo));
 
   static _setPath(RoutePage route, {String parent}) {
     if (route == null) {

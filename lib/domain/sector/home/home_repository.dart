@@ -91,7 +91,7 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, List<BannerEntity>>> _remoteBanners() async {
     final result = await requestModelList<BannerModel>(
       request: dioApiService.get(HomeApi.BANNER),
-      jsonToModel: BannerModel.jsonToBannerModel,
+      parseJson: BannerModel.jsonToBannerModel,
       tag: 'remote-BANNER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -128,7 +128,7 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, List<MarqueeEntity>>> _remoteMarquees() async {
     final result = await requestModel<MarqueeModelList>(
       request: dioApiService.get(HomeApi.MARQUEE),
-      jsonToModel: MarqueeModelList.jsonToModelList,
+      parseJson: MarqueeModelList.parseJsonList,
       tag: 'remote-MARQUEE',
     );
     // debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -180,7 +180,7 @@ class HomeRepositoryImpl implements HomeRepository {
           "accountid": jwtInterface.userId,
         },
       ),
-      jsonToModel: GameTypes.jsonToGameTypes,
+      parseJson: GameTypes.jsonToGameTypes,
       tag: 'remote-GAME_ALL',
     );
     // debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -220,7 +220,7 @@ class HomeRepositoryImpl implements HomeRepository {
       PlatformGameForm form) async {
     final result = await requestModelList<GameModel>(
       request: dioApiService.postForm(HomeApi.GAME_INDEX, form.toJson()),
-      jsonToModel: GameModel.jsonToGameModel,
+      parseJson: GameModel.jsonToGameModel,
       tag: 'remote-GAMES',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -238,7 +238,7 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, String>> getGameUrl(String requestUrl) async {
     if (requestUrl == null || requestUrl.isEmpty) {
       MyLogger.error(msg: 'game url is empty', tag: tag);
-      return Left(Failure.internal(FailureCode(type: FailureType.WEB_URL)));
+      return Left(Failure.internal(FailureCode(type: FailureType.GAME_URL)));
     }
 
     final connected = await networkInfo.isConnected;

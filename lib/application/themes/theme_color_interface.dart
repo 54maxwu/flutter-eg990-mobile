@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 abstract class ThemeColorInterface {
   bool isDarkTheme;
@@ -140,20 +140,20 @@ abstract class ThemeColorInterface {
   ///
   /// Input field color
   ///
-  Color fieldInputColor;
-  Color fieldInputBgColor;
-  Color fieldReadOnlyBgColor;
-  Color fieldInputHintColor;
-  Color fieldPrefixBgColor;
-  Color fieldPrefixColor;
-  Color fieldPrefixSubColor;
-  Color fieldSuffixColor;
-  Color fieldSuffixSubColor;
-  Color fieldInputSubBgColor;
-  Color fieldReadOnlySubBgColor;
-  Color fieldInputSubColor;
-  Color fieldInputHintSubColor;
-  Color fieldCursorSubColor;
+  Color fieldInputTextColor;
+  Color fieldFillColor;
+  Color fieldReadOnlyFillColor;
+  Color fieldHintColor;
+  Color fieldPrefixFillColor;
+  Color fieldPrefixTextColor;
+  Color fieldPrefixFillColor2;
+  Color fieldSuffixTextColor;
+  Color fieldSuffixTextColor2;
+  Color fieldFillColor2;
+  Color fieldReadOnlyFillColor2;
+  Color fieldInputTextColor2;
+  Color fieldHelperColor;
+  Color fieldCursorColor;
 
   ///
   /// Chart table color

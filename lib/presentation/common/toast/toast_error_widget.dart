@@ -10,9 +10,11 @@ void callToastError(
   String message, {
   ToastDuration duration = ToastDuration.DEFAULT,
   int delayedMilli = 100,
+  bool crossPage = true,
 }) {
   Future.delayed(Duration(milliseconds: delayedMilli), () {
     BotToast.showCustomText(
+        crossPage: crossPage,
         clickClose: true,
         ignoreContentClick: true,
         backButtonBehavior: BackButtonBehavior.none,
@@ -26,16 +28,19 @@ void callToastError(
 class ToastErrorWidget extends StatelessWidget {
   final String message;
   final ToastDuration duration;
+  final bool crossPage;
 
   ToastErrorWidget({
     @required this.message,
     this.duration = ToastDuration.DEFAULT,
+    this.crossPage = true,
   });
 
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(milliseconds: 100), () {
       BotToast.showCustomText(
+          crossPage: crossPage,
           clickClose: true,
           ignoreContentClick: true,
           backButtonBehavior: BackButtonBehavior.none,

@@ -13,7 +13,7 @@ abstract class MarqueeModelList with _$MarqueeModelList {
     @required int speed,
   }) = _MarqueeModelList;
 
-  static MarqueeModelList jsonToModelList(Map<String, dynamic> jsonMap) =>
+  static MarqueeModelList parseJsonList(Map<String, dynamic> jsonMap) =>
       _$_MarqueeModelList(
         marquees: jsonMap['marquee'] != null
             ? decodeMarqueeModel(jsonMap['marquee'])
@@ -25,6 +25,6 @@ abstract class MarqueeModelList with _$MarqueeModelList {
 List<MarqueeModel> decodeMarqueeModel(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
-      (jsonMap) => MarqueeModel.jsonToModel(jsonMap),
+      (jsonMap) => MarqueeModel.parseJson(jsonMap),
       tag: 'MarqueeModel',
     );

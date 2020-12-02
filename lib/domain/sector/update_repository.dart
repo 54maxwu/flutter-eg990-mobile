@@ -19,6 +19,7 @@ class UpdateRepositoryImpl implements UpdateRepository {
   final tag = 'UpdateRepository';
 
   UpdateRepositoryImpl(this.dioApiService);
+
 //
 //  @override
 //  Future<Either<Failure, RequestCodeModel>> postVersion(
@@ -41,7 +42,7 @@ class UpdateRepositoryImpl implements UpdateRepository {
   Future<Either<Failure, List<String>>> getVersion() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(UpdateApi.GET_VERSION_LIST),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-APP_UPDATE',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

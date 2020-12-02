@@ -12,7 +12,9 @@ class UserInfoApi {
 
 abstract class UserInfoRepository {
   Future<Either<Failure, String>> updateCredit();
+
   Future<Either<Failure, bool>> checkNewMessage();
+
   Future<Either<Failure, Unit>> logout(String account, bool cleanStorage);
 }
 
@@ -29,7 +31,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
     final result = await requestModel<UserModel>(
       request: dioApiService.get(UserInfoApi.GET_ACCOUNT_LIMIT,
           userToken: jwtInterface.token),
-      jsonToModel: UserModel.jsonToUserModel,
+      parseJson: UserModel.jsonToUserModel,
       tag: 'remote-CREDIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -43,7 +45,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(UserInfoApi.GET_NEW_MESSAGE_COUNT),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-MSG',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

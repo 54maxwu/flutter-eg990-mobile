@@ -1,13 +1,14 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/application/internal/input_limit.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form_data.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_form_hive.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/checkbox_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/common/fields/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-
-import '../../../../domain/user/login/login_form.dart';
-import '../../../../domain/user/login/login_form_data.dart';
-import '../../../../domain/user/login/login_form_hive.dart';
+import 'package:flutter_eg990_mobile/presentation/common/fields/field_wrapper_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/common/fields/field_input_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 
 typedef OnRequestLogin = void Function(LoginForm);
 
@@ -29,9 +30,9 @@ class LoginFormWidget extends StatefulWidget {
 
 class LoginFormWidgetState extends State<LoginFormWidget>
     with AfterLayoutMixin {
-  final GlobalKey<CustomizeFieldWidgetState> _usernameFieldKey =
+  final GlobalKey<FieldInputWidgetState> _usernameFieldKey =
       new GlobalKey(debugLabel: 'username');
-  final GlobalKey<CustomizeFieldWidgetState> _passwordFieldKey =
+  final GlobalKey<FieldInputWidgetState> _passwordFieldKey =
       new GlobalKey(debugLabel: 'password');
   final GlobalKey<CheckboxWidgetState> _saveKey =
       new GlobalKey(debugLabel: 'save');
@@ -39,86 +40,108 @@ class LoginFormWidgetState extends State<LoginFormWidget>
   Username _username = Username.pure();
   Password _password = Password.pure();
 
+  InputBorder _fieldBorder;
+
+  InputDecoration get _fieldBasicDecor => InputDecoration(
+        labelStyle: TextStyle(
+          fontSize: FontSize.MESSAGE.value,
+          color: themeColor.fieldPrefixTextColor,
+        ),
+        border: _fieldBorder,
+        enabledBorder: _fieldBorder,
+        disabledBorder: _fieldBorder,
+        focusedBorder: _fieldBorder,
+        focusedErrorBorder: _fieldBorder,
+        errorBorder: _fieldBorder,
+      );
+
   @override
   Widget build(BuildContext context) {
+    _fieldBorder ??= OutlineInputBorder(
+      borderSide: BorderSide(color: themeColor.defaultBorderColor),
+      borderRadius: BorderRadius.circular(24.0),
+    );
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         children: [
-          // TextFormField(
-          //   decoration: const InputDecoration(
-          //     prefixIcon: Icon(Icons.person),
-          //     labelText: 'Account',
-          //   ),
-          //   autocorrect: false,
-          //   initialValue: widget.historyForm?.username ?? '',
-          //   onChanged: (value) => _username = Username.dirty(value: value),
-          //   validator: (_) => (_username.valid) ? null : 'Account Error',
-          // ),
-          CustomizeFieldWidget(
-            key: _usernameFieldKey,
-            fieldType: FieldType.Account,
-            persistHint: false,
-            hint: localeStr.hintAccountInput,
-            prefixIconData: Icons.person,
-            prefixText: localeStr.registerFieldTitleAccount,
-            prefixTextSize: FontSize.MESSAGE.value,
-            minusHeight: 16.0,
-            maxInputLength: InputLimit.ACCOUNT_MAX,
-            errorMsg: localeStr.messageInvalidAccount,
-            onInputChanged: (value) => _username = Username.dirty(value: value),
-            validCondition: (_) => _username.valid,
+          FieldWrapperWidget(
+            inputWidget: FieldInputWidget(
+              key: _usernameFieldKey,
+              inputType: FieldInputType.Account,
+              maxInputLength: InputLimit.ACCOUNT_MAX,
+              enableSuggestions: false,
+              inputDecoration: _fieldBasicDecor.copyWith(
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: themeColor.fieldPrefixTextColor,
+                ),
+                labelText: localeStr.registerFieldTitleAccount,
+                hintText: localeStr.hintAccountInput,
+              ),
+              onChanged: (value) => _username = Username.dirty(value: value),
+              validator: (_) =>
+                  _username.valid ? null : localeStr.messageErrorAccount,
+            ),
           ),
-          const SizedBox(height: 8),
-          CustomizeFieldWidget(
-            key: _passwordFieldKey,
-            fieldType: FieldType.Password,
-            persistHint: false,
-            hint: localeStr.hintPasswordInput,
-            prefixIconData: Icons.lock,
-            prefixText: localeStr.registerFieldTitlePassword,
-            prefixTextSize: FontSize.MESSAGE.value,
-            minusHeight: 16.0,
-            maxInputLength: InputLimit.PASSWORD_MAX,
-            errorMsg: localeStr.messageInvalidPassword,
-            onInputChanged: (value) => _password = Password.dirty(value: value),
-            validCondition: (_) => _password.valid,
+          const SizedBox(height: 8.0),
+          FieldWrapperWidget(
+            inputWidget: FieldInputWidget(
+              key: _passwordFieldKey,
+              inputType: FieldInputType.Password,
+              maxInputLength: InputLimit.PASSWORD_MAX,
+              enableSuggestions: false,
+              inputDecoration: _fieldBasicDecor.copyWith(
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: themeColor.fieldPrefixTextColor,
+                ),
+                labelText: localeStr.registerFieldTitlePassword,
+                hintText: localeStr.hintPasswordInput,
+              ),
+              onChanged: (value) => _password = Password.dirty(value: value),
+              validator: (_) =>
+                  _password.valid ? null : localeStr.messageInvalidPassword,
+            ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 8.0),
           CheckboxWidget(
             key: _saveKey,
             label: localeStr.btnFastLogin,
           ),
-          const SizedBox(height: 8),
-          RaisedButton(
-            child: Text(
-              localeStr.btnLogin,
-              style: TextStyle(
-                fontSize: FontSize.MESSAGE.value,
-                color: themeColor.secondaryTextColor1,
+          const SizedBox(height: 16.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: RaisedButton(
+              child: Text(
+                localeStr.btnLogin,
+                style: TextStyle(
+                  fontSize: FontSize.MESSAGE.value,
+                  color: themeColor.secondaryTextColor1,
+                ),
               ),
+              onPressed: () {
+                // clear text field focus
+                FocusScope.of(context).unfocus();
+                final form = LoginForm(
+                  username: _username,
+                  password: _password,
+                  saveForm: _saveKey.currentState.boxChecked,
+                );
+                debugPrint('login form: $form');
+                if (form.validate.isRight()) {
+                  debugPrint('login form is valid');
+                  widget.onRequestLogin(form);
+                } else if (form.status.index == 0) {
+                  callToast(localeStr.messageActionFillForm);
+                } else {
+                  debugPrint(
+                      'login form error: ${form.validate.getOrElse(() => null)}');
+                }
+              },
             ),
-            onPressed: () {
-              // clear text field focus
-              FocusScope.of(context).unfocus();
-              final form = LoginForm(
-                username: _username,
-                password: _password,
-                saveForm: _saveKey.currentState.boxChecked,
-              );
-              debugPrint('login form: $form');
-              if (form.validate.isRight()) {
-                debugPrint('login form is valid');
-                widget.onRequestLogin(form);
-              } else if (form.status.index == 0) {
-                callToast(localeStr.messageActionFillForm);
-              } else {
-                debugPrint(
-                    'login form error: ${form.validate.getOrElse(() => null)}');
-              }
-            },
           ),
         ],
       ),
@@ -128,9 +151,11 @@ class LoginFormWidgetState extends State<LoginFormWidget>
   @override
   void afterFirstLayout(BuildContext context) {
     if (mounted && widget.historyForm != null) {
+      _username = Username.dirty(value: widget.historyForm.username);
+      _password = Password.dirty(value: widget.historyForm.password);
       Future.delayed(Duration(milliseconds: 100), () {
-        _usernameFieldKey.currentState.setInput = widget.historyForm.username;
-        _passwordFieldKey.currentState.setInput = widget.historyForm.password;
+        _usernameFieldKey.currentState.setInput = _username.value;
+        _passwordFieldKey.currentState.setInput = _password.value;
         _saveKey.currentState.setChecked = true;
       });
       Future.delayed(Duration(milliseconds: 500), widget.callInitComplete);

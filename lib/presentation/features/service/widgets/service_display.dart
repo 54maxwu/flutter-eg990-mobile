@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/domain/sector/service/service_model.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 
 enum _ButtonType { OPEN, COPY }
 

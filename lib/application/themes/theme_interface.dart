@@ -26,6 +26,7 @@ abstract class ThemeInterface {
   static const double suffixWidthFactor = 0.314;
   static const double horizontalInset = 32.0;
   static const double minusSize = 8.0;
+  static const double minusSizeHalf = 4.0;
 
   /*******************************************************************
    * Decoration                                                      *

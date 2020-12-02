@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/sector/promo/promo_entity.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter_eg990_mobile/presentation/features/promo/data/promo_category.dart';
 import 'package:flutter_eg990_mobile/presentation/features/promo/widgets/promo_list.dart';
 import 'package:flutter_eg990_mobile/res.dart';

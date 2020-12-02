@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
+import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 
@@ -13,6 +13,7 @@ import 'platform/game_platform_entity.dart';
 
 abstract class HomeLocalStorage {
   Future<void> init();
+
   void closeBox(HomeBox homeBox);
 
   /// Gets the cached [BannerEntity] which was gotten the last time
@@ -20,7 +21,9 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<bool> useBannerCache();
+
   Future<List<BannerEntity>> getCachedBanners();
+
   Future<void> cacheBanners(List<BannerEntity> bannersToCache);
 
   /// Gets the cached [MarqueeEntity] which was gotten the last time
@@ -28,7 +31,9 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<bool> useMarqueeCache();
+
   Future<List<MarqueeEntity>> getCachedMarquees();
+
   Future<void> cacheMarquees(List<MarqueeEntity> marqueesToCache);
 
   /// Gets the cached [GameTypes] which was gotten the last time
@@ -36,7 +41,9 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<bool> useGameTypesCache();
+
   Future<GameTypes> getCachedGameTypes();
+
   Future<void> cacheGameTypes(GameTypes typesToCache);
 
   /// Gets the cached [MarqueeEntity] which was gotten the last time
@@ -44,7 +51,9 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<bool> useGamesCache(String classname);
+
   Future<List<GameEntity>> getCachedGames(String classname);
+
   Future<void> cacheGames(List<GameEntity> gamesToCache, String classname);
 }
 

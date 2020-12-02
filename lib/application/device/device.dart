@@ -30,8 +30,10 @@ class Device {
 
   // screen width compare with test device
   double _screenWidthScale;
+
   // screen height compare with test device
   double _screenHeightScale;
+
   // computed button height
   double _screenButtonHeight;
 
@@ -101,8 +103,10 @@ class Device {
 
   /// App Version
   String get appVersion => _version;
+
   String get appVersionOrigin =>
       'Version:${packageInfo.version} Build:${packageInfo.buildNumber}';
+
   String get appVersionSide =>
       (Global.addAnalytics) ? '$_version (GA)' : _version;
 
@@ -142,4 +146,7 @@ class Device {
 
   double get featureContentHeight =>
       _screenHeight - Global.APP_BARS_HEIGHT - safeInset - safeVerticalPadding;
+
+  double get featureContentHeightNoNav =>
+      _screenHeight - Global.APP_MENU_HEIGHT - safeInset - safeVerticalPadding;
 }

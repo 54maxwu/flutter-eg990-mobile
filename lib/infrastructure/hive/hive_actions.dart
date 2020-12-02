@@ -5,8 +5,8 @@ import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart' show required;
 
-export 'package:hive/hive.dart' show Box;
 export 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
+export 'package:hive/hive.dart' show Box;
 
 const String HIVE_ACTION_TAG = 'HIVE action';
 
@@ -36,7 +36,7 @@ extension HiveBoxExtension on Box {
   }
 
   List<T> getData<T>({String logKeyword = 'hive data'}) {
-    if (this.hasData() == false) throw HiveDataException();
+    if (this.hasData() == false) throw HiveDataException('No Data');
     try {
       var list = List<T>();
       for (var index = 0; index < length; index++) {
@@ -50,7 +50,7 @@ extension HiveBoxExtension on Box {
           msg: 'get $logKeyword from hive has exception!!',
           tag: HIVE_ACTION_TAG,
           error: e);
-      throw HiveDataException();
+      throw HiveDataException('keyword: $logKeyword');
     }
   }
 }

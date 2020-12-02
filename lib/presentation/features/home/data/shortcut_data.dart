@@ -20,4 +20,6 @@ abstract class ShortcutData with _$ShortcutData {
 
 extension ShortcutDataExtension on ShortcutData {
   String get label => id.title;
+
+  bool get isUserOnly => id.isUserOnly;
 }

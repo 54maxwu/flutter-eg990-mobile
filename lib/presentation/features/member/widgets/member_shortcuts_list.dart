@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/common/settings/settings_ui.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 import '../data/member_shortcut_item.dart';
 
 class MemberShortcutsList extends StatelessWidget {
+  final bool hasUser;
+
+  const MemberShortcutsList({@required this.hasUser});
+
+  Function onClickShortcut(MemberShortcutItem shortcut) => () {
+        if (shortcut.value.route != null) {
+          if (shortcut.value.isUserOnly && !hasUser) {
+            callToastInfo(localeStr.messageErrorNotLogin);
+          } else {
+            AppNavigator.navigateTo(shortcut.value.route);
+          }
+        } else {
+          callToastInfo(localeStr.workInProgress);
+        }
+      };
+
   @override
   Widget build(BuildContext context) {
     final shortcuts = MemberShortcutItem.mapByTypeIndex(2)
@@ -74,9 +90,7 @@ class MemberShortcutsList extends StatelessWidget {
           )
         ]),
       ),
-      onTap: (shortcut.value.route != null)
-          ? () => AppNavigator.navigateTo(shortcut.value.route)
-          : () => callToastInfo(localeStr.workInProgress),
+      onTap: onClickShortcut(shortcut),
     );
   }
 }

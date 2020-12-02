@@ -4,6 +4,7 @@ import 'package:flutter_eg990_mobile/application/themes/font_size.dart';
 
 class HomeDisplaySizeCalc {
   final double _bannerImageScale = 600.0 / Global.device.width;
+
   // final double _expectBannerHeight = 231.0;
   final double marqueeHeight = 36.0;
   final double shortcutTitleHeight = 0;
@@ -14,6 +15,7 @@ class HomeDisplaySizeCalc {
   final double _barItemInset = 8.0;
 
   double _bannerHeight;
+
   // double _expandedBannerHeight;
 
   double _shortcutMaxHeight;

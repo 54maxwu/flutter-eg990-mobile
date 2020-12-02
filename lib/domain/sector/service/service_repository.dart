@@ -1,5 +1,5 @@
-import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
 import 'package:flutter_eg990_mobile/domain/sector/service/service_model.dart';
+import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
 
 class ServiceApi {
   static const String GET_WEB_LIST = "api/websiteList";
@@ -19,7 +19,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, ServiceModel>> getWebsiteList() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(ServiceApi.GET_WEB_LIST),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-EVENT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

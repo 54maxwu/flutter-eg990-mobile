@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 abstract class TabControlInterface with ChangeNotifier {
   int get getTabIndex;
+
   set setTabIndex(int index);
 }
 

@@ -36,6 +36,6 @@ class TemplateModel {
     return data;
   }
 
-  static TemplateModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static TemplateModel parseJson(Map<String, dynamic> jsonMap) =>
       TemplateModel.fromJson(jsonMap);
 }

@@ -1,6 +1,6 @@
+import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
 import 'package:flutter_eg990_mobile/domain/user/user_model.dart';
 import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
-import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
 
 class LoginApi {
   static const String LOGIN = "api/login";
@@ -103,7 +103,7 @@ class LoginRepositoryImpl implements LoginRepository {
     MyLogger.log(msg: 'requesting account info...', tag: tag);
     final result = await requestModel<UserModel>(
       request: dioApiService.get(LoginApi.GET_ACCOUNT, userToken: token),
-      jsonToModel: UserModel.jsonToUserModel,
+      parseJson: UserModel.jsonToUserModel,
       tag: 'remote-USER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

@@ -66,10 +66,10 @@ class _MemberRouteState extends State<MemberRoute> {
               child: Column(
                 children: <Widget>[
                   MemberHeader(),
-                  MemberShortcuts(),
+                  MemberShortcuts(hasUser: _store.hasUser),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: MemberShortcutsList(),
+                    child: MemberShortcutsList(hasUser: _store.hasUser),
                   ),
                 ],
               ),

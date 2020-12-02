@@ -18,7 +18,6 @@ enum RouteEnum {
   BANKCARD,
   WITHDRAW,
   ACCOUNT_CENTER,
-  MESSAGE,
   BALANCE,
   WALLET,
   TRANSFER_RECORD,
@@ -151,8 +150,6 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.sideBtnLockRotate;
 
       /// TODO Not Using
-      case RouteEnum.MESSAGE:
-        return localeStr.pageTitleMemberMessage;
       case RouteEnum.BALANCE:
         return localeStr.pageTitleMemberBalance;
       case RouteEnum.DEALS:
@@ -204,6 +201,31 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageHintJoinUs;
       default:
         return '';
+    }
+  }
+
+  bool get isUserOnly {
+    switch (this) {
+      case RouteEnum.DEPOSIT:
+      case RouteEnum.TRANSFER:
+      case RouteEnum.BANKCARD:
+      case RouteEnum.WITHDRAW:
+      case RouteEnum.ACCOUNT_CENTER:
+      case RouteEnum.BALANCE:
+      case RouteEnum.WALLET:
+      case RouteEnum.TRANSFER_RECORD:
+      case RouteEnum.DEALS:
+      case RouteEnum.BET_RECORD:
+      case RouteEnum.ROLLBACK:
+      case RouteEnum.STORE:
+      case RouteEnum.EXCHANGE_RECORD:
+      case RouteEnum.INVITE:
+      case RouteEnum.PASSWORD:
+      case RouteEnum.LOGOUT:
+        return true;
+        break;
+      default:
+        return false;
     }
   }
 }

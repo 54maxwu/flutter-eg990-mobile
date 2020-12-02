@@ -21,7 +21,7 @@ abstract class GamePlatformModel implements _$GamePlatformModel, DataOperator {
     @Default('0') String favorite,
   }) = _GamePlatformModel;
 
-  static GamePlatformModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static GamePlatformModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_GamePlatformModel(
         id: jsonMap['id'] as int ?? jsonMap['sort'],
         className: decodePlatformClassName(jsonMap),

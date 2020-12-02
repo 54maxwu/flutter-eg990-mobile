@@ -1,11 +1,11 @@
-import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/error_message_map.dart';
-import 'package:flutter_eg990_mobile/domain/user/login/login_repository.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_form_hive.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_repository.dart';
+import 'package:flutter_eg990_mobile/domain/user/login/login_status.dart';
 import 'package:flutter_eg990_mobile/domain/user/user_model.dart';
+import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 
@@ -44,7 +44,7 @@ abstract class _LoginStore with Store {
   void setErrorMsg(
           {String msg, bool showOnce = false, FailureType type, int code}) =>
       errorMessage = getErrorMsg(
-          from: FailureType.LOGIN,
+          from: FailureType.USER,
           msg: msg,
           showOnce: showOnce,
           type: type,
@@ -118,11 +118,11 @@ abstract class _LoginStore with Store {
             ),
             (model) async {
               _lastLoginName = form.username.value;
+              // debugPrint('user info: ${model.getData}');
               _infoStore.updateUser(LoginStatus(
                 loggedIn: true,
                 user: model.getData,
               ));
-              // debugPrint('user info: ${model.getData}');
               Future.sync(() => (form.saveForm)
                       ? _saveToBox(form.toHive())
                       : _cleanHistoryBox())

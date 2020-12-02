@@ -58,6 +58,7 @@ abstract class _HomeStore with Store {
   bool waitForBanner = false;
   bool waitForMarquee = false;
   bool waitForGameTypes = false;
+
 //   bool waitForRecommend = false;
 //   bool waitForFavorite = false;
 

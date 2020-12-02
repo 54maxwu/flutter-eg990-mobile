@@ -19,7 +19,6 @@ class _$RouteInfoTearOff {
       @required String route,
       Object routeArg,
       String root = MainScreenRoutes.homeRoute,
-      bool isUserOnly = false,
       MainScreenAppBarTypes appBarType = MainScreenAppBarTypes.BACK_AND_TITLE,
       MainScreenNavBarTypes navBarType = MainScreenNavBarTypes.HIDE,
       int bottomNavIndex = -1,
@@ -30,7 +29,6 @@ class _$RouteInfoTearOff {
       route: route,
       routeArg: routeArg,
       root: root,
-      isUserOnly: isUserOnly,
       appBarType: appBarType,
       navBarType: navBarType,
       bottomNavIndex: bottomNavIndex,
@@ -50,9 +48,6 @@ mixin _$RouteInfo {
   String get route;
   Object get routeArg;
   String get root;
-
-  /// if true, check the user login status before navigate
-  bool get isUserOnly;
 
   /// if true, shows the widget on the right side (logout, register...etc)
   MainScreenAppBarTypes get appBarType;
@@ -83,7 +78,6 @@ abstract class $RouteInfoCopyWith<$Res> {
       String route,
       Object routeArg,
       String root,
-      bool isUserOnly,
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
@@ -105,7 +99,6 @@ class _$RouteInfoCopyWithImpl<$Res> implements $RouteInfoCopyWith<$Res> {
     Object route = freezed,
     Object routeArg = freezed,
     Object root = freezed,
-    Object isUserOnly = freezed,
     Object appBarType = freezed,
     Object navBarType = freezed,
     Object bottomNavIndex = freezed,
@@ -117,8 +110,6 @@ class _$RouteInfoCopyWithImpl<$Res> implements $RouteInfoCopyWith<$Res> {
       route: route == freezed ? _value.route : route as String,
       routeArg: routeArg == freezed ? _value.routeArg : routeArg,
       root: root == freezed ? _value.root : root as String,
-      isUserOnly:
-          isUserOnly == freezed ? _value.isUserOnly : isUserOnly as bool,
       appBarType: appBarType == freezed
           ? _value.appBarType
           : appBarType as MainScreenAppBarTypes,
@@ -146,7 +137,6 @@ abstract class _$RouteInfoCopyWith<$Res> implements $RouteInfoCopyWith<$Res> {
       String route,
       Object routeArg,
       String root,
-      bool isUserOnly,
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
@@ -169,7 +159,6 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
     Object route = freezed,
     Object routeArg = freezed,
     Object root = freezed,
-    Object isUserOnly = freezed,
     Object appBarType = freezed,
     Object navBarType = freezed,
     Object bottomNavIndex = freezed,
@@ -181,8 +170,6 @@ class __$RouteInfoCopyWithImpl<$Res> extends _$RouteInfoCopyWithImpl<$Res>
       route: route == freezed ? _value.route : route as String,
       routeArg: routeArg == freezed ? _value.routeArg : routeArg,
       root: root == freezed ? _value.root : root as String,
-      isUserOnly:
-          isUserOnly == freezed ? _value.isUserOnly : isUserOnly as bool,
       appBarType: appBarType == freezed
           ? _value.appBarType
           : appBarType as MainScreenAppBarTypes,
@@ -206,7 +193,6 @@ class _$_RouteInfo implements _RouteInfo {
       @required this.route,
       this.routeArg,
       this.root = MainScreenRoutes.homeRoute,
-      this.isUserOnly = false,
       this.appBarType = MainScreenAppBarTypes.BACK_AND_TITLE,
       this.navBarType = MainScreenNavBarTypes.HIDE,
       this.bottomNavIndex = -1,
@@ -215,7 +201,6 @@ class _$_RouteInfo implements _RouteInfo {
       : assert(id != null),
         assert(route != null),
         assert(root != null),
-        assert(isUserOnly != null),
         assert(appBarType != null),
         assert(navBarType != null),
         assert(bottomNavIndex != null),
@@ -230,11 +215,6 @@ class _$_RouteInfo implements _RouteInfo {
   @JsonKey(defaultValue: MainScreenRoutes.homeRoute)
   @override
   final String root;
-  @JsonKey(defaultValue: false)
-  @override
-
-  /// if true, check the user login status before navigate
-  final bool isUserOnly;
   @JsonKey(defaultValue: MainScreenAppBarTypes.BACK_AND_TITLE)
   @override
 
@@ -264,7 +244,7 @@ class _$_RouteInfo implements _RouteInfo {
 
   @override
   String toString() {
-    return 'RouteInfo(id: $id, route: $route, routeArg: $routeArg, root: $root, isUserOnly: $isUserOnly, appBarType: $appBarType, navBarType: $navBarType, bottomNavIndex: $bottomNavIndex, webPageName: $webPageName, title: $title)';
+    return 'RouteInfo(id: $id, route: $route, routeArg: $routeArg, root: $root, appBarType: $appBarType, navBarType: $navBarType, bottomNavIndex: $bottomNavIndex, webPageName: $webPageName, title: $title)';
   }
 
   @override
@@ -280,9 +260,6 @@ class _$_RouteInfo implements _RouteInfo {
                     .equals(other.routeArg, routeArg)) &&
             (identical(other.root, root) ||
                 const DeepCollectionEquality().equals(other.root, root)) &&
-            (identical(other.isUserOnly, isUserOnly) ||
-                const DeepCollectionEquality()
-                    .equals(other.isUserOnly, isUserOnly)) &&
             (identical(other.appBarType, appBarType) ||
                 const DeepCollectionEquality()
                     .equals(other.appBarType, appBarType)) &&
@@ -306,7 +283,6 @@ class _$_RouteInfo implements _RouteInfo {
       const DeepCollectionEquality().hash(route) ^
       const DeepCollectionEquality().hash(routeArg) ^
       const DeepCollectionEquality().hash(root) ^
-      const DeepCollectionEquality().hash(isUserOnly) ^
       const DeepCollectionEquality().hash(appBarType) ^
       const DeepCollectionEquality().hash(navBarType) ^
       const DeepCollectionEquality().hash(bottomNavIndex) ^
@@ -324,7 +300,6 @@ abstract class _RouteInfo implements RouteInfo {
       @required String route,
       Object routeArg,
       String root,
-      bool isUserOnly,
       MainScreenAppBarTypes appBarType,
       MainScreenNavBarTypes navBarType,
       int bottomNavIndex,
@@ -339,10 +314,6 @@ abstract class _RouteInfo implements RouteInfo {
   Object get routeArg;
   @override
   String get root;
-  @override
-
-  /// if true, check the user login status before navigate
-  bool get isUserOnly;
   @override
 
   /// if true, shows the widget on the right side (logout, register...etc)

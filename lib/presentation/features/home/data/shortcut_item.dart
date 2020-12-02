@@ -1,4 +1,3 @@
-import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/presentation/router/data/route_enum.dart';
 import 'package:flutter_eg990_mobile/presentation/router/route_page.dart';
 import 'package:flutter_eg990_mobile/res.dart';
@@ -13,7 +12,7 @@ class ShortcutItem extends Vnum<ShortcutData> {
   static ShortcutItem deposit = ShortcutItem.define(ShortcutData(
     id: RouteEnum.DEPOSIT,
     assetPath: Res.f_icon_deposit,
-    // route: RoutePage.home,
+    route: RoutePage.deposit,
   ));
   static ShortcutItem transfer = ShortcutItem.define(ShortcutData(
     id: RouteEnum.TRANSFER,

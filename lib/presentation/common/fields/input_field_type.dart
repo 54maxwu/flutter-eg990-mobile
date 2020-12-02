@@ -1,6 +1,6 @@
-part of 'customize_field_widget.dart';
+part of 'field_input_widget.dart';
 
-enum FieldType {
+enum FieldInputType {
   Normal,
   ChineseOnly,
   NoChinese,

@@ -268,7 +268,7 @@ class DioApiService {
         return RequestCanceledException();
       case DioErrorType.DEFAULT:
       default:
-        return UnknownException();
+        return ServerException();
     }
   }
 }

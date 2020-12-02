@@ -1,8 +1,10 @@
 import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
 
-class LocationException implements Exception {}
-
 class ServerException implements Exception {}
+
+class LocationException implements ServerException {}
+
+class RequestTypeErrorException implements ServerException {}
 
 class RequestTimeoutException implements ServerException {
   final String message;
@@ -20,11 +22,9 @@ class RequestCanceledException implements ServerException {}
 
 class ResponseException implements ServerException {}
 
-class UnknownException implements ServerException {}
+class TokenException implements ServerException {}
 
-class TokenException implements Exception {}
-
-class LoginException implements Exception {
+class LoginException implements ServerException {
   final RequestStatusModel data;
 
   LoginException({this.data});
@@ -36,21 +36,40 @@ class LoginException implements Exception {
   }
 }
 
-class JsonFormatException implements Exception {
-  final String json;
+abstract class DataException implements Exception {
+  final dynamic data;
 
-  JsonFormatException(this.json);
+  DataException(this.data);
 
   @override
-  String toString() {
-    return 'JsonFormatException!!\njson data: $json';
-  }
+  String toString() => 'DataException!! data: $data';
 }
 
-class MapJsonDataException implements Exception {}
+class HiveDataException extends DataException {
+  HiveDataException(data) : super(data);
 
-class HiveDataException implements Exception {}
+  @override
+  String toString() => 'HiveDataException!! data type: ${data.runtimeType}';
+}
 
-class RequestTypeErrorException implements Exception {}
+class JsonDecodeException extends DataException {
+  JsonDecodeException(data) : super(data);
 
-class UnknownConditionException implements Exception {}
+  @override
+  String toString() => 'JsonDecodeException!! data: $data';
+}
+
+class UnexpectedTypeException extends DataException {
+  UnexpectedTypeException(data) : super(data);
+
+  @override
+  String toString() => 'UnexpectedTypeException!! data: ${data.runtimeType}';
+}
+
+class UnknownConditionException extends DataException {
+  UnknownConditionException(data) : super(data);
+
+  @override
+  String toString() =>
+      'UnknownConditionException!! data type: ${data.runtimeType}';
+}

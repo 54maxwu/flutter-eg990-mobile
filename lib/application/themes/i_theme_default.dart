@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'theme_color_interface.dart';
 import 'theme_data.dart';
@@ -33,7 +33,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultAccentColor = Color(0xffd2b79c);
 
   @override
-  Color defaultBorderColor = Color(0xff9aa7c2);
+  Color defaultBorderColor = Color(0xff404040);
 
   @override
   Color defaultDividerColor = Color(0xff808080);
@@ -51,13 +51,13 @@ class ThemeDefault implements ThemeColorInterface {
   /// Widget color
   ///
   @override
-  Color defaultWidgetColor = Color(0xfff5f5f5);
+  Color defaultWidgetColor = Color(0xff383838);
 
   @override
-  Color defaultWidgetBgColor = Color(0xffd2b79c);
+  Color defaultWidgetBgColor = Color(0xff000000);
 
   @override
-  Color defaultSelectableWidgetColor = Color(0xffd2b79c);
+  Color defaultSelectableWidgetColor = Color(0xff424242);
 
   @override
   Color defaultDisabledColor = Color(0xff989898);
@@ -75,19 +75,19 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultCardColor = Color(0x99FFFFFF);
 
   @override
-  Color defaultCardTitleColor = Color(0xff2a60ba);
+  Color defaultCardTitleColor = Color(0xffedd1a2);
 
   @override
-  Color defaultTabUnselectedColor = Color(0xff09347b);
+  Color defaultTabUnselectedColor = Color(0xfff5f5f5);
 
   @override
-  Color defaultTabSelectedColor = Color(0xffffffff);
+  Color defaultTabSelectedColor = Color(0xffd2b79c);
 
   @override
-  Color defaultTabSelectedTextColor = Color(0xff2a60ba);
+  Color defaultTabSelectedTextColor = Color(0xffffffff);
 
   @override
-  Color defaultIndicatorColor = Color(0xff3f3f5a);
+  Color defaultIndicatorColor = Color(0xff303030);
 
   ///
   /// Side menu color
@@ -117,7 +117,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color sideMenuIconColor = Color(0xffffffff);
 
   @override
-  Color sideMenuIconBgColor = Color(0xff1a77df);
+  Color sideMenuIconBgColor = Color(0xffedd1a2);
 
   @override
   Color sideMenuIconTextColor = Color(0xff383838);
@@ -141,7 +141,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color dialogTextColor = Color(0xff383838);
 
   @override
-  Color dialogTitleColor = Color(0xff1561b7);
+  Color dialogTitleColor = Color(0xffd2b79c);
 
   @override
   Color dialogTitleBgColor = Color(0xffffffff);
@@ -165,7 +165,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultTitleColor = Color(0xff303030);
 
   @override
-  Color defaultSubtitleColor = Color(0xff4285f4);
+  Color defaultSubtitleColor = Color(0xffedd1a2);
 
   @override
   Color defaultHintColor = Color(0xffa5a9b3);
@@ -219,7 +219,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color iconColor = Color(0xffffffff);
 
   @override
-  Color iconBgColor = Color(0xff4285f4);
+  Color iconBgColor = Color(0xffd2b79c);
 
   @override
   Color iconSubColor1 = Color(0xffffffff);
@@ -249,10 +249,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color buttonPrimaryColor = Color(0xffd2b79c);
 
   @override
-  Color buttonTextPrimaryColor = Color(0xffffffff);
+  Color buttonTextPrimaryColor = Color(0xff000000);
 
   @override
-  Color buttonSecondaryColor = Color(0xffd2d2d2);
+  Color buttonSecondaryColor = Color(0xfff5f5f5);
 
   @override
   Color buttonSubColor = Color(0xff969696);
@@ -294,10 +294,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color centerButtonColor = Color(0xf0ffffff);
 
   @override
-  Color centerButtonTextColor = Color(0xff3751f3);
+  Color centerButtonTextColor = Color(0xff383838);
 
   @override
-  Color centerButtonBorderColor = Color(0xff409cf3);
+  Color centerButtonBorderColor = Color(0xffc4c4c4);
 
   @override
   Color centerButtonStackColor = Color.fromRGBO(0, 152, 255, 0.1);
@@ -306,58 +306,58 @@ class ThemeDefault implements ThemeColorInterface {
   /// Input field color
   ///
   @override
-  Color fieldInputColor = Color(0xff303030);
+  Color fieldFillColor = Color(0x00000000);
 
   @override
-  Color fieldInputBgColor = Color(0xffe1e1e1);
+  Color fieldReadOnlyFillColor = Color(0xffa0a0a0);
 
   @override
-  Color fieldReadOnlyBgColor = Color(0xffd3d3d3);
+  Color fieldInputTextColor = Color(0xff222222);
 
   @override
-  Color fieldInputHintColor = Color(0xff969696);
+  Color fieldHintColor = Color(0xff808080);
 
   @override
-  Color fieldPrefixBgColor = Color(0xffd2b79c);
+  Color fieldHelperColor = Color(0xffff6975);
 
   @override
-  Color fieldPrefixColor = Color(0xfff8f8f8);
+  Color fieldPrefixFillColor = Color(0x00000000);
 
   @override
-  Color fieldPrefixSubColor = Color(0xffffffff);
+  Color fieldPrefixTextColor = Color(0xff000000);
 
   @override
-  Color fieldSuffixColor = Color(0xff2a60ba);
+  Color fieldSuffixTextColor = Color(0xff222222);
 
   @override
-  Color fieldSuffixSubColor = Color(0xffffffff);
+  Color fieldFillColor2 = Color(0xffb4b4b4);
 
   @override
-  Color fieldInputSubBgColor = Color(0xff686868);
+  Color fieldReadOnlyFillColor2 = Color(0xff808080);
 
   @override
-  Color fieldReadOnlySubBgColor = Color(0xff3f3f3f);
+  Color fieldInputTextColor2 = Color(0xff000000);
 
   @override
-  Color fieldInputSubColor = Color(0xffeaeaea);
+  Color fieldPrefixFillColor2 = Color(0xffd2b79c);
 
   @override
-  Color fieldInputHintSubColor = Color(0xffb0b0b0);
+  Color fieldSuffixTextColor2 = Color(0xffd2b79c);
 
   @override
-  Color fieldCursorSubColor = Color(0xff90caf9);
+  Color fieldCursorColor = Color(0xff000000);
 
   ///
   /// Chart table color
   ///
   @override
-  Color chartBorderColor = Color(0xff969696);
+  Color chartBorderColor = Color(0xffc6c6c6);
 
   @override
-  Color chartPrimaryHeaderColor = Color(0xff2a60ba);
+  Color chartPrimaryHeaderColor = Color(0xffd2b79c);
 
   @override
-  Color chartPrimaryHeaderTextColor = Color(0xffffffff);
+  Color chartPrimaryHeaderTextColor = Color(0xff202020);
 
   @override
   Color chartSecondaryHeaderColor = Color(0xffa0a0a0);
@@ -371,6 +371,7 @@ class ThemeDefault implements ThemeColorInterface {
   /*******************************************************************
    * Specific Page Color                                             *
    *******************************************************************/
+
   ///
   /// Linear App Bar Color
   ///
@@ -402,13 +403,13 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeTabBgSelectedColor = Color(0xffd2b79c);
 
   @override
-  Color homeTabDividerColor = Color(0xff1a77df);
+  Color homeTabDividerColor = Color(0xffb4b4b4);
 
   @override
   Color homeTabIconColor = Color(0xfff0f0f0);
 
   @override
-  Color homeTabIconBgColor = Color(0xff1a77df);
+  Color homeTabIconBgColor = Color(0xffffffff);
 
   @override
   Color homeTabTextColor = Color(0xff9aa4c2);
@@ -417,10 +418,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeTabSelectedTextColor = Color(0xffffffff);
 
   @override
-  Color homeBoxBgColor = Color(0xff515175);
+  Color homeBoxBgColor = Color(0x00000000);
 
   @override
-  Color homeBoxHintBgColor = Color(0xff1a77df);
+  Color homeBoxHintBgColor = Color(0x00000000);
 
   @override
   Color homeBoxHintTextColor = Color(0xffffffff);
@@ -429,7 +430,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeBoxInfoTextColor = Color(0xffffffff);
 
   @override
-  Color homeBoxDividerColor = Color(0xff606084);
+  Color homeBoxDividerColor = Color(0xffd2d2d2);
 
   @override
   Color homeBoxIconColor = Color(0xffd2b79c);

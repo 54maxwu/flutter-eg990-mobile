@@ -17,7 +17,7 @@ abstract class MarqueeModel with _$MarqueeModel {
     @required String showDate,
   }) = _MarqueeModel;
 
-  static MarqueeModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static MarqueeModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_MarqueeModel(
         id: jsonMap['id'] as int,
         content: jsonMap[Global.jsonContentKey] as String,

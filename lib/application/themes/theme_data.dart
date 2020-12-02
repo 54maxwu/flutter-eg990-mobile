@@ -111,7 +111,7 @@ class MyThemeData {
       /// Input-Field Theme
       ///
       indicatorColor: interface.defaultIndicatorColor,
-      cursorColor: interface.fieldInputColor,
+      cursorColor: interface.fieldInputTextColor,
       textSelectionHandleColor: interface.iconSubColor1,
       inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,
@@ -121,21 +121,26 @@ class MyThemeData {
         enabledBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
         filled: true,
-        // filled the field with color
-        fillColor: interface.fieldInputBgColor,
         isDense: true,
+        // filled the field with color
+        fillColor: interface.fieldFillColor,
         // used less vertical space
         labelStyle: TextStyle(
-            color: interface.fieldInputHintColor,
-            fontSize: FontSize.NORMAL.value),
+          color: interface.fieldPrefixTextColor,
+          fontSize: FontSize.NORMAL.value,
+        ),
         helperStyle: TextStyle(
-            color: interface.defaultMessageColor,
-            fontSize: FontSize.NORMAL.value),
+          color: interface.fieldHelperColor,
+          fontSize: FontSize.NORMAL.value,
+        ),
         hintStyle: TextStyle(
-            color: interface.defaultHintColor, fontSize: FontSize.NORMAL.value),
+          color: interface.fieldHintColor,
+          fontSize: FontSize.NORMAL.value,
+        ),
         errorStyle: TextStyle(
-            color: interface.defaultErrorColor,
-            fontSize: FontSize.NORMAL.value),
+          color: interface.defaultErrorColor,
+          fontSize: FontSize.NORMAL.value,
+        ),
       ),
 
       ///

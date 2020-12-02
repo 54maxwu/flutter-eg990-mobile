@@ -1,8 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/domain/response/request_code_model.dart';
 import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:super_enum/super_enum.dart';
 
 import 'failure_code.dart';
@@ -91,6 +90,7 @@ const String _OTHER_FAILURE_MESSAGE = 'Unexpected error';
 @freezed
 abstract class HttpFailure with _$HttpFailure {
   const factory HttpFailure.invalidToken() = InvalidToken;
+
   const factory HttpFailure.serverError({
     @required String code,
     @required String msg,
@@ -103,6 +103,7 @@ abstract class DataFailure<T> with _$DataFailure<T> {
     @required T type,
     @required dynamic data,
   }) = DataDecodeError<T>;
+
   const factory DataFailure.invalidResponse({
     @required T type,
     @required dynamic data,

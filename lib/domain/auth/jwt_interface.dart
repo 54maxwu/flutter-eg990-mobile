@@ -14,8 +14,11 @@ class JwtApi {
 
 abstract class JwtInterface {
   bool get hasUser;
+
   String get username;
+
   String get userId;
+
   String get token;
 
   /// Calls the service [UserApi.JWT_CHECK] endpoint to verify [token].
@@ -53,7 +56,7 @@ class JwtInterfaceImpl implements JwtInterface {
       return await requestModel<RequestStatusModel>(
         request: dioApiService.post(JwtApi.JWT_CHECK,
             userToken: loginToken, data: {"href": href}),
-        jsonToModel: RequestStatusModel.jsonToStatusModel,
+        parseJson: RequestStatusModel.jsonToStatusModel,
         tag: 'remote-JWT',
       ).then((result) => result.fold(
             (failure) => left(failure),
@@ -74,7 +77,7 @@ class JwtInterfaceImpl implements JwtInterface {
           return await requestModel<RequestStatusModel>(
             request: dioApiService.post(JwtApi.JWT_CHECK,
                 userToken: _token, data: {"href": href}),
-            jsonToModel: RequestStatusModel.jsonToStatusModel,
+            parseJson: RequestStatusModel.jsonToStatusModel,
             tag: 'remote-JWT',
           ).then(
             (result) => result.fold(

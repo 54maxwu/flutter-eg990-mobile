@@ -1,10 +1,27 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 import '../data/member_shortcut_item.dart';
 
 class MemberShortcuts extends StatelessWidget {
+  final bool hasUser;
+
+  const MemberShortcuts({@required this.hasUser});
+
+  Function onClickShortcut(MemberShortcutItem shortcut) => () {
+        if (shortcut.value.route != null) {
+          if (shortcut.value.isUserOnly && !hasUser) {
+            callToastInfo(localeStr.messageErrorNotLogin);
+          } else {
+            AppNavigator.navigateTo(shortcut.value.route);
+          }
+        } else {
+          callToastInfo(localeStr.workInProgress);
+        }
+      };
+
   @override
   Widget build(BuildContext context) {
     final shortcutsTop = MemberShortcutItem.mapByTypeIndex(1);
@@ -60,38 +77,41 @@ class MemberShortcuts extends StatelessWidget {
 
   Widget _createComplexShortcut(MemberShortcutItem shortcut) {
     return Expanded(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(shortcut.value.assetPath),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-            child: AutoSizeText.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: shortcut.value.label,
-                    style: TextStyle(
-                      color: themeColor.defaultTextColor,
-                      fontSize: FontSize.SUBTITLE.value,
-                      fontWeight: FontWeight.w600,
+      child: GestureDetector(
+        onTap: onClickShortcut(shortcut),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(shortcut.value.assetPath),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6.0),
+              child: AutoSizeText.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: shortcut.value.label,
+                      style: TextStyle(
+                        color: themeColor.defaultTextColor,
+                        fontSize: FontSize.SUBTITLE.value,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: '\n${shortcut.value.hint}',
-                    style: TextStyle(
-                      color: themeColor.defaultHintColor,
-                      fontSize: FontSize.SMALLER.value,
-                      height: 1.5,
+                    TextSpan(
+                      text: '\n${shortcut.value.hint}',
+                      style: TextStyle(
+                        color: themeColor.defaultHintColor,
+                        fontSize: FontSize.SMALLER.value,
+                        height: 1.5,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                maxFontSize: FontSize.TITLE.value,
               ),
-              maxFontSize: FontSize.TITLE.value,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -100,24 +120,27 @@ class MemberShortcuts extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Column(
-          children: [
-            Image.asset(shortcut.value.assetPath, scale: 1.75),
-            Container(
-              height: FontSize.MESSAGE.value * 1.5,
-              padding: const EdgeInsets.only(top: 6.0),
-              child: AutoSizeText(
-                shortcut.value.label,
-                style: TextStyle(
-                  color: themeColor.defaultTextColor,
-                  fontSize: FontSize.MESSAGE.value,
-                  fontWeight: FontWeight.w400,
+        child: GestureDetector(
+          onTap: onClickShortcut(shortcut),
+          child: Column(
+            children: [
+              Image.asset(shortcut.value.assetPath, scale: 1.75),
+              Container(
+                height: FontSize.MESSAGE.value * 1.5,
+                padding: const EdgeInsets.only(top: 6.0),
+                child: AutoSizeText(
+                  shortcut.value.label,
+                  style: TextStyle(
+                    color: themeColor.defaultTextColor,
+                    fontSize: FontSize.MESSAGE.value,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 1,
+                  maxFontSize: FontSize.SUBTITLE.value,
                 ),
-                maxLines: 1,
-                maxFontSize: FontSize.SUBTITLE.value,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -21,6 +21,8 @@ abstract class MemberShortcutData with _$MemberShortcutData {
 extension MemberShortcutDataExtension on MemberShortcutData {
   String get label => id.title;
 
+  bool get isUserOnly => id.isUserOnly;
+
   String get hint {
     switch (sType) {
       case MemberShortcutType.COMPLEX:

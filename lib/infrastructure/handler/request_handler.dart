@@ -135,7 +135,7 @@ Future<Either<Failure, dynamic>> requestData({
 ///          DataApi.GET_DATA,
 ///          userToken: jwtInterface.token,
 ///        ),
-///        jsonToModel: DataModel.jsonToDataModel,
+///        parseJson: DataModel.jsonToDataModel,
 ///     );
 ///     debugPrint('test response type: ${result.runtimeType}, data: $result');
 ///     return result.fold(
@@ -146,7 +146,7 @@ Future<Either<Failure, dynamic>> requestData({
 ///
 Future<Either<Failure, T>> requestModel<T>({
   @required Future<Response<dynamic>> request,
-  @required Function(Map<String, dynamic> jsonMap) jsonToModel,
+  @required Function(Map<String, dynamic> jsonMap) parseJson,
   bool trim = false,
   String tag = 'remote-MODEL',
 }) async {
@@ -154,7 +154,7 @@ Future<Either<Failure, T>> requestModel<T>({
     return result.fold((failure) => Left(failure), (data) {
       try {
         return Right(
-            JsonUtil.decodeToModel<T>(data, jsonToModel, trim: trim, tag: tag));
+            JsonUtil.decodeToModel<T>(data, parseJson, trim: trim, tag: tag));
       } on TokenException {
         return Left(Failure.token(FailureType.TOKEN));
       }
@@ -164,7 +164,7 @@ Future<Either<Failure, T>> requestModel<T>({
 
 Future<Either<Failure, List<T>>> requestModelList<T>({
   @required Future<Response<dynamic>> request,
-  @required Function(Map<String, dynamic> jsonMap) jsonToModel,
+  @required Function(Map<String, dynamic> jsonMap) parseJson,
   bool trim = false,
   bool addKey = true,
   String tag = 'remote-MODEL_LIST',
@@ -178,13 +178,13 @@ Future<Either<Failure, List<T>>> requestModelList<T>({
           final model = (data.toString().startsWith('['))
               ? JsonUtil.decodeArrayToModel<T>(
                   data,
-                  jsonToModel,
+                  parseJson,
                   trim: trim,
                   tag: tag,
                 )
               : JsonUtil.decodeMapToModelList<T>(
                   (data is Map) ? data : jsonDecode(data),
-                  jsonToModel,
+                  parseJson,
                   trim: trim,
                   addKey: addKey,
                   tag: tag,

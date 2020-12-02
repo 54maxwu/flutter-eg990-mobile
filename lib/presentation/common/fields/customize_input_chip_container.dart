@@ -69,8 +69,8 @@ class _CustomizeInputChipContainerState
   @override
   void initState() {
     super.initState();
-    _fieldBgColor = widget.backgroundColor ?? themeColor.fieldInputBgColor;
-    _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixColor;
+    _fieldBgColor = widget.backgroundColor ?? themeColor.fieldFillColor;
+    _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixTextColor;
     _prefixBgColor = widget.prefixBgColor ?? themeColor.defaultWidgetBgColor;
   }
 
@@ -133,7 +133,7 @@ class _CustomizeInputChipContainerState
           left: Radius.circular(4.0),
           right: Radius.circular(4.0),
         )),
-        backgroundColor: themeColor.fieldInputBgColor,
+        backgroundColor: themeColor.fieldFillColor,
         onPressed: () => (widget.chipTapCall != null)
             ? widget.chipTapCall(returnOnPress)
             : {},

@@ -7,7 +7,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/sector/home/platform/game_platform_entity.dart';
@@ -20,6 +19,7 @@ import '../features/home/widgets/pageview/games_page.dart';
 import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
+import '../features/member_features/deposit/deposit_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -113,6 +113,7 @@ class MainScreenRoutes {
   static const String sponsorRoute = '/sponsor-route';
   static const String aboutRoute = '/about-route';
   static const String memberRoute = '/member-route';
+  static const String depositRoute = '/deposit-route';
   static const String betRecordRoute = '/bet-record-route';
   static const all = <String>{
     homeRoute,
@@ -124,6 +125,7 @@ class MainScreenRoutes {
     sponsorRoute,
     aboutRoute,
     memberRoute,
+    depositRoute,
     betRecordRoute,
   };
 }
@@ -141,6 +143,7 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
     RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
+    RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
     RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
   ];
   @override
@@ -207,6 +210,12 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    DepositRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DepositRoute(),
+        settings: data,
+      );
+    },
     BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => BetRecordRoute(),
@@ -259,6 +268,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
+
+  Future<dynamic> pushDepositRoute() =>
+      push<dynamic>(MainScreenRoutes.depositRoute);
 
   Future<dynamic> pushBetRecordRoute() =>
       push<dynamic>(MainScreenRoutes.betRecordRoute);

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/game/game_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/loading_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 import '../../form/platform_game_form.dart';
 import '../../state/home_store.dart';
@@ -27,6 +27,7 @@ class GamesPage extends StatefulWidget {
 class _GamesPageState extends State<GamesPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+
   // PageController _pageController;
   // int _selectedIndex = 0;
 

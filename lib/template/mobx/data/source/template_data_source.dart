@@ -19,7 +19,7 @@ class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
   Future<TemplateModel> testApi() async {
     return await requestModel<TemplateModel>(
       request: dioApiService.get(TemplateApi.GET_VIP_PIC),
-      jsonToModel: TemplateModel.jsonToModel,
+      parseJson: TemplateModel.parseJson,
       tag: 'remote-TEMP',
     ).then(
       (result) => result.fold(

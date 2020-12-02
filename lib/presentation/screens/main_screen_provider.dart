@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/presentation/router/data/route_info.dart';
 
+import '../router/data/route_info.dart';
 import 'event/ads/state/ads_store.dart';
 import 'main_screen_store.dart';
 import 'user/user_info_store.dart';
 
 abstract class MainScreenProviderInterface with ChangeNotifier {
   GlobalKey<NavigatorState> get getNavigatorKey;
+
   GlobalKey<ScaffoldState> get getScaffoldKey;
 
   set update(MainScreenProvider provider);
+
   RouteInfo get getPageInfo;
+
+  void notifyUserInfoUpdated();
 }
 
 class MainScreenProvider
@@ -60,4 +63,7 @@ class MainScreenProvider
 
   @override
   RouteInfo get getPageInfo => screenStore.currentPage;
+
+  @override
+  void notifyUserInfoUpdated() => userInfoStore.setRecheck = true;
 }

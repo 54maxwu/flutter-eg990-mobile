@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/domain/sector/promo/promo_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 
 class PromoListItem extends StatelessWidget {

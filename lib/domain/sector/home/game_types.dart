@@ -31,14 +31,14 @@ abstract class GameTypes with _$GameTypes {
 List<GameCategoryEntity> _decodeGameCategories(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
-      (jsonMap) => GameCategoryModel.jsonToModel(jsonMap).entity,
+      (jsonMap) => GameCategoryModel.parseJson(jsonMap).entity,
       tag: 'GameCategoryModel',
     );
 
 List<GamePlatformEntity> _decodeGamePlatforms(dynamic str) =>
     JsonUtil.decodeArrayToModel(
       str,
-      (jsonMap) => GamePlatformModel.jsonToModel(jsonMap).entity,
+      (jsonMap) => GamePlatformModel.parseJson(jsonMap).entity,
       tag: 'GamePlatformModel',
     );
 

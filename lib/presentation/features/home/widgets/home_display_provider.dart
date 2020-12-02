@@ -21,5 +21,6 @@ class HomeDisplayProvider
   @override
   void updateBannerSize(bool expand) {
     calc.updatePageHeight(!expand);
+    notifyListeners();
   }
 }

@@ -14,9 +14,6 @@ abstract class RouteInfo with _$RouteInfo {
     Object routeArg,
     @Default(MainScreenRoutes.homeRoute) String root,
 
-    /// if true, check the user login status before navigate
-    @Default(false) bool isUserOnly,
-
     /// if true, shows the widget on the right side (logout, register...etc)
     @Default(MainScreenAppBarTypes.BACK_AND_TITLE)
         MainScreenAppBarTypes appBarType,

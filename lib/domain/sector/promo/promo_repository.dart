@@ -50,7 +50,7 @@ class PromoRepositoryImpl implements PromoRepository {
   Future<Either<Failure, List<PromoEntity>>> _remotePromos() async {
     final result = await requestModelList<PromoModel>(
       request: dioApiService.get(PromoApi.GET_PROMO),
-      jsonToModel: PromoModel.jsonToModel,
+      parseJson: PromoModel.parseJson,
       tag: 'remote-PROMO',
     );
 //      print('test response type: ${result.runtimeType}, data: $result');

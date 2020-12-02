@@ -30,7 +30,7 @@ abstract class PromoModel with _$PromoModel {
   factory PromoModel.fromJson(Map<String, dynamic> json) =>
       _$PromoModelFromJson(json);
 
-  static PromoModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static PromoModel parseJson(Map<String, dynamic> jsonMap) =>
       PromoModel.fromJson(jsonMap);
 }
 

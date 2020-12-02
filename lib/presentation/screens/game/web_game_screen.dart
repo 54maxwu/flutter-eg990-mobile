@@ -6,7 +6,7 @@ import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/presentation/common/toast_widget_export.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 

@@ -9,18 +9,33 @@ part of 'user_info_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserInfoStore on _UserInfoStore, Store {
-  final _$userNameAtom = Atom(name: '_UserInfoStore.userName');
+  final _$askRecheckInfoAtom = Atom(name: '_UserInfoStore.askRecheckInfo');
 
   @override
-  String get userName {
-    _$userNameAtom.reportRead();
-    return super.userName;
+  bool get askRecheckInfo {
+    _$askRecheckInfoAtom.reportRead();
+    return super.askRecheckInfo;
   }
 
   @override
-  set userName(String value) {
-    _$userNameAtom.reportWrite(value, super.userName, () {
-      super.userName = value;
+  set askRecheckInfo(bool value) {
+    _$askRecheckInfoAtom.reportWrite(value, super.askRecheckInfo, () {
+      super.askRecheckInfo = value;
+    });
+  }
+
+  final _$hasUserAtom = Atom(name: '_UserInfoStore.hasUser');
+
+  @override
+  bool get hasUser {
+    _$hasUserAtom.reportRead();
+    return super.hasUser;
+  }
+
+  @override
+  set hasUser(bool value) {
+    _$hasUserAtom.reportWrite(value, super.hasUser, () {
+      super.hasUser = value;
     });
   }
 
@@ -97,7 +112,8 @@ mixin _$UserInfoStore on _UserInfoStore, Store {
   @override
   String toString() {
     return '''
-userName: ${userName},
+askRecheckInfo: ${askRecheckInfo},
+hasUser: ${hasUser},
 userCredit: ${userCredit},
 hasNewMessage: ${hasNewMessage},
 errorMessage: ${errorMessage}

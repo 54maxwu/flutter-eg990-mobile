@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/presentation/features/about_us/data/about_data.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 
 import 'about_cert.dart';
 import 'about_partner.dart';

@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart' show immutable, required;
 import 'package:hive/hive.dart';
+import 'package:meta/meta.dart' show immutable, required;
 
 part 'login_form_hive.g.dart';
 

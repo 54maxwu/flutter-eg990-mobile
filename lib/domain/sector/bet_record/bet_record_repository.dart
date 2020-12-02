@@ -37,7 +37,7 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
         BetRecordApi.GET_CATEGORY,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: BetRecordType.jsonToModel,
+      parseJson: BetRecordType.parseJson,
       tag: 'remote-BET_TYPE',
     );
     if (result.isLeft()) return result;
@@ -84,7 +84,7 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
         userToken: jwtInterface.token,
         data: form.toJson,
       ),
-      jsonToModel: BetRecordModel.jsonToModel,
+      parseJson: BetRecordModel.parseJson,
       tag: 'remote-RECORD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -113,7 +113,7 @@ class BetRecordRepositoryImpl implements BetRecordRepository {
         try {
           List<BetRecordPlatformData> list = JsonUtil.decodeMapToModelList(
             data['data'],
-            (jsonMap) => BetRecordPlatformData.jsonToModel(jsonMap),
+            (jsonMap) => BetRecordPlatformData.parseJson(jsonMap),
           );
           debugPrint('bet platform length: ${list.length}');
           return Right(list);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/global.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
 import 'widgets/about_display.dart';

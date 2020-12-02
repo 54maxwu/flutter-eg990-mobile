@@ -125,9 +125,9 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
   void initState() {
     updateVariables();
     super.initState();
-    _fieldBgColor = widget.backgroundColor ?? themeColor.fieldInputBgColor;
-    _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixColor;
-    _prefixBgColor = widget.prefixBgColor ?? themeColor.fieldPrefixBgColor;
+    _fieldBgColor = widget.backgroundColor ?? themeColor.fieldFillColor;
+    _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixTextColor;
+    _prefixBgColor = widget.prefixBgColor ?? themeColor.fieldPrefixFillColor;
   }
 
   @override

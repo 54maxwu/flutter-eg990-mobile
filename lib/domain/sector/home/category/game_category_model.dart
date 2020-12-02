@@ -16,7 +16,7 @@ abstract class GameCategoryModel implements _$GameCategoryModel, DataOperator {
     @required String type,
   }) = _GameCategoryModel;
 
-  static GameCategoryModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static GameCategoryModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_GameCategoryModel(
         ch: jsonMap['ch'] as String,
         type: jsonMap['type'] as String,

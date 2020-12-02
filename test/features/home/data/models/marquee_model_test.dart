@@ -24,7 +24,7 @@ void main() {
   test('test decode single marquee model', () {
     print('\nmap:\n$map');
     print('\n\n');
-    final model = MarqueeModel.jsonToModel(map);
+    final model = MarqueeModel.parseJson(map);
     print('decoded model:\n$model\n');
     expect(model.id, 2);
     expect(model, equals(marqueeModel));
@@ -35,7 +35,7 @@ void main() {
     print('\n\n');
     MarqueeModelList model = JsonUtil.decodeToModel(
       arrayMap,
-      (jsonMap) => MarqueeModelList.jsonToModelList(jsonMap),
+      (jsonMap) => MarqueeModelList.parseJsonList(jsonMap),
     );
     print('decoded model:\n$model\n');
     expect(model.marquees.length, 4);

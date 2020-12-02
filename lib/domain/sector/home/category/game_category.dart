@@ -1,4 +1,3 @@
-import 'package:flutter_eg990_mobile/domain/core/exceptions.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:vnum/vnum.dart';
 
@@ -66,6 +65,6 @@ class GameCategory extends Vnum<GameCategoryInfo> {
   static GameCategory findCategoryById(GameCategoryEnum id) =>
       GameCategory.listAll.singleWhere(
         (category) => (category.value as GameCategoryInfo).id == id,
-        orElse: () => throw UnknownException(),
+        orElse: () => undefined,
       );
 }

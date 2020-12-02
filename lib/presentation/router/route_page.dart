@@ -9,6 +9,7 @@ import 'data/route_info.dart';
 
 export '../screens/main_screen_bar_type.dart';
 export 'data/route_enum.dart';
+export 'data/route_info.dart';
 
 part 'route_page_ext.dart';
 
@@ -75,12 +76,12 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// SHORTCUTS
   ///
-  // static const RoutePage login = const RoutePage.define(RouteInfo(
-  //   id: RouteEnum.LOGIN,
-  //   route: MainScreenRoutes.loginRoute,
-  //   appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
-  //   navBarType: MainScreenNavBarTypes.HIDE,
-  // ));
+  static const RoutePage deposit = const RoutePage.define(RouteInfo(
+    id: RouteEnum.DEPOSIT,
+    route: MainScreenRoutes.depositRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
 
   ///
   /// MEMBER
@@ -116,8 +117,6 @@ class RoutePage extends Vnum<RouteInfo> {
   String get pageTitle => value.id.title;
 
   String get pageRoot => value.root;
-
-  bool get isUserOnly => value.isUserOnly;
 
   MainScreenAppBarTypes get appBarType => value.appBarType;
 

@@ -1,29 +1,33 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:flutter_eg990_mobile/domain/sector/promo/promo_local_storage.dart';
-import 'package:flutter_eg990_mobile/domain/sector/promo/promo_repository.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:get_it/get_it.dart';
 
 import 'application/themes/theme_settings.dart';
 import 'domain/auth/jwt_interface.dart';
 import 'domain/sector/ads/ads_repository.dart';
+import 'domain/sector/bet_record/bet_record_repository.dart';
+import 'domain/sector/deposit/deposit_repository.dart';
 import 'domain/sector/home/home_local_storage.dart';
 import 'domain/sector/home/home_repository.dart';
+import 'domain/sector/promo/promo_local_storage.dart';
+import 'domain/sector/promo/promo_repository.dart';
 import 'domain/sector/service/service_repository.dart';
 import 'domain/sector/update_repository.dart';
 import 'domain/user/login/login_repository.dart';
 import 'domain/user/user_info_repository.dart';
 import 'infrastructure/core/dio_api_service.dart';
 import 'infrastructure/core/network_info.dart';
-import 'presentation/screens/event/ads/state/ads_store.dart';
-import 'presentation/screens/event/update/state/update_store.dart';
 import 'presentation/features/home/state/home_store.dart';
 import 'presentation/features/login/state/login_store.dart';
+import 'presentation/features/member_features/bet_record/state/bet_record_store.dart';
+import 'presentation/features/member_features/deposit/state/deposit_store.dart';
 import 'presentation/features/promo/state/promo_store.dart';
 import 'presentation/features/service/state/service_store.dart';
+import 'presentation/screens/event/ads/state/ads_store.dart';
+import 'presentation/screens/event/update/state/update_store.dart';
 import 'presentation/screens/main_screen_store.dart';
+import 'presentation/screens/streams/app_preference_streams.dart';
 import 'presentation/screens/user/user_info_store.dart';
-import 'presentation/streams/app_preference_streams.dart';
 
 final sl = GetIt.instance;
 
@@ -95,4 +99,18 @@ Future<void> init() async {
   sl.registerLazySingleton<ServiceRepository>(
       () => ServiceRepositoryImpl(dioApiService: sl()));
   sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
+
+  ///
+  /// DEPOSIT
+  ///
+  sl.registerFactory<DepositRepository>(
+      () => DepositRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => DepositStore(sl<DepositRepository>()));
+
+  ///
+  /// BET RECORD
+  ///
+  sl.registerFactory<BetRecordRepository>(
+      () => BetRecordRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => BetRecordStore(sl<BetRecordRepository>()));
 }

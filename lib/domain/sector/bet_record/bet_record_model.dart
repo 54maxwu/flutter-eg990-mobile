@@ -19,7 +19,7 @@ abstract class BetRecordModel with _$BetRecordModel {
     @JsonKey(fromJson: decodeBetRecordData) List<BetRecordData> data,
   }) = _BetRecordModel;
 
-  static BetRecordModel jsonToModel(Map<String, dynamic> jsonMap) =>
+  static BetRecordModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_BetRecordModel(
         currentPage: jsonMap['current_page'] as int,
         lastPage: jsonMap['last_page'] as int,
@@ -46,6 +46,6 @@ extension BetRecordModelExtension on BetRecordModel {
 List<BetRecordData> decodeBetRecordData(dynamic str) =>
     JsonUtil.decodeMapToModelList(
       str,
-      (jsonMap) => BetRecordData.jsonToModel(jsonMap),
+      (jsonMap) => BetRecordData.parseJson(jsonMap),
       tag: 'BetRecordData',
     );

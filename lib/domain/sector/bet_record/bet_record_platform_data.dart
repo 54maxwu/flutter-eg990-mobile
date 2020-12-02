@@ -11,7 +11,7 @@ abstract class BetRecordPlatformData with _$BetRecordPlatformData {
     dynamic key,
   }) = _BetRecordPlatformData;
 
-  static BetRecordPlatformData jsonToModel(
+  static BetRecordPlatformData parseJson(
     Map<String, dynamic> jsonMap,
   ) =>
       _$_BetRecordPlatformData(

@@ -14,7 +14,6 @@ abstract class RouteListItem with _$RouteListItem {
     String imageName,
     String imageSubName,
     RoutePage route,
-    bool userOnly,
   }) = _RouteListItem;
 }
 
@@ -23,5 +22,5 @@ extension RouteListItemExtension on RouteListItem {
 
   String get title => id.title;
 
-  bool get isUserOnly => userOnly ?? route.isUserOnly;
+  bool get isUserOnly => id.isUserOnly;
 }

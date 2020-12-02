@@ -27,6 +27,8 @@ dependencies:
   get_it: ^5.0.1
   # A wrapper around InheritedWidget to make them easier to use and more reusable. https://pub.dev/packages/provider
   provider: ^4.3.2+2
+  # Powerful Provider
+#  flutter_riverpod: ^0.12.1
   # Functional programming thingies https://pub.dev/packages/dartz
   dartz: ^0.9.2
   # Stream Control Improve
@@ -171,16 +173,18 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   assets:
+    - config/app_config.json
     - assets/images/
     - assets/images/icon/
+    - assets/images/badges/
     - assets/images/nav/
     - assets/images/features/
-    - assets/images/badges/
-    - assets/images/about/
+    - assets/images/deposit/
+    - assets/images/deposit/help/
     - assets/images/home/
-    - assets/images/home/categories/
     - assets/images/home/platforms/
-    - config/app_config.json
+    - assets/images/home/categories/
+    - assets/images/about/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

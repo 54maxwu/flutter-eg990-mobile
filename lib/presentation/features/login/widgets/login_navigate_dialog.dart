@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/dialog_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 
 class LoginNavigateDialog extends StatelessWidget {
   final String username;
@@ -13,13 +15,13 @@ class LoginNavigateDialog extends StatelessWidget {
     this.returnHomePage = true,
   });
 
-  final double dialogSize = Global.device.width * 0.5;
+  final double dialogSize = Global.device.width * 0.3;
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(milliseconds: 1500), () {
+    sl.get<UserInfoStore>().setRecheck = true;
+    Future.delayed(Duration(milliseconds: 1000), () {
       Navigator.of(context).pop();
-      AppNavigator.callCheckUser();
     }).whenComplete(() => AppNavigator.returnToHome());
     return WillPopScope(
       onWillPop: () async {

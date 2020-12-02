@@ -23,7 +23,6 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
   HomeStore _store;
   HomeDisplaySizeCalc _display;
   List<GamePlatformEntity> _platforms;
-  bool _hasUser = false;
 
   Widget _sliver;
 
@@ -33,7 +32,6 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
 
   @override
   void didUpdateWidget(covariant PlatformsPage oldWidget) {
-    _hasUser = null;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -47,7 +45,6 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
   Widget build(BuildContext context) {
     _store ??= Provider.of<HomeDisplayProvider>(context).homeStore;
     _display ??= Provider.of<HomeDisplayProvider>(context).calc;
-    _hasUser ??= Provider.of<MainScreenProvider>(context).userInfoStore.hasUser;
     if (_platforms == null) return LoadingWidget();
     if (mounted && _platforms.isNotEmpty) {
       // return NotificationListener<ScrollNotification>(
@@ -126,7 +123,7 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
   /// else throw [UnknownConditionException].
   void _onItemTap(GamePlatformEntity platform) {
     String openUrl = '';
-    if (_hasUser) {
+    if (context.read<MainScreenProvider>().userInfoStore.hasUser) {
       if (platform.isGameHall) {
         debugPrint('clicked game platform: ${platform.gameUrl}');
         if (platform.gameUrl == 'funky/lottery/0') {

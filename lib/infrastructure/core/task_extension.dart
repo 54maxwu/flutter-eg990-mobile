@@ -42,9 +42,8 @@ Future<Either<Failure, dynamic>> runTypedTask<T>(Future<T> future) {
 /// call [Future].then(...) to get the task result.
 ///
 /// Catch [LocationException] from [JsonUtil] when json data is html.
-/// Catch [JsonFormatException] from [JsonUtil] when json decode has error.
-/// Catch [MapJsonDataException] if the decoded json cannot be mapped into model entity.
-/// Catch [FormatException] if [jsonToModel] returns data different then [T].
+/// Catch all kinds of [DataException] from [JsonUtil] when transferring json into data has error.
+/// Catch [FormatException] if [parseJson] returns data different then [T].
 ///
 Future<Either<Failure, dynamic>> runTask(
   Future future, {
@@ -55,15 +54,10 @@ Future<Either<Failure, dynamic>> runTask(
 //      debugPrint('task has exception: $e, type: ${e.runtimeType}');
       switch (e.runtimeType) {
         case LocationException:
-          MyLogger.error(msg: 'task has exception: $e', tag: 'TaskX');
+          MyLogger.error(msg: 'Network location exception: $e', tag: 'TaskX');
           return Left(Failure.networkLocation());
-        case JsonFormatException:
-          MyLogger.error(
-              msg: 'Json Format Failed!!', tag: tag, error: e, stackTrace: s);
-          return Left(Failure.jsonFormat());
-        case MapJsonDataException:
-          MyLogger.error(
-              msg: 'Json Decode Failed!!', tag: tag, error: e, stackTrace: s);
+        case DataException:
+          MyLogger.error(msg: e.toString(), tag: tag, stackTrace: s);
           return Left(Failure.jsonFormat());
         case FormatException:
           MyLogger.wtf(

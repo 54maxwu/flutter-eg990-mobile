@@ -9,12 +9,12 @@ import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/state/home_store.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'main_startup.dart';
-import '../streams/app_preference_streams.dart';
+import '../features/home/state/home_store.dart';
 import '../router/auto_router.gr.dart';
+import '../screens/streams/app_preference_streams.dart';
+import 'main_startup.dart';
 
 class MainApp extends StatefulWidget {
   @override

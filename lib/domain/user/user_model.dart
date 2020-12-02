@@ -32,7 +32,7 @@ extension UserModelExtension on UserModel {
   bool get isValid => status == 'success';
 
   User get getData => User(
-        id: UniqueId(),
+        id: UniqueId(this.account),
         username: Username.dirty(value: this.account),
         credit: this.credit,
         vip: this.vip,

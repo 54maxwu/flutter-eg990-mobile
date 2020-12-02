@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/features/home/widgets/home_display_tabs.dart';
 import 'package:provider/provider.dart';
 
 import 'home_display_banner.dart';
 import 'home_display_marquee.dart';
 import 'home_display_provider.dart';
+import 'home_display_tabs.dart';
 import 'home_shortcut_widget.dart';
 
 class HomeDisplay extends StatefulWidget {
@@ -34,6 +34,9 @@ class _HomeDisplayState extends State<HomeDisplay> {
         shrinkWrap: true,
         addAutomaticKeepAlives: true,
         children: [
+          ///
+          /// BANNER
+          ///
           SizedBox(
             width: Global.device.width - 8.0,
             height: context.select<HomeDisplayProvider, double>(
@@ -49,6 +52,10 @@ class _HomeDisplayState extends State<HomeDisplay> {
               },
             ),
           ),
+
+          ///
+          /// MARQUEE
+          ///
           SizedBox(
             width: Global.device.width - 8.0,
             height: context.select<HomeDisplayProvider, double>(
@@ -64,16 +71,18 @@ class _HomeDisplayState extends State<HomeDisplay> {
               },
             ),
           ),
+
+          ///
+          /// SHORTCUTS
+          ///
           SizedBox(
             width: Global.device.width - 8.0,
-            child: Selector<MainScreenProvider, bool>(
-              selector: (_, provider) => provider.userInfoStore.loggedIn,
-              builder: (_, loggedIn, __) {
-                return HomeShortcutWidget(
-                    key: _shortcutKey, loggedIn: loggedIn);
-              },
-            ),
+            child: HomeShortcutWidget(key: _shortcutKey),
           ),
+
+          ///
+          /// GAMES
+          ///
           Container(
             width: Global.device.width - 8.0,
             height: context.select<HomeDisplayProvider, double>(

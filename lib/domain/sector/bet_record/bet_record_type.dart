@@ -17,7 +17,7 @@ abstract class BetRecordType implements _$BetRecordType, DataOperator {
     Map<String, dynamic> platformMap,
   }) = _BetRecordType;
 
-  static jsonToModel(Map<String, dynamic> jsonMap) => _$_BetRecordType(
+  static parseJson(Map<String, dynamic> jsonMap) => _$_BetRecordType(
         categoryId: jsonMap['id'] as int,
         // ignore: deprecated_member_use_from_same_package
         categoryName: jsonMap['ch'] as String,

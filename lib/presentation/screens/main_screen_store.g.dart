@@ -24,10 +24,26 @@ mixin _$MainScreenStore on _MainScreenStore, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_MainScreenStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
-currentPage: ${currentPage}
+currentPage: ${currentPage},
+errorMessage: ${errorMessage}
     ''';
   }
 }

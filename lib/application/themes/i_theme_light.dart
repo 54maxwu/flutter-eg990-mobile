@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'theme_color_interface.dart';
 import 'theme_data.dart';
@@ -306,46 +306,46 @@ class ThemeLight implements ThemeColorInterface {
   /// Input field color
   ///
   @override
-  Color fieldInputColor = Color(0xff303030);
+  Color fieldInputTextColor = Color(0xff303030);
 
   @override
-  Color fieldInputBgColor = Color(0xffe1e1e1);
+  Color fieldFillColor = Color(0xffe1e1e1);
 
   @override
-  Color fieldReadOnlyBgColor = Color(0xffd3d3d3);
+  Color fieldReadOnlyFillColor = Color(0xffd3d3d3);
 
   @override
-  Color fieldInputHintColor = Color(0xff969696);
+  Color fieldHintColor = Color(0xff969696);
 
   @override
-  Color fieldPrefixBgColor = Color(0xffffffff);
+  Color fieldPrefixFillColor = Color(0xffffffff);
 
   @override
-  Color fieldPrefixColor = Color(0xff383838);
+  Color fieldPrefixTextColor = Color(0xff383838);
 
   @override
-  Color fieldPrefixSubColor = Color(0xffffffff);
+  Color fieldPrefixFillColor2 = Color(0xffffffff);
 
   @override
-  Color fieldSuffixColor = Color(0xff2a60ba);
+  Color fieldSuffixTextColor = Color(0xff2a60ba);
 
   @override
-  Color fieldSuffixSubColor = Color(0xffffffff);
+  Color fieldSuffixTextColor2 = Color(0xffffffff);
 
   @override
-  Color fieldInputSubBgColor = Color(0xff686868);
+  Color fieldFillColor2 = Color(0xff686868);
 
   @override
-  Color fieldReadOnlySubBgColor = Color(0xff3f3f3f);
+  Color fieldReadOnlyFillColor2 = Color(0xff3f3f3f);
 
   @override
-  Color fieldInputSubColor = Color(0xffeaeaea);
+  Color fieldInputTextColor2 = Color(0xffeaeaea);
 
   @override
-  Color fieldInputHintSubColor = Color(0xffb0b0b0);
+  Color fieldHelperColor = Color(0xffb0b0b0);
 
   @override
-  Color fieldCursorSubColor = Color(0xff90caf9);
+  Color fieldCursorColor = Color(0xff90caf9);
 
   ///
   /// Chart table color
@@ -371,6 +371,7 @@ class ThemeLight implements ThemeColorInterface {
   /*******************************************************************
    * Specific Page Color                                             *
    *******************************************************************/
+
   ///
   /// Linear App Bar Color
   ///

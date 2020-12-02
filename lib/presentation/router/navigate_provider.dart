@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 abstract class NavigateProviderInterface with ChangeNotifier {
   set setRootNavigatorKey(GlobalKey<NavigatorState> key);
+
   GlobalKey<NavigatorState> get getRootNavigatorKey;
 }
 

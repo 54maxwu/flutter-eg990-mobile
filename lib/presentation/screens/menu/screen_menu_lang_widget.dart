@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
+import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/streams/app_preference_streams.dart';
+import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/screens/streams/app_preference_streams.dart';
 
 class ScreenMenuLangWidget extends StatefulWidget {
   @override

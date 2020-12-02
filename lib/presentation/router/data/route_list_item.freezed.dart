@@ -19,15 +19,13 @@ class _$RouteListItemTearOff {
       IconData iconData,
       String imageName,
       String imageSubName,
-      RoutePage route,
-      bool userOnly}) {
+      RoutePage route}) {
     return _RouteListItem(
       routeId: routeId,
       iconData: iconData,
       imageName: imageName,
       imageSubName: imageSubName,
       route: route,
-      userOnly: userOnly,
     );
   }
 }
@@ -43,7 +41,6 @@ mixin _$RouteListItem {
   String get imageName;
   String get imageSubName;
   RoutePage get route;
-  bool get userOnly;
 
   $RouteListItemCopyWith<RouteListItem> get copyWith;
 }
@@ -58,8 +55,7 @@ abstract class $RouteListItemCopyWith<$Res> {
       IconData iconData,
       String imageName,
       String imageSubName,
-      RoutePage route,
-      bool userOnly});
+      RoutePage route});
 }
 
 /// @nodoc
@@ -78,7 +74,6 @@ class _$RouteListItemCopyWithImpl<$Res>
     Object imageName = freezed,
     Object imageSubName = freezed,
     Object route = freezed,
-    Object userOnly = freezed,
   }) {
     return _then(_value.copyWith(
       routeId: routeId == freezed ? _value.routeId : routeId as RouteEnum,
@@ -88,7 +83,6 @@ class _$RouteListItemCopyWithImpl<$Res>
           ? _value.imageSubName
           : imageSubName as String,
       route: route == freezed ? _value.route : route as RoutePage,
-      userOnly: userOnly == freezed ? _value.userOnly : userOnly as bool,
     ));
   }
 }
@@ -105,8 +99,7 @@ abstract class _$RouteListItemCopyWith<$Res>
       IconData iconData,
       String imageName,
       String imageSubName,
-      RoutePage route,
-      bool userOnly});
+      RoutePage route});
 }
 
 /// @nodoc
@@ -127,7 +120,6 @@ class __$RouteListItemCopyWithImpl<$Res>
     Object imageName = freezed,
     Object imageSubName = freezed,
     Object route = freezed,
-    Object userOnly = freezed,
   }) {
     return _then(_RouteListItem(
       routeId: routeId == freezed ? _value.routeId : routeId as RouteEnum,
@@ -137,7 +129,6 @@ class __$RouteListItemCopyWithImpl<$Res>
           ? _value.imageSubName
           : imageSubName as String,
       route: route == freezed ? _value.route : route as RoutePage,
-      userOnly: userOnly == freezed ? _value.userOnly : userOnly as bool,
     ));
   }
 }
@@ -149,8 +140,7 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
       this.iconData,
       this.imageName,
       this.imageSubName,
-      this.route,
-      this.userOnly});
+      this.route});
 
   @override
   final RouteEnum routeId;
@@ -162,12 +152,10 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
   final String imageSubName;
   @override
   final RoutePage route;
-  @override
-  final bool userOnly;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RouteListItem(routeId: $routeId, iconData: $iconData, imageName: $imageName, imageSubName: $imageSubName, route: $route, userOnly: $userOnly)';
+    return 'RouteListItem(routeId: $routeId, iconData: $iconData, imageName: $imageName, imageSubName: $imageSubName, route: $route)';
   }
 
   @override
@@ -179,8 +167,7 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
       ..add(DiagnosticsProperty('iconData', iconData))
       ..add(DiagnosticsProperty('imageName', imageName))
       ..add(DiagnosticsProperty('imageSubName', imageSubName))
-      ..add(DiagnosticsProperty('route', route))
-      ..add(DiagnosticsProperty('userOnly', userOnly));
+      ..add(DiagnosticsProperty('route', route));
   }
 
   @override
@@ -200,10 +187,7 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
                 const DeepCollectionEquality()
                     .equals(other.imageSubName, imageSubName)) &&
             (identical(other.route, route) ||
-                const DeepCollectionEquality().equals(other.route, route)) &&
-            (identical(other.userOnly, userOnly) ||
-                const DeepCollectionEquality()
-                    .equals(other.userOnly, userOnly)));
+                const DeepCollectionEquality().equals(other.route, route)));
   }
 
   @override
@@ -213,8 +197,7 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
       const DeepCollectionEquality().hash(iconData) ^
       const DeepCollectionEquality().hash(imageName) ^
       const DeepCollectionEquality().hash(imageSubName) ^
-      const DeepCollectionEquality().hash(route) ^
-      const DeepCollectionEquality().hash(userOnly);
+      const DeepCollectionEquality().hash(route);
 
   @override
   _$RouteListItemCopyWith<_RouteListItem> get copyWith =>
@@ -227,8 +210,7 @@ abstract class _RouteListItem implements RouteListItem {
       IconData iconData,
       String imageName,
       String imageSubName,
-      RoutePage route,
-      bool userOnly}) = _$_RouteListItem;
+      RoutePage route}) = _$_RouteListItem;
 
   @override
   RouteEnum get routeId;
@@ -240,8 +222,6 @@ abstract class _RouteListItem implements RouteListItem {
   String get imageSubName;
   @override
   RoutePage get route;
-  @override
-  bool get userOnly;
   @override
   _$RouteListItemCopyWith<_RouteListItem> get copyWith;
 }

@@ -4,8 +4,6 @@ import 'package:flutter_eg990_mobile/injection_container.dart' show sl;
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
 import 'package:meta/meta.dart' show required;
 
-export 'dart:async' show Stream, StreamController;
-
 export 'package:dartz/dartz.dart' show Either, Left, Right;
 export 'package:flutter/foundation.dart' show debugPrint;
 export 'package:flutter_eg990_mobile/application/internal/local_strings.dart'
@@ -28,11 +26,11 @@ String getErrorMsg({
   int code = 0,
 }) {
   debugPrint('failure from: ${from.value}, type: ${type?.value}');
-  if (msg != null && msg.contains('code: 82')) {
-    String code =
+  if (msg != null && msg.contains('code: 80')) {
+    String errCode =
         msg.substring(msg.indexOf('code:')).replaceAll(RegExp('[^0-9]'), '');
-    debugPrint('error msg code: $code');
-    if (int.parse(code) >= 8200) {
+    debugPrint('error msg code: $errCode');
+    if (int.parse(errCode) == 80) {
       Future.delayed(Duration(milliseconds: 3000), () {
         sl.get<UserInfoStore>().logout(clean: true, navToLogin: true);
       });

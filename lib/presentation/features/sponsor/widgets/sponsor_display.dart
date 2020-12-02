@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 
 class SponsorDisplay extends StatefulWidget {
   // final List<Promo> promos;

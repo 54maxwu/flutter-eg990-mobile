@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/router/app_navigator.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/main_screen_provider.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
-import 'package:flutter_eg990_mobile/presentation/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:provider/provider.dart';
 
@@ -36,13 +38,16 @@ class _MemberHeaderState extends State<MemberHeader> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0),
-                        child: AutoSizeText(
-                          localeStr.messageLoginHint,
-                          style: TextStyle(
-                              fontSize: FontSize.SUBTITLE.value,
-                              fontWeight: FontWeight.w500),
-                          maxLines: 1,
-                          maxFontSize: FontSize.TITLE.value,
+                        child: GestureDetector(
+                          onTap: () => AppNavigator.navigateTo(RoutePage.login),
+                          child: AutoSizeText(
+                            localeStr.messageLoginHint,
+                            style: TextStyle(
+                                fontSize: FontSize.SUBTITLE.value,
+                                fontWeight: FontWeight.w500),
+                            maxLines: 1,
+                            maxFontSize: FontSize.TITLE.value,
+                          ),
                         ),
                       ),
                     ),
