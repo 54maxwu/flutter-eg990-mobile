@@ -1340,12 +1340,16 @@
   "@withdrawViewHint2": {
     "type": "text"
   },
-  "walletViewTitleMy": "My Wallet",
+  "walletViewTitleMy": "Center Wallet",
   "@walletViewTitleMy": {
     "type": "text"
   },
   "walletViewTitleRemain": "Total balance",
   "@walletViewTitleRemain": {
+    "type": "text"
+  },
+  "walletViewTitleBalance": "Wallet Balance",
+  "@walletViewTitleBalance": {
     "type": "text"
   },
   "walletViewTitleWalletSingle": "Single Wallet",

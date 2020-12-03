@@ -18,7 +18,7 @@ Future<Box> getHiveBox(String boxName) async {
 }
 
 void closeHiveBox(String boxName) {
-  if (!Hive.isBoxOpen(boxName)) Hive.box(boxName).close();
+  if (Hive.isBoxOpen(boxName)) Hive.box(boxName).close();
 }
 
 extension HiveBoxExtension on Box {

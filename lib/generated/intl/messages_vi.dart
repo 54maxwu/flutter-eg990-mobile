@@ -783,6 +783,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "walletViewHintWalletMulti" : MessageLookupByLibrary.simpleMessage("*Cần tự chuyển tín dụng sang nền tảng chơi game"),
     "walletViewHintWalletSingle" : MessageLookupByLibrary.simpleMessage("*Hệ thống đặt trước để tự động chuyển tín dụng sang nền tảng trò chơi mở"),
     "walletViewMessageSetting" : MessageLookupByLibrary.simpleMessage("Thay đổi cài đặt ví"),
+    "walletViewTitleBalance" : MessageLookupByLibrary.simpleMessage("Số dư trên ví"),
     "walletViewTitleMy" : MessageLookupByLibrary.simpleMessage("Túi của tôi"),
     "walletViewTitleRemain" : MessageLookupByLibrary.simpleMessage("Tổng số dư"),
     "walletViewTitleWalletMulti" : MessageLookupByLibrary.simpleMessage("Nhiều ví"),

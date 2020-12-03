@@ -94,14 +94,11 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
           childCount: _platforms.length,
         ),
       );
-      return Padding(
-        padding: EdgeInsets.only(bottom: Global.APP_NAV_HEIGHT * 0.6),
-        child: CustomScrollView(
-          // controller: _scrollController,
-          physics: BouncingScrollPhysics(),
-          shrinkWrap: true,
-          slivers: [_sliver],
-        ),
+      return CustomScrollView(
+        // controller: _scrollController,
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        slivers: [_sliver],
       );
     }
     return Container(

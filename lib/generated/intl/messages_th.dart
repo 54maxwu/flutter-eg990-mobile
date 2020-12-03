@@ -637,6 +637,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "walletViewHintWalletMulti" : MessageLookupByLibrary.simpleMessage("* โอนเครดิตไปยังแพลตฟอร์มเกมนี้ด้วยตนเอง"),
     "walletViewHintWalletSingle" : MessageLookupByLibrary.simpleMessage("* ระบบตั้งค่าล่วงหน้าโอนเครดิตไปยังแพลตฟอร์มเกมที่เปิดไว้โดยอัตโนมัติ"),
     "walletViewMessageSetting" : MessageLookupByLibrary.simpleMessage("เปลี่ยนการตั้งค่ากระเป๋าเงิน"),
+    "walletViewTitleBalance" : MessageLookupByLibrary.simpleMessage("ยอดคงเหลือใน กระเป๋าเงินของฉัน"),
     "walletViewTitleMy" : MessageLookupByLibrary.simpleMessage("กระเป๋าเงินของฉัน"),
     "walletViewTitleRemain" : MessageLookupByLibrary.simpleMessage("ยอดเงินทั้งหมด"),
     "walletViewTitleWalletMulti" : MessageLookupByLibrary.simpleMessage("กระเป๋าเงินหลายใบ"),

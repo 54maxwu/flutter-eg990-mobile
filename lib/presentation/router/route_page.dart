@@ -82,6 +82,12 @@ class RoutePage extends Vnum<RouteInfo> {
     appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
+  static const RoutePage transfer = const RoutePage.define(RouteInfo(
+    id: RouteEnum.TRANSFER,
+    route: MainScreenRoutes.transferRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
 
   ///
   /// MEMBER

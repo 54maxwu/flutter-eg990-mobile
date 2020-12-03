@@ -196,7 +196,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   : Icon(
                       item.value.iconData,
                       color: themeColor.homeBoxIconColor,
-                      size: _display.shortcutMaxIconSize,
+                      size: _display.shortcutIconSize,
                     ),
             ),
             AutoSizeText(

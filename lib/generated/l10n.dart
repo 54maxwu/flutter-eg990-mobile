@@ -3125,10 +3125,10 @@ class S {
     );
   }
 
-  /// `My Wallet`
+  /// `Center Wallet`
   String get walletViewTitleMy {
     return Intl.message(
-      'My Wallet',
+      'Center Wallet',
       name: 'walletViewTitleMy',
       desc: '',
       args: [],
@@ -3140,6 +3140,16 @@ class S {
     return Intl.message(
       'Total balance',
       name: 'walletViewTitleRemain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet Balance`
+  String get walletViewTitleBalance {
+    return Intl.message(
+      'Wallet Balance',
+      name: 'walletViewTitleBalance',
       desc: '',
       args: [],
     );

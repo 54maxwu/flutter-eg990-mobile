@@ -1,0 +1,1 @@
+enum BalanceGridActionType { transfer, withdraw }

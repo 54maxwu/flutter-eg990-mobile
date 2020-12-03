@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_info.dart';
@@ -10,16 +9,19 @@ import 'package:flutter_eg990_mobile/res.dart';
 import 'package:provider/provider.dart';
 
 import 'tab_control.dart';
+import 'tab_item_size.dart';
 
 class TabItem extends StatefulWidget {
   final int index;
   final GameCategoryInfo info;
   final IconData iconData;
+  final TabItemSize size;
 
   TabItem({
     @required this.index,
     @required this.info,
     this.iconData = IconCode.tabUnknown,
+    @required this.size,
   });
 
   @override
@@ -27,10 +29,6 @@ class TabItem extends StatefulWidget {
 }
 
 class _TabItemState extends State<TabItem> {
-  final Size _selectedImageSize =
-      const Size(36.0, 36.0) * Global.device.widthScale;
-  final Size _imageSize = const Size(30.0, 30.0) * Global.device.widthScale;
-
   bool _selected;
   IconData _iconData;
   String _networkImage = '';
@@ -85,8 +83,7 @@ class _TabItemState extends State<TabItem> {
           _selected = index == widget.index;
         }
         return Container(
-          height: 48.0 * Global.device.heightScale,
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          constraints: widget.size.getTabConstraint,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -103,44 +100,41 @@ class _TabItemState extends State<TabItem> {
               children: <InlineSpan>[
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        constraints: (_selected)
-                            ? BoxConstraints.tight(_selectedImageSize)
-                            : BoxConstraints.tight(_imageSize),
-                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                        child: _image,
-                      ),
-                      (_selected)
-                          ? Padding(
-                              padding: const EdgeInsets.only(right: 2.0),
-                              child: AutoSizeText(
-                                widget.info.label,
-                                style: TextStyle(
-                                  color: themeColor.homeTabSelectedTextColor,
-                                ),
-                                maxLines: 1,
-                                minFontSize: FontSize.MESSAGE.value,
-                                maxFontSize: FontSize.LARGE.value,
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: AutoSizeText(
-                                widget.info.label,
-                                style: TextStyle(
-                                  color: themeColor.homeTabTextColor,
-                                ),
-                                maxLines: 1,
-                                minFontSize: FontSize.NORMAL.value,
-                                maxFontSize: FontSize.HEADER.value,
-                              ),
-                            )
-                    ],
+                  child: Container(
+                    constraints: (_selected)
+                        ? BoxConstraints.tight(widget.size.getSelectedImageSize)
+                        : BoxConstraints.tight(widget.size.getImageSize),
+                    padding: const EdgeInsets.only(right: 4.0, top: 2.0),
+                    child: _image,
                   ),
+                ),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: (_selected)
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 2.0),
+                          child: AutoSizeText(
+                            widget.info.label,
+                            style: TextStyle(
+                              color: themeColor.homeTabSelectedTextColor,
+                            ),
+                            maxLines: 1,
+                            minFontSize: FontSize.SUBTITLE.value,
+                            maxFontSize: FontSize.HEADER.value,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+                          child: AutoSizeText(
+                            widget.info.label,
+                            style: TextStyle(
+                              color: themeColor.homeTabTextColor,
+                            ),
+                            maxLines: 1,
+                            minFontSize: FontSize.MESSAGE.value,
+                            maxFontSize: FontSize.TITLE.value,
+                          ),
+                        ),
                 ),
               ],
             ),

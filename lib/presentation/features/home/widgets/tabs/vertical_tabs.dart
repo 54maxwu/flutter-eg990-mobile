@@ -6,32 +6,34 @@ enum IndicatorSide { start, end }
 /// A vertical tab widget for flutter
 class VerticalTabs extends StatefulWidget {
   final Key key;
-  final int initialIndex;
   final double tabsWidth;
-  final double indicatorWidth;
-  final IndicatorSide indicatorSide;
+  final EdgeInsets tabsPadding;
   final List<Tab> tabs;
   final List<Widget> contents;
+  final int initialIndex;
   final TextDirection direction;
+  final IndicatorSide indicatorSide;
+  final double indicatorWidth;
   final Color indicatorColor;
   final bool disabledChangePageFromContentView;
   final Axis contentScrollAxis;
+  final Color backgroundColor;
   final Color selectedTabBackgroundColor;
   final Color tabBackgroundColor;
   final TextStyle selectedTabTextStyle;
   final TextStyle tabTextStyle;
-  final Duration changePageDuration;
   final Curve changePageCurve;
+  final Duration changePageDuration;
   final Color tabsShadowColor;
   final double tabsElevation;
   final Function(int tabIndex) onSelect;
-  final Color backgroundColor;
 
   VerticalTabs({
     this.key,
     @required this.tabs,
     @required this.contents,
     @required this.tabsWidth,
+    this.tabsPadding,
     this.initialIndex = 0,
     this.indicatorWidth = 0,
     this.indicatorSide,
@@ -99,6 +101,7 @@ class _VerticalTabsState extends State<VerticalTabs>
       textDirection: widget.direction,
       child: Container(
         color: widget.backgroundColor ?? Colors.transparent,
+        padding: widget.tabsPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -108,46 +111,11 @@ class _VerticalTabsState extends State<VerticalTabs>
                   Container(
                     width: widget.tabsWidth,
                     child: ListView.builder(
+                      primary: true,
                       physics: BouncingScrollPhysics(),
                       itemCount: widget.tabs.length,
                       itemBuilder: (context, index) {
-                        Tab tab = widget.tabs[index];
-                        Widget child;
-                        if (tab.child != null) {
-                          child = tab.child;
-                        } else {
-                          child = Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Row(
-                                children: <Widget>[
-                                  (tab.icon != null)
-                                      ? Row(
-                                          children: <Widget>[
-                                            tab.icon,
-                                            SizedBox(width: 5)
-                                          ],
-                                        )
-                                      : SizedBox.shrink(),
-                                  (tab.text != null)
-                                      ? Container(
-                                          width: widget.tabsWidth - 50,
-                                          child: Text(
-                                            tab.text,
-                                            softWrap: true,
-                                            style: _selectedIndex == index
-                                                ? widget.selectedTabTextStyle ??
-                                                    TextStyle(
-                                                        fontSize: FontSize
-                                                            .MESSAGE.value)
-                                                : widget.tabTextStyle ??
-                                                    TextStyle(
-                                                        fontSize: FontSize
-                                                            .NORMAL.value),
-                                          ))
-                                      : SizedBox.shrink(),
-                                ],
-                              ));
-                        }
+                        Widget child = widget.tabs[index].child;
 
                         Color itemBGColor =
                             widget.tabBackgroundColor ?? Colors.transparent;
@@ -211,7 +179,8 @@ class _VerticalTabsState extends State<VerticalTabs>
                                     (widget.direction == TextDirection.rtl)
                                         ? Alignment.centerRight
                                         : Alignment.centerLeft,
-                                padding: EdgeInsets.all(5),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.0, vertical: 5.0),
                                 child: child,
                               ),
                             ),

@@ -36,6 +36,7 @@ class FailureType extends Vnum<int> {
   static const FailureType GAME_URL = const FailureType.define(1400);
 
   static const FailureType PROMO = const FailureType.define(2000);
+  static const FailureType NOTICE = const FailureType.define(2100);
   static const FailureType VIP = const FailureType.define(2400);
   static const FailureType STORE = const FailureType.define(2700);
   static const FailureType TUTORIAL = const FailureType.define(2900);
@@ -46,11 +47,11 @@ class FailureType extends Vnum<int> {
   static const FailureType TRANSFER = const FailureType.define(3300);
   static const FailureType WITHDRAW = const FailureType.define(3400);
   static const FailureType WALLET = const FailureType.define(3500);
-  static const FailureType TRANSACTIONS = const FailureType.define(3600);
-  static const FailureType BETS = const FailureType.define(3700);
-  static const FailureType DEALS = const FailureType.define(3800);
+  static const FailureType BALANCE = const FailureType.define(3600);
 
-  static const FailureType NOTICE = const FailureType.define(4000);
+  static const FailureType TRANSACTIONS = const FailureType.define(4000);
+  static const FailureType BETS = const FailureType.define(4100);
+  static const FailureType DEALS = const FailureType.define(4200);
 
   static const FailureType AGENT = const FailureType.define(6000);
 

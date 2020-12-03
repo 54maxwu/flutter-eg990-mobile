@@ -529,10 +529,10 @@ class ThemeDefault implements ThemeColorInterface {
   /// Balance page color
   ///
   @override
-  Color balanceCardBackground = Color(0xfff5f5f5);
+  Color balanceCardBackground = Color(0xffffffff);
 
   @override
-  Color balanceCardLinear1Color = Color(0xff587cb1);
+  Color balanceCardLinear1Color = Color(0xffd2b79c);
 
   @override
   Color balanceCardLinear2Color = Color(0xff7687ac);
@@ -541,10 +541,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color balanceCardLinear3Color = Color(0xff587cb1);
 
   @override
-  Color balanceCardTitleColor = Color(0xff515175);
+  Color balanceCardTitleColor = Color(0xff303030);
 
   @override
-  Color balanceCardTextColor = Color(0xff2a60ba);
+  Color balanceCardTextColor = Color(0xff7c7c7c);
 
   @override
   Color balanceActionTextColor = Color(0xffff9e4c);
@@ -553,10 +553,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color balanceAction2TextColor = Color(0xffe63f3f);
 
   @override
-  Color balanceActionDisableTextColor = Color(0xffb7b7b7);
+  Color balanceActionDisableTextColor = Color(0xffb3b3b3);
 
   @override
-  Color balanceRefreshColor = Color(0xffc0c0c0);
+  Color balanceRefreshColor = Color(0xffd2b79c);
 
   ///
   /// Wallet page color

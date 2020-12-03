@@ -1299,6 +1299,10 @@
   "@walletViewTitleRemain": {
     "type": "text"
   },
+  "walletViewTitleBalance": "ยอดคงเหลือใน กระเป๋าเงินของฉัน",
+  "@walletViewTitleBalance": {
+    "type": "text"
+  },
   "walletViewTitleWalletSingle": "กระเป๋าเงินใบเดียว",
   "@walletViewTitleWalletSingle": {
     "type": "text"

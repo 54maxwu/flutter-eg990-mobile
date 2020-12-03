@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'application/themes/theme_settings.dart';
 import 'domain/auth/jwt_interface.dart';
 import 'domain/sector/ads/ads_repository.dart';
+import 'domain/sector/balance/balance_repository.dart';
 import 'domain/sector/bet_record/bet_record_repository.dart';
 import 'domain/sector/deposit/deposit_repository.dart';
 import 'domain/sector/home/home_local_storage.dart';
@@ -19,6 +20,7 @@ import 'infrastructure/core/dio_api_service.dart';
 import 'infrastructure/core/network_info.dart';
 import 'presentation/features/home/state/home_store.dart';
 import 'presentation/features/login/state/login_store.dart';
+import 'presentation/features/member_features/balance/state/balance_store.dart';
 import 'presentation/features/member_features/bet_record/state/bet_record_store.dart';
 import 'presentation/features/member_features/deposit/state/deposit_store.dart';
 import 'presentation/features/promo/state/promo_store.dart';
@@ -106,6 +108,20 @@ Future<void> init() async {
   sl.registerFactory<DepositRepository>(
       () => DepositRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
   sl.registerFactory(() => DepositStore(sl<DepositRepository>()));
+
+  ///
+  /// TRANSFER
+  ///
+  // sl.registerFactory<TransferRepository>(
+  //     () => TransferRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  // sl.registerFactory(() => TransferStore(sl<TransferRepository>()));
+
+  ///
+  /// BALANCE
+  ///
+  sl.registerFactory<BalanceRepository>(
+      () => BalanceRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => BalanceStore(sl<BalanceRepository>()));
 
   ///
   /// BET RECORD

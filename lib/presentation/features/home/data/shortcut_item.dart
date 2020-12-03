@@ -17,7 +17,7 @@ class ShortcutItem extends Vnum<ShortcutData> {
   static ShortcutItem transfer = ShortcutItem.define(ShortcutData(
     id: RouteEnum.TRANSFER,
     assetPath: Res.f_icon_transfer,
-    // route: RoutePage.home,
+    route: RoutePage.transfer,
   ));
   static ShortcutItem withdraw = ShortcutItem.define(ShortcutData(
     id: RouteEnum.WITHDRAW,

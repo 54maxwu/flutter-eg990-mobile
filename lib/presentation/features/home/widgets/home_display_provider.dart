@@ -2,25 +2,22 @@ import 'package:flutter/widgets.dart';
 
 import '../state/home_store.dart';
 import 'home_display_size_calc.dart';
+import 'tabs/tab_item_size.dart';
 
-abstract class HomeDisplayProviderInterface with ChangeNotifier {
-  void updateBannerSize(bool expand);
-}
+abstract class HomeDisplayProviderInterface with ChangeNotifier {}
 
 class HomeDisplayProvider
     with ChangeNotifier
     implements HomeDisplayProviderInterface {
   final HomeStore homeStore;
   final HomeDisplaySizeCalc calc;
+  final TabItemSize tabItemSize;
 
   HomeDisplayProvider({
     @required this.homeStore,
     @required this.calc,
-  });
-
-  @override
-  void updateBannerSize(bool expand) {
-    calc.updatePageHeight(!expand);
-    notifyListeners();
+    @required this.tabItemSize,
+  }) {
+    calc.updateBarWidth(tabItemSize.getTabConstraint.minWidth);
   }
 }

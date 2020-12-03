@@ -1299,6 +1299,10 @@
   "@walletViewTitleRemain": {
     "type": "text"
   },
+  "walletViewTitleBalance": "Số dư trên ví",
+  "@walletViewTitleBalance": {
+    "type": "text"
+  },
   "walletViewTitleWalletSingle": "Ví đơn",
   "@walletViewTitleWalletSingle": {
     "type": "text"

@@ -15,14 +15,17 @@ class LoginNavigateDialog extends StatelessWidget {
     this.returnHomePage = true,
   });
 
-  final double dialogSize = Global.device.width * 0.3;
-
   @override
   Widget build(BuildContext context) {
+    double dialogSize = Global.device.width * 0.3;
+    if (dialogSize < 160) dialogSize = 160;
+
+    // return to home after 1s
     sl.get<UserInfoStore>().setRecheck = true;
     Future.delayed(Duration(milliseconds: 1000), () {
       Navigator.of(context).pop();
     }).whenComplete(() => AppNavigator.returnToHome());
+
     return WillPopScope(
       onWillPop: () async {
         return Future.value(true);

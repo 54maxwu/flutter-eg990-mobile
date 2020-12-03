@@ -20,6 +20,7 @@ import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
+import '../features/member_features/transfer/transfer_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -114,6 +115,7 @@ class MainScreenRoutes {
   static const String aboutRoute = '/about-route';
   static const String memberRoute = '/member-route';
   static const String depositRoute = '/deposit-route';
+  static const String transferRoute = '/transfer-route';
   static const String betRecordRoute = '/bet-record-route';
   static const all = <String>{
     homeRoute,
@@ -126,6 +128,7 @@ class MainScreenRoutes {
     aboutRoute,
     memberRoute,
     depositRoute,
+    transferRoute,
     betRecordRoute,
   };
 }
@@ -144,6 +147,7 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
     RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
+    RouteDef(MainScreenRoutes.transferRoute, page: TransferRoute),
     RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
   ];
   @override
@@ -216,6 +220,12 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    TransferRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TransferRoute(),
+        settings: data,
+      );
+    },
     BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => BetRecordRoute(),
@@ -271,6 +281,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushDepositRoute() =>
       push<dynamic>(MainScreenRoutes.depositRoute);
+
+  Future<dynamic> pushTransferRoute() =>
+      push<dynamic>(MainScreenRoutes.transferRoute);
 
   Future<dynamic> pushBetRecordRoute() =>
       push<dynamic>(MainScreenRoutes.betRecordRoute);

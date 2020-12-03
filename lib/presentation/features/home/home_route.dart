@@ -7,6 +7,7 @@ import 'state/home_store.dart';
 import 'widgets/home_display.dart';
 import 'widgets/home_display_provider.dart';
 import 'widgets/home_display_size_calc.dart';
+import 'widgets/tabs/tab_item_size.dart';
 
 class HomeRoute extends StatefulWidget {
   @override
@@ -14,8 +15,6 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute> {
-  final HomeDisplaySizeCalc _sizeCalc = HomeDisplaySizeCalc();
-
   HomeStore _store;
   List<ReactionDisposer> _disposers;
 
@@ -62,9 +61,13 @@ class _HomeRouteState extends State<HomeRoute> {
               return LoadingWidget();
             case HomeStoreState.loaded:
               return ChangeNotifierProvider(
-                  create: (_) =>
-                      HomeDisplayProvider(homeStore: _store, calc: _sizeCalc),
-                  child: HomeDisplay());
+                create: (_) => HomeDisplayProvider(
+                  homeStore: _store,
+                  calc: HomeDisplaySizeCalc(),
+                  tabItemSize: TabItemSize(),
+                ),
+                child: HomeDisplay(),
+              );
             default:
               return SizedBox.shrink();
           }

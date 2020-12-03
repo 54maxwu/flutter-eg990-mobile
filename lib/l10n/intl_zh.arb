@@ -1340,12 +1340,16 @@
   "@withdrawViewHint2": {
     "type": "text"
   },
-  "walletViewTitleMy": "我的钱包",
+  "walletViewTitleMy": "中心钱包",
   "@walletViewTitleMy": {
     "type": "text"
   },
   "walletViewTitleRemain": "总余额",
   "@walletViewTitleRemain": {
+    "type": "text"
+  },
+  "walletViewTitleBalance": "钱包余额",
+  "@walletViewTitleBalance": {
     "type": "text"
   },
   "walletViewTitleWalletSingle": "单一钱包",
