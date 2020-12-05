@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'state/bet_record_store.dart';
 import 'widgets/bet_record_display.dart';
-import 'widgets/bet_record_display_provider.dart';
 
 class BetRecordRoute extends StatefulWidget {
   @override
@@ -97,11 +95,7 @@ class _BetRecordRouteState extends State<BetRecordRoute> {
                 case BetRecordStoreState.loading:
                   return LoadingWidget();
                 case BetRecordStoreState.loaded:
-                  return ChangeNotifierProvider(
-                    create: (_) =>
-                        BetRecordDisplayProvider(recordStore: _store),
-                    child: BetRecordDisplay(),
-                  );
+                  return BetRecordDisplay(_store);
                 default:
                   return SizedBox.shrink();
               }

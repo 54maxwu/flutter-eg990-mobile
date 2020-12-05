@@ -228,6 +228,10 @@
   "@actionSearch": {
     "type": "text"
   },
+  "actionHelp": "บทช่วยสอน",
+  "@actionHelp": {
+    "type": "text"
+  },
   "actionBack": "ย้อนกลับ",
   "@actionBack": {
     "type": "text"
@@ -1211,6 +1215,14 @@
       }
     }
   },
+  "bankcardViewTitleNew": "เพิ่มบัตรธนาคาร",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "กรุณาผูกบัตรธนาคารเพื่อรับการชำระเงิน",
+  "@bankcardViewHintNew": {
+    "type": "text"
+  },
   "bankcardViewTitleOwner": "ชื่อบัญชี",
   "@bankcardViewTitleOwner": {
     "type": "text"
@@ -1321,6 +1333,10 @@
   },
   "walletViewHintOneClickWait": "กำลังโอน ... ",
   "@walletViewHintOneClickWait": {
+    "type": "text"
+  },
+  "walletViewHintWalletType": "* เมื่อเปิดการตั้งค่าขีด จำกัด กระเป๋าเงินจะถูกโอนไปยังแพลตฟอร์มเกมที่เปิดโดยอัตโนมัติ",
+  "@walletViewHintWalletType": {
     "type": "text"
   },
   "walletViewHintWalletSingle": "* ระบบตั้งค่าล่วงหน้าโอนเครดิตไปยังแพลตฟอร์มเกมที่เปิดไว้โดยอัตโนมัติ",

@@ -13,7 +13,9 @@ import 'domain/sector/home/home_repository.dart';
 import 'domain/sector/promo/promo_local_storage.dart';
 import 'domain/sector/promo/promo_repository.dart';
 import 'domain/sector/service/service_repository.dart';
+import 'domain/sector/transfer/transfer_repository.dart';
 import 'domain/sector/update_repository.dart';
+import 'domain/sector/withdraw/withdraw_repository.dart';
 import 'domain/user/login/login_repository.dart';
 import 'domain/user/user_info_repository.dart';
 import 'infrastructure/core/dio_api_service.dart';
@@ -23,6 +25,8 @@ import 'presentation/features/login/state/login_store.dart';
 import 'presentation/features/member_features/balance/state/balance_store.dart';
 import 'presentation/features/member_features/bet_record/state/bet_record_store.dart';
 import 'presentation/features/member_features/deposit/state/deposit_store.dart';
+import 'presentation/features/member_features/transfer/state/transfer_store.dart';
+import 'presentation/features/member_features/withdraw/state/withdraw_store.dart';
 import 'presentation/features/promo/state/promo_store.dart';
 import 'presentation/features/service/state/service_store.dart';
 import 'presentation/screens/event/ads/state/ads_store.dart';
@@ -112,9 +116,16 @@ Future<void> init() async {
   ///
   /// TRANSFER
   ///
-  // sl.registerFactory<TransferRepository>(
-  //     () => TransferRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
-  // sl.registerFactory(() => TransferStore(sl<TransferRepository>()));
+  sl.registerFactory<TransferRepository>(
+      () => TransferRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => TransferStore(sl<TransferRepository>()));
+
+  ///
+  /// WITHDRAW
+  ///
+  sl.registerFactory<WithdrawRepository>(
+      () => WithdrawRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => WithdrawStore(sl<WithdrawRepository>()));
 
   ///
   /// BALANCE

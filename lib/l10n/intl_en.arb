@@ -277,6 +277,10 @@
   "@actionSearch": {
     "type": "text"
   },
+  "actionHelp": "Tutorial",
+  "@actionHelp": {
+    "type": "text"
+  },
   "actionBack": "Back",
   "@actionBack": {
     "type": "text"
@@ -1260,6 +1264,14 @@
       }
     }
   },
+  "bankcardViewTitleNew": "Add Bankcard",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "Please bind a bankcard for receiving payment",
+  "@bankcardViewHintNew": {
+    "type": "text"
+  },
   "bankcardViewTitleOwner": "Account Name",
   "@bankcardViewTitleOwner": {
     "type": "text"
@@ -1370,6 +1382,10 @@
   },
   "walletViewHintOneClickWait": "Transferring...",
   "@walletViewHintOneClickWait": {
+    "type": "text"
+  },
+  "walletViewHintWalletType": "* When turn on，wallet credit will be automatically transfer to the game platform which you entered\n(Might takes up to 30 seconds to take effect)",
+  "@walletViewHintWalletType": {
     "type": "text"
   },
   "walletViewHintWalletSingle": "* System presets automatically transfer credits to open game platforms",

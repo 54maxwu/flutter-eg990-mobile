@@ -28,7 +28,6 @@ class _HomeRouteState extends State<HomeRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

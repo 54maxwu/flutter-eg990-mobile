@@ -24,7 +24,6 @@ class _LoginDisplayState extends State<LoginDisplay> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

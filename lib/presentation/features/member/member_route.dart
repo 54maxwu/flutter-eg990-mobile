@@ -24,7 +24,6 @@ class _MemberRouteState extends State<MemberRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

@@ -277,6 +277,10 @@
   "@actionSearch": {
     "type": "text"
   },
+  "actionHelp": "教程",
+  "@actionHelp": {
+    "type": "text"
+  },
   "actionBack": "返回",
   "@actionBack": {
     "type": "text"
@@ -1260,6 +1264,14 @@
       }
     }
   },
+  "bankcardViewTitleNew": "添加银行卡",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "请先绑定一张银行卡，用于收款",
+  "@bankcardViewHintNew": {
+    "type": "text"
+  },
   "bankcardViewTitleOwner": "帐户姓名",
   "@bankcardViewTitleOwner": {
     "type": "text"
@@ -1370,6 +1382,10 @@
   },
   "walletViewHintOneClickWait": "归户中，请稍候...",
   "@walletViewHintOneClickWait": {
+    "type": "text"
+  },
+  "walletViewHintWalletType": "*设置开启时，自动将钱包额度转入开启的游戏平台\n(每次更改需等侯30秒让设置生效)",
+  "@walletViewHintWalletType": {
     "type": "text"
   },
   "walletViewHintWalletSingle": "*系统预设，自动将额度转入开启的游戏平台",

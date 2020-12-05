@@ -4,6 +4,7 @@ enum MainScreenAppBarTypes {
   TITLE_AND_SETTINGS,
   BACK_AND_TITLE,
   BACK_TITLE_SEARCH,
+  BACK_TITLE_TUTORIAL,
 }
 
 enum MainScreenNavBarTypes {

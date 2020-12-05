@@ -22,7 +22,7 @@ class ShortcutItem extends Vnum<ShortcutData> {
   static ShortcutItem withdraw = ShortcutItem.define(ShortcutData(
     id: RouteEnum.WITHDRAW,
     assetPath: Res.f_icon_withdraw,
-    // route: RoutePage.home,
+    route: RoutePage.withdraw,
   ));
   static ShortcutItem vip = ShortcutItem.define(ShortcutData(
     id: RouteEnum.VIP,

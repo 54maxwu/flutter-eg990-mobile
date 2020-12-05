@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter_eg990_mobile/application/internal/error_message_map.dart';
 import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/balance/balance_repository.dart';
 import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/member_features/balance/data/balance_grid_action.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 
@@ -35,10 +38,16 @@ abstract class _BalanceStore with Store {
   String balanceUpdated = '';
 
   @observable
+  bool waitForTransferResult = false;
+
+  @observable
   RequestStatusModel transferResult;
 
   @observable
-  bool waitForTransferResult = false;
+  bool waitForWithdrawResult = false;
+
+  @observable
+  WithdrawModel withdrawResult;
 
   @observable
   String errorMessage;
@@ -203,38 +212,6 @@ abstract class _BalanceStore with Store {
   }
 
   @action
-  Future<void> postTransfer(TransferForm form) async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      transferResult = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository
-          .postTransfer(form)
-          .whenComplete(() => waitForTransferResult = false)
-          .then((result) {
-        debugPrint('transfer from ${form.from} to ${form.to} result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) {
-            transferResult = data;
-            if (data.isSuccess) {
-              Future.delayed(Duration(milliseconds: 500), () {
-                (form.from == '0')
-                    ? getBalance(form.to)
-                    : getBalance(form.from);
-              });
-            }
-          },
-        );
-      });
-    } on Exception {
-      waitForTransferResult = false;
-      setErrorMsg(code: 5);
-    }
-  }
-
-  @action
   Future<void> exeGridAction(BalanceGridAction action) async {
     debugPrint('execute grid action: $action');
     // if (action.type.index <= 1) waitForTransferResult = true;
@@ -277,6 +254,64 @@ abstract class _BalanceStore with Store {
     //     getBalance(action.platform);
     //     break;
     // }
+  }
+
+  @action
+  Future<void> postTransfer(TransferForm form) async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      transferResult = null;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository
+          .postTransfer(form)
+          .whenComplete(() => waitForTransferResult = false)
+          .then((result) {
+        debugPrint('transfer from ${form.from} to ${form.to} result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) {
+            transferResult = data;
+            if (data.isSuccess) {
+              Future.delayed(Duration(milliseconds: 500), () {
+                (form.from == '0')
+                    ? getBalance(form.to)
+                    : getBalance(form.from);
+              });
+            }
+          },
+        );
+      });
+    } on Exception {
+      waitForTransferResult = false;
+      setErrorMsg(code: 5);
+    }
+  }
+
+  @action
+  Future<void> postWithdraw(WithdrawForm form) async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      withdrawResult = null;
+      waitForWithdrawResult = true;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository.postWithdraw(form).then((result) {
+        debugPrint('withdraw result: $result');
+        result.fold(
+          (failure) => setErrorMsg(
+            msg: MessageMap.getErrorMessage(
+              failure.message,
+              RouteEnum.WITHDRAW,
+            ),
+          ),
+          (data) => withdrawResult = data,
+        );
+      }).whenComplete(() => waitForWithdrawResult = false);
+    } on Exception {
+      waitForWithdrawResult = false;
+      setErrorMsg(code: 4);
+    }
   }
 
   Future<void> closeStreams() {

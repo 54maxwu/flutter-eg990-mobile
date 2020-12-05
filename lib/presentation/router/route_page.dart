@@ -79,13 +79,19 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage deposit = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
     route: MainScreenRoutes.depositRoute,
-    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    appBarType: MainScreenAppBarTypes.BACK_TITLE_TUTORIAL,
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
   static const RoutePage transfer = const RoutePage.define(RouteInfo(
     id: RouteEnum.TRANSFER,
     route: MainScreenRoutes.transferRoute,
-    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    appBarType: MainScreenAppBarTypes.BACK_TITLE_TUTORIAL,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
+  static const RoutePage withdraw = const RoutePage.define(RouteInfo(
+    id: RouteEnum.WITHDRAW,
+    route: MainScreenRoutes.withdrawRoute,
+    appBarType: MainScreenAppBarTypes.BACK_TITLE_TUTORIAL,
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
 

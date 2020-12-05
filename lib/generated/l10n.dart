@@ -695,6 +695,16 @@ class S {
     );
   }
 
+  /// `Tutorial`
+  String get actionHelp {
+    return Intl.message(
+      'Tutorial',
+      name: 'actionHelp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Back`
   String get actionBack {
     return Intl.message(
@@ -2925,6 +2935,26 @@ class S {
     );
   }
 
+  /// `Add Bankcard`
+  String get bankcardViewTitleNew {
+    return Intl.message(
+      'Add Bankcard',
+      name: 'bankcardViewTitleNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please bind a bankcard for receiving payment`
+  String get bankcardViewHintNew {
+    return Intl.message(
+      'Please bind a bankcard for receiving payment',
+      name: 'bankcardViewHintNew',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Account Name`
   String get bankcardViewTitleOwner {
     return Intl.message(
@@ -3200,6 +3230,16 @@ class S {
     return Intl.message(
       'Transferring...',
       name: 'walletViewHintOneClickWait',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* When turn on，wallet credit will be automatically transfer to the game platform which you entered\n(Might takes up to 30 seconds to take effect)`
+  String get walletViewHintWalletType {
+    return Intl.message(
+      '* When turn on，wallet credit will be automatically transfer to the game platform which you entered\n(Might takes up to 30 seconds to take effect)',
+      name: 'walletViewHintWalletType',
       desc: '',
       args: [],
     );

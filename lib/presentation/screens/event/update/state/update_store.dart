@@ -36,7 +36,7 @@ abstract class _UpdateStore with Store {
   void setErrorMsg(
           {String msg, bool showOnce = false, FailureType type, int code}) =>
       errorMessage = getErrorMsg(
-          from: FailureType.HOME,
+          from: FailureType.UPDATE,
           msg: msg,
           showOnce: showOnce,
           type: type,

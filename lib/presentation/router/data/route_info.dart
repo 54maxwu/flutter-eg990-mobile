@@ -45,9 +45,9 @@ extension RouteInfoExtension on RouteInfo {
       case MainScreenAppBarTypes.TITLE_ONLY:
       case MainScreenAppBarTypes.TITLE_AND_SETTINGS:
       case MainScreenAppBarTypes.BACK_AND_TITLE:
-        return id.title.replaceAll('???', '');
+      case MainScreenAppBarTypes.BACK_TITLE_TUTORIAL:
       case MainScreenAppBarTypes.BACK_TITLE_SEARCH:
-        return id.title;
+        return id.title.replaceAll('???', '');
       default:
         return '';
     }

@@ -1,7 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
+import '../state/bet_record_store.dart';
+
 class BetRecordDisplay extends StatefulWidget {
+  final BetRecordStore store;
+
+  BetRecordDisplay(this.store);
+
   @override
   _BetRecordDisplayState createState() => _BetRecordDisplayState();
 }

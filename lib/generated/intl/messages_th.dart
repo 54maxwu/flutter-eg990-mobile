@@ -92,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "actionBack" : MessageLookupByLibrary.simpleMessage("ย้อนกลับ"),
+    "actionHelp" : MessageLookupByLibrary.simpleMessage("บทช่วยสอน"),
     "actionNotify" : MessageLookupByLibrary.simpleMessage("แจ้งเตือน"),
     "actionSearch" : MessageLookupByLibrary.simpleMessage("ค้นหา"),
     "actionSetting" : MessageLookupByLibrary.simpleMessage("การตั้งค่า"),
@@ -181,6 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceTransferAmountError" : m5,
     "balanceTransferInText" : MessageLookupByLibrary.simpleMessage("โอนเข้า"),
     "balanceTransferOutText" : MessageLookupByLibrary.simpleMessage("โอนออก"),
+    "bankcardViewHintNew" : MessageLookupByLibrary.simpleMessage("กรุณาผูกบัตรธนาคารเพื่อรับการชำระเงิน"),
     "bankcardViewTitleBank" : MessageLookupByLibrary.simpleMessage("ธนาคาร"),
     "bankcardViewTitleBankArea" : MessageLookupByLibrary.simpleMessage("พื้นที่"),
     "bankcardViewTitleBankBranch" : MessageLookupByLibrary.simpleMessage("สาขาธนาคาร"),
@@ -188,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "bankcardViewTitleBankProvince" : MessageLookupByLibrary.simpleMessage("เปิดบัญชี"),
     "bankcardViewTitleCardNumber" : MessageLookupByLibrary.simpleMessage("หมายเลขบัญชี (บัตร)"),
     "bankcardViewTitleHolder" : MessageLookupByLibrary.simpleMessage("เจ้าของบัญชี"),
+    "bankcardViewTitleNew" : MessageLookupByLibrary.simpleMessage("เพิ่มบัตรธนาคาร"),
     "bankcardViewTitleOwner" : MessageLookupByLibrary.simpleMessage("ชื่อบัญชี"),
     "bankcardViewTitleSend" : MessageLookupByLibrary.simpleMessage("ส่ง"),
     "betsFieldDateError" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดช่วงวันที่"),
@@ -636,6 +639,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "walletViewHintOneClickWait" : MessageLookupByLibrary.simpleMessage("กำลังโอน ... "),
     "walletViewHintWalletMulti" : MessageLookupByLibrary.simpleMessage("* โอนเครดิตไปยังแพลตฟอร์มเกมนี้ด้วยตนเอง"),
     "walletViewHintWalletSingle" : MessageLookupByLibrary.simpleMessage("* ระบบตั้งค่าล่วงหน้าโอนเครดิตไปยังแพลตฟอร์มเกมที่เปิดไว้โดยอัตโนมัติ"),
+    "walletViewHintWalletType" : MessageLookupByLibrary.simpleMessage("* เมื่อเปิดการตั้งค่าขีด จำกัด กระเป๋าเงินจะถูกโอนไปยังแพลตฟอร์มเกมที่เปิดโดยอัตโนมัติ"),
     "walletViewMessageSetting" : MessageLookupByLibrary.simpleMessage("เปลี่ยนการตั้งค่ากระเป๋าเงิน"),
     "walletViewTitleBalance" : MessageLookupByLibrary.simpleMessage("ยอดคงเหลือใน กระเป๋าเงินของฉัน"),
     "walletViewTitleMy" : MessageLookupByLibrary.simpleMessage("กระเป๋าเงินของฉัน"),

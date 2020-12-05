@@ -47,6 +47,23 @@ mixin _$BalanceStore on _BalanceStore, Store {
     });
   }
 
+  final _$waitForTransferResultAtom =
+      Atom(name: '_BalanceStore.waitForTransferResult');
+
+  @override
+  bool get waitForTransferResult {
+    _$waitForTransferResultAtom.reportRead();
+    return super.waitForTransferResult;
+  }
+
+  @override
+  set waitForTransferResult(bool value) {
+    _$waitForTransferResultAtom.reportWrite(value, super.waitForTransferResult,
+        () {
+      super.waitForTransferResult = value;
+    });
+  }
+
   final _$transferResultAtom = Atom(name: '_BalanceStore.transferResult');
 
   @override
@@ -62,20 +79,35 @@ mixin _$BalanceStore on _BalanceStore, Store {
     });
   }
 
-  final _$waitForTransferResultAtom =
-      Atom(name: '_BalanceStore.waitForTransferResult');
+  final _$waitForWithdrawResultAtom =
+      Atom(name: '_BalanceStore.waitForWithdrawResult');
 
   @override
-  bool get waitForTransferResult {
-    _$waitForTransferResultAtom.reportRead();
-    return super.waitForTransferResult;
+  bool get waitForWithdrawResult {
+    _$waitForWithdrawResultAtom.reportRead();
+    return super.waitForWithdrawResult;
   }
 
   @override
-  set waitForTransferResult(bool value) {
-    _$waitForTransferResultAtom.reportWrite(value, super.waitForTransferResult,
+  set waitForWithdrawResult(bool value) {
+    _$waitForWithdrawResultAtom.reportWrite(value, super.waitForWithdrawResult,
         () {
-      super.waitForTransferResult = value;
+      super.waitForWithdrawResult = value;
+    });
+  }
+
+  final _$withdrawResultAtom = Atom(name: '_BalanceStore.withdrawResult');
+
+  @override
+  WithdrawModel get withdrawResult {
+    _$withdrawResultAtom.reportRead();
+    return super.withdrawResult;
+  }
+
+  @override
+  set withdrawResult(WithdrawModel value) {
+    _$withdrawResultAtom.reportWrite(value, super.withdrawResult, () {
+      super.withdrawResult = value;
     });
   }
 
@@ -139,13 +171,6 @@ mixin _$BalanceStore on _BalanceStore, Store {
     return _$getBalanceAsyncAction.run(() => super.getBalance(platform));
   }
 
-  final _$postTransferAsyncAction = AsyncAction('_BalanceStore.postTransfer');
-
-  @override
-  Future<void> postTransfer(TransferForm form) {
-    return _$postTransferAsyncAction.run(() => super.postTransfer(form));
-  }
-
   final _$exeGridActionAsyncAction = AsyncAction('_BalanceStore.exeGridAction');
 
   @override
@@ -153,12 +178,28 @@ mixin _$BalanceStore on _BalanceStore, Store {
     return _$exeGridActionAsyncAction.run(() => super.exeGridAction(action));
   }
 
+  final _$postTransferAsyncAction = AsyncAction('_BalanceStore.postTransfer');
+
+  @override
+  Future<void> postTransfer(TransferForm form) {
+    return _$postTransferAsyncAction.run(() => super.postTransfer(form));
+  }
+
+  final _$postWithdrawAsyncAction = AsyncAction('_BalanceStore.postWithdraw');
+
+  @override
+  Future<void> postWithdraw(WithdrawForm form) {
+    return _$postWithdrawAsyncAction.run(() => super.postWithdraw(form));
+  }
+
   @override
   String toString() {
     return '''
 balanceUpdated: ${balanceUpdated},
-transferResult: ${transferResult},
 waitForTransferResult: ${waitForTransferResult},
+transferResult: ${transferResult},
+waitForWithdrawResult: ${waitForWithdrawResult},
+withdrawResult: ${withdrawResult},
 errorMessage: ${errorMessage},
 state: ${state}
     ''';

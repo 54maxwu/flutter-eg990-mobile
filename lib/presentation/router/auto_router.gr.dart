@@ -21,6 +21,7 @@ import '../features/member/member_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
+import '../features/member_features/withdraw/withdraw_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -116,6 +117,7 @@ class MainScreenRoutes {
   static const String memberRoute = '/member-route';
   static const String depositRoute = '/deposit-route';
   static const String transferRoute = '/transfer-route';
+  static const String withdrawRoute = '/withdraw-route';
   static const String betRecordRoute = '/bet-record-route';
   static const all = <String>{
     homeRoute,
@@ -129,6 +131,7 @@ class MainScreenRoutes {
     memberRoute,
     depositRoute,
     transferRoute,
+    withdrawRoute,
     betRecordRoute,
   };
 }
@@ -148,6 +151,7 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
     RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
     RouteDef(MainScreenRoutes.transferRoute, page: TransferRoute),
+    RouteDef(MainScreenRoutes.withdrawRoute, page: WithdrawRoute),
     RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
   ];
   @override
@@ -226,6 +230,12 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    WithdrawRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => WithdrawRoute(),
+        settings: data,
+      );
+    },
     BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => BetRecordRoute(),
@@ -284,6 +294,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushTransferRoute() =>
       push<dynamic>(MainScreenRoutes.transferRoute);
+
+  Future<dynamic> pushWithdrawRoute() =>
+      push<dynamic>(MainScreenRoutes.withdrawRoute);
 
   Future<dynamic> pushBetRecordRoute() =>
       push<dynamic>(MainScreenRoutes.betRecordRoute);

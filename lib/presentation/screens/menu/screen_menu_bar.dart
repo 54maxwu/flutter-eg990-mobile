@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart'
 import 'package:flutter_eg990_mobile/res.dart';
 import 'package:provider/provider.dart';
 
-enum AppBarActionType { MESSAGES, SETTINGS, SEARCH, NONE }
+enum AppBarActionType { MESSAGES, SETTINGS, SEARCH, TUTORIAL, NONE }
 
 class ScreenMenuBar extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -59,6 +59,8 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
         return AppBarActionType.SETTINGS;
       case MainScreenAppBarTypes.BACK_TITLE_SEARCH:
         return AppBarActionType.SEARCH;
+      case MainScreenAppBarTypes.BACK_TITLE_TUTORIAL:
+        return AppBarActionType.TUTORIAL;
       default:
         return AppBarActionType.NONE;
     }
@@ -140,6 +142,25 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
             icon: Icon(Icons.search, color: themeColor.drawerIconSubColor),
             tooltip: localeStr.actionSearch,
             onPressed: () => callToastInfo(localeStr.workInProgress),
+          ),
+        if (_actionType == AppBarActionType.TUTORIAL)
+          GestureDetector(
+            onTap: () => callToastInfo(localeStr.workInProgress),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 4.0),
+              child: Row(
+                children: [
+                  Text(
+                    localeStr.actionHelp,
+                    style: TextStyle(fontSize: FontSize.MESSAGE.value),
+                  ),
+                  Container(
+                      height: FontSize.SUBTITLE.value * 1.5,
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(Res.icon_colored_help)),
+                ],
+              ),
+            ),
           ),
         if (_actionType == AppBarActionType.SETTINGS)
           IconButton(

@@ -72,7 +72,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultGridTextColor = Color(0xff424242);
 
   @override
-  Color defaultCardColor = Color(0x99FFFFFF);
+  Color defaultCardColor = Color(0xffffffff);
 
   @override
   Color defaultCardTitleColor = Color(0xffedd1a2);

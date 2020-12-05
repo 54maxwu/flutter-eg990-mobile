@@ -52,6 +52,7 @@ class _BalanceWalletRowState extends State<BalanceWalletRow> {
   @override
   Widget build(BuildContext context) {
     _store ??= Provider.of<BalanceDisplayProvider>(context).store;
+    if (_disposers == null) initDisposer();
     _walletCredit ??= _store?.balanceMap['0'] ?? '---';
     return Row(
       children: [

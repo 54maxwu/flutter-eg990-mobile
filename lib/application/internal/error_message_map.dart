@@ -33,6 +33,10 @@ class MessageMap {
         return localeStr.messageErrorPassword;
       case 'pwdErrorFive':
         return localeStr.messageErrorPasswordHint;
+      case 'amountMoreThanBalance':
+        return localeStr.messageInvalidWithdrawAmount;
+      case 'wrongPassword':
+        return localeStr.messageInvalidWithdrawPassword;
       default:
         break;
     }

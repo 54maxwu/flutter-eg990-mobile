@@ -1,6 +1,10 @@
+import 'dart:async' show StreamController;
+
 import 'package:flutter_eg990_mobile/domain/sector/balance/balance_data.dart';
-import 'file:///C:/Dev/Projects/flutter_eg990_mobile/lib/domain/sector/wallet/wallet_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/wallet/wallet_model.dart';
+import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_model.dart';
 import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -8,7 +12,10 @@ class BalanceApi {
   static const String POST_WALLET = "api/walletbalance";
   static const String GET_PROMISE = "api/allBlancePromise";
   static const String GET_BALANCE = "api/balance";
+  static const String POST_TRANSFER_ALL = "api/balancetomain";
+
   static const String POST_TRANSFER = "api/transfer";
+  static const String POST_WITHDRAW = "api/withdrawal";
 }
 
 abstract class BalanceRepository {
@@ -21,8 +28,17 @@ abstract class BalanceRepository {
   /// Get requested platform's current credit
   Future<Either<Failure, BalanceData>> getBalance(String platform);
 
+  /// Transfer all platform credit to wallet
+  Future<Either<Failure, Map<String, dynamic>>> postTransferAll(
+    List<String> platforms,
+    StreamController<String> progressController,
+  );
+
   /// Transfer credit between platforms
   Future<Either<Failure, RequestStatusModel>> postTransfer(TransferForm form);
+
+  /// Withdraw credit to wallet or card
+  Future<Either<Failure, WithdrawModel>> postWithdraw(WithdrawForm form);
 }
 
 class BalanceRepositoryImpl implements BalanceRepository {
@@ -122,6 +138,29 @@ class BalanceRepositoryImpl implements BalanceRepository {
   }
 
   @override
+  Future<Either<Failure, Map<String, dynamic>>> postTransferAll(
+    List<String> platforms,
+    StreamController<String> progressController,
+  ) async {
+    final result = await Future.microtask(
+      () => dioApiService.postList(
+        BalanceApi.POST_TRANSFER_ALL,
+        dataList: List.generate(
+          platforms.length,
+          (index) => {
+            'accountcode': jwtInterface.username,
+            'plat': platforms[index],
+          },
+        ),
+        keyList: platforms,
+        stream: progressController,
+        userToken: jwtInterface.token,
+      ),
+    ).catchError((e) => null);
+    return Right(result);
+  }
+
+  @override
   Future<Either<Failure, RequestStatusModel>> postTransfer(
       TransferForm form) async {
     final result = await requestModel<RequestStatusModel>(
@@ -144,6 +183,29 @@ class BalanceRepositoryImpl implements BalanceRepository {
           tag: 'remote-RELOAD',
         );
         return Right(model);
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, WithdrawModel>> postWithdraw(WithdrawForm form) async {
+    final result = await requestModel<WithdrawModel>(
+      request: dioApiService.post(
+        BalanceApi.POST_WITHDRAW,
+        data: form.toJson(),
+        userToken: jwtInterface.token,
+      ),
+      parseJson: WithdrawModel.jsonToWithdrawModel,
+      tag: 'remote-WITHDRAW',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (model) {
+        if (model.code == 0)
+          return Right(model);
+        else
+          return Left(Failure.errorMessage(msg: model.msg));
       },
     );
   }

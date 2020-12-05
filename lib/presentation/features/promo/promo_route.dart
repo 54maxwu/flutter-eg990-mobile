@@ -22,7 +22,6 @@ class _PromoRouteState extends State<PromoRoute> {
 
   @override
   void didChangeDependencies() {
-    print('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(

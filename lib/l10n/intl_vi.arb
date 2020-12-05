@@ -228,6 +228,10 @@
   "@actionSearch": {
     "type": "text"
   },
+  "actionHelp": "Hướng dẫn",
+  "@actionHelp": {
+    "type": "text"
+  },
   "actionBack": "Quay lại",
   "@actionBack": {
     "type": "text"
@@ -1211,6 +1215,14 @@
       }
     }
   },
+  "bankcardViewTitleNew": "Thêm thẻ ngân hàng",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "Vui lòng liên kết thẻ ngân hàng để nhận thanh toán",
+  "@bankcardViewHintNew": {
+    "type": "text"
+  },
   "bankcardViewTitleOwner": "Tên tài khoản",
   "@bankcardViewTitleOwner": {
     "type": "text"
@@ -1301,6 +1313,10 @@
   },
   "walletViewTitleBalance": "Số dư trên ví",
   "@walletViewTitleBalance": {
+    "type": "text"
+  },
+  "walletViewHintWalletType": "* Khi cài đặt được bật, giới hạn ví sẽ tự động được chuyển sang nền tảng trò chơi đã mở",
+  "@walletViewHintWalletType": {
     "type": "text"
   },
   "walletViewTitleWalletSingle": "Ví đơn",
