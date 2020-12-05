@@ -6,7 +6,6 @@ import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_info.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:provider/provider.dart';
 
 import 'tab_control.dart';
 import 'tab_item_size.dart';

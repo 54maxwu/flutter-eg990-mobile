@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import '../state/balance_store.dart';
 import '../data/balance_grid_action_type.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class BalanceDisplayProviderInterface with ChangeNotifier {}
 
 class BalanceDisplayProvider

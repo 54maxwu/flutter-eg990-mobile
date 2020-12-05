@@ -20,5 +20,6 @@ class Bankcard extends _$Bankcard {
     @required this.bankName,
     @required this.bankAccount,
     @required this.accountName,
-  }) : this.hasCard = true;
+    this.hasCard = true,
+  });
 }

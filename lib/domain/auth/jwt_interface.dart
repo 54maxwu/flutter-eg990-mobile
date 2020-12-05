@@ -56,7 +56,7 @@ class JwtInterfaceImpl implements JwtInterface {
       return await requestModel<RequestStatusModel>(
         request: dioApiService.post(JwtApi.JWT_CHECK,
             userToken: loginToken, data: {"href": href}),
-        parseJson: RequestStatusModel.jsonToStatusModel,
+        parseJson: RequestStatusModel.parseJson,
         tag: 'remote-JWT',
       ).then((result) => result.fold(
             (failure) => left(failure),
@@ -77,7 +77,7 @@ class JwtInterfaceImpl implements JwtInterface {
           return await requestModel<RequestStatusModel>(
             request: dioApiService.post(JwtApi.JWT_CHECK,
                 userToken: _token, data: {"href": href}),
-            parseJson: RequestStatusModel.jsonToStatusModel,
+            parseJson: RequestStatusModel.parseJson,
             tag: 'remote-JWT',
           ).then(
             (result) => result.fold(

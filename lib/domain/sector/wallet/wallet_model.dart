@@ -12,8 +12,7 @@ abstract class WalletModel with _$WalletModel {
   // factory WalletModel.fromJson(Map<String, dynamic> json) =>
   //     _$WalletModelFromJson(json);
 
-  static WalletModel jsonToWalletModel(Map<String, dynamic> jsonMap) =>
-      _$_WalletModel(
+  static WalletModel parseJson(Map<String, dynamic> jsonMap) => _$_WalletModel(
         auto: jsonMap['auto'] as String ?? '0',
         credit: jsonMap['creditlimit'] as String ?? '0.00',
       );

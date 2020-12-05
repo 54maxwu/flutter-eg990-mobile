@@ -18,7 +18,7 @@ abstract class BankcardModel with _$BankcardModel {
     @JsonKey(name: 'bankname', defaultValue: '') String bankName,
   }) = _BankcardModel;
 
-  static BankcardModel jsonToBankcardModel(Map<String, dynamic> jsonMap) =>
+  static BankcardModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_BankcardModel(
         hasCard: jsonMap['hasCard'] as bool,
         bankAddress: jsonMap['bankaddress'] as String ?? '',

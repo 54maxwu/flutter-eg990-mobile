@@ -16,7 +16,7 @@ void main() {
       '{"id": 4107, "category": "slot", "platform": "eg", "gameid": "candy", "cname": "糖果世界", "ename": "candy world"}';
 
   test('test model data to entity data', () {
-    final model = GameModel.jsonToGameModel(json.decode(gameJson));
+    final model = GameModel.parseJson(json.decode(gameJson));
     expect(model, isA<GameModel>());
     print("test model: $model");
 

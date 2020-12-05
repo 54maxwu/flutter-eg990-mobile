@@ -309,8 +309,9 @@ abstract class _HomeStore with Store {
               },
             ),
           );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(type: FailureType.GAMES, code: 2);
+      debugPrint('Error: $errorMessage, Exception: $e');
       return _homeGamesMap[key] = [];
     }
   }

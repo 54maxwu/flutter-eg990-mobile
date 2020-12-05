@@ -27,7 +27,7 @@ void main() {
   test('test decode single banner model', () {
     print('\nmap:\n$map');
     print('\n\n');
-    final model = BannerModel.jsonToBannerModel(map);
+    final model = BannerModel.parseJson(map);
     print('decoded model:\n$model\n');
     expect(model.id, 1);
     expect(model, equals(bannerModel));
@@ -38,7 +38,7 @@ void main() {
     print('\n\n');
     List<dynamic> list = JsonUtil.decodeArray(rawArray, trim: false);
     final modelList =
-        list.map((model) => BannerModel.jsonToBannerModel(model)).toList();
+        list.map((model) => BannerModel.parseJson(model)).toList();
     print('decoded model list:\n$modelList\n');
     expect(modelList.length, 3);
     expect(modelList.last, equals(bannerModel));

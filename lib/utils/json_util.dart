@@ -65,7 +65,7 @@ class JsonUtil {
       return parseJson(map) as T;
     } catch (e, s) {
       MyLogger.error(
-          msg: 'mapped model error!! $e\ndata: $str\nmapped json: $map',
+          msg: 'mapped $T error!! $e\ndata: $str\nmapped json: $map',
           stackTrace: s,
           tag: tag);
       throw JsonDecodeException(str);

@@ -34,6 +34,7 @@ abstract class _$Bankcard {
   Bankcard copyWith(
       {bool hasCard, String bankName, String bankAccount, String accountName}) {
     return Bankcard(
+      hasCard: hasCard ?? this.hasCard,
       bankName: bankName ?? this.bankName,
       bankAccount: bankAccount ?? this.bankAccount,
       accountName: accountName ?? this.accountName,

@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import '../state/deposit_store.dart';
 import 'methods/deposit_method_control.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class DepositDisplayProviderInterface with ChangeNotifier {
   bool get hasAvailableTypes;
 }

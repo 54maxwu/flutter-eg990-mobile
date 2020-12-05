@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_model.dart';
-import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/game_types.dart';
+import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -22,7 +21,7 @@ void main() {
 
   test('test transform platform to entity', () {
     final map = json.decode(fixture('home/game_types.json'));
-    final model = GameTypes.jsonToGameTypes(map);
+    final model = GameTypes.parseJson(map);
     expect(model.categories.length, 7);
     expect(model.categories.first, categoryModel.entity);
     expect(model.platforms.first, platformEntity);

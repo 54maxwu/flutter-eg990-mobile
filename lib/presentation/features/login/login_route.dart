@@ -12,13 +12,6 @@ class LoginRoute extends StatefulWidget {
 class _LoginRouteState extends State<LoginRoute> {
   LoginStore _store;
   List<ReactionDisposer> _disposers;
-  dynamic _initData;
-
-  void initialized(dynamic data) {
-    setState(() {
-      _initData = data;
-    });
-  }
 
   @override
   void initState() {

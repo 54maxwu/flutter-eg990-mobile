@@ -29,7 +29,7 @@ enum RouteEnum {
   AGENT_REGISTER,
 
   ///
-  NOTICE,
+  NOTICE_BOARD,
   DOWNLOAD,
   TUTORIAL,
   AGENT_ABOUT,
@@ -162,7 +162,7 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleMemberAgentLogin;
       case RouteEnum.AGENT_REGISTER:
         return localeStr.pageTitleMemberAgentRegister;
-      case RouteEnum.NOTICE:
+      case RouteEnum.NOTICE_BOARD:
         return localeStr.pageTitleNotice;
       case RouteEnum.DOWNLOAD:
         return localeStr.pageTitleDownload;

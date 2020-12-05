@@ -25,7 +25,7 @@ void main() {
   test('test decode single game model', () {
     print('\nmap:\n$map');
     print('\n\n');
-    final model = GameModel.jsonToGameModel(map);
+    final model = GameModel.parseJson(map);
     print('decoded model:\n$model\n');
     expect(model, isA<GameModel>());
     expect(model.id, 4107);
@@ -41,7 +41,7 @@ void main() {
     print('\n\n');
     final dataList = JsonUtil.decodeArrayToModel(
       rawJson,
-      (jsonMap) => GameModel.jsonToGameModel(jsonMap),
+      (jsonMap) => GameModel.parseJson(jsonMap),
     );
     print('decoded list:\n$dataList\n');
     expect(dataList.length, 11);

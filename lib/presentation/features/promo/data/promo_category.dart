@@ -5,32 +5,30 @@ import 'package:vnum/vnum.dart';
 class PromoCategory {
   final int id;
   final String category;
-  final String iconUrl;
 
-  const PromoCategory(this.id, this.category, this.iconUrl);
+  const PromoCategory(this.id, this.category);
 
   @override
-  String toString() =>
-      'PromoCategory(id:$id, category:$category, iconUrl:$iconUrl)';
+  String toString() => 'PromoCategory(id:$id, category:$category)';
 }
 
 @VnumDefinition
 class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   /// Case Definition
-  static const PromoCategoryEnum all = const PromoCategoryEnum.define(
-      PromoCategory(0, 'All', 'images/index/all.png'));
-  static const PromoCategoryEnum fish = const PromoCategoryEnum.define(
-      PromoCategory(1, 'fish', 'images/index/fish.png'));
-  static const PromoCategoryEnum slot = const PromoCategoryEnum.define(
-      PromoCategory(2, 'slot', 'images/index/slot.png'));
-  static const PromoCategoryEnum live = const PromoCategoryEnum.define(
-      PromoCategory(3, 'live', 'images/index/casino.png'));
-  static const PromoCategoryEnum sport = const PromoCategoryEnum.define(
-      PromoCategory(4, 'sports', 'images/index/sport.png'));
-  static const PromoCategoryEnum lottery = const PromoCategoryEnum.define(
-      PromoCategory(5, 'lotto', 'images/index/lottery.png'));
-  static const PromoCategoryEnum other = const PromoCategoryEnum.define(
-      PromoCategory(6, 'other', 'images/index/icon-other.png'));
+  static const PromoCategoryEnum all =
+      const PromoCategoryEnum.define(PromoCategory(0, 'All'));
+  static const PromoCategoryEnum fish =
+      const PromoCategoryEnum.define(PromoCategory(1, 'fish'));
+  static const PromoCategoryEnum slot =
+      const PromoCategoryEnum.define(PromoCategory(2, 'slot'));
+  static const PromoCategoryEnum live =
+      const PromoCategoryEnum.define(PromoCategory(3, 'live'));
+  static const PromoCategoryEnum sport =
+      const PromoCategoryEnum.define(PromoCategory(4, 'sports'));
+  static const PromoCategoryEnum lottery =
+      const PromoCategoryEnum.define(PromoCategory(5, 'lotto'));
+  static const PromoCategoryEnum other =
+      const PromoCategoryEnum.define(PromoCategory(6, 'other'));
 
   /// Used for defining cases
   const PromoCategoryEnum.define(PromoCategory fromValue)

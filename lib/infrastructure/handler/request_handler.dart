@@ -15,6 +15,7 @@ import 'package:meta/meta.dart' show required;
 ///
 /// Catch exceptions and throws [Failure], which will be mapped to Left by [runTask]
 ///
+/// Catch [TokenException], which is thrown when server response contains token error message.
 /// Catch [ResponseException] and exceptions from dio service as [ServerException].
 /// Catch [FormatException] on error data type.
 /// Catch other [Exception] caused by the call.
@@ -22,15 +23,9 @@ import 'package:meta/meta.dart' show required;
 Future<dynamic> _exceptionHandler(Function func, String tag) async {
   try {
     return await Future.microtask(func);
-  } on ServerException {
-    MyLogger.warn(msg: 'Request Failed: Server Exception', tag: tag);
-    throw Failure.server();
   } on TokenException {
     MyLogger.warn(msg: 'Request Failed: Token Exception', tag: tag);
     throw Failure.token(FailureType.TOKEN);
-  } on FormatException catch (e, s) {
-    MyLogger.wtf(msg: 'Data format error!!', tag: tag, error: e, stackTrace: s);
-    throw e;
   } on RequestTypeErrorException catch (e, s) {
     MyLogger.wtf(
         msg: 'Request type error, please check api GET/POST usage',
@@ -38,6 +33,12 @@ Future<dynamic> _exceptionHandler(Function func, String tag) async {
         error: e,
         stackTrace: s);
     throw Failure.internal(FailureCode(type: FailureType.TASK, code: 1));
+  } on ServerException {
+    MyLogger.warn(msg: 'Request Failed: Server Exception', tag: tag);
+    throw Failure.server();
+  } on FormatException catch (e, s) {
+    MyLogger.wtf(msg: 'Data format error!!', tag: tag, error: e, stackTrace: s);
+    throw e;
   } on Exception catch (e, s) {
     MyLogger.error(
         msg: 'Something went wrong!!', tag: tag, error: e, stackTrace: s);
@@ -69,8 +70,7 @@ Future _makeRequest({
     }
     return response.data;
   }, tag);
-  MyLogger.debug(
-      msg: 'remote data result type: ${result.runtimeType}', tag: tag);
+  // MyLogger.debug(msg: 'remote data result: $result', tag: tag);
   return result;
 }
 
@@ -94,6 +94,9 @@ Future _makeHeaderRequest({
   return result;
 }
 
+///
+/// Request server data and return response data as string
+///
 Future<Either<Failure, String>> requestDataString({
   @required Future<Response<dynamic>> request,
   bool allowJsonString = false,
@@ -114,6 +117,9 @@ Future<Either<Failure, String>> requestDataString({
   });
 }
 
+///
+/// Request server data and return response data
+///
 Future<Either<Failure, dynamic>> requestData({
   @required Future<Response<dynamic>> request,
   String tag = 'remote-DATA',
@@ -127,15 +133,16 @@ Future<Either<Failure, dynamic>> requestData({
 }
 
 ///
+/// Request server data and return response data as required model data
 /// call example:
 ///
 ///   Future<Either<Failure, DataModel>> getData() async {
-///     final result = await requestDataModel<DataModel>(
+///     final result = await requestModel<DataModel>(
 ///        request: dioApiService.get(
 ///          DataApi.GET_DATA,
 ///          userToken: jwtInterface.token,
 ///        ),
-///        parseJson: DataModel.jsonToDataModel,
+///        parseJson: DataModel.parseJson,
 ///     );
 ///     debugPrint('test response type: ${result.runtimeType}, data: $result');
 ///     return result.fold(
@@ -162,6 +169,9 @@ Future<Either<Failure, T>> requestModel<T>({
   });
 }
 
+///
+/// Request server data and return response data as data model list
+///
 Future<Either<Failure, List<T>>> requestModelList<T>({
   @required Future<Response<dynamic>> request,
   @required Function(Map<String, dynamic> jsonMap) parseJson,
@@ -192,7 +202,7 @@ Future<Either<Failure, List<T>>> requestModelList<T>({
           return Right(model);
         } catch (e, s) {
           MyLogger.error(
-              msg: 'map data to model list has exception: $e',
+              msg: 'map data to model list has exception: $e\n$s',
               tag: tag,
               stackTrace: s);
           MyLogger.debug(
@@ -204,6 +214,10 @@ Future<Either<Failure, List<T>>> requestModelList<T>({
   });
 }
 
+///
+/// Request server data and return response header
+/// [header] is the key of header map
+///
 Future<Either<Failure, dynamic>> requestHeader({
   @required Future<Response<dynamic>> request,
   @required String header,

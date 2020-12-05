@@ -52,7 +52,7 @@ class DepositRepositoryImpl implements DepositRepository {
         DepositApi.GET_CARD,
         userToken: jwtInterface.token,
       ),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-BANKCARD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -81,7 +81,7 @@ class DepositRepositoryImpl implements DepositRepository {
         DepositApi.GET_PAYMENT,
         userToken: jwtInterface.token,
       ),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-DEPOSIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -117,7 +117,7 @@ class DepositRepositoryImpl implements DepositRepository {
         DepositApi.GET_PAYMENT_PROMO,
         userToken: jwtInterface.token,
       ),
-      // parseJson: RequestCodeModel.jsonToCodeModel,
+      // parseJson: RequestCodeModel.parseJson,
       tag: 'remote-DEPOSIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -199,7 +199,7 @@ class DepositRepositoryImpl implements DepositRepository {
         userToken: jwtInterface.token,
         data: form.toJson(),
       ),
-      parseJson: DepositResult.jsonToDepositResult,
+      parseJson: DepositResult.parseJson,
       tag: 'remote-DEPOSIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -216,13 +216,13 @@ class DepositRepositoryImpl implements DepositRepository {
         DepositApi.GET_DEPOSIT_INFO,
         userToken: jwtInterface.token,
       ),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-DEPOSIT',
     );
     return result.fold(
       (failure) => Left(failure),
       (data) => Right(JsonUtil.decodeMapToModelList(
-          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
+          data.data, (jsonMap) => DepositInfo.parseJson(jsonMap),
           addKey: false)),
     );
   }

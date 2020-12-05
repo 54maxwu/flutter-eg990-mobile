@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 part 'request_code_model.freezed.dart';
 
@@ -10,12 +11,12 @@ abstract class RequestCodeModel with _$RequestCodeModel {
     String msg,
   }) = _RequestCodeModel;
 
-  static RequestCodeModel jsonToCodeModel(Map<String, dynamic> jsonMap) {
+  static RequestCodeModel parseJson(Map<String, dynamic> jsonMap) {
 //    if (jsonMap.containsKey('msg') &&
 //        '${jsonMap['msg']}'.toLowerCase() == 'Repeat token'.toLowerCase())
 //      throw TokenException();
     return _$_RequestCodeModel(
-      code: jsonMap['code'] as int,
+      code: '${jsonMap['code']}'.strToInt,
       data: jsonMap['data'],
       msg: '${jsonMap['msg']}',
     );

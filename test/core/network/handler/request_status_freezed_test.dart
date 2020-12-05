@@ -8,11 +8,11 @@ void main() {
 
   test('test json to status class', () {
     var modelInt = JsonUtil.decodeToModel(
-        statusNum, (jsonMap) => RequestStatusModel.jsonToStatusModel(jsonMap));
+        statusNum, (jsonMap) => RequestStatusModel.parseJson(jsonMap));
     expect(modelInt.msg, '1234');
     expect(modelInt.msg, isA<String>());
     var modelStr = JsonUtil.decodeToModel(
-        statusStr, (jsonMap) => RequestStatusModel.jsonToStatusModel(jsonMap));
+        statusStr, (jsonMap) => RequestStatusModel.parseJson(jsonMap));
     expect(modelStr, isA<RequestStatusModel>());
   });
 }

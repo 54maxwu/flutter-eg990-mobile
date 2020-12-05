@@ -53,8 +53,8 @@ class LoginRepositoryImpl implements LoginRepository {
                 form.username.value, token);
           } else if (data.toString().contains('"msg":')) {
             // parse error message to status model
-            RequestStatusModel loginStatus = JsonUtil.decodeToModel(data,
-                (jsonMap) => RequestStatusModel.jsonToStatusModel(jsonMap));
+            RequestStatusModel loginStatus = JsonUtil.decodeToModel(
+                data, (jsonMap) => RequestStatusModel.parseJson(jsonMap));
             debugPrint('login result: $loginStatus');
             return Left(Failure.login(loginStatus));
           }
@@ -103,7 +103,7 @@ class LoginRepositoryImpl implements LoginRepository {
     MyLogger.log(msg: 'requesting account info...', tag: tag);
     final result = await requestModel<UserModel>(
       request: dioApiService.get(LoginApi.GET_ACCOUNT, userToken: token),
-      parseJson: UserModel.jsonToUserModel,
+      parseJson: UserModel.parseJson,
       tag: 'remote-USER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

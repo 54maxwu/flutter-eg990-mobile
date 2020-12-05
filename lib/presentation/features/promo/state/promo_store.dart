@@ -68,8 +68,9 @@ abstract class _PromoStore with Store {
           },
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/injection_container.dart';
-import 'package:flutter_eg990_mobile/presentation/common/toast/toast_error_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:mobx/mobx.dart';
 
 import 'state/service_store.dart';
 import 'widgets/service_display.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show IconData, Color;
+import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/router/data/route_enum.dart';
 import 'package:flutter_eg990_mobile/presentation/router/route_page.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

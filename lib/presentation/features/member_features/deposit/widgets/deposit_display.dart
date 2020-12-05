@@ -1,15 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
-import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:provider/provider.dart';
 
+import 'content/deposit_content_local.dart';
+import 'content/deposit_content_online.dart';
 import 'deposit_display_provider.dart';
 import 'methods/deposit_method_control.dart';
 import 'methods/deposit_methods_grid.dart';
-import 'content/deposit_content_local.dart';
-import 'content/deposit_content_online.dart';
 
 class DepositDisplay extends StatefulWidget {
   @override

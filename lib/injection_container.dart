@@ -10,6 +10,7 @@ import 'domain/sector/bet_record/bet_record_repository.dart';
 import 'domain/sector/deposit/deposit_repository.dart';
 import 'domain/sector/home/home_local_storage.dart';
 import 'domain/sector/home/home_repository.dart';
+import 'domain/sector/notice_board/notice_repository.dart';
 import 'domain/sector/promo/promo_local_storage.dart';
 import 'domain/sector/promo/promo_repository.dart';
 import 'domain/sector/service/service_repository.dart';
@@ -27,6 +28,7 @@ import 'presentation/features/member_features/bet_record/state/bet_record_store.
 import 'presentation/features/member_features/deposit/state/deposit_store.dart';
 import 'presentation/features/member_features/transfer/state/transfer_store.dart';
 import 'presentation/features/member_features/withdraw/state/withdraw_store.dart';
+import 'presentation/features/notice_board/state/notice_store.dart';
 import 'presentation/features/promo/state/promo_store.dart';
 import 'presentation/features/service/state/service_store.dart';
 import 'presentation/screens/event/ads/state/ads_store.dart';
@@ -73,6 +75,13 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AdStore(sl<AdsRepository>()));
 
   ///
+  /// SERVICE
+  ///
+  sl.registerLazySingleton<ServiceRepository>(
+      () => ServiceRepositoryImpl(dioApiService: sl()));
+  sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
+
+  ///
   /// HOME
   ///
   sl.registerLazySingleton<HomeLocalStorage>(() => HomeLocalStorageImpl());
@@ -100,11 +109,11 @@ Future<void> init() async {
   sl.registerFactory(() => PromoStore(sl<PromoRepository>()));
 
   ///
-  /// SERVICE
+  /// NOTICE
   ///
-  sl.registerLazySingleton<ServiceRepository>(
-      () => ServiceRepositoryImpl(dioApiService: sl()));
-  sl.registerLazySingleton(() => ServiceStore(sl<ServiceRepository>()));
+  sl.registerFactory<NoticeRepository>(
+      () => NoticeRepositoryImpl(dioApiService: sl()));
+  sl.registerFactory(() => NoticeStore(sl<NoticeRepository>()));
 
   ///
   /// DEPOSIT

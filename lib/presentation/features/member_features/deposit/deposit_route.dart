@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'state/deposit_store.dart';
 import 'widgets/deposit_display.dart';

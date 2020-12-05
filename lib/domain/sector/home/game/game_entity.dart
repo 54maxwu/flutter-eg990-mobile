@@ -22,7 +22,7 @@ abstract class GameEntity with _$GameEntity, DataOperator {
     @HiveField(5) @Default(0) int sort,
   }) = _GameEntity;
 
-  // static GameEntity jsonToGameEntity(Map<String, dynamic> jsonMap) =>
+  // static GameEntity parseJson(Map<String, dynamic> jsonMap) =>
   //     _$_GameEntity(
   //       id: jsonMap['id'] as int,
   //       cname: (jsonMap.containsKey('cname')) ? jsonMap['cname'] as String : '',

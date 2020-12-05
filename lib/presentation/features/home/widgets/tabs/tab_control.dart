@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class TabControlInterface with ChangeNotifier {
   int get getTabIndex;
 

@@ -4,7 +4,6 @@ import 'package:flutter_eg990_mobile/domain/core/failures.dart';
 import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/common/other/warning_display.dart';
-import 'package:provider/provider.dart';
 
 import 'home_display_provider.dart';
 import 'pageview/platforms_page.dart';

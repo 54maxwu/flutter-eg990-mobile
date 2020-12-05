@@ -59,8 +59,9 @@ abstract class _WithdrawStore with Store {
           (data) => bankcard = data,
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 }

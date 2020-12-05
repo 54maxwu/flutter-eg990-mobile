@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.dart';
-import 'package:provider/provider.dart';
 
 import '../data/shortcut_item.dart';
 import 'home_display_provider.dart';

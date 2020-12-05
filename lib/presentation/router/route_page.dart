@@ -76,6 +76,16 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// SHORTCUTS
   ///
+  static const RoutePage notice_board = const RoutePage.define(RouteInfo(
+    id: RouteEnum.NOTICE_BOARD,
+    route: MainScreenRoutes.noticeRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
+
+  ///
+  /// MEMBER
+  ///
   static const RoutePage deposit = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
     route: MainScreenRoutes.depositRoute,
@@ -95,9 +105,6 @@ class RoutePage extends Vnum<RouteInfo> {
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
 
-  ///
-  /// MEMBER
-  ///
   static const RoutePage bet_record = const RoutePage.define(RouteInfo(
     id: RouteEnum.BET_RECORD,
     route: MainScreenRoutes.betRecordRoute,
@@ -105,6 +112,9 @@ class RoutePage extends Vnum<RouteInfo> {
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
 
+  ///
+  /// OTHER
+  ///
   static const RoutePage about_us = const RoutePage.define(RouteInfo(
     id: RouteEnum.ABOUT_US,
     route: MainScreenRoutes.aboutRoute,

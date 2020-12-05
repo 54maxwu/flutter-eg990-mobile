@@ -6,6 +6,8 @@ import 'event/ads/state/ads_store.dart';
 import 'main_screen_store.dart';
 import 'user/user_info_store.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class MainScreenProviderInterface with ChangeNotifier {
   GlobalKey<NavigatorState> get getNavigatorKey;
 

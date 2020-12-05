@@ -4,7 +4,6 @@ import 'package:flutter_eg990_mobile/presentation/common/images/network_image.da
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:provider/provider.dart';
 
 import '../../state/home_store.dart';
 import '../home_display_provider.dart';

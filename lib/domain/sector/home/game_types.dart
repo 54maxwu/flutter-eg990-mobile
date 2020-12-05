@@ -17,8 +17,7 @@ abstract class GameTypes with _$GameTypes {
         List<GamePlatformEntity> platforms,
   }) = _GameTypes;
 
-  static GameTypes jsonToGameTypes(Map<String, dynamic> jsonMap) =>
-      _$_GameTypes(
+  static GameTypes parseJson(Map<String, dynamic> jsonMap) => _$_GameTypes(
         categories: jsonMap['category'] != null
             ? _decodeGameCategories(jsonMap['category'])
             : [],

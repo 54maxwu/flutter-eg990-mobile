@@ -19,7 +19,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, ServiceModel>> getWebsiteList() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(ServiceApi.GET_WEB_LIST),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-EVENT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -28,7 +28,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
       (model) {
         if (model.isSuccess == false) return Left(Failure.event());
         if (model.data != null && model.data is Map) {
-          return Right(ServiceModel.jsonToServiceModel(model.data));
+          return Right(ServiceModel.parseJson(model.data));
         }
         return Left(Failure.dataType());
       },

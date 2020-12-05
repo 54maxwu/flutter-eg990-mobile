@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter_eg990_mobile/presentation/common/toast/toast_info_widget.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
-import 'package:provider/provider.dart';
 
 import '../../state/deposit_store.dart';
 import '../deposit_display_provider.dart';

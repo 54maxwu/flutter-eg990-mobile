@@ -12,8 +12,7 @@ abstract class DepositInfo with _$DepositInfo {
     @JsonKey(name: 'bankcode') String bankCode,
   }) = _DepositInfo;
 
-  static DepositInfo jsonToDepositInfo(Map<String, dynamic> jsonMap) =>
-      _$_DepositInfo(
+  static DepositInfo parseJson(Map<String, dynamic> jsonMap) => _$_DepositInfo(
         accountName: jsonMap['accountname'] as String,
         bankAccountId: jsonMap['bankaccountid'] as int,
         bankAccountName: jsonMap['bankaccountname'] as String,

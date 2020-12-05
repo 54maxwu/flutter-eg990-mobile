@@ -22,6 +22,7 @@ import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
 import '../features/member_features/withdraw/withdraw_route.dart';
+import '../features/notice_board/notice_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -113,12 +114,13 @@ class MainScreenRoutes {
   static const String promoDetailPage = '/promo-detail-page';
   static const String serviceRoute = '/service-route';
   static const String sponsorRoute = '/sponsor-route';
-  static const String aboutRoute = '/about-route';
+  static const String noticeRoute = '/notice-route';
   static const String memberRoute = '/member-route';
   static const String depositRoute = '/deposit-route';
   static const String transferRoute = '/transfer-route';
   static const String withdrawRoute = '/withdraw-route';
   static const String betRecordRoute = '/bet-record-route';
+  static const String aboutRoute = '/about-route';
   static const all = <String>{
     homeRoute,
     gamesPage,
@@ -127,12 +129,13 @@ class MainScreenRoutes {
     promoDetailPage,
     serviceRoute,
     sponsorRoute,
-    aboutRoute,
+    noticeRoute,
     memberRoute,
     depositRoute,
     transferRoute,
     withdrawRoute,
     betRecordRoute,
+    aboutRoute,
   };
 }
 
@@ -147,12 +150,13 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.promoDetailPage, page: PromoDetailPage),
     RouteDef(MainScreenRoutes.serviceRoute, page: ServiceRoute),
     RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
-    RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
+    RouteDef(MainScreenRoutes.noticeRoute, page: NoticeRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
     RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
     RouteDef(MainScreenRoutes.transferRoute, page: TransferRoute),
     RouteDef(MainScreenRoutes.withdrawRoute, page: WithdrawRoute),
     RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
+    RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -206,9 +210,9 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
-    AboutRoute: (data) {
+    NoticeRoute: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AboutRoute(),
+        builder: (context) => NoticeRoute(),
         settings: data,
       );
     },
@@ -239,6 +243,12 @@ class MainScreenRouter extends RouterBase {
     BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => BetRecordRoute(),
+        settings: data,
+      );
+    },
+    AboutRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AboutRoute(),
         settings: data,
       );
     },
@@ -283,8 +293,8 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushSponsorRoute() =>
       push<dynamic>(MainScreenRoutes.sponsorRoute);
 
-  Future<dynamic> pushAboutRoute() =>
-      push<dynamic>(MainScreenRoutes.aboutRoute);
+  Future<dynamic> pushNoticeRoute() =>
+      push<dynamic>(MainScreenRoutes.noticeRoute);
 
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
@@ -300,6 +310,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushBetRecordRoute() =>
       push<dynamic>(MainScreenRoutes.betRecordRoute);
+
+  Future<dynamic> pushAboutRoute() =>
+      push<dynamic>(MainScreenRoutes.aboutRoute);
 }
 
 /// ************************************************************************

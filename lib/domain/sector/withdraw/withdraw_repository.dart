@@ -26,7 +26,7 @@ class WithdrawRepositoryImpl implements WithdrawRepository {
         WithdrawApi.GET_CARD,
         userToken: jwtInterface.token,
       ),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-BANKCARD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -36,12 +36,11 @@ class WithdrawRepositoryImpl implements WithdrawRepository {
         if (data.isSuccess && data.data.toString().isNotEmpty) {
           MyLogger.print(msg: 'bankcard map: ${data.data}', tag: tag);
           if (data.data is Map)
-            return Right(BankcardModel.jsonToBankcardModel(data.data)
-                .copyWith(hasCard: true));
-          else if (data.data is String)
             return Right(
-                BankcardModel.jsonToBankcardModel(jsonDecode(data.data))
-                    .copyWith(hasCard: true));
+                BankcardModel.parseJson(data.data).copyWith(hasCard: true));
+          else if (data.data is String)
+            return Right(BankcardModel.parseJson(jsonDecode(data.data))
+                .copyWith(hasCard: true));
           else
             return Left(Failure.dataType());
         } else {

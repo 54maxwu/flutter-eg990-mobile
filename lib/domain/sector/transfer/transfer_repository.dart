@@ -35,7 +35,7 @@ class TransferRepositoryImpl implements TransferRepository {
         userToken: jwtInterface.token,
         data: {'accountcode': jwtInterface.username},
       ),
-      parseJson: WalletModel.jsonToWalletModel,
+      parseJson: WalletModel.parseJson,
       tag: 'remote-WALLET',
     );
 //      debugPrint('test response type: ${result.runtimeType}, data: $result');

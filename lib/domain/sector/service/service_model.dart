@@ -19,7 +19,7 @@ abstract class ServiceModel with _$ServiceModel {
     @JsonKey(name: 'line_pic', defaultValue: '') String linePic,
   }) = _ServiceModel;
 
-  static ServiceModel jsonToServiceModel(Map<String, dynamic> jsonMap) =>
+  static ServiceModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_ServiceModel(
         title: jsonMap['title']?.toString() ?? '',
         appPic: jsonMap['app_pic']?.toString() ?? '',

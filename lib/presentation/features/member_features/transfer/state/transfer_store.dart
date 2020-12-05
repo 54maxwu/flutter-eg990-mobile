@@ -63,8 +63,9 @@ abstract class _TransferStore with Store {
               debugPrint('wallet type updated: $walletType');
             },
           ));
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 

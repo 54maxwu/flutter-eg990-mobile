@@ -21,8 +21,7 @@ abstract class BannerModel with _$BannerModel {
     @JsonKey(name: 'mobile_url', required: true) String mobileUrl,
   }) = _BannerModel;
 
-  static BannerModel jsonToBannerModel(Map<String, dynamic> jsonMap) =>
-      _$_BannerModel(
+  static BannerModel parseJson(Map<String, dynamic> jsonMap) => _$_BannerModel(
         id: jsonMap['id'] as int,
         title: jsonMap['title'] as String,
         type: jsonMap['type'] as String,

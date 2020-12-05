@@ -18,8 +18,7 @@ abstract class GameModel with _$GameModel {
     @Default(0) int sort,
   }) = _GameModel;
 
-  static GameModel jsonToGameModel(Map<String, dynamic> jsonMap) =>
-      _$_GameModel(
+  static GameModel parseJson(Map<String, dynamic> jsonMap) => _$_GameModel(
         id: jsonMap['id'] as int,
         category: jsonMap['category'] as String,
         platform: jsonMap['platform'] as String,

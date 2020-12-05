@@ -87,8 +87,9 @@ abstract class _BalanceStore with Store {
       ]));
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _initFuture;
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -108,8 +109,9 @@ abstract class _BalanceStore with Store {
               },
             ),
           );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 9);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -132,8 +134,9 @@ abstract class _BalanceStore with Store {
               },
             ),
           );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -159,8 +162,9 @@ abstract class _BalanceStore with Store {
           }
         }),
       );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 2);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -182,8 +186,9 @@ abstract class _BalanceStore with Store {
           );
         },
       );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 3);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -206,8 +211,9 @@ abstract class _BalanceStore with Store {
           );
         },
       );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 4);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 

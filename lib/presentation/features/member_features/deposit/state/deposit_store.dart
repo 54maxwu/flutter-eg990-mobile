@@ -160,8 +160,9 @@ abstract class _DepositStore with Store {
           (data) => promos = data,
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 3);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -198,8 +199,9 @@ abstract class _DepositStore with Store {
           },
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 4);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -217,8 +219,9 @@ abstract class _DepositStore with Store {
           (data) => bankMap = data,
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 5);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 
@@ -236,8 +239,9 @@ abstract class _DepositStore with Store {
           (data) => ruleMap = data,
         );
       });
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 6);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 

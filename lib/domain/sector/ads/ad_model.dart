@@ -19,7 +19,7 @@ abstract class AdModel with _$AdModel {
     @JsonKey(name: 'url_blank') bool urlBlank,
   }) = _AdModel;
 
-  static AdModel jsonToAdModel(Map<String, dynamic> jsonMap) => _$_AdModel(
+  static AdModel parseJson(Map<String, dynamic> jsonMap) => _$_AdModel(
         id: jsonMap['id'] as int,
         title: jsonMap['title'] as String,
         type: jsonMap['type'] as String,

@@ -31,7 +31,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
     final result = await requestModel<UserModel>(
       request: dioApiService.get(UserInfoApi.GET_ACCOUNT_LIMIT,
           userToken: jwtInterface.token),
-      parseJson: UserModel.jsonToUserModel,
+      parseJson: UserModel.parseJson,
       tag: 'remote-CREDIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -45,7 +45,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(UserInfoApi.GET_NEW_MESSAGE_COUNT),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-MSG',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

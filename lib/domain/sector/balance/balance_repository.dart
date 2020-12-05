@@ -61,7 +61,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
         userToken: jwtInterface.token,
         data: {'accountcode': jwtInterface.username},
       ),
-      parseJson: WalletModel.jsonToWalletModel,
+      parseJson: WalletModel.parseJson,
       tag: 'remote-WALLET',
     );
 //      debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -80,7 +80,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
         BalanceApi.GET_PROMISE,
         userToken: jwtInterface.token,
       ),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-BALANCE_PROMISE',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -168,7 +168,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
         BalanceApi.POST_TRANSFER,
         data: form.toJson(),
       ),
-      parseJson: RequestStatusModel.jsonToStatusModel,
+      parseJson: RequestStatusModel.parseJson,
       tag: 'remote-TRANSFER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -195,7 +195,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
         data: form.toJson(),
         userToken: jwtInterface.token,
       ),
-      parseJson: WithdrawModel.jsonToWithdrawModel,
+      parseJson: WithdrawModel.parseJson,
       tag: 'remote-WITHDRAW',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

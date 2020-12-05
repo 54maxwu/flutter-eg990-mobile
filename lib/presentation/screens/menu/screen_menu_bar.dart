@@ -171,10 +171,9 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
         if (_actionType == AppBarActionType.MESSAGES ||
             _actionType == AppBarActionType.SETTINGS)
           IconButton(
-            icon: Icon(Icons.notifications_none,
-                color: themeColor.drawerIconSubColor),
+            icon: Image.asset(Res.icon_colored_message, scale: 1.75),
             tooltip: localeStr.actionNotify,
-            onPressed: () => callToastInfo(localeStr.workInProgress),
+            onPressed: () => AppNavigator.navigateTo(RoutePage.notice_board),
           ),
       ],
     );

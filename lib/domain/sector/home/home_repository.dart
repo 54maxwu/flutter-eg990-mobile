@@ -91,7 +91,7 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, List<BannerEntity>>> _remoteBanners() async {
     final result = await requestModelList<BannerModel>(
       request: dioApiService.get(HomeApi.BANNER),
-      parseJson: BannerModel.jsonToBannerModel,
+      parseJson: BannerModel.parseJson,
       tag: 'remote-BANNER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -180,7 +180,7 @@ class HomeRepositoryImpl implements HomeRepository {
           "accountid": jwtInterface.userId,
         },
       ),
-      parseJson: GameTypes.jsonToGameTypes,
+      parseJson: GameTypes.parseJson,
       tag: 'remote-GAME_ALL',
     );
     // debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -220,7 +220,7 @@ class HomeRepositoryImpl implements HomeRepository {
       PlatformGameForm form) async {
     final result = await requestModelList<GameModel>(
       request: dioApiService.postForm(HomeApi.GAME_INDEX, form.toJson()),
-      parseJson: GameModel.jsonToGameModel,
+      parseJson: GameModel.parseJson,
       tag: 'remote-GAMES',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
@@ -303,9 +303,9 @@ class HomeRepositoryImpl implements HomeRepository {
 //    List decodedList = data.map((map) {
 //      try {
 //        if (map.containsKey('platform'))
-//          return GameModel.jsonToGameModel(map).entity;
+//          return GameModel.parseJson(map).entity;
 //        else if (map.containsKey('site'))
-//          return GamePlatform.jsonToGamePlatformEntity(map);
+//          return GamePlatform.parseJson(map);
 //        else
 //          return '';
 //      } catch (e) {

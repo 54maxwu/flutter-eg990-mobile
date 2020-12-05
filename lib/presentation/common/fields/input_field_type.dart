@@ -23,12 +23,11 @@ final _symbolsInputRegex = RegExp("[\$&+,:;=?@#|'<>.-^*()%!_ ]");
 
 final _engInputRegex = RegExp("[a-zA-Z]");
 
+final _engLowerCaseInputRegex = RegExp("[a-z]");
+
 final _engSpaceInputRegex = RegExp("[a-zA-Z ]");
 
 final _numInputRegex = RegExp("[0-9]");
-
-final _chineseInputFormatter =
-    FilteringTextInputFormatter.allow(_chineseInputRegex);
 
 final _numbersInputFormatter = FilteringTextInputFormatter.digitsOnly;
 
@@ -40,19 +39,13 @@ final _textOnlyInputFormatter = FilteringTextInputFormatter.allow(
 );
 
 final _accountInputFormatter = FilteringTextInputFormatter.allow(
-  RegExp("${_engInputRegex.pattern}|"
+  RegExp("${_engLowerCaseInputRegex.pattern}|"
       "${_numInputRegex.pattern}|[!#_\$%&*+-=?^@]"),
 );
 
 final _emailInputFormatter = FilteringTextInputFormatter.allow(
   RegExp("${_engInputRegex.pattern}|"
       "${_numInputRegex.pattern}|[!#\$%&'*+-/=?^_`{|}~.@]"),
-);
-
-final _withoutEngInputFormatter = FilteringTextInputFormatter.allow(
-  RegExp("${_numInputRegex.pattern}|"
-      "${_symbolsInputRegex.pattern}|"
-      "${_chineseInputRegex.pattern}"),
 );
 
 final _withoutChineseInputFormatter = FilteringTextInputFormatter.allow(

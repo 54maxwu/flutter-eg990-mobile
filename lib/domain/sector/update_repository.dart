@@ -42,7 +42,7 @@ class UpdateRepositoryImpl implements UpdateRepository {
   Future<Either<Failure, List<String>>> getVersion() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(UpdateApi.GET_VERSION_LIST),
-      parseJson: RequestCodeModel.jsonToCodeModel,
+      parseJson: RequestCodeModel.parseJson,
       tag: 'remote-APP_UPDATE',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

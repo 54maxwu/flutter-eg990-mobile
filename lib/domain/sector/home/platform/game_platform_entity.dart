@@ -27,7 +27,7 @@ abstract class GamePlatformEntity
     @Default('0') String favorite,
   }) = _GamePlatformEntity;
 
-  static GamePlatformEntity jsonToEntity(Map<String, dynamic> jsonMap) =>
+  static GamePlatformEntity parseJson(Map<String, dynamic> jsonMap) =>
       _$_GamePlatformEntity(
         id: jsonMap['id'] as int,
         className: decodePlatformClassName(jsonMap),

@@ -16,6 +16,6 @@ abstract class DepositResult with _$DepositResult {
   factory DepositResult.fromJson(Map<String, dynamic> json) =>
       _$DepositResultFromJson(json);
 
-  static DepositResult jsonToDepositResult(Map<String, dynamic> jsonMap) =>
+  static DepositResult parseJson(Map<String, dynamic> jsonMap) =>
       DepositResult.fromJson(jsonMap);
 }

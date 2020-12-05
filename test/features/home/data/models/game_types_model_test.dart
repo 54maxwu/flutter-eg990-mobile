@@ -28,7 +28,7 @@ void main() {
   test('test model list data decode', () {
     print('\nmap:\n$map');
     print('\n\n');
-    final model = GameTypes.jsonToGameTypes(map);
+    final model = GameTypes.parseJson(map);
     print('decoded model:\n$model\n');
     expect(model.categories.length, 7);
     expect(model.categories.first, categoryModel);

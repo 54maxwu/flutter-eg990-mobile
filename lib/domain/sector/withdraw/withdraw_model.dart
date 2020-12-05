@@ -10,7 +10,7 @@ abstract class WithdrawModel with _$WithdrawModel {
     String msg,
   }) = _WithdrawModel;
 
-  static WithdrawModel jsonToWithdrawModel(Map<String, dynamic> jsonMap) =>
+  static WithdrawModel parseJson(Map<String, dynamic> jsonMap) =>
       _$_WithdrawModel(
         code: jsonMap['code'] as int,
         data: jsonMap['data'],

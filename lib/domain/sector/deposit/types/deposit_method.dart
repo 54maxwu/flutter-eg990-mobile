@@ -15,7 +15,7 @@ abstract class DepositMethod with _$DepositMethod {
   }) = DepositMethodOnline;
 
   /// Contains each online deposit option info and deposit limit
-  /// Created by json parser [jsonToVirtualBankData]
+  /// Created by json parser [parseVirtualBankData]
   const factory DepositMethod.virtual({
     String amount,
     @JsonKey(name: 'amountoption') List<String> amountOption,
@@ -39,7 +39,7 @@ abstract class DepositMethod with _$DepositMethod {
   }) = DepositMethodLocal;
 
   /// Contains each bank info and deposit limit
-  /// Created by json parser [jsonToLocalBankData]
+  /// Created by json parser [parseLocalBankData]
   const factory DepositMethod.bank({
     @JsonKey(name: 'bankaccountid') int bankAccountId,
     @JsonKey(name: 'bankaccountno') String bankAccountNo,
@@ -53,16 +53,16 @@ abstract class DepositMethod with _$DepositMethod {
 
   factory DepositMethod.fromJson(Map<String, dynamic> json) =>
       (json.containsValue('localbank'))
-          ? jsonToLocalBankData(json)
-          : jsonToVirtualBankData(json);
+          ? parseLocalBankData(json)
+          : parseVirtualBankData(json);
 
-  static DepositMethodBankData jsonToLocalBankData(
+  static DepositMethodBankData parseLocalBankData(
       Map<String, dynamic> jsonMap) {
     jsonMap['runtimeType'] = 'bank';
     return _$DepositMethodFromJson(jsonMap);
   }
 
-  static DepositMethodVirtualData jsonToVirtualBankData(
+  static DepositMethodVirtualData parseVirtualBankData(
       Map<String, dynamic> jsonMap) {
     jsonMap['runtimeType'] = 'virtual';
     return _$DepositMethodFromJson(jsonMap);

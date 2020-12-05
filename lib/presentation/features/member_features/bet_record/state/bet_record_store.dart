@@ -70,8 +70,9 @@ abstract class _BetRecordStore with Store {
           },
         ),
       );
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     }
   }
 

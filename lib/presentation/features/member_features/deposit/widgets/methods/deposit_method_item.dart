@@ -5,7 +5,6 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:provider/provider.dart';
 
 import 'deposit_method_control.dart';
 

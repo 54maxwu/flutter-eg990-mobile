@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class DepositMethodControlInterface with ChangeNotifier {
   DepositMethod get getSelected;
 

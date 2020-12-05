@@ -8,14 +8,13 @@ import 'package:flutter_eg990_mobile/infrastructure/core/network_info.dart';
 import 'package:flutter_eg990_mobile/presentation/common/window/network_changed_dialog.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/features/home/state/home_store.dart';
-import 'package:flutter_eg990_mobile/presentation/screens/streams/app_preference_streams.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
-import 'package:provider/provider.dart';
 
 import 'main_screen_provider.dart';
 import 'main_screen_store.dart';
 import 'menu/screen_menu_bar.dart';
 import 'navbar/screen_navigation_bar.dart';
+import 'streams/app_preference_streams.dart';
 
 ///
 /// Main app screen

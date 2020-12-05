@@ -1,7 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'home_display_banner.dart';
 import 'home_display_marquee.dart';

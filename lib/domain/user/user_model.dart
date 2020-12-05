@@ -16,7 +16,7 @@ abstract class UserModel with _$UserModel {
     @JsonKey(name: 'vip_name', required: false) String vipName,
   }) = _UserModel;
 
-  static UserModel jsonToUserModel(Map<String, dynamic> jsonMap) {
+  static UserModel parseJson(Map<String, dynamic> jsonMap) {
     $checkKeys(jsonMap, requiredKeys: const ['accountcode', 'creditlimit']);
     return _$_UserModel(
       account: jsonMap['accountcode'] as String,

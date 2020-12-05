@@ -130,8 +130,9 @@ abstract class _LoginStore with Store {
                   .whenComplete(() => _box.close());
             },
           ));
-    } on Exception {
+    } catch (e) {
       setErrorMsg(code: 1);
+      debugPrint('Error: $errorMessage, Exception: $e');
     } finally {
       Future.delayed(Duration(milliseconds: 500), () => _loginFuture = null);
     }

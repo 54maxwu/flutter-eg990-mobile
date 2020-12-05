@@ -19,7 +19,7 @@ void main() {
     'should transfer model data into info data',
     () async {
       final map = json.decode(fixture('home/banner.json'));
-      final model = BannerModel.jsonToBannerModel(map);
+      final model = BannerModel.parseJson(map);
       expect(model, isA<BannerModel>());
 
       final info = BannerEntity(

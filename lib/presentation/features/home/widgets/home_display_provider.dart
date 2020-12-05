@@ -4,6 +4,8 @@ import '../state/home_store.dart';
 import 'home_display_size_calc.dart';
 import 'tabs/tab_item_size.dart';
 
+export 'package:provider/provider.dart';
+
 abstract class HomeDisplayProviderInterface with ChangeNotifier {}
 
 class HomeDisplayProvider

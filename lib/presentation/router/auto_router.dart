@@ -10,6 +10,7 @@ import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
 import '../features/member_features/withdraw/withdraw_route.dart';
+import '../features/notice_board/notice_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
 import '../features/service/service_route.dart';
@@ -37,12 +38,13 @@ import '../screens/main_screen.dart';
               MaterialRoute(page: PromoDetailPage),
               MaterialRoute(page: ServiceRoute),
               MaterialRoute(page: SponsorRoute),
-              MaterialRoute(page: AboutRoute),
+              MaterialRoute(page: NoticeRoute),
               MaterialRoute(page: MemberRoute),
               MaterialRoute(page: DepositRoute),
               MaterialRoute(page: TransferRoute),
               MaterialRoute(page: WithdrawRoute),
               MaterialRoute(page: BetRecordRoute),
+              MaterialRoute(page: AboutRoute),
             ],
           ),
           // AdaptiveRoute(page: WebGameScreen, path: '/game-web'),

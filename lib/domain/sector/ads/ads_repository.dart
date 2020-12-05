@@ -20,7 +20,7 @@ class AdsRepositoryImpl implements AdsRepository {
   Future<Either<Failure, List<AdModel>>> getAds() async {
     final result = await requestModelList<AdModel>(
       request: dioApiService.get(AdsApi.AD),
-      parseJson: AdModel.jsonToAdModel,
+      parseJson: AdModel.parseJson,
       tag: 'remote-Ads_AD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

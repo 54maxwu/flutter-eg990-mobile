@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_display_widget.dart';
-import 'package:provider/provider.dart';
 
 import '../state/balance_store.dart';
 import 'balance_grid_item.dart';
