@@ -1,41 +1,73 @@
-import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
+import 'package:meta/meta.dart' show immutable;
 
-part 'template_model.g.dart';
-
-@dataClass
+@immutable
 class TemplateModel {
   final String vip1;
   final String vip2;
   final String vip3;
-  final String vip4;
-  final String vip5;
-  final String vip6;
 
-  TemplateModel(
-      {this.vip1, this.vip2, this.vip3, this.vip4, this.vip5, this.vip6});
+//<editor-fold desc="Data Methods" defaultstate="collapsed">
 
-  factory TemplateModel.fromJson(Map<String, dynamic> json) {
-    return TemplateModel(
-      vip1: json['1'],
-      vip2: json['2'],
-      vip3: json['3'],
-      vip4: json['4'],
-      vip5: json['5'],
-      vip6: json['6'],
+  const TemplateModel({
+    this.vip1 = '',
+    this.vip2 = '',
+    this.vip3 = '',
+  });
+
+  TemplateModel copyWith({
+    String vip1,
+    String vip2,
+    String vip3,
+  }) {
+    if ((vip1 == null || identical(vip1, this.vip1)) &&
+        (vip2 == null || identical(vip2, this.vip2)) &&
+        (vip3 == null || identical(vip3, this.vip3))) {
+      return this;
+    }
+
+    return new TemplateModel(
+      vip1: vip1 ?? this.vip1,
+      vip2: vip2 ?? this.vip2,
+      vip3: vip3 ?? this.vip3,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['1'] = this.vip1;
-    data['2'] = this.vip2;
-    data['3'] = this.vip3;
-    data['4'] = this.vip4;
-    data['5'] = this.vip5;
-    data['6'] = this.vip6;
-    return data;
+  @override
+  String toString() {
+    return 'TemplateModel{vip1: $vip1, vip2: $vip2, vip3: $vip3}';
   }
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is TemplateModel &&
+          runtimeType == other.runtimeType &&
+          vip1 == other.vip1 &&
+          vip2 == other.vip2 &&
+          vip3 == other.vip3);
+
+  @override
+  int get hashCode => vip1.hashCode ^ vip2.hashCode ^ vip3.hashCode;
+
+  factory TemplateModel.fromMap(Map<String, dynamic> map) {
+    return new TemplateModel(
+      vip1: map['vip1'] as String,
+      vip2: map['vip2'] as String,
+      vip3: map['vip3'] as String,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    // ignore: unnecessary_cast
+    return {
+      'vip1': this.vip1,
+      'vip2': this.vip2,
+      'vip3': this.vip3,
+    } as Map<String, dynamic>;
+  }
+
+//</editor-fold>
+
   static TemplateModel parseJson(Map<String, dynamic> jsonMap) =>
-      TemplateModel.fromJson(jsonMap);
+      TemplateModel.fromMap(jsonMap);
 }

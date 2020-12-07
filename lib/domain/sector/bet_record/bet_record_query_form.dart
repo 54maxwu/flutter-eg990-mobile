@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_eg990_mobile/domain/sector/bet_record/bet_record_query_form_data.dart';
 import 'package:formz/formz.dart';
-import 'package:meta/meta.dart' show required, immutable;
+import 'package:meta/meta.dart' show immutable, required;
 
 @immutable
 class BetRecordQueryForm with FormzMixin {

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:formz/formz.dart';
-import 'package:meta/meta.dart' show required, immutable;
+import 'package:meta/meta.dart' show immutable, required;
 
 import 'deposit_form_data.dart';
 

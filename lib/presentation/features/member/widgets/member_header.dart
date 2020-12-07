@@ -18,45 +18,79 @@ class _MemberHeaderState extends State<MemberHeader> {
       builder: (_, store, __) {
         return Container(
           color: themeColor.defaultBackgroundColor,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Image.asset(
-                        Res.avatar_nologin,
-                        scale: 2.5 / Global.device.widthScale,
-                      ),
+          child: (!store.hasUser)
+              ? ListTile(
+                  onTap: () => AppNavigator.navigateTo(RoutePage.login),
+                  leading: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Image.asset(Res.avatar_nologin),
+                  ),
+                  title: AutoSizeText(
+                    localeStr.messageLoginHint,
+                    style: TextStyle(
+                      color: themeColor.defaultTextColor,
+                      fontSize: FontSize.SUBTITLE.value,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: GestureDetector(
-                          onTap: () => AppNavigator.navigateTo(RoutePage.login),
-                          child: AutoSizeText(
-                            localeStr.messageLoginHint,
+                    maxLines: 1,
+                    maxFontSize: FontSize.TITLE.value,
+                  ),
+                  trailing: Icon(
+                    Icons.chevron_right,
+                    color: themeColor.defaultHintColor,
+                  ),
+                )
+              : ListTile(
+                  onTap: () => callToastInfo(localeStr.workInProgress),
+                  leading: Container(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Image.asset(Res.avatar_nologin),
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AutoSizeText(
+                            store.userName,
                             style: TextStyle(
-                                fontSize: FontSize.SUBTITLE.value,
-                                fontWeight: FontWeight.w500),
+                              color: themeColor.defaultTextColor,
+                              fontSize: FontSize.SUBTITLE.value,
+                              fontWeight: FontWeight.w600,
+                            ),
                             maxLines: 1,
+                            minFontSize: FontSize.NORMAL.value,
                             maxFontSize: FontSize.TITLE.value,
                           ),
-                        ),
+                          Container(
+                            height: FontSize.MESSAGE.value,
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Image.asset(
+                              'assets/images/badges/vip_icon_${store.userLevel}.png',
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      // subtitle did not vertical align in center
+                      AutoSizeText(
+                        '加入會員第?天',
+                        style: TextStyle(
+                          color: themeColor.defaultHintColor,
+                          fontSize: FontSize.NORMAL.value,
+                        ),
+                        maxLines: 1,
+                        minFontSize: FontSize.SMALLER.value,
+                        maxFontSize: FontSize.MESSAGE.value,
+                      ),
+                    ],
+                  ),
+                  trailing: Icon(
+                    Icons.chevron_right,
+                    color: themeColor.defaultHintColor,
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                color: themeColor.defaultHintColor,
-              ),
-            ],
-          ),
         );
       },
     );

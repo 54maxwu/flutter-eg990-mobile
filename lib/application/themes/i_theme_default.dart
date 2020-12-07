@@ -75,7 +75,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color defaultCardColor = Color(0xffffffff);
 
   @override
-  Color defaultCardTitleColor = Color(0xffedd1a2);
+  Color defaultCardTitleColor = Color(0xffb1987f);
 
   @override
   Color defaultTabUnselectedColor = Color(0xfff5f5f5);
@@ -141,7 +141,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color dialogTextColor = Color(0xff383838);
 
   @override
-  Color dialogTitleColor = Color(0xffd2b79c);
+  Color dialogTitleColor = Color(0xffb1987f);
 
   @override
   Color dialogTitleBgColor = Color(0xffffffff);
@@ -339,10 +339,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color fieldInputTextColor2 = Color(0xff000000);
 
   @override
-  Color fieldPrefixFillColor2 = Color(0xffd2b79c);
+  Color fieldPrefixFillColor2 = Color(0xfff5f5f5);
 
   @override
-  Color fieldSuffixTextColor2 = Color(0xffd2b79c);
+  Color fieldSuffixTextColor2 = Color(0xffb1987f);
 
   @override
   Color fieldCursorColor = Color(0xff000000);
@@ -354,7 +354,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color chartBorderColor = Color(0xffc6c6c6);
 
   @override
-  Color chartPrimaryHeaderColor = Color(0xffd2b79c);
+  Color chartPrimaryHeaderColor = Color(0xffb1987f);
 
   @override
   Color chartPrimaryHeaderTextColor = Color(0xff202020);
@@ -439,7 +439,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color homeBoxIconBgColor = Color(0xffffffff);
 
   @override
-  Color homeBoxIconTextColor = Color(0xffd2b79c);
+  Color homeBoxIconTextColor = Color(0xffb1987f);
 
   @override
   Color homeBoxButtonTextColor = Color(0xff383838);
@@ -535,10 +535,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color balanceCardLinear1Color = Color(0xffd2b79c);
 
   @override
-  Color balanceCardLinear2Color = Color(0xff7687ac);
+  Color balanceCardLinear2Color = Color(0xffb1987f);
 
   @override
-  Color balanceCardLinear3Color = Color(0xff587cb1);
+  Color balanceCardLinear3Color = Color(0xffd2b79c);
 
   @override
   Color balanceCardTitleColor = Color(0xff303030);

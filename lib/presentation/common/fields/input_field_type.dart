@@ -33,11 +33,6 @@ final _numbersInputFormatter = FilteringTextInputFormatter.digitsOnly;
 
 final _dateInputFormatter = FilteringTextInputFormatter.allow(_dateInputRegex);
 
-final _textOnlyInputFormatter = FilteringTextInputFormatter.allow(
-  RegExp("${_engSpaceInputRegex.pattern}|"
-      "${_chineseInputRegex.pattern}"),
-);
-
 final _accountInputFormatter = FilteringTextInputFormatter.allow(
   RegExp("${_engLowerCaseInputRegex.pattern}|"
       "${_numInputRegex.pattern}|[!#_\$%&*+-=?^@]"),
@@ -52,6 +47,11 @@ final _withoutChineseInputFormatter = FilteringTextInputFormatter.allow(
   RegExp("${_engInputRegex.pattern}|"
       "${_numInputRegex.pattern}|"
       "${_symbolsInputRegex.pattern}"),
+);
+
+final _textOnlyInputFormatter = FilteringTextInputFormatter.allow(
+  RegExp("${_engSpaceInputRegex.pattern}|"
+      "${_chineseInputRegex.pattern}"),
 );
 
 final _normalInputFormatter = FilteringTextInputFormatter.allow(

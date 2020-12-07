@@ -133,24 +133,36 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AutoSizeText(
-                      _infoStore.userName,
-                      style: TextStyle(
-                        color: themeColor.defaultTextColor,
-                        fontSize: FontSize.MESSAGE.value,
-                      ),
-                      minFontSize: FontSize.SMALLER.value,
-                      maxFontSize: FontSize.TITLE.value,
+                    Row(
+                      children: [
+                        AutoSizeText(
+                          _infoStore.userName,
+                          style: TextStyle(
+                            color: themeColor.defaultHintColor,
+                            fontSize: FontSize.MESSAGE.value,
+                          ),
+                          minFontSize: FontSize.SMALLER.value,
+                          maxFontSize: FontSize.TITLE.value,
+                        ),
+                        Container(
+                          height: FontSize.MESSAGE.value,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Image.asset(
+                            'assets/images/badges/vip_icon_${_infoStore.userLevel}.png',
+                          ),
+                        ),
+                      ],
                     ),
                     Observer(
                       builder: (_) => AutoSizeText(
                         _infoStore.userCredit,
                         style: TextStyle(
-                          color: themeColor.defaultHintColor,
-                          fontSize: FontSize.NORMAL.value,
+                          color: themeColor.defaultTextColor,
+                          fontSize: FontSize.TITLE.value,
+                          fontWeight: FontWeight.w600,
                         ),
-                        minFontSize: FontSize.SMALL.value,
-                        maxFontSize: FontSize.MESSAGE.value,
+                        minFontSize: FontSize.NORMAL.value,
+                        maxFontSize: FontSize.HEADER.value,
                       ),
                     ),
                   ],
@@ -169,7 +181,6 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   Widget _buildShortcuts() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 6.0, bottom: 2.0),
       child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -187,26 +198,30 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         onTap: onClickShortcut(item),
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: (item.value.assetPath.isNotEmpty)
-                  ? Image.asset(item.value.assetPath, scale: 1.5)
-                  : Icon(
-                      item.value.iconData,
-                      color: themeColor.homeBoxIconColor,
-                      size: _display.shortcutIconSize,
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4.0, bottom: 2.0),
+                child: (item.value.assetPath.isNotEmpty)
+                    ? Image.asset(item.value.assetPath, scale: 1.75)
+                    : Icon(
+                        item.value.iconData,
+                        color: themeColor.homeBoxIconColor,
+                        size: _display.shortcutIconSize,
+                      ),
+              ),
             ),
             AutoSizeText(
               label,
               style: TextStyle(
-                fontSize: FontSize.NORMAL.value,
+                fontSize: FontSize.MESSAGE.value,
                 color: themeColor.homeBoxIconTextColor,
               ),
               maxLines: 1,
               minFontSize: FontSize.SMALLER.value,
-              maxFontSize: FontSize.MESSAGE.value,
+              maxFontSize: FontSize.SUBTITLE.value,
             ),
           ],
         ),
