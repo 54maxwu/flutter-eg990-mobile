@@ -53,7 +53,8 @@ class _StoreRouteState extends State<StoreRoute> {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            callToastError(message, delayedMilli: 200);
+            callToastError(MessageMap.getErrorMessage(message, RouteEnum.STORE),
+                delayedMilli: 200);
           }
         },
       ),

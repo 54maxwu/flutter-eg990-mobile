@@ -285,7 +285,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
-            text: '${localeStr.homeHintMemberCreditLeft} ',
+            text: '${localeStr.homeHintMemberCreditLeft}\n',
             style: TextStyle(fontSize: _leftAreaTextSize),
           ),
           TextSpan(

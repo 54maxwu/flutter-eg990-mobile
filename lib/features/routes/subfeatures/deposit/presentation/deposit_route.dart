@@ -32,19 +32,19 @@ class _DepositRouteState extends State<DepositRoute> {
           }
         },
       ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => _store.hasCard,
-        // Run some logic with the content of the observed field
-        (bool hasCard) {
-          if (hasCard != null && !hasCard && mounted) {
-            AppNavigator.replaceWith(RoutePage.bankcard);
-            callToast(localeStr.depositHintRedirectBankcard,
-                duration: ToastDuration.LONG);
-          }
-        },
-      ),
+      // reaction(
+      //   // Observe in page
+      //   // Tell the reaction which observable to observe
+      //   (_) => _store.hasCard,
+      //   // Run some logic with the content of the observed field
+      //   (bool hasCard) {
+      //     if (hasCard != null && !hasCard && mounted) {
+      //       AppNavigator.replaceWith(RoutePage.bankcard);
+      //       callToast(localeStr.depositHintRedirectBankcard,
+      //           duration: ToastDuration.LONG);
+      //     }
+      //   },
+      // ),
     ];
   }
 

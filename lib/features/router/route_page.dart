@@ -216,21 +216,21 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// agent route
   ///
-  static const RoutePage agentFeatureOld = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT,
-    route: FeatureScreenRoutes.agentFeatureRoute,
-    bottomNavIndex: 1,
-    hideLanguageOption: true,
-    isUserOnly: true,
-  ));
-
-  static const RoutePage agentOld = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT,
-    route: FeatureScreenRoutes.agentRoute,
-    root: FeatureScreenRoutes.memberRoute,
-    hideLanguageOption: true,
-    isUserOnly: true,
-  ));
+  // static const RoutePage agentFeatureOld = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT,
+  //   route: FeatureScreenRoutes.agentFeatureRoute,
+  //   bottomNavIndex: 1,
+  //   hideLanguageOption: true,
+  //   isUserOnly: true,
+  // ));
+  //
+  // static const RoutePage agentOld = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT,
+  //   route: FeatureScreenRoutes.agentRoute,
+  //   root: FeatureScreenRoutes.memberRoute,
+  //   hideLanguageOption: true,
+  //   isUserOnly: true,
+  // ));
   //
   // static const RoutePage agentLogin = const RoutePage.define(RouteInfo(
   //   id: RouteEnum.AGENT_LOGIN,

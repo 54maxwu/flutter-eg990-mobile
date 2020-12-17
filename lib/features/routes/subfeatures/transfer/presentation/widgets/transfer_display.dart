@@ -181,7 +181,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                     /* Amount Chip */
                     new CustomizeInputChipContainer(
                       prefixTitle: localeStr.transferViewTitleOption,
-                      prefixTextMaxLines: (Global.lang == 'zh') ? 1 : 2,
+                      prefixTextMaxLines: (Global.localeCode == 'zh') ? 1 : 2,
                       titleWidthFactor: 0.3,
                       titleLetterSpacing: 0,
                       labels: chipLabels,

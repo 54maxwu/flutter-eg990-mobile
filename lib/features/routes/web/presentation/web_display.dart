@@ -10,8 +10,7 @@ class WebDisplay extends StatefulWidget {
   final bool hideHtmlBars;
 
   const WebDisplay(
-      {
-      @required this.url,
+      {@required this.url,
       @required this.showUrl,
       @required this.hideHtmlBars});
 
@@ -97,6 +96,12 @@ class _WebDisplayState extends State<WebDisplay> {
                 _controller.evaluateJavascript(
                     source:
                         "document.getElementsByClassName('page_title')[0].remove();");
+                _controller.evaluateJavascript(
+                    source:
+                        "document.getElementsByClassName('content index_bg')[0].style.paddingTop = '0';");
+                _controller.evaluateJavascript(
+                    source:
+                        "document.getElementsByClassName('content')[0].style.paddingTop = '0';");
               }
             },
             onLoadError: (InAppWebViewController controller, String url,

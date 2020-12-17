@@ -19,7 +19,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
   int rowItemCount;
   Widget _pointWidget;
 
-  final double expectItemHeight = 284;
+  final double expectItemHeight = 344;
   double _gridRatio;
   double _productImageSize;
 
@@ -90,10 +90,11 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                         constraints: BoxConstraints.tight(
                             Size(_productImageSize, _productImageSize)),
                         child: Stack(
+                          alignment: Alignment.center,
                           children: <Widget>[
                             Container(
                               margin:
-                                  const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0),
+                                  const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0),
                               child: networkImageBuilder(
                                   'images/mall_product/${product.pic}.jpg',
                                   fit: BoxFit.fill,

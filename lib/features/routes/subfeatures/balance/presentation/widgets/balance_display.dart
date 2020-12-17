@@ -62,7 +62,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
     double gridItemWidth =
         ((Global.device.width - 16) - _itemSpace * (_itemPerRow + 2)) /
             _itemPerRow;
-    _gridRatio = (Global.lang != 'zh' && Global.lang != 'en')
+    _gridRatio = (Global.localeCode != 'zh' && Global.localeCode != 'en')
         ? gridItemWidth / 156
         : gridItemWidth / 128;
     debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');

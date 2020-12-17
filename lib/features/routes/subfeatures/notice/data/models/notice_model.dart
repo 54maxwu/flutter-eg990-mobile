@@ -51,7 +51,7 @@ abstract class NoticeData with _$NoticeData {
     return _$_NoticeData(
       content: (jsonMap.containsKey('content')
           ? jsonMap['content']
-          : jsonMap[Global.jsonContentKey]) as String,
+          : jsonMap[Global.localeJsonKey]) as String,
       date: jsonMap['date'] as String,
       sort: jsonMap['sort'] as int,
     );

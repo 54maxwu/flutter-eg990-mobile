@@ -49,18 +49,30 @@ class DownloadAreaRoute extends StatelessWidget {
                   itemBuilder: (_, index) {
                     return Column(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                appLabels[index],
-                                style: TextStyle(fontSize: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                  children: <InlineSpan>[
+                                    TextSpan(
+                                      text: '${appLabels[index]}\n',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    TextSpan(
+                                      text: (index % 2 == 0)
+                                          ? appHints[0]
+                                          : appHints[1],
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Text((index % 2 == 0) ? appHints[0] : appHints[1],
-                                  style: TextStyle(color: Colors.grey))
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         ConstrainedBox(
                             constraints: BoxConstraints(

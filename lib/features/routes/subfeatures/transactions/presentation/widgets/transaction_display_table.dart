@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
@@ -44,15 +44,13 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
     // FontSize.NORMAL.value * 2 = font size * 2 line + space
     _tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
 
-    bool shrinkDate = Global.device.width < 320;
     _availableWidth = Global.device.width - 16;
-    double remainWidth =
-        (shrinkDate) ? _availableWidth - 72 - 90 : _availableWidth - 72 - 140;
+    double remainWidth = _availableWidth - 84 - 90;
     _tableWidthMap = {
       //指定索引及固定列宽
       0: FixedColumnWidth(36.0),
-      1: FixedColumnWidth((shrinkDate) ? 90.0 : 140.0),
-      2: FixedColumnWidth(36.0),
+      1: FixedColumnWidth(90.0),
+      2: FixedColumnWidth(48.0),
       3: FixedColumnWidth(remainWidth * 0.525),
       4: FixedColumnWidth(remainWidth * 0.475),
     };
@@ -120,12 +118,12 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
                       List<dynamic> dataTexts = [
                         data.key,
                         data.date,
-                        (data.type.hasChinese && Global.lang == 'zh')
-                            ? data.type
-                            : getTranslateData(data.type),
-                        (data.type.hasChinese && Global.lang == 'zh')
-                            ? explanation
-                            : getTranslateData(explanation),
+                        (data.type.hasChinese)
+                            ? getTranslateData(data.type)
+                            : getTranslateDataEn(data.type),
+                        (data.type.hasChinese)
+                            ? getTranslateData(data.type)
+                            : getTranslateDataEn(explanation),
                         data.amount,
                       ];
                       /* generate cell text */
@@ -145,8 +143,16 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
     }
   }
 
+  String getTranslateDataEn(String str) {
+    // debugPrint('translating transaction: $str');
+    return str
+        .replaceAll('centerWallet', localeStr.walletViewTitle)
+        .replaceAll('out', localeStr.balanceTransferOutText)
+        .replaceAll('in', localeStr.balanceTransferInText);
+  }
+
   String getTranslateData(String str) {
-    debugPrint('translating transaction: $str');
+    // debugPrint('translating transaction: $str');
     return str
         .replaceAll('\u4e2d\u5fc3\u94b1\u5305', localeStr.walletViewTitle)
         .replaceAll('\u8f6c\u51fa', localeStr.balanceTransferOutText)

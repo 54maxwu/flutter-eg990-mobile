@@ -123,6 +123,8 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
                       types: widget.store.paymentTypes,
                       tabsPerRow: 3,
                       expectTabHeight: 36.0,
+                      itemSpace: 6.0,
+                      itemSpaceHorFactor: 1.0,
                       titleKey: 'label',
                       onTypeGridTap: (_, type) => updateContent(type),
                     ),

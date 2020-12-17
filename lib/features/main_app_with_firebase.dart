@@ -5,6 +5,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/ga_interface.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
@@ -43,6 +44,7 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
         break;
       case AppLifecycleState.resumed:
         MyLogger.info(msg: 'app resumed', tag: tag);
+        GaInterface.log.logAppOpen();
         break;
       case AppLifecycleState.inactive:
         MyLogger.info(msg: 'app inactive', tag: tag);
@@ -109,10 +111,10 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
             ],
             supportedLocales: S.delegate.supportedLocales,
             localeResolutionCallback: (deviceLocale, supportedLocales) {
-              return Locale.fromSubtags(languageCode: Global.lang);
+              return Locale.fromSubtags(languageCode: Global.localeCode);
             },
             localeListResolutionCallback: (deviceLocales, supportedLocales) {
-              return Locale.fromSubtags(languageCode: Global.lang);
+              return Locale.fromSubtags(languageCode: Global.localeCode);
             },
             theme: ThemeInterface.theme.data,
             builder: (context, child) {

@@ -47,11 +47,11 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
 
   /// Agent
-  static ScreenDrawerItem agent = ScreenDrawerItem.define(RouteListItem(
-    // imageName: 'images/aside/85.png',
-    iconData: IconCode.gridAgent,
-    route: RoutePage.agentOld,
-  ));
+  // static ScreenDrawerItem agent = ScreenDrawerItem.define(RouteListItem(
+  //   // imageName: 'images/aside/85.png',
+  //   iconData: IconCode.gridAgent,
+  //   route: RoutePage.agentOld,
+  // ));
   static ScreenDrawerItem agentAbout = ScreenDrawerItem.define(RouteListItem(
     imageName: 'images/aside/65.png',
     route: RoutePage.moreAgentAbout,

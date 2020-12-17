@@ -19,6 +19,7 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.promo,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
     ScreenDrawerItem.agentAbout,
     ScreenDrawerItem.testUI,
@@ -28,9 +29,9 @@ class ScreenDrawer extends StatelessWidget {
   static final List<ScreenDrawerItem> _userMenuItems = [
     ScreenDrawerItem.member,
     ScreenDrawerItem.deposit,
-    ScreenDrawerItem.promo,
-    ScreenDrawerItem.message,
     ScreenDrawerItem.notice,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.promo,
     ScreenDrawerItem.store,
     ScreenDrawerItem.roller,
     ScreenDrawerItem.task,
@@ -38,6 +39,7 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.sign,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
     ScreenDrawerItem.agentAbout,
     ScreenDrawerItem.logout,
@@ -113,7 +115,7 @@ class ScreenDrawer extends StatelessWidget {
 
     double gridItemWidth = drawerWidth / 2;
     double gridRatio =
-        (Global.lang == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
+        (Global.localeCode == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
 
     return Container(
       width: drawerWidth,
@@ -278,7 +280,7 @@ class ScreenDrawer extends StatelessWidget {
                         ? localeStr.pageTitleCenter
                         : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: (Global.lang == 'zh')
+                      fontSize: (Global.localeCode == 'zh')
                           ? FontSize.SUBTITLE.value
                           : FontSize.NORMAL.value,
                       color: themeColor.sideMenuIconTextColor,

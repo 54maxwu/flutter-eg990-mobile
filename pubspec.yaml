@@ -11,7 +11,7 @@ description: EG990 mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.0+4
+version: 1.1.2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -59,7 +59,7 @@ dependencies:
   # HTTP Logger https://pub.dev/packages/pretty_dio_logger
   pretty_dio_logger: ^1.1.1
   # Network state
-  connectivity: ^2.0.1
+  connectivity: ^2.0.2
   data_connection_checker: ^0.3.4
   # JWT
   jwt_decoder: ^1.0.3
@@ -124,9 +124,9 @@ dependencies:
   # Scroller Load & Refresh https://pub.dev/packages/flutter_easyrefresh
   flutter_easyrefresh: ^2.1.6
   # Official Video Player https://pub.dev/packages/video_player/example
-  video_player: ^1.0.0
+  video_player: ^1.0.1
   # dot border
-  dotted_border: ^1.0.6
+  dotted_border: ^1.0.7
   # custom round corner border
   custom_rounded_rectangle_border: ^0.0.1
   # Auto Resize Text
@@ -150,7 +150,7 @@ dev_dependencies:
   mobx_codegen: ^1.1.2
   auto_route_generator: ^0.6.10
   json_serializable: ^3.5.0
-  freezed: ^0.12.2
+  freezed: ^0.12.3
 #  dataclass_generator: ^0.5.0+2
   super_enum_generator: ^0.6.0
 #  to_string_generator: ^1.2.1

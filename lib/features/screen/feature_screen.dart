@@ -99,7 +99,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
   @override
   void initState() {
     MyLogger.debug(msg: 'init feature screen', tag: tag);
-    locale = Global.lang;
+    locale = Global.localeCode;
     super.initState();
     if (_store != null) {
       _store.getWebsiteList();
@@ -130,7 +130,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
     return WillPopScope(
       child: StreamBuilder<String>(
           stream: getAppGlobalStreams.languageStream,
-          initialData: Global.lang,
+          initialData: Global.localeCode,
           builder: (ctx, snapshot) {
             locale ??= snapshot.data;
             if (snapshot.data != locale) {

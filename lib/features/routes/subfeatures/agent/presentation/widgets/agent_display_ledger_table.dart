@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -106,11 +106,11 @@ class AgentDisplayLedgerTable extends StatelessWidget {
   TableRow _buildTotalRow() {
     List<String> _totalRowTexts;
     if (sumColumn.isEmpty) {
-      _totalRowTexts = [localeStr.flowHeaderTextTotal] +
+      _totalRowTexts = [localeStr.rollbackHeaderTextTotal] +
           List.generate(4, (index) => formatValue(0));
     } else
       _totalRowTexts = [
-        localeStr.flowHeaderTextTotal,
+        localeStr.rollbackHeaderTextTotal,
         formatValue(sumColumn[0]),
         formatValue(sumColumn[1]),
         formatValue(sumColumn[2]),

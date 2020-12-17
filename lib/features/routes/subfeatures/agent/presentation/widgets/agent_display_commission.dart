@@ -1,7 +1,7 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 
 import '../../data/models/agent_commission_model.dart';
 import '../state/agent_store.dart';
@@ -60,7 +60,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
 
   TableRow updateTotalRow() {
     _totalRowTexts = [
-      localeStr.flowHeaderTextTotal,
+      localeStr.rollbackHeaderTextTotal,
       formatValue(totalDirectFee),
       formatValue(totalTeamFee),
       formatValue(totalFee),

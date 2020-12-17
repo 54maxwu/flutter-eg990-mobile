@@ -119,7 +119,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
 
   @override
   void initState() {
-    _locale = Global.lang;
+    _locale = Global.localeCode;
     super.initState();
   }
 
@@ -147,9 +147,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
           stream: _store.loginStateStream,
           initialData: false,
           builder: (context, snapshot) {
-            if (_barWidget != null && _locale != Global.lang) {
+            if (_barWidget != null && _locale != Global.localeCode) {
               _barWidget = _buildWidget(snapshot.data);
-              _locale = Global.lang;
+              _locale = Global.localeCode;
             }
             _barWidget ??= _buildWidget(snapshot.data);
             return _barWidget;
@@ -253,23 +253,21 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
             )
           : icon,
       title: Padding(
-          padding: (highlight)
-              ? const EdgeInsets.fromLTRB(9.0, 2.0, 3.0, 0.0)
-              : const EdgeInsets.fromLTRB(3.0, 2.0, 3.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(3.0, 2.0, 3.0, 0.0),
           child: AutoSizeText(
             title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
             style: TextStyle(
               color: (highlight)
                   ? themeColor.navigationColorFocus
                   : themeColor.defaultTextColor,
-              fontSize: (Global.lang != 'zh')
+              fontSize: (Global.localeCode != 'zh')
                   ? FontSize.SMALL.value
                   : FontSize.NORMAL.value,
             ),
-            minFontSize: (Global.lang != 'zh')
+            minFontSize: (Global.localeCode != 'zh')
                 ? FontSize.SMALL.value - 4.0
                 : FontSize.NORMAL.value - 4.0,
-            maxFontSize: (Global.lang != 'zh')
+            maxFontSize: (Global.localeCode != 'zh')
                 ? FontSize.SMALL.value
                 : FontSize.NORMAL.value,
             textAlign: TextAlign.center,

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../data/model/service_model.dart';
 
@@ -18,6 +18,9 @@ class ServiceDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool addAppQr = data.appUrl.isNotEmpty && data.appPic.isNotEmpty;
+    bool addLineQr = data.line.isNotEmpty && data.linePic.isNotEmpty;
+    bool addZaloQr = data.zalo.isNotEmpty && data.zaloPic.isNotEmpty;
     return Container(
       constraints: BoxConstraints(
         maxHeight: Global.device.featureContentHeight,
@@ -48,101 +51,128 @@ class ServiceDisplay extends StatelessWidget {
             ],
           ),
           _buildBox(
-              iconData: const IconData(0xf086, fontFamily: 'FontAwesome'),
+              iconData: IconCode.csService,
               title: localeStr.serviceTitleCustomerService,
               content: localeStr.serviceDescCustomerService,
               data: data.cs,
               buttonType: _ButtonType.OPEN),
-          _buildBox(
-              iconData: const IconData(0xf003, fontFamily: 'FontAwesome'),
-              title: localeStr.serviceTitleEmail,
-              content: data.mail,
-              data: data.mail,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xf095, fontFamily: 'FontAwesome'),
-              title: localeStr.serviceTitlePhone,
-              content: data.phone,
-              data: data.phone,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              imgUrl: Res.iconLine,
-              title: localeStr.serviceTitleLine,
-              content: data.line,
-              data: data.line,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xe970, fontFamily: 'IconMoon'),
-              title: 'QQ',
-              content: data.qq,
-              data: data.qq,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xe970, fontFamily: 'IconMoon'),
-              title: localeStr.serviceTitleZalo,
-              content: data.zalo,
-              data: data.zalo,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xf0c0, fontFamily: 'FontAwesome'),
-              title: localeStr.serviceTitleSkype,
-              content: data.skype,
-              data: data.skype,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xf09a, fontFamily: 'FontAwesome'),
-              title: localeStr.serviceTitleFacebook,
-              content: data.fb,
-              data: data.fb,
-              buttonType: _ButtonType.OPEN),
-          _buildBox(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Column(
-                //   mainAxisSize: MainAxisSize.min,
-                //   children: [
-                //     Text('Line QRCODE',
-                //         style: TextStyle(
-                //             fontSize: FontSize.MESSAGE.value,
-                //             color: themeColor.defaultTextColor)),
-                //     Container(
-                //         padding: const EdgeInsets.symmetric(vertical: 6.0),
-                //         constraints: BoxConstraints.tight(
-                //             Size(200, 200) * Global.device.widthScale),
-                //         child: networkImageBuilder(data.linePic)),
-                //   ],
-                // ),
-                // SizedBox(height: 16.0),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('App QRCODE',
-                        style: TextStyle(
-                            fontSize: FontSize.MESSAGE.value,
-                            color: themeColor.defaultTextColor)),
-                    // Container(
-                    //     padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    //     constraints: BoxConstraints.tight(
-                    //         Size(200, 200) * Global.device.widthScale),
-                    //     alignment: Alignment.center,
-                    //     child: networkImageBuilder(data.appPic)),
-                    Container(
-                        padding: const EdgeInsets.symmetric(vertical: 6.0),
-                        constraints: BoxConstraints.tight(
-                            Size(200, 200) * Global.device.widthScale),
-                        color: Colors.white,
-                        margin: const EdgeInsets.symmetric(vertical: 6.0),
-                        alignment: Alignment.center,
-                        child:
-                            QrImage(data: 'https://down.mitui88.com/yKlx.app')),
-                  ],
-                ),
-              ],
-            ),
-          )),
+          if (data.mail.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csEmail,
+                title: localeStr.serviceTitleEmail,
+                content: data.mail,
+                data: data.mail,
+                buttonType: _ButtonType.COPY),
+          if (data.phone.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csPhone,
+                title: localeStr.serviceTitlePhone,
+                content: data.phone,
+                data: data.phone,
+                buttonType: _ButtonType.COPY),
+          if (data.fb.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csFacebook,
+                title: localeStr.serviceTitleFacebook,
+                content: data.fb,
+                data: data.fb,
+                buttonType: _ButtonType.OPEN),
+          if (data.line.isNotEmpty)
+            _buildBox(
+                imgUrl: Res.iconLine,
+                title: localeStr.serviceTitleLine,
+                content: data.line,
+                data: data.line,
+                buttonType: _ButtonType.COPY),
+          if (data.skype.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csSkype,
+                title: localeStr.serviceTitleSkype,
+                content: data.skype,
+                data: data.skype,
+                buttonType: _ButtonType.COPY),
+          if (data.zalo.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csZalo,
+                title: localeStr.serviceTitleZalo,
+                content: data.zalo,
+                data: data.zalo,
+                buttonType: _ButtonType.COPY),
+          if (data.qq.isNotEmpty)
+            _buildBox(
+                iconData: IconCode.csQQ,
+                title: 'QQ',
+                content: data.qq,
+                data: data.qq,
+                buttonType: _ButtonType.COPY),
+          if (addAppQr || addLineQr || addZaloQr)
+            _buildBox(
+                child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (addLineQr)
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Line QRCODE',
+                              style: TextStyle(
+                                  fontSize: FontSize.MESSAGE.value,
+                                  color: themeColor.defaultTextColor)),
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              constraints: BoxConstraints.tight(
+                                  Size(144, 144) * Global.device.widthScale),
+                              child: networkImageBuilder(data.linePic)),
+                        ],
+                      ),
+                    ),
+                  if (addLineQr) SizedBox(width: 16.0),
+                  if (addZaloQr)
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Zalo QRCODE',
+                              style: TextStyle(
+                                  fontSize: FontSize.MESSAGE.value,
+                                  color: themeColor.defaultTextColor)),
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              constraints: BoxConstraints.tight(
+                                  Size(144, 144) * Global.device.widthScale),
+                              child: networkImageBuilder(data.zaloPic)),
+                        ],
+                      ),
+                    ),
+                  if (addZaloQr) SizedBox(width: 16.0),
+                  if (addAppQr)
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('App QRCODE',
+                              style: TextStyle(
+                                  fontSize: FontSize.MESSAGE.value,
+                                  color: themeColor.defaultTextColor)),
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              constraints: BoxConstraints.tight(
+                                  Size(144, 144) * Global.device.widthScale),
+                              alignment: Alignment.center,
+                              child: networkImageBuilder(data.appPic)),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            )),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
@@ -150,8 +180,7 @@ class ServiceDisplay extends StatelessWidget {
                   style: TextStyle(fontSize: FontSize.SUBTITLE.value)),
               onPressed: () {
                 AppNavigator.navigateTo(RoutePage.serviceWeb,
-                    arg: WebRouteArguments(
-                        startUrl: data.cs, hideHtmlBars: true));
+                    arg: WebRouteArguments(startUrl: data.cs));
               },
             ),
           ),

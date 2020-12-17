@@ -287,8 +287,15 @@ class HomeRepositoryImpl implements HomeRepository {
       (data) {
         debugPrint('check recommend data type: ${data.runtimeType}');
         if (data is List) return Right(_decodeMixedData(data));
-        if (data is String && data.startsWith('[') && data.endsWith(']'))
-          return Right(_decodeMixedData(jsonDecode(data)));
+        if (data is Map) return Right(_decodeMixedData(data.values.toList()));
+        if (data is String) {
+          if (data.startsWith('[') && data.endsWith(']')) {
+            return Right(_decodeMixedData(jsonDecode(data)));
+          } else if (data.startsWith('{') && data.endsWith('}')) {
+            return Right(
+                _decodeMixedData((jsonDecode(data) as Map).values.toList()));
+          }
+        }
         return Left(Failure.jsonFormat());
       },
     );

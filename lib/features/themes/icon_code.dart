@@ -127,7 +127,27 @@ class IconCode {
   static const gridRegister = const IconData(0xf0c0, fontFamily: 'FontAwesome');
 // static const gridRegister = const IconData(0xe95d, fontFamily: 'IconMoon');
 
+  ///
   /// More
+  ///
   static const moreRouteChange =
       const IconData(0xf1eb, fontFamily: 'FontAwesome');
+
+  ///
+  /// Service Page
+  ///
+  static const csService = const IconData(0xf086, fontFamily: 'FontAwesome');
+
+  static const csEmail = const IconData(0xf003, fontFamily: 'FontAwesome');
+
+  static const csPhone = const IconData(0xf095, fontFamily: 'FontAwesome');
+
+  // static const csZalo = const IconData(0xf075, fontFamily: 'FontAwesome');
+  static const csZalo = const IconData(0xe970, fontFamily: 'IconMoon');
+
+  static const csFacebook = const IconData(0xf09a, fontFamily: 'FontAwesome');
+
+  static const csQQ = const IconData(0xe970, fontFamily: 'IconMoon');
+
+  static const csSkype = const IconData(0xf0c0, fontFamily: 'FontAwesome');
 }

@@ -119,6 +119,10 @@ abstract class _HomeStore with Store {
   bool hasPlatformGames(String key) =>
       _homeGamesMap != null && _homeGamesMap.containsKey(key);
 
+  bool hasGameInMap(String key, int gameId) =>
+      _homeGamesMap.containsKey(key) &&
+      _homeGamesMap[key].any((game) => game.gameUrl.endsWith('/$gameId'));
+
   List<GameEntity> getPlatformGames(String key) =>
       (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
 

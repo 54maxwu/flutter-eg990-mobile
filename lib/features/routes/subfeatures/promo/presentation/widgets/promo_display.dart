@@ -118,34 +118,40 @@ class _PromoDisplayState extends State<PromoDisplay>
                     FittedBox(
                       child: Center(
                         child: Tab(
-                          icon: ExtendedImage.network(
-                            '${Global.CURRENT_BASE}${c.value.iconUrl}',
-                            scale: (c.value.id == 0 || c.value.id == 6)
-                                ? 6.0
-                                : 3.0,
-                            color: c == _current
-                                ? themeColor.promoTabSelectedIconColor
-                                : themeColor.promoTabIconColor,
-                            loadStateChanged: (ExtendedImageState state) {
-                              switch (state.extendedImageLoadState) {
-                                case LoadState.completed:
-                                  return state.completedWidget;
-                                case LoadState.failed:
-                                  return Icon(
-                                    Icons.broken_image,
-                                    color: themeColor.promoTabIconColor,
-                                  );
-                                default:
-                                  return null;
-                              }
-                            },
+                          icon: Padding(
+                            padding: (c.value.id == 0 || c.value.id == 6)
+                                ? const EdgeInsets.all(2.5)
+                                : const EdgeInsets.all(2.0),
+                            child: ExtendedImage.network(
+                              '${Global.CURRENT_BASE}${c.value.iconUrl}',
+                              scale: (c.value.id == 0 || c.value.id == 6)
+                                  ? 5.0
+                                  : 2.25,
+                              color: c == _current
+                                  ? themeColor.promoTabSelectedIconColor
+                                  : themeColor.promoTabIconColor,
+                              loadStateChanged: (ExtendedImageState state) {
+                                switch (state.extendedImageLoadState) {
+                                  case LoadState.completed:
+                                    return state.completedWidget;
+                                  case LoadState.failed:
+                                    return Icon(
+                                      Icons.broken_image,
+                                      color: themeColor.promoTabIconColor,
+                                    );
+                                  default:
+                                    return null;
+                                }
+                              },
+                            ),
                           ),
                           iconMargin: EdgeInsets.only(top: 2.0, bottom: 2.0),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 3.0),
                             child: Text(
-                              c.label,
+                              c.label.trim().toUpperCase(),
                               style: TextStyle(fontSize: FontSize.NORMAL.value),
+                              maxLines: 1,
                             ),
                           ),
                         ),

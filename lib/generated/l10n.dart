@@ -45,31 +45,21 @@ class S {
     );
   }
 
+  /// `Version {value}`
+  String appVersion(Object value) {
+    return Intl.message(
+      'Version $value',
+      name: 'appVersion',
+      desc: '',
+      args: [value],
+    );
+  }
+
   /// `Home`
   String get pageTitleHome {
     return Intl.message(
       'Home',
       name: 'pageTitleHome',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `EG Movie`
-  String get pageTitleMovieEG {
-    return Intl.message(
-      'EG Movie',
-      name: 'pageTitleMovieEG',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New Movie`
-  String get pageTitleMovie {
-    return Intl.message(
-      'New Movie',
-      name: 'pageTitleMovie',
       desc: '',
       args: [],
     );
@@ -505,6 +495,16 @@ class S {
     );
   }
 
+  /// `Unable to navigate to the destination URL`
+  String get urlActionNotSupported {
+    return Intl.message(
+      'Unable to navigate to the destination URL',
+      name: 'urlActionNotSupported',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Features coming soon!`
   String get workInProgress {
     return Intl.message(
@@ -550,6 +550,56 @@ class S {
     return Intl.message(
       'Double-Tap to restore',
       name: 'gameToolHintRestore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notify`
+  String get actionNotify {
+    return Intl.message(
+      'Notify',
+      name: 'actionNotify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get actionSetting {
+    return Intl.message(
+      'Settings',
+      name: 'actionSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get actionSearch {
+    return Intl.message(
+      'Search',
+      name: 'actionSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tutorial`
+  String get actionHelp {
+    return Intl.message(
+      'Tutorial',
+      name: 'actionHelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get actionBack {
+    return Intl.message(
+      'Back',
+      name: 'actionBack',
       desc: '',
       args: [],
     );
@@ -660,6 +710,16 @@ class S {
     return Intl.message(
       'Confirm & Send',
       name: 'btnConfirmSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get btnOpenGame {
+    return Intl.message(
+      'Start',
+      name: 'btnOpenGame',
       desc: '',
       args: [],
     );
@@ -900,6 +960,16 @@ class S {
     return Intl.message(
       'Select',
       name: 'hintActionSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a game name`
+  String get hintActionSearchGame {
+    return Intl.message(
+      'Please enter a game name',
+      name: 'hintActionSearchGame',
       desc: '',
       args: [],
     );
@@ -1265,6 +1335,16 @@ class S {
     );
   }
 
+  /// `Invalid date input`
+  String get messageInvalidDate {
+    return Intl.message(
+      'Invalid date input',
+      name: 'messageInvalidDate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Malformed name`
   String get messageInvalidName {
     return Intl.message(
@@ -1280,6 +1360,26 @@ class S {
     return Intl.message(
       'Mailbox is malformed',
       name: 'messageInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of Birth Error`
+  String get messageInvalidBirthDate {
+    return Intl.message(
+      'Date of Birth Error',
+      name: 'messageInvalidBirthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number already registered`
+  String get messageRepeatPhone {
+    return Intl.message(
+      'Phone Number already registered',
+      name: 'messageRepeatPhone',
       desc: '',
       args: [],
     );
@@ -1345,10 +1445,10 @@ class S {
     );
   }
 
-  /// `Username should be 6~12 words`
+  /// `Username should be 6 ~ 12 words (Lowercase)`
   String get messageInvalidAccount {
     return Intl.message(
-      'Username should be 6~12 words',
+      'Username should be 6 ~ 12 words (Lowercase)',
       name: 'messageInvalidAccount',
       desc: '',
       args: [],
@@ -1385,6 +1485,26 @@ class S {
     );
   }
 
+  /// `The password does not match, the account will be locked for five errors`
+  String get messageInvalidPasswordFive {
+    return Intl.message(
+      'The password does not match, the account will be locked for five errors',
+      name: 'messageInvalidPasswordFive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is wrong five times and the account is locked, please contact customer service`
+  String get messageInvalidPasswordLocked {
+    return Intl.message(
+      'The password is wrong five times and the account is locked, please contact customer service',
+      name: 'messageInvalidPasswordLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Amount Error`
   String get messageInvalidDepositAmount {
     return Intl.message(
@@ -1402,6 +1522,16 @@ class S {
       name: 'messageInvalidDepositAmountMin',
       desc: '',
       args: [num],
+    );
+  }
+
+  /// `Exceeds the maximum withdrawal amount (please refer to the vip level detail)`
+  String get messageInvalidDepositAmountMax {
+    return Intl.message(
+      'Exceeds the maximum withdrawal amount (please refer to the vip level detail)',
+      name: 'messageInvalidDepositAmountMax',
+      desc: '',
+      args: [],
     );
   }
 
@@ -1460,6 +1590,16 @@ class S {
     return Intl.message(
       'Not enough credit',
       name: 'messageInvalidWithdrawAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Below the minimum amount`
+  String get messageInvalidWithdrawUnderAmount {
+    return Intl.message(
+      'Below the minimum amount',
+      name: 'messageInvalidWithdrawUnderAmount',
       desc: '',
       args: [],
     );
@@ -1725,11 +1865,41 @@ class S {
     );
   }
 
+  /// `The account is locked, please contact customer service`
+  String get messageErrorAccountIsLocked {
+    return Intl.message(
+      'The account is locked, please contact customer service',
+      name: 'messageErrorAccountIsLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Account name repeat`
   String get messageRepeatAccount {
     return Intl.message(
       'Account name repeat',
       name: 'messageRepeatAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile phone number error`
+  String get messageErrorMobile {
+    return Intl.message(
+      'Mobile phone number error',
+      name: 'messageErrorMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repeated registration of mobile phone number`
+  String get messageRepeatMobile {
+    return Intl.message(
+      'Repeated registration of mobile phone number',
+      name: 'messageRepeatMobile',
       desc: '',
       args: [],
     );
@@ -1750,6 +1920,16 @@ class S {
     return Intl.message(
       'password not match, account will be locked after 5 errors',
       name: 'messageErrorPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Referral Code not valid`
+  String get messageErrorReferral {
+    return Intl.message(
+      'Referral Code not valid',
+      name: 'messageErrorReferral',
       desc: '',
       args: [],
     );
@@ -1950,6 +2130,16 @@ class S {
     return Intl.message(
       'Favorite',
       name: 'homeUserTabCategoryFavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Games`
+  String get homeUserTabCategoryGames {
+    return Intl.message(
+      'Games',
+      name: 'homeUserTabCategoryGames',
       desc: '',
       args: [],
     );
@@ -2782,6 +2972,26 @@ class S {
       name: 'transferMessage',
       desc: '',
       args: [from, to],
+    );
+  }
+
+  /// `Add Bankcard`
+  String get bankcardViewTitleNew {
+    return Intl.message(
+      'Add Bankcard',
+      name: 'bankcardViewTitleNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please bind a bankcard for receiving payment`
+  String get bankcardViewHintNew {
+    return Intl.message(
+      'Please bind a bankcard for receiving payment',
+      name: 'bankcardViewHintNew',
+      desc: '',
+      args: [],
     );
   }
 
@@ -3765,6 +3975,26 @@ class S {
     );
   }
 
+  /// `Adjust Deposit`
+  String get dealsDetailTypeAdjustDeposit {
+    return Intl.message(
+      'Adjust Deposit',
+      name: 'dealsDetailTypeAdjustDeposit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adjust Withdraw`
+  String get dealsDetailTypeAdjustWithdraw {
+    return Intl.message(
+      'Adjust Withdraw',
+      name: 'dealsDetailTypeAdjustWithdraw',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No available payment method`
   String get depositPaymentNoData {
     return Intl.message(
@@ -3860,6 +4090,16 @@ class S {
     return Intl.message(
       'WEB ATM',
       name: 'depositPaymentTitleAtm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Code`
+  String get depositPaymentTitleQr {
+    return Intl.message(
+      'QR Code',
+      name: 'depositPaymentTitleQr',
       desc: '',
       args: [],
     );
@@ -4065,10 +4305,10 @@ class S {
     );
   }
 
-  /// `Single Deposit Limit: ￥ {value}`
+  /// `Single Deposit Limit: {value}`
   String depositHintTextAmount(Object value) {
     return Intl.message(
-      'Single Deposit Limit: ￥ $value',
+      'Single Deposit Limit: $value',
       name: 'depositHintTextAmount',
       desc: '',
       args: [value],
@@ -4596,100 +4836,130 @@ class S {
   }
 
   /// `Time Interval`
-  String get flowHeaderTextTime {
+  String get rollbackHeaderTextTime {
     return Intl.message(
       'Time Interval',
-      name: 'flowHeaderTextTime',
+      name: 'rollbackHeaderTextTime',
       desc: '',
       args: [],
     );
   }
 
   /// `Transaction Code`
-  String get flowHeaderTextCode {
+  String get rollbackHeaderTextCode {
     return Intl.message(
       'Transaction Code',
-      name: 'flowHeaderTextCode',
+      name: 'rollbackHeaderTextCode',
       desc: '',
       args: [],
     );
   }
 
   /// `Type`
-  String get flowHeaderTextType {
+  String get rollbackHeaderTextType {
     return Intl.message(
       'Type',
-      name: 'flowHeaderTextType',
+      name: 'rollbackHeaderTextType',
       desc: '',
       args: [],
     );
   }
 
   /// `Amount`
-  String get flowHeaderTextAmount {
+  String get rollbackHeaderTextAmount {
     return Intl.message(
       'Amount',
-      name: 'flowHeaderTextAmount',
+      name: 'rollbackHeaderTextAmount',
       desc: '',
       args: [],
     );
   }
 
   /// `Multiple`
-  String get flowHeaderTextMultiple {
+  String get rollbackHeaderTextMultiple {
     return Intl.message(
       'Multiple',
-      name: 'flowHeaderTextMultiple',
+      name: 'rollbackHeaderTextMultiple',
       desc: '',
       args: [],
     );
   }
 
   /// `Cash Offer`
-  String get flowHeaderTextPromo {
+  String get rollbackHeaderTextPromo {
     return Intl.message(
       'Cash Offer',
-      name: 'flowHeaderTextPromo',
+      name: 'rollbackHeaderTextPromo',
       desc: '',
       args: [],
     );
   }
 
   /// `Requirement for bet amount`
-  String get flowHeaderTextRequire {
+  String get rollbackHeaderTextRequire {
     return Intl.message(
       'Requirement for bet amount',
-      name: 'flowHeaderTextRequire',
+      name: 'rollbackHeaderTextRequire',
       desc: '',
       args: [],
     );
   }
 
   /// `Current Stake`
-  String get flowHeaderTextCurrent {
+  String get rollbackHeaderTextCurrent {
     return Intl.message(
       'Current Stake',
-      name: 'flowHeaderTextCurrent',
+      name: 'rollbackHeaderTextCurrent',
       desc: '',
       args: [],
     );
   }
 
   /// `Remaining capital required`
-  String get flowHeaderTextNeed {
+  String get rollbackHeaderTextNeed {
     return Intl.message(
       'Remaining capital required',
-      name: 'flowHeaderTextNeed',
+      name: 'rollbackHeaderTextNeed',
       desc: '',
       args: [],
     );
   }
 
   /// `Total`
-  String get flowHeaderTextTotal {
+  String get rollbackHeaderTextTotal {
     return Intl.message(
       'Total',
-      name: 'flowHeaderTextTotal',
+      name: 'rollbackHeaderTextTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo`
+  String get rollbackIndexPromo {
+    return Intl.message(
+      'Promo',
+      name: 'rollbackIndexPromo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit`
+  String get rollbackIndexDeposit {
+    return Intl.message(
+      'Deposit',
+      name: 'rollbackIndexDeposit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rollback`
+  String get rollbackIndexRollback {
+    return Intl.message(
+      'Rollback',
+      name: 'rollbackIndexRollback',
       desc: '',
       args: [],
     );

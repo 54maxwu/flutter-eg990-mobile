@@ -357,10 +357,10 @@ class ThemeDark implements ThemeColorInterface {
   Color chartPrimaryHeaderColor = Color(0xffffd89c);
 
   @override
-  Color chartPrimaryHeaderTextColor = Color(0xffffffff);
+  Color chartPrimaryHeaderTextColor = Color(0xff222222);
 
   @override
-  Color chartSecondaryHeaderColor = Color(0xff222222);
+  Color chartSecondaryHeaderColor = Color(0xff303030);
 
   @override
   Color chartBgColor = Color(0xff3a3a3a);

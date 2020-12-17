@@ -89,6 +89,9 @@ class _CenterRouteState extends State<CenterRoute> {
           } else {
             switch (_store.currentRequest) {
               case CenterStoreAction.birth:
+                callToastError(MessageMap.getErrorMessage(
+                    response.msg, RouteEnum.WITHDRAW));
+                break;
               case CenterStoreAction.email:
               case CenterStoreAction.wechat:
               case CenterStoreAction.lucky:

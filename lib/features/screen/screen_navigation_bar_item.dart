@@ -37,11 +37,11 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
     routeId: RouteEnum.MORE,
     iconData: IconCode.navMore,
   ));
-  static ScreenNavigationBarItem agent =
-      ScreenNavigationBarItem.define(RouteListItem(
-    iconData: IconCode.navAgent,
-    route: RoutePage.agentOld,
-  ));
+  // static ScreenNavigationBarItem agent =
+  //     ScreenNavigationBarItem.define(RouteListItem(
+  //   iconData: IconCode.navAgent,
+  //   route: RoutePage.agentOld,
+  // ));
 
   /// Used for defining cases
   const ScreenNavigationBarItem.define(RouteListItem fromValue)

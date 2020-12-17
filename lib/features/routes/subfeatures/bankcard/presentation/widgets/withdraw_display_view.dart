@@ -28,6 +28,7 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
       new GlobalKey(debugLabel: 'password');
 
   // TODO observe rollback string
+  int amountLimit = 100;
   String _flowLimit = '${creditSymbol}0';
   int _typeSelected = 0;
 
@@ -39,6 +40,7 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
         amount: _amountFieldKey.currentState.getInput,
         password: _passwordFieldKey.currentState.getInput,
         type: _typeSelected.toString(),
+        minimum: amountLimit,
       );
       if (dataForm.isValid) {
         debugPrint('bankcard form: ${dataForm.toJson()}');
@@ -81,10 +83,11 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                     prefixText: localeStr.withdrawViewTitleAmount,
                     titleLetterSpacing: 4,
                     maxInputLength: InputLimit.AMOUNT,
-                    errorMsg: localeStr.messageInvalidDepositAmount,
+                    errorMsg:
+                        localeStr.messageInvalidDepositAmountMin(amountLimit),
                     validCondition: (value) => rangeCheck(
                       value: (value.isNotEmpty) ? int.parse(value) : 0,
-                      min: 100,
+                      min: amountLimit,
                     ),
                   ),
                   /* Password Input Field */
