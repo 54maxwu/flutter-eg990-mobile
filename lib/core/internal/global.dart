@@ -9,9 +9,6 @@ class Global {
   /// Device Relative
   static Device device;
 
-  /// BuildType
-  static bool addAnalytics = false;
-
   /// APP Language
   static bool initLocale = false;
 

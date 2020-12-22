@@ -112,9 +112,10 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
                     _dataList.length,
                     (index) {
                       TransactionData data = _dataList[index];
-                      String explanation = (data.type == '\u8f6c\u5165')
-                          ? '${data.type} ${data.to}'
-                          : '${data.from} ${data.type}';
+                      String explanation =
+                          (data.type == '\u8f6c\u51fa' || data.type == 'out')
+                              ? '${data.from} ${data.type}'
+                              : '${data.type} ${data.to}';
                       List<dynamic> dataTexts = [
                         data.key,
                         data.date,
@@ -122,7 +123,7 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
                             ? getTranslateData(data.type)
                             : getTranslateDataEn(data.type),
                         (data.type.hasChinese)
-                            ? getTranslateData(data.type)
+                            ? getTranslateData(explanation)
                             : getTranslateDataEn(explanation),
                         data.amount,
                       ];

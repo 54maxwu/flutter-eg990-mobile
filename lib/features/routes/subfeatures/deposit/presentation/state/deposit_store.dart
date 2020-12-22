@@ -231,7 +231,7 @@ abstract class _DepositStore with Store {
       // Fetch from the repository and wrap the regular Future into an observable.
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getDepositRule().then((result) {
-//        debugPrint('deposit rule result: $result');
+        // debugPrint('deposit rule result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) => depositRule = data,

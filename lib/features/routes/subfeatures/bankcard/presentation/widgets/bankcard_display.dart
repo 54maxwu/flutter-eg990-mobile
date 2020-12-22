@@ -158,6 +158,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         padding: const EdgeInsets.symmetric(horizontal: 6.0),
         constraints: BoxConstraints(
           maxWidth: Global.device.width - 12,
+          maxHeight: Global.device.featureContentHeight,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

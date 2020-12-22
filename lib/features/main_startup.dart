@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/device.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/router/navigate_provider.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
-import 'package:provider/provider.dart';
 
 import 'router/app_navigator_export.dart';
 import 'screen/web_game_screen_store.dart';
@@ -93,14 +91,11 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
           //   onGenerateRoute: ScreenRouter.onGenerateRoute,
           //   initialRoute: ScreenRouter.featureScreen,
           // ),
-          body: ChangeNotifierProvider(
-            create: (_) => NavigateProvider(initKey: _navKey),
-            child: ExtendedNavigator(
-              key: screenNavKey,
-              navigatorKey: _navKey,
-              initialRoute: MainStartupRoutes.featureScreen,
-              router: MainStartupRouter(),
-            ),
+          body: ExtendedNavigator(
+            key: screenNavKey,
+            navigatorKey: _navKey,
+            initialRoute: MainStartupRoutes.featureScreen,
+            router: MainStartupRouter(),
           ),
         ),
       ),

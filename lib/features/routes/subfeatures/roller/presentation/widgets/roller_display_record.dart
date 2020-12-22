@@ -33,7 +33,7 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
   Widget contentWidget;
   List<RollerRecordModel> currentData;
 
-  double tableHeight;
+  double tableMinHeight;
   double tableWidth;
   Map<int, TableColumnWidth> _tableWidthMap;
   BorderSide tableBorder;
@@ -44,12 +44,8 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
     double availableHeight =
         Global.device.height * dialogHeightFactor - dialogTitleHeight;
 
-    int availableRows =
-        (availableHeight / (FontSize.NORMAL.value * 2.35)).floor();
-    debugPrint('max height: $availableHeight, available rows: $availableRows');
-
     // FontSize.NORMAL.value * 2 = font size * 2 line + space
-    tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
+    tableMinHeight = FontSize.NORMAL.value * 2.15 * 2;
     tableWidth = availableWidth - 16;
     _tableWidthMap ??= {
       //指定索引及固定列宽
@@ -91,7 +87,7 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      localeStr.wheelTextTitlePrize,
+                      localeStr.wheelTextTitleRecord,
                       style: TextStyle(
                         color: themeColor.defaultAccentColor,
                         fontSize: FontSize.TITLE.value,
@@ -101,29 +97,21 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
                 ),
               ],
             ),
-            StreamBuilder<List<RollerRecordModel>>(
-                stream: widget.recordStream,
-                initialData: widget.initRecord,
-                builder: (context, snapshot) {
-                  if (snapshot != null && currentData != snapshot.data) {
-                    currentData = snapshot.data;
-                    if (currentData != null && currentData.isNotEmpty)
+            Expanded(
+              child: StreamBuilder<List<RollerRecordModel>>(
+                  stream: widget.recordStream,
+                  initialData: widget.initRecord,
+                  builder: (context, snapshot) {
+                    if (snapshot != null && currentData != snapshot.data) {
+                      currentData = snapshot.data;
                       contentWidget = _buildTable();
-                    else if (currentData.isEmpty)
-                      contentWidget = SizedBox(
-                        width: tableHeight / 3,
-                        height: tableHeight / 3,
-                      );
-                  }
-                  contentWidget ??= Container(
-                    width: tableHeight / 3,
-                    height: tableHeight / 3,
-                    child: Center(
+                    }
+                    contentWidget ??= Center(
                       child: CircularProgressIndicator(),
-                    ),
-                  );
-                  return contentWidget;
-                }),
+                    );
+                    return contentWidget;
+                  }),
+            ),
           ],
         ),
       ],
@@ -135,8 +123,8 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
     return Container(
       constraints: BoxConstraints(
         maxWidth: tableWidth,
-        minHeight: tableHeight / 3,
-        maxHeight: tableHeight,
+        minHeight: tableMinHeight,
+        // maxHeight: tableHeight,
       ),
       margin: const EdgeInsets.symmetric(
         vertical: 12.0,
@@ -147,6 +135,7 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
         isAlwaysShown: true,
         child: SingleChildScrollView(
           controller: _scrollController,
+          physics: const BouncingScrollPhysics(),
           child: Table(
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             columnWidths: _tableWidthMap,
@@ -163,8 +152,13 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
   }
 
   List<TableRow> _buildContent() {
-    List<TableRow> rows = _buildContentRows();
-    rows.insert(0, _buildHeaderRow());
+    List<TableRow> rows = new List();
+    if (currentData != null && currentData.length > 0) {
+      rows.addAll(_buildContentRows());
+      rows.insert(0, _buildHeaderRow());
+    } else {
+      rows.add(_buildHeaderRow());
+    }
     return rows;
   }
 
@@ -179,6 +173,7 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
       ];
       /* generate cell text */
       return TableRow(
+        decoration: BoxDecoration(color: themeColor.chartBgColor),
         children: List.generate(
           dataTexts.length,
           (index) => TableCellTextWidget(
@@ -194,7 +189,9 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
     return TableRow(
       children: List.generate(
         _headerRowTexts.length,
-        (index) => TableCellTextWidget(text: _headerRowTexts[index]),
+        (index) => TableCellTextWidget(
+          text: _headerRowTexts[index],
+        ),
       ),
     );
   }

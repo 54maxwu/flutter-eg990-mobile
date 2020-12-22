@@ -51,7 +51,7 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => (model.isSuccess) ? Right('${model.data}'.strToInt) : Right(0),
@@ -136,7 +136,7 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => (model.isSuccess) ? Right('${model.data}'.strToInt) : Right(0),
@@ -150,7 +150,7 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -174,7 +174,7 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -198,11 +198,11 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
-        if (model.isSuccess == false) return Left(Failure.server());
+        if (!model.isSuccess) return Left(Failure.server());
         try {
           return Right(
               RollerRequirementModel.jsonToRequirementModel(model.data));
@@ -223,7 +223,7 @@ class RollerRepositoryImpl implements RollerRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-ROLLER',
     );
-    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    // debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) => Right(data),

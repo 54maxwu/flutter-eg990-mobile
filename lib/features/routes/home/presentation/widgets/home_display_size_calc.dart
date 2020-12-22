@@ -38,6 +38,7 @@ class HomeDisplaySizeCalc {
 
     /// Tab Bar
     _barMaxWidth = (availableWidth * 0.35).floorToDouble();
+    if (_barMaxWidth > 144) _barMaxWidth = 144;
     _barMinWidth = _barMaxWidth - _barItemInset;
     if (_barMinWidth < 120) {
       double diff = 120 - _barMinWidth;

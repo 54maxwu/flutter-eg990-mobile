@@ -296,7 +296,7 @@ class RoutePage extends Vnum<RouteInfo> {
 
   static const RoutePage sideTutorial = const RoutePage.define(RouteInfo(
     id: RouteEnum.TUTORIAL,
-    route: '${FeatureScreenRoutes.moreRoute}$ROUTE_POSTFIX_SIDE-newbie',
+    route: '${FeatureScreenRoutes.tutorialWebRoute}$ROUTE_POSTFIX_SIDE',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
       hideHtmlBars: true,

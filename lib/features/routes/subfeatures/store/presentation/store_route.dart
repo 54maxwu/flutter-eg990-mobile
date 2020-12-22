@@ -10,6 +10,10 @@ import 'widgets/store_display.dart';
 ///@version 2020/6/7
 ///
 class StoreRoute extends StatefulWidget {
+  final int showProductId;
+
+  StoreRoute({this.showProductId});
+
   @override
   _StoreRouteState createState() => _StoreRouteState();
 }
@@ -25,6 +29,9 @@ class _StoreRouteState extends State<StoreRoute> {
     super.initState();
     // execute action on init
     _store.getInitializeData();
+    if (widget.showProductId != null) {
+      _store.navProductId = widget.showProductId;
+    }
   }
 
   @override

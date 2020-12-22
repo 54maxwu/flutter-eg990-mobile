@@ -35,12 +35,12 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `BKK365 Mobile`
+  /// `EG990 Mobile`
   String get title {
     return Intl.message(
-      'BKK365 Mobile',
+      'EG990 Mobile',
       name: 'title',
-      desc: 'BKK365 Demo',
+      desc: 'EG990 Demo',
       args: [],
     );
   }
@@ -1395,6 +1395,16 @@ class S {
     );
   }
 
+  /// `Error Phone Number({min}~{max})`
+  String messageInvalidPhone2(Object min, Object max) {
+    return Intl.message(
+      'Error Phone Number($min~$max)',
+      name: 'messageInvalidPhone2',
+      desc: '',
+      args: [min, max],
+    );
+  }
+
   /// `Error Post Code(5~8)`
   String get messageInvalidPostCode {
     return Intl.message(
@@ -1445,33 +1455,23 @@ class S {
     );
   }
 
-  /// `Username should be 6 ~ 12 words (Lowercase)`
-  String get messageInvalidAccount {
+  /// `Username should be {min}~{max} words (Lowercase)`
+  String messageInvalidAccount(Object min, Object max) {
     return Intl.message(
-      'Username should be 6 ~ 12 words (Lowercase)',
+      'Username should be $min~$max words (Lowercase)',
       name: 'messageInvalidAccount',
       desc: '',
-      args: [],
+      args: [min, max],
     );
   }
 
-  /// `Password should be 6~20 words`
-  String get messageInvalidPassword {
+  /// `Password should be {min}~{max} words`
+  String messageInvalidPassword(Object min, Object max) {
     return Intl.message(
-      'Password should be 6~20 words',
+      'Password should be $min~$max words',
       name: 'messageInvalidPassword',
       desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password should be 8~20 words`
-  String get messageInvalidPasswordNew {
-    return Intl.message(
-      'Password should be 8~20 words',
-      name: 'messageInvalidPasswordNew',
-      desc: '',
-      args: [],
+      args: [min, max],
     );
   }
 
@@ -1525,11 +1525,21 @@ class S {
     );
   }
 
-  /// `Exceeds the maximum withdrawal amount (please refer to the vip level detail)`
-  String get messageInvalidDepositAmountMax {
+  /// `Deposit amount exceeds the upper limit`
+  String get messageInvalidDepositAmountMaxLimit {
     return Intl.message(
-      'Exceeds the maximum withdrawal amount (please refer to the vip level detail)',
-      name: 'messageInvalidDepositAmountMax',
+      'Deposit amount exceeds the upper limit',
+      name: 'messageInvalidDepositAmountMaxLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit amount is lower than minimum limit`
+  String get messageInvalidDepositAmountMinLimit {
+    return Intl.message(
+      'Deposit amount is lower than minimum limit',
+      name: 'messageInvalidDepositAmountMinLimit',
       desc: '',
       args: [],
     );
@@ -1600,6 +1610,16 @@ class S {
     return Intl.message(
       'Below the minimum amount',
       name: 'messageInvalidWithdrawUnderAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exceeds the maximum withdrawal amount (please refer to the vip level detail)`
+  String get messageInvalidWithdrawExceedAmount {
+    return Intl.message(
+      'Exceeds the maximum withdrawal amount (please refer to the vip level detail)',
+      name: 'messageInvalidWithdrawExceedAmount',
       desc: '',
       args: [],
     );
@@ -2315,10 +2335,10 @@ class S {
     );
   }
 
-  /// `Click me to open BKK365 website`
+  /// `Click me to open EG990 website`
   String get gameCategoryWebHint {
     return Intl.message(
-      'Click me to open BKK365 website',
+      'Click me to open EG990 website',
       name: 'gameCategoryWebHint',
       desc: '',
       args: [],

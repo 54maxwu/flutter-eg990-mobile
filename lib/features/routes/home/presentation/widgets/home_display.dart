@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_category_model.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 
 import '../state/home_store.dart';
 import 'home_display_banner.dart';
@@ -100,8 +99,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              if (Res.wallpaper.isNotEmpty)
-                Image.asset(Res.wallpaper, fit: BoxFit.fill),
               Column(
                 children: [
                   Container(
@@ -172,12 +169,16 @@ class _HomeDisplayState extends State<HomeDisplay> {
 
   void _widgetUrlCheck(String url) {
     debugPrint('home widget url check: $url');
+    String fixUrl;
+    if (url.contains(Global.DOMAIN_NAME)) {
+      fixUrl = url.substring(
+          url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length);
+    } else if (!url.startsWith('/')) {
+      fixUrl = '/$url';
+    }
     _widgetUrlNavigate(
       url.contains('/api/open/'),
-      url
-          .substring(
-              url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length)
-          .replaceAll('/api/open/', ''),
+      fixUrl.replaceAll('/api/open/', ''),
     );
   }
 
@@ -198,13 +199,26 @@ class _HomeDisplayState extends State<HomeDisplay> {
 
       /// Jump to promo page with promo id if provided
     } else if (url.startsWith('/promo/')) {
-      int promoId =
-          url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
-      debugPrint('url promo id: $promoId');
+      int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      debugPrint('url promo id: $itemId');
       AppNavigator.navigateTo(
         RoutePage.promo,
-        arg: (promoId > 0) ? PromoRouteArguments(openPromoId: promoId) : null,
+        arg: (itemId > 0) ? PromoRouteArguments(openPromoId: itemId) : null,
       );
+
+      /// Jump to store page with product id if provided
+      // } else if (url.startsWith('/mall/')) {
+      //   int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      //
+      //   if (!getAppGlobalStreams.hasUser) {
+      //     callToastInfo(localeStr.messageErrorNotLogin);
+      //     return;
+      //   }
+      //   debugPrint('url mall id: $itemId');
+      //   AppNavigator.navigateTo(
+      //     RoutePage.sideStore,
+      //     arg: (itemId > 0) ? StoreRouteArguments(showProductId: itemId) : null,
+      //   );
 
       /// Jump to route page if path name exist
     } else {

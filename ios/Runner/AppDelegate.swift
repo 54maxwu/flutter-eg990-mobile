@@ -38,7 +38,18 @@ import Firebase
       }
     })
 
-    FirebaseApp.configure()
+    func getConfigFlag() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let build = dictionary["ConfigFlag"] as! String
+        // debug = 0, release = 1, profile = 1
+        print("config flag = \(build)")
+        return build
+    } 
+    let flag = getConfigFlag()
+    if (flag == '1') {
+        FirebaseApp.configure()
+    }
+    
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

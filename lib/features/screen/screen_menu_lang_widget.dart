@@ -47,7 +47,15 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
                     ),
                   ),
                 ),
-                Text(_langs[index].value.optionString),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Text(
+                    _langs[index].value.optionString,
+                    style: TextStyle(
+                      fontSize: FontSize.SUBTITLE.value,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

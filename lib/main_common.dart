@@ -23,24 +23,16 @@ import 'ga_interface.dart';
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
+
   // Load the JSON config into memory
   await ConfigReader.initialize();
-
   switch (env) {
-    case Environment.DEV:
-      {
-        Global.addAnalytics = false;
-        debugPrint(
-            'DEV Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
-        break;
-      }
-    case Environment.RELEASE:
-      {
-        Global.addAnalytics = true;
-        debugPrint(
-            'RELEASE Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
-        break;
-      }
+    case Environment.FIREBASE:
+      GaInterface.setAnalytics = new FirebaseAnalytics();
+      break;
+    default:
+      // debugPrint('DEV Config Version: ${ConfigReader.getVersion()}');
+      break;
   }
 
   // request permission
@@ -103,11 +95,9 @@ Future<void> mainCommon(Environment env) async {
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
-  if (Global.addAnalytics) {
-    final FirebaseAnalytics _analytics = FirebaseAnalytics();
-    GaInterface.setAnalytics = _analytics;
+  if (env == Environment.FIREBASE) {
     // run application with Firebase
-    runApp(new MainAppWithFirebase(analytics: _analytics));
+    runApp(new MainAppWithFirebase());
   } else {
     // run application
     runApp(new MainApp());

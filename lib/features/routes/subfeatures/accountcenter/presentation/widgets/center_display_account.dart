@@ -257,9 +257,13 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                           : null,
                       suffixAction: (input) {
                         debugPrint('request bind wechat: $input');
-                        checkAndPost(context, () {
-                          _store.bindWechat(input);
-                        });
+                        if (input.isNotEmpty) {
+                          checkAndPost(context, () {
+                            _store.bindWechat(input);
+                          });
+                        } else {
+                          callToast(localeStr.messageInvalidFormat);
+                        }
                       },
                       readOnly: _storeData.canBindWechat == false,
                       validCondition: (value) => rangeCheck(

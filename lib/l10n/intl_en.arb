@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "en",
-  "title": "BKK365 Mobile",
+  "title": "EG990 Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "EG990 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -610,6 +610,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "Error Phone Number({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "Error Post Code(5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -635,17 +647,29 @@
       }
     }
   },
-  "messageInvalidAccount": "Username should be 6 ~ 12 words (Lowercase)",
+  "messageInvalidAccount": "Username should be {min}~{max} words (Lowercase)",
   "@messageInvalidAccount": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
   },
-  "messageInvalidPassword": "Password should be 6~20 words",
+  "messageInvalidPassword": "Password should be {min}~{max} words",
   "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "Password should be 8~20 words",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
   },
   "messageInvalidConfirmPassword": "Password does not match",
   "@messageInvalidConfirmPassword": {
@@ -672,8 +696,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "Exceeds the maximum withdrawal amount (please refer to the vip level detail)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "Deposit amount exceeds the upper limit",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "Deposit amount is lower than minimum limit",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "Incorrect account name",
@@ -702,6 +730,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "Below the minimum amount",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "Exceeds the maximum withdrawal amount (please refer to the vip level detail)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "You are using a mobile network",
@@ -1003,7 +1035,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "Click me to open BKK365 website",
+  "gameCategoryWebHint": "Click me to open EG990 website",
   "@gameCategoryWebHint": {
     "type": "text"
   },

@@ -36,13 +36,17 @@ class TypesGridWidget<T extends DataOperator> extends StatefulWidget {
   _TypesGridWidgetState createState() => _TypesGridWidgetState();
 }
 
-class _TypesGridWidgetState extends State<TypesGridWidget> {
+class _TypesGridWidgetState extends State<TypesGridWidget>
+    with AutomaticKeepAliveClientMixin {
   int _clicked = 0;
   double _gridRatio;
 
   final BorderSide borderSide =
       BorderSide(color: themeColor.defaultBorderColor);
   final BorderSide borderSideTrans = BorderSide(color: Colors.transparent);
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {

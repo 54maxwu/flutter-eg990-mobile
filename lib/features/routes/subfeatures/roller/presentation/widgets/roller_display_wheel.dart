@@ -151,7 +151,7 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(Res.roller_wheel_8),
+                Image.asset(Res.roller_wheel8),
                 RollerDisplayWheelView(
                   wheelSize: wheelSize,
                   wheelScale: wheelScale,
@@ -172,7 +172,7 @@ class _RollerDisplayWheelState extends State<RollerDisplayWheel>
                 waitForReturnPrize = true;
                 widget.store.getPrize();
               },
-              child: Image.asset(Res.roller_btn_go),
+              child: Image.asset(Res.roller_go),
             ),
           ),
         ],

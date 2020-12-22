@@ -21,8 +21,9 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.download,
     MoreGridItem.tutorial,
     MoreGridItem.service,
-    MoreGridItem.agentAbout,
     MoreGridItem.vip,
+    MoreGridItem.store,
+    MoreGridItem.agentAbout,
   ];
 
   static final List<MoreGridItem> userGridItems = [

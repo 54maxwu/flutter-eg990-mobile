@@ -38,9 +38,8 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
 
   ScrollController _scrollController;
   Widget contentWidget;
-  RollerRequirementModel currentData;
+  RollerRequirementModel rollerTask;
 
-  double tableHeight;
   double tableWidth;
   Map<int, TableColumnWidth> _tableWidthMap;
   BorderSide tableBorder;
@@ -49,15 +48,6 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
   @override
   void initState() {
     double availableWidth = Global.device.width - 32;
-    double availableHeight =
-        Global.device.height * dialogHeightFactor - dialogTitleHeight;
-
-    int availableRows =
-        (availableHeight / (FontSize.NORMAL.value * 2.35)).floor();
-    debugPrint('max height: $availableHeight, available rows: $availableRows');
-
-    // FontSize.NORMAL.value * 2 = font size * 2 line + space
-    tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
     tableWidth = availableWidth - 16;
     _tableWidthMap ??= {
       //指定索引及固定列宽
@@ -99,7 +89,7 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      localeStr.wheelTextTitlePrize,
+                      localeStr.wheelTextTitleGet,
                       style: TextStyle(
                         color: themeColor.defaultAccentColor,
                         fontSize: FontSize.TITLE.value,
@@ -109,31 +99,22 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
                 ),
               ],
             ),
-            StreamBuilder<RollerRequirementModel>(
-                stream: widget.requirementStream,
-                initialData: widget.initRequirement,
-                builder: (context, snapshot) {
-                  if (snapshot != null && currentData != snapshot.data) {
-                    currentData = snapshot.data;
-                    if (currentData != null && currentData.hasData != null) {
-                      if (currentData.hasData)
-                        contentWidget = _buildTable();
-                      else if (currentData.hasData == false)
-                        contentWidget = SizedBox(
-                          width: tableHeight / 3,
-                          height: tableHeight / 3,
-                        );
+            Expanded(
+              child: StreamBuilder<RollerRequirementModel>(
+                  stream: widget.requirementStream,
+                  initialData: widget.initRequirement ??
+                      RollerRequirementModel(hasData: null),
+                  builder: (context, snapshot) {
+                    if (snapshot != null && rollerTask != snapshot.data) {
+                      rollerTask = snapshot.data;
+                      contentWidget = _buildTable();
                     }
-                  }
-                  contentWidget ??= Container(
-                    width: tableHeight / 3,
-                    height: tableHeight / 3,
-                    child: Center(
+                    contentWidget ??= Center(
                       child: CircularProgressIndicator(),
-                    ),
-                  );
-                  return contentWidget;
-                }),
+                    );
+                    return contentWidget;
+                  }),
+            ),
           ],
         ),
       ],
@@ -143,11 +124,7 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
   Widget _buildTable() {
     _scrollController = new ScrollController();
     return Container(
-      constraints: BoxConstraints(
-        maxWidth: tableWidth,
-        minHeight: tableHeight / 3,
-        maxHeight: tableHeight,
-      ),
+      constraints: BoxConstraints(maxWidth: tableWidth),
       margin: const EdgeInsets.symmetric(
         vertical: 12.0,
         horizontal: 8.0,
@@ -174,14 +151,18 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
 
   List<TableRow> _buildContent() {
     List<TableRow> rows = new List();
-    currentData.targets.forEach((key, value) {
-      var current = currentData.current
-          .singleWhere((data) => '${data.key}' == key, orElse: null);
-      if (current == null)
-        current = RollerRequirementCurrent(day: 0, week: 0, month: 0);
-      rows.addAll(_buildContentRows(value, current));
-    });
-    rows.insert(0, _buildHeaderRow());
+    if (rollerTask != null && rollerTask?.hasData == true) {
+      rollerTask.targets.forEach((key, value) {
+        var current = rollerTask.current
+            .singleWhere((data) => '${data.key}' == key, orElse: null);
+        if (current == null)
+          current = RollerRequirementCurrent(day: 0, week: 0, month: 0);
+        rows.addAll(_buildContentRows(value, current));
+      });
+      rows.insert(0, _buildHeaderRow());
+    } else {
+      rows.add(_buildHeaderRow());
+    }
     return rows;
   }
 
@@ -206,28 +187,32 @@ class _RollerDisplayRequirementState extends State<RollerDisplayRequirement> {
       ];
       /* generate cell text */
       return TableRow(
+        decoration: BoxDecoration(color: themeColor.chartBgColor),
         children: List.generate(
           dataTexts.length,
           (index) => (index == 3)
-              ? RaisedButton(
-                  child: Text(
-                    dataTexts[index],
-                    style: TextStyle(
-                      fontSize: FontSize.NORMAL.value,
-                      color: themeColor.buttonTextPrimaryColor,
-                    ),
-                  ),
-                  disabledColor: themeColor.buttonDisabledColor,
-                  visualDensity:
-                      VisualDensity(horizontal: -2.0, vertical: -3.0),
-                  onPressed: (applied || !canComplete)
-                      ? null
-                      : () async {
-                          if (lockApplied) return;
-                          lockApplied = true;
-                          bool result = await widget.onApplyCount(data.id);
-                          lockApplied = result;
-                        })
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  child: RaisedButton(
+                      child: Text(
+                        dataTexts[index],
+                        style: TextStyle(
+                          fontSize: FontSize.NORMAL.value,
+                          color: themeColor.buttonTextPrimaryColor,
+                        ),
+                      ),
+                      disabledColor: themeColor.buttonDisabledColor,
+                      visualDensity:
+                          VisualDensity(horizontal: -2.0, vertical: -3.0),
+                      onPressed: (applied || !canComplete)
+                          ? null
+                          : () async {
+                              if (lockApplied) return;
+                              lockApplied = true;
+                              bool result = await widget.onApplyCount(data.id);
+                              lockApplied = result;
+                            }),
+                )
               : TableCellTextWidget(
                   text: '${dataTexts[index]}',
                   textColor: themeColor.hintHighlightOrangeStrong,

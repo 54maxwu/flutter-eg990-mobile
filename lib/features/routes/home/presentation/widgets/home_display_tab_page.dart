@@ -106,8 +106,12 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
   }
 
   void _setGridContent(Widget widget) {
-    setState(() {
-      _contentWidget = widget;
+    Future.delayed(Duration(milliseconds: 300), () {
+      if (mounted) {
+        setState(() {
+          _contentWidget = widget;
+        });
+      }
     });
   }
 

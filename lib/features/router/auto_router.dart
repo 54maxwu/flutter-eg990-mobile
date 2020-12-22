@@ -100,6 +100,10 @@ import '../user/register/presentation/register_route.dart';
               // CustomRoute(page: AgentRegisterRoute),
               // CustomRoute(page: AboutRoute),
               MaterialRoute(page: DownloadAreaRoute, path: '/download'),
+              MaterialRoute(
+                  page: WebRoute,
+                  name: 'tutorialWebRoute',
+                  path: '/tutorial-web'),
               MaterialRoute(page: NoticeRoute, path: '/notice'),
               MaterialRoute(page: StoreRoute, path: '/store'),
               MaterialRoute(page: RollerRoute, path: '/roller'),

@@ -57,7 +57,7 @@ class HomeDisplayMarquee extends StatelessWidget {
                       String url = marquees[index].url;
                       debugPrint('clicked marquee $index, url: $url');
                       if (url.isUrl == false) return;
-                      if (url.contains(Global.DOMAIN_NAME)) {
+                      if (url.contains(Global.DOMAIN_NAME) || !url.isUrl) {
                         if (onMarqueeClicked != null) {
                           onMarqueeClicked(url);
                         }

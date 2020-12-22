@@ -55,7 +55,7 @@ class _NoticeRouteState extends State<NoticeRoute> {
       },
       child: Scaffold(
         body: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

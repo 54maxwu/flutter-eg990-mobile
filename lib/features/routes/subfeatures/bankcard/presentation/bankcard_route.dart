@@ -116,6 +116,10 @@ class _BankcardRouteState extends State<BankcardRoute> {
                       _store.bankcard != null && _store.bankcard.hasCard;
                   if (!validCard && widget.withdraw) {
                     Future.delayed(Duration(milliseconds: 300), () {
+                      AppNavigator.updateNavigateRoute(
+                        RoutePage.bankcard,
+                        updateParent: false,
+                      );
                       callToast(localeStr.messageErrorBindBankcard);
                     });
                   }

@@ -71,7 +71,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image.asset(Res.roller_top, fit: BoxFit.fitWidth),
+                      Image.asset(Res.roller_top_bg, fit: BoxFit.fitWidth),
                       Container(
                         padding: const EdgeInsets.only(top: 8.0),
                         height: titleHeight,
@@ -244,8 +244,7 @@ class _RollerDisplayState extends State<RollerDisplay> {
                               builder: (_) => new RollerDisplayRequirement(
                                 requirementStream:
                                     widget.store.requirementStream,
-                                initRequirement: widget.store.requirement ??
-                                    RollerRequirementModel(hasData: null),
+                                initRequirement: widget.store.requirement,
                                 onApplyCount: (int id) async {
                                   bool success =
                                       await widget.store.applyCount(id);

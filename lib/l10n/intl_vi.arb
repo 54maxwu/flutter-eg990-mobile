@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "BKK365 Mobile",
+  "title": "EG990 Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "EG990 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -610,6 +610,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "Lỗi định dạng điện thoại({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "Mã bưu điện không chính xác(5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -635,17 +647,29 @@
       }
     }
   },
-  "messageInvalidAccount": "Số tài khoản là 6 ~ 12 chữ thường tiếng Anh / chữ số",
+  "messageInvalidAccount": "Số tài khoản là {min}~{max} chữ thường tiếng Anh / chữ số",
   "@messageInvalidAccount": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
   },
-  "messageInvalidPassword": "Mật khẩu dài 6~20 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài {min}~{max} ký tự",
   "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8~20 ký tự",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
   },
   "messageInvalidConfirmPassword": "Mật khẩu không hợp lệ",
   "@messageInvalidConfirmPassword": {
@@ -672,8 +696,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "Vượt quá số tiền rút tối đa của một giao dịch (vui lòng tham khảo hệ thống cấp độ thành viên)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "Số tiền nạp vượt quá giới hạn trên",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "Số tiền nạp dưới giới hạn thấp hơn",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "Tên tài khoản không chính xác",
@@ -702,6 +730,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "Dưới số tiền rút tối thiểu",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "Vượt quá số tiền rút tối đa của một giao dịch (vui lòng tham khảo hệ thống cấp độ thành viên)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",

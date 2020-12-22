@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +18,6 @@ import 'themes/theme_color_enum.dart';
 import 'themes/theme_interface.dart';
 
 class MainAppWithFirebase extends StatefulWidget {
-  final FirebaseAnalytics analytics;
-
-  const MainAppWithFirebase({Key key, this.analytics}) : super(key: key);
-
   @override
   _MainAppWithFirebaseState createState() => _MainAppWithFirebaseState();
 }
@@ -60,9 +55,8 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
     MyLogger.debug(msg: 'app init', tag: tag);
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    if (widget.analytics != null) {
-      widget.analytics.logAppOpen();
-      firebaseObserver = FirebaseAnalyticsObserver(analytics: widget.analytics);
+    if (GaInterface.isAnalyzing) {
+      firebaseObserver = GaInterface.getObserver;
       extNavigatorBuilder = ExtendedNavigator.builder<AutoRouter>(
         router: AutoRouter(),
         observers: [BotToastNavigatorObserver(), firebaseObserver],

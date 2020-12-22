@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-09-25T10:54:50+0800",
   "@@locale": "th",
-  "title": "BKK365 Mobile",
+  "title": "EG990 Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "EG990 Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -610,6 +610,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "หมายเลขโทรศัพท์ผิดพลาด ({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -635,17 +647,29 @@
       }
     }
   },
-  "messageInvalidAccount": "ชหมายเลขบัญชีคือ 6 ~ 12 ตัวพิมพ์เล็กภาษาอังกฤษ / หลัก",
+  "messageInvalidAccount": "ชหมายเลขบัญชีคือ {min}~{max} ตัวพิมพ์เล็กภาษาอังกฤษ / หลัก",
   "@messageInvalidAccount": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
   },
-  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~20 คำ",
+  "messageInvalidPassword": "รหัสผ่านควรมีความยาว {min}~{max} คำ",
   "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8~20 คำ",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
   },
   "messageInvalidConfirmPassword": "รหัสผ่านไม่ตรงกัน",
   "@messageInvalidConfirmPassword": {
@@ -672,8 +696,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "เกินจำนวนการถอนสูงสุดของการทำธุรกรรมหนึ่งครั้ง (โปรดดูที่ระบบระดับสมาชิก)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "จำนวนเงินที่เติมเกินขีด จำกัด ด้านบน",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "จำนวนการเติมเงินต่ำกว่าขีด จำกัด ล่าง",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "ชื่อบัญชีไม่ถูกต้อง",
@@ -702,6 +730,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "ต่ำกว่าจำนวนเงินถอนขั้นต่ำ",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "เกินจำนวนการถอนสูงสุดของการทำธุรกรรมหนึ่งครั้ง (โปรดดูที่ระบบระดับสมาชิก)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "คุณกำลังใช้เครือข่ายมือถือ",
@@ -1003,7 +1035,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ BKK365",
+  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ EG990",
   "@gameCategoryWebHint": {
     "type": "text"
   },

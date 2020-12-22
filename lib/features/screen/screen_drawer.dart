@@ -22,6 +22,7 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
     ScreenDrawerItem.agentAbout,
+    ScreenDrawerItem.webHome,
     ScreenDrawerItem.testUI,
     ScreenDrawerItem.test,
   ];

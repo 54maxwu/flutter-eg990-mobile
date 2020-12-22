@@ -209,6 +209,7 @@ abstract class _RollerStore with Store {
                   setErrorMsg(msg: failure.message, showOnce: true);
                 },
                 (data) {
+                  debugPrint('roller requirement data: $data');
                   if (data != null && requirement != data) {
                     _requirementController.sink.add(data);
                   } else {

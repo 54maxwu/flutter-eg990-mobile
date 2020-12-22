@@ -70,8 +70,14 @@ class _StoreProductExchangeState extends State<StoreProductExchange> {
         area: _areaSelected,
         address: _addressFieldKey.currentState.getInput,
       );
-      if (dataForm.phone.length < InputLimit.PHONE_MAX) {
-        callToast(localeStr.messageInvalidPhone(InputLimit.PHONE_MAX));
+      if (!rangeCheck(
+          value: dataForm.phone.length,
+          min: InputLimit.PHONE_MIN,
+          max: InputLimit.PHONE_MAX)) {
+        callToast(localeStr.messageInvalidPhone2(
+          InputLimit.PHONE_MIN,
+          InputLimit.PHONE_MAX,
+        ));
       } else if (dataForm.postCode.length < 5) {
         callToast(localeStr.messageInvalidPostCode);
       } else if (dataForm.name.hasInvalidChinese) {
