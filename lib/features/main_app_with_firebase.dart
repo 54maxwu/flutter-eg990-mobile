@@ -4,11 +4,14 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/ga_interface.dart';
+import 'package:flutter_eg990_mobile/core/repository_export.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/toast_notification_widget.dart';
+import 'package:flutter_eg990_mobile/firebase_interface.dart';
 import 'package:flutter_eg990_mobile/generated/l10n.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:super_enum/super_enum.dart';
 
 import 'main_startup.dart';
 import 'router/app_global_streams.dart';
@@ -29,6 +32,7 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
 
   TransitionBuilder extNavigatorBuilder;
   FirebaseAnalyticsObserver firebaseObserver;
+  StreamSubscription<Map<String, dynamic>> fcmSubscription;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -39,7 +43,7 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
         break;
       case AppLifecycleState.resumed:
         MyLogger.info(msg: 'app resumed', tag: tag);
-        GaInterface.log.logAppOpen();
+        FirebaseInterface.log.logAppOpen();
         break;
       case AppLifecycleState.inactive:
         MyLogger.info(msg: 'app inactive', tag: tag);
@@ -55,8 +59,8 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
     MyLogger.debug(msg: 'app init', tag: tag);
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    if (GaInterface.isAnalyzing) {
-      firebaseObserver = GaInterface.getObserver;
+    if (FirebaseInterface.isAnalyzing) {
+      firebaseObserver = FirebaseInterface.getObserver;
       extNavigatorBuilder = ExtendedNavigator.builder<AutoRouter>(
         router: AutoRouter(),
         observers: [BotToastNavigatorObserver(), firebaseObserver],
@@ -84,6 +88,8 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
   @override
   void dispose() {
     MyLogger.debug(msg: 'app dispose', tag: tag);
+    fcmSubscription.cancel();
+    FirebaseInterface.closeStream();
     sl.get<AppGlobalStreams>().dispose();
     sl.get<HomeStore>().closeStreams();
     WidgetsBinding.instance.removeObserver(this);
@@ -93,6 +99,12 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
   @override
   Widget build(BuildContext context) {
     MyLogger.debug(msg: 'app build', tag: tag);
+    if (FirebaseInterface.isAnalyzing) {
+      fcmSubscription ??= FirebaseInterface.getMessageStream.listen((event) {
+        // debugPrint('fcm stream: $event');
+        showNotification(event);
+      });
+    }
     return StreamBuilder<ThemeColorEnum>(
         stream: getAppGlobalStreams.themeStream,
         initialData: ThemeInterface.theme.colorEnum,
@@ -119,5 +131,26 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
             home: new MainStartup(),
           );
         });
+  }
+
+  void showNotification(Map<String, dynamic> message) {
+    Map<String, dynamic> content = new Map();
+    try {
+      message.values.forEach((value) {
+        try {
+          content.addAll(Map<String, dynamic>.from(value));
+        } on Exception {}
+      });
+      debugPrint("fcm notification content: $content");
+
+      if (content != null && content.isNotEmpty) {
+        callToastNotification(
+          title: content['title'],
+          subtitle: content['body'],
+        );
+      }
+    } catch (e) {
+      debugPrint('parse notification has error: $e');
+    }
   }
 }

@@ -46,7 +46,7 @@ import Firebase
         return build
     } 
     let flag = getConfigFlag()
-    if (flag == '1') {
+    if (flag == "1") {
         FirebaseApp.configure()
     }
     

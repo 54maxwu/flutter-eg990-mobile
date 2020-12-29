@@ -178,7 +178,7 @@ abstract class _DepositStore with Store {
       // Fetch from the repository and wrap the regular Future into an observable.
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _repository.getDepositInfo().then((result) {
-//        debugPrint('deposit info result: $result');
+        // debugPrint('deposit info result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (list) {
@@ -188,14 +188,17 @@ abstract class _DepositStore with Store {
               List<PaymentTypeData> types = paymentTypes
                   .firstWhere((type) => type.key == 1, orElse: () => null)
                   ?.data;
-              // filtered out unavailable bank options
-              infoList = List.of(list)
-                ..removeWhere((info) =>
-                    types.any(
-                        (data) => data.bankAccountId == info.bankAccountId) ==
-                    false);
+              // debugPrint('local payment types: $types');
+              // debugPrint('local deposit info: $list');
+              // mark data which has valid bank info
+              infoList = list
+                  .map((e) => e.copyWith(
+                        hasBankInfo: types.any(
+                            (data) => data.bankAccountId == e.bankAccountId),
+                      ))
+                  .toList();
             }
-//            debugPrint('deposit info: $infoList');
+            // debugPrint('deposit info list: $infoList');
           },
         );
       });

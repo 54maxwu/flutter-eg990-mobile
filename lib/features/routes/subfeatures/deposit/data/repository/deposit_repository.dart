@@ -193,19 +193,22 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, List<DepositInfo>>> getDepositInfo() async {
-    final result = await requestModel<RequestCodeModel>(
+    final result = await requestData(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_INFO,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
     return result.fold(
       (failure) => Left(failure),
-      (data) => Right(JsonUtil.decodeMapToModelList(
-          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
-          addKey: false)),
+      (data) => Right(
+        JsonUtil.decodeMapToModelList(
+          data,
+          (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
+          addKey: false,
+        ),
+      ),
     );
   }
 }

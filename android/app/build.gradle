@@ -93,42 +93,14 @@ android {
         debug {
             debuggable true
             minifyEnabled true
-            useProguard true // set to true for VLC player
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            useProguard true // set to true for VLC player
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "EG990 Test"
             versionNameSuffix "T"
-            applicationIdSuffix ".debug" // separate app on install
+//            applicationIdSuffix ".debug" // separate app on install
         }
     }
-
-//    flavorDimensions "appType"
-//
-//    productFlavors {
-//        dev {
-//            dimension "appType"
-//            resValue "string", "app_name", "EG990 V2 Test"
-//            versionNameSuffix "T"
-//            applicationIdSuffix ".debug"
-//        }
-//        prod {
-//            dimension "appType"
-//            versionNameSuffix "R"
-//            resValue "string", "app_name", "EG990 V2"
-//        }
-//    }
 }
-
-//android.applicationVariants.all { variants ->
-//    // Change Application Name by BuildType
-//    switch (variants.getBuildType().name) {
-//        case 'debug':
-//            resValue "string", "app_name", "TYMobile2 Test"
-//            break
-//        default:
-//            resValue "string", "app_name", "添运国际"
-//            break
-//    }
-//}
 
 def readKeystoreProperties() {
     def propsFile = rootProject.file('keystore.properties')
@@ -157,7 +129,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

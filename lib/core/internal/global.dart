@@ -20,6 +20,8 @@ class Global {
 
   static String get localeCode => _locale.value.code;
 
+  static bool get isLocaleChinese => _locale == LanguageCode.zh;
+
   static set setLocale(String localeCode) =>
       _locale = LanguageCode.getByCode(localeCode);
 

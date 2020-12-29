@@ -1,3 +1,5 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
@@ -37,12 +39,14 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 
   final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =
       new GlobalKey(debugLabel: 'name');
+  final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
+      new GlobalKey(debugLabel: 'account');
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
 
   final double _fieldInset = 56.0;
   final double _titleWidthFactor = 0.35;
-//  double _valueTextPadding;
+  double _valueTextPadding;
 
   List<String> _bankNames;
   List<int> _bankIds;
@@ -52,7 +56,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
   int _bankSelected = -1;
   int _promoSelected = -1;
   int _methodSelected = 1;
-//  int _amountVnd = 0;
+  int _amountVnd = 0;
 
   void _validateForm() {
     final form = _formKey.currentState;
@@ -66,7 +70,10 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
           bankIndex: _localData.bankIndex,
           bankId: _localData.bankAccountId,
           methodId: _methodSelected,
+          gateway: "1",
           promoId: _promoSelected,
+          localBank: _bankSelected,
+          localBankCard: _accountFieldKey.currentState.getInput,
         );
         if (dataForm.isValid == false) {
           callToast(localeStr.messageActionFillForm);
@@ -82,41 +89,43 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
   }
 
   void _updateSelected() {
-    if (_selectedBankInfo != null) {
-      _localData = widget.dataList.firstWhere((element) =>
-          element.bankAccountId == _selectedBankInfo.bankAccountId);
-    } else {
-      _localData = widget.dataList
-          .firstWhere((element) => element is PaymentTypeLocalData);
+    if (widget.infoList != null && widget.infoList.isNotEmpty) {
+      _selectedBankInfo ??= widget.infoList.first;
     }
+    // debugPrint('available local payments: ${widget.dataList}');
+    if (_selectedBankInfo != null && _selectedBankInfo.hasBankInfo) {
+      _localData = widget.dataList.firstWhere(
+        (element) => element.bankAccountId == _selectedBankInfo.bankAccountId,
+        orElse: () => null,
+      );
+    }
+    debugPrint('selected local payment: $_localData');
   }
 
   void _generateBankDataList() {
     debugPrint('bank map: ${widget.bankMap}');
-    _bankNames = widget.bankMap.values.toList()..sort();
-    // debugPrint('bank names sorted: $_bankNames\n');
-    _bankIds = _bankNames
-        .map((value) =>
-            widget.bankMap.entries
-                .firstWhere((element) => element.value == value,
-                    orElse: () => null)
-                ?.key ??
-            -1)
-        .toList()
-          ..removeWhere((element) => element == -1);
-    // debugPrint('bank ids sorted: $_bankIds\n');
+    if (widget.bankMap != null && widget.bankMap.isNotEmpty) {
+      _bankNames = widget.bankMap.values.toList()..sort();
+      // debugPrint('bank names sorted: $_bankNames\n');
+      _bankIds = _bankNames
+          .map((value) =>
+              widget.bankMap.entries
+                  .firstWhere((element) => element.value == value,
+                      orElse: () => null)
+                  ?.key ??
+              -1)
+          .toList()
+            ..removeWhere((element) => element == -1);
+      // debugPrint('bank ids sorted: $_bankIds\n');
+      _bankSelected = _bankIds.first;
+    }
   }
 
   @override
   void initState() {
-//    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
-//            _titleWidthFactor -
-//        ThemeInterface.minusSize;
-
-    if (widget.infoList.isNotEmpty) {
-      _selectedBankInfo = widget.infoList.first;
-    }
-    _bankSelected = widget.bankMap.keys.first;
+    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
+            _titleWidthFactor -
+        ThemeInterface.minusSize;
     _generateBankDataList();
     _updateSelected();
     super.initState();
@@ -124,7 +133,10 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.dataList == null || widget.dataList.isEmpty) {
+    if (widget.dataList == null ||
+        widget.dataList.isEmpty ||
+        _selectedBankInfo == null ||
+        _localData == null) {
       return Center(
         child: WarningDisplay(
           message: Failure.server().message,
@@ -148,6 +160,101 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ///
+            /// Bank Option
+            ///
+            if (widget.infoList != null && widget.infoList.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: CustomizeDropdownWidget(
+                  prefixText: localeStr.depositPaymentSpinnerTitleBank,
+                  titleWidthFactor: _titleWidthFactor,
+                  horizontalInset: _fieldInset,
+                  optionValues: widget.infoList,
+                  optionStrings:
+                      widget.infoList.map((e) => e.bankAccountName).toList(),
+                  changeNotify: (data) {
+                    // clear text field focus
+                    FocusScope.of(context).unfocus();
+                    debugPrint('selected target: $data');
+                    setState(() {
+                      _selectedBankInfo = data;
+                    });
+                    _updateSelected();
+                  },
+                ),
+              ),
+
+            ///
+            /// Deposit Info Area
+            ///
+            if (!_selectedBankInfo.hasBankInfo)
+              Padding(
+                padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 4.0),
+                child: Text(
+                  localeStr.depositHintTextAccount,
+                  style: TextStyle(color: themeColor.defaultHintSubColor),
+                ),
+              ),
+            if (_selectedBankInfo.hasBankInfo)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: DottedBorder(
+                  color: themeColor.hintHighlight.withAlpha(108),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: RichText(
+                          textAlign: TextAlign.left,
+                          text: TextSpan(
+                            style: TextStyle(
+                              color: themeColor.hintHighlight,
+                              fontSize: FontSize.NORMAL.value,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '${localeStr.bankcardViewTitleBank}: ',
+                                style: TextStyle(
+                                  color: themeColor.defaultHintColor,
+                                  fontSize: FontSize.NORMAL.value,
+                                ),
+                              ),
+                              TextSpan(
+                                  text:
+                                      '${_selectedBankInfo.bankAccountName}\r\r\r\r'),
+                              TextSpan(
+                                text:
+                                    '${localeStr.bankcardViewTitleCardNumber}: ',
+                                style: TextStyle(
+                                  color: themeColor.defaultHintColor,
+                                  fontSize: FontSize.NORMAL.value,
+                                ),
+                              ),
+                              TextSpan(
+                                  text:
+                                      '${_selectedBankInfo.bankAccountNo}\r\r\r\r'),
+                              TextSpan(
+                                text: '${localeStr.bankcardViewTitleOwner}: ',
+                                style: TextStyle(
+                                  color: themeColor.defaultHintColor,
+                                  fontSize: FontSize.NORMAL.value,
+                                ),
+                              ),
+                              TextSpan(
+                                text: '${_selectedBankInfo.accountName}',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+            ///
             /// Promo Option
             ///
             Padding(
@@ -166,52 +273,6 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                 },
               ),
             ),
-
-            ///
-            /// Bank Option
-            ///
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: CustomizeDropdownWidget(
-                prefixText: localeStr.depositPaymentSpinnerTitleBank,
-                titleWidthFactor: _titleWidthFactor,
-                horizontalInset: _fieldInset,
-                optionValues: _bankIds,
-                optionStrings: _bankNames,
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  debugPrint(
-                      'selected bank: $data, label: ${widget.bankMap[data]}');
-                  _bankSelected = data;
-                },
-              ),
-            ),
-
-            ///
-            /// Deposit Info Area
-            ///
-            if (widget.infoList.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 4.0),
-                child: RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                    style: TextStyle(
-                        color: themeColor.hintHighlight,
-                        fontSize: FontSize.NORMAL.value),
-                    children: <TextSpan>[
-                      TextSpan(text: '${localeStr.bankcardViewTitleBank}: '),
-                      TextSpan(text: '${_selectedBankInfo.bankAccountName}, '),
-                      TextSpan(
-                          text: '${localeStr.bankcardViewTitleCardNumber}: '),
-                      TextSpan(text: '${_selectedBankInfo.bankAccountNo}, '),
-                      TextSpan(text: '${localeStr.bankcardViewTitleOwner}: '),
-                      TextSpan(text: '${_selectedBankInfo.accountName}'),
-                    ],
-                  ),
-                ),
-              ),
 
             ///
             /// Method Option
@@ -234,6 +295,27 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             ),
 
             ///
+            /// Bank Option
+            ///
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: CustomizeDropdownWidget(
+                prefixText: localeStr.depositPaymentSpinnerTitleAccountBank,
+                titleWidthFactor: _titleWidthFactor,
+                horizontalInset: _fieldInset,
+                optionValues: _bankIds,
+                optionStrings: _bankNames,
+                changeNotify: (data) {
+                  // clear text field focus
+                  FocusScope.of(context).unfocus();
+                  debugPrint(
+                      'selected bank: $data, label: ${widget.bankMap[data]}');
+                  _bankSelected = data;
+                },
+              ),
+            ),
+
+            ///
             /// Name Input Field
             ///
             Padding(
@@ -245,37 +327,40 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                 prefixText: localeStr.depositPaymentEditTitleName,
                 titleWidthFactor: _titleWidthFactor,
                 horizontalInset: _fieldInset,
-                titleLetterSpacing: 1.0,
                 maxInputLength: InputLimit.NAME_MAX,
                 errorMsg: localeStr.messageInvalidDepositName,
                 validCondition: (value) => rangeCheck(
-                    value: value.length,
-                    min: InputLimit.NAME_MIN,
-                    max: InputLimit.NAME_MAX),
+                  value: value.length,
+                  min: InputLimit.NAME_MIN,
+                  max: InputLimit.NAME_MAX,
+                ),
               ),
             ),
 
             ///
             /// Account Input Field
             ///
-//            Padding(
-//              padding: const EdgeInsets.only(top: 8.0),
-//              child: new CustomizeFieldWidget(
-//                key: _accountFieldKey,
-//                hint: localeStr.depositPaymentEditTitleAccountHint,
-//                persistHint: false,
-//                prefixText: localeStr.depositPaymentEditTitleAccount,
-//                titleWidthFactor: _titleWidthFactor,
-//                horizontalInset: _fieldInset,
-//                maxInputLength: InputLimit.CARD_MAX,
-//                errorMsg: localeStr.messageInvalidCardNumber,
-//                validCondition: (value) => rangeCheck(
-//                  value: value.length,
-//                  min: InputLimit.CARD_MIN,
-//                  max: InputLimit.CARD_MAX,
-//                ),
-//              ),
-//            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: new CustomizeFieldWidget(
+                key: _accountFieldKey,
+                hint: localeStr.depositPaymentEditTitleAccountHint,
+                persistHint: false,
+                prefixText: localeStr.depositPaymentEditTitleAccount,
+                titleWidthFactor: _titleWidthFactor,
+                horizontalInset: _fieldInset,
+                maxInputLength: InputLimit.CARD_MAX,
+                errorMsg: localeStr.messageInvalidCardNumber(
+                  InputLimit.CARD_MIN,
+                  InputLimit.CARD_MAX,
+                ),
+                validCondition: (value) => rangeCheck(
+                  value: value.length,
+                  min: InputLimit.CARD_MIN,
+                  max: InputLimit.CARD_MAX,
+                ),
+              ),
+            ),
 
             ///
             /// Amount Input Field
@@ -315,32 +400,32 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             ///
             /// VND Amount Hint
             ///
-//            Padding(
-//              padding: EdgeInsets.fromLTRB(_valueTextPadding, 24.0, 0.0, 16.0),
-//              child: Text(
-//                localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
-//                style: TextStyle(color: themeColor.defaultHintColor),
-//              ),
-//            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(_valueTextPadding, 8.0, 0.0, 16.0),
+              child: Text(
+                localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
+                style: TextStyle(color: themeColor.defaultHintSubColor),
+              ),
+            ),
 
             ///
             /// Note Input Field
             ///
-//            Padding(
-//              padding: const EdgeInsets.only(top: 8.0),
-//              child: new CustomizeFieldWidget(
-//                key: _noteFieldKey,
-//                hint: localeStr.depositPaymentEditTitleNote,
-//                persistHint: false,
-//                prefixText: localeStr.depositPaymentEditTitleNote,
-//                titleWidthFactor: _titleWidthFactor,
-//                horizontalInset: _fieldInset,
-//                maxInputLength: InputLimit.NOTE_MAX,
-//                errorMsg: localeStr.messageInvalidFormat,
-//                validCondition: (value) =>
-//                    rangeCheck(value: value.length, min: 0, max: 20),
-//              ),
-//            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 8.0),
+            //   child: new CustomizeFieldWidget(
+            //     key: _noteFieldKey,
+            //     hint: localeStr.depositPaymentEditTitleNote,
+            //     persistHint: false,
+            //     prefixText: localeStr.depositPaymentEditTitleNote,
+            //     titleWidthFactor: _titleWidthFactor,
+            //     horizontalInset: _fieldInset,
+            //     maxInputLength: InputLimit.NOTE_MAX,
+            //     errorMsg: localeStr.messageInvalidFormat,
+            //     validCondition: (value) =>
+            //         rangeCheck(value: value.length, min: 0, max: 20),
+            //   ),
+            // ),
 
             ///
             /// Amount Limit Hint

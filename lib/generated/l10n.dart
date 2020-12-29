@@ -875,6 +875,26 @@ class S {
     );
   }
 
+  /// `Next Step`
+  String get btnNextStep {
+    return Intl.message(
+      'Next Step',
+      name: 'btnNextStep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get btnPreStep {
+    return Intl.message(
+      'Back',
+      name: 'btnPreStep',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Return`
   String get sideBtnBackHome {
     return Intl.message(
@@ -1185,10 +1205,10 @@ class S {
     );
   }
 
-  /// `Please fill the form`
+  /// `Please check your input and fill in all the required info`
   String get messageActionFillForm {
     return Intl.message(
-      'Please fill the form',
+      'Please check your input and fill in all the required info',
       name: 'messageActionFillForm',
       desc: '',
       args: [],
@@ -1565,13 +1585,23 @@ class S {
     );
   }
 
-  /// `The card number is 6~19 characters`
-  String get messageInvalidCardNumber {
+  /// `Card number should be {min}~{max} characters`
+  String messageInvalidCardNumber(Object min, Object max) {
     return Intl.message(
-      'The card number is 6~19 characters',
+      'Card number should be $min~$max characters',
       name: 'messageInvalidCardNumber',
       desc: '',
-      args: [],
+      args: [min, max],
+    );
+  }
+
+  /// `Card number should be {min}~{max} characters and starts with {fixed}`
+  String messageInvalidCardNumberFixed(Object min, Object max, Object fixed) {
+    return Intl.message(
+      'Card number should be $min~$max characters and starts with $fixed',
+      name: 'messageInvalidCardNumberFixed',
+      desc: '',
+      args: [min, max, fixed],
     );
   }
 
@@ -4225,16 +4255,6 @@ class S {
     );
   }
 
-  /// `Remarks`
-  String get depositPaymentEditTitleNote {
-    return Intl.message(
-      'Remarks',
-      name: 'depositPaymentEditTitleNote',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Range: {num}~{num2}`
   String depositPaymentEditTitleAmountHintRange(Object num, Object num2) {
     return Intl.message(
@@ -4252,6 +4272,36 @@ class S {
       name: 'depositPaymentEditTitleAmountHintRangeStep',
       desc: '',
       args: [num, num2, num3],
+    );
+  }
+
+  /// `Transaction Code`
+  String get depositPaymentEditTitleCode {
+    return Intl.message(
+      'Transaction Code',
+      name: 'depositPaymentEditTitleCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter the transaction code`
+  String get depositPaymentEditHintCode {
+    return Intl.message(
+      'please enter the transaction code',
+      name: 'depositPaymentEditHintCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remarks`
+  String get depositPaymentEditTitleNote {
+    return Intl.message(
+      'Remarks',
+      name: 'depositPaymentEditTitleNote',
+      desc: '',
+      args: [],
     );
   }
 
@@ -4495,11 +4545,21 @@ class S {
     );
   }
 
-  /// `Recharge failed, please try again later or contact customer service`
+  /// `Deposit failed, please try again later or contact customer service`
   String get depositMessageFailed {
     return Intl.message(
-      'Recharge failed, please try again later or contact customer service',
+      'Deposit failed, please try again later or contact customer service',
       name: 'depositMessageFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit info error, please re-select the payment method or contact customer service`
+  String get depositMessageFormError {
+    return Intl.message(
+      'Deposit info error, please re-select the payment method or contact customer service',
+      name: 'depositMessageFormError',
       desc: '',
       args: [],
     );

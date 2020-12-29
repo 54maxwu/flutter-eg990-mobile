@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "ขั้นตอนต่อไป",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "ก่อนหน้า",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "ย้อนกลับ",
   "@sideBtnBackHome": {
     "type": "text"
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "กรุณากรอกแบบฟอร์ม",
+  "messageActionFillForm": "โปรดยืนยันข้อมูลฟิลด์และกรอกข้อมูลให้ครบถ้วน",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -712,9 +720,32 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "หมายเลขบัตรคือ 6~19 อักขระ",
+  "messageInvalidCardNumber": "หมายเลขการ์ดคือ {min}~{max} ตัวอักษร",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "หมายเลขการ์ดคือ {min}~{max} ตัวอักษร (ขึ้นต้นด้วย {fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "ชื่อต้องมีความยาวมากกว่า 3 อักขระ",
   "@messageInvalidCardBankPoint": {
@@ -1814,10 +1845,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "หมายเหตุ",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "ช่วง: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1844,6 +1871,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "รหัสธุรกรรม",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "กรุณากรอกรหัสธุรกรรม",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "หมายเหตุ",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "บทช่วยสอน",
   "@depositPaymentButtonTitleTutorial": {
@@ -2003,6 +2042,10 @@
   },
   "depositMessageFailed": "การเติมเงินล้มเหลวโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "ข้อมูลการเติมเงินไม่ถูกต้องโปรดเลือกวิธีการเติมเงินใหม่หรือติดต่อฝ่ายบริการลูกค้า",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "ขอความสำเร็จหมายเลขคำสั่งซื้อ {value}",
@@ -2211,7 +2254,7 @@
   "@rollbackIndexDeposit": {
     "type": "text"
   },
-  "rollbackIndexRollback": "退水",
+  "rollbackIndexRollback": "ล่าถอย",
   "@rollbackIndexRollback": {
     "type": "text"
   },

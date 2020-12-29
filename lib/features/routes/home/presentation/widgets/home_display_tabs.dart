@@ -169,6 +169,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
   Widget _buildTabBar(HomeStore store) {
     _tabKeyMap = new Map();
     _tabItemMap = new Map();
+    if (widget.tabs == null) return Container();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6.0),
       child: Row(

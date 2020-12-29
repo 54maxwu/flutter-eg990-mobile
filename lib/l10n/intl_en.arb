@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "Next Step",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "Back",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "Return",
   "@sideBtnBackHome": {
     "type": "text"
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "Please fill the form",
+  "messageActionFillForm": "Please check your input and fill in all the required info",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -712,9 +720,32 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 6~19 characters",
+  "messageInvalidCardNumber": "Card number should be {min}~{max} characters",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "Card number should be {min}~{max} characters and starts with {fixed}",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "The name must be greater than 3 characters",
   "@messageInvalidCardBankPoint": {
@@ -1814,10 +1845,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "Remarks",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "Range: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1844,6 +1871,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "Transaction Code",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "please enter the transaction code",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "Remarks",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "Tutorial",
   "@depositPaymentButtonTitleTutorial": {
@@ -2001,8 +2040,12 @@
       }
     }
   },
-  "depositMessageFailed": "Recharge failed, please try again later or contact customer service",
+  "depositMessageFailed": "Deposit failed, please try again later or contact customer service",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "Deposit info error, please re-select the payment method or contact customer service",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "Request Success, Order No.{value}",

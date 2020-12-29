@@ -404,7 +404,13 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     // clear text field focus
                     FocusScope.of(context).unfocus();
                     // validate and send request
-                    _validateForm();
+                    if (_showAccountError ||
+                        _showPasswordError ||
+                        _showConfirmError) {
+                      callToastError(localeStr.messageActionFillForm);
+                    } else {
+                      _validateForm();
+                    }
                   },
                 ),
               ),

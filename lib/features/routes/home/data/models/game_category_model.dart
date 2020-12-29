@@ -86,22 +86,8 @@ const Map<String, GameCategory> _categoryMap = {
 
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
-
   String get iconUrl => info.value.imageUrl ?? '';
-  String get assetPath => info.value.assetPath;
+  String get assetPath => info.value.assetPath ?? '';
+  IconData get iconData => info.value.iconData;
   GamePageType get pageType => info.value.pageType;
-
-  IconData get iconCode {
-//    debugPrint('looking for icon code: $type');
-    switch (type) {
-      case 'promo':
-        return IconCode.navPromo;
-      case 'movieweb':
-        return IconCode.tabMovieWebsite;
-      case 'website':
-        return IconCode.tabWebsite;
-      default:
-        return IconCode.tabUnknown;
-    }
-  }
 }

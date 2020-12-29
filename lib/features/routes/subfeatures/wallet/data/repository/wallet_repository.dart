@@ -1,5 +1,6 @@
 import 'dart:async' show StreamController;
 
+import 'package:dio/dio.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
 
 import '../models/wallet_model.dart';
@@ -21,6 +22,7 @@ abstract class WalletRepository {
   Future<Either<Failure, Map<String, dynamic>>> postTransferAll(
     StreamController<String> progressController,
   );
+  void cancelTransferAll();
 }
 
 class WalletRepositoryImpl implements WalletRepository {
@@ -32,6 +34,8 @@ class WalletRepositoryImpl implements WalletRepository {
       {@required this.dioApiService, @required this.jwtInterface}) {
     Future.sync(() => jwtInterface.checkJwt('/'));
   }
+
+  CancelToken _transferAllToken;
 
   @override
   Future<Either<Failure, WalletModel>> getWallet() async {
@@ -138,6 +142,7 @@ class WalletRepositoryImpl implements WalletRepository {
   ) async {
     List platforms = await _getPromiseList();
     if (platforms != null && platforms.isNotEmpty) {
+      _transferAllToken = new CancelToken();
       final result = await Future.microtask(
         () => dioApiService.postList(
           WalletApi.POST_TRANSFER,
@@ -151,6 +156,7 @@ class WalletRepositoryImpl implements WalletRepository {
           keyList: platforms,
           stream: progressController,
           userToken: jwtInterface.token,
+          cancelToken: _transferAllToken,
         ),
       ).catchError((e) => null);
       return Right(result);
@@ -160,4 +166,7 @@ class WalletRepositoryImpl implements WalletRepository {
       return Left(Failure.server());
     }
   }
+
+  @override
+  void cancelTransferAll() => dioApiService.cancelRequests(_transferAllToken);
 }

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/widgets.dart'
     show EdgeInsets, MediaQueryData, Orientation;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/ga_interface.dart';
+import 'package:flutter_eg990_mobile/firebase_interface.dart';
 import 'package:package_info/package_info.dart';
 import 'package:uuid/uuid.dart';
 
@@ -107,7 +107,7 @@ class Device {
   String get appVersionOrigin =>
       'Version:${packageInfo.version} Build:${packageInfo.buildNumber}';
   String get appVersionSide =>
-      '$_version${(GaInterface.isAnalyzing) ? ' (GA)' : ''}';
+      '$_version${(FirebaseInterface.isAnalyzing) ? ' (GA)' : ''}';
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;

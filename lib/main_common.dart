@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/language_code.dart';
@@ -18,7 +19,7 @@ import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
 import 'injection_container.dart' as di;
-import 'ga_interface.dart';
+import 'firebase_interface.dart';
 
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
@@ -27,8 +28,10 @@ Future<void> mainCommon(Environment env) async {
   // Load the JSON config into memory
   await ConfigReader.initialize();
   switch (env) {
+    case Environment.DEV:
     case Environment.FIREBASE:
-      GaInterface.setAnalytics = new FirebaseAnalytics();
+      FirebaseInterface.setAnalytics = new FirebaseAnalytics();
+      FirebaseInterface.setMessaging = new FirebaseMessaging();
       break;
     default:
       // debugPrint('DEV Config Version: ${ConfigReader.getVersion()}');
@@ -95,9 +98,10 @@ Future<void> mainCommon(Environment env) async {
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
-  if (env == Environment.FIREBASE) {
+  if (FirebaseInterface.isAnalyzing) {
     // run application with Firebase
     runApp(new MainAppWithFirebase());
+    FirebaseInterface.askPermission();
   } else {
     // run application
     runApp(new MainApp());

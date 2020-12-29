@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "Bước tiếp theo",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "Trước",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "Trang Chủ",
   "@sideBtnBackHome": {
     "type": "text"
@@ -437,7 +445,7 @@
   "@hintPassword": {
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8~20 ký tự",
+  "hintConfirmed": "Độ dài từ 8 ~ 18 ký tự",
   "@hintConfirmed": {
     "type": "text"
   },
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "Vui lòng hoàn thành",
+  "messageActionFillForm": "Vui lòng xác nhận thông tin trường và hoàn thành",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -712,9 +720,32 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 6~19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là {min}~{max} ký tự",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "Số thẻ là {min}~{max} ký tự (bắt đầu bằng {fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "Tên phải nhiều hơn 3 ký tự",
   "@messageInvalidCardBankPoint": {
@@ -1729,7 +1760,7 @@
   "@depositPaymentNoData": {
     "type": "text"
   },
-  "depositPaymentTitleBank": "Nạp tiền ngân hàng",
+  "depositPaymentTitleBank": "Ngân hàng điện tử",
   "@depositPaymentTitleBank": {
     "type": "text"
   },
@@ -1761,7 +1792,7 @@
   "@depositPaymentTitleWechat": {
     "type": "text"
   },
-  "depositPaymentTitleAtm": "Chuyển khoản ngân hàng trực tuyến",
+  "depositPaymentTitleAtm": "Chuyển tại ATM",
   "@depositPaymentTitleAtm": {
     "type": "text"
   },
@@ -1814,10 +1845,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "Nhận xét",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "{num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1844,6 +1871,19 @@
         "example": "50"
       }
     }
+  },
+
+  "depositPaymentEditTitleCode": "Mã giao dịch",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "Vui lòng điền mã giao dịch",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "Nhận xét",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "Nhấp vào tôi để xem giảng dạy",
   "@depositPaymentButtonTitleTutorial": {
@@ -2003,6 +2043,10 @@
   },
   "depositMessageFailed": "Nạp tiền không thành công, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "Thông tin nạp tiền bị sai, vui lòng chọn lại phương thức nạp tiền hoặc liên hệ bộ phận chăm sóc khách hàng",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "Đơn hàng đã được thiết lập, số đơn hàng: {value}",
@@ -2211,7 +2255,7 @@
   "@rollbackIndexDeposit": {
     "type": "text"
   },
-  "rollbackIndexRollback": "退水",
+  "rollbackIndexRollback": "Rút lui",
   "@rollbackIndexRollback": {
     "type": "text"
   },

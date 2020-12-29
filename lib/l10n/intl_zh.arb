@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "下一步",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "上一步",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "回首页",
   "@sideBtnBackHome": {
     "type": "text"
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "请填写完整",
+  "messageActionFillForm": "请确认栏位信息并填写完整",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -712,9 +720,32 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "卡号为6~19个字",
+  "messageInvalidCardNumber": "卡号为{min}~{max}个字",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "卡号为{min}~{max}个字(开头为{fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "名称需大于3个字",
   "@messageInvalidCardBankPoint": {
@@ -1814,10 +1845,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "备注",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "输入范围:{num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1844,6 +1871,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "交易码",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "请填写交易码",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "备注",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "点我看教学",
   "@depositPaymentButtonTitleTutorial": {
@@ -2003,6 +2042,10 @@
   },
   "depositMessageFailed": "充值失败，请稍候重试或联系客服",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "充值信息错误，请重新选择充值方式或联系客服",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "訂單已成立，訂單編號：{value}",

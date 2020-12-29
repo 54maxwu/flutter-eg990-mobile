@@ -166,9 +166,9 @@ class DioApiService {
     StreamController<String> stream,
   }) async {
     try {
-      for (int i = 0; i < keyList.length; i++) {
-        debugPrint('$i: ${keyList[i]}');
-      }
+      // for (int i = 0; i < keyList.length; i++) {
+      //   debugPrint('$i: ${keyList[i]}');
+      // }
       Map<String, dynamic> resultMap = new Map();
       int index = 0;
       debugPrint(
@@ -182,9 +182,7 @@ class DioApiService {
             .post(url,
                 data: data,
                 options: (userToken != null)
-                    ? Options(headers: {
-                        'JWT-TOKEN': userToken,
-                      })
+                    ? Options(headers: {'JWT-TOKEN': userToken})
                     : options,
                 cancelToken: cancelToken)
             .catchError((error) {
