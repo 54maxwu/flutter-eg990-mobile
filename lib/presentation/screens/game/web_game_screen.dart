@@ -5,7 +5,7 @@ import 'package:flutter_eg990_mobile/application/global.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:flutter_eg990_mobile/presentation/common/toast_widget_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toasts.dart';
 import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -183,7 +183,7 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
                   pageTitle.contains('Exception')) {
                 controller.loadUrl(
                   url: Uri.dataFromString(
-                    '<p>${localeStr.messageErrorLoadingPay}. <br>Code: $code. Message: $message. <br>URL: $url</p>',
+                    '<p>${localeStr.errorLoadingPayUrl}. <br>Code: $code. Message: $message. <br>URL: $url</p>',
                     mimeType: Global.WEB_MIMETYPE,
                     encoding: Global.webEncoding,
                   ).toString(),

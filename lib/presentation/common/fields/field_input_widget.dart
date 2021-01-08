@@ -230,12 +230,11 @@ class FieldInputWidgetState extends State<FieldInputWidget> {
         ];
       case FieldInputType.Password:
         return [
-          _withoutChineseInputFormatter,
+          _passwordInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
       default:
         return [
-//          _normalInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
     }

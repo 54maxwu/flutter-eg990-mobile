@@ -40,7 +40,7 @@ class HomeDisplayBannerState extends State<HomeDisplayBanner> {
         alignment: Alignment.center,
         margin: const EdgeInsets.only(bottom: 34.0),
         child: WarningDisplay(
-          message: localeStr.messageErrorNoServerConnection,
+          message: localeStr.errorNoServerConnection,
           widthFactor: 1,
           largerText: true,
           highlight: true,

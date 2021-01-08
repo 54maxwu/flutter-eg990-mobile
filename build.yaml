@@ -8,8 +8,8 @@ targets:
 #          - test/**_test.dart
         options:
           formatted: true
-      flutter_eg990_mobile|dataclass:
-        enabled: true
+#      flutter_eg990_mobile|dataclass:
+#        enabled: true
 #      flutter_eg990_mobile|autoRouteGenerator:
 #        generate_for:
 #          - lib/features/router/router.dart
@@ -18,14 +18,14 @@ targets:
 #        options:
 #          formatted: true
 
-builders:
-  dataclass:
-    import: "package:flutter_eg990_mobile/builders/dataclass/dataclass_generator.dart"
-    builder_factories: ["dataClass"]
-    build_extensions: {'.dart': ['.g.part']}
-    auto_apply: root_package
-    build_to: cache
-    applies_builders: ["source_gen|combining_builder"]
+#builders:
+#  dataclass:
+#    import: "package:flutter_eg990_mobile/builders/dataclass/dataclass_generator.dart"
+#    builder_factories: ["dataClass"]
+#    build_extensions: {'.dart': ['.g.part']}
+#    auto_apply: root_package
+#    build_to: cache
+#    applies_builders: ["source_gen|combining_builder"]
 #  to_string:
 #    import: "package:flutter_eg990_mobile/builders/tostring/to_string_generator.dart"
 #    builder_factories: ["toString"]

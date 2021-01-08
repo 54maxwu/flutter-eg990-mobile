@@ -56,19 +56,19 @@ class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   String get label {
     switch (value.category) {
       case 'All':
-        return localeStr.gameCategoryAll;
+        return localeStr.textCategoryAll;
       case 'fish':
-        return localeStr.gameCategoryFish;
+        return localeStr.textCategoryFish;
       case 'slot':
-        return localeStr.gameCategorySlot;
+        return localeStr.textCategorySlot;
       case 'live':
-        return localeStr.gameCategoryCasino;
+        return localeStr.textCategoryCasino;
       case 'sports':
-        return localeStr.gameCategorySport;
+        return localeStr.textCategorySport;
       case 'lotto':
-        return localeStr.gameCategoryLottery;
+        return localeStr.textCategoryLottery;
       case 'other':
-        return localeStr.gameCategoryOther;
+        return localeStr.textCategoryOther;
       default:
         return '???';
     }

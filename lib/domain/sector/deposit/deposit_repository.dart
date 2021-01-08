@@ -76,14 +76,13 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, List<DepositType>>> getTypes() async {
-    final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.get(
-        DepositApi.GET_PAYMENT,
-        userToken: jwtInterface.token,
-      ),
-      parseJson: RequestCodeModel.parseJson,
-      tag: 'remote-DEPOSIT',
-    );
+    // final result = await requestData(
+    //   request: dioApiService.get(
+    //     DepositApi.GET_PAYMENT,
+    //     userToken: jwtInterface.token,
+    //   ),
+    //   tag: 'remote-DEPOSIT',
+    // );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
 //     return result.fold(
 //       (failure) => Left(failure),

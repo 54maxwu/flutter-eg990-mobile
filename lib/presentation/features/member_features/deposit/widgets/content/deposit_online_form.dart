@@ -4,9 +4,9 @@ import 'package:flutter_eg990_mobile/domain/sector/deposit/form/deposit_form_dat
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/input_field.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
-import 'package:intl/intl.dart' show NumberFormat;
 
 class DepositOnlineFormWidget extends StatefulWidget {
   final OnDepositRequest onDepositRequest;
@@ -27,6 +27,8 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
       new GlobalKey(debugLabel: 'option');
   final GlobalKey<FieldInputWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
+
+  List<int> _chipsValue = [29, 51, 105, 503, 1002, 2007, 4996];
 
   DepositTargetBank _target = DepositTargetBank.pure();
   DepositInfo _info = DepositInfo.pure();
@@ -53,6 +55,8 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
         bankIndex: '${_selected.key}'.strToInt,
       ),
     );
+    _chipsValue.removeWhere((value) =>
+        value < _selected.min || (_selected.max > 0 && value > _selected.max));
   }
 
   @override
@@ -78,11 +82,11 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
                 ///
                 /// Bank Option
                 ///
-                FieldWrapperWidget.option(
+                FieldWrapperWidget.options(
                   prefixPadding: const EdgeInsets.only(top: 6.0),
                   fieldPadding: const EdgeInsets.only(top: 2.0),
                   prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentSpinnerTitleBank,
+                    prefixText: localeStr.fieldOptionTitlePaymentBank,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
@@ -125,27 +129,76 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
-                /// Amount Input Field
+                /// Amount Select
                 ///
-                FieldWrapperWidget(
+                Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  fieldPadding: const EdgeInsets.only(top: 2.0),
-                  prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentEditTitleAmount,
+                  child: FieldPrefixWidget.text(
+                    prefixText: localeStr.fieldTitleCreditAmount,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
                     ),
                   ),
+                ),
+                Divider(thickness: 0.2),
+
+                ///
+                /// Amount Chips
+                ///
+                FieldWrapperWidget.chips(
+                  padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
+                  chipsWrapperWidget: FieldChipsWrapperWidget(
+                    borderType: ChipsBorder.ROUNDED_RECTANGLE,
+                    spaceBetween: 10,
+                    values: _chipsValue,
+                    labels: _chipsValue
+                        .map((e) =>
+                            ValueUtil.toCreditSignFormat(e, floorToInt: true))
+                        .toList(growable: false),
+                    onChipTap: (value) {
+                      debugPrint('tap chip: $value');
+                      if (value >= 0) {
+                        _amountFieldKey.currentState?.setInput = '$value';
+                        _info = DepositInfo.dirty(
+                          data: DepositInfoData.online(
+                            amountData: ValueRangeData(
+                              value: value,
+                              min: _selected.min,
+                              max: _selected.max,
+                            ),
+                            gateway: '${_selected.gateway}',
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+
+                ///
+                /// Amount Input Field
+                ///
+                FieldWrapperWidget(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  prefixWidget: FieldPrefixWidget.text(
+                    prefixText: ValueUtil.creditSymbol,
+                    textStyle: TextStyle(
+                      fontSize: FontSize.MESSAGE.value,
+                      color: themeColor.defaultTextColor,
+                    ),
+                  ),
+                  prefixConstraint: BoxConstraints.tightFor(
+                      width: FontSize.MESSAGE.value * 1.5),
+                  prefixPadding: const EdgeInsets.only(top: 8.0),
                   inputWidget: FieldInputWidget(
                     key: _amountFieldKey,
                     inputType: FieldInputType.Numbers,
                     maxInputLength: '${_selected.max}'.length,
                     enableSuggestions: false,
                     inputDecoration: InputDecoration(
-                      hintText: localeStr
-                          .messageInvalidDepositAmountMin(_selected.min),
-                      hintStyle: TextStyle(
+                      labelText: localeStr.fieldHintDepositAmountRange(
+                          _selected.min, _selected.max),
+                      labelStyle: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                         color: themeColor.defaultHintColor,
                       ),
@@ -162,20 +215,7 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
                     ),
                     validator: (_) => _info.valid
                         ? null
-                        : localeStr.messageInvalidDepositAmount,
-                  ),
-                ),
-
-                ///
-                /// Amount Limit Hint
-                ///
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
-                  child: Text(
-                    localeStr.depositHintTextAmount(
-                        NumberFormat.simpleCurrency(decimalDigits: 0)
-                            .format(_selected.max)),
-                    style: TextStyle(color: themeColor.hintHighlight),
+                        : localeStr.fieldErrorInvalidCreditAmount,
                   ),
                 ),
                 Divider(thickness: 0.2),
@@ -211,7 +251,7 @@ class DepositOnlineFormWidgetState extends State<DepositOnlineFormWidget> {
                   debugPrint('deposit form is valid');
                   widget.onDepositRequest(form);
                 } else if (form.status.index == 0) {
-                  callToast(localeStr.messageActionFillForm);
+                  callToast(localeStr.msgFormNotFilled);
                 } else {
                   debugPrint(
                       'deposit form error: ${form.validate.getOrElse(() => null)}');

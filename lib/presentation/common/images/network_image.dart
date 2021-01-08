@@ -90,6 +90,7 @@ Future<Widget> networkImageWidget(
   Color color,
   bool addLoadingIcon = true,
 }) async {
+  // debugPrint('image path: $url, is url: ${url.isUrl}');
   String imageUrl = (url.isUrl)
       ? url
       : '${Global.CURRENT_BASE}$url'.replaceAll('//images/', '/images/');

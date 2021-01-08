@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_mobx_observer.dart';
 
 import '../state/login_store.dart';
 import 'login_form_widget.dart';
@@ -38,7 +39,7 @@ class _LoginDisplayState extends State<LoginDisplay> {
           }
           switch (state) {
             case LoginState.loading:
-              _toast = callToastLoading(message: localeStr.messageWait);
+              _toast = callToastLoading(message: localeStr.msgPleaseWait);
               break;
             case LoginState.complete:
               Future.delayed(Duration(milliseconds: 200), () {

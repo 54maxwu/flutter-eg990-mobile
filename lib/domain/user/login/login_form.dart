@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_eg990_mobile/domain/user/login/login_form_data.dart';
-import 'package:flutter_eg990_mobile/domain/user/login/login_form_hive.dart';
 import 'package:formz/formz.dart';
 import 'package:meta/meta.dart' show required, immutable;
+
+import 'login_form_data.dart';
+import 'login_form_hive.dart';
 
 @immutable
 class LoginForm with FormzMixin {

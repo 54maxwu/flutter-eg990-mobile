@@ -128,7 +128,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
           : IconButton(
               icon:
                   Icon(Icons.arrow_back, color: themeColor.drawerIconSubColor),
-              tooltip: localeStr.actionBack,
+              tooltip: localeStr.btnBack,
               onPressed: () {
                 Future.delayed(
                     Duration(milliseconds: 100), () => AppNavigator.back());
@@ -140,18 +140,18 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
         if (_actionType == AppBarActionType.SEARCH)
           IconButton(
             icon: Icon(Icons.search, color: themeColor.drawerIconSubColor),
-            tooltip: localeStr.actionSearch,
-            onPressed: () => callToastInfo(localeStr.workInProgress),
+            tooltip: localeStr.btnSearch,
+            onPressed: () => callToastInfo(localeStr.msgWorkInProgress),
           ),
         if (_actionType == AppBarActionType.TUTORIAL)
           GestureDetector(
-            onTap: () => callToastInfo(localeStr.workInProgress),
+            onTap: () => callToastInfo(localeStr.msgWorkInProgress),
             child: Padding(
               padding: const EdgeInsets.only(right: 4.0),
               child: Row(
                 children: [
                   Text(
-                    localeStr.actionHelp,
+                    localeStr.pageBtnHelp,
                     style: TextStyle(fontSize: FontSize.MESSAGE.value),
                   ),
                   Container(
@@ -165,14 +165,14 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
         if (_actionType == AppBarActionType.SETTINGS)
           IconButton(
             icon: Icon(Icons.settings, color: themeColor.drawerIconSubColor),
-            tooltip: localeStr.actionSetting,
-            onPressed: () => callToastInfo(localeStr.workInProgress),
+            tooltip: localeStr.pageBtnSetting,
+            onPressed: () => callToastInfo(localeStr.msgWorkInProgress),
           ),
         if (_actionType == AppBarActionType.MESSAGES ||
             _actionType == AppBarActionType.SETTINGS)
           IconButton(
             icon: Image.asset(Res.icon_colored_message, scale: 1.75),
-            tooltip: localeStr.actionNotify,
+            tooltip: localeStr.pageBtnNotify,
             onPressed: () => AppNavigator.navigateTo(RoutePage.notice_board),
           ),
       ],

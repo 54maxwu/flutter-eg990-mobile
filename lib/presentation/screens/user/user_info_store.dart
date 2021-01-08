@@ -14,7 +14,7 @@ abstract class _UserInfoStore with Store {
   _UserInfoStore(this._repository);
 
   /// Info
-  final String _creditResetStr = '$creditSymbol---';
+  final String _creditResetStr = '${ValueUtil.creditSymbol}---';
 
   LoginStatus _userStatus = LoginStatus(loggedIn: false);
 
@@ -52,7 +52,7 @@ abstract class _UserInfoStore with Store {
   void updateUser(LoginStatus status) {
     userName = (status.loggedIn) ? status.user.username.value : '';
     userCredit = (status.loggedIn)
-        ? formatValue(status.user.credit, creditSign: true)
+        ? ValueUtil.format(status.user.credit, addCreditSign: true)
         : '';
     if (status != _userStatus) {
       _userStatus = status;
@@ -70,7 +70,7 @@ abstract class _UserInfoStore with Store {
   /// if value is null or not passed in then reset.
   void updateOrResetCredit({String credit = ''}) {
     userCredit = (credit.isNotEmpty)
-        ? formatValue(userCredit, creditSign: true)
+        ? ValueUtil.format(userCredit, addCreditSign: true)
         : _creditResetStr;
   }
 

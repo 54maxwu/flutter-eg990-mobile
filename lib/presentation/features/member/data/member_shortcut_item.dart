@@ -27,13 +27,14 @@ class MemberShortcutItem extends Vnum<MemberShortcutData> {
   ));
   static const MemberShortcutItem deals =
       const MemberShortcutItem.define(MemberShortcutData(
-    id: RouteEnum.DEALS,
+    id: RouteEnum.TRANSFER_RECORD,
     assetPath: Res.f_icon_transfer_record,
     sType: MemberShortcutType.NORMAL,
   ));
   static const MemberShortcutItem accountCenter =
       const MemberShortcutItem.define(MemberShortcutData(
-    id: RouteEnum.ACCOUNT_CENTER,
+    id: RouteEnum.MEMBER_CENTER,
+    route: RoutePage.member_center,
     assetPath: Res.f_icon_account,
     sType: MemberShortcutType.NORMAL,
   ));

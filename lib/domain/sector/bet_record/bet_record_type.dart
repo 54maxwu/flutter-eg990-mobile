@@ -32,17 +32,17 @@ extension BetRecordTypeExtension on BetRecordType {
   String get label {
     switch (categoryType) {
       case 'casino':
-        return localeStr.gameCategoryCasino;
+        return localeStr.textCategoryCasino;
       case 'slot':
-        return localeStr.gameCategorySlot;
+        return localeStr.textCategorySlot;
       case 'sport':
-        return localeStr.gameCategorySport;
+        return localeStr.textCategorySport;
       case 'fish':
-        return localeStr.gameCategoryFish;
+        return localeStr.textCategoryFish;
       case 'lottery':
-        return localeStr.gameCategoryLottery;
+        return localeStr.textCategoryLottery;
       case 'card':
-        return localeStr.gameCategoryCard;
+        return localeStr.textCategoryCard;
       default:
         // ignore: deprecated_member_use_from_same_package
         return categoryName;

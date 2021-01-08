@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_info_widget.dart';
 
 import '../../state/deposit_store.dart';
 import '../deposit_display_provider.dart';
@@ -38,7 +39,7 @@ class _DepositContentOnlineState extends State<DepositContentOnline> {
           : DepositVirtualFormWidget(
               method: widget.method as DepositMethodVirtualData,
               onDepositRequest: (form) {
-                callToastInfo(localeStr.workInProgress);
+                callToastInfo(localeStr.msgWorkInProgress);
               },
             ),
     );

@@ -27,6 +27,7 @@ enum GameCategoryEnum {
   LOTTERY,
   CARD,
   UNDEFINE,
+  ESPORT,
 }
 
 @immutable
@@ -119,17 +120,19 @@ extension GameCategoryExtension on GameCategoryInfo {
   String get label {
     switch (id) {
       case GameCategoryEnum.CASINO:
-        return localeStr.gameCategoryCasino;
+        return localeStr.textCategoryCasino;
       case GameCategoryEnum.SLOT:
-        return localeStr.gameCategorySlot;
+        return localeStr.textCategorySlot;
       case GameCategoryEnum.SPORT:
-        return localeStr.gameCategorySport;
+        return localeStr.textCategorySport;
       case GameCategoryEnum.FISH:
-        return localeStr.gameCategoryFish;
+        return localeStr.textCategoryFish;
       case GameCategoryEnum.LOTTERY:
-        return localeStr.gameCategoryLottery;
+        return localeStr.textCategoryLottery;
       case GameCategoryEnum.CARD:
-        return localeStr.gameCategoryCard;
+        return localeStr.textCategoryCard;
+      case GameCategoryEnum.ESPORT:
+        return localeStr.textCategoryEsport;
       default:
         return '???';
     }

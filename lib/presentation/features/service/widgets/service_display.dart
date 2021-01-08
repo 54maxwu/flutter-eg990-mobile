@@ -5,6 +5,7 @@ import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/domain/sector/service/service_model.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 
 enum _ButtonType { OPEN, COPY }
 
@@ -53,35 +54,35 @@ class ServiceDisplay extends StatelessWidget {
           if (data.mail.isNotEmpty)
             _buildBox(
                 iconData: IconCode.csEmail,
-                title: localeStr.serviceTitleEmail,
+                title: localeStr.fieldTitleEmail,
                 content: data.mail,
                 data: data.mail,
                 buttonType: _ButtonType.COPY),
           if (data.phone.isNotEmpty)
             _buildBox(
                 iconData: IconCode.csPhone,
-                title: localeStr.serviceTitlePhone,
+                title: localeStr.fieldTitlePhone,
                 content: data.phone,
                 data: data.phone,
                 buttonType: _ButtonType.COPY),
           if (data.zalo.isNotEmpty)
             _buildBox(
                 iconData: IconCode.csZalo,
-                title: localeStr.serviceTitleZalo,
+                title: localeStr.fieldTitleZalo,
                 content: data.zalo,
                 data: data.zalo,
                 buttonType: _ButtonType.COPY),
           if (data.line.isNotEmpty)
             _buildBox(
                 imgUrl: 'images/icon_line.png',
-                title: localeStr.serviceTitleLine,
+                title: localeStr.fieldTitleLine,
                 content: data.line,
                 data: data.line,
                 buttonType: _ButtonType.COPY),
           if (data.fb.isNotEmpty)
             _buildBox(
                 iconData: IconCode.csFacebook,
-                title: localeStr.serviceTitleFacebook,
+                title: localeStr.fieldTitleFacebook,
                 content: data.fb,
                 data: data.fb,
                 buttonType: _ButtonType.OPEN),
@@ -93,7 +94,7 @@ class ServiceDisplay extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Text('Zalo QRCODE',
+                      Text(localeStr.serviceTitleZaloQr,
                           style: TextStyle(
                               fontSize: FontSize.SUBTITLE.value,
                               color: themeColor.defaultTextColor)),
@@ -108,7 +109,7 @@ class ServiceDisplay extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Text('App QRCODE',
+                      Text(localeStr.serviceTitleAppQr,
                           style: TextStyle(
                               fontSize: FontSize.SUBTITLE.value,
                               color: themeColor.defaultTextColor)),
@@ -126,7 +127,7 @@ class ServiceDisplay extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
-              child: Text(localeStr.serviceButtonContact,
+              child: Text(localeStr.pageBtnContactCs,
                   style: TextStyle(fontSize: FontSize.SUBTITLE.value)),
               onPressed: () {
                 // AppNavigator.navigateTo(RoutePage.serviceWeb,
@@ -196,10 +197,10 @@ class ServiceDisplay extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     text: TextSpan(
                       text: (buttonType == _ButtonType.OPEN)
-                          ? localeStr.btnGo
+                          ? localeStr.btnForwardTo
                           : localeStr.btnCopy,
                       style: TextStyle(
-                        fontSize: (Global.lang == 'vi')
+                        fontSize: (Global.localeCode == 'vi')
                             ? FontSize.MESSAGE.value
                             : FontSize.SUBTITLE.value,
                         color: themeColor.defaultTextColor,
@@ -210,7 +211,8 @@ class ServiceDisplay extends StatelessWidget {
                     debugPrint('button: $title, data: $data');
                     if (buttonType == _ButtonType.COPY) {
                       Clipboard.setData(new ClipboardData(text: data))
-                          .whenComplete(() => callToast(localeStr.messageCopy));
+                          .whenComplete(
+                              () => callToast(localeStr.msgCopyToClipboard));
                     }
                     // else {
                     //   AppNavigator.navigateTo(RoutePage.serviceWeb,

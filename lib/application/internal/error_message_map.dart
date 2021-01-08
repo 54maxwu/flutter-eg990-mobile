@@ -9,54 +9,92 @@ class MessageMap {
   static String getSuccessMessage(String msgKey, RouteEnum from) {
     if (msgKey != null && msgKey.isNotEmpty && msgKey.hasChinese) return msgKey;
     switch (from) {
-      case RouteEnum.LOGIN:
-        return localeStr.messageWelcomeUser(msgKey);
+      // case RouteEnum.AGENT_REGISTER:
+      //   return localeStr.agentRegisterSuccess;
       default:
         break;
     }
-    return localeStr.messageSuccess;
+    return localeStr.msgSuccess;
   }
 
   static String getErrorMessage(String msgKey, RouteEnum from) {
-    if (msgKey == null || msgKey.isEmpty) return localeStr.messageFailed;
+    if (msgKey == null || msgKey.isEmpty) return localeStr.msgFailed;
     if (msgKey.hasChinese) return msgKey;
+    // debugPrint('looking for error message: $msgKey');
     switch (msgKey) {
+      case 'dobBefore':
+        return localeStr.fieldErrorInvalidDate;
       case 'mobileRepeat':
-        return localeStr.messageRegisterFailed;
+        return localeStr.errorMobileAlreadyRegistered;
+      case 'mobileError':
+        return localeStr.errorInvalidMobile;
+      case 'agentCodeError':
+        return localeStr.errorInvalidReferral;
       case 'repeatAccount':
       case 'RepeatAccount':
       case 'accountRepeat':
-        return localeStr.messageRepeatAccount;
+        return localeStr.errorRegisterRepeatAccount;
       case 'accountError':
-        return localeStr.messageErrorAccount;
+        return localeStr.errorAccount;
+      case 'accountInvalid':
+      case 'pwdErrorFiveStop':
+        return localeStr.errorAccountLocked;
       case 'pwdError':
-        return localeStr.messageErrorPassword;
+        return localeStr.errorInvalidPassword;
       case 'pwdErrorFive':
-        return localeStr.messageErrorPasswordHint;
-      case 'amountMoreThanBalance':
-        return localeStr.messageInvalidWithdrawAmount;
+        return localeStr.errorInvalidPasswordFive;
       case 'wrongPassword':
-        return localeStr.messageInvalidWithdrawPassword;
+        if (from == RouteEnum.WITHDRAW) {
+          return localeStr.errorInvalidWithdrawPassword;
+        } else {
+          return localeStr.errorInvalidPassword;
+        }
+        break;
+      case 'dobBefore':
+        return localeStr.fieldErrorInvalidDateRange;
+      case 'amountMoreThanBalance':
+        return localeStr.errorInvalidAmountExceedRemain;
+      case 'belowTheMinimum':
+        return localeStr.fieldErrorInvalidCreditMin(100);
+      case 'aboveTheCeiling':
+        return localeStr.errorInvalidExceedOrderAmount;
+      case 'amountExceedsTheUpperLimit':
+        return localeStr.errorInvalidDepositAmountMaxLimit;
+      case 'amountIsBelowTheLowerLimit':
+        return localeStr.errorInvalidDepositAmountMinLimit;
+      case 'YouHaveInsufficientCredit':
+        return localeStr.msgNotEnoughCredit;
+      case 'NoRecordsYet':
+        return localeStr.hintNoHistoryData;
+      case 'inMaintenance':
+        return localeStr.hintMaintenance;
+      case 'YouDoNotHavePpermissionToPlayThisPlatform,PleaseContact24-hourOnlineCustomerService':
+        return localeStr.errorGameAccessPermission;
       default:
         break;
     }
     switch (from) {
+      case RouteEnum.HOME:
+        return localeStr.errorLoadingGame;
       case RouteEnum.LOGIN:
-        return localeStr.messageLoginFailed;
+        return localeStr.errorLoginFailed;
       case RouteEnum.REGISTER:
-        return localeStr.messageRegisterFailed;
+        return localeStr.errorRegisterFailed;
       case RouteEnum.BANKCARD:
-        return localeStr.messageTaskFailed(localeStr.messageErrorBindBankcard);
+        return localeStr.errorTaskFailed(localeStr.msgPleaseBindBankcard);
       case RouteEnum.WITHDRAW:
-        return localeStr.messageErrorWithdraw;
+        return localeStr.errorWithdraw;
+      case RouteEnum.DEPOSIT:
+        return localeStr.errorDeposit;
       case RouteEnum.BALANCE:
-        return localeStr.messageTaskFailed(localeStr.transferResultAlertTitle);
+      case RouteEnum.TRANSFER:
+        return localeStr.errorTransfer;
       default:
         if (msgKey.isNotEmpty) {
-          return localeStr.messageErrorStatus(msgKey);
+          return localeStr.errorStatus(msgKey);
         }
         break;
     }
-    return localeStr.messageFailed;
+    return localeStr.msgFailed;
   }
 }

@@ -15,18 +15,18 @@ class BetRecordDisplayTable extends StatelessWidget {
   });
 
   final List<String> _headerRowTexts = [
-    localeStr.betsHeaderDate,
-    localeStr.betsHeaderId,
-    localeStr.betsHeaderPlatform,
-    localeStr.betsHeaderGame,
-    localeStr.betsHeaderAmount,
-    localeStr.betsHeaderBonus,
+    localeStr.tableHeaderDate,
+    localeStr.tableHeaderId,
+    localeStr.tableHeaderPlatform,
+    localeStr.tableHeaderGame,
+    localeStr.tableHeaderAmount,
+    localeStr.tableHeaderBonus,
   ];
 
   final List<String> _platformHeaderRowTexts = [
-    localeStr.betsHeaderPlatform,
-    localeStr.betsHeaderAmount,
-    localeStr.betsHeaderBonus,
+    localeStr.tableHeaderPlatform,
+    localeStr.tableHeaderAmount,
+    localeStr.tableHeaderBonus,
   ];
 
   @override
@@ -87,20 +87,20 @@ class BetRecordDisplayTable extends StatelessWidget {
       if (data is BetRecordPlatformData) {
         if (data.isSumData()) sumRowIndex = index;
         dataTexts = [
-          (data.isSumData()) ? localeStr.rollbackHeaderTextTotal : data.key,
-          formatNum(data.bet),
-          formatNum(data.payout),
+          (data.isSumData()) ? localeStr.tableHeaderSum : data.key,
+          ValueUtil.toCreditFormat(data.bet),
+          ValueUtil.toCreditFormat(data.payout),
         ];
       } else if (data is BetRecordData) {
         if (data.isSumData()) {
           sumRowIndex = index;
           dataTexts = [
-            localeStr.rollbackHeaderTextTotal,
+            localeStr.tableHeaderSum,
             '',
             '',
             '',
-            data.bet ?? formatValue(0, creditSign: true),
-            data.payout ?? formatValue(0, creditSign: true),
+            data.bet ?? ValueUtil.format(0, addCreditSign: true),
+            data.payout ?? ValueUtil.format(0, addCreditSign: true),
           ];
         } else {
           dataTexts = [

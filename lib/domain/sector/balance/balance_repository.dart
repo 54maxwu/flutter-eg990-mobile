@@ -2,6 +2,7 @@ import 'dart:async' show StreamController;
 
 import 'package:flutter_eg990_mobile/domain/sector/balance/balance_data.dart';
 import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_result.dart';
 import 'package:flutter_eg990_mobile/domain/sector/wallet/wallet_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_form.dart';
 import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_model.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 class BalanceApi {
   static const String POST_WALLET = "api/walletbalance";
-  static const String GET_PROMISE = "api/allBlancePromise";
+  static const String GET_PROMISE = "api/allBalancePromise";
   static const String GET_BALANCE = "api/balance";
   static const String POST_TRANSFER_ALL = "api/balancetomain";
 
@@ -35,7 +36,7 @@ abstract class BalanceRepository {
   );
 
   /// Transfer credit between platforms
-  Future<Either<Failure, RequestStatusModel>> postTransfer(TransferForm form);
+  Future<Either<Failure, TransferResult>> postTransfer(TransferForm form);
 
   /// Withdraw credit to wallet or card
   Future<Either<Failure, WithdrawModel>> postWithdraw(WithdrawForm form);
@@ -76,7 +77,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
   @override
   Future<Either<Failure, List<String>>> getPromise() async {
     final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.post(
+      request: dioApiService.get(
         BalanceApi.GET_PROMISE,
         userToken: jwtInterface.token,
       ),
@@ -91,10 +92,26 @@ class BalanceRepositoryImpl implements BalanceRepository {
           try {
             // decode list in json format to string list
             List decoded = JsonUtil.decodeArray(model.data, trim: false);
-            MyLogger.print(msg: 'wallet decoded list: $decoded', tag: tag);
-            return Right(decoded.map((e) => e.toString()).toList());
+            MyLogger.print(
+                msg: 'balance platform decoded list: $decoded', tag: tag);
+            if (decoded.isNotEmpty) {
+              if (decoded.first is String) {
+                return Right(decoded.map((e) => e.toString()).toList());
+              } else if (decoded.first is Map) {
+                List<String> list = decoded.map((e) {
+                  Map itemMap = e as Map;
+                  return (itemMap.containsKey('name'))
+                      ? '${itemMap['name']}'
+                      : '';
+                }).toList()
+                  ..removeWhere((element) => element.isEmpty);
+                // debugPrint('balance platform list: $list');
+                return Right(list);
+              }
+            }
           } on Exception catch (e) {
-            MyLogger.error(msg: 'wallet map error!!', error: e, tag: tag);
+            MyLogger.error(
+                msg: 'balance platform map error!!', error: e, tag: tag);
           }
         }
         return Right([]);
@@ -122,7 +139,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
             debugPrint('decoded credit: ${map['balance']}');
             return Right(BalanceData(
               platform: platform,
-              amount: formatValue(map['balance'], trimIfZero: false),
+              amount: ValueUtil.format(map['balance'], trimIfZero: false),
             ));
           } else {
             debugPrint('decoded: $map');
@@ -142,33 +159,39 @@ class BalanceRepositoryImpl implements BalanceRepository {
     List<String> platforms,
     StreamController<String> progressController,
   ) async {
-    final result = await Future.microtask(
-      () => dioApiService.postList(
-        BalanceApi.POST_TRANSFER_ALL,
-        dataList: List.generate(
-          platforms.length,
-          (index) => {
-            'accountcode': jwtInterface.username,
-            'plat': platforms[index],
-          },
+    if (platforms != null && platforms.isNotEmpty) {
+      final result = await Future.microtask(
+        () => dioApiService.postList(
+          BalanceApi.POST_TRANSFER,
+          dataList: List.generate(
+            platforms.length,
+            (index) => {
+              'accountcode': jwtInterface.username,
+              'plat': {'name': platforms[index]},
+            },
+          ),
+          keyList: platforms,
+          stream: progressController,
+          userToken: jwtInterface.token,
         ),
-        keyList: platforms,
-        stream: progressController,
-        userToken: jwtInterface.token,
-      ),
-    ).catchError((e) => null);
-    return Right(result);
+      ).catchError((e) => null);
+      return Right(result);
+    } else {
+      MyLogger.warn(
+          msg: 'cannot retrieve platform list in wallet page!!', tag: tag);
+      return Left(Failure.server());
+    }
   }
 
   @override
-  Future<Either<Failure, RequestStatusModel>> postTransfer(
+  Future<Either<Failure, TransferResult>> postTransfer(
       TransferForm form) async {
-    final result = await requestModel<RequestStatusModel>(
+    final result = await requestModel<TransferResult>(
       request: dioApiService.post(
         BalanceApi.POST_TRANSFER,
         data: form.toJson(),
       ),
-      parseJson: RequestStatusModel.parseJson,
+      parseJson: TransferResult.parseJson,
       tag: 'remote-TRANSFER',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');

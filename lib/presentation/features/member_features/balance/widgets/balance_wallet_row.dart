@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/exports_for_mobx_observer.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
 import '../state/balance_store.dart';
@@ -81,7 +82,7 @@ class _BalanceWalletRowState extends State<BalanceWalletRow> {
                               child: Image.asset(Res.icon_wallet)),
                         ),
                         TextSpan(
-                          text: localeStr.walletViewTitleMy,
+                          text: localeStr.walletTitleMy,
                           style: TextStyle(
                             color: themeColor.balanceCardTitleColor,
                             fontSize: FontSize.MESSAGE.value,

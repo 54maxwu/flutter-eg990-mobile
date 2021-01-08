@@ -80,7 +80,7 @@ class __LoadingWidgetState extends State<_LoadingWidget> {
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Text(
-                widget.message ?? localeStr.messageLoading,
+                widget.message ?? localeStr.msgProcessing,
                 style: TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),

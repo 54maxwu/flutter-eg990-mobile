@@ -141,8 +141,8 @@ mixin _$DepositStore on _DepositStore, Store {
   final _$sendRequestAsyncAction = AsyncAction('_DepositStore.sendRequest');
 
   @override
-  Future<void> sendRequest(DepositForm form) {
-    return _$sendRequestAsyncAction.run(() => super.sendRequest(form));
+  Future<void> postDeposit(DepositForm form) {
+    return _$sendRequestAsyncAction.run(() => super.postDeposit(form));
   }
 
   @override

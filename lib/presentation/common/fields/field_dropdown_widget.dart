@@ -97,7 +97,7 @@ class FieldDropdownWidgetState extends State<FieldDropdownWidget> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           hint: AutoSizeText(
-            localeStr.hintActionSelect,
+            localeStr.hintSelect,
             style: TextStyle(color: themeColor.fieldHintColor),
             minFontSize: FontSize.SMALL.value,
             maxFontSize: FontSize.NORMAL.value,

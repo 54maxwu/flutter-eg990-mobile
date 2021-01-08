@@ -37,11 +37,11 @@ class ThemeColorEnum extends Vnum<String> {
   String get label {
     switch (value) {
       case 'dark':
-        return localeStr.themeColorDark;
+        return localeStr.appThemeColorDark;
       case 'light':
-        return localeStr.themeColorLight;
+        return localeStr.appThemeColorLight;
       default:
-        return localeStr.themeColorDefault;
+        return localeStr.appThemeColorDefault;
     }
   }
 

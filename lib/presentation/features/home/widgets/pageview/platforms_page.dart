@@ -82,8 +82,8 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
               child: Image.asset(
                 _platforms[index].assetUrl,
                 errorBuilder: (ctx, exc, _) {
-                  // debugPrint(
-                  //     'platform image not found: ${_platforms[index].assetUrl}');
+                  debugPrint(
+                      'platform image not found: ${_platforms[index].assetUrl}');
                   return NetworkImageBuilder(
                       'images/nav/mob/mob_undefined.png');
                 },
@@ -124,7 +124,7 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
         debugPrint('clicked game platform: ${platform.gameUrl}');
         if (platform.gameUrl == 'funky/lottery/0') {
           AppNavigator.navigateTo(
-            _createRoute(platform.label),
+            _createRoute(pageTitle: platform.pageTitle),
             arg: GamesPageArguments(platform: platform, store: _store),
           );
         } else {
@@ -132,17 +132,17 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
         }
       } else {
         AppNavigator.navigateTo(
-          _createRoute(platform.label),
+          _createRoute(pageTitle: platform.pageTitle),
           arg: GamesPageArguments(platform: platform, store: _store),
         );
       }
     } else {
-      callToastInfo(localeStr.messageErrorNotLogin);
+      callToastInfo(localeStr.hintActionLogin);
     }
     if (openUrl.isNotEmpty) {
       debugPrint('requesting game hall url: $openUrl');
       // final toast = callToastLoading(
-      //   message: localeStr.messageWait,
+      //   message: localeStr.msgPleaseWait,
       //   clickClose: false,
       // );
       // Future.microtask(() => _store.getGameUrl(openUrl))
@@ -150,11 +150,12 @@ class PlatformsPageState extends State<PlatformsPage> with AfterLayoutMixin {
     }
   }
 
-  RoutePage _createRoute(String title) => RoutePage.define(RouteInfo(
+  RoutePage _createRoute({@required String pageTitle}) =>
+      RoutePage.define(RouteInfo(
         id: RouteEnum.GAMES,
         route: MainScreenRoutes.gamesPage,
         appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
         navBarType: MainScreenNavBarTypes.HIDE,
-        title: title,
+        title: pageTitle,
       ));
 }

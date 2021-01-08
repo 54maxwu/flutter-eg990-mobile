@@ -15,6 +15,24 @@ class NoticeListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String content = '';
+    switch (Global.localeCode) {
+      case 'zh':
+        content = data.content;
+        break;
+      case 'en':
+        content = data.contentEN;
+        break;
+      case 'th':
+        content = data.contentTH;
+        break;
+      case 'vi':
+        content = data.contentVI;
+        break;
+    }
+    if (content.isEmpty && Global.localeCode != 'zh') {
+      content = data.content ?? 'ERROR';
+    }
     switch (data.typeId) {
       case 1: // maintenance
         return Container(
@@ -38,7 +56,7 @@ class NoticeListItem extends StatelessWidget {
                   child: Image.asset(Res.message),
                 ),
                 title: Text(
-                  '維護通知: ${data.content}',
+                  '維護通知: $content',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

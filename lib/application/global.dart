@@ -3,47 +3,27 @@ import 'dart:convert' show Encoding;
 import 'package:flutter/material.dart' show kToolbarHeight;
 
 import 'device/device.dart';
+import 'internal/language_code.dart';
 
 class Global {
   /// Device Relative
   static Device device;
 
-  /// BuildType
-  static bool addAnalytics = false;
-
   /// APP Language
   static bool initLocale = false;
 
-  // zh, th, en, vi
-  static String _language = 'zh';
+  static bool lockLanguage = false;
 
-  // content_cn, content_th, content_us, content_vn
-  static String _jsonContentKey = 'content_cn';
+  static LanguageCode _locale = defaultLocale;
 
-  static String get lang => _language;
+  static String get localeJsonKey => _locale.value.contentKey;
 
-  static String get jsonContentKey => _jsonContentKey;
+  static String get localeCode => _locale.value.code;
 
-  static set setLanguage(String langCode) {
-    _language = langCode;
-    switch (langCode) {
-      case 'zh':
-        _jsonContentKey = 'content_cn';
-        break;
-      case 'en':
-        _jsonContentKey = 'content_us';
-        break;
-      case 'vi':
-        _jsonContentKey = 'content_vn';
-        break;
-      case 'th':
-        _jsonContentKey = 'content_th';
-        break;
-      default:
-        _jsonContentKey = 'content';
-        break;
-    }
-  }
+  static bool get isChineseLocale => _locale == LanguageCode.zh;
+
+  static set setLocale(String localeCode) =>
+      _locale = LanguageCode.getByCode(localeCode);
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
@@ -52,7 +32,7 @@ class Global {
   static const String DOMAIN_NAME = "";
   static const String YABO_BASE_URL = "";
   static const String YABO_OFFICIAL_URL = "";
-  static const String YABO_TEST_URL = "http://192.168.2.87:2023/";
+  static const String YABO_TEST_URL = "http://192.168.2.87:1223/";
   static const String YABO_SERVICE_URL = "";
 
   /// HIVE table name

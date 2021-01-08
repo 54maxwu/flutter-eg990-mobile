@@ -15,20 +15,20 @@ class BetRecordList extends StatelessWidget {
   }) : super(key: key);
 
   final List<String> _headerTexts = [
-    localeStr.betsHeaderDate,
-    localeStr.betsHeaderId,
-    localeStr.betsHeaderPlatform,
-    localeStr.betsHeaderGame,
-    localeStr.betsHeaderAmount,
-    localeStr.betsHeaderValidBet,
-    localeStr.betsHeaderBonus,
+    localeStr.tableHeaderDate,
+    localeStr.tableHeaderId,
+    localeStr.tableHeaderPlatform,
+    localeStr.tableHeaderGame,
+    localeStr.tableHeaderAmount,
+    localeStr.tableHeaderValidBet,
+    localeStr.tableHeaderBonus,
   ];
 
   final List<String> _platformHeaderRowTexts = [
-    localeStr.betsHeaderPlatform,
-    localeStr.betsHeaderAmount,
-    localeStr.betsHeaderValidBet,
-    localeStr.betsHeaderBonus,
+    localeStr.tableHeaderPlatform,
+    localeStr.tableHeaderAmount,
+    localeStr.tableHeaderValidBet,
+    localeStr.tableHeaderBonus,
   ];
 
   final BorderSide _borderSide =
@@ -47,22 +47,22 @@ class BetRecordList extends StatelessWidget {
         if (data is BetRecordPlatformData) {
           isSumData = data.isSumData();
           dataTexts = [
-            (isSumData) ? localeStr.rollbackHeaderTextTotal : data.key,
-            formatNum(data.bet),
-            formatNum(data.valid),
-            formatNum(data.payout),
+            (isSumData) ? localeStr.tableHeaderSum : data.key,
+            ValueUtil.toCreditFormat(data.bet),
+            ValueUtil.toCreditFormat(data.valid),
+            ValueUtil.toCreditFormat(data.payout),
           ];
         } else if (data is BetRecordData) {
           if (data.isSumData()) {
             isSumData = data.isSumData();
             dataTexts = [
-              localeStr.rollbackHeaderTextTotal,
+              localeStr.tableHeaderSum,
               '',
               '',
               '',
-              data.bet ?? formatValue(0, creditSign: true),
-              data.validBet ?? formatValue(0, creditSign: true),
-              data.payout ?? formatValue(0, creditSign: true),
+              data.bet ?? ValueUtil.format(0, addCreditSign: true),
+              data.validBet ?? ValueUtil.format(0, addCreditSign: true),
+              data.payout ?? ValueUtil.format(0, addCreditSign: true),
             ];
           } else {
             dataTexts = [
@@ -117,7 +117,7 @@ class BetRecordList extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Text(
-              (isSum) ? localeStr.betsHeaderSum : '$title',
+              (isSum) ? localeStr.tableHeaderSum : '$title',
               style: TextStyle(
                 fontSize: FontSize.SUBTITLE.value,
                 fontWeight: FontWeight.w600,

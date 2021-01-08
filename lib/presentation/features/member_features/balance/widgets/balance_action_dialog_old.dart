@@ -16,9 +16,8 @@ class BalanceActionDialogOld extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String actionText = (isTransferIn)
-        ? localeStr.balanceTransferInText
-        : localeStr.balanceTransferOutText;
+    String actionText =
+        (isTransferIn) ? localeStr.btnTransferIn : localeStr.btnTransferOut;
     return DialogWidget(
       heightFactor: 0.175,
       minHeight: 120,
@@ -34,7 +33,7 @@ class BalanceActionDialogOld extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      localeStr.balanceTransferAlertTitle,
+                      localeStr.dialogTitleConfirmInfo,
                       style: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                       ),
@@ -46,7 +45,7 @@ class BalanceActionDialogOld extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      localeStr.balanceTransferAlertMsg(
+                      localeStr.dialogTextTransferActionTo(
                         actionText.toLowerCase(),
                         targetPlatform.toUpperCase(),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/common/settings/settings_ui.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_info_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 import '../data/member_shortcut_item.dart';
@@ -13,12 +14,12 @@ class MemberShortcutsList extends StatelessWidget {
   Function onClickShortcut(MemberShortcutItem shortcut) => () {
         if (shortcut.value.route != null) {
           if (shortcut.value.isUserOnly && !hasUser) {
-            callToastInfo(localeStr.messageErrorNotLogin);
+            callToastInfo(localeStr.hintActionLogin);
           } else {
             AppNavigator.navigateTo(shortcut.value.route);
           }
         } else {
-          callToastInfo(localeStr.workInProgress);
+          callToastInfo(localeStr.msgWorkInProgress);
         }
       };
 
@@ -57,6 +58,8 @@ class MemberShortcutsList extends StatelessWidget {
           WidgetSpan(
             child: Container(
                 height: FontSize.MESSAGE.value * 1.5,
+                width: FontSize.MESSAGE.value * 1.5,
+                alignment: Alignment.center,
                 child: Image.asset(shortcut.value.assetPath)),
           ),
           WidgetSpan(

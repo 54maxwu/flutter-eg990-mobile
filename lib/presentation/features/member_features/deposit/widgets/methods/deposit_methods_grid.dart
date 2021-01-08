@@ -65,7 +65,7 @@ class DepositMethodsGridState extends State<DepositMethodsGrid> {
           Padding(
             padding: const EdgeInsets.only(top: 4.0, left: 4.0),
             child: Text(
-              localeStr.depositPaymentSpinnerTitleMethod,
+              localeStr.fieldOptionTitleDepositType,
               style: TextStyle(
                 fontSize: FontSize.MESSAGE.value,
                 fontWeight: FontWeight.w600,

@@ -8,6 +8,7 @@ import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
+import '../features/member_features/member_center/member_center_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
 import '../features/member_features/withdraw/withdraw_route.dart';
 import '../features/notice_board/notice_route.dart';
@@ -40,6 +41,7 @@ import '../screens/main_screen.dart';
               MaterialRoute(page: SponsorRoute),
               MaterialRoute(page: NoticeRoute),
               MaterialRoute(page: MemberRoute),
+              MaterialRoute(page: MemberCenterRoute),
               MaterialRoute(page: DepositRoute),
               MaterialRoute(page: TransferRoute),
               MaterialRoute(page: WithdrawRoute),

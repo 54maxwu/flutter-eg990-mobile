@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
+import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_result.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 
 import 'data/balance_grid_action_type.dart';
@@ -72,7 +72,7 @@ class _BalanceRouteState extends State<BalanceRoute> {
         // Tell the reaction which observable to observe
         (_) => _store.transferResult,
         // Run some logic with the content of the observed field
-        (RequestStatusModel result) {
+        (TransferResult result) {
           debugPrint('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {

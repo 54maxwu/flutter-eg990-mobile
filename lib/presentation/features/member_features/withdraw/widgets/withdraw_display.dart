@@ -43,7 +43,7 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
                         color: themeColor.defaultHintSubColor,
                       ),
                       Text(
-                        localeStr.bankcardViewTitleNew,
+                        localeStr.hintAddBankcard,
                         style: TextStyle(
                           color: themeColor.dialogTitleColor,
                           fontSize: FontSize.MESSAGE.value,
@@ -64,7 +64,7 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
             child: Text(
-              localeStr.bankcardViewHintNew,
+              localeStr.hintAddBankcardDesc,
               style: TextStyle(
                 color: themeColor.defaultHintColor,
                 fontSize: FontSize.MESSAGE.value,

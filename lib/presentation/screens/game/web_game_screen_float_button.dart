@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/common/other/float_expand_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 
 import 'web_game_screen_store.dart';
 
@@ -130,9 +131,9 @@ class WebGameScreenFloatButtonState extends State<WebGameScreenFloatButton> {
 
   void _lockRotate() {
     bool isLock = widget.store.isLockRotate;
-    String value = (isLock) ? localeStr.btnOff : localeStr.btnOn;
+    String value = (isLock) ? localeStr.btnSwitchOff : localeStr.btnSwitchOn;
     widget.store.lockRotate = !isLock;
-    callToast('${localeStr.sideBtnLockRotate}($value)');
+    callToast('${localeStr.gameToolBtnLockRotate}($value)');
   }
 
   @override

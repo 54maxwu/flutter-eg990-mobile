@@ -1,5 +1,6 @@
 import 'dart:collection' show HashMap;
 
+import 'package:flutter_eg990_mobile/application/internal/error_message_map.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/banner/banner_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/game/game_entity.dart';
@@ -8,8 +9,10 @@ import 'package:flutter_eg990_mobile/domain/sector/home/home_repository.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/marquee/marquee_entity.dart';
 import 'package:flutter_eg990_mobile/domain/sector/home/platform/game_platform_entity.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
+import 'package:meta/meta.dart';
 
 import '../form/platform_game_form.dart';
+import '../data/local_game_category.dart';
 
 part 'home_store.g.dart';
 
@@ -36,17 +39,21 @@ abstract class _HomeStore with Store {
   // Key = category
   HashMap<String, List<GamePlatformEntity>> _homePlatformMap;
 
+  HashMap<String, List<GamePlatformEntity>> get homePlatformMap =>
+      _homePlatformMap;
+
   // Key = site/category
   HashMap<String, List<GameEntity>> _homeGamesMap;
-
-  bool hasPlatformGames(String key) =>
-      _homeGamesMap != null && _homeGamesMap.containsKey(key);
 
   List<GameEntity> getPlatformGames(String key) =>
       (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
 
-  HashMap<String, List<GamePlatformEntity>> get homePlatformMap =>
-      _homePlatformMap;
+  bool hasPlatformGames(String key) =>
+      _homeGamesMap != null && _homeGamesMap.containsKey(key);
+
+  bool hasGameInMap(String key, int gameId) =>
+      _homeGamesMap.containsKey(key) &&
+      _homeGamesMap[key].any((game) => game.gameUrl.endsWith('/$gameId'));
 
   @observable
   bool waitForGameUrl = false;
@@ -251,39 +258,48 @@ abstract class _HomeStore with Store {
       removeList.forEach((element) => tabs.remove(element));
     }
 
-    // customizePlatformMap();
-    // homeTabs.add(cockfightingCategory);
-    // homeTabs.add(websiteCategory);
-    // homeTabs.add(aboutCategory);
-
-    // homePlatformMap.keys
-    //     .forEach((key) => debugPrint('$key: ${homePlatformMap[key]}\n'));
-
     homeTabs = tabs;
     _homePlatformMap = platformMap;
+    _homePlatformMap['lottery']
+        .removeWhere((platform) => platform.site.toLowerCase() == 'sb');
+
+    customizePlatformMap(
+      customType: LocalGameCategory.esportCategory.type,
+      fromType: 'sport',
+    );
+    homeTabs.add(LocalGameCategory.esportCategory);
+    // homeTabs.add(websiteCategory);
+    // homeTabs.add(aboutCategory);
+    // homePlatformMap.keys
+    //     .forEach((key) => debugPrint('$key: ${homePlatformMap[key]}\n'));
   }
 
-//   void customizePlatformMap() {
-//     List<String> classNames = ['s128-sport'];
-//     try {
-// //      debugPrint('sport platforms: ${homePlatformMap['sport'].length}');
-//       var cockfightingGames = homePlatformMap['sport']
-//               ?.where((element) => classNames.contains(element.className))
-//               ?.toList() ??
-//           [];
-// //      debugPrint('found cockfighting games: ${cockfightingGames.length}');
-//       homePlatformMap['sport']
-//           .removeWhere((element) => classNames.contains(element.className));
-//       homePlatformMap.putIfAbsent(
-//           cockfightingCategory.type, () => cockfightingGames);
-//     } catch (e) {
-//       debugPrint(e);
-//     } finally {
-// //      debugPrint('updated sport platforms: ${homePlatformMap['sport'].length}');
-// //      debugPrint('updated cockfighting platforms: '
-// //          '${homePlatformMap[cockfightingCategory.type].length}');
-//     }
-//   }
+  void customizePlatformMap(
+      {@required String customType, @required String fromType}) {
+    List<String> classNames = ['ia-sport', 'ig-sport', 'tf-sport'];
+    try {
+      // debugPrint('$fromType platforms: ${homePlatformMap[fromType].length}');
+      List<GamePlatformEntity> customGames = homePlatformMap[fromType]
+              ?.where((platform) => classNames.contains(platform.className))
+              ?.toList() ??
+          [];
+      // debugPrint('found custom games: ${customGames.length}');
+      homePlatformMap[fromType]
+          .removeWhere((element) => classNames.contains(element.className));
+      homePlatformMap.putIfAbsent(
+          customType,
+          () => customGames
+              .map((e) => e.copyWith(category: customType))
+              .toList(growable: false));
+    } catch (e) {
+      debugPrint('customize game platform ($customType) map has exception: $e');
+    } finally {
+      // debugPrint(
+      //     'updated $fromType platforms: ${homePlatformMap[fromType].length}');
+      // debugPrint('updated $customType platforms: '
+      //     '${homePlatformMap[customType].length}');
+    }
+  }
 
   @action
   Future<List<GameEntity>> getGames(PlatformGameForm form, String key) async {
@@ -338,7 +354,13 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message),
+              (failure) {
+                String msg = MessageMap.getErrorMessage(
+                  failure.message,
+                  RouteEnum.HOME,
+                );
+                return setErrorMsg(msg: msg, type: FailureType.GAMES);
+              },
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;

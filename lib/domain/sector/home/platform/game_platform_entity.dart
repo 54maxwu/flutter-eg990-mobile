@@ -52,8 +52,6 @@ String decodePlatformChName(dynamic str) => (str.containsKey('ch'))
 const String _gamePlatformAssetPathPrefix = "assets/images/home/platforms/mob_";
 
 extension GamePlatformEntityExtension on GamePlatformEntity {
-  bool get isGameHall => ['casino', 'sport', 'lottery'].contains(category);
-
   String get iconUrl => '/images/index/logo/${site.toUpperCase()}.png';
 
   String get imageUrl => '/images/nav/nav_${category}_$site.png';
@@ -62,33 +60,40 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
     switch (category) {
       case 'casino':
         return "${_gamePlatformAssetPathPrefix}live_${site.toLowerCase()}.png";
-      case 'fish':
-        return "${_gamePlatformAssetPathPrefix}fish.png";
       default:
         return "$_gamePlatformAssetPathPrefix${category}_${site.toLowerCase()}.png";
     }
   }
 
-  String get gameUrl => '$site/$category/0';
+  /// check if the platform is also a game entry
+  bool get isGameHall =>
+      ['casino', 'sport', 'lottery', 'esport'].contains(category);
 
-  String get label {
+  /// game url for game halls
+  String get gameUrl =>
+      (category == 'esport') ? '$site/sport/0' : '$site/$category/0';
+
+  /// title on each platform's games page
+  String get pageTitle {
     switch (category) {
       case 'casino':
-        return '${site.toUpperCase()} ${localeStr.gameCategoryCasino}';
+        return '${site.toUpperCase()} ${localeStr.textCategoryCasino}';
       case 'slot':
-        return '${site.toUpperCase()} ${localeStr.gameCategorySlot}';
+        return '${site.toUpperCase()} ${localeStr.textCategorySlot}';
       case 'sport':
-        return '${site.toUpperCase()} ${localeStr.gameCategorySport}';
+        return '${site.toUpperCase()} ${localeStr.textCategorySport}';
       case 'fish':
-        return '${site.toUpperCase()} ${localeStr.gameCategoryFish}';
+        return '${site.toUpperCase()} ${localeStr.textCategoryFish}';
       case 'lottery':
-        return '${site.toUpperCase()} ${localeStr.gameCategoryLottery}';
+        return '${site.toUpperCase()} ${localeStr.textCategoryLottery}';
       case 'card':
-        return '${site.toUpperCase()} ${localeStr.gameCategoryCard}';
+        return '${site.toUpperCase()} ${localeStr.textCategoryCard}';
+      case 'esport':
+        return '${site.toUpperCase()} ${localeStr.textCategoryEsport}';
       default:
         return ch;
     }
   }
 
-  bool isLongText(int limit) => label.countLength > limit;
+  bool isLongText(int limit) => pageTitle.countLength > limit;
 }

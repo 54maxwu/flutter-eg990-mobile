@@ -28,7 +28,7 @@ class NetworkChangedDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      localeStr.networkChangedHint,
+                      localeStr.msgNetworkChanged,
                       style: TextStyle(
                           height: 1.4, fontSize: FontSize.MESSAGE.value),
                       maxLines: 4,

@@ -36,6 +36,20 @@ class _MemberRouteState extends State<MemberRoute> {
           }
         },
       ),
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.askRecheckInfo,
+        // Run some logic with the content of the observed field
+        (check) {
+          if (mounted && check) {
+            Future.delayed(Duration(milliseconds: 200), () {
+              setState(() {});
+              _store.setRecheck = false;
+            });
+          }
+        },
+      ),
     ];
   }
 

@@ -67,13 +67,13 @@ mixin _$BalanceStore on _BalanceStore, Store {
   final _$transferResultAtom = Atom(name: '_BalanceStore.transferResult');
 
   @override
-  RequestStatusModel get transferResult {
+  TransferResult get transferResult {
     _$transferResultAtom.reportRead();
     return super.transferResult;
   }
 
   @override
-  set transferResult(RequestStatusModel value) {
+  set transferResult(TransferResult value) {
     _$transferResultAtom.reportWrite(value, super.transferResult, () {
       super.transferResult = value;
     });

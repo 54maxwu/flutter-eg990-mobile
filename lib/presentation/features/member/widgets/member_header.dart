@@ -26,7 +26,7 @@ class _MemberHeaderState extends State<MemberHeader> {
                     child: Image.asset(Res.avatar_nologin),
                   ),
                   title: AutoSizeText(
-                    localeStr.messageLoginHint,
+                    localeStr.hintClickToLoginRegister,
                     style: TextStyle(
                       color: themeColor.defaultTextColor,
                       fontSize: FontSize.SUBTITLE.value,
@@ -41,7 +41,7 @@ class _MemberHeaderState extends State<MemberHeader> {
                   ),
                 )
               : ListTile(
-                  onTap: () => callToastInfo(localeStr.workInProgress),
+                  onTap: () => AppNavigator.navigateTo(RoutePage.member_center),
                   leading: Container(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Image.asset(Res.avatar_nologin),

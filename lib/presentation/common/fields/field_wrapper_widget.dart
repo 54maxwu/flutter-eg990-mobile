@@ -1,15 +1,17 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 
-import 'field_prefix_widget.dart';
-import 'field_input_widget.dart';
+import 'field_chips_widget.dart';
 import 'field_dropdown_widget.dart';
+import 'field_input_widget.dart';
+import 'field_prefix_widget.dart';
 
 class FieldWrapperWidget extends StatelessWidget {
   final FieldPrefixWidget prefixWidget;
-  final FieldDropdownWidget optionWidget;
   final BoxConstraints prefixConstraint;
   final FieldInputWidget inputWidget;
+  final FieldDropdownWidget optionWidget;
+  final FieldChipsWrapperWidget chipsWrapperWidget;
   final BoxDecoration decoration;
   final EdgeInsets padding;
   final EdgeInsets prefixPadding;
@@ -23,9 +25,10 @@ class FieldWrapperWidget extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.prefixPadding,
     this.fieldPadding,
-  }) : this.optionWidget = null;
+  })  : this.optionWidget = null,
+        this.chipsWrapperWidget = null;
 
-  const FieldWrapperWidget.option({
+  const FieldWrapperWidget.options({
     this.prefixWidget,
     this.prefixConstraint,
     @required this.optionWidget,
@@ -33,7 +36,19 @@ class FieldWrapperWidget extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.prefixPadding,
     this.fieldPadding,
-  }) : this.inputWidget = null;
+  })  : this.inputWidget = null,
+        this.chipsWrapperWidget = null;
+
+  const FieldWrapperWidget.chips({
+    this.prefixWidget,
+    this.prefixConstraint,
+    @required this.chipsWrapperWidget,
+    this.decoration,
+    this.padding = EdgeInsets.zero,
+    this.prefixPadding,
+    this.fieldPadding,
+  })  : this.inputWidget = null,
+        this.optionWidget = null;
 
   EdgeInsets get getPrefixPadding {
     if (prefixPadding != null) return prefixPadding;
@@ -68,15 +83,30 @@ class FieldWrapperWidget extends StatelessWidget {
                 child: prefixWidget,
               ),
             ),
-          Expanded(
-            child: Container(
-              padding: fieldPadding ?? EdgeInsets.zero,
-              child: inputWidget ??
-                  Padding(
-                      padding: const EdgeInsets.only(top: 2.0),
-                      child: optionWidget),
+          if (inputWidget != null)
+            Expanded(
+              child: Container(
+                padding: fieldPadding ?? EdgeInsets.zero,
+                child: inputWidget,
+              ),
             ),
-          ),
+          if (optionWidget != null)
+            Expanded(
+              child: Container(
+                padding: fieldPadding ?? EdgeInsets.zero,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 2.0),
+                  child: optionWidget,
+                ),
+              ),
+            ),
+          if (chipsWrapperWidget != null)
+            Expanded(
+              child: Container(
+                padding: fieldPadding ?? EdgeInsets.zero,
+                child: chipsWrapperWidget,
+              ),
+            ),
         ],
       ),
     );

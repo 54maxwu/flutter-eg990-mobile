@@ -103,7 +103,7 @@ class _MainScreenState extends State<MainScreen> with AfterLayoutMixin {
   @override
   void initState() {
     MyLogger.debug(msg: 'init feature screen', tag: tag);
-    _locale = Global.lang;
+    _locale = Global.localeCode;
     super.initState();
     setNetworkListener();
   }
@@ -147,12 +147,12 @@ class _MainScreenState extends State<MainScreen> with AfterLayoutMixin {
         Future.delayed(Duration(milliseconds: 500), () => _closeAppCount = 0);
         if (_closeAppCount > 1)
           return Future(() => true); // exit app
-        else if (_closeAppCount == 1) callToast(localeStr.exitAppHint);
+        else if (_closeAppCount == 1) callToast(localeStr.appExitHint(1));
         return Future(() => false);
       },
       child: StreamBuilder<String>(
           stream: appPreference.languageStream,
-          initialData: Global.lang,
+          initialData: Global.localeCode,
           builder: (ctx, snapshot) {
             _locale ??= snapshot.data;
             if (snapshot.data != _locale) {

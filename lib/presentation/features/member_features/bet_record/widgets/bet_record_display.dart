@@ -163,7 +163,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay> {
 //       _platformStrings = _platforms.map((e) => e).toList();
 //       if (_allPlatformIndex >= 0) {
 //         _platformStrings.replaceRange(_allPlatformIndex, _allPlatformIndex + 1,
-//             [localeStr.betsSpinnerOptionAllPlatform]);
+//             [localeStr.betsfieldOptionOptionAllPlatform]);
 //       }
 //     }
 //     debugPrint('${_category.categoryType} platform strings: $_platformStrings');
@@ -227,7 +227,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay> {
 //   void didUpdateWidget(BetRecordDisplay oldWidget) {
 //     _tableWidget = null;
 //     _platformStrings.replaceRange(_allPlatformIndex, _allPlatformIndex + 1,
-//         [localeStr.betsSpinnerOptionAllPlatform]);
+//         [localeStr.betsfieldOptionOptionAllPlatform]);
 //     super.didUpdateWidget(oldWidget);
 //   }
 //
@@ -307,7 +307,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay> {
 //                     CustomizeDropdownWidget(
 //                       key: _platformKey,
 //                       horizontalInset: 56.0,
-//                       prefixText: localeStr.betsSpinnerTitlePlatform,
+//                       prefixText: localeStr.betsfieldOptionTitlePlatform,
 //                       prefixTextSize: FontSize.SUBTITLE.value,
 //                       optionValues: _platforms,
 //                       optionStrings: _platformStrings,
@@ -325,7 +325,7 @@ class _BetRecordDisplayState extends State<BetRecordDisplay> {
 //                     child: CustomizeDropdownWidget(
 //                       key: _timeKey,
 //                       horizontalInset: 56.0,
-//                       prefixText: localeStr.betsSpinnerTitleTime,
+//                       prefixText: localeStr.betsfieldOptionTitleTime,
 //                       prefixTextSize: FontSize.SUBTITLE.value,
 //                       optionValues: BetRecordTimeEnum.list,
 //                       optionStrings:

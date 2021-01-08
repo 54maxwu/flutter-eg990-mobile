@@ -10,6 +10,7 @@ import 'domain/sector/bet_record/bet_record_repository.dart';
 import 'domain/sector/deposit/deposit_repository.dart';
 import 'domain/sector/home/home_local_storage.dart';
 import 'domain/sector/home/home_repository.dart';
+import 'domain/sector/member_center/member_center_repository.dart';
 import 'domain/sector/notice_board/notice_repository.dart';
 import 'domain/sector/promo/promo_local_storage.dart';
 import 'domain/sector/promo/promo_repository.dart';
@@ -26,6 +27,7 @@ import 'presentation/features/login/state/login_store.dart';
 import 'presentation/features/member_features/balance/state/balance_store.dart';
 import 'presentation/features/member_features/bet_record/state/bet_record_store.dart';
 import 'presentation/features/member_features/deposit/state/deposit_store.dart';
+import 'presentation/features/member_features/member_center/state/member_center_store.dart';
 import 'presentation/features/member_features/transfer/state/transfer_store.dart';
 import 'presentation/features/member_features/withdraw/state/withdraw_store.dart';
 import 'presentation/features/notice_board/state/notice_store.dart';
@@ -114,6 +116,13 @@ Future<void> init() async {
   sl.registerFactory<NoticeRepository>(
       () => NoticeRepositoryImpl(dioApiService: sl()));
   sl.registerFactory(() => NoticeStore(sl<NoticeRepository>()));
+
+  ///
+  /// MEMBER DETAIL
+  ///
+  sl.registerFactory<MemberCenterRepository>(() =>
+      MemberCenterRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => MemberCenterStore(sl<MemberCenterRepository>()));
 
   ///
   /// DEPOSIT

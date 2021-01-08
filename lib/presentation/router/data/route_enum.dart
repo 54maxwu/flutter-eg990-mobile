@@ -5,52 +5,35 @@ enum RouteEnum {
   GAMES,
 
   ///
+  NOTICE_BOARD,
   PROMO,
   PROMO_DETAIL,
   SERVICE,
   SERVICE_WEB,
-  SPONSOR,
   MEMBER,
 
   ///
+  MEMBER_CENTER,
   DEPOSIT,
   TRANSFER,
   BANKCARD,
   WITHDRAW,
-  ACCOUNT_CENTER,
   BALANCE,
   WALLET,
   TRANSFER_RECORD,
-  DEALS,
   BET_RECORD,
-  ROLLBACK,
-  AGENT,
-  AGENT_LOGIN,
-  AGENT_REGISTER,
 
   ///
-  NOTICE_BOARD,
-  DOWNLOAD,
-  TUTORIAL,
-  AGENT_ABOUT,
+  STORE,
+  EXCHANGE_RECORD,
   VIP,
   VIP_ABOUT,
-  STORE,
-  SIGN,
-  WEBSITE,
   ABOUT_US,
-  LINE_QR,
-  EXCHANGE_RECORD,
+  SPONSOR,
   HELP,
   INVITE,
   JOIN_US,
-
-  ///
-  MORE,
-  ROUTE_CHANGE,
-  ROLLER,
-  TASK,
-  COLLECT,
+  WEBSITE,
 
   ///
   LOGIN,
@@ -103,27 +86,27 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.REGISTER:
         return localeStr.pageTitleRegister;
       case RouteEnum.PASSWORD:
-        return localeStr.pageTitleMemberPassword;
+        return localeStr.pageBtnChangePassword;
       case RouteEnum.LOGOUT:
-        return localeStr.memberGridTitleLogout;
+        return localeStr.pageBtnLogout;
 
       /// Member
-      case RouteEnum.VIP_ABOUT:
-        return localeStr.pageTitleVipAbout;
-      case RouteEnum.STORE:
-        return localeStr.pageTitleStore;
+      case RouteEnum.MEMBER_CENTER:
+        return localeStr.pageTitleMemberCenter;
+      case RouteEnum.WALLET:
+        return localeStr.pageTitleMemberWallet;
       case RouteEnum.BET_RECORD:
         return localeStr.pageTitleMemberBets;
       case RouteEnum.TRANSFER_RECORD:
         return localeStr.pageTitleMemberTransaction;
-      case RouteEnum.WALLET:
-        return localeStr.pageTitleMemberWallet;
-      case RouteEnum.ACCOUNT_CENTER:
-        return localeStr.pageTitleMemberCenter;
       case RouteEnum.EXCHANGE_RECORD:
         return localeStr.pageTitleExchangeRecord;
+      case RouteEnum.STORE:
+        return localeStr.pageTitleStore;
       case RouteEnum.HELP:
         return localeStr.pageTitleHelpCenter;
+      case RouteEnum.VIP_ABOUT:
+        return localeStr.pageTitleVipAbout;
       case RouteEnum.INVITE:
         return localeStr.pageTitleInvite;
       case RouteEnum.JOIN_US:
@@ -132,6 +115,10 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleAboutUs;
       case RouteEnum.WEBSITE:
         return localeStr.pageHintWebsite;
+
+      /// Other
+      case RouteEnum.NOTICE_BOARD:
+        return localeStr.pageTitleNotice;
 
       /// Tests
       case RouteEnum.TEMPLATE:
@@ -143,47 +130,15 @@ extension RouteEnumExtension on RouteEnum {
 
       /// Float Tools
       case RouteEnum.BACK_HOME:
-        return localeStr.sideBtnBackHome;
+        return localeStr.gameToolBtnBackHome;
       case RouteEnum.ROTATE:
-        return localeStr.sideBtnRotate;
+        return localeStr.gameToolBtnRotate;
       case RouteEnum.ROTATE_LOCK:
-        return localeStr.sideBtnLockRotate;
+        return localeStr.gameToolBtnLockRotate;
 
       /// TODO Not Using
       case RouteEnum.BALANCE:
         return localeStr.pageTitleMemberBalance;
-      case RouteEnum.DEALS:
-        return localeStr.pageTitleMemberDeals;
-      case RouteEnum.ROLLBACK:
-        return localeStr.pageTitleMemberFlow;
-      case RouteEnum.AGENT:
-        return localeStr.pageTitleMemberAgent;
-      case RouteEnum.AGENT_LOGIN:
-        return localeStr.pageTitleMemberAgentLogin;
-      case RouteEnum.AGENT_REGISTER:
-        return localeStr.pageTitleMemberAgentRegister;
-      case RouteEnum.NOTICE_BOARD:
-        return localeStr.pageTitleNotice;
-      case RouteEnum.DOWNLOAD:
-        return localeStr.pageTitleDownload;
-      case RouteEnum.TUTORIAL:
-        return localeStr.pageTitleTutorial;
-      case RouteEnum.AGENT_ABOUT:
-        return localeStr.pageTitleMemberAgentAbout;
-      case RouteEnum.ROLLER:
-        return localeStr.pageTitleRoller;
-      case RouteEnum.SIGN:
-        return localeStr.pageTitleSign;
-      case RouteEnum.LINE_QR:
-        return 'LINE';
-      case RouteEnum.MORE:
-        return localeStr.pageTitleMore;
-      case RouteEnum.ROUTE_CHANGE:
-        return localeStr.pageTitleRouter;
-      case RouteEnum.TASK:
-        return localeStr.pageTitleTask;
-      case RouteEnum.COLLECT:
-        return localeStr.pageTitleCollect;
       default:
         return '???';
     }
@@ -210,13 +165,11 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.TRANSFER:
       case RouteEnum.BANKCARD:
       case RouteEnum.WITHDRAW:
-      case RouteEnum.ACCOUNT_CENTER:
+      case RouteEnum.MEMBER_CENTER:
       case RouteEnum.BALANCE:
       case RouteEnum.WALLET:
       case RouteEnum.TRANSFER_RECORD:
-      case RouteEnum.DEALS:
       case RouteEnum.BET_RECORD:
-      case RouteEnum.ROLLBACK:
       case RouteEnum.STORE:
       case RouteEnum.EXCHANGE_RECORD:
       case RouteEnum.INVITE:

@@ -56,7 +56,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
           Stack(
             children: [
               SettingsTile.switchTile(
-                title: localeStr.walletViewTitleWalletSingle,
+                title: localeStr.walletOptionSingle,
                 titleTextStyle: TextStyle(
                   fontSize: FontSize.SUBTITLE.value,
                   fontWeight: FontWeight.w600,
@@ -86,7 +86,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
             child: Text(
-              localeStr.walletViewHintWalletType,
+              localeStr.walletHintWalletType,
               style: TextStyle(color: themeColor.defaultHintColor),
             ),
           ),

@@ -29,15 +29,15 @@ extension BetRecordTimeEnumExtension on BetRecordTimeEnum {
   String get label {
     switch (value) {
       case 0:
-        return localeStr.spinnerDateToday;
+        return localeStr.fieldOptionDateToday;
       case 1:
-        return localeStr.spinnerDateYesterday;
+        return localeStr.fieldOptionDateYesterday;
       case 2:
-        return localeStr.spinnerDateMonth;
+        return localeStr.fieldOptionDateMonth;
       case 3:
-        return localeStr.spinnerDateAll;
+        return localeStr.fieldOptionDateAll;
       case 4:
-        return localeStr.spinnerDateCustom;
+        return localeStr.fieldOptionDateCustom;
       default:
         return '??';
     }

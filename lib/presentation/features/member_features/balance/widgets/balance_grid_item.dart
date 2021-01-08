@@ -31,7 +31,7 @@ class BalanceGridItemState extends State<BalanceGridItem> {
     if (_credit == credit) return;
     debugPrint('${widget.platform} balance credit: $credit');
     _credit = credit;
-    isMaintaining = credit == '$creditSymbol-1.00' ||
+    isMaintaining = ValueUtil.strToInt(credit) < 0 ||
         credit == 'maintenance' ||
         credit == 'InMaintenance';
     if (isMaintaining || _credit == '---') {
@@ -74,7 +74,7 @@ class BalanceGridItemState extends State<BalanceGridItem> {
                       Padding(
                         padding: const EdgeInsets.only(top: 6.0),
                         child: Text(
-                          _credit,
+                          (isMaintaining) ? localeStr.hintMaintenance : _credit,
                           style: TextStyle(
                             fontSize: FontSize.SUBTITLE.value,
                             color: themeColor.balanceCardTextColor,

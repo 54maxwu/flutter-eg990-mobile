@@ -107,8 +107,8 @@ class Device {
   String get appVersionOrigin =>
       'Version:${packageInfo.version} Build:${packageInfo.buildNumber}';
 
-  String get appVersionSide =>
-      (Global.addAnalytics) ? '$_version (GA)' : _version;
+  String get appVersionSide => _version;
+  // (Global.addAnalytics) ? '$_version (GA)' : _version;
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;

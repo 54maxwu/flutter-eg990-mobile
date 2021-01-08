@@ -26,7 +26,9 @@ class GameCategory extends Vnum<GameCategoryInfo> {
   ));
   static const GameCategory fish = const GameCategory.define(GameCategoryInfo(
     id: GameCategoryEnum.FISH,
-    iconType: GameCategoryIconType.ICON,
+    iconType: GameCategoryIconType.ASSET,
+    assetPath: Res.menu_fish_u,
+    selectedAssetPath: Res.menu_fish,
   ));
   static const GameCategory lottery =
       const GameCategory.define(GameCategoryInfo(
@@ -40,6 +42,14 @@ class GameCategory extends Vnum<GameCategoryInfo> {
     iconType: GameCategoryIconType.ASSET,
     assetPath: Res.menu_card_u,
     selectedAssetPath: Res.menu_card,
+  ));
+
+  /// CUSTOMIZE
+  static const GameCategory esport = const GameCategory.define(GameCategoryInfo(
+    id: GameCategoryEnum.ESPORT,
+    iconType: GameCategoryIconType.ASSET,
+    assetPath: Res.menu_esport_u,
+    selectedAssetPath: Res.menu_esport,
   ));
 
   /// OTHER

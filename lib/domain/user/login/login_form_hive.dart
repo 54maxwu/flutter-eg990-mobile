@@ -19,6 +19,24 @@ class LoginFormHive {
     @required this.save,
   });
 
+  LoginFormHive copyWith({
+    String username,
+    String password,
+    bool save,
+  }) {
+    if ((username == null || identical(username, this.username)) &&
+        (password == null || identical(password, this.password)) &&
+        (save == null || identical(save, this.save))) {
+      return this;
+    }
+
+    return new LoginFormHive(
+      username: username ?? this.username,
+      password: password ?? this.password,
+      save: save ?? this.save,
+    );
+  }
+
   static LoginFormHive clean() =>
       LoginFormHive(username: '', password: '', save: false);
 }

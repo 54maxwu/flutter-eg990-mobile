@@ -11,10 +11,10 @@ class AboutCert extends StatelessWidget {
   ];
 
   final List<String> _certLabel = [
-    localeStr.aboutCertTitleGC,
-    localeStr.aboutCertTitleMGA,
-    localeStr.aboutCertTitlePGC,
-    localeStr.aboutCertTitleBVI,
+    localeStr.certificateTitleGC,
+    localeStr.certificateTitleMGA,
+    localeStr.certificateTitlePGC,
+    localeStr.certificateTitleBVI,
   ];
 
   @override

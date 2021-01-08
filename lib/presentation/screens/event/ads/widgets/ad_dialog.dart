@@ -92,7 +92,7 @@ class _AdDialogState extends State<AdDialog> {
               ),
               child: CheckboxWidget(
                 key: _skipKey,
-                label: localeStr.btnStopShowing,
+                label: localeStr.fieldCheckBoxStopShowing,
                 labelColor: Colors.white,
                 widgetPadding: EdgeInsets.zero,
                 initValue: widget.initCheck,

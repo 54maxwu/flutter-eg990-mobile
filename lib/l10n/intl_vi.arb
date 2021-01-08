@@ -1,2029 +1,365 @@
 {
-  "@@last_modified": "2020-08-06T17:12:17+0800",
+  "@@last_modified": "2021-01-08T07:17:19+0000",
   "@@locale": "vi",
-  "title": "Yabo Mobile",
-  "@title": {
-    "description": "Yabo Demo",
-    "type": "text",
-    "placeholders": {}
-  },
-  "pageTitleHome": "Trang Chủ",
-  "@pageTitleHome": {
-    "type": "text"
-  },
-  "pageTitleDownload": "Khu vực tải ứng dụng",
-  "@pageTitleDownload": {
-    "type": "text"
-  },
-  "pageTitleTutorial": "Hướng dẫn người chơi",
-  "@pageTitleTutorial": {
-    "type": "text"
-  },
-  "pageTitleNotice": "Thông báo",
-  "@pageTitleNotice": {
-    "type": "text"
-  },
-  "pageTitleRouter": "Điều hướng",
-  "@pageTitleRouter": {
-    "type": "text"
-  },
-  "pageTitleVip": "VIP",
-  "@pageTitleVip": {
-    "type": "text"
-  },
-  "pageTitleVipAbout": "Đặc quyền VIP",
-  "@pageTitleVipAbout": {
-    "type": "text"
-  },
-  "pageTitleStore": "Trung tâm mua sắm",
-  "@pageTitleStore": {
-    "type": "text"
-  },
-  "pageTitleSign": "Nhận phòng,điểm danh",
-  "@pageTitleSign": {
-    "type": "text"
-  },
-  "pageTitleRoller": "Vòng xoay",
-  "@pageTitleRoller": {
-    "type": "text"
-  },
-  "pageTitleCollect": "Hoạt động thu gom",
-  "@pageTitleCollect": {
-    "type": "text"
-  },
-  "pageTitleDeposit": "NẠP TIỀN",
-  "@pageTitleDeposit": {
-    "type": "text"
-  },
-  "pageTitlePromo": "Ưu Đãi",
-  "@pageTitlePromo": {
-    "type": "text"
-  },
-  "pageTitleSponsor": "nhà tài trợ",
-  "@pageTitleSponsor": {
-    "type": "text"
-  },
-  "pageTitleService": "DỊCH VỤ",
-  "@pageTitleService": {
-    "type": "text"
-  },
-  "pageTitleMember": "TÔI",
-  "@pageTitleMember": {
-    "type": "text"
-  },
-  "pageTitleCenter": "Tài khoản",
-  "@pageTitleCenter": {
-    "type": "text"
-  },
-  "pageTitleLogin": "Đăng nhập",
-  "@pageTitleLogin": {
-    "type": "text"
-  },
-  "pageTitleLogin2": "Đăng nhập thành viên",
-  "@pageTitleLogin2": {
-    "type": "text"
-  },
-  "pageTitleRegister": "ĐĂNG KÍ",
-  "@pageTitleRegister": {
-    "type": "text"
-  },
-  "pageTitleRegisterFree": "thành viên Đăng ký",
-  "@pageTitleRegisterFree": {
-    "type": "text"
-  },
-  "pageTitleRegisterMember": "thành viên đã đăng ký",
-  "@pageTitleRegisterMember": {
-    "type": "text"
-  },
-  "pageTitleMemberTransfer": "Chuyển khoản nhanh",
-  "@pageTitleMemberTransfer": {
-    "type": "text"
-  },
-  "pageTitleMemberCard": "Thẻ ngân hàng",
-  "@pageTitleMemberCard": {
-    "type": "text"
-  },
-  "pageTitleMemberWithdraw": "Rút tiền",
-  "@pageTitleMemberWithdraw": {
-    "type": "text"
-  },
-  "pageTitleMemberBalance": "Số dư nền tảng",
-  "@pageTitleMemberBalance": {
-    "type": "text"
-  },
-  "pageTitleMemberWallet": "Ví",
-  "@pageTitleMemberWallet": {
-    "type": "text"
-  },
-  "pageTitleMemberMessage": "Hòm thư",
-  "@pageTitleMemberMessage": {
-    "type": "text"
-  },
-  "pageTitleMemberCenter": "Tài khoảng trung tâm",
-  "@pageTitleMemberCenter": {
-    "type": "text"
-  },
-  "pageTitleMemberPassword": "Đổi mật khẩu",
-  "@pageTitleMemberPassword": {
-    "type": "text"
-  },
-  "pageTitleMemberTransaction": "Hồ sơ chuyển",
-  "@pageTitleMemberTransaction": {
-    "type": "text"
-  },
-  "pageTitleMemberBets": "Lịch sử đặt cược",
-  "@pageTitleMemberBets": {
-    "type": "text"
-  },
-  "pageTitleMemberDeals": "Lịch sử giao dịch",
-  "@pageTitleMemberDeals": {
-    "type": "text"
-  },
-  "pageTitleMemberFlow": "Tổng cược",
-  "@pageTitleMemberFlow": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentRegister": "Đăng ký thành viên đại lý",
-  "@pageTitleMemberAgentRegister": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentLogin": "Đăng nhập thành viên đại lý",
-  "@pageTitleMemberAgentLogin": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentLoginHint": "Đăng nhập đại lý",
-  "@pageTitleMemberAgentLoginHint": {
-    "type": "text"
-  },
-  "pageTitleMemberAgent": "Đại lý",
-  "@pageTitleMemberAgent": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentAbout": "Mô tả đại lý",
-  "@pageTitleMemberAgentAbout": {
-    "type": "text"
-  },
-  "pageTitleTask": "Nhiệm vụ tích cực",
-  "@pageTitleTask": {
-    "type": "text"
-  },
-  "pageTitleMore": "Hơn",
-  "@pageTitleMore": {
-    "type": "text"
-  },
-  "toolBarMemberCredit": "VDK {value}",
-  "@toolBarMemberCredit": {
+  "appExitHint": "Nhấn lại {cnt} để đóng ứng dụng",
+  "@appExitHint": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "100.00"
+      "cnt": {
+        "example": "1"
       }
     }
   },
-  "themeColorHintSelect": "Giao Diện",
-  "@themeColorHintSelect": {
+  "appPluralExample": "{count, plural, =0{Hello}=1{Hello World}=2{Hello both Worlds}few{Hello {count} worlds}many{Hello all {count} worlds}other{Hello other {count} worlds}}",
+  "@appPluralExample": {
+    "description": "test flutter plural",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "appThemeColorDark": "Tối",
+  "@appThemeColorDark": {
+    "description": "",
     "type": "text"
   },
-  "themeColorDefault": "Đặt trước",
-  "@themeColorDefault": {
+  "appThemeColorDefault": "Đặt trước",
+  "@appThemeColorDefault": {
+    "description": "",
     "type": "text"
   },
-  "themeColorDark": "Đen",
-  "@themeColorDark": {
+  "appThemeColorHintSelect": "Chọn màu chủ đề",
+  "@appThemeColorHintSelect": {
+    "description": "",
     "type": "text"
   },
-  "themeColorLight": "Trắng",
-  "@themeColorLight": {
+  "appThemeColorLight": "Màu sáng",
+  "@appThemeColorLight": {
+    "description": "",
     "type": "text"
   },
-  "workInProgress": "Sắp có!",
-  "@workInProgress": {
+  "appTitle": "Yabo Mobile",
+  "@appTitle": {
+    "description": "",
     "type": "text"
   },
-  "networkChangedHint": "Đã phát hiện thấy thay đổi trạng thái mạng. Bạn có muốn làm mới trang không?",
-  "@networkChangedHint": {
-    "type": "text"
+  "appVersion": "Số phiên bản {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
   },
-  "exitAppHint": "Nhấn lại để đóng ứng dụng",
-  "@exitAppHint": {
-    "type": "text"
-  },
-  "gameToolHintUsage": "Nhấp để hiển thị, nhấn và giữ để ẩn ↗",
-  "@gameToolHintUsage": {
-    "type": "text"
-  },
-  "gameToolHintRestore": "Nhấp đúp để khôi phục màn hình",
-  "@gameToolHintRestore": {
-    "type": "text"
-  },
-  "actionNotify": "Thông báo",
-  "@actionNotify": {
-    "type": "text"
-  },
-  "actionSetting": "Cài đặt",
-  "@actionSetting": {
-    "type": "text"
-  },
-  "actionSearch": "Tìm kiếm",
-  "@actionSearch": {
-    "type": "text"
-  },
-  "actionHelp": "Hướng dẫn",
-  "@actionHelp": {
-    "type": "text"
-  },
-  "actionBack": "Quay lại",
-  "@actionBack": {
-    "type": "text"
-  },
-  "btnMenu": "Thực đơn",
-  "@btnMenu": {
-    "type": "text"
-  },
-  "btnBack": "Trở về",
+  "btnBack": "trở về",
   "@btnBack": {
-    "type": "text"
-  },
-  "btnRefresh": "Làm mới",
-  "@btnRefresh": {
-    "type": "text"
-  },
-  "btnUpdate": "Cập nhật",
-  "@btnUpdate": {
-    "type": "text"
-  },
-  "btnClose": "tắt",
-  "@btnClose": {
-    "type": "text"
-  },
-  "btnSearch": "Tìm kiếm",
-  "@btnSearch": {
-    "type": "text"
-  },
-  "btnConfirm": "Xác nhận",
-  "@btnConfirm": {
-    "type": "text"
-  },
-  "btnCancel": "Hủy bỏ",
-  "@btnCancel": {
-    "type": "text"
-  },
-  "btnSend": "Gửi",
-  "@btnSend": {
-    "type": "text"
-  },
-  "btnSubmit": "Gửi",
-  "@btnSubmit": {
-    "type": "text"
-  },
-  "btnConfirmSend": "Xác định",
-  "@btnConfirmSend": {
-    "type": "text"
-  },
-  "btnLogin": "Đăng nhập",
-  "@btnLogin": {
-    "type": "text"
-  },
-  "btnRegister": "ĐĂNG KÍ",
-  "@btnRegister": {
-    "type": "text"
-  },
-  "btnStopShowing": "Không bao giờ hiển thị trở lại",
-  "@btnStopShowing": {
-    "type": "text"
-  },
-  "btnResetPassword": "Quên mật khẩu ?",
-  "@btnResetPassword": {
-    "type": "text"
-  },
-  "btnFastLogin": "Nhớ lại",
-  "@btnFastLogin": {
-    "type": "text"
-  },
-  "btnSignUp": "Ngày đăng nhập",
-  "@btnSignUp": {
-    "type": "text"
-  },
-  "btnDownload": "Tải xuống",
-  "@btnDownload": {
+    "description": "",
     "type": "text"
   },
   "btnBind": "Trói buộc",
   "@btnBind": {
+    "description": "",
     "type": "text"
   },
-  "btnQuery": "Hỏi thăm",
-  "@btnQuery": {
+  "btnCancel": "hủy bỏ",
+  "@btnCancel": {
+    "description": "",
     "type": "text"
   },
-  "btnQueryNow": "Hỏi thăm ngay",
-  "@btnQueryNow": {
+  "btnClickImageToRefresh": "Làm mới biểu đồ điểm",
+  "@btnClickImageToRefresh": {
+    "description": "",
     "type": "text"
   },
-  "btnShow": "Hiển thị",
-  "@btnShow": {
+  "btnClickToBind": "Nhấp vào tôi để ràng buộc",
+  "@btnClickToBind": {
+    "description": "",
     "type": "text"
   },
-  "btnOn": "Mở",
-  "@btnOn": {
+  "btnClickToDownload": "Nhấp vào tôi để tải xuống",
+  "@btnClickToDownload": {
+    "description": "",
     "type": "text"
   },
-  "btnOff": "Tắt",
-  "@btnOff": {
+  "btnClose": "tắt",
+  "@btnClose": {
+    "description": "",
     "type": "text"
   },
-  "btnGo": "Đi đến",
-  "@btnGo": {
+  "btnConfirm": "mục đích",
+  "@btnConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "btnConfirmSend": "Xác nhận gửi",
+  "@btnConfirmSend": {
+    "description": "",
+    "type": "text"
+  },
+  "btnConfirmTransfer": "Xác nhận chuyển khoản",
+  "@btnConfirmTransfer": {
+    "description": "",
     "type": "text"
   },
   "btnCopy": "sao chép",
   "@btnCopy": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnBackHome": "Trang Chủ",
-  "@sideBtnBackHome": {
+  "btnDownload": "Tải xuống",
+  "@btnDownload": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnRotate": "Xoay màn hình",
-  "@sideBtnRotate": {
+  "btnEdit": "sửa đổi",
+  "@btnEdit": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnLockRotate": "Khóa màn hình xoay",
-  "@sideBtnLockRotate": {
+  "btnForwardTo": "Đi đến",
+  "@btnForwardTo": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateAll": "Mọi lúc",
-  "@spinnerDateAll": {
+  "btnNextStep": "Bước tiếp theo",
+  "@btnNextStep": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateToday": "Hôm nay",
-  "@spinnerDateToday": {
+  "btnOpen": "Bật",
+  "@btnOpen": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateYesterday": "Hôm qua",
-  "@spinnerDateYesterday": {
+  "btnPreStep": "Trước",
+  "@btnPreStep": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateMonth": "tháng này",
-  "@spinnerDateMonth": {
+  "btnQuery": "Hỏi thăm",
+  "@btnQuery": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateCustom": "Tập quán",
-  "@spinnerDateCustom": {
+  "btnQueryNow": "Hỏi thăm ngay",
+  "@btnQueryNow": {
+    "description": "",
     "type": "text"
   },
-  "hintActionSelect": "---",
-  "@hintActionSelect": {
+  "btnRefresh": "Làm tươi",
+  "@btnRefresh": {
+    "description": "",
     "type": "text"
   },
-  "hintActionLogin": "Vui lòng đăng nhập vào tài khoản trước",
-  "@hintActionLogin": {
+  "btnResetPassword": "quên mật khẩu",
+  "@btnResetPassword": {
+    "description": "",
     "type": "text"
   },
-  "hintTitleLogin": "Vui lòng đăng nhập trước số tài khoản",
-  "@hintTitleLogin": {
+  "btnSearch": "Tìm kiếm",
+  "@btnSearch": {
+    "description": "",
     "type": "text"
   },
-  "hintAccount": "Tài khoản thành viên",
-  "@hintAccount": {
+  "btnSend": "gửi",
+  "@btnSend": {
+    "description": "",
     "type": "text"
   },
-  "hintAccountPassword": "Mật khẩu",
-  "@hintAccountPassword": {
+  "btnSendOut": "Gửi đi",
+  "@btnSendOut": {
+    "description": "",
     "type": "text"
   },
-  "hintAccountInput": "vui lòng nhập tài khoản của bạn",
-  "@hintAccountInput": {
+  "btnShow": "trưng bày",
+  "@btnShow": {
+    "description": "",
     "type": "text"
   },
-  "hintPasswordInput": "Xin vui lòng nhập mật khẩu",
-  "@hintPasswordInput": {
+  "btnSignUp": "Đăng nhập ngay",
+  "@btnSignUp": {
+    "description": "",
     "type": "text"
   },
-  "hintConfirmedInput": "nhập lại mật khẩu",
-  "@hintConfirmedInput": {
+  "btnSubmit": "Gửi đi",
+  "@btnSubmit": {
+    "description": "",
     "type": "text"
   },
-  "hintPhoneInput": "Nhập số điện thoại",
-  "@hintPhoneInput": {
+  "btnSwitchOff": "tắt",
+  "@btnSwitchOff": {
+    "description": "",
     "type": "text"
   },
-  "hintReferralInput": "Vui lòng nhập mã giới thiệu",
-  "@hintReferralInput": {
+  "btnSwitchOn": "mở",
+  "@btnSwitchOn": {
+    "description": "",
     "type": "text"
   },
-  "hintName": "Vui lòng nhập tài khoản thành viên",
-  "@hintName": {
+  "btnTransferIn": "Chuyển giao",
+  "@btnTransferIn": {
+    "description": "",
     "type": "text"
   },
-  "hintEmail": "Vui lòng nhập hộp thư",
-  "@hintEmail": {
+  "btnTransferOut": "Chuyển ra ngoài",
+  "@btnTransferOut": {
+    "description": "",
     "type": "text"
   },
-  "hintPassword": "Vui lòng nhập mật khẩu của bạn",
-  "@hintPassword": {
+  "btnUpdate": "Cập nhật",
+  "@btnUpdate": {
+    "description": "",
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8 ~ 18 ký tự",
-  "@hintConfirmed": {
+  "centerHintEMail": "Liên kết email để bảo vệ bảo mật tài khoản",
+  "@centerHintEMail": {
+    "description": "",
     "type": "text"
   },
-  "messageLoading": "Vui lòng đợi…",
-  "@messageLoading": {
+  "centerHintMemberName": "Tên phải trùng với tên của chủ thẻ ngân hàng, nếu không sẽ không rút được tiền",
+  "@centerHintMemberName": {
+    "description": "",
     "type": "text"
   },
-  "messageWelcomeUser": "Chào mừng，{name}",
-  "@messageWelcomeUser": {
-    "type": "text",
-    "placeholders": {
-      "name": {
-        "example": "user"
-      }
-    }
-  },
-  "messageWelcome": "Chào Mừng",
-  "@messageWelcome": {
-    "type": "text"
-  },
-  "messageWelcomeHint": "Chào Mừng! Vui lòng Đăng nhập / Đăng ký",
-  "@messageWelcomeHint": {
-    "type": "text"
-  },
-  "messageLoginHint": "Vui lòng Đăng nhập / Đăng ký",
-  "@messageWelcomeHintShort": {
-    "type": "text"
-  },
-  "messageRegisterFailed": "đăng ký thất bại",
-  "@messageRegisterFailed": {
-    "type": "text"
-  },
-  "messageLoginFailed": "Đăng nhập thất bại",
-  "@messageLoginFailed": {
-    "type": "text"
-  },
-  "messageActionFailed": "Hoạt động không hợp lệ",
-  "@messageActionFailed": {
-    "type": "text"
-  },
-  "messageActionFillForm": "Vui lòng hoàn thành",
-  "@messageActionFillForm": {
-    "type": "text"
-  },
-  "messageActionCheckTerms": "Vui lòng đọc và đánh dấu để đồng ý với các quy tắc cá cược",
-  "@messageActionCheckTerms": {
-    "type": "text"
-  },
-  "messageLogout": "{name}，xin vui lòng đăng nhập lại",
-  "@messageLogout": {
-    "type": "text",
-    "placeholders": {
-      "name": {
-        "example": "user"
-      }
-    }
-  },
-  "messageActionTooFrequent": "Yêu cầu quá thường xuyên",
-  "@messageActionTooFrequent": {
-    "type": "text"
-  },
-  "messageNoEvent": "Hiện tại không có hoạt động nào",
-  "@messageNoEvent": {
-    "type": "text"
-  },
-  "messageVerifySuccess": "Đã xác minh thành công",
-  "@messageVerifySuccess": {
-    "type": "text"
-  },
-  "messageTaskSuccess": "{msg} sự thành công",
-  "@messageTaskSuccess": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login"
-      }
-    }
-  },
-  "messageTaskFailed": "{msg} sự thất bại",
-  "@messageTaskFailed": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login"
-      }
-    }
-  },
-  "messageTaskCanceled": "Đã hủy {msg}",
-  "@messageTaskCanceled": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login"
-      }
-    }
-  },
-  "messageError": "{msg} lỗi",
-  "@messageError": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login"
-      }
-    }
-  },
-  "messageErrorCause": "lỗi:{msg}({msg2})",
-  "@messageErrorCause": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login error"
-      },
-      "msg2": {
-        "example": "wrong password"
-      }
-    }
-  },
-  "messageErrorStatus": "lỗi:{msg}",
-  "@messageErrorStatus": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "login error"
-      }
-    }
-  },
-  "messageErrorLink": "Không thể mở liên kết：{url}",
-  "@messageErrorLink": {
-    "type": "text",
-    "placeholders": {
-      "url": {
-        "example": "https://"
-      }
-    }
-  },
-  "messageInvalidSymbol": "Chứa các ký tự bất hợp pháp",
-  "@messageInvalidSymbol": {
-    "type": "text"
-  },
-  "messageInvalidFormat": "sai định dạng",
-  "@messageInvalidFormat": {
-    "type": "text"
-  },
-  "messageInvalidName": "Định dạng tên không chính xác",
-  "@messageInvalidName": {
-    "type": "text"
-  },
-  "messageInvalidEmail": "Định dạng hộp thư không chính xác",
-  "@messageInvalidEmail": {
-    "type": "text"
-  },
-  "messageInvalidPhone": "Lỗi định dạng điện thoại({num})",
-  "@messageInvalidPhone": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "6"
-      }
-    }
-  },
-  "messageInvalidPostCode": "Mã bưu điện không chính xác(5~8)",
-  "@messageInvalidPostCode": {
-    "type": "text"
-  },
-  "messageInvalidWechat": "Lỗi định dạng wechat",
-  "@messageInvalidWechat": {
-    "type": "text"
-  },
-  "messageInvalidVerify": "vui lòng nhập mã xác nhận",
-  "@messageInvalidVerify": {
-    "type": "text"
-  },
-  "messageInvalidPasswordArg": "Mật khẩu phải có ít nhất {num} ký tự",
-  "@messageInvalidPasswordArg": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "6"
-      }
-    }
-  },
-  "messageInvalidAccount": "Số tài khoản là 6 ~ 12 ký tự",
-  "@messageInvalidAccount": {
-    "type": "text"
-  },
-  "messageInvalidPassword": "Mật khẩu dài 8 ~ 18 ký tự",
-  "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
-  },
-  "messageInvalidConfirmPassword": "Mật khẩu không hợp lệ",
-  "@messageInvalidConfirmPassword": {
-    "type": "text"
-  },
-  "messageInvalidDepositAmount": "Số tiền nhập không chính xác",
-  "@messageInvalidDepositAmount": {
-    "type": "text"
-  },
-  "messageInvalidDepositAmountMin": "Số tiền tối thiểu là {num}",
-  "@messageInvalidDepositAmountMin": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "0"
-      }
-    }
-  },
-  "messageInvalidDepositName": "Tên tài khoản không chính xác",
-  "@messageInvalidDepositName": {
-    "type": "text"
-  },
-  "messageInvalidCardOwner": "Tên chủ thẻ sai",
-  "@messageInvalidCardOwner": {
-    "type": "text"
-  },
-  "messageInvalidCardNumber": "Số thẻ là 5 ~ 19 ký tự",
-  "@messageInvalidCardNumber": {
-    "type": "text"
-  },
-  "messageInvalidCardBankPoint": "Tên phải nhiều hơn 3 ký tự",
-  "@messageInvalidCardBankPoint": {
-    "type": "text"
-  },
-  "messageInvalidWithdrawPassword": "Mật khẩu không hợp lệ",
-  "@messageInvalidWithdrawPassword": {
-    "type": "text"
-  },
-  "messageInvalidWithdrawAmount": "Vượt quá số dư tài khoản",
-  "@messageInvalidWithdrawAmount": {
-    "type": "text"
-  },
-  "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",
-  "@messageWarnUsingCellular": {
-    "type": "text"
-  },
-  "messageWarnNetworkLocation": "Dịch vụ này không khả dụng trong khu vực mạng của bạn",
-  "@messageWarnNetworkLocation": {
-    "type": "text"
-  },
-  "messageWarnLoadingGame": "Đang tải trò chơi, vui lòng đợi ...",
-  "@messageWarnLoadingGame": {
-    "type": "text"
-  },
-  "messageWarnNoHistoryData": "Chưa có dữ liệu",
-  "@messageWarnNoHistoryData": {
-    "type": "text"
-  },
-  "messageWarnNoPromoData": "Kiểm tra không giảm giá",
-  "@messageWarnNoPromoData": {
-    "type": "text"
-  },
-  "messageWarnNoPromoInfo": "Kiểm tra không có thông tin ưu đãi",
-  "@messageWarnNoPromoInfo": {
-    "type": "text"
-  },
-  "messageErrorInternal": "Lỗi nội bộ, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
-  "@messageErrorInternal": {
-    "type": "text"
-  },
-  "messageErrorCachedFile": "Lỗi dữ liệu đã lưu trong bộ nhớ cache, vui lòng xóa bộ nhớ cache hoặc liên hệ với dịch vụ khách hàng",
-  "@messageErrorCachedFile": {
-    "type": "text"
-  },
-  "messageErrorEvent": "Không thể nhận dữ liệu hoạt động đăng ký, vui lòng thử lại sau",
-  "@messageErrorEvent": {
-    "type": "text"
-  },
-  "messageErrorToken": "Xác minh người dùng không thành công, vui lòng đăng nhập lại",
-  "@messageErrorToken": {
-    "type": "text"
-  },
-  "messageErrorAutoLogin": "Lỗi dữ liệu, vui lòng đăng nhập thủ công",
-  "@messageErrorAutoLogin": {
-    "type": "text"
-  },
-  "messageErrorNotLogin": "Vui lòng đăng nhập vào tài khoản trước",
-  "@messageErrorNotLogin": {
-    "type": "text"
-  },
-  "messageErrorNoNetwork": "Vui lòng kiểm tra trạng thái mạng",
-  "@messageErrorNoNetwork": {
-    "type": "text"
-  },
-  "messageErrorNoServerConnection": "Không thể kết nối đến máy chủ!!",
-  "@messageErrorNoServerConnection": {
-    "type": "text"
-  },
-  "messageErrorTimeoutError": "Mạng đã hết thời gian chờ, vui lòng thử lại sau",
-  "@messageErrorTimeoutError": {
-    "type": "text"
-  },
-  "messageErrorServerData": "Lỗi dữ liệu máy chủ, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
-  "@messageErrorServerData": {
-    "type": "text"
-  },
-  "messageErrorLoadingGame": "Đã xảy ra lỗi khi tải trò chơi, vui lòng thử lại sau",
-  "@messageErrorLoadingGame": {
-    "type": "text"
-  },
-  "messageErrorLoadingPay": "Lỗi tải trang, vui lòng thử lại sau",
-  "@messageErrorLoadingPay": {
-    "type": "text"
-  },
-  "messageErrorNoStoragePermission": "Vui lòng bật quyền \"Lưu\"",
-  "@messageErrorNoStoragePermission": {
-    "type": "text"
-  },
-  "messageErrorHasCardData": "Tài khoản này đã được liên kết với thẻ ngân hàng",
-  "@messageErrorHasCardData": {
-    "type": "text"
-  },
-  "messageErrorFieldError": "vui lòng nhập {msg}",
-  "@messageErrorFieldError": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "input filter"
-      }
-    }
-  },
-  "messageErrorBindUrl": "Lỗi URL liên kết ví {wallet}",
-  "@messageErrorBindUrl": {
-    "type": "text",
-    "placeholders": {
-      "wallet": {
-        "example": "CGP"
-      }
-    }
-  },
-  "messageErrorBindCgp": "Vui lòng ràng buộc ví CGP trước",
-  "@messageErrorBindCgp": {
-    "type": "text"
-  },
-  "messageErrorBindCpw": "Vui lòng ràng buộc ví CPW trước",
-  "@messageErrorBindCpw": {
-    "type": "text"
-  },
-  "messageErrorBindBankcard": "Vui lòng ràng buộc thẻ ngân hàng đầu tiên！",
-  "@messageErrorBindBankcard": {
-    "type": "text"
-  },
-  "messageErrorAccount": "Lỗi tài khoản",
-  "@messageErrorAccount": {
-    "type": "text"
-  },
-  "messageRepeatAccount": "Đăng ký tài khoản trùng lặp",
-  "@messageRepeatAccount": {
-    "type": "text"
-  },
-  "messageErrorPassword": "sai mật khẩu",
-  "@messageErrorPassword": {
-    "type": "text"
-  },
-  "messageErrorPasswordHint": "Mật khẩu không khớp, tài khoản sẽ bị khóa sau 5 lỗi",
-  "@messageErrorPasswordHint": {
-    "type": "text"
-  },
-  "messageErrorWithdraw": "Rút tiền không thành công",
-  "@messageErrorWithdraw": {
-    "type": "text"
-  },
-  "messageCopy": "Sao chép vào clipboard",
-  "@messageCopy": {
-    "type": "text"
-  },
-  "messageCopyError": "Sao chép không thành công",
-  "@messageCopyError": {
-    "type": "text"
-  },
-  "messageWait": "Đang xử lý yêu cầu, vui lòng đợi ...",
-  "@messageWait": {
-    "type": "text"
-  },
-  "messageWaitComplete": "Vui lòng không thoát khi đang xử lý yêu cầu",
-  "@messageWaitComplete": {
-    "type": "text"
-  },
-  "messageSuccess": "sự thành công",
-  "@messageSuccess": {
-    "type": "text"
-  },
-  "messageFailed": "Thay đổi không thành công, vui lòng thử lại sau",
-  "@messageFailed": {
-    "type": "text"
-  },
-  "messagePartFailed": "Một số nền tảng chuyển không thành công",
-  "@messagePartFailed": {
-    "type": "text"
-  },
-  "messageSentVerify": "mã xác minh đã gửi",
-  "@messageSentVerify": {
-    "type": "text"
-  },
-  "homeHintWelcomeLogin": "Xin chào! Hãy đăng nhập với tư cách thành viên",
-  "@homeHintWelcomeLogin": {
-    "type": "text"
-  },
-  "homeHintWelcome": "Xin chào!",
-  "@homeHintWelcome": {
-    "type": "text"
-  },
-  "homeHintWelcomeMember": "{name} Xin chào!",
-  "@homeHintWelcomeMember": {
-    "type": "text",
-    "placeholders": {
-      "name": {
-        "example": "user"
-      }
-    }
-  },
-  "homeHintFreeUsage": "Sử dụng miễn phí",
-  "@homeHintFreeUsage": {
-    "type": "text"
-  },
-  "homeHintMemberCreditLeft": "Thăng bằng",
-  "@homeHintMemberCreditLeft": {
-    "type": "text"
-  },
-  "homeHintDefaultMarquee": "Xin chào, thành viên thân mến! Nếu bạn có bất kỳ câu hỏi nào về việc sử dụng, vui lòng sử dụng hệ thống dịch vụ khách hàng trực tuyến.",
-  "@homeHintDefaultMarquee": {
-    "type": "text"
-  },
-  "homeUserTabCategoryMovie": "XEM PHIM",
-  "@homeUserTabCategoryMovie": {
-    "type": "text"
-  },
-  "homeUserTabCategoryEgMovie": "Rạp chiếu phim EG",
-  "@homeUserTabCategoryEgMovie": {
-    "type": "text"
-  },
-  "homeUserTabCategoryNewMovie": "Rạp chiếu phim mới",
-  "@homeUserTabCategoryNewMovie": {
-    "type": "text"
-  },
-  "homeUserTabCategoryRecommend": "giới thiệu",
-  "@homeUserTabCategoryRecommend": {
-    "type": "text"
-  },
-  "homeUserTabCategoryFavorite": "Yêu thích",
-  "@homeUserTabCategoryFavorite": {
-    "type": "text"
-  },
-  "gameCategoryCasino": "SÒNG BẠC",
-  "@gameCategoryCasino": {
-    "type": "text"
-  },
-  "gameCategoryCasinoFull": "SÒNG BẠC",
-  "@gameCategoryCasinoFull": {
-    "type": "text"
-  },
-  "gameCategorySlot": "TRÒ CHƠI",
-  "@gameCategorySlot": {
-    "type": "text"
-  },
-  "gameCategorySlotFull": "TRÒ CHƠI",
-  "@gameCategorySlotFull": {
-    "type": "text"
-  },
-  "gameCategorySport": "THỂ THAO",
-  "@gameCategorySport": {
-    "type": "text"
-  },
-  "gameCategorySportFull": "THỂ THAO",
-  "@gameCategorySportFull": {
-    "type": "text"
-  },
-  "gameCategoryFish": "BẮN CÁ",
-  "@gameCategoryFish": {
-    "type": "text"
-  },
-  "gameCategoryFishFull": "BẮN CÁ",
-  "@gameCategoryFishFull": {
-    "type": "text"
-  },
-  "gameCategoryLottery": "XỔ SỐ",
-  "@gameCategoryLottery": {
-    "type": "text"
-  },
-  "gameCategoryLotteryFull": "XỔ SỐ",
-  "@gameCategoryLotteryFull": {
-    "type": "text"
-  },
-  "gameCategoryCard": "GAME BÀI",
-  "@gameCategoryCard": {
-    "type": "text"
-  },
-  "gameCategoryCardFull": "GAME BÀI",
-  "@gameCategoryCardFull": {
-    "type": "text"
-  },
-  "gameCategoryGift": "Quà tặng",
-  "@gameCategoryGift": {
-    "type": "text"
-  },
-  "gameCategoryCockFighting": "CHỌI GÀ",
-  "@gameCategoryCockFighting": {
-    "type": "text"
-  },
-  "gameCategoryAll": "Tất cả",
-  "@gameCategoryAll": {
-    "type": "text"
-  },
-  "gameCategoryOther": "Khác",
-  "@gameCategoryOther": {
-    "type": "text"
-  },
-  "gameCategoryWeb": "Phiên bản web",
-  "@gameCategoryWeb": {
-    "type": "text"
-  },
-  "gameCategoryWebHint": "Nhấp vào tôi để mở phiên bản web",
-  "@gameCategoryWebHint": {
-    "type": "text"
-  },
-  "gameCategoryMovieWeb": "XEM PHIM",
-  "@gameCategoryMovieWeb": {
-    "type": "text"
-  },
-  "gameCategoryMovieWebHint": "Bấm để xem phim",
-  "@gameCategoryMovieWebHint": {
-    "type": "text"
-  },
-  "gameCategoryAbout": "VỀ CHÚNG TÔI",
-  "@gameCategoryAbout": {
-    "type": "text"
-  },
-  "userPwdFieldTitleOld": "Mật khẩu cũ：",
-  "@userPwdFieldTitleOld": {
-    "type": "text"
-  },
-  "userPwdFieldTitleNew": "Mật khẩu mới：",
-  "@userPwdFieldTitleNew": {
-    "type": "text"
-  },
-  "userPwdFieldTitleConfirm": "Xác nhận mật khẩu：",
-  "@userPwdFieldTitleConfirm": {
-    "type": "text"
-  },
-  "userPwdFieldHintOld": "Nhập mật khẩu cũ",
-  "@userPwdFieldHintOld": {
-    "type": "text"
-  },
-  "userPwdFieldHintNew": "Nhập mật khẩu mới",
-  "@userPwdFieldHintNew": {
-    "type": "text"
-  },
-  "userPwdFieldHintConfirm": "Nhập mật khẩu mới",
-  "@userPwdFieldHintConfirm": {
-    "type": "text"
-  },
-  "userPwdButtonTitle": "Đổi mật khẩu",
-  "@userPwdButtonTitle": {
-    "type": "text"
-  },
-  "userVerifyFieldTitle": "Mã xác nhận:",
-  "@userVerifyFieldTitle": {
-    "type": "text"
-  },
-  "userVerifyFieldHint": "Vui lòng nhập mã xác nhận",
-  "@userVerifyFieldHint": {
-    "type": "text"
-  },
-  "userVerifyFieldInfo": "Chỉ có thể lấy một bộ mã xác minh trong vòng 24 giờ",
-  "@userVerifyFieldInfo": {
-    "type": "text"
-  },
-  "userVerifyButtonText": "Nhận mã xác minh {separator}",
-  "@userVerifyButtonText": {
-    "type": "text",
-    "placeholders": {
-      "separator": {
-        "example": "\n"
-      }
-    }
-  },
-  "registerFieldTitleAccount": "Số tài khoản",
-  "@registerFieldTitleAccount": {
-    "type": "text"
-  },
-  "registerFieldTitlePassword": "Mật khẩu",
-  "@registerFieldTitlePassword": {
-    "type": "text"
-  },
-  "registerFieldTitleConfirm": "Xác nhận mật khẩu",
-  "@registerFieldTitleConfirm": {
-    "type": "text"
-  },
-  "registerFieldTitlePhone": "Số điện thoại",
-  "@registerFieldTitlePhone": {
-    "type": "text"
-  },
-  "registerFieldTitleEmail": "E-Mail",
-  "@registerFieldTitleEmail": {
-    "type": "text"
-  },
-  "registerFieldTitleZalo": "Zalo",
-  "@registerFieldTitleZalo": {
-    "type": "text"
-  },
-  "registerFieldTitleLine": "Line",
-  "@registerFieldTitleLine": {
-    "type": "text"
-  },
-  "registerFieldTitleQQ": "QQ",
-  "@registerFieldTitleQQ": {
-    "type": "text"
-  },
-  "registerFieldTitleVerify": "Mã xác minh điện thoại di động",
-  "@registerFieldTitleVerify": {
-    "type": "text"
-  },
-  "registerFieldHintVerify": "Vui lòng nhập mã xác minh di động của bạn",
-  "@registerFieldHintVerify": {
-    "type": "text"
-  },
-  "registerFieldTitleRecommend": "Mã đại lý",
-  "@registerFieldTitleRecommend": {
-    "type": "text"
-  },
-  "registerButtonTitleRefresh": "kích vào hình ảnh để làm mới  ",
-  "@registerButtonTitleRefresh": {
-    "type": "text"
-  },
-  "registerButtonTitleRegister": "đăng ký",
-  "@registerButtonTitleRegister": {
-    "type": "text"
-  },
-  "registerButtonTitleSendVerify": "Gửi mã xác minh điện thoại",
-  "@registerButtonTitleSendVerify": {
-    "type": "text"
-  },
-  "registerCheckButtonNews": "Nhận thông tin ưu đãi",
-  "@registerCheckButtonNews": {
-    "type": "text"
-  },
-  "registerCheckButtonTerms": "Đọc và đồng ý với các quy tắc cá cược của Điều khoản và Điều kiện",
-  "@registerCheckButtonTerms": {
-    "type": "text"
-  },
-  "registerButtonServiceHint": "Mọi thắc mắc xin vui lòng ấn vào biểu tượng này !",
-  "@registerButtonServiceHint": {
-    "type": "text"
-  },
-  "registerHintAutoLogin": "Đang đăng nhập, vui lòng đợi ...",
-  "@registerHintAutoLogin": {
-    "type": "text"
-  },
-  "promoDetailText": ">>Chi tiết hoạt động",
-  "@promoDetailText": {
-    "type": "text"
-  },
-  "promoCategoryAll": "All",
-  "@promoCategoryAll": {
-    "type": "text"
-  },
-  "promoCategoryOther": "Khác",
-  "@promoCategoryOther": {
-    "type": "text"
-  },
-  "promoDetailPlatform": "Nền tảng áp dụng",
-  "@promoDetailPlatform": {
-    "type": "text"
-  },
-  "promoDetailContent": "Nội dung hoạt động",
-  "@promoDetailContent": {
-    "type": "text"
-  },
-  "promoDetailApply": "Phương pháp ứng dụng",
-  "@promoDetailApply": {
-    "type": "text"
-  },
-  "promoDetailRules": "Quy tắc hoạt động",
-  "@promoDetailRules": {
-    "type": "text"
-  },
-  "memberGridTitleDeposit": "NẠP TIỀN",
-  "@memberGridTitleDeposit": {
-    "type": "text"
-  },
-  "memberGridTitleTransfer": "Chuyển khoản nhanh",
-  "@memberGridTitleTransfer": {
-    "type": "text"
-  },
-  "memberGridTitleCard": "Thẻ ngân hàng",
-  "@memberGridTitleCard": {
-    "type": "text"
-  },
-  "memberGridTitleWithdraw": "Rút tiền",
-  "@memberGridTitleWithdraw": {
-    "type": "text"
-  },
-  "memberGridTitleBalance": "Số dư nền tảng",
-  "@memberGridTitleBalance": {
-    "type": "text"
-  },
-  "memberGridTitleWallet": "Ví",
-  "@memberGridTitleWallet": {
-    "type": "text"
-  },
-  "memberGridTitleMessage": "Hòm thư",
-  "@memberGridTitleMessage": {
-    "type": "text"
-  },
-  "memberGridTitleAccount": "Tài khoảng trung tâm",
-  "@memberGridTitleAccount": {
-    "type": "text"
-  },
-  "memberGridTitleTransaction": "Hồ sơ chuyển",
-  "@memberGridTitleTransaction": {
-    "type": "text"
-  },
-  "memberGridTitleBet": "Lịch sử đặt cược",
-  "@memberGridTitleBet": {
-    "type": "text"
-  },
-  "memberGridTitleDeal": "Lịch sử giao dịch",
-  "@memberGridTitleDeal": {
-    "type": "text"
-  },
-  "memberGridTitleFlow": "Tổng cược",
-  "@memberGridTitleFlow": {
-    "type": "text"
-  },
-  "memberGridTitleAgent": "Đại lý",
-  "@memberGridTitleAgent": {
-    "type": "text"
-  },
-  "memberGridTitleLogout": "Đăng xuất",
-  "@memberGridTitleLogout": {
-    "type": "text"
-  },
-  "transferViewTitleOut": "Chuyển ra ngoài",
-  "@transferViewTitleOut": {
-    "type": "text"
-  },
-  "transferViewTitleIn": "Chuyển khoản",
-  "@transferViewTitleIn": {
-    "type": "text"
-  },
-  "transferViewSiteHint": "Vui lòng chọn một nền tảng",
-  "@transferViewSiteHint": {
-    "type": "text"
-  },
-  "transferViewTitleAmount": "Số tiền",
-  "@transferViewTitleAmount": {
-    "type": "text"
-  },
-  "transferViewTitleOption": "Điểm số",
-  "@transferViewTitleOption": {
-    "type": "text"
-  },
-  "transferViewTextOptionAll": "Tất cả ra ngoài",
-  "@transferViewTextOptionAll": {
-    "type": "text"
-  },
-  "transferViewButtonConfirm": "Xác nhận chuyển tiền",
-  "@transferViewButtonConfirm": {
-    "type": "text"
-  },
-  "transferDataError": "Lỗi dữ liệu, vui lòng chọn lại",
-  "@transferDataError": {
-    "type": "text"
-  },
-  "transferPlatformError": "Nền tảng đã chọn hiện không thể chuyển tiền",
-  "@transferPlatformError": {
-    "type": "text"
-  },
-  "transferResultAlertTitle": "Chuyển không thành công",
-  "@transferResultAlertTitle": {
-    "type": "text"
-  },
-  "transferHintRefresh": "4.Nếu số tiền nền tảng không thay đổi sau khi chuyển khoản thành công, vui lòng chọn nền tảng để làm mới số tiền một lần nữa hoặc liên hệ với dịch vụ khách hàng",
-  "@transferHintRefresh": {
-    "type": "text"
-  },
-  "transferMessage": "{from} Đến {to}",
-  "@transferMessage": {
-    "type": "text",
-    "placeholders": {
-      "from": {
-        "example": "site1"
-      },
-      "to": {
-        "example": "site2"
-      }
-    }
-  },
-  "bankcardViewTitleNew": "Thêm thẻ ngân hàng",
-  "@bankcardViewTitleNew": {
-    "type": "text"
-  },
-  "bankcardViewHintNew": "Vui lòng liên kết thẻ ngân hàng để nhận thanh toán",
-  "@bankcardViewHintNew": {
-    "type": "text"
-  },
-  "bankcardViewTitleOwner": "Tên tài khoản",
-  "@bankcardViewTitleOwner": {
-    "type": "text"
-  },
-  "bankcardViewTitleHolder": "chủ tài khoản",
-  "@bankcardViewTitleHolder": {
-    "type": "text"
-  },
-  "bankcardViewTitleBank": "Ngân hàng BIDV",
-  "@bankcardViewTitleBank": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankName": "Tên ngân hàng",
-  "@bankcardViewTitleBankName": {
-    "type": "text"
-  },
-  "bankcardViewTitleCardNumber": "Số tài khoản",
-  "@bankcardViewTitleCardNumber": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankBranch": "Chi nhánh",
-  "@bankcardViewTitleBankBranch": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankProvince": "Mở tài khoản",
-  "@bankcardViewTitleBankProvince": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankArea": "Khu vực",
-  "@bankcardViewTitleBankArea": {
-    "type": "text"
-  },
-  "bankcardViewTitleSend": "Gửi",
-  "@bankcardViewTitleSend": {
-    "type": "text"
-  },
-  "withdrawViewTitleAmount": "Số tiền rút",
-  "@withdrawViewTitleAmount": {
-    "type": "text"
-  },
-  "withdrawViewTitlePwd": "Mật khẩu rút tiền",
-  "@withdrawViewTitlePwd": {
-    "type": "text"
-  },
-  "withdrawViewTitleNote": "Nhận xét",
-  "@withdrawViewTitleNote": {
-    "type": "text"
-  },
-  "withdrawViewOptionVirtual": "Không sử dụng tiền ảo",
-  "@withdrawViewOptionVirtual": {
-    "type": "text"
-  },
-  "withdrawViewOptionCgp": "Sử dụng ví CGP",
-  "@withdrawViewOptionCgp": {
-    "type": "text"
-  },
-  "withdrawViewOptionCpw": "Sử dụng ví CPW",
-  "@withdrawViewOptionCpw": {
-    "type": "text"
-  },
-  "withdrawViewOptionHint1": "Nếu bạn cần trích xuất tiền ảo vui lòng chọn lấy",
-  "@withdrawViewOptionHint1": {
-    "type": "text"
-  },
-  "withdrawViewOptionHint2": "Yêu cầu lưu lượng còn lại： ",
-  "@withdrawViewOptionHint2": {
-    "type": "text"
-  },
-  "withdrawViewOptionHint3": "Nhắc bạn rằng dữ liệu doanh thu sẽ khác do công ty trò chơi chậm trễ",
-  "@withdrawViewOptionHint3": {
-    "type": "text"
-  },
-  "withdrawViewHint1": "Hội viên muốn thay đổi thẻ ngân hàng ràng buộc với web khi rút tiền ,vui lòng liên hệ với dịch vụ chăm sóc khách hàng trực tuyến để được hướng dẫn .",
-  "@withdrawViewHint1": {
-    "type": "text"
-  },
-  "withdrawViewHint2": "Mỗi tài khoản hội viên được tối đa 3 lần rút tiền trong ngày , nếu hơn 3 lần sẽ phải chịu thêm phí dịch vụ 5%.",
-  "@withdrawViewHint2": {
-    "type": "text"
-  },
-  "walletViewTitleMy": "Túi của tôi",
-  "@walletViewTitleMy": {
-    "type": "text"
-  },
-  "walletViewTitleRemain": "Tổng số dư",
-  "@walletViewTitleRemain": {
-    "type": "text"
-  },
-  "walletViewTitleBalance": "Số dư trên ví",
-  "@walletViewTitleBalance": {
-    "type": "text"
-  },
-  "walletViewHintWalletType": "* Khi cài đặt được bật, giới hạn ví sẽ tự động được chuyển sang nền tảng trò chơi đã mở",
-  "@walletViewHintWalletType": {
-    "type": "text"
-  },
-  "walletViewTitleWalletSingle": "Ví đơn",
-  "@walletViewTitleWalletSingle": {
-    "type": "text"
-  },
-  "walletViewTitleWalletMulti": "Nhiều ví",
-  "@walletViewTitleWalletMulti": {
-    "type": "text"
-  },
-  "walletViewButtonOneClick": "Chuyển hết về tài khoản chính",
-  "@walletViewButtonOneClick": {
-    "type": "text"
-  },
-  "walletViewHintOneClick": "Tất cả các khoản tín dụng nền tảng được chuyển vào ví chính",
-  "@walletViewHintOneClick": {
-    "type": "text"
-  },
-  "walletViewHintOneClickWait": "Đang quay lại, vui lòng đợi ...",
-  "@walletViewHintOneClickWait": {
-    "type": "text"
-  },
-  "walletViewHintWalletSingle": "*Hệ thống đặt trước để tự động chuyển tín dụng sang nền tảng trò chơi mở",
-  "@walletViewHintWalletSingle": {
-    "type": "text"
-  },
-  "walletViewHintWalletMulti": "*Cần tự chuyển tín dụng sang nền tảng chơi game",
-  "@walletViewHintWalletMulti": {
-    "type": "text"
-  },
-  "walletViewMessageSetting": "Thay đổi cài đặt ví",
-  "@walletViewMessageSetting": {
-    "type": "text"
-  },
-  "centerViewTitleData": "Thông tin khách hàng",
-  "@centerViewTitleData": {
-    "type": "text"
-  },
-  "centerViewTitleLotto": "6 mã may mắn",
-  "@centerViewTitleLotto": {
-    "type": "text"
-  },
-  "centerViewTitleVipRank": "Cấp độ VIP",
-  "@centerViewTitleVipRank": {
-    "type": "text"
-  },
-  "centerTextTitleAccount": "Tên tài khoản",
-  "@centerTextTitleAccount": {
-    "type": "text"
-  },
-  "centerTextTitleName": "Họ tên",
-  "@centerTextTitleName": {
-    "type": "text"
-  },
-  "centerTextTitleBirth": "Ngày sinh",
-  "@centerTextTitleBirth": {
-    "type": "text"
-  },
-  "centerTextTitleDateHint": "Định dạng là:0000-00-00",
-  "@centerTextTitleDateHint": {
-    "type": "text"
-  },
-  "centerTextTitleDateError": "Vui lòng nhập đúng ngày (định dạng: 0000-00-00)",
-  "@centerTextTitleDateError": {
-    "type": "text"
-  },
-  "centerTextTitleMailError": "Vui lòng nhập địa chỉ email chính xác",
-  "@centerTextTitleMailError": {
-    "type": "text"
-  },
-  "centerTextTitlePhone": "Số điện thoại",
-  "@centerTextTitlePhone": {
-    "type": "text"
-  },
-  "centerTextTitleMail": "Email",
-  "@centerTextTitleMail": {
-    "type": "text"
-  },
-  "centerTextTitleWechat": "Tín hiệu vi mô：",
-  "@centerTextTitleWechat": {
-    "type": "text"
-  },
-  "centerTextTitleCgp": "CGP ví tiền",
-  "@centerTextTitleCgp": {
-    "type": "text"
-  },
-  "centerTextTitleCpw": "CPW ví tiền",
-  "@centerTextTitleCpw": {
-    "type": "text"
-  },
-  "centerTextButtonChangePwd": "Đổi mật khẩu",
-  "@centerTextButtonChangePwd": {
-    "type": "text"
-  },
-  "centerTextButtonBind": "Bắt buộc",
-  "@centerTextButtonBind": {
-    "type": "text"
-  },
-  "centerTextButtonEdit": "Sửa đổi",
-  "@centerTextButtonEdit": {
-    "type": "text"
-  },
-  "centerTextButtonSend": "Gửi",
-  "@centerTextButtonSend": {
-    "type": "text"
-  },
-  "centerHintNoName": "Vui lòng đến thẻ ngân hàng ràng buộc để thực hiện các cài đặt có liên quan",
+  "centerHintNoName": "Vui lòng đi đến liên kết thẻ ngân hàng để thực hiện các cài đặt liên quan",
   "@centerHintNoName": {
+    "description": "",
     "type": "text"
   },
-  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01 ~ 49",
-  "@centerLuckyTitle": {
+  "centerHintPrivacyEdit": "Vì quyền riêng tư của bạn, không thể sửa đổi thông tin sau khi xác nhận\nNếu bạn cần hỗ trợ, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "@centerHintPrivacyEdit": {
+    "description": "",
     "type": "text"
   },
-  "centerLuckyNumberError": "Dải số: 01 ~ 49",
-  "@centerLuckyNumberError": {
+  "centerTabMemberData": "thông tin cá nhân",
+  "@centerTabMemberData": {
+    "description": "",
     "type": "text"
   },
-  "centerLuckyHint": "Mã may mắn，Đã có thể tham gia vào mã sáu màu may mắn，Món quà tuyệt vời cho bạn!!!",
-  "@centerLuckyHint": {
+  "centerTabVipRank": "Hạng VIP",
+  "@centerTabVipRank": {
+    "description": "",
     "type": "text"
   },
-  "centerLuckyButtonGenerate": "Được tạo tự động",
-  "@centerLuckyButtonGenerate": {
+  "centerTextHeadPhoto": "Ảnh đại diện",
+  "@centerTextHeadPhoto": {
+    "description": "",
     "type": "text"
   },
-  "centerLuckyButtonBind": "Xác nhận ràng buộc",
-  "@centerLuckyButtonBind": {
+  "certificateTitle": "giấy phép",
+  "@certificateTitle": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwLeftTitle": "Bạn chưa có ứng dụng CPW?",
-  "@centerDialogCpwLeftTitle": {
+  "certificateTitleBVI": "Chứng nhận Quần đảo Virgin thuộc Anh (BVI)",
+  "@certificateTitleBVI": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwLeftHint": "※ iPad không được hỗ trợ",
-  "@centerDialogCpwLeftHint": {
+  "certificateTitleGC": "Ủy ban giám sát GC của Anh",
+  "@certificateTitleGC": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwRightTitle": "ỨNG DỤNG Gobao",
-  "@centerDialogCpwRightTitle": {
+  "certificateTitleMGA": "Chứng nhận Giấy phép Trò chơi Malta (MGA)",
+  "@certificateTitleMGA": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwRightHint": "(Vui lòng đợi trang cập nhật sau khi ràng buộc)",
-  "@centerDialogCpwRightHint": {
+  "certificateTitlePGC": "Philippines (PAGCOR) Giám sát thẻ chơi game",
+  "@certificateTitlePGC": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwRightHint2": " hoặc là ",
-  "@centerDialogCpwRightHint2": {
+  "dealsDetailTypeAdjustDeposit": "Tiền gửi điều chỉnh",
+  "@dealsDetailTypeAdjustDeposit": {
+    "description": "",
     "type": "text"
   },
-  "centerDialogCpwRightLinkError": "Không thể lấy URL ràng buộc, vui lòng liên hệ với dịch vụ khách hàng",
-  "@centerDialogCpwRightLinkError": {
+  "dealsDetailTypeAdjustWithdraw": "Điều chỉnh việc rút tiền",
+  "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
     "type": "text"
   },
-  "transactionViewSpinnerTitle": "Thời gian chuyển",
-  "@transactionViewSpinnerTitle": {
+  "depositHintGetInfoFromCs": "Vui lòng liên hệ bộ phận chăm sóc khách hàng để biết thông tin tài khoản nạp tiền",
+  "@depositHintGetInfoFromCs": {
+    "description": "",
     "type": "text"
   },
-  "transactionHeaderSerial": "Số sêri",
-  "@transactionHeaderSerial": {
+  "depositHintNoBankcard": "Vui lòng điền thông tin thẻ ngân hàng trước",
+  "@depositHintNoBankcard": {
+    "description": "",
     "type": "text"
   },
-  "transactionHeaderDate": "Ngày tháng",
-  "@transactionHeaderDate": {
-    "type": "text"
-  },
-  "transactionHeaderType": "Thể loại",
-  "@transactionHeaderType": {
-    "type": "text"
-  },
-  "transactionHeaderDesc": "Mô tả",
-  "@transactionHeaderDesc": {
-    "type": "text"
-  },
-  "transactionHeaderAmount": "tiền",
-  "@transactionHeaderAmount": {
-    "type": "text"
-  },
-  "betsSpinnerTitlePlatform": "Kênh TRÒ CHƠI",
-  "@betsSpinnerTitlePlatform": {
-    "type": "text"
-  },
-  "betsSpinnerOptionAllPlatform": "Tất cả các nền tảng",
-  "@betsSpinnerOptionAllPlatform": {
-    "type": "text"
-  },
-  "betsSpinnerTitleTime": "Thời gian",
-  "@betsSpinnerTitleTime": {
-    "type": "text"
-  },
-  "betsFieldTitleStartTime": "Ngày bắt đầu",
-  "@betsFieldTitleStartTime": {
-    "type": "text"
-  },
-  "betsFieldTitleEndTime": "Ngày kết thúc",
-  "@betsFieldTitleEndTime": {
-    "type": "text"
-  },
-  "betsFieldDateError": "Khoảng thời gian sai",
-  "@betsFieldDateError": {
-    "type": "text"
-  },
-  "betsTextTotal": "Tổng cộng: VDK {value}",
-  "@betsTextTotal": {
+  "depositHintOrderMaxAmount": "Giới hạn tối đa duy nhất: {value}",
+  "@depositHintOrderMaxAmount": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "value": {
-        "example": "80.0"
+        "example": "100"
       }
     }
   },
-  "betsHeaderDate": "Thời gian",
-  "@betsHeaderDate": {
-    "type": "text"
-  },
-  "betsHeaderId": "Số ghi chú",
-  "@betsHeaderId": {
-    "type": "text"
-  },
-  "betsHeaderPlatform": "Kênh, đài",
-  "@betsHeaderPlatform": {
-    "type": "text"
-  },
-  "betsHeaderGame": "Tên TRÒ CHƠI",
-  "@betsHeaderGame": {
-    "type": "text"
-  },
-  "betsHeaderAmount": "Tiền đặt cược",
-  "@betsHeaderAmount": {
-    "type": "text"
-  },
-  "betsHeaderValidBet": "Cược hợp lệ",
-  "@betsHeaderValidBet": {
-    "type": "text"
-  },
-  "betsHeaderBonus": "Tiền thanh toán",
-  "@betsHeaderBonus": {
-    "type": "text"
-  },
-  "betsHeaderSum": "toàn bộ",
-  "@betsHeaderSum": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType0": "Tất cả",
-  "@dealsViewSpinnerType0": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType1": "Nạp điện",
-  "@dealsViewSpinnerType1": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType2": "Rút tiền",
-  "@dealsViewSpinnerType2": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType3": "Cổ tức",
-  "@dealsViewSpinnerType3": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus0": "Tất cả",
-  "@dealsViewSpinnerStatus0": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus1": "Thành công",
-  "@dealsViewSpinnerStatus1": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus2": "Thất bại",
-  "@dealsViewSpinnerStatus2": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus3": "Gia công",
-  "@dealsViewSpinnerStatus3": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus4": "Giao dịch mới",
-  "@dealsViewSpinnerStatus4": {
-    "type": "text"
-  },
-  "dealsHeaderSerial": "Số đơn đặt",
-  "@dealsHeaderSerial": {
-    "type": "text"
-  },
-  "dealsHeaderType": "Mục,tiêu đề",
-  "@dealsHeaderType": {
-    "type": "text"
-  },
-  "dealsHeaderDetail": "Chi tiết",
-  "@dealsHeaderDetail": {
-    "type": "text"
-  },
-  "dealsHeaderStatus": "Trạng thái đơn đặt",
-  "@dealsHeaderStatus": {
-    "type": "text"
-  },
-  "dealsHeaderDate": "Ngày ",
-  "@dealsHeaderDate": {
-    "type": "text"
-  },
-  "dealsHeaderAmount": "Số tiền",
-  "@dealsHeaderAmount": {
-    "type": "text"
-  },
-  "depositPaymentNoData": "Kiểm tra xem không có phương thức nạp tiền nào",
+  "depositPaymentNoData": "Kiểm tra xem không có phương thức nạp tiền nào khả dụng",
   "@depositPaymentNoData": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleAli": "Thanh toán bằng Ali-Pay",
+  "@depositPaymentTitleAli": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleAtm": "Chuyển khoản Ngân hàng Trực tuyến",
+  "@depositPaymentTitleAtm": {
+    "description": "",
     "type": "text"
   },
   "depositPaymentTitleBank": "Nạp tiền ngân hàng",
   "@depositPaymentTitleBank": {
+    "description": "",
     "type": "text"
   },
-  "depositPaymentTitleQuick": "Thanh toán nhanh (được khuyến nghị)",
-  "@depositPaymentTitleQuick": {
-    "type": "text"
-  },
-  "depositPaymentTitleUnion": "Thanh toán UnionPay",
-  "@depositPaymentTitleUnion": {
-    "type": "text"
-  },
-  "depositPaymentTitleCgp": "CPW",
+  "depositPaymentTitleCgp": "Ví Gobao",
   "@depositPaymentTitleCgp": {
+    "description": "",
     "type": "text"
   },
-  "depositPaymentTitleAli": "Thanh toán bằng tiền mặt",
-  "@depositPaymentTitleAli": {
-    "type": "text"
-  },
-  "depositPaymentTitleJd": "Thanh toán Jingdong",
+  "depositPaymentTitleJd": "JD Pay",
   "@depositPaymentTitleJd": {
+    "description": "",
     "type": "text"
   },
   "depositPaymentTitleOnline": "Thanh toán trực tuyến",
   "@depositPaymentTitleOnline": {
+    "description": "",
     "type": "text"
   },
-  "depositPaymentTitleWechat": "Thanh toán WeChat",
+  "depositPaymentTitleQr": "Mã quét QR",
+  "@depositPaymentTitleQr": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleQuick": "Thanh toán nhanh chóng (khuyến nghị)",
+  "@depositPaymentTitleQuick": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleUnion": "Thanh toán UnionPay",
+  "@depositPaymentTitleUnion": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleWechat": "Thanh toán qua WeChat",
   "@depositPaymentTitleWechat": {
+    "description": "",
     "type": "text"
   },
-  "depositPaymentTitleAtm": "Chuyển khoản ngân hàng trực tuyến",
-  "@depositPaymentTitleAtm": {
-    "type": "text"
-  },
-  "depositPaymentSpinnerTitlePromo": "Chọn ưu đãi",
-  "@depositPaymentSpinnerTitlePromo": {
-    "type": "text"
-  },
-  "depositPaymentSpinnerTitleBank": "Chọn ngân hàng",
-  "@depositPaymentSpinnerTitleBank": {
-    "type": "text"
-  },
-  "depositPaymentSpinnerTitleAccountBank": "Ngân hàng thanh toán",
-  "@depositPaymentSpinnerTitleAccountBank": {
-    "type": "text"
-  },
-  "depositPaymentSpinnerTitleMethod": "Phương thức nạp tiền",
-  "@depositPaymentSpinnerTitleMethod": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleName": "Tên chủ thẻ",
-  "@depositPaymentEditTitleName": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleNameHint": "Vui lòng điền tên người trả tiền của bạn",
-  "@depositPaymentEditTitleNameHint": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleAccount": "Số tài khoản ngân hàng",
-  "@depositPaymentEditTitleAccount": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleAccountHint": "Vui lòng điền vào tài khoản ngân hàng của người trả tiền",
-  "@depositPaymentEditTitleAccountHint": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleAmount": "Số tiền",
-  "@depositPaymentEditTitleAmount": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleAmountHintVND": "Thực tế: {value} VND",
-  "@depositPaymentEditTitleAmountHintVND": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "100"
-      }
-    }
-  },
-  "depositPaymentEditTitleNote": "Nhận xét",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
-  "depositPaymentEditTitleAmountHintRange": "{num}~{num2}",
-  "@depositPaymentEditTitleAmountHintRange": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "1"
-      },
-      "num2": {
-        "example": "100"
-      }
-    }
-  },
-  "depositPaymentEditTitleAmountHintRangeStep": "Phạm vi đầu vào:{num}~{num2}(Số tiền là bội số của {num3})",
-  "@depositPaymentEditTitleAmountHintRangeStep": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "50"
-      },
-      "num2": {
-        "example": "500"
-      },
-      "num3": {
-        "example": "50"
-      }
-    }
-  },
-  "depositPaymentButtonTitleTutorial": "Nhấp vào tôi để xem giảng dạy",
-  "@depositPaymentButtonTitleTutorial": {
-    "type": "text"
-  },
-  "depositPaymentTitleTutorial": "Sử dụng giảng dạy",
-  "@depositPaymentTitleTutorial": {
-    "type": "text"
-  },
-  "depositPaymentMethodLocal1": "Chuyển khoản nạp tiền",
-  "@depositPaymentMethodLocal1": {
-    "type": "text"
-  },
-  "depositPaymentMethodLocal2": "Nạp tiền ATM",
-  "@depositPaymentMethodLocal2": {
-    "type": "text"
-  },
-  "depositPaymentNoPromo": "Từ bỏ đề nghị",
-  "@depositPaymentNoPromo": {
-    "type": "text"
-  },
-  "depositHintRedirectBankcard": "Vui lòng điền thông tin thẻ ngân hàng trước",
-  "@depositHintRedirectBankcard": {
-    "type": "text"
-  },
-  "depositHintTextAccount": "Nạp thông tin tài khoản, vui lòng liên hệ với dịch vụ",
-  "@depositHintTextAccount": {
-    "type": "text"
-  },
-  "depositHintTextAmount": "Giới hạn tối đa duy nhất: {value}",
-  "@depositHintTextAmount": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "100"
-      }
-    }
-  },
-  "depositHintTextService": "Dịch vụ trực tuyến",
-  "@depositHintTextService": {
-    "type": "text"
-  },
-  "depositHintTextTitle": "Chú Ý",
-  "@depositHintTextTitle": {
-    "type": "text"
-  },
-  "depositHintTextMax": "{no} Giới hạn tối đa duy nhất\n",
-  "@depositHintTextMax": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "1."
-      }
-    }
-  },
-  "depositHintTextClearInfo": "{no} nhắc nhở quang trọng,nếu không giữ tài khoảng ngân hàng,vui lòng lấy lấy tài khoản thu mới nhất trước mỗi lần nạp tiền, nếu tài khoản bị vô hiệu hóa,công ty ko thể kiêm tra ,không chịu trách nhiệm!\n",
-  "@depositHintTextClearInfo": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "2."
-      }
-    }
-  },
-  "depositHintTextMaxExceed": "{no} vượt quá giới hạn ngày thanh thoán trực tuyến hoặc nạp tiền lớn ,bạn có tiền phương Thức nạp tiền khác.\n",
-  "@depositHintTextMaxExceed": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "3."
-      }
-    }
-  },
-  "depositHintTextFailure": "{no} Nếu bạn gặp phải lỗi như mã quét tiền gữi ko thành công,vui lòng thử làm mới khóa và lien hệ với dịch vụ để sự dụng các kênh thay thế khác.\n",
-  "@depositHintTextFailure": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "4."
-      }
-    }
-  },
-  "depositHintTextInfo": "{no} Để thanh toán tên ngân hàng và tài khoản, vui lòng liên hệ",
-  "@depositHintTextInfo": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "5."
-      }
-    }
-  },
-  "depositHintTextUnionShortcut": "{no} Đến China UnionPay để mở một chức năng nhanh chóng để thanh toán của bạn thuận tiện hơn\n",
-  "@depositHintTextUnionShortcut": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "6."
-      }
-    }
-  },
-  "depositHintTextQuickpay": "{no} Mẹo: Sử dụng thanh toán shortcut để trả hai chữ số thập phân, hệ thống sẽ tự động đưa (nếu bạn đã gửi hai chữ số thập phân là 00 không thành công)\n",
-  "@depositHintTextQuickpay": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "7."
-      }
-    }
-  },
-  "depositHintTextUnion": "{no} muốn sử dụng quá trình quét thanh toán , với điều kiện đầu giữ số thẻ  bắt đầu bằng 62 , thẻ tín dụng, thẻ ghi nợ có thể\n",
-  "@depositHintTextUnion": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "8."
-      }
-    }
-  },
-  "depositHintTextUnionA": "A、Tải xuống điện thoại di động APP của ứng dụng Bank of China hoặc ứng dụng ví UnionPay.\n",
-  "@depositHintTextUnionA": {
-    "type": "text"
-  },
-  "depositHintTextUnionB": "B、Đăng nhập vào Ngân hàng Trung Quốc điện thoại di động APP, thông qua góc trên bên phải '+' thanh toán hoặc thanh toán di động trong mô-đun chức năng thanh toán.\n",
-  "@depositHintTextUnionB": {
-    "type": "text"
-  },
-  "depositHintTextUnionC": "C、Chuyển đến trang mã QR trả tiền cho người bán và quét mã bằng máy.\n",
-  "@depositHintTextUnionC": {
-    "type": "text"
-  },
-  "depositHintTextAli": "{no} Chỉ thẻ ghi nợ và thanh toán số dư Alipay！\n",
-  "@depositHintTextAli": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "9."
-      }
-    }
-  },
-  "depositHintTextLastNum": "{no} Nếu số tiền kết thúc của một giao dịch không bằng 0 (ví dụ: 1000 nhân dân tệ), điều đó sẽ dẫn đến việc không thể gửi tiền thành công\n",
-  "@depositHintTextLastNum": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "10."
-      }
-    }
-  },
-  "depositHintTextLimit": "{no} Giải pháp giới hạn của nhà phát hành: Người dùng cần gọi dịch vụ của ngân hàng phát hành để tăng hạn ngạch giao dịch trực tuyến\n",
-  "@depositHintTextLimit": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "11."
-      }
-    }
-  },
-  "depositMessageFailed": "Nạp tiền không thành công, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
-  "@depositMessageFailed": {
-    "type": "text"
-  },
-  "depositMessageSuccessLocal": "Đơn hàng đã được thiết lập, số đơn hàng: {value}",
-  "@depositMessageSuccessLocal": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "12345"
-      }
-    }
-  },
-  "depositNewbieQuick0": "Hướng dẫn thẻ ghi nợ",
-  "@depositNewbieQuick0": {
-    "type": "text"
-  },
-  "depositNewbieAli0": "Hướng dẫn thẻ ngân hàng chuyển khoản",
-  "@depositNewbieAli0": {
-    "type": "text"
-  },
-  "depositNewbieAli1": "Thẻ ghi nợ bị hạn chế và thanh toán số dư Alipay",
-  "@depositNewbieAli1": {
-    "type": "text"
-  },
-  "depositNewbieAli2": "Chọn nút [Chuyển đến thẻ ngân hàng] ở cuối trang chuyển khoản",
-  "@depositNewbieAli2": {
-    "type": "text"
-  },
-  "depositNewbieAli3": "Ngoài ra cần điền vào [số thẻ người nhận thanh toán] == [ngân hàng] == [tên người nhận thanh toán] == [số tiền thanh toán]",
-  "@depositNewbieAli3": {
-    "type": "text"
-  },
-  "depositNewbieAli4": "Sau khi gửi, nhập Alipay [mật khẩu thanh toán]",
-  "@depositNewbieAli4": {
-    "type": "text"
-  },
-  "depositNewbieAli5": "Sau khi chuyển khoản thành công, bạn có thể xem nó trong chi tiết hóa đơn của Alipay, thay đổi chi tiết chuyển khoản và thời gian đến",
-  "@depositNewbieAli5": {
-    "type": "text"
-  },
-  "depositNewbieJd0": "Tải xuống ứng dụng Jingdong",
-  "@depositNewbieJd0": {
-    "type": "text"
-  },
-  "depositNewbieJd1": "1、Tải xuống ứng dụng Jingdong",
-  "@depositNewbieJd1": {
-    "type": "text"
-  },
-  "depositNewbieJd2": "2、Bấm vào trang tôi sau khi vào trang",
-  "@depositNewbieJd2": {
-    "type": "text"
-  },
-  "depositNewbieJd3": "3、Đăng ký hoặc đăng nhập vào thẻ tín dụng tài khoản Jingdong và thẻ tiết kiệm có thể được thêm vào",
-  "@depositNewbieJd3": {
-    "type": "text"
-  },
-  "depositNewbieJd4": "4、Nhấp vào mã quét trên trang chủ để thanh toán và ràng buộc thẻ ngân hàng",
-  "@depositNewbieJd4": {
-    "type": "text"
-  },
-  "depositNewbieUnion0": "Giảng dạy thanh toán UnionPay",
-  "@depositNewbieUnion0": {
-    "type": "text"
-  },
-  "depositNewbieUnion1": "1、Tải xuống ứng dụng ví UnionPay",
-  "@depositNewbieUnion1": {
-    "type": "text"
-  },
-  "depositNewbieUnion2": "2、Đăng ký để đăng nhập。",
-  "@depositNewbieUnion2": {
-    "type": "text"
-  },
-  "depositNewbieUnion3": "3、Ràng buộc thẻ Ngan hàng，Quản lý thẻ → Danh sách thẻ → Thêm thẻ ngân hàng → Thêm một thẻ mới",
-  "@depositNewbieUnion3": {
-    "type": "text"
-  },
-  "depositNewbieUnion4": "Cả thẻ tín dụng và thẻ tiết kiệm đều có thể được thêm vào",
-  "@depositNewbieUnion4": {
-    "type": "text"
-  },
-  "depositNewbieWechat0": "Hướng dẫn quét mã",
-  "@depositNewbieWechat0": {
-    "type": "text"
-  },
-  "depositNewbieWechat1": "1、Trước tiên hãy lấy mã QR thanh toán bằng điện thoại di động。",
-  "@depositNewbieWechat1": {
-    "type": "text"
-  },
-  "depositNewbieWechat2": "2、Sau khi sử dụng điện thoại di động khác, chúng tôi sẽ quét mã thanh toán。",
-  "@depositNewbieWechat2": {
-    "type": "text"
-  },
-  "depositNewbieCgp0": "Liên kết tải xuống",
-  "@depositNewbieCgp0": {
-    "type": "text"
-  },
-  "depositNewbieButtonCgp1": "Tải xuống ứng dụng CPW",
-  "@depositNewbieButtonCgp1": {
-    "type": "text"
-  },
-  "depositNewbieButtonCgp2": "Tải xuống hướng dẫn mua sắm",
-  "@depositNewbieButtonCgp2": {
-    "type": "text"
-  },
-  "balanceStatusMaintenance": "Bảo trì",
-  "@balanceStatusMaintenance": {
-    "type": "text"
-  },
-  "balanceTransferInText": "Đi vào",
-  "@balanceTransferInText": {
-    "type": "text"
-  },
-  "balanceTransferOutText": "Ngoài",
-  "@balanceTransferOutText": {
-    "type": "text"
-  },
-  "balanceTransferAmountError": "Thiếu cân bằng: {value}",
-  "@balanceTransferAmountError": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "0.2"
-      }
-    }
-  },
-  "balanceTransferAlertTitle": "Thông tin xác nhận",
-  "@balanceTransferAlertTitle": {
-    "type": "text"
-  },
-  "balanceTransferAlertMsg": "Có xác nhận {action} {platform} Nền tảng?",
-  "@balanceTransferAlertMsg": {
+  "dialogTextTransferActionTo": "Bạn có muốn xác nhận nền tảng {action} {platform} không?",
+  "@dialogTextTransferActionTo": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "action": {
@@ -2034,826 +370,1844 @@
       }
     }
   },
-  "balanceHintTextTitle": "CHÚ Ý：",
-  "@balanceHintTextTitle": {
+  "dialogTitleConfirmInfo": "Xác nhận thông tin",
+  "@dialogTitleConfirmInfo": {
+    "description": "",
     "type": "text"
   },
-  "balanceHintText1": "1.Vui lòng thoát khỏi TRÒ CHƠI hoặc giao diện cá cược TRÒ CHƠI trước khi chuyển.",
-  "@balanceHintText1": {
+  "errorAccount": "Lỗi tài khoản",
+  "@errorAccount": {
+    "description": "",
     "type": "text"
   },
-  "balanceHintText2": "2.Trong khi tham gia trò chơi này, số tiền không được ít hơn 200000 VND, số tiền này không tính phí khi chuyển.",
-  "@balanceHintText2": {
+  "errorAccountLocked": "Tài khoản bị khóa, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "@errorAccountLocked": {
+    "description": "",
     "type": "text"
   },
-  "balanceHintText3": "3.Nếu tốc độ mạng chậm, vui lòng kiên nhẫn chờ một lúc, không lặp lại việc gửi nhiều lần.",
-  "@balanceHintText3": {
+  "errorActionFailed": "Hoạt động không hợp lệ",
+  "@errorActionFailed": {
+    "description": "",
     "type": "text"
   },
-  "balanceHintText4": "4.Nếu số tiền nền tảng không thay đổi sau khi chuyển thành công, vui lòng làm mới nền tảng theo cách thủ công hoặc liên hệ với dịch vụ khách hàng",
-  "@balanceHintText4": {
+  "errorActionTooFrequent": "Yêu cầu quá thường xuyên",
+  "@errorActionTooFrequent": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextTime": "Khoảng thời gian",
-  "@rollbackHeaderTextTime": {
+  "errorCachedFile": "Lỗi dữ liệu đã lưu trong bộ nhớ cache, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
+  "@errorCachedFile": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextCode": "Mã giao dịch",
-  "@rollbackHeaderTextCode": {
+  "errorDeposit": "Nạp tiền không thành công, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
+  "@errorDeposit": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextType": "Loại hình",
-  "@rollbackHeaderTextType": {
+  "errorEvent": "Không thể lấy dữ liệu hoạt động đăng nhập, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
+  "@errorEvent": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextAmount": "Số tiền",
-  "@rollbackHeaderTextAmount": {
+  "errorGameAccessPermission": "Không có quyền chơi, vui lòng liên hệ với dịch vụ khách hàng",
+  "@errorGameAccessPermission": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextMultiple": "Yêu cầu vòng cược",
-  "@rollbackHeaderTextMultiple": {
+  "errorHaveBoundCard": "Thẻ ngân hàng đã bị ràng buộc",
+  "@errorHaveBoundCard": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextPromo": "Tên ưu đãi",
-  "@rollbackHeaderTextPromo": {
+  "errorInternal": "Lỗi nội bộ, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
+  "@errorInternal": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextRequire": "Doanh thu yêu cầu",
-  "@rollbackHeaderTextRequire": {
+  "errorInvalidAmountBelowLimit": "Dưới số tiền rút tối thiểu",
+  "@errorInvalidAmountBelowLimit": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextCurrent": "Tổng cược",
-  "@rollbackHeaderTextCurrent": {
+  "errorInvalidAmountExceedRemain": "Vượt quá số dư tài khoản",
+  "@errorInvalidAmountExceedRemain": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextNeed": "Tổng cược hợp lệ",
-  "@rollbackHeaderTextNeed": {
+  "errorInvalidDepositAmountMaxLimit": "Số tiền nạp vượt quá giới hạn trên",
+  "@errorInvalidDepositAmountMaxLimit": {
+    "description": "",
     "type": "text"
   },
-  "rollbackHeaderTextTotal": "Tổng cộng",
-  "@rollbackHeaderTextTotal": {
+  "errorInvalidDepositAmountMinLimit": "Số tiền nạp dưới giới hạn thấp hơn",
+  "@errorInvalidDepositAmountMinLimit": {
+    "description": "",
     "type": "text"
   },
-  "agentActionLoginHint": "Đăng nhập đại lý",
-  "@agentActionLoginHint": {
+  "errorInvalidExceedOrderAmount": "Vượt quá số tiền rút tối đa duy nhất (vui lòng tham khảo hệ thống cấp độ thành viên)",
+  "@errorInvalidExceedOrderAmount": {
+    "description": "",
     "type": "text"
   },
-  "agentActionLogin": "Đăng nhập đại lý",
-  "@agentActionLogin": {
+  "errorInvalidMobile": "Số điện thoại sai",
+  "@errorInvalidMobile": {
+    "description": "",
     "type": "text"
   },
-  "agentActionRegister": "Đăng ký đại lý",
-  "@agentActionRegister": {
+  "errorInvalidPassword": "sai mật khẩu",
+  "@errorInvalidPassword": {
+    "description": "",
     "type": "text"
   },
-  "agentRegisterSuccess": "Đại lý đã được gửi để xem xét, vui lòng đợi",
-  "@agentRegisterSuccess": {
+  "errorInvalidPasswordFive": "Mật khẩu không khớp, tài khoản sẽ bị khóa vì năm lỗi",
+  "@errorInvalidPasswordFive": {
+    "description": "",
     "type": "text"
   },
-  "agentAccountLevelCompany": "công ty",
-  "@agentAccountLevelCompany": {
+  "errorInvalidReferral": "Mã giới thiệu không hợp lệ",
+  "@errorInvalidReferral": {
+    "description": "",
     "type": "text"
   },
-  "agentAccountLevelGrandMaster": "Tổng thống lớn",
-  "@agentAccountLevelGrandMaster": {
+  "errorInvalidWithdrawPassword": "Mật khẩu không khớp (giá trị mặc định là mật khẩu đăng nhập)",
+  "@errorInvalidWithdrawPassword": {
+    "description": "",
     "type": "text"
   },
-  "agentAccountLevelMaster": "Tổng số thế hệ",
-  "@agentAccountLevelMaster": {
+  "errorLoadingGame": "Đã xảy ra lỗi khi tải trò chơi, vui lòng thử lại sau",
+  "@errorLoadingGame": {
+    "description": "",
     "type": "text"
   },
-  "agentAccountLevelAgent": "Ủy quyền",
-  "@agentAccountLevelAgent": {
+  "errorLoadingPayUrl": "Lỗi tải trang, vui lòng thử lại sau",
+  "@errorLoadingPayUrl": {
+    "description": "",
     "type": "text"
   },
-  "agentAccountLevelMember": "hội viên",
-  "@agentAccountLevelMember": {
+  "errorLoginFailed": "Đăng nhập thất bại",
+  "@errorLoginFailed": {
+    "description": "",
     "type": "text"
   },
-  "agentTitleAccount": "{level} số tài khoản",
-  "@agentTitleAccount": {
+  "errorMobileAlreadyRegistered": "Đăng ký số điện thoại trùng lặp",
+  "@errorMobileAlreadyRegistered": {
+    "description": "",
+    "type": "text"
+  },
+  "errorNoServerConnection": "Không thể kết nối đến máy chủ!!",
+  "@errorNoServerConnection": {
+    "description": "",
+    "type": "text"
+  },
+  "errorPlatformTransferNotAvailable": "Nền tảng đã chọn hiện không thể chuyển tiền",
+  "@errorPlatformTransferNotAvailable": {
+    "description": "",
+    "type": "text"
+  },
+  "errorRegisterFailed": "đăng ký thất bại",
+  "@errorRegisterFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "errorRegisterRepeatAccount": "Đăng ký tài khoản trùng lặp",
+  "@errorRegisterRepeatAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "errorServerData": "Lỗi dữ liệu máy chủ, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
+  "@errorServerData": {
+    "description": "",
+    "type": "text"
+  },
+  "errorStatus": "Lỗi: {msg}",
+  "@errorStatus": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "level": {
-        "example": "agent"
+      "msg": {
+        "example": "Login Error"
       }
     }
   },
-  "agentTabTitleInfo": "Thông tin",
-  "@agentTabTitleInfo": {
-    "type": "text"
-  },
-  "agentTabTitleChart": "Báo cáo đại lý",
-  "@agentTabTitleChart": {
-    "type": "text"
-  },
-  "agentTabTitleCommission": "Báo cáođại lý hoa hồng",
-  "@agentTabTitleCommission": {
-    "type": "text"
-  },
-  "agentTabTitleLedger": "Lưu / nâng",
-  "@agentTabTitleLedger": {
-    "type": "text"
-  },
-  "agentTabTitleDownlineList": "{level} Danh sách",
-  "@agentTabTitleDownlineList": {
+  "errorStatusCause": "Lỗi: (msg) ((msg2))",
+  "@errorStatusCause": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "level": {
-        "example": "agent"
-      }
-    }
-  },
-  "agentTabTitleCard": "Chỉnh sửa thẻ ngân hàng",
-  "@agentTabTitleCard": {
-    "type": "text"
-  },
-  "agentTabTitleAds": "quảng cáo",
-  "@agentTabTitleAds": {
-    "type": "text"
-  },
-  "agentInfoFieldCode": "Mã đại lý",
-  "@agentInfoTitleCode": {
-    "type": "text"
-  },
-  "agentInfoFieldLink": "Liên kết proxy",
-  "@agentInfoFieldLink": {
-    "type": "text"
-  },
-  "agentInfoFieldAgents": "Tài khoảng dưới",
-  "@agentInfoFieldAgents": {
-    "type": "text"
-  },
-  "agentInfoFieldButtonGetCode": "Được",
-  "@agentInfoFieldButtonGetCode": {
-    "type": "text"
-  },
-  "agentButtonTextShare": "chia sẻ nó",
-  "@agentButtonTextShare": {
-    "type": "text"
-  },
-  "agentButtonTextLink": "liên kết",
-  "@agentButtonTextLink": {
-    "type": "text"
-  },
-  "agentButtonTextCopy": "bản sao",
-  "@agentButtonTextCopy": {
-    "type": "text"
-  },
-  "agentTextChartDate": "Thời gian：",
-  "@agentTextChartDate": {
-    "type": "text"
-  },
-  "agentTextChartMonth": "Tháng này",
-  "@agentTextChartMonth": {
-    "type": "text"
-  },
-  "agentTextChartMonthPrev": "Tháng trước",
-  "@agentTextChartMonthPrev": {
-    "type": "text"
-  },
-  "agentTextChartOption": "Chọn",
-  "@agentTextChartOption": {
-    "type": "text"
-  },
-  "agentTextChartPlatform": "Kênh, đài",
-  "@agentTextChartPlatform": {
-    "type": "text"
-  },
-  "agentTextChartCategory": "Thể loại",
-  "@agentTextChartCategory": {
-    "type": "text"
-  },
-  "agentTextChartQuery": "Kiểm tra ngay",
-  "@agentTextChartQuery": {
-    "type": "text"
-  },
-  "agentTextChartCheckFull": "Hiển thị hồ sơ đầy đủ",
-  "@agentTextChartCheckFull": {
-    "type": "text"
-  },
-  "agentChartTableSpinner": "Hình thức",
-  "@agentChartTableSpinner": {
-    "type": "text"
-  },
-  "agentChartHeaderAccount": "Số tài khoản",
-  "@agentChartHeaderAccount": {
-    "type": "text"
-  },
-  "agentChartHeaderWager": "Số lượng đặt cược",
-  "@agentChartHeaderWager": {
-    "type": "text"
-  },
-  "agentChartHeaderBet": "Tiền đặt cược",
-  "@agentChartHeaderBet": {
-    "type": "text"
-  },
-  "agentChartHeaderValid": "đặt cược hiểu quả",
-  "@agentChartHeaderValid": {
-    "type": "text"
-  },
-  "agentChartHeaderPayout": "Tiền thanh toán",
-  "@agentChartHeaderPayout": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalWager": "Tổng số tiền đặt cược",
-  "@agentChartHeaderTotalWager": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalBet": "Tổng số tiền",
-  "@agentChartHeaderTotalBet": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalValid": "Tổng cược hiệu quả",
-  "@agentChartHeaderTotalValid": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalPayout": "Tổng số tiền xuất chi",
-  "@agentChartHeaderTotalPayout": {
-    "type": "text"
-  },
-  "agentCommissionHeaderMonth": "Tháng",
-  "@agentCommissionHeaderMonth": {
-    "type": "text"
-  },
-  "agentCommissionHeaderLowLine": "Hoa hồng ngoại tuyến",
-  "@agentCommissionHeaderLowLine": {
-    "type": "text"
-  },
-  "agentCommissionHeaderGroup": "Hoa hồng nhóm",
-  "@agentCommissionHeaderGroup": {
-    "type": "text"
-  },
-  "agentCommissionHeaderAdmin": "Chi phí hành chính",
-  "@agentCommissionHeaderAdmin": {
-    "type": "text"
-  },
-  "agentCommissionHeaderPlatform": "Phí nền tảng",
-  "@agentCommissionHeaderPlatform": {
-    "type": "text"
-  },
-  "agentCommissionHeaderReceive": "Hoa hồng thực tế",
-  "@agentCommissionHeaderReceive": {
-    "type": "text"
-  },
-  "agentLedgerFieldTitleAccount": "Vui lòng nhập tài khoản thành viên",
-  "@agentLedgerFieldTitleAccount": {
-    "type": "text"
-  },
-  "agentLedgerFieldTitleDepositCheck": "Gửi tiền cho thành viên",
-  "@agentLedgerFieldTitleDepositCheck": {
-    "type": "text"
-  },
-  "agentLedgerHeaderNo": "Số sê-ri",
-  "@agentLedgerHeaderNo": {
-    "type": "text"
-  },
-  "agentLedgerHeaderAccount": "Tài khoản",
-  "@agentLedgerHeaderAccount": {
-    "type": "text"
-  },
-  "agentLedgerHeaderDeposit": "Nạp Tiền",
-  "@agentLedgerHeaderDeposit": {
-    "type": "text"
-  },
-  "agentLedgerHeaderWithdraw": "Rút Tiền",
-  "@agentLedgerHeaderWithdraw": {
-    "type": "text"
-  },
-  "agentLedgerHeaderPromo": "KHUYẾN MÃI",
-  "@agentLedgerHeaderPromo": {
-    "type": "text"
-  },
-  "agentLedgerHeaderRefund": "Nước ngược",
-  "@agentLedgerHeaderRefund": {
-    "type": "text"
-  },
-  "agentLedgerHeaderRegDate": "Thời gian đăng ký",
-  "@agentLedgerHeaderRegDate": {
-    "type": "text"
-  },
-  "agentLedgerHeaderLastLogin": "Lần đăng nhập cuối cùng",
-  "@agentLedgerHeaderLastLogin": {
-    "type": "text"
-  },
-  "agentBankcardHint": "Sau khi thêm thẻ ngân hàng, nếu bạn cần sửa đổi, vui lòng liên hệ với công ty để được sửa đổi",
-  "@agentBankcardHint": {
-    "type": "text"
-  },
-  "agentAddDownlineHint": "※ {level} chỉ có thể thêm tài khoản {downline}",
-  "@agentAddDownlineHint": {
-    "type": "text",
-    "placeholders": {
-      "level": {
-        "example": "Slot"
+      "msg": {
+        "example": "LOGIN"
       },
-      "downline": {
-        "example": "AG"
+      "msg2": {
+        "example": "Wrong Password"
       }
     }
   },
-  "agentDownlineButtonAdd": "Thêm ngoại tuyến",
-  "@agentDownlineButtonAdd": {
+  "errorTaskFailed": "{msg} không thành công",
+  "@errorTaskFailed": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "msg": {
+        "example": "login"
+      }
+    }
+  },
+  "errorTimeoutError": "Mạng đã hết thời gian chờ, vui lòng thử lại sau",
+  "@errorTimeoutError": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineButtonProportion": "Cập nhật tài khoản",
-  "@agentDownlineButtonProportion": {
+  "errorToken": "Xác minh người dùng không thành công, vui lòng đăng nhập lại hoặc liên hệ với dịch vụ khách hàng",
+  "@errorToken": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderAccount": "số tài khoản",
-  "@agentDownlineHeaderAccount": {
+  "errorTransfer": "Chuyển không thành công",
+  "@errorTransfer": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderStatus": "trạng thái",
-  "@agentDownlineHeaderStatus": {
+  "errorWithdraw": "Rút tiền không thành công",
+  "@errorWithdraw": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderStatus0": "Kích hoạt",
-  "@agentDownlineHeaderStatus0": {
+  "fieldActionChangePassword": "đổi mật khẩu",
+  "@fieldActionChangePassword": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderStatus1": "Vô hiệu hóa",
-  "@agentDownlineHeaderStatus1": {
+  "fieldActionGetVerifyCode": "lấy mã xác minh",
+  "@fieldActionGetVerifyCode": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderUpdateHint": "Cập nhật tài khoản\n(Bạn có thể trực tiếp chỉnh sửa tài khoản sau khi thêm tài khoản)",
-  "@agentDownlineHeaderUpdateHint": {
+  "fieldCheckBoxPromoNews": "Nhận thông tin khuyến mãi",
+  "@fieldCheckBoxPromoNews": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderUpdate": "Cập nhật tài khoản",
-  "@agentDownlineHeaderUpdate": {
+  "fieldCheckBoxSaveLogin": "Nhớ bí mật tài khoản",
+  "@fieldCheckBoxSaveLogin": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderMore": "Hơn",
-  "@agentDownlineHeaderMore": {
+  "fieldCheckBoxStopShowing": "không hiển thị trở lại",
+  "@fieldCheckBoxStopShowing": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderCategory": "thể loại",
-  "@agentDownlineHeaderCategory": {
+  "fieldCheckBoxTerms": "Đã đọc và đồng ý với các quy tắc cá cược của \"Điều khoản và Điều kiện\"",
+  "@fieldCheckBoxTerms": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderProportion": "Chiếm",
-  "@agentDownlineHeaderProportion": {
+  "fieldChipAmountAll": "Hạn ngạch đầy đủ",
+  "@fieldChipAmountAll": {
+    "description": "",
     "type": "text"
   },
-  "agentDownlineHeaderFee": "Phí xử lý /\n phí nền tảng",
-  "@agentDownlineHeaderFee": {
+  "fieldErrorCardAccountName": "Tên tài khoản không chính xác",
+  "@fieldErrorCardAccountName": {
+    "description": "",
     "type": "text"
   },
-  "agentAdTabAvailable": "Quảng cáo có sẵn",
-  "@agentAdTabAvailable": {
+  "fieldErrorCardNumber": "Số thẻ là {min} ~ {max} ký tự",
+  "@fieldErrorCardNumber": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "fieldErrorCardNumberFixed": "Số thẻ là {min} ~ {max} ký tự (bắt đầu bằng {fixed})",
+  "@fieldErrorCardNumberFixed": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
+  },
+  "fieldErrorCardOwner": "Tên chủ thẻ sai",
+  "@fieldErrorCardOwner": {
+    "description": "",
     "type": "text"
   },
-  "agentAdTabGenerated": "Quảng cáo được tạo",
-  "@agentAdTabGenerated": {
+  "fieldErrorConfirmPassword": "Mật khẩu không hợp lệ",
+  "@fieldErrorConfirmPassword": {
+    "description": "",
     "type": "text"
   },
-  "agentAdButtonGenerate": "Tạo quảng cáo",
-  "@agentAdButtonGenerate": {
+  "fieldErrorInvalidAccount": "Số tài khoản là {min} ~ {max} tiếng Anh viết thường / số",
+  "@fieldErrorInvalidAccount": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
+  },
+  "fieldErrorInvalidCreditAmount": "Số tiền nhập không chính xác",
+  "@fieldErrorInvalidCreditAmount": {
+    "description": "",
     "type": "text"
   },
-  "noticeTabGeneral": "Tin nhắn chung",
-  "@noticeTabGeneral": {
-    "type": "text"
-  },
-  "noticeTabMaintenance": "Tin nhắn bảo trì",
-  "@noticeTabMaintenance": {
-    "type": "text"
-  },
-  "wheelTextTitleCount": "Bốc thăm trúng thưởng: {num} Lần",
-  "@wheelTextTitleCount": {
+  "fieldErrorInvalidCreditMax": "Số tiền tối đa là {num}",
+  "@fieldErrorInvalidCreditMax": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "num": {
-        "example": "4"
+        "example": "0"
       }
     }
   },
-  "wheelTextTitlePrize": "Kỷ lục giải thưởng",
-  "@wheelTextTitlePrize": {
-    "type": "text"
-  },
-  "wheelTextTitleRecord": "Hồ sơ hoạt động",
-  "@wheelTextTitleRecord": {
-    "type": "text"
-  },
-  "wheelTextTitleGet": "Nhận được số lần quay",
-  "@wheelTextTitleGet": {
-    "type": "text"
-  },
-  "wheelTextTitleRules": "Quy tắc hoạt động",
-  "@wheelTextTitleRules": {
-    "type": "text"
-  },
-  "wheelMessageErrorPrizeUrl": "Hình ảnh giải thưởng bị sai, vui lòng kiểm tra hồ sơ giải thưởng",
-  "@wheelMessageErrorPrizeUrl": {
-    "type": "text"
-  },
-  "wheelOrderTableTextTime": "Thời gian",
-  "@wheelOrderTableTextTime": {
-    "type": "text"
-  },
-  "wheelOrderTableTextPrize": "Mục giải thưởng",
-  "@wheelOrderTableTextPrize": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus": "Trạng thái phân phối",
-  "@wheelOrderTableTextStatus": {
-    "type": "text"
-  },
-  "wheelRecordTableTextTime": "Thời gian",
-  "@wheelRecordTableTextTime": {
-    "type": "text"
-  },
-  "wheelRecordTableTextOperate": "Làm theo",
-  "@wheelRecordTableTextOperate": {
-    "type": "text"
-  },
-  "wheelRecordTableTextCount": "Số lần",
-  "@wheelRecordTableTextCount": {
-    "type": "text"
-  },
-  "wheelRecordTableTextContent": "Nội dung",
-  "@wheelRecordTableTextContent": {
-    "type": "text"
-  },
-  "wheelApplyTableTextContent": "Nội dung",
-  "@wheelApplyTableTextContent": {
-    "type": "text"
-  },
-  "wheelApplyTableTextProgress": "Tiến đô",
-  "@wheelApplyTableTextProgress": {
-    "type": "text"
-  },
-  "wheelApplyTableTextCount": "Số vòng quay",
-  "@wheelApplyTableTextCount": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus": "Trạng thái",
-  "@wheelApplyTableTextStatus": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus0": "Không phân phối",
-  "@wheelOrderTableTextStatus0": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus1": "Phân phối",
-  "@wheelOrderTableTextStatus1": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus0": "Không đạt",
-  "@wheelApplyTableTextStatus0": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus1": "Đạt được",
-  "@wheelApplyTableTextStatus1": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus2": "Đã nhận được",
-  "@wheelApplyTableTextStatus2": {
-    "type": "text"
-  },
-  "storeTextTitleProduct": "Thay đổi quà",
-  "@storeTextTitleProduct": {
-    "type": "text"
-  },
-  "storeTextTitleRule": "Quy tắc đổi qua",
-  "@storeTextTitleRule": {
-    "type": "text"
-  },
-  "storeTextTitleRecord": "Điểm kỷ lục",
-  "@storeTextTitleRecord": {
-    "type": "text"
-  },
-  "storeTextTitlePoint": "Điểm thành viên：",
-  "@storeTextTitlePoint": {
-    "type": "text"
-  },
-  "storeTextItemHint": "Khi số lượng có hạng",
-  "@storeTextItemHint": {
-    "type": "text"
-  },
-  "storeTextItemPoint": "Tích điểm {value}",
-  "@storeTextItemPoint": {
+  "fieldErrorInvalidCreditMin": "Số tiền tối thiểu là {num}",
+  "@fieldErrorInvalidCreditMin": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
+      "num": {
+        "example": "0"
+      }
+    }
+  },
+  "fieldErrorInvalidDate": "Vui lòng nhập đúng ngày (định dạng: Tết - Tháng - Ngày)",
+  "@fieldErrorInvalidDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidDateRange": "Khoảng thời gian sai",
+  "@fieldErrorInvalidDateRange": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidEmail": "Vui lòng nhập địa chỉ email chính xác",
+  "@fieldErrorInvalidEmail": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidFormat": "Lỗi định dạng đầu vào",
+  "@fieldErrorInvalidFormat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidInput": "Chứa các ký tự bất hợp pháp",
+  "@fieldErrorInvalidInput": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidPassword": "Mật khẩu dài {min} ~ {max} ký tự",
+  "@fieldErrorInvalidPassword": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
+  },
+  "fieldErrorInvalidPhone": "Lỗi định dạng điện thoại (mã {num})",
+  "@fieldErrorInvalidPhone": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "10"
+      }
+    }
+  },
+  "fieldErrorInvalidPhone2": "Lỗi định dạng điện thoại (mã {min} ~ {max})",
+  "@fieldErrorInvalidPhone2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
+  "fieldErrorInvalidPostCode": "Mã bưu chính không chính xác (5 ~ 8 mã)",
+  "@fieldErrorInvalidPostCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidVerify": "vui lòng nhập mã xác nhận",
+  "@fieldErrorInvalidVerify": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidWechat": "Lỗi định dạng wechat",
+  "@fieldErrorInvalidWechat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidZalo": "Zalo lỗi định dạng",
+  "@fieldErrorInvalidZalo": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintAmount": "Bạn nên gửi một số tiền đặc biệt để khoản tiền gửi có thể được khớp nhanh chóng (ví dụ: 105, 503, v.v.)",
+  "@fieldHintAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBirthday": "Điền vào ngày sinh nhật để đảm bảo rằng bạn đủ tuổi hợp pháp",
+  "@fieldHintBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintDateFormat": "Định dạng là: 0000–00–00",
+  "@fieldHintDateFormat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintDepositAmountRange": "Phạm vi đầu vào: {num} ~ {num2}",
+  "@fieldHintDepositAmountRange": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "1"
+      },
+      "num2": {
         "example": "100"
       }
     }
   },
-  "storeTextItemButton": "Trao đổi ngay",
-  "@storeTextItemButton": {
-    "type": "text"
-  },
-  "storeTextItemButtonDisabled": "điểm không đủ để được trao đổi",
-  "@storeTextItemButtonDisabled": {
-    "type": "text"
-  },
-  "storeRuleTableHeader": "mỗi 100 đồng số tiền đặt cược hợp lệ cho bảng điểm",
-  "@storeRuleTableHeader": {
-    "type": "text"
-  },
-  "storeRuleTableTitle": "Nền tảng {value}",
-  "@storeRuleTableTitle": {
+  "fieldHintDepositAmountStep": "Số tiền là bội số của {step}",
+  "@fieldHintDepositAmountStep": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "100"
+      "step": {
+        "example": "50"
       }
     }
   },
-  "storeRecordSpinnerTitle1": "Hiển thị",
-  "@storeRecordSpinnerTitle1": {
+  "fieldHintDepositBankAccount": "Vui lòng điền vào tài khoản ngân hàng của người thanh toán",
+  "@fieldHintDepositBankAccount": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordSpinnerTitle2": "mục",
-  "@storeRecordSpinnerTitle2": {
+  "fieldHintDepositCode": "Vui lòng điền mã giao dịch",
+  "@fieldHintDepositCode": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordFieldHint": "Vui lòng nhập tên sản phẩm",
-  "@storeRecordFieldHint": {
+  "fieldHintDepositName": "Vui lòng điền tên người thanh toán của bạn",
+  "@fieldHintDepositName": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordButtonTitle": "Tìm kiếm",
-  "@storeRecordButtonTitle": {
+  "fieldHintInputAccount": "vui lòng nhập tài khoản của bạn",
+  "@fieldHintInputAccount": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableTitleNo": "Đơn đặt hàng",
-  "@storeRecordTableTitleNo": {
+  "fieldHintInputConfirmedPassword": "Vui lòng nhập mật khẩu xác nhận",
+  "@fieldHintInputConfirmedPassword": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableTitleProduct": "Sản phẩm",
-  "@storeRecordTableTitleProduct": {
+  "fieldHintInputEmail": "Vui lòng nhập email",
+  "@fieldHintInputEmail": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableTitlePoint": "Tích điểm",
-  "@storeRecordTableTitlePoint": {
+  "fieldHintInputName": "Vui lòng nhập tên người dùng",
+  "@fieldHintInputName": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableTitleDate": "ngày",
-  "@storeRecordTableTitleDate": {
+  "fieldHintInputPassword": "Xin vui lòng nhập mật khẩu",
+  "@fieldHintInputPassword": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableTitleState": "Trạng thái",
-  "@storeRecordTableTitleState": {
+  "fieldHintInputPasswordAgain": "Nhập lại mật khẩu",
+  "@fieldHintInputPasswordAgain": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableStatusPending": "Chờ giao hàng",
-  "@storeRecordTableStatusPending": {
+  "fieldHintInputPhone": "Vui lòng nhập số điện thoại",
+  "@fieldHintInputPhone": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordTableDetailName": "Họ tên：{value}",
-  "@storeRecordTableDetailName": {
+  "fieldHintInputReferralCode": "Vui lòng nhập mã giới thiệu",
+  "@fieldHintInputReferralCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintMobileVerifyCode": "Vui lòng nhập mã xác minh điện thoại",
+  "@fieldHintMobileVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordNew": "Nhập mật khẩu mới",
+  "@fieldHintPasswordNew": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordNewConfirm": "Nhập lại mật khẩu mới",
+  "@fieldHintPasswordNewConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordOld": "Nhập mật khẩu cũ",
+  "@fieldHintPasswordOld": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPhone": "Liên kết số điện thoại di động để bảo vệ bảo mật tài khoản",
+  "@fieldHintPhone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSearchGame": "Vui lòng nhập tên trò chơi",
+  "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintVerifyCode": "vui lòng nhập mã xác nhận",
+  "@fieldHintVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintVerifyCodeFetch": "Chỉ có thể nhận được một bộ mã xác minh trong vòng 24 giờ",
+  "@fieldHintVerifyCodeFetch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateAll": "Mọi lúc",
+  "@fieldOptionDateAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateCustom": "Thời gian tùy chỉnh",
+  "@fieldOptionDateCustom": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateMonth": "Trong vòng một tháng",
+  "@fieldOptionDateMonth": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateToday": "Ngày nay",
+  "@fieldOptionDateToday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateYesterday": "hôm qua",
+  "@fieldOptionDateYesterday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDepositTypeAtm": "Nạp tiền ATM",
+  "@fieldOptionDepositTypeAtm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDepositTypeTransfer": "Chuyển quĩ",
+  "@fieldOptionDepositTypeTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionGender": "{sex, select, male{Nam} female{Nữ} other{Khác}}",
+  "@fieldOptionGender": {
+    "description": "Member's gender options",
+    "placeholders": {
+      "sex": {}
+    }
+  },
+  "fieldOptionPlatformAll": "Tất cả các nền tảng",
+  "@fieldOptionPlatformAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionPromoNone": "Từ bỏ đề nghị",
+  "@fieldOptionPromoNone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus1": "sự thành công",
+  "@fieldOptionStatus1": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus2": "sự thất bại",
+  "@fieldOptionStatus2": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus3": "Chế biến",
+  "@fieldOptionStatus3": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus4": "Giao dịch mới",
+  "@fieldOptionStatus4": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatusAll": "Tất cả",
+  "@fieldOptionStatusAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleBetDate": "Thời gian đặt cược",
+  "@fieldOptionTitleBetDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleDepositBank": "Ngân hàng thanh toán",
+  "@fieldOptionTitleDepositBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleDepositType": "Phương thức nạp tiền",
+  "@fieldOptionTitleDepositType": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePaymentBank": "Ngân hàng thanh toán",
+  "@fieldOptionTitlePaymentBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePlatform": "nền tảng chơi game",
+  "@fieldOptionTitlePlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePromo": "Chọn ưu đãi",
+  "@fieldOptionTitlePromo": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleShow": "trưng bày",
+  "@fieldOptionTitleShow": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleShowItem": "mục",
+  "@fieldOptionTitleShowItem": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleTransferDate": "Thời gian chuyển giao",
+  "@fieldOptionTitleTransferDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType1": "Nạp điện",
+  "@fieldOptionType1": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType2": "rút lui",
+  "@fieldOptionType2": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType3": "cổ tức",
+  "@fieldOptionType3": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTypeAll": "Tất cả",
+  "@fieldOptionTypeAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccount": "số tài khoản",
+  "@fieldTitleAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccountHolder": "Chủ tài khoản",
+  "@fieldTitleAccountHolder": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccountName": "Tên tài khoản",
+  "@fieldTitleAccountName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBank": "ngân hàng",
+  "@fieldTitleBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankAccount": "Số tài khoản (thẻ)",
+  "@fieldTitleBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankArea": "khu vực",
+  "@fieldTitleBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankBranch": "Chi nhánh ngân hàng",
+  "@fieldTitleBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankName": "tên ngân hàng",
+  "@fieldTitleBankName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankProvince": "Mở tài khoản",
+  "@fieldTitleBankProvince": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBirthday": "sinh nhật",
+  "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleConfirm": "Xác nhận mật khẩu",
+  "@fieldTitleConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCreditAmount": "Số tiền",
+  "@fieldTitleCreditAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDateEnd": "Thời gian kết thúc",
+  "@fieldTitleDateEnd": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDateStart": "Thời gian bắt đầu",
+  "@fieldTitleDateStart": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositAmount": "Số tiền đặt cọc",
+  "@fieldTitleDepositAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositBankAccount": "Tài khoản ngân hàng của người thanh toán",
+  "@fieldTitleDepositBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositCode": "Mã giao dịch",
+  "@fieldTitleDepositCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositName": "Tên người thanh toán",
+  "@fieldTitleDepositName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleEmail": "e-mail",
+  "@fieldTitleEmail": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleFacebook": "Facebook",
+  "@fieldTitleFacebook": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleLine": "Hàng",
+  "@fieldTitleLine": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMemberAccount": "tên tài khoản",
+  "@fieldTitleMemberAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMemberName": "tên thật",
+  "@fieldTitleMemberName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMobileVerifyCode": "Mã xác minh điện thoại",
+  "@fieldTitleMobileVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleNote": "Nhận xét",
+  "@fieldTitleNote": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePassword": "mật khẩu",
+  "@fieldTitlePassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordNew": "mật khẩu mới",
+  "@fieldTitlePasswordNew": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordNewConfirm": "xác nhận khóa mới",
+  "@fieldTitlePasswordNewConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordOld": "Mật khẩu cũ",
+  "@fieldTitlePasswordOld": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePhone": "số điện thoại",
+  "@fieldTitlePhone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleQQ": "QQ",
+  "@fieldTitleQQ": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleReferralCode": "Mã giới thiệu",
+  "@fieldTitleReferralCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleRemark": "Nhận xét",
+  "@fieldTitleRemark": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleSkype": "Ứng dụng trò chuyện",
+  "@fieldTitleSkype": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleVerifyCode": "Mã xác nhận",
+  "@fieldTitleVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWechat": "Chúng tôi trò chuyện số",
+  "@fieldTitleWechat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWithdrawAmount": "Số tiền rút",
+  "@fieldTitleWithdrawAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWithdrawPassword": "Mật khẩu rút tiền",
+  "@fieldTitleWithdrawPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleZalo": "Zalo",
+  "@fieldTitleZalo": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnBackHome": "quay lại trang chủ",
+  "@gameToolBtnBackHome": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnLockRotate": "Khóa màn hình xoay",
+  "@gameToolBtnLockRotate": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnRotate": "Xoay màn hình",
+  "@gameToolBtnRotate": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolHintRestore": "Nhấp đúp để khôi phục màn hình",
+  "@gameToolHintRestore": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolHintUsage": "Nhấp để hiển thị, nhấn và giữ để ẩn ↗",
+  "@gameToolHintUsage": {
+    "description": "",
+    "type": "text"
+  },
+  "hintActionLogin": "Vui lòng đăng nhập trước",
+  "@hintActionLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAddBankcard": "Thêm thẻ ngân hàng",
+  "@hintAddBankcard": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAddBankcardDesc": "Vui lòng liên kết thẻ ngân hàng để nhận thanh toán",
+  "@hintAddBankcardDesc": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAttentionNotice": "Các biện pháp phòng ngừa",
+  "@hintAttentionNotice": {
+    "description": "",
+    "type": "text"
+  },
+  "hintClickToLoginRegister": "Bấm để đăng nhập / đăng ký",
+  "@hintClickToLoginRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "hintCreditRemain": "Tổng số dư",
+  "@hintCreditRemain": {
+    "description": "",
+    "type": "text"
+  },
+  "hintFreeUsage": "Sử dụng miễn phí",
+  "@hintFreeUsage": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHello": "Xin chào!",
+  "@hintHello": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHelloLogin": "Xin chào! Hãy đăng nhập với tư cách thành viên",
+  "@hintHelloLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHelloLoginRegister": "Xin chào! Vui lòng đăng nhập / đăng ký trước",
+  "@hintHelloLoginRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "hintMaintenance": "Đang bảo trì",
+  "@hintMaintenance": {
+    "description": "",
+    "type": "text"
+  },
+  "hintNoHistoryData": "Không tìm thấy thông tin",
+  "@hintNoHistoryData": {
+    "description": "",
+    "type": "text"
+  },
+  "hintNoMessages": "Hiện tại không có thông tin trên trang web",
+  "@hintNoMessages": {
+    "description": "",
+    "type": "text"
+  },
+  "hintRefreshCreditAfterTransfer": "Nếu số tiền nền tảng không thay đổi sau khi chuyển thành công, vui lòng chọn nền tảng để làm mới số tiền một lần nữa hoặc liên hệ với dịch vụ khách hàng",
+  "@hintRefreshCreditAfterTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelect": "xin vui lòng chọn",
+  "@hintSelect": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelectAmount": "Vui lòng chọn số lượng",
+  "@hintSelectAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelectPlatform": "Vui lòng chọn một nền tảng",
+  "@hintSelectPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "hintServiceIcon": "Nếu bạn có bất kỳ câu hỏi nào, vui lòng nhấp vào biểu tượng này!",
+  "@hintServiceIcon": {
+    "description": "",
+    "type": "text"
+  },
+  "hintTips": "Lời khuyên",
+  "@hintTips": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWalletRemain": "Số dư trên ví",
+  "@hintWalletRemain": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWelcome": "chào mừng",
+  "@hintWelcome": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWelcomeMember": "Xin chào {name}!",
+  "@hintWelcomeMember": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "name"
+      "name": {
+        "example": "user"
       }
     }
   },
-  "storeRecordTableDetailPhone": "Số điện thoại：{value}",
-  "@storeRecordTableDetailPhone": {
+  "msgActionCheckTerms": "Vui lòng đọc và đánh dấu để đồng ý với các quy tắc cá cược",
+  "@msgActionCheckTerms": {
+    "description": "",
+    "type": "text"
+  },
+  "msgAutoLoginError": "Lỗi dữ liệu, vui lòng đăng nhập thủ công",
+  "@msgAutoLoginError": {
+    "description": "",
+    "type": "text"
+  },
+  "msgBalanceToMainPartFailed": "Một số nền tảng chuyển không thành công",
+  "@msgBalanceToMainPartFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "msgCopyToClipboard": "Sao chép vào clipboard",
+  "@msgCopyToClipboard": {
+    "description": "",
+    "type": "text"
+  },
+  "msgCopyToClipboardError": "Sao chép không thành công",
+  "@msgCopyToClipboardError": {
+    "description": "",
+    "type": "text"
+  },
+  "msgFailed": "Thao tác không thành công, vui lòng thử lại sau",
+  "@msgFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "msgFormError": "Lỗi dữ liệu, vui lòng chọn lại",
+  "@msgFormError": {
+    "description": "",
+    "type": "text"
+  },
+  "msgFormNotFilled": "Vui lòng xác nhận thông tin trường và hoàn thành",
+  "@msgFormNotFilled": {
+    "description": "",
+    "type": "text"
+  },
+  "msgLoadingGame": "Đang tải trò chơi, vui lòng đợi ...",
+  "@msgLoadingGame": {
+    "description": "",
+    "type": "text"
+  },
+  "msgMobileVerifySent": "mã xác minh đã gửi",
+  "@msgMobileVerifySent": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNetworkChanged": "Đã phát hiện thấy thay đổi trạng thái mạng. Bạn có muốn làm mới trang không?",
+  "@msgNetworkChanged": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNetworkError": "Vui lòng kiểm tra trạng thái mạng",
+  "@msgNetworkError": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNetworkLocationNoService": "Dịch vụ này không khả dụng trong khu vực mạng của bạn",
+  "@msgNetworkLocationNoService": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNetworkUsingCellular": "Bạn đang sử dụng mạng di động và phí mạng có thể phát sinh theo mức sử dụng của bạn",
+  "@msgNetworkUsingCellular": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNoEvent": "Hiện tại không có hoạt động nào",
+  "@msgNoEvent": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNoStoragePermission": "Vui lòng bật quyền \"Lưu\"",
+  "@msgNoStoragePermission": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNotEnoughCredit": "Thiếu cân bằng",
+  "@msgNotEnoughCredit": {
+    "description": "",
+    "type": "text"
+  },
+  "msgNoWalletBindUrl": "Không thể nhận URL liên kết ví {wallet}",
+  "@msgNoWalletBindUrl": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "123"
+      "wallet": {
+        "example": "CGP"
       }
     }
   },
-  "storeRecordTableDetailPostCode": "Mã bưu điện：{value}",
-  "@storeRecordTableDetailPostCode": {
+  "msgPleaseBindBankcard": "Vui lòng ràng buộc thẻ ngân hàng trước!",
+  "@msgPleaseBindBankcard": {
+    "description": "",
+    "type": "text"
+  },
+  "msgPleaseWait": "Vui lòng đợi…",
+  "@msgPleaseWait": {
+    "description": "",
+    "type": "text"
+  },
+  "msgProcessing": "Đang xử lý yêu cầu, vui lòng đợi ...",
+  "@msgProcessing": {
+    "description": "",
+    "type": "text"
+  },
+  "msgSuccess": "Hoạt động thành công",
+  "@msgSuccess": {
+    "description": "",
+    "type": "text"
+  },
+  "msgTaskCanceled": "Đã hủy {Task}",
+  "@msgTaskCanceled": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "110"
+      "task": {
+        "example": "login"
       }
     }
   },
-  "storeRecordTableDetailAddress": "Địa chỉ：{value}",
-  "@storeRecordTableDetailAddress": {
+  "msgTaskSuccess": "{task} đã thành công",
+  "@msgTaskSuccess": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "address"
+      "task": {
+        "example": "login"
       }
     }
   },
-  "storeRecordTableDetailItem": "Hiển thị {from} Để {to} Hiển thị, mục {total}",
-  "@storeRecordTableDetailItem": {
+  "msgTransferFromTo": "{from} to {to}",
+  "@msgTransferFromTo": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "from": {
-        "example": "1"
+        "example": "site1"
       },
       "to": {
-        "example": "5"
-      },
-      "total": {
-        "example": "10"
+        "example": "site2"
       }
     }
   },
-  "storeProductWindowTitle": "Mua lại thành viên",
-  "@storeProductWindowTitle": {
+  "msgUrlLaunchError": "Không thể mở liên kết web: {url}",
+  "@msgUrlLaunchError": {
+    "description": "",
     "type": "text"
   },
-  "storeProductWindowTextRemain": "Số lượng còn lạ",
-  "@storeProductWindowTextRemain": {
+  "msgUrlNavNotSupported": "Không thể chuyển đến URL đích",
+  "@msgUrlNavNotSupported": {
+    "description": "",
     "type": "text"
   },
-  "storeProductWindowHint1": "Khi số lượng có hạng",
-  "@storeProductWindowHint1": {
+  "msgUserLogout": "{name}, vui lòng đăng nhập lại",
+  "@msgUserLogout": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "name": {
+        "example": "user"
+      }
+    }
+  },
+  "msgVerifySuccess": "Đã xác minh thành công",
+  "@msgVerifySuccess": {
+    "description": "",
     "type": "text"
   },
-  "storeProductWindowHint2": "Mỗi lần sử dụng",
-  "@storeProductWindowHint2": {
+  "msgWaitLogin": "Đang đăng nhập, vui lòng đợi ...",
+  "@msgWaitLogin": {
+    "description": "",
     "type": "text"
   },
-  "storeProductWindowHint3": "Điểm quy đổi",
-  "@storeProductWindowHint3": {
+  "msgWaitProcessComplete": "Vui lòng không đăng xuất trong khi xử lý yêu cầu",
+  "@msgWaitProcessComplete": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowTextPoint": "Điểm tích lũy：",
-  "@storeRequestWindowTextPoint": {
+  "msgWelcomeUser": "Chào mừng, {name}",
+  "@msgWelcomeUser": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "name": {
+        "example": "user"
+      }
+    }
+  },
+  "msgWorkInProgress": "Các tính năng sẽ sớm được trực tuyến!",
+  "@msgWorkInProgress": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowTitle": "Thông tin liên lạc",
-  "@storeRequestWindowTitle": {
+  "noticeTabGeneral": "Thông tin chung",
+  "@noticeTabGeneral": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowPoints": "Điểm quy đổi：",
-  "@storeRequestWindowPoints": {
+  "noticeTabMaintenance": "Thông báo bảo trì",
+  "@noticeTabMaintenance": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowHint": "Người nhận Thông tin",
-  "@storeRequestWindowHint": {
+  "pageBtnChangePassword": "thay đổi mật khẩu",
+  "@pageBtnChangePassword": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowFieldTitleName": "Họ tên",
-  "@storeRequestWindowFieldTitleName": {
+  "pageBtnContactCs": "liên hệ với dịch vụ khách hàng",
+  "@pageBtnContactCs": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowFieldTitlePhone": "Số điện thoại",
-  "@storeRequestWindowFieldTitlePhone": {
+  "pageBtnHelp": "Hướng dẫn",
+  "@pageBtnHelp": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowFieldTitlePostno": "Mã bưu điện",
-  "@storeRequestWindowFieldTitlePostno": {
+  "pageBtnLogin": "Đăng nhập",
+  "@pageBtnLogin": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowFieldTitleArea": "Khu vực",
-  "@storeRequestWindowFieldTitleArea": {
+  "pageBtnLogout": "Đăng xuất",
+  "@pageBtnLogout": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowFieldTitleAddress": "Địa chỉ",
-  "@storeRequestWindowFieldTitleAddress": {
+  "pageBtnMenu": "Thực đơn",
+  "@pageBtnMenu": {
+    "description": "",
     "type": "text"
   },
-  "storeRequestWindowSpinnerHint": "Xin hãy lựa chọn",
-  "@storeRequestWindowSpinnerHint": {
+  "pageBtnNotify": "Để ý",
+  "@pageBtnNotify": {
+    "description": "",
     "type": "text"
   },
-  "storeExchangeResultWindowTitleSuccess": "Trao đổi thành công",
-  "@storeExchangeResultWindowTitleSuccess": {
+  "pageBtnOnlineCs": "dịch vụ trực tuyến",
+  "@pageBtnOnlineCs": {
+    "description": "",
     "type": "text"
   },
-  "storeExchangeResultWindowHint": "Chức mừng thành viên",
-  "@storeExchangeResultWindowHint": {
+  "pageBtnRegister": "đã đăng ký",
+  "@pageBtnRegister": {
+    "description": "",
     "type": "text"
   },
-  "storeExchangeResultWindowHintItem1": "đổi ngay",
-  "@storeExchangeResultWindowHintItem1": {
+  "pageBtnSetting": "Thiết lập",
+  "@pageBtnSetting": {
+    "description": "",
     "type": "text"
   },
-  "storeExchangeResultWindowHintItem2": "Một",
-  "@storeExchangeResultWindowHintItem2": {
+  "pageHintExchangeRecord": "Đổi giải thưởng, kỷ lục tiền thưởng",
+  "@pageHintExchangeRecord": {
+    "description": "",
     "type": "text"
   },
-  "storeExchangeResultError": "Đổi không thành công, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
-  "@storeExchangeResultError": {
+  "pageHintHelpCenter": "Mọi thắc mắc về nạp tiền, rút tiền và cá cược, vui lòng xem tại đây",
+  "@pageHintHelpCenter": {
+    "description": "",
     "type": "text"
   },
-  "eventButtonSignUpTv": "Đăng nhập tích lũy trong {value} ngày",
-  "@eventButtonSignUpTv": {
+  "pageHintInvite": "Mời bạn bè chia sẻ hàng chục triệu tiền mặt",
+  "@pageHintInvite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintJoinUs": "Kế hoạch liên doanh",
+  "@pageHintJoinUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintWebsite": "Mở trang web",
+  "@pageHintWebsite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleAboutUs": "về chúng tôi",
+  "@pageTitleAboutUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleCenter": "Trung tâm cá nhân",
+  "@pageTitleCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleDeposit": "Nạp điện",
+  "@pageTitleDeposit": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleExchangeRecord": "Kỷ lục đổi thưởng",
+  "@pageTitleExchangeRecord": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleHelpCenter": "Trung tâm trợ giúp",
+  "@pageTitleHelpCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleHome": "Trang Chủ",
+  "@pageTitleHome": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleInvite": "mời bạn bè",
+  "@pageTitleInvite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleJoinUs": "tham gia với chúng tôi",
+  "@pageTitleJoinUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleLogin": "Đăng nhập",
+  "@pageTitleLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMember": "của tôi",
+  "@pageTitleMember": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberBalance": "Số dư nền tảng",
+  "@pageTitleMemberBalance": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberBets": "kỷ lục cá cược",
+  "@pageTitleMemberBets": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberCard": "Thẻ ngân hàng",
+  "@pageTitleMemberCard": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberCenter": "Trung tâm tài khoản",
+  "@pageTitleMemberCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberDeals": "Ghi lại giao dịch",
+  "@pageTitleMemberDeals": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberFlow": "Bản ghi luồng",
+  "@pageTitleMemberFlow": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberLogin": "Đăng nhập thành viên",
+  "@pageTitleMemberLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberMessage": "Trạm thư",
+  "@pageTitleMemberMessage": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberTransaction": "Chuyển hồ sơ",
+  "@pageTitleMemberTransaction": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberTransfer": "chuyển khoản",
+  "@pageTitleMemberTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberWallet": "Ví không chuyển tiền",
+  "@pageTitleMemberWallet": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberWithdraw": "rút lui",
+  "@pageTitleMemberWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleNotice": "sự thông báo",
+  "@pageTitleNotice": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitlePromo": "Giảm giá",
+  "@pageTitlePromo": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegister": "đã đăng ký",
+  "@pageTitleRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegisterFree": "Đăng kí miễn phí",
+  "@pageTitleRegisterFree": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegisterMember": "thành viên đã đăng ký",
+  "@pageTitleRegisterMember": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleService": "Dịch vụ khách hàng",
+  "@pageTitleService": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleSponsor": "nhà tài trợ",
+  "@pageTitleSponsor": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleStore": "Yabo Mall",
+  "@pageTitleStore": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleVip": "CAO CẤP",
+  "@pageTitleVip": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleVipAbout": "Đặc quyền VIP",
+  "@pageTitleVipAbout": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailApply": "Làm thế nào để nộp",
+  "@promoDetailApply": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailBtn": ">> Thông tin ưu đãi",
+  "@promoDetailBtn": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailContent": "Hoạt động",
+  "@promoDetailContent": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailPlatform": "Nền tảng áp dụng",
+  "@promoDetailPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailRules": "Chi tiết hoạt động",
+  "@promoDetailRules": {
+    "description": "",
+    "type": "text"
+  },
+  "promoNoInfo": "Kiểm tra không có thông tin ưu đãi",
+  "@promoNoInfo": {
+    "description": "",
+    "type": "text"
+  },
+  "promoNotFound": "Kiểm tra không giảm giá",
+  "@promoNotFound": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexDeposit": "tiền gửi",
+  "@rollbackIndexDeposit": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexPromo": "Giảm giá",
+  "@rollbackIndexPromo": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexRollback": "Rút lui",
+  "@rollbackIndexRollback": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceDescCustomerService": "24 giờ dịch vụ không bị gián đoạn",
+  "@serviceDescCustomerService": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceRouteHint": "Cần giúp đỡ hoặc liên hệ với chúng tôi",
+  "@serviceRouteHint": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleAppQr": "Mã quét APP",
+  "@serviceTitleAppQr": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleCustomerService": "Dịch vụ khách hàng trực tuyến",
+  "@serviceTitleCustomerService": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleZaloQr": "Mã quét Zalo",
+  "@serviceTitleZaloQr": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderAmount": "Số tiền",
+  "@tableHeaderAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetAmount": "Số tiền đặt cược",
+  "@tableHeaderBetAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsCurrent": "Đặt cược hiện tại",
+  "@tableHeaderBetsCurrent": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsNeed": "Số tiền còn lại được yêu cầu",
+  "@tableHeaderBetsNeed": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsRequire": "Yêu cầu đặt cược",
+  "@tableHeaderBetsRequire": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBonus": "Số tiền thanh toán",
+  "@tableHeaderBonus": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDate": "ngày",
+  "@tableHeaderDate": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDesc": "Sự miêu tả",
+  "@tableHeaderDesc": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDetail": "Chi tiết",
+  "@tableHeaderDetail": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderGame": "tên của trò chơi",
+  "@tableHeaderGame": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderId": "Số đặt cược",
+  "@tableHeaderId": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderMultiple": "bội số",
+  "@tableHeaderMultiple": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderObject": "dự án",
+  "@tableHeaderObject": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderPlatform": "nền tảng",
+  "@tableHeaderPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderPromo": "Giảm giá tiền mặt",
+  "@tableHeaderPromo": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSerial": "Số sê-ri",
+  "@tableHeaderSerial": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSheetNo": "Đơn số",
+  "@tableHeaderSheetNo": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderStatus": "Tình trạng đặt hàng",
+  "@tableHeaderStatus": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSum": "toàn bộ",
+  "@tableHeaderSum": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTime": "thời gian",
+  "@tableHeaderTime": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTimeRange": "Khoảng thời gian",
+  "@tableHeaderTimeRange": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTotal": "toàn bộ",
+  "@tableHeaderTotal": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTransferCode": "Mã giao dịch",
+  "@tableHeaderTransferCode": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderType": "thể loại",
+  "@tableHeaderType": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderValidBet": "Cược hợp lệ",
+  "@tableHeaderValidBet": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryAbout": "về chúng tôi",
+  "@textCategoryAbout": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryAll": "Tất cả",
+  "@textCategoryAll": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCard": "Cờ vua",
+  "@textCategoryCard": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCardFull": "Cờ vua phổ biến",
+  "@textCategoryCardFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCasino": "Người thực",
+  "@textCategoryCasino": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCasinoFull": "Giải trí trực tiếp",
+  "@textCategoryCasinoFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCockFighting": "chọi gà",
+  "@textCategoryCockFighting": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryEsport": "Chơi game",
+  "@textCategoryEsport": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryEsportFull": "Thể thao điện tử",
+  "@textCategoryEsportFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFavorite": "yêu thích của tôi",
+  "@textCategoryFavorite": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFish": "Đánh bắt cá",
+  "@textCategoryFish": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFishFull": "Trò chơi điện tử câu cá",
+  "@textCategoryFishFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryGames": "trò chơi",
+  "@textCategoryGames": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryGift": "quà tặng",
+  "@textCategoryGift": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryLottery": "Vé số",
+  "@textCategoryLottery": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryLotteryFull": "Cá cược xổ số",
+  "@textCategoryLotteryFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovie": "Rạp chiếu phim",
+  "@textCategoryMovie": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovieWeb": "xem phim",
+  "@textCategoryMovieWeb": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovieWebHint": "Click vào tôi để xem phim",
+  "@textCategoryMovieWebHint": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryOther": "khác",
+  "@textCategoryOther": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryRecommend": "Quản trị viên web được đề xuất",
+  "@textCategoryRecommend": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySlot": "điện tử",
+  "@textCategorySlot": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySlotFull": "Trò chơi điện tử",
+  "@textCategorySlotFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySport": "giáo dục thể chất",
+  "@textCategorySport": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySportFull": "Thi đấu thể thao",
+  "@textCategorySportFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryWeb": "Phiên bản web",
+  "@textCategoryWeb": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryWebHint": "Nhấp vào tôi để mở phiên bản web {site}",
+  "@textCategoryWebHint": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "site": {
+        "example": "Yabo"
+      }
+    }
+  },
+  "textDefaultMarquee": "Xin chào, thành viên thân mến! Nếu bạn có bất kỳ câu hỏi nào về việc sử dụng, vui lòng sử dụng hệ thống dịch vụ khách hàng trực tuyến.",
+  "@textDefaultMarquee": {
+    "description": "",
+    "type": "text"
+  },
+  "textLanguage": "Ngôn ngữ",
+  "textTotalCredit": "Tổng giá trị}",
+  "@textTotalCredit": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "value": {
-        "example": "3"
+        "example": "100.0"
       }
     }
   },
-  "eventSignUpHint1": "Đã tích lỹ ngày đăng nhập",
-  "@eventSignUpHint1": {
+  "textTransferHint1": "1. Vui lòng thoát trò chơi hoặc giao diện trò chơi cá cược trước khi chuyển.",
+  "@textTransferHint1": {
+    "description": "",
     "type": "text"
   },
-  "eventSignUpHint2": "ngày",
-  "@eventSignUpHint2": {
+  "textTransferHint2": "2. Khi không tham gia hoạt động, số tiền chuyển khoản không được ít hơn 1 tệ, và không tính phí xử lý chuyển khoản.",
+  "@textTransferHint2": {
+    "description": "",
     "type": "text"
   },
-  "eventButtonSignUpAlready": "hôm nay đã báo đến",
-  "@eventButtonSignUpAlready": {
+  "textTransferHint3": "3. Trong trường hợp tốc độ internet chậm, vui lòng kiên nhẫn chờ một lúc thay vì gửi nhiều lần.",
+  "@textTransferHint3": {
+    "description": "",
     "type": "text"
   },
-  "eventButtonSignUpSuccess": "Đăng nhập thành công!!",
-  "@eventButtonSignUpSuccess": {
+  "textTransferHint4": "4. Nếu số tiền nền tảng không thay đổi sau khi chuyển thành công, vui lòng làm mới nền tảng theo cách thủ công hoặc liên hệ với dịch vụ khách hàng",
+  "@textTransferHint4": {
+    "description": "",
     "type": "text"
   },
-  "eventButtonSignUpFailed": "Đăng nhập không thành công!!",
-  "@eventButtonSignUpFailed": {
+  "textUpdateErrorUrl": "Không thể lấy URL tải xuống, vui lòng liên hệ với dịch vụ khách hàng !!",
+  "@textUpdateErrorUrl": {
+    "description": "",
     "type": "text"
   },
-  "movieCategoryLabelCollect": "Yêu thích",
-  "@movieCategoryLabelCollect": {
-    "type": "text"
-  },
-  "movieCategoryLabelBuy": "mua",
-  "@movieCategoryLabelBuy": {
-    "type": "text"
-  },
-  "movieCategoryLabelExpand": "Mở ra",
-  "@movieCategoryLabelExpand": {
-    "type": "text"
-  },
-  "movieCategoryLabelFold": "Cất đi",
-  "@movieCategoryLabelFold": {
-    "type": "text"
-  },
-  "movieSeparatorTextHot": "Mọi người khác đang xem",
-  "@movieSeparatorTextHot": {
-    "type": "text"
-  },
-  "movieTextBuyNow": "Mua ngay",
-  "@movieTextBuyNow": {
-    "type": "text"
-  },
-  "movieHintTextFree": "Miễn phí trong ngày",
-  "@movieHintTextFree": {
-    "type": "text"
-  },
-  "movieHintTextPurchased": "đã mua",
-  "@movieHintTextPurchased": {
-    "type": "text"
-  },
-  "movieHintTextNotPurchased": "chưa thanh toán",
-  "@movieHintTextNotPurchased": {
-    "type": "text"
-  },
-  "movieListHintLoad": "tải thêm",
-  "@movieListHintLoad": {
-    "type": "text"
-  },
-  "movieListHintLoadReady": "Chế biến...",
-  "@movieListHintLoadReady": {
-    "type": "text"
-  },
-  "movieListHintLoading": "Đang tải...",
-  "@movieListHintLoading": {
-    "type": "text"
-  },
-  "movieListHintLoadSuccess": "Tải thành công",
-  "@movieListHintLoadSuccess": {
-    "type": "text"
-  },
-  "movieListHintLoadFailed": "Không thể tải",
-  "@movieListHintLoadFailed": {
-    "type": "text"
-  },
-  "movieListHintLoadNoMore": "Đến cuối cùng",
-  "@movieListHintLoadNoMore": {
-    "type": "text"
-  },
-  "movieDialogTitlePay": "mua",
-  "@movieDialogTitlePay": {
-    "type": "text"
-  },
-  "movieDialogTextFreeTimes": "Số lượt xem miễn phí còn lại: ",
-  "@movieDialogTextFreeTimes": {
-    "type": "text"
-  },
-  "movieDialogTextStorePoints": "Điểm trung tâm còn lại: ",
-  "@movieDialogTextStorePoints": {
-    "type": "text"
-  },
-  "movieDialogButtonWatchFree": "Lượt xem miễn phí",
-  "@movieDialogButtonWatchFree": {
-    "type": "text"
-  },
-  "movieDialogButtonPayPoint": "Điểm mua sắm {value} điểm mua hàng",
-  "@movieDialogButtonPayPoint": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "10"
-      }
-    }
-  },
-  "updateDialogErrorUrl": "Không thể lấy URL tải xuống, vui lòng liên hệ với dịch vụ khách hàng !!",
-  "@updateDialogErrorUrl": {
-    "type": "text"
-  },
-  "updateDialogMessage": "Phiên bản mới được tìm thấy， Vui lòng nhấp vào nút \"Cập nhật\" để tải xuống và cài đặt。\nSố phiên bản hiện tại：{version}\nSố phiên bản mới：{value}",
-  "@updateDialogMessage": {
+  "textUpdateMessage": "Nếu tìm thấy phiên bản mới, vui lòng nhấp vào nút \"Cập nhật\" để tải xuống và cài đặt.\nSố phiên bản hiện tại: {version}\nSố phiên bản mới: {value}",
+  "@textUpdateMessage": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "value": {
@@ -2864,240 +2218,69 @@
       }
     }
   },
-  "aboutCertTitle": "giấy phép",
-  "@aboutCertTitle": {
+  "walletBtnHintOneClickTransfer": "Tất cả các khoản tín dụng của nền tảng được chuyển vào ví chính",
+  "@walletBtnHintOneClickTransfer": {
+    "description": "",
     "type": "text"
   },
-  "aboutCertTitleGC": "Ủy ban GC supervisory của anh",
-  "@aboutCertTitleGC": {
+  "walletBtnOneClickTransfer": "Trang chủ một cú nhấp chuột",
+  "@walletBtnOneClickTransfer": {
+    "description": "",
     "type": "text"
   },
-  "aboutCertTitleMGA": "Giấy phép cá cược Malta (MGA)",
-  "@aboutCertTitleMGA": {
+  "walletHintWalletMulti": "* Cần chuyển hạn ngạch theo cách thủ công sang nền tảng trò chơi",
+  "@walletHintWalletMulti": {
+    "description": "",
     "type": "text"
   },
-  "aboutCertTitlePGC": "Giấy phép game cá cược Philippines (PAGCOR)",
-  "@aboutCertTitlePGC": {
+  "walletHintWalletSingle": "* Theo mặc định, tín dụng sẽ được tự động chuyển sang nền tảng trò chơi mở",
+  "@walletHintWalletSingle": {
+    "description": "",
     "type": "text"
   },
-  "aboutCertTitleBVI": "Giấy phép Quần đảo Virgin Anh (BVI)",
-  "@aboutCertTitleBVI": {
+  "walletHintWalletType": "* Khi cài đặt được bật, giới hạn ví sẽ tự động được chuyển sang nền tảng trò chơi đã mở\n(Mỗi thay đổi cần đợi 30 giây để cài đặt có hiệu lực)",
+  "@walletHintWalletType": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataTitle1": "Giới thiệu Nhà cái 85BET",
-  "@aboutDataTitle1": {
+  "walletOptionMulti": "Nhiều ví",
+  "@walletOptionMulti": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataDesc10": "85BET được cấp phép bởi Isle of Man và Khu kinh tế Cagayan và Freeport. Đây là một công ty đa quốc gia có hoạt động tại khu vực Châu Á - Thái Bình Dương.\n\n",
-  "@aboutDataDesc10": {
+  "walletOptionSingle": "Ví đơn",
+  "@walletOptionSingle": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataDesc11": "85bet dựa vào kinh nghiệm và danh tiếng phong phú của mình để cung cấp dịch vụ cho hơn mười triệu người chơi, điều này chứng tỏ tính hợp pháp và hợp pháp lâu dài và hoàn toàn đáng tin cậy.\n\n",
-  "@aboutDataDesc11": {
+  "walletTextChangeType": "Thay đổi cài đặt ví",
+  "@walletTextChangeType": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataDesc12": "Là công ty trò chơi trực thuộc M.A.N Entertainment Group, có trụ sở chính tại Manila, Philippines. Đây được coi là tập đoàn lớn nhất trong thị trường cờ bạc trực tuyến châu Á với lực lượng lao động đông đảo. Với sự tự tin cao đã được công nhận, 85bet hiện đã trở thành một trong những nhà cái cá cược được xác minh và cấp phép đầy đủ nhất của Hiệp hội Trò chơi Trực tuyến Quốc tế.\n\n",
-  "@aboutDataDesc12": {
+  "walletTextWaitTransfer": "Đang quay lại, vui lòng đợi ...",
+  "@walletTextWaitTransfer": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataTitle2": "THÔNG TIN",
-  "@aboutDataTitle2": {
+  "walletTitleCenter": "Ví trung tâm",
+  "@walletTitleCenter": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataSubtitle20": "Đăng Ký",
-  "@aboutDataSubtitle20": {
+  "walletTitleMy": "Túi của tôi",
+  "@walletTitleMy": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataDesc20": "Mở một tài khoản Việt Nam 85bet để tham gia trực tuyến tất cả các chương trình khuyến mãi cá cược trực tuyến của chúng tôi chơi game Trang web giải trí chất lượng cao với giá trị đặc biệt tốt. Chúng tôi tin rằng trong phần điểm thưởng khách hàng sẽ có cơ hội nhận được những phần quà có giá trị và những KHUYẾN MÃI khi tham gia các chương trình khuyến mãi.",
-  "@aboutDataDesc20": {
+  "withdrawHintChangeCard": "Nếu bạn muốn thay đổi thành viên của thẻ ngân hàng liên kết với mạng trong quá trình rút tiền, vui lòng liên hệ với bộ phận chăm sóc khách hàng trực tuyến để được hướng dẫn.",
+  "@withdrawHintChangeCard": {
+    "description": "",
     "type": "text"
   },
-  "aboutDataDesc21": "Trở thành tốt nhất đối tác của chúng tôi và hưởng mức hoa hồng hấp dẫn mỗi tháng bằng cách giới thiệu người chơi đến 85bet.",
-  "@aboutDataDesc21": {
-    "type": "text"
-  },
-  "aboutDataSubtitle21": "Đại Lý",
-  "@aboutDataSubtitle21": {
-    "type": "text"
-  },
-  "aboutDataSubtitle22": "Cá Cược Có Trách Nhiệm",
-  "@aboutDataSubtitle22": {
-    "type": "text"
-  },
-  "aboutDataDesc22": "85bet tỷ lệ cá cược bóng đá phấn đấu để cung cấp một kênh giải trí cho khách hàng của chúng tôi một cách tích cực. Chúng tôi có biện pháp bảo vệ chủ yếu thúc đẩy và đảm bảo cá cược có trách nhiệm.",
-  "@aboutDataDesc22": {
-    "type": "text"
-  },
-  "aboutDataSubtitle23": "Bảo Mật",
-  "@aboutDataSubtitle23": {
-    "type": "text"
-  },
-  "aboutDataDesc23": "Với hệ thống cược vững vàng và an toàn. Sự riêng tư của Quý Khách là ưu tiên hàng đầu của chúng tôi vì vậy chúng tôi luôn luôn tuân thủ nghiêm ngặt các chính sách bảo mật.",
-  "@aboutDataDesc23": {
-    "type": "text"
-  },
-  "aboutDataTitle3": "SẢN PHẨM",
-  "@aboutDataTitle3": {
-    "type": "text"
-  },
-  "aboutDataSubtitle30": "Cá Cược Thể Thao Và Cá Cược Trực Tuyến tỷ lệ cá cược bóng đá",
-  "@aboutDataSubtitle30": {
-    "type": "text"
-  },
-  "aboutDataDesc30": "tỷ lệ cá cược bóng đá Chúng tôi cung cấp những giải đấu lớn như: Ngoại hạng Anh, vô địch Tây Ban Nha La Liga, Serie A Ý, Vô địch UEFA, Vô địch quốc gia Pháp, Đức, NFL, NBA, NCAA, Bóng rổ Nữ, Quần vợt, Đua xe F1 Chúng tôi hân hạnh được đưa đến cho Quý Khách hơn 4,000 trận đấu mỗi tháng.",
-  "@aboutDataDesc30": {
-    "type": "text"
-  },
-  "aboutDataSubtitle31": "Trò Chơi Trực Tuyến",
-  "@aboutDataSubtitle31": {
-    "type": "text"
-  },
-  "aboutDataDesc31": "Các trò chơi trực tuyến với nhiều cơ hội thắng giải Jackpots trong các trò chơi: Roulette, Blackjack, Poker, Slots. Nhiều giải thưởng Jackpot lũy tiến và cơ hội thắng cao hơn trong 85bet.",
-  "@aboutDataDesc31": {
-    "type": "text"
-  },
-  "aboutDataSubtitle32": "Casino Trực Tuyến",
-  "@aboutDataSubtitle32": {
-    "type": "text"
-  },
-  "aboutDataDesc32": "Ngoài ra chúng tôi còn cung cấp nhiều loại hình trò chơi trực tuyến khác, đặc biệt: Casino trực tuyến với những người chia bài nóng bỏng trong Baccarat, Sicbo, Rồng/hổ, Roulette và Casino Slots trực tuyến, cách chơi dễ dàng.",
-  "@aboutDataDesc32": {
-    "type": "text"
-  },
-  "aboutDataTitle4": "TRUNG TÂM THÔNG TIN",
-  "@aboutDataTitle4": {
-    "type": "text"
-  },
-  "aboutDataSubtitle40": "Khuyến Mãi",
-  "@aboutDataSubtitle40": {
-    "type": "text"
-  },
-  "aboutDataDesc40": "Khuyến mãi tiền thưởng dành cho thành viên mới. Tiền thưởng cho những lần Chuyển Tiền tiếp theo và hoàn trả dành cho thành viên hiện tại.",
-  "@aboutDataDesc40": {
-    "type": "text"
-  },
-  "aboutDataSubtitle41": "Trung Tâm Hỗ Trợ",
-  "@aboutDataSubtitle41": {
-    "type": "text"
-  },
-  "aboutDataDesc41": "Xem thêm mục những câu hỏi thường gặp dành cho thể thao và các trò chơi khác. Hỗ trợ đăng ký tài khoản, Chuyển Tiền, rút tiền và các thông tin kỹ thuật khác.",
-  "@aboutDataDesc41": {
-    "type": "text"
-  },
-  "aboutDataSubtitle42": "Phương Thức Thanh Toán",
-  "@aboutDataSubtitle42": {
-    "type": "text"
-  },
-  "aboutDataDesc42": "Chúng tôi cung cấp sự lựa chọn tuyệt vời cho khách hàng gửi và rút tiền thông qua NETELLER, Moneybookers, chuyển giao Ngân hàng Quốc tế, Western Union. Chúng tôi có tất cả, hãy bắt đầu ngay với 85bet.",
-  "@aboutDataDesc42": {
-    "type": "text"
-  },
-  "aboutDataSubtitle43": "Liên Hệ",
-  "@aboutDataSubtitle43": {
-    "type": "text"
-  },
-  "aboutDataDesc43": "Nếu Quý Khách cần bất cứ sự giúp đỡ hoặc thắc mắc về cá cược trực tuyến tỷ lệ cá cược bóng đá hoặc casino trực tuyến, chúng tôi luôn hỗ trợ 24/7 thông qua Live Chat, Điện thoại và email.",
-  "@aboutDataDesc43": {
-    "type": "text"
-  },
-  "aboutDataTitle5": "THÔNG TIN CÁ CƯỢC",
-  "@aboutDataTitle5": {
-    "type": "text"
-  },
-  "aboutDataSubtitle50": "Kết Quả Thể Thao",
-  "@aboutDataSubtitle50": {
-    "type": "text"
-  },
-  "aboutDataDesc50": "Việt Nam tỷ lệ cá cược bóng đá Cung cấp kết quả của tất cả trận và giải đấu thể thao.tốt nhất Việt Nam hiện nay .",
-  "@aboutDataDesc50": {
-    "type": "text"
-  },
-  "aboutDataSubtitle51": "Thống Kê Đặt Cược",
-  "@aboutDataSubtitle51": {
-    "type": "text"
-  },
-  "aboutDataDesc51": "Hơn 200 giải đấu đa dạng với nhiều bộ môn thể thao, hình thức thi đấu, đội thi đấu và thi đấu cá nhân, lịch thi đấu, đội hình, đội tuyển, thời gian cộng thêm và trận đấu hoãn.",
-  "@aboutDataDesc51": {
-    "type": "text"
-  },
-  "aboutDataSubtitle52": "Cá Cược Thể Thao",
-  "@aboutDataSubtitle52": {
-    "type": "text"
-  },
-  "aboutDataDesc52": "Toàn bộ các Quy tắc thể thao của chúng tôi đều tuân thủ nghiêm ngặt theo Quy tắc chính thức của ban tổ chức. tốt nhất Việt Nam hiện nay.",
-  "@aboutDataDesc52": {
-    "type": "text"
-  },
-  "aboutDataSubtitle53": "Cá Cược Casino",
-  "@aboutDataSubtitle53": {
-    "type": "text"
-  },
-  "aboutDataDesc53": "Casino trực tuyến hiển thị đầy đủ: giới hạn cược, Kết quả và chi tiết lịch sử cược. Tất cả những thông tin cược của Quý Khách đều được tích hợp trên màn hình để tiện nhất cho sự giải trí của Quý Khách. Quý Khách có thể kiểm tra lại bất cứ thông tin cược nào trong bất cứ thời điểm nào.",
-  "@aboutDataDesc53": {
-    "type": "text"
-  },
-  "serviceRouteHint": "Cần giúp đỡ hoặc liên hệ với chúng tôi",
-  "@serviceRouteHint": {
-    "type": "text"
-  },
-  "serviceButtonContact": "liên hệ với dịch vụ khách hàng",
-  "@serviceButtonContact": {
-    "type": "text"
-  },
-  "serviceTitleCustomerService": "Dịch vụ khách hàng trực tuyến",
-  "@serviceTitleCustomerService": {
-    "type": "text"
-  },
-  "serviceDescCustomerService": "24 giờ dịch vụ không bị gián đoạn",
-  "@serviceTitleCustomerServiceDesc": {
-    "type": "text"
-  },
-  "serviceTitleEmail": "E-Mail",
-  "@serviceTitleEmail": {
-    "type": "text"
-  },
-  "serviceTitlePhone": "số điện thoại",
-  "@serviceTitlePhone": {
-    "type": "text"
-  },
-  "serviceTitleSkype": "Skype",
-  "@serviceTitleSkype": {
-    "type": "text"
-  },
-  "serviceTitleLine": "Line",
-  "@serviceTitleLine": {
-    "type": "text"
-  },
-  "serviceTitleZalo": "Zalo",
-  "@serviceTitleZalo": {
-    "type": "text"
-  },
-  "serviceTitleFacebook": "Facebook",
-  "@serviceTitleFacebook": {
-    "type": "text"
-  },
-  "downloadAndroidCgpay": "CGPAY cho Android",
-  "@downloadAndroidCgpay": {
-    "type": "text"
-  },
-  "downloadIosCgpay": "CGPAY cho IOS",
-  "@downloadIosCgpay": {
-    "type": "text"
-  },
-  "downloadAndroidDns": "Sửa chữa DNS cho Android",
-  "@downloadAndroidDns": {
-    "type": "text"
-  },
-  "downloadIosDns": "Sửa chữa DNS cho IOS",
-  "@downloadIosDns": {
-    "type": "text"
-  },
-  "downloadHintPlatformAndroid": "(Chỉ dành cho Android)",
-  "@downloadHintPlatformAndroid": {
-    "type": "text"
-  },
-  "downloadHintPlatformIos": "(Chỉ dành cho iOS)",
-  "@downloadHintPlatformIos": {
+  "withdrawHintFee": "Mỗi tài khoản thành viên chỉ được rút tối đa 3 lần rút trong ngày, nếu rút nhiều hơn 3 lần sẽ được cộng thêm 5% phí dịch vụ.",
+  "@withdrawHintFee": {
+    "description": "",
     "type": "text"
   }
 }

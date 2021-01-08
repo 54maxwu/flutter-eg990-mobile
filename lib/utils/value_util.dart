@@ -21,6 +21,7 @@ class ValueRangeData {
       {@required this.value, @required this.min, @required this.max});
 
   bool get isInRange {
+    debugPrint('$min >= $value <= $max');
     if (max != 0) {
       return value >= min && value <= max;
     } else {
@@ -29,126 +30,164 @@ class ValueRangeData {
   }
 }
 
-/// Check if the [value] is bigger than [min], and smaller than [max]
-bool rangeCheck({@required num value, @required num min, num max = 0}) {
-  if (max != 0)
-    return value >= min && value <= max;
-  else
-    return value >= min;
-}
+class ValueUtil {
+  static final String creditSymbol = '￥';
 
-final String creditSymbol = '￥';
-final NumberFormat numFormat = new NumberFormat("###0.00", "en_US");
-final NumberFormat creditFormat = new NumberFormat("#,##0.00", "en_US");
-final NumberFormat creditSignFormat =
-    new NumberFormat("$creditSymbol#,##0.00", "en_US");
-final RegExp replaceRegex = RegExp('$creditSymbol|,');
+  static RegExp get _replaceRegex => RegExp('$creditSymbol|,');
 
-/// [floor] floor value to double
-/// [floorToInt] floor value to int
-/// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
-/// [creditSign] add a credit sign as string prefix
-String formatValue(
-  dynamic value, {
-  bool floorToInt = false,
-  bool trimIfZero = true,
-  bool creditSign = false,
-}) {
-  try {
-    num n;
-    // parse dynamic value to num
-    if (value is num) {
-      n = value;
-    } else if (value is String) {
-      n = double.parse(value.replaceAll(replaceRegex, '').trim());
-    } else {
-      return (creditSign) ? '$creditSymbol$value' : '$value';
+  static NumberFormat get _numFormat => NumberFormat("###0.00", "en_US");
+
+  static NumberFormat get _creditFormat => NumberFormat("#,##0.00", "en_US");
+
+  static NumberFormat get _creditSignFormat =>
+      NumberFormat("$creditSymbol#,##0.00", "en_US");
+
+  /// [addCreditSign] add a credit sign as string prefix
+  /// [trimIfZero] if value to double is 0, return 0 if true else 0.00
+  /// [floorToInt] floor value to int
+  static String format(
+    dynamic value, {
+    bool addCreditSign = false,
+    bool formatAsCredit = true,
+    bool trimIfZero = true,
+    bool floorToInt = false,
+  }) {
+    try {
+      num n;
+      // parse dynamic value to num
+      if (value is num) {
+        n = value;
+      } else if (value is String) {
+        n = num.parse(value.replaceAll(_replaceRegex, '').trim());
+      } else {
+        return (addCreditSign) ? '$creditSymbol$value' : '$value';
+      }
+
+      if (addCreditSign) {
+        return toCreditSignFormat(
+          n,
+          trimIfZero: trimIfZero,
+          floorToInt: floorToInt,
+        );
+      } else if (formatAsCredit) {
+        return toCreditFormat(
+          n,
+          trimIfZero: trimIfZero,
+          floorToInt: floorToInt,
+        );
+      } else {
+        return toValueFormat(
+          n,
+          trimIfZero: trimIfZero,
+          floorToInt: floorToInt,
+        );
+      }
+    } catch (e, s) {
+      MyLogger.warn(msg: 'format value has exception: $e', tag: 'ValueUtil');
+      debugPrint('format value has exception:$e, value: $value\nstack:\n$s');
+      return '$value';
     }
+  }
 
-    // format the num as credit
-    final s =
-        (creditSign) ? creditSignFormat.format(n) : creditFormat.format(n);
-    debugPrint('formatted value: $s');
-
-    // trim the string
-    if (n == 0) {
-      return (trimIfZero) ? s.substring(0, s.indexOf('.')) : s;
+  /// Format a num as credit, ex: 1,000
+  /// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
+  static String toCreditSignFormat(
+    num n, {
+    bool trimIfZero = true,
+    bool floorToInt = false,
+  }) {
+    final s = _creditSignFormat.format(n);
+    if (s.strToDouble == 0) {
+      return (trimIfZero) ? '0' : s;
     } else if (floorToInt) {
       return s.substring(0, s.indexOf('.'));
     } else {
       return s;
     }
-  } catch (e) {
-    MyLogger.warn(msg: 'format value has exception: $e', tag: 'formatValue');
-    return '$value';
   }
-}
 
-/// [addComma] use credit formatter if true, else use normal number formatter
-/// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
-String formatNum(
-  num n, {
-  bool addComma = true,
-  bool trimIfZero = true,
-}) {
-  final s = (addComma) ? creditFormat.format(n) : numFormat.format(n);
-  if (s.strToDouble == 0) {
-    return (trimIfZero) ? '0' : s;
-  } else {
-    return s;
+  /// Format a num as credit, ex: 1,000
+  /// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
+  static String toCreditFormat(
+    num n, {
+    bool trimIfZero = true,
+    bool floorToInt = false,
+  }) {
+    final s = _creditFormat.format(n);
+    if (s.strToDouble == 0) {
+      return (trimIfZero) ? '0' : s;
+    } else if (floorToInt) {
+      return s.substring(0, s.indexOf('.'));
+    } else {
+      return s;
+    }
   }
-}
 
-String intToStr(int value, {bool creditSign = false}) =>
-    formatValue(value, creditSign: creditSign);
-
-String doubleToStr(
-  double value, {
-  bool creditSign = false,
-}) =>
-    formatValue(
-      value,
-      creditSign: creditSign,
-    );
-
-int stringToInt(String str, {bool printErrorStack = true}) {
-  try {
-    if (str == null || str.isEmpty) return -1;
-    if (str.contains('.'))
-      return double.parse(str.replaceAll(replaceRegex, '').trim()).floor();
-    else
-      return int.parse(str.replaceAll(replaceRegex, '').trim());
-  } catch (e, s) {
-    MyLogger.warn(
-        msg: (printErrorStack)
-            ? 'parse value to int has exception, str: $str\nstack:\n$s'
-            : 'parse value to int has exception, str: $str',
-        tag: 'stringToInt');
-    return -1;
+  /// Format a num to value string, ex: 1000
+  /// [trimIfZero] if value to double is 0, return 0 or 0.00 based on [floorIfInt]
+  static String toValueFormat(
+    num n, {
+    bool trimIfZero = true,
+    bool floorToInt = false,
+  }) {
+    final s = _numFormat.format(n);
+    if (s.strToDouble == 0) {
+      return (trimIfZero) ? '0' : s;
+    } else if (floorToInt) {
+      return s.substring(0, s.indexOf('.'));
+    } else {
+      return s;
+    }
   }
-}
 
-double stringToDouble(String str) {
-  try {
-    if (str == null || str.isEmpty) return double.parse('-1');
-    return double.parse(str.replaceAll(replaceRegex, '').trim());
-  } catch (e) {
-    MyLogger.warn(
-        msg: 'parse value to double has exception', tag: 'stringToDouble');
-    return double.parse('-1');
+  static int strToInt(String str, {bool printErrorStack = false}) {
+    try {
+      if (str == null || str.isEmpty) return -1;
+      return num.parse(str.replaceAll(_replaceRegex, '').trim()).floor();
+    } catch (e, s) {
+      MyLogger.warn(
+          msg: (printErrorStack)
+              ? 'parse value to int has exception:$e, str: $str\nstack:\n$s'
+              : 'parse value to int has exception:$e',
+          tag: 'ValueUtil');
+      debugPrint('parse value to int has exception:$e, str: $str\nstack:\n$s');
+      return -1;
+    }
   }
-}
 
-bool valueIsEqual(String first, String second) {
-  return stringToDouble(first).compareTo(stringToDouble(second)) == 0;
+  static double strToDouble(String str, {bool printErrorStack = false}) {
+    try {
+      if (str == null || str.isEmpty) return -1;
+      return double.parse(str.replaceAll(_replaceRegex, '').trim());
+    } catch (e, s) {
+      MyLogger.warn(
+          msg: (printErrorStack)
+              ? 'parse value to double has exception:$e, str: $str\nstack:\n$s'
+              : 'parse value to double has exception:$e',
+          tag: 'ValueUtil');
+      debugPrint(
+          'parse value to double has exception:$e, str: $str\nstack:\n$s');
+      return -1;
+    }
+  }
+
+  static bool isEqual(String first, String second) {
+    debugPrint('comparing value, '
+        'first: ${strToDouble(first)}, '
+        'second: ${strToDouble(second)}');
+    return strToDouble(first).compareTo(strToDouble(second)) == 0;
+  }
 }
 
 extension ValueUtilExtension on String {
-  int get strToInt => stringToInt(this);
+  int get strToIntDebug => ValueUtil.strToInt(this, printErrorStack: true);
 
-  int get strToIntNoErrorStack => stringToInt(this, printErrorStack: false);
+  double get strToDoubleDebug =>
+      ValueUtil.strToDouble(this, printErrorStack: true);
 
-  double get strToDouble => stringToDouble(this);
+  int get strToInt => ValueUtil.strToInt(this);
 
-  String get basicFormat => formatValue(this);
+  double get strToDouble => ValueUtil.strToDouble(this);
+
+  String get basicFormat => ValueUtil.format(this);
 }

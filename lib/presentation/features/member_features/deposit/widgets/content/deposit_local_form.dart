@@ -7,8 +7,8 @@ import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/input_field.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
-import 'package:intl/intl.dart' show NumberFormat;
 
 class DepositLocalFormWidget extends StatefulWidget {
   final OnDepositRequest onDepositRequest;
@@ -33,11 +33,15 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
   final GlobalKey<FieldInputWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
 
+  List<int> _chipsValue = [29, 51, 105, 503, 1002, 2007, 4996];
+
   DepositTargetBank _target = DepositTargetBank.pure();
   ValueRangeData _rangeData = ValueRangeData.empty();
-  String _inputName;
+  String _inputName = '';
 
   DepositMethodBankData _selected;
+  num _minAmount;
+  num _maxAmount;
 
   void setSelectedTarget({dynamic dataKey}) {
     if (dataKey == null) {
@@ -59,6 +63,10 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
         bankIndex: '${_selected.key}'.strToInt,
       ),
     );
+    _minAmount = _selected.min?.strToInt ?? 100;
+    _maxAmount = _selected.max?.strToInt ?? 0;
+    _chipsValue.removeWhere((value) =>
+        value < _minAmount || (_maxAmount > 0 && value > _maxAmount));
   }
 
   @override
@@ -84,11 +92,11 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                 ///
                 /// Bank Option
                 ///
-                FieldWrapperWidget.option(
+                FieldWrapperWidget.options(
                   prefixPadding: const EdgeInsets.only(top: 6.0),
                   fieldPadding: const EdgeInsets.only(top: 2.0),
                   prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentSpinnerTitleBank,
+                    prefixText: localeStr.fieldOptionTitleDepositBank,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
@@ -138,7 +146,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                   prefixPadding: const EdgeInsets.only(top: 6.0),
                   fieldPadding: const EdgeInsets.only(top: 2.0),
                   prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentEditTitleName,
+                    prefixText: localeStr.fieldTitleDepositName,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
@@ -149,7 +157,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                     maxInputLength: InputLimit.NAME_MAX,
                     enableSuggestions: false,
                     inputDecoration: InputDecoration(
-                      hintText: localeStr.depositPaymentEditTitleNameHint,
+                      hintText: localeStr.fieldHintDepositName,
                       hintStyle: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                         color: themeColor.defaultHintColor,
@@ -158,7 +166,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                     onChanged: (value) => _inputName = value,
                     validator: (_) => _inputName.isNotEmpty
                         ? null
-                        : localeStr.messageInvalidDepositName,
+                        : localeStr.fieldErrorCardAccountName,
                   ),
                 ),
                 Divider(thickness: 0.2),
@@ -183,50 +191,94 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
-                /// Amount Input Field
+                /// Amount Select
                 ///
-                FieldWrapperWidget(
+                Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  fieldPadding: const EdgeInsets.only(top: 2.0),
-                  prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentEditTitleAmount,
+                  child: FieldPrefixWidget.text(
+                    prefixText: localeStr.fieldTitleCreditAmount,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
                     ),
                   ),
+                ),
+                Divider(thickness: 0.2),
+
+                ///
+                /// Amount Chips
+                ///
+                FieldWrapperWidget.chips(
+                  padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
+                  chipsWrapperWidget: FieldChipsWrapperWidget(
+                    borderType: ChipsBorder.ROUNDED_RECTANGLE,
+                    spaceBetween: 10,
+                    values: _chipsValue,
+                    labels: _chipsValue
+                        .map((e) =>
+                            ValueUtil.toCreditSignFormat(e, floorToInt: true))
+                        .toList(growable: false),
+                    onChipTap: (value) {
+                      debugPrint('tap chip: $value');
+                      if (value >= 0) {
+                        _amountFieldKey.currentState?.setInput = '$value';
+                        _rangeData = ValueRangeData(
+                          value: value,
+                          min: _minAmount,
+                          max: _maxAmount,
+                        );
+                      }
+                    },
+                  ),
+                ),
+
+                ///
+                /// Amount Input Field
+                ///
+                FieldWrapperWidget(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  prefixWidget: FieldPrefixWidget.text(
+                    prefixText: ValueUtil.creditSymbol,
+                    textStyle: TextStyle(
+                      fontSize: FontSize.MESSAGE.value,
+                      color: themeColor.defaultTextColor,
+                    ),
+                  ),
+                  prefixConstraint: BoxConstraints.tightFor(
+                      width: FontSize.MESSAGE.value * 1.5),
+                  prefixPadding: const EdgeInsets.only(top: 8.0),
                   inputWidget: FieldInputWidget(
                     key: _amountFieldKey,
                     inputType: FieldInputType.Numbers,
                     maxInputLength: '${_selected.max}'.length,
                     enableSuggestions: false,
                     inputDecoration: InputDecoration(
-                      hintText: localeStr
-                          .messageInvalidDepositAmountMin(_selected.min),
-                      hintStyle: TextStyle(
+                      labelText: localeStr.fieldHintDepositAmountRange(
+                          _selected.min, _selected.max),
+                      labelStyle: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                         color: themeColor.defaultHintColor,
                       ),
                     ),
                     onChanged: (value) => _rangeData = ValueRangeData(
                       value: value?.strToInt ?? -1,
-                      min: _selected.min?.strToInt ?? 100,
-                      max: _selected.max?.strToInt ?? 0,
+                      min: _minAmount,
+                      max: _maxAmount,
                     ),
                     validator: (_) => _rangeData.isInRange
                         ? null
-                        : localeStr.messageInvalidDepositAmount,
+                        : localeStr.fieldErrorInvalidCreditAmount,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
-                  child: Text(
-                    localeStr.depositHintTextAmount(
-                        NumberFormat.simpleCurrency(decimalDigits: 0)
-                            .format('${_selected.max}'.strToInt)),
-                    style: TextStyle(color: themeColor.hintHighlight),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
+                //   child: Text(
+                //     localeStr.depositHintOrderMaxAmount(
+                //         NumberFormat.simpleCurrency(decimalDigits: 0)
+                //             .format('${_selected.max}'.strToInt)),
+                //     style: TextStyle(color: themeColor.hintHighlight),
+                //   ),
+                // ),
                 Divider(thickness: 0.2),
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
@@ -268,7 +320,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                   debugPrint('deposit form is valid');
                   widget.onDepositRequest(form);
                 } else if (form.status.index == 0) {
-                  callToast(localeStr.messageActionFillForm);
+                  callToast(localeStr.msgFormNotFilled);
                 } else {
                   debugPrint(
                       'deposit form error: ${form.validate.getOrElse(() => null)}');

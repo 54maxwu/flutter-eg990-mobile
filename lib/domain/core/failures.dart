@@ -49,25 +49,25 @@ extension FailureExtension on Failure {
   String get message {
     switch (this._type) {
       case _Failure.Network:
-        return localeStr.messageErrorNoNetwork;
+        return localeStr.msgNetworkError;
       case _Failure.NetworkLocation:
-        return localeStr.messageWarnNetworkLocation;
+        return localeStr.msgNetworkLocationNoService;
       case _Failure.Server:
-        return localeStr.messageErrorNoServerConnection;
+        return localeStr.errorNoServerConnection;
       case _Failure.JsonFormat:
-        return localeStr.messageErrorServerData;
+        return localeStr.errorServerData;
       case _Failure.Login:
-        return localeStr.messageLoginFailed +
+        return localeStr.errorLoginFailed +
             '(${(this.props.first as RequestStatusModel).msg})';
       case _Failure.Token:
-        return localeStr.messageErrorToken +
+        return localeStr.errorToken +
             '(code: ${(this.props.first as FailureType).value})';
       case _Failure.Event:
-        return localeStr.messageErrorEvent;
+        return localeStr.errorEvent;
       case _Failure.CachedFile:
-        return localeStr.messageErrorCachedFile;
+        return localeStr.errorCachedFile;
       case _Failure.Internal:
-        return localeStr.messageErrorInternal +
+        return localeStr.errorInternal +
             '(${(this.props.first as FailureCode).errorCode})';
       case _Failure.ErrorMessage:
         return '${this.props.first}';
@@ -76,7 +76,7 @@ extension FailureExtension on Failure {
       case _Failure.ErrorCode:
         return '${(this.props.first as RequestCodeModel).msg}(code: ${(this.props.first as RequestCodeModel).code})';
       case _Failure.DataType:
-        return localeStr.messageErrorServerData;
+        return localeStr.errorServerData;
       default:
         return _OTHER_FAILURE_MESSAGE;
     }

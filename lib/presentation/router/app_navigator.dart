@@ -30,6 +30,8 @@ class AppNavigator {
 
   static String get current => _current;
 
+  static bool get loginToHomePage => _previous == homeName;
+
   static bool get isAtHome => _current == homeName;
 
   static bool get isWebRoute => _isWeb;
@@ -153,9 +155,7 @@ class AppNavigator {
         arguments: arguments,
       );
       // }
-
-      _setPath(page, parent: (_isWeb) ? page.pageRoot : _current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(page, parent: (_isWeb) ? page.pageRoot : _current);
     } catch (e) {
       MyLogger.error(
           msg: 'navigate to ${page.pageName} has exception!! Error: $e',
@@ -202,15 +202,20 @@ class AppNavigator {
       //   mainNavigate.replace(FeatureScreenRoutes.webRoute,
       //       arguments: arguments);
       // } else {
-      mainNavigate.replace(page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
-          arguments: arguments);
+      mainNavigate.replace(
+        page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
+        arguments: arguments,
+      );
       // }
 
-      _setPath(page, parent: current);
-      // (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
-      //     ? page.pageRoot
-      //     : current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(
+        page,
+        parent: current,
+        // parent:
+        // (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
+        //     ? page.pageRoot
+        //     : current,
+      );
     } catch (e) {
       MyLogger.error(
           msg: 'replace $current to ${page.pageId} has exception!! Error: $e',
@@ -225,7 +230,7 @@ class AppNavigator {
     }
   }
 
-  static back() async {
+  static back({bool usePreviousAsRoot = false}) async {
     final from = _current.toRoutePage;
     if (from == null) {
       debugPrint('route page not found');
@@ -238,12 +243,13 @@ class AppNavigator {
       } else if (_previous == homeName) {
         returnToHome();
       } else if (mainNavigate.canPop()) {
-        final dest = from.pageRoot.toRoutePage;
+        final dest = (usePreviousAsRoot)
+            ? _previous.toRoutePage
+            : from.pageRoot.toRoutePage;
         if (dest != null) {
           debugPrint('popping route until: ${dest.pageName}');
           mainNavigate.popUntilPath(dest.pageName);
-          _setPath(dest);
-          _streamRouteInfo(dest.value);
+          updateNavigateRoute(dest);
         } else {
           MyLogger.warn(msg: 'destination error, returning home', tag: _tag);
           returnToHome();
@@ -275,8 +281,13 @@ class AppNavigator {
     _isWeb = false;
 
     final dest = RoutePage.home;
-    _setPath(dest);
-    _streamRouteInfo(dest.value);
+    updateNavigateRoute(dest);
+  }
+
+  static updateNavigateRoute(RoutePage page,
+      {String parent, bool updateParent = true}) {
+    _setPath(page, parent: (updateParent) ? parent : _previous);
+    _streamRouteInfo(page.value);
   }
 
   static _streamRouteInfo(RouteInfo pageInfo) =>

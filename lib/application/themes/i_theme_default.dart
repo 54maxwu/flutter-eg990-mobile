@@ -204,7 +204,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color hintHighlightOrangeStrong = Color(0xffff9e4c);
 
   @override
-  Color hintHyperLink = Color(0xff23538d);
+  Color hintHyperLink = Color(0xff1a77df);
 
   @override
   Color hintDarkRed = Color(0xff752121);
@@ -592,28 +592,28 @@ class ThemeDefault implements ThemeColorInterface {
   /// VIP level page & Center VIP color
   ///
   @override
-  Color vipCardBackgroundColor = Color(0xffd2d2d2);
+  Color vipCardBackgroundColor = Color(0xffffffff);
 
   @override
-  Color vipTitleBackgroundColor = Color(0xff4285f4);
+  Color vipTitleBackgroundColor = Color(0xffedd1a2);
 
   @override
-  Color vipTitleBackgroundSubColor = Color(0xfff5f5f5);
+  Color vipTitleBackgroundSubColor = Color(0xffeaeaea);
 
   @override
-  Color vipIconBackgroundColor = Color(0xffffffff);
+  Color vipIconBackgroundColor = Color(0xfff0f0f0);
 
   @override
-  Color vipIconColor = Color(0xff4285f4);
+  Color vipIconColor = Color(0xffedd1a2);
 
   @override
-  Color vipIconTextColor = Color(0xffffffff);
+  Color vipIconTextColor = Color(0xff000000);
 
   @override
   Color vipIconTextSubColor = Color(0xff000000);
 
   @override
-  Color vipTitleColor = Color(0xff2a60ba);
+  Color vipTitleColor = Color(0xffd2b79c);
 
   @override
   Color vipDescColor = Color(0xff8d8d8d);
@@ -631,10 +631,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color vipProgressColor = Color(0xffa9a9a9);
 
   @override
-  Color vipProgressCircleColor = Color(0xff2a60ba);
+  Color vipProgressCircleColor = Color(0xffd2b79c);
 
   @override
-  Color vipProgressBorderColor = Color(0xff2a60ba);
+  Color vipProgressBorderColor = Color(0xffd2b79c);
 
   ///
   /// Store page color

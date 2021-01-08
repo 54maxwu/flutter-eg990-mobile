@@ -20,6 +20,7 @@ import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
+import '../features/member_features/member_center/member_center_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
 import '../features/member_features/withdraw/withdraw_route.dart';
 import '../features/notice_board/notice_route.dart';
@@ -116,6 +117,7 @@ class MainScreenRoutes {
   static const String sponsorRoute = '/sponsor-route';
   static const String noticeRoute = '/notice-route';
   static const String memberRoute = '/member-route';
+  static const String memberCenterRoute = '/member-center-route';
   static const String depositRoute = '/deposit-route';
   static const String transferRoute = '/transfer-route';
   static const String withdrawRoute = '/withdraw-route';
@@ -131,6 +133,7 @@ class MainScreenRoutes {
     sponsorRoute,
     noticeRoute,
     memberRoute,
+    memberCenterRoute,
     depositRoute,
     transferRoute,
     withdrawRoute,
@@ -152,6 +155,7 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.sponsorRoute, page: SponsorRoute),
     RouteDef(MainScreenRoutes.noticeRoute, page: NoticeRoute),
     RouteDef(MainScreenRoutes.memberRoute, page: MemberRoute),
+    RouteDef(MainScreenRoutes.memberCenterRoute, page: MemberCenterRoute),
     RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
     RouteDef(MainScreenRoutes.transferRoute, page: TransferRoute),
     RouteDef(MainScreenRoutes.withdrawRoute, page: WithdrawRoute),
@@ -219,6 +223,12 @@ class MainScreenRouter extends RouterBase {
     MemberRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => MemberRoute(),
+        settings: data,
+      );
+    },
+    MemberCenterRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => MemberCenterRoute(),
         settings: data,
       );
     },
@@ -298,6 +308,9 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushMemberRoute() =>
       push<dynamic>(MainScreenRoutes.memberRoute);
+
+  Future<dynamic> pushMemberCenterRoute() =>
+      push<dynamic>(MainScreenRoutes.memberCenterRoute);
 
   Future<dynamic> pushDepositRoute() =>
       push<dynamic>(MainScreenRoutes.depositRoute);

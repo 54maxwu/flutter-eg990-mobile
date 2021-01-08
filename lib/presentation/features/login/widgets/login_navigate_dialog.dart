@@ -8,12 +8,8 @@ import 'package:flutter_eg990_mobile/presentation/screens/user/user_info_store.d
 
 class LoginNavigateDialog extends StatelessWidget {
   final String username;
-  final bool returnHomePage;
 
-  LoginNavigateDialog({
-    @required this.username,
-    this.returnHomePage = true,
-  });
+  LoginNavigateDialog({@required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +20,16 @@ class LoginNavigateDialog extends StatelessWidget {
     sl.get<UserInfoStore>().setRecheck = true;
     Future.delayed(Duration(milliseconds: 1000), () {
       Navigator.of(context).pop();
-    }).whenComplete(() => AppNavigator.returnToHome());
+    }).whenComplete(() {
+      if (!AppNavigator.loginToHomePage) {
+        AppNavigator.back(usePreviousAsRoot: true);
+      } else {
+        AppNavigator.returnToHome();
+      }
+    });
 
     return WillPopScope(
-      onWillPop: () async {
-        return Future.value(true);
-      },
+      onWillPop: () async => Future.value(true),
       child: DialogWidget(
         constraints: BoxConstraints.tightFor(
           width: dialogSize,
@@ -51,7 +51,7 @@ class LoginNavigateDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Text(
-                  localeStr.messageWelcomeUser(username),
+                  localeStr.msgWelcomeUser(username),
                   style: TextStyle(fontSize: FontSize.MESSAGE.value),
                 ),
               ),

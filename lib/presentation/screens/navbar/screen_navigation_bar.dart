@@ -27,7 +27,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
     var item = _tabs[index];
     debugPrint('tapped item: ${item.value}');
     if (item.value.route == null) {
-      callToastInfo(localeStr.workInProgress);
+      callToastInfo(localeStr.msgWorkInProgress);
     } else {
       var value = item.value;
       if (value.isUserOnly && !_screenProvider.userInfoStore.hasUser) {

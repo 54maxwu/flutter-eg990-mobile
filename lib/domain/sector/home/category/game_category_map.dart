@@ -3,6 +3,9 @@ import 'package:flutter_eg990_mobile/domain/sector/home/category/game_category.d
 ///
 /// A Map to get [GameCategory] data by [GameCategoryModel].type
 ///
+/// Data Relations: [GameCategoryModel] -> [GameCategoryEntity] ->
+/// [gameCategoryMap] -> [GameCategory] -> [GameCategoryInfo]
+///
 final Map<String, GameCategory> gameCategoryMap = {
   'casino': GameCategory.casino,
   'slot': GameCategory.slot,
@@ -10,4 +13,5 @@ final Map<String, GameCategory> gameCategoryMap = {
   'fish': GameCategory.fish,
   'lottery': GameCategory.lottery,
   'card': GameCategory.card,
+  'esport': GameCategory.esport,
 };

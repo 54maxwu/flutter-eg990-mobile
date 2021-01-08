@@ -86,6 +86,13 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// MEMBER
   ///
+  static const RoutePage member_center = const RoutePage.define(RouteInfo(
+    id: RouteEnum.MEMBER_CENTER,
+    route: MainScreenRoutes.memberCenterRoute,
+    root: MainScreenRoutes.memberRoute,
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
   static const RoutePage deposit = const RoutePage.define(RouteInfo(
     id: RouteEnum.DEPOSIT,
     route: MainScreenRoutes.depositRoute,

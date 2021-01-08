@@ -28,6 +28,7 @@ abstract class GameCategoryEntity
 extension GameCategoryEntityExtension on GameCategoryEntity {
   GameCategory get getCategory => gameCategoryMap[type];
 
+  /// category name on home tab item
   String get label => info.value.label ?? '?';
 
   GamePageType get pageType => info.value.pageType;

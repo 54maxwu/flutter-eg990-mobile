@@ -1,633 +1,678 @@
 {
-  "@@last_modified": "2020-09-25T10:54:50+0800",
+  "@@last_modified": "2021-01-08T07:17:55+0000",
   "@@locale": "th",
-  "title": "Yabo Mobile",
-  "@title": {
-    "description": "Yabo Demo",
-    "type": "text",
-    "placeholders": {}
-  },
-  "pageTitleHome": "หน้าแรก",
-  "@pageTitleHome": {
-    "type": "text"
-  },
-  "pageTitleDownload": "ดาวน์โหลด APP",
-  "@pageTitleDownload": {
-    "type": "text"
-  },
-  "pageTitleTutorial": "บทช่วยสอน",
-  "@pageTitleTutorial": {
-    "type": "text"
-  },
-  "pageTitleNotice": "ประกาศ",
-  "@pageTitleNotice": {
-    "type": "text"
-  },
-  "pageTitleRouter": "การนำทางแบบเส้น",
-  "@pageTitleRouter": {
-    "type": "text"
-  },
-  "pageTitleVip": "วีไอพี",
-  "@pageTitleVip": {
-    "type": "text"
-  },
-  "pageTitleVipAbout": "สิทธิพิเศษระดับ VIP",
-  "@pageTitleVipAbout": {
-    "type": "text"
-  },
-  "pageTitleStore": "ร้านค้า",
-  "@pageTitleStore": {
-    "type": "text"
-  },
-  "pageTitleSign": "ลงชื่อเข้าใช้",
-  "@pageTitleSign": {
-    "type": "text"
-  },
-  "pageTitleRoller": "ลัคกี้โรลเลอร์",
-  "@pageTitleRoller": {
-    "type": "text"
-  },
-  "pageTitleCollect": "รวบรวมคำ",
-  "@pageTitleCollect": {
-    "type": "text"
-  },
-  "pageTitleDeposit": "เติมเงิน",
-  "@pageTitleDeposit": {
-    "type": "text"
-  },
-  "pageTitlePromo": "ข้อเสนอ",
-  "@pageTitlePromo": {
-    "type": "text"
-  },
-  "pageTitleSponsor": "สปอนเซอร์",
-  "@pageTitleSponsor": {
-    "type": "text"
-  },
-  "pageTitleService": "การสนับสนุน",
-  "@pageTitleService": {
-    "type": "text"
-  },
-  "pageTitleMember": "ของฉัน",
-  "@pageTitleMember": {
-    "type": "text"
-  },
-  "pageTitleCenter": "ศูนย์",
-  "@pageTitleCenter": {
-    "type": "text"
-  },
-  "pageTitleLogin": "เข้าสู่ระบบ",
-  "@pageTitleLogin": {
-    "type": "text"
-  },
-  "pageTitleLogin2": "เข้าสู่ระบบสมาชิก",
-  "@pageTitleLogin2": {
-    "type": "text"
-  },
-  "pageTitleRegister": "ลงทะเบียน",
-  "@pageTitleRegister": {
-    "type": "text"
-  },
-  "pageTitleRegisterFree": "ลงทะเบียนฟรี",
-  "@pageTitleRegisterFree": {
-    "type": "text"
-  },
-  "pageTitleRegisterMember": "สมัครสมาชิก",
-  "@pageTitleRegisterMember": {
-    "type": "text"
-  },
-  "pageTitleMemberTransfer": "โอน",
-  "@pageTitleMemberTransfer": {
-    "type": "text"
-  },
-  "pageTitleMemberCard": "บัตรธนาคาร",
-  "@pageTitleMemberCard": {
-    "type": "text"
-  },
-  "pageTitleMemberWithdraw": "ถอน",
-  "@pageTitleMemberWithdraw": {
-    "type": "text"
-  },
-  "pageTitleMemberBalance": "ยอดคงเหลือของแพลตฟอร์ม",
-  "@pageTitleMemberBalance": {
-    "type": "text"
-  },
-  "pageTitleMemberWallet": "ไม่มีกระเป๋าเงิน",
-  "@pageTitleMemberWallet": {
-    "type": "text"
-  },
-  "pageTitleMemberMessage": "ข้อความของไซต์",
-  "@pageTitleMemberMessage": {
-    "type": "text"
-  },
-  "pageTitleMemberCenter": "ศูนย์",
-  "@pageTitleMemberCenter": {
-    "type": "text"
-  },
-  "pageTitleMemberPassword": "เปลี่ยนรหัสผ่าน",
-  "@pageTitleMemberPassword": {
-    "type": "text"
-  },
-  "pageTitleMemberTransaction": "บันทึกการโอน",
-  "@pageTitleMemberTransaction": {
-    "type": "text"
-  },
-  "pageTitleMemberBets": "ประวัติการเดิมพัน",
-  "@pageTitleMemberBets": {
-    "type": "text"
-  },
-  "pageTitleMemberDeals": "ประวัติดีล",
-  "@pageTitleMemberDeals": {
-    "type": "text"
-  },
-  "pageTitleMemberFlow": "โฟลว์เรคคอร์ด",
-  "@pageTitleMemberFlow": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentRegister": "การลงทะเบียนสมาชิกตัวแทน",
-  "@pageTitleMemberAgentRegister": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentLogin": "เข้าสู่ระบบสมาชิกตัวแทน",
-  "@pageTitleMemberAgentLogin": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentLoginHint": "เข้าสู่ระบบตัวแทน",
-  "@pageTitleMemberAgentLoginHint": {
-    "type": "text"
-  },
-  "pageTitleMemberAgent": "ตัวแทน",
-  "@pageTitleMemberAgent": {
-    "type": "text"
-  },
-  "pageTitleMemberAgentAbout": "ตัวแทน?",
-  "@pageTitleMemberAgentAbout": {
-    "type": "text"
-  },
-  "pageTitleTask": "งาน",
-  "@pageTitleTask": {
-    "type": "text"
-  },
-  "pageTitleMore": "เพิ่มเติม",
-  "@pageTitleMore": {
-    "type": "text"
-  },
-  "toolBarMemberCredit": "฿ {value}",
-  "@toolBarMemberCredit": {
+  "appExitHint": "กด {cnt} อีกครั้งเพื่อปิดแอป",
+  "@appExitHint": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "100.00"
+      "cnt": {
+        "example": "1"
       }
     }
   },
-  "themeColorHintSelect": "เลือกสีของธีม",
-  "@themeColorHintSelect": {
+  "appPluralExample": "{count, plural, =0{Hello}=1{Hello World}=2{Hello both Worlds}few{Hello {count} worlds}many{Hello all {count} worlds}other{Hello other {count} worlds}}",
+  "@appPluralExample": {
+    "description": "test flutter plural",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "appThemeColorDark": "มืด",
+  "@appThemeColorDark": {
+    "description": "",
     "type": "text"
   },
-  "themeColorDefault": "ค่าเริ่มต้น",
-  "@themeColorDefault": {
+  "appThemeColorDefault": "ค่าที่ตั้งล่วงหน้า",
+  "@appThemeColorDefault": {
+    "description": "",
     "type": "text"
   },
-  "themeColorDark": "มืด",
-  "@themeColorDark": {
+  "appThemeColorHintSelect": "เลือกสีของธีม",
+  "@appThemeColorHintSelect": {
+    "description": "",
     "type": "text"
   },
-  "themeColorLight": "แสง",
-  "@themeColorLight": {
+  "appThemeColorLight": "สีอ่อน",
+  "@appThemeColorLight": {
+    "description": "",
     "type": "text"
   },
-  "workInProgress": "ฟีเจอร์เร็ว ๆ นี้!",
-  "@workInProgress": {
+  "appTitle": "Yabo Mobile",
+  "@appTitle": {
+    "description": "",
     "type": "text"
   },
-  "networkChangedHint": "ตรวจพบสถานะเครือข่ายมีการเปลี่ยนแปลงคุณต้องการรีเฟรชหรือไม่",
-  "@networkChangedHint": {
-    "type": "text"
-  },
-  "exitAppHint": "กดอีกครั้งเพื่อออกจาก APP",
-  "@exitAppHint": {
-    "type": "text"
-  },
-  "gameToolHintUsage": "คลิกเพื่อแสดงกดแบบยาวเพื่อซ่อน ↗",
-  "@gameToolHintUsage": {
-    "type": "text"
-  },
-  "gameToolHintRestore": "ดับเบิลคลิกเพื่อคืนค่าการแสดงผล",
-  "@gameToolHintRestore": {
-    "type": "text"
-  },
-  "actionNotify": "แจ้งเตือน",
-  "@actionNotify": {
-    "type": "text"
-  },
-  "actionSetting": "การตั้งค่า",
-  "@actionSetting": {
-    "type": "text"
-  },
-  "actionSearch": "ค้นหา",
-  "@actionSearch": {
-    "type": "text"
-  },
-  "actionHelp": "บทช่วยสอน",
-  "@actionHelp": {
-    "type": "text"
-  },
-  "actionBack": "ย้อนกลับ",
-  "@actionBack": {
-    "type": "text"
-  },
-  "btnMenu": "เมนู",
-  "@btnMenu": {
-    "type": "text"
+  "appVersion": "หมายเลขเวอร์ชัน {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
   },
   "btnBack": "ย้อนกลับ",
   "@btnBack": {
-    "type": "text"
-  },
-  "btnRefresh": "รีเฟรช",
-  "@btnRefresh": {
-    "type": "text"
-  },
-  "btnUpdate": "อัปเดต",
-  "@btnUpdate": {
-    "type": "text"
-  },
-  "btnClose": "ปิด",
-  "@btnClose": {
-    "type": "text"
-  },
-  "btnSearch": "ค้นหา",
-  "@btnSearch": {
-    "type": "text"
-  },
-  "btnConfirm": "ยืนยัน",
-  "@btnConfirm": {
-    "type": "text"
-  },
-  "btnCancel": "ยกเลิก",
-  "@btnCancel": {
-    "type": "text"
-  },
-  "btnSend": "ส่ง",
-  "@btnSend": {
-    "type": "text"
-  },
-  "btnSubmit": "ส่ง",
-  "@btnSubmit": {
-    "type": "text"
-  },
-  "btnConfirmSend": "ยืนยันและส่ง",
-  "@btnConfirmSend": {
-    "type": "text"
-  },
-  "btnLogin": "เข้าสู่ระบบ",
-  "@btnLogin": {
-    "type": "text"
-  },
-  "btnRegister": "ลงทะเบียน",
-  "@btnRegister": {
-    "type": "text"
-  },
-  "btnStopShowing": "ข้าม",
-  "@btnStopShowing": {
-    "type": "text"
-  },
-  "btnResetPassword": "ลืมรหัสผ่าน",
-  "@btnResetPassword": {
-    "type": "text"
-  },
-  "btnFastLogin": "บันทึกข้อมูลการเข้าสู่ระบบ",
-  "@btnFastLogin": {
-    "type": "text"
-  },
-  "btnSignUp": "ลงชื่อเข้าใช้",
-  "@btnSignUp": {
-    "type": "text"
-  },
-  "btnDownload": "ดาวน์โหลด",
-  "@btn ดาวน์โหลด": {
+    "description": "",
     "type": "text"
   },
   "btnBind": "ผูก",
   "@btnBind": {
+    "description": "",
     "type": "text"
   },
-  "btnQuery": "สอบถาม",
+  "btnCancel": "ยกเลิก",
+  "@btnCancel": {
+    "description": "",
+    "type": "text"
+  },
+  "btnClickImageToRefresh": "การรีเฟรชภาพจุด",
+  "@btnClickImageToRefresh": {
+    "description": "",
+    "type": "text"
+  },
+  "btnClickToBind": "คลิกเพื่อผูก",
+  "@btnClickToBind": {
+    "description": "",
+    "type": "text"
+  },
+  "btnClickToDownload": "คลิกฉันเพื่อดาวน์โหลด",
+  "@btnClickToDownload": {
+    "description": "",
+    "type": "text"
+  },
+  "btnClose": "ปิด",
+  "@btnClose": {
+    "description": "",
+    "type": "text"
+  },
+  "btnConfirm": "ยืนยัน",
+  "@btnConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "btnConfirmSend": "ยืนยันที่จะส่ง",
+  "@btnConfirmSend": {
+    "description": "",
+    "type": "text"
+  },
+  "btnConfirmTransfer": "ยืนยันการโอน",
+  "@btnConfirmTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "btnCopy": "คัดลอก",
+  "@btnCopy": {
+    "description": "",
+    "type": "text"
+  },
+  "btnDownload": "ดาวน์โหลด",
+  "@btnDownload": {
+    "description": "",
+    "type": "text"
+  },
+  "btnEdit": "แก้ไข",
+  "@btnEdit": {
+    "description": "",
+    "type": "text"
+  },
+  "btnForwardTo": "ไปที่",
+  "@btnForwardTo": {
+    "description": "",
+    "type": "text"
+  },
+  "btnNextStep": "ขั้นตอนต่อไป",
+  "@btnNextStep": {
+    "description": "",
+    "type": "text"
+  },
+  "btnOpen": "เปิด",
+  "@btnOpen": {
+    "description": "",
+    "type": "text"
+  },
+  "btnPreStep": "ขั้นตอนก่อนหน้า",
+  "@btnPreStep": {
+    "description": "",
+    "type": "text"
+  },
+  "btnQuery": "แบบสอบถาม",
   "@btnQuery": {
+    "description": "",
     "type": "text"
   },
-  "btnQueryNow": "ค้นหา",
+  "btnQueryNow": "ค้นหาทันที",
   "@btnQueryNow": {
+    "description": "",
+    "type": "text"
+  },
+  "btnRefresh": "รีเฟรช",
+  "@btnRefresh": {
+    "description": "",
+    "type": "text"
+  },
+  "btnResetPassword": "ลืมรหัสผ่าน",
+  "@btnResetPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "btnSearch": "ค้นหา",
+  "@btnSearch": {
+    "description": "",
+    "type": "text"
+  },
+  "btnSend": "ส่ง",
+  "@btnSend": {
+    "description": "",
+    "type": "text"
+  },
+  "btnSendOut": "ส่งออก",
+  "@btnSendOut": {
+    "description": "",
     "type": "text"
   },
   "btnShow": "แสดง",
   "@btnShow": {
+    "description": "",
     "type": "text"
   },
-  "btnOn": "เปิด",
-  "@btnOn": {
+  "btnSignUp": "ลงชื่อเข้าใช้ทันที",
+  "@btnSignUp": {
+    "description": "",
     "type": "text"
   },
-  "btnOff": "ปิด",
-  "@btnOff": {
+  "btnSubmit": "ส่ง",
+  "@btnSubmit": {
+    "description": "",
     "type": "text"
   },
-  "btnGo": "ไปที่",
-  "@btnGo": {
+  "btnSwitchOff": "ปิด",
+  "@btnSwitchOff": {
+    "description": "",
     "type": "text"
   },
-  "btnCopy": "สำเนา",
-  "@btnCopy": {
+  "btnSwitchOn": "เปิด",
+  "@btnSwitchOn": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnBackHome": "ย้อนกลับ",
-  "@sideBtnBackHome": {
+  "btnTransferIn": "โอนเข้า",
+  "@btnTransferIn": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnRotate": "หมุนซ้าย",
-  "@sideBtnRotate": {
+  "btnTransferOut": "โอนออก",
+  "@btnTransferOut": {
+    "description": "",
     "type": "text"
   },
-  "sideBtnLockRotate": "ล็อกการหมุน",
-  "@sideBtnLockRotate": {
+  "btnUpdate": "อัปเดต",
+  "@btnUpdate": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateAll": "ทั้งหมด",
-  "@spinnerDateAll": {
+  "centerHintEMail": "ผูกอีเมลเพื่อป้องกันความปลอดภัยของบัญชี",
+  "@centerHintEMail": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateToday": "วันนี้",
-  "@spinnerDateToday": {
+  "centerHintMemberName": "ชื่อต้องตรงกับชื่อของผู้ถือบัตรธนาคารมิฉะนั้นจะถอนเงินไม่ได้",
+  "@centerHintMemberName": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateYesterday": "เมื่อวาน",
-  "@spinnerDateYesterday": {
+  "centerHintNoName": "โปรดไปผูกบัตรธนาคารเพื่อทำการตั้งค่าที่เกี่ยวข้อง",
+  "@centerHintNoName": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateMonth": "เดือน",
-  "@spinnerDateMonth": {
+  "centerHintPrivacyEdit": "เพื่อความเป็นส่วนตัวของคุณข้อมูลจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว\nหากคุณต้องการความช่วยเหลือโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@centerHintPrivacyEdit": {
+    "description": "",
     "type": "text"
   },
-  "spinnerDateCustom": "กำหนดเอง",
-  "@spinnerDateCustom": {
+  "centerTabMemberData": "ข้อมูลส่วนบุคคล",
+  "@centerTabMemberData": {
+    "description": "",
     "type": "text"
   },
-  "hintActionSelect": "กรุณาเลือก",
-  "@hintActionSelect": {
+  "centerTabVipRank": "อันดับ Vip",
+  "@centerTabVipRank": {
+    "description": "",
     "type": "text"
   },
-  "hintActionLogin": "กรุณาเข้าสู่ระบบก่อน",
-  "@hintActionLogin": {
+  "centerTextHeadPhoto": "รูปถ่ายส่วนตัว",
+  "@centerTextHeadPhoto": {
+    "description": "",
     "type": "text"
   },
-  "hintTitleLogin": "โปรดป้อนข้อมูลสมาชิกของคุณ",
-  "@hintTitleLogin": {
+  "certificateTitle": "ใบอนุญาต",
+  "@certificateTitle": {
+    "description": "",
     "type": "text"
   },
-  "hintAccount": "UserName",
-  "@hintAccount": {
+  "certificateTitleBVI": "การรับรองหมู่เกาะบริติชเวอร์จิน (BVI)",
+  "@certificateTitleBVI": {
+    "description": "",
     "type": "text"
   },
-  "hintAccountPassword": "รหัสผ่าน",
-  "@hintAccountPassword": {
+  "certificateTitleGC": "UK GC Oversight Committee",
+  "@certificateTitleGC": {
+    "description": "",
     "type": "text"
   },
-  "hintAccountInput": "เข้าสู่บัญชี",
-  "@hintAccountInput": {
+  "certificateTitleMGA": "Malta Gaming License (MGA) Certification",
+  "@certificateTitleMGA": {
+    "description": "",
     "type": "text"
   },
-  "hintPasswordInput": "ป้อนรหัสผ่าน",
-  "@hintPasswordInput": {
+  "certificateTitlePGC": "ฟิลิปปินส์ (PAGCOR) การ์ดเกมภายใต้การดูแล",
+  "@certificateTitlePGC": {
+    "description": "",
     "type": "text"
   },
-  "hintConfirmedInput": "ป้อนรหัสผ่านอีกครั้ง",
-  "@hintConfirmedInput": {
+  "dealsDetailTypeAdjustDeposit": "ปรับเงินฝาก",
+  "@dealsDetailTypeAdjustDeposit": {
+    "description": "",
     "type": "text"
   },
-  "hintPhoneInput": "ป้อนหมายเลขโทรศัพท์",
-  "@hintPhoneInput": {
+  "dealsDetailTypeAdjustWithdraw": "ปรับการถอน",
+  "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
     "type": "text"
   },
-  "hintReferralInput": "ป้อนรหัสอ้างอิง",
-  "@hintReferralInput": {
+  "depositHintGetInfoFromCs": "โปรดติดต่อฝ่ายบริการลูกค้าสำหรับข้อมูลบัญชีเติมเงิน",
+  "@depositHintGetInfoFromCs": {
+    "description": "",
     "type": "text"
   },
-  "hintName": "ป้อนชื่อผู้ใช้",
-  "@hintName": {
+  "depositHintNoBankcard": "โปรดเพิ่มบัตรธนาคารก่อน",
+  "@depositHintNoBankcard": {
+    "description": "",
     "type": "text"
   },
-  "hintEmail": "ป้อนอีเมล",
-  "@hintEmail": {
-    "type": "text"
-  },
-  "hintPassword": "ป้อนรหัสผ่าน",
-  "@hintPassword": {
-    "type": "text"
-  },
-  "hintConfirmed": "ป้อนรหัสผ่านอีกครั้ง",
-  "@hintConfirmed": {
-    "type": "text"
-  },
-  "messageLoading": "กำลังโหลด ... ",
-  "@messageLoading": {
-    "type": "text"
-  },
-  "messageWelcomeUser": "ยินดีต้อนรับ {name}",
-  "@messageWelcomeUser": {
+  "depositHintOrderMaxAmount": "ขีดจำกัดการฝากเงินครั้งเดียว: {value}",
+  "@depositHintOrderMaxAmount": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "name": {
-        "example": "user"
+      "value": {
+        "example": "100"
       }
     }
   },
-  "messageWelcome": "ยินดีต้อนรับ",
-  "@messageWelcome": {
+  "depositPaymentNoData": "ตรวจสอบว่าไม่มีวิธีการเติมเงิน",
+  "@depositPaymentNoData": {
+    "description": "",
     "type": "text"
   },
-  "messageWelcomeHint": "ยินดีต้อนรับ! กรุณาเข้าสู่ระบบ / ลงทะเบียน",
-  "@messageWelcomeHint": {
+  "depositPaymentTitleAli": "Ali จ่าย",
+  "@depositPaymentTitleAli": {
+    "description": "",
     "type": "text"
   },
-  "messageLoginHint": "กรุณาเข้าสู่ระบบ / ลงทะเบียน",
-  "@messageWelcomeHintShort": {
+  "depositPaymentTitleAtm": "โอนเงินทางธนาคารออนไลน์",
+  "@depositPaymentTitleAtm": {
+    "description": "",
     "type": "text"
   },
-  "messageRegisterFailed": "การลงทะเบียนล้มเหลว",
-  "@messageRegisterFailed": {
+  "depositPaymentTitleBank": "เงินฝากธนาคาร",
+  "@depositPaymentTitleBank": {
+    "description": "",
     "type": "text"
   },
-  "messageLoginFailed": "เข้าสู่ระบบล้มเหลว",
-  "@messageLoginFailed": {
+  "depositPaymentTitleCgp": "CG จ่าย",
+  "@depositPaymentTitleCgp": {
+    "description": "",
     "type": "text"
   },
-  "messageActionFailed": "การดำเนินการไม่ถูกต้อง",
-  "@messageActionFailed": {
+  "depositPaymentTitleJd": "JD จ่าย",
+  "@depositPaymentTitleJd": {
+    "description": "",
     "type": "text"
   },
-  "messageActionFillForm": "กรุณากรอกแบบฟอร์ม",
-  "@messageActionFillForm": {
+  "depositPaymentTitleOnline": "การชำระเงินออนไลน์",
+  "@depositPaymentTitleOnline": {
+    "description": "",
     "type": "text"
   },
-  "messageActionCheckTerms": "โปรดอ่านและยอมรับเงื่อนไขการเดิมพัน",
-  "@messageActionCheckTerms": {
+  "depositPaymentTitleQr": "รหัสสแกน QR",
+  "@depositPaymentTitleQr": {
+    "description": "",
     "type": "text"
   },
-  "messageLogout": "{name} โปรดเข้าสู่ระบบอีกครั้ง",
-  "@messageLogout": {
+  "depositPaymentTitleQuick": "เร็ว จ่าย (แนะนำ)",
+  "@depositPaymentTitleQuick": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleUnion": "ยูเนี่ยนเพย์ จ่าย",
+  "@depositPaymentTitleUnion": {
+    "description": "",
+    "type": "text"
+  },
+  "depositPaymentTitleWechat": "WeChat จ่าย",
+  "@depositPaymentTitleWechat": {
+    "description": "",
+    "type": "text"
+  },
+  "dialogTextTransferActionTo": "คุณแน่ใจหรือว่าแพลตฟอร์ม {action} {platform}",
+  "@dialogTextTransferActionTo": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "name": {
-        "example": "user"
+      "action": {
+        "example": "Slot"
+      },
+      "platform": {
+        "example": "AG"
       }
     }
   },
-  "messageActionTooFrequent": "มีการดำเนินการมากเกินไปในช่วงเวลาสั้น ๆ ",
-  "@messageActionTooFrequent": {
+  "dialogTitleConfirmInfo": "ข้อมูลการยืนยัน",
+  "@dialogTitleConfirmInfo": {
+    "description": "",
     "type": "text"
   },
-  "messageNoEvent": "ไม่มีกิจกรรมในขณะนี้",
-  "@messageNoEvent": {
+  "errorAccount": "ข้อผิดพลาดของบัญชี",
+  "@errorAccount": {
+    "description": "",
     "type": "text"
   },
-  "messageVerifySuccess": "ยืนยันความสำเร็จ",
-  "@messageVerifySuccess": {
+  "errorAccountLocked": "บัญชีถูกล็อกโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@errorAccountLocked": {
+    "description": "",
     "type": "text"
   },
-  "messageTaskSuccess": "{msg} สำเร็จ",
-  "@messageTaskSuccess": {
+  "errorActionFailed": "การดำเนินการไม่ถูกต้อง",
+  "@errorActionFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "errorActionTooFrequent": "คำขอบ่อยเกินไป",
+  "@errorActionTooFrequent": {
+    "description": "",
+    "type": "text"
+  },
+  "errorCachedFile": "ข้อผิดพลาดข้อมูลแคชโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorCachedFile": {
+    "description": "",
+    "type": "text"
+  },
+  "errorDeposit": "การเติมเงินล้มเหลวโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorDeposit": {
+    "description": "",
+    "type": "text"
+  },
+  "errorEvent": "ไม่สามารถรับข้อมูลเหตุการณ์การลงชื่อเข้าใช้โปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorEvent": {
+    "description": "",
+    "type": "text"
+  },
+  "errorGameAccessPermission": "ไม่มีสิทธิ์เล่นโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@errorGameAccessPermission": {
+    "description": "",
+    "type": "text"
+  },
+  "errorHaveBoundCard": "ผูกบัตรธนาคารแล้ว",
+  "@errorHaveBoundCard": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInternal": "ข้อผิดพลาดภายในโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorInternal": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidAmountBelowLimit": "ต่ำกว่าจำนวนเงินขั้นต่ำในการถอน",
+  "@errorInvalidAmountBelowLimit": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidAmountExceedRemain": "เกินยอดเงินในบัญชี",
+  "@errorInvalidAmountExceedRemain": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidDepositAmountMaxLimit": "จำนวนเงินฝากเกินขีด จำกัด สูงสุด",
+  "@errorInvalidDepositAmountMaxLimit": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidDepositAmountMinLimit": "จำนวนเงินฝากต่ำกว่าขีด จำกัด ล่าง",
+  "@errorInvalidDepositAmountMinLimit": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidExceedOrderAmount": "เกินจำนวนถอนสูงสุดเพียงครั้งเดียว (โปรดดูที่ระบบระดับสมาชิก)",
+  "@errorInvalidExceedOrderAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidMobile": "หมายเลขโทรศัพท์มือถือผิดพลาด",
+  "@errorInvalidMobile": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidPassword": "รหัสผ่านผิดพลาด",
+  "@errorInvalidPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidPasswordFive": "รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อกหลังจากเกิดข้อผิดพลาด 5 ข้อ",
+  "@errorInvalidPasswordFive": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidReferral": "รหัสอ้างอิงไม่ถูกต้อง",
+  "@errorInvalidReferral": {
+    "description": "",
+    "type": "text"
+  },
+  "errorInvalidWithdrawPassword": "รหัสผ่านไม่ตรงกัน (ค่าเริ่มต้นคือรหัสผ่านสำหรับเข้าสู่ระบบ)",
+  "@errorInvalidWithdrawPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "errorLoadingGame": "เกิดข้อผิดพลาดขณะโหลดเกมโปรดลองอีกครั้งในภายหลัง",
+  "@errorLoadingGame": {
+    "description": "",
+    "type": "text"
+  },
+  "errorLoadingPayUrl": "ข้อผิดพลาดในการโหลดหน้าเว็บโปรดลองอีกครั้งในภายหลัง",
+  "@errorLoadingPayUrl": {
+    "description": "",
+    "type": "text"
+  },
+  "errorLoginFailed": "เข้าสู่ระบบล้มเหลว",
+  "@errorLoginFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "errorMobileAlreadyRegistered": "การลงทะเบียนหมายเลขโทรศัพท์มือถือซ้ำ",
+  "@errorMobileAlreadyRegistered": {
+    "description": "",
+    "type": "text"
+  },
+  "errorNoServerConnection": "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ !!",
+  "@errorNoServerConnection": {
+    "description": "",
+    "type": "text"
+  },
+  "errorPlatformTransferNotAvailable": "ขณะนี้แพลตฟอร์มที่เลือกไม่สามารถโอนเงินได้",
+  "@errorPlatformTransferNotAvailable": {
+    "description": "",
+    "type": "text"
+  },
+  "errorRegisterFailed": "การลงทะเบียนล้มเหลว",
+  "@errorRegisterFailed": {
+    "description": "",
+    "type": "text"
+  },
+  "errorRegisterRepeatAccount": "การลงทะเบียนบัญชีซ้ำ",
+  "@errorRegisterRepeatAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "errorServerData": "ข้อผิดพลาดของข้อมูลเซิร์ฟเวอร์โปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorServerData": {
+    "description": "",
+    "type": "text"
+  },
+  "errorStatus": "ข้อผิดพลาด: {msg}",
+  "@errorStatus": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "msg": {
-        "example": "success"
+        "example": "Login Error"
       }
     }
   },
-  "messageTaskCanceled": "{msg} ถูกยกเลิก",
-  "@messageTaskCanceled": {
+  "errorStatusCause": "ข้อผิดพลาด: {msg} ({msg2})",
+  "@errorStatusCause": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "msg": {
-        "example": "canceled"
-      }
-    }
-  },
-  "messageTaskFailed": "{msg} ล้มเหลว",
-  "@messageTaskFailed": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "failed"
-      }
-    }
-  },
-  "messageError": "{msg} ข้อผิดพลาด",
-  "@messageError": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "error"
-      }
-    }
-  },
-  "messageErrorCause": "ข้อผิดพลาด: {msg} ({msg2})",
-  "@messageErrorCause": {
-    "type": "text",
-    "placeholders": {
-      "msg": {
-        "example": "error"
+        "example": "LOGIN"
       },
       "msg2": {
-        "example": "password"
+        "example": "Wrong Password"
       }
     }
   },
-  "messageErrorStatus": "ข้อผิดพลาด: {msg}",
-  "@messageErrorStatus": {
+  "errorTaskFailed": "{msg} failed",
+  "@errorTaskFailed": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "msg": {
-        "example": "something wrong"
+        "example": "login"
       }
     }
   },
-  "messageErrorLink": "ไม่สามารถเปิดลิงก์: {url}",
-  "@messageErrorLink": {
+  "errorTimeoutError": "เครือข่ายหมดเวลาโปรดลองอีกครั้งในภายหลัง",
+  "@errorTimeoutError": {
+    "description": "",
+    "type": "text"
+  },
+  "errorToken": "การตรวจสอบผู้ใช้ล้มเหลวโปรดเข้าสู่ระบบอีกครั้งหรือติดต่อฝ่ายบริการลูกค้า",
+  "@errorToken": {
+    "description": "",
+    "type": "text"
+  },
+  "errorTransfer": "การโอนล้มเหลว",
+  "@errorTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "errorWithdraw": "การถอนล้มเหลว",
+  "@errorWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldActionChangePassword": "เปลี่ยนรหัสผ่าน",
+  "@fieldActionChangePassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldActionGetVerifyCode": "รับรหัสยืนยัน",
+  "@fieldActionGetVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldCheckBoxPromoNews": "รับข้อมูลโปรโมชั่น",
+  "@fieldCheckBoxPromoNews": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldCheckBoxSaveLogin": "จำรหัสผ่านบัญชี",
+  "@fieldCheckBoxSaveLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldCheckBoxStopShowing": "ไม่ต้องแสดงอีก",
+  "@fieldCheckBoxStopShowing": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldCheckBoxTerms": "ได้อ่านและยอมรับกฎการเดิมพันของ",
+  "@fieldCheckBoxTerms": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldChipAmountAll": "เต็มจำนวน",
+  "@fieldChipAmountAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorCardAccountName": "ข้อผิดพลาดของชื่อบัญชี",
+  "@fieldErrorCardAccountName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorCardNumber": "หมายเลขบัตรคือ {min} ~ {max} characters",
+  "@fieldErrorCardNumber": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "url": {
-        "example": "https://"
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
       }
     }
   },
-  "messageInvalidSymbol": "มีสัญลักษณ์ที่ไม่ถูกต้อง",
-  "@messageInvalidSymbol": {
-    "type": "text"
-  },
-  "messageInvalidFormat": "รูปแบบข้อมูลผิดพลาด",
-  "@messageInvalidFormat": {
-    "type": "text"
-  },
-  "messageInvalidName": "ชื่อผิดรูปแบบ",
-  "@messageInvalidName": {
-    "type": "text"
-  },
-  "messageInvalidEmail": "กล่องจดหมายผิดรูปแบบ",
-  "@messageInvalidEmail": {
-    "type": "text"
-  },
-  "messageInvalidPhone": "หมายเลขโทรศัพท์ผิดพลาด ({num})",
-  "@messageInvalidPhone": {
+  "fieldErrorCardNumberFixed": "หมายเลขบัตรคือ {min} ~ {max} ตัวอักษร (ขึ้นต้นด้วย {fixed})",
+  "@fieldErrorCardNumberFixed": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "num": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
+  },
+  "fieldErrorCardOwner": "ชื่อผู้ถือบัตรไม่ถูกต้อง",
+  "@fieldErrorCardOwner": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorConfirmPassword": "รหัสผ่านไม่ตรงกัน",
+  "@fieldErrorConfirmPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidAccount": "เลขที่บัญชีคือ {min} ~ {max} ตัวพิมพ์เล็กภาษาอังกฤษ / ตัวเลข",
+  "@fieldErrorInvalidAccount": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
         "example": "6"
+      },
+      "max": {
+        "example": "12"
       }
     }
   },
-  "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5 ~ 8)",
-  "@messageInvalidPostCode": {
+  "fieldErrorInvalidCreditAmount": "จำนวนเงินที่ป้อนไม่ถูกต้อง",
+  "@fieldErrorInvalidCreditAmount": {
+    "description": "",
     "type": "text"
   },
-  "messageInvalidWechat": "บัญชี WeChat ไม่ถูกต้อง",
-  "@messageInvalidWechat": {
-    "type": "text"
-  },
-  "messageInvalidVerify": "โปรดป้อนรหัสยืนยัน",
-  "@messageInvalidVerify": {
-    "type": "text"
-  },
-  "messageInvalidPasswordArg": "รหัสผ่านต้องมีอย่างน้อย {num} คำ",
-  "@messageInvalidPasswordArg": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "6"
-      }
-    }
-  },
-  "messageInvalidAccount": "ชื่อผู้ใช้ควรมีความยาว 6 ~ 12 คำ",
-  "@messageInvalidAccount": {
-    "type": "text"
-  },
-  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 8 ~ 18 คำ",
-  "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8 ~ 18 คำ",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
-  },
-  "messageInvalidConfirmPassword": "รหัสผ่านไม่ตรงกัน",
-  "@messageInvalidConfirmPassword": {
-    "type": "text"
-  },
-  "messageInvalidDepositAmount": "จำนวนเงินผิดพลาด",
-  "@messageInvalidDepositAmount": {
-    "type": "text"
-  },
-  "messageInvalidDepositAmountMin": "จำนวนเงินขั้นต่ำคือ {num}",
-  "@messageInvalidDepositAmountMin": {
+  "fieldErrorInvalidCreditMax": "จำนวนเงินสูงสุดคือ {num}",
+  "@fieldErrorInvalidCreditMax": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "num": {
@@ -635,202 +680,700 @@
       }
     }
   },
-  "messageInvalidDepositName": "ชื่อบัญชีไม่ถูกต้อง",
-  "@messageInvalidDepositName": {
-    "type": "text"
-  },
-  "messageInvalidCardOwner": "ชื่อผู้ถือบัตรไม่ถูกต้อง",
-  "@messageInvalidCardOwner": {
-    "type": "text"
-  },
-  "messageInvalidCardNumber": "หมายเลขบัตรคือ 5 ~ 20 อักขระ",
-  "@messageInvalidCardNumber": {
-    "type": "text"
-  },
-  "messageInvalidCardBankPoint": "ชื่อต้องมีความยาวมากกว่า 3 อักขระ",
-  "@messageInvalidCardBankPoint": {
-    "type": "text"
-  },
-  "messageInvalidWithdrawPassword": "รหัสผ่านผิดพลาด! (ค่าเริ่มต้นคือรหัสผ่านเข้าสู่ระบบ)",
-  "@messageInvalidWithdrawPassword": {
-    "type": "text"
-  },
-  "messageInvalidWithdrawAmount": "เครดิตไม่เพียงพอ",
-  "@messageInvalidWithdrawAmount": {
-    "type": "text"
-  },
-  "messageWarnUsingCellular": "คุณกำลังใช้เครือข่ายมือถือ",
-  "@messageWarnUsingCellular": {
-    "type": "text"
-  },
-  "messageWarnNetworkLocation": "บริการนี้ไม่สามารถใช้ได้ในพื้นที่เครือข่ายของคุณ",
-  "@messageWarnNetworkLocation": {
-    "type": "text"
-  },
-  "messageWarnLoadingGame": "กรุณารอสักครู่ขณะกำลังโหลดเกม ... ",
-  "@messageWarnLoadingGame": {
-    "type": "text"
-  },
-  "messageWarnNoHistoryData": "ไม่พบข้อมูล",
-  "@messageWarnNoHistoryData": {
-    "type": "text"
-  },
-  "messageWarnNoPromoData": "ไม่พบข้อเสนอพิเศษ",
-  "@messageWarnNoPromoData": {
-    "type": "text"
-  },
-  "messageWarnNoPromoInfo": "ไม่พบข้อมูลข้อเสนอพิเศษ",
-  "@messageWarnNoPromoInfo": {
-    "type": "text"
-  },
-  "messageErrorInternal": "ข้อผิดพลาดภายในโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
-  "@messageErrorInternal": {
-    "type": "text"
-  },
-  "messageErrorCachedFile": "ข้อผิดพลาดของไฟล์ที่แคชไว้โปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
-  "@messageErrorCachedFile": {
-    "type": "text"
-  },
-  "messageErrorEvent": "ไม่สามารถดึงข้อมูลเหตุการณ์จากเซิร์ฟเวอร์ได้โปรดลองอีกครั้งในภายหลัง",
-  "@messageErrorEvent": {
-    "type": "text"
-  },
-  "messageErrorToken": "ข้อผิดพลาดโทเค็นของผู้ใช้โปรดออกจากระบบและเข้าสู่ระบบอีกครั้ง",
-  "@messageErrorToken": {
-    "type": "text"
-  },
-  "messageErrorAutoLogin": "ข้อมูลผิดพลาดโปรดเข้าสู่ระบบด้วยตนเอง",
-  "@messageErrorAutoLogin": {
-    "type": "text"
-  },
-  "messageErrorNotLogin": "กรุณาเข้าสู่ระบบก่อน",
-  "@messageErrorNotLogin": {
-    "type": "text"
-  },
-  "messageErrorNoNetwork": "โปรดตรวจสอบสถานะเครือข่าย",
-  "@messageErrorNoNetwork": {
-    "type": "text"
-  },
-  "messageErrorNoServerConnection": "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ !!",
-  "@messageErrorNoServerConnection": {
-    "type": "text"
-  },
-  "messageErrorTimeoutError": "เครือข่ายหมดเวลาโปรดลองอีกครั้งในภายหลัง",
-  "@messageErrorTimeoutError": {
-    "type": "text"
-  },
-  "messageErrorServerData": "ข้อผิดพลาดของข้อมูลเซิร์ฟเวอร์โปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
-  "@messageErrorServerData": {
-    "type": "text"
-  },
-  "messageErrorLoadingGame": "เกิดข้อผิดพลาดขณะโหลดเกมโปรดลองอีกครั้งในภายหลัง",
-  "@messageErrorLoadingGame": {
-    "type": "text"
-  },
-  "messageErrorLoadingPay": "ข้อผิดพลาดในการโหลดหน้าเว็บโปรดลองอีกครั้งในภายหลัง",
-  "@messageErrorLoadingPay": {
-    "type": "text"
-  },
-  "messageErrorNoStoragePermission": "โปรดเปิดการอนุญาต \"บันทึก\"",
-  "@messageErrorNoStoragePermission": {
-    "type": "text"
-  },
-  "messageErrorHasCardData": "ผูกบัตรธนาคารไว้แล้ว",
-  "@messageErrorHasCardData": {
-    "type": "text"
-  },
-  "messageErrorFieldError": "โปรดป้อน {msg}",
-  "@messageErrorFieldError": {
+  "fieldErrorInvalidCreditMin": "จำนวนเงินขั้นต่ำคือ {num}",
+  "@fieldErrorInvalidCreditMin": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "msg": {
-        "example": "Input Error"
+      "num": {
+        "example": "0"
       }
     }
   },
-  "messageErrorBindUrl": "{wallet} ข้อผิดพลาด URL การผูก",
-  "@messageErrorBindUrl": {
+  "fieldErrorInvalidDate": "โปรดป้อนวันที่ที่ถูกต้อง (ในรูปแบบ: AD ปี - เดือน - วัน)",
+  "@fieldErrorInvalidDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidDateRange": "ข้อผิดพลาดของช่วงเวลา",
+  "@fieldErrorInvalidDateRange": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidEmail": "โปรดป้อนที่อยู่อีเมลที่ถูกต้อง",
+  "@fieldErrorInvalidEmail": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidFormat": "ข้อผิดพลาดรูปแบบการป้อนข้อมูล",
+  "@fieldErrorInvalidFormat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidInput": "มีอักขระที่ไม่ถูกต้อง",
+  "@fieldErrorInvalidInput": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldErrorInvalidPassword": "รหัสผ่านคือ {min} ~ {max} characters",
+  "@fieldErrorInvalidPassword": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "wallet": {
-        "example": "CGP"
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
       }
     }
   },
-  "messageErrorBindCgp": "กรุณาผูกกระเป๋าเงิน Cgp ก่อน",
-  "@messageErrorBindCgp": {
+  "fieldErrorInvalidPhone": "ข้อผิดพลาดรูปแบบโทรศัพท์ ({num} code)",
+  "@fieldErrorInvalidPhone": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "10"
+      }
+    }
+  },
+  "fieldErrorInvalidPhone2": "ข้อผิดพลาดของรูปแบบโทรศัพท์ ({min} ~ {max} code)",
+  "@fieldErrorInvalidPhone2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
+  "fieldErrorInvalidPostCode": "รหัสไปรษณีย์ไม่ถูกต้อง (5 ~ 8 รหัส)",
+  "@fieldErrorInvalidPostCode": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorBindCpw": "กรุณาผูกกระเป๋าเงินเพื่อซื้อสมบัติ",
-  "@messageErrorBindCpw": {
+  "fieldErrorInvalidVerify": "โปรดป้อนรหัสยืนยัน",
+  "@fieldErrorInvalidVerify": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorBindBankcard": "กรุณาผูกบัตรธนาคารของคุณก่อน!",
-  "@messageErrorBindBankcard": {
+  "fieldErrorInvalidWechat": "ข้อผิดพลาดรูปแบบ Wechat",
+  "@fieldErrorInvalidWechat": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorAccount": "ข้อผิดพลาดของบัญชี",
-  "@messageErrorAccount": {
+  "fieldErrorInvalidZalo": "ข้อผิดพลาดรูปแบบ Zalo",
+  "@fieldErrorInvalidZalo": {
+    "description": "",
     "type": "text"
   },
-  "messageRepeatAccount": "การลงทะเบียนบัญชีที่ซ้ำกัน",
-  "@messageRepeatAccount": {
+  "fieldHintAmount": "ขอแนะนำให้คุณฝากเงินจำนวนพิเศษเพื่อให้เงินฝากเข้าบัญชีได้อย่างรวดเร็ว (เช่น 105, 503 เป็นต้น)",
+  "@fieldHintAmount": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorPassword": "รหัสผ่านผิดพลาด",
-  "@messageErrorPassword": {
+  "fieldHintBirthday": "กรอกวันเกิดให้แน่ใจว่าคุณมีอายุตามกฎหมาย",
+  "@fieldHintBirthday": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorPasswordHint": "รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อกหลังจากมีข้อผิดพลาด 5 ข้อ",
-  "@messageErrorPasswordHint": {
+  "fieldHintDateFormat": "รูปแบบคือ: 0000–00–00",
+  "@fieldHintDateFormat": {
+    "description": "",
     "type": "text"
   },
-  "messageErrorWithdraw": "การถอนล้มเหลว",
-  "@messageErrorWithdraw": {
+  "fieldHintDepositAmountRange": "ช่วงอินพุต: {num} ~ {num2}",
+  "@fieldHintDepositAmountRange": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "num": {
+        "example": "1"
+      },
+      "num2": {
+        "example": "100"
+      }
+    }
+  },
+  "fieldHintDepositAmountStep": "จำนวนเงินเป็นผลคูณของ {step}",
+  "@fieldHintDepositAmountStep": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "step": {
+        "example": "50"
+      }
+    }
+  },
+  "fieldHintDepositBankAccount": "กรุณากรอกหมายเลขบัญชีธนาคารของผู้ส่ง",
+  "@fieldHintDepositBankAccount": {
+    "description": "",
     "type": "text"
   },
-  "messageCopy": "คัดลอกไปที่คลิปบอร์ด",
-  "@messageCopy": {
+  "fieldHintDepositCode": "กรุณากรอกรหัสธุรกรรม",
+  "@fieldHintDepositCode": {
+    "description": "",
     "type": "text"
   },
-  "messageCopyError": "คัดลอกล้มเหลว",
-  "@messageCopyError": {
+  "fieldHintDepositName": "กรุณากรอกชื่อผู้ฝากของคุณ",
+  "@fieldHintDepositName": {
+    "description": "",
     "type": "text"
   },
-  "messageWait": "โปรดรอขณะดำเนินการตามคำขอ ... ",
-  "@messageWait": {
+  "fieldHintInputAccount": "โปรดป้อนหมายเลขบัญชี",
+  "@fieldHintInputAccount": {
+    "description": "",
     "type": "text"
   },
-  "messageWaitComplete": "อย่าออกขณะดำเนินการตามคำขอ",
-  "@messageWaitComplete": {
+  "fieldHintInputConfirmedPassword": "โปรดป้อนรหัสผ่านที่ยืนยันแล้ว",
+  "@fieldHintInputConfirmedPassword": {
+    "description": "",
     "type": "text"
   },
-  "messageSuccess": "ความสำเร็จ",
-  "@messageSuccess": {
+  "fieldHintInputEmail": "โปรดป้อนที่อยู่อีเมล",
+  "@fieldHintInputEmail": {
+    "description": "",
     "type": "text"
   },
-  "messageFailed": "การเปลี่ยนแปลงล้มเหลวโปรดลองอีกครั้งในภายหลัง",
-  "@messageFailed": {
+  "fieldHintInputName": "โปรดป้อนชื่อผู้ใช้",
+  "@fieldHintInputName": {
+    "description": "",
     "type": "text"
   },
-  "messagePartFailed": "การโอนบางส่วนล้มเหลว",
-  "@messagePartFailed": {
+  "fieldHintInputPassword": "โปรดป้อนรหัสผ่าน",
+  "@fieldHintInputPassword": {
+    "description": "",
     "type": "text"
   },
-  "messageSentVerify": "ยืนยันรหัสได้ส่งแล้ว",
-  "@messageSentVerify": {
+  "fieldHintInputPasswordAgain": "ป้อนรหัสผ่านอีกครั้ง",
+  "@fieldHintInputPasswordAgain": {
+    "description": "",
     "type": "text"
   },
-  "homeHintWelcomeLogin": "ยินดีต้อนรับ！ กรุณาเข้าสู่ระบบก่อน",
-  "@homeHintWelcomeLogin": {
+  "fieldHintInputPhone": "โปรดป้อนหมายเลขโทรศัพท์",
+  "@fieldHintInputPhone": {
+    "description": "",
     "type": "text"
   },
-  "homeHintWelcome": "ยินดีต้อนรับ！",
-  "@homeHintWelcome": {
+  "fieldHintInputReferralCode": "โปรดป้อนรหัสอ้างอิง",
+  "@fieldHintInputReferralCode": {
+    "description": "",
     "type": "text"
   },
-  "homeHintWelcomeMember": "สวัสดี {name}！",
-  "@homeHintWelcomeMember": {
+  "fieldHintMobileVerifyCode": "โปรดป้อนรหัสยืนยันมือถือ",
+  "@fieldHintMobileVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordNew": "ป้อนรหัสผ่านใหม่",
+  "@fieldHintPasswordNew": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordNewConfirm": "ป้อนรหัสผ่านใหม่อีกครั้ง",
+  "@fieldHintPasswordNewConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPasswordOld": "ป้อนรหัสผ่านเก่า",
+  "@fieldHintPasswordOld": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintPhone": "ผูกหมายเลขโทรศัพท์มือถือเพื่อป้องกันความปลอดภัยของบัญชี",
+  "@fieldHintPhone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSearchGame": "โปรดป้อนชื่อเกม",
+  "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintVerifyCode": "โปรดป้อนรหัสยืนยัน",
+  "@fieldHintVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintVerifyCodeFetch": "สามารถรับรหัสยืนยันได้เพียงชุดเดียวภายใน 24 ชั่วโมง",
+  "@fieldHintVerifyCodeFetch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateAll": "ตลอดเวลา",
+  "@fieldOptionDateAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateCustom": "เวลาที่กำหนดเอง",
+  "@fieldOptionDateCustom": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateMonth": "ภายในหนึ่งเดือน",
+  "@fieldOptionDateMonth": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateToday": "วันนี้",
+  "@fieldOptionDateToday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDateYesterday": "เมื่อวาน",
+  "@fieldOptionDateYesterday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDepositTypeAtm": "เงินฝาก ATM",
+  "@fieldOptionDepositTypeAtm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionDepositTypeTransfer": "โอนและเติมเงิน",
+  "@fieldOptionDepositTypeTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionGender": "{sex, select, male {Male} female {Female} other {Other}}",
+  "@fieldOptionGender": {
+    "description": "Member's gender options",
+    "placeholders": {
+      "sex": {}
+    }
+  },
+  "fieldOptionPlatformAll": "ทุกแพลตฟอร์ม",
+  "@fieldOptionPlatformAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionPromoNone": "ละทิ้งข้อเสนอของแอปพลิเคชัน",
+  "@fieldOptionPromoNone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus1": "ความสำเร็จ",
+  "@fieldOptionStatus1": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus2": "ล้มเหลว",
+  "@fieldOptionStatus2": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus3": "กำลังประมวลผล",
+  "@fieldOptionStatus3": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatus4": "ธุรกรรมใหม่",
+  "@fieldOptionStatus4": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionStatusAll": "ทั้งหมด",
+  "@fieldOptionStatusAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleBetDate": "เวลาเดิมพัน",
+  "@fieldOptionTitleBetDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleDepositBank": "ธนาคารของผู้ชำระเงิน",
+  "@fieldOptionTitleDepositBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleDepositType": "วิธีการเติมเงิน",
+  "@fieldOptionTitleDepositType": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePaymentBank": "ธนาคารสำหรับชำระเงิน",
+  "@fieldOptionTitlePaymentBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePlatform": "แพลตฟอร์มเกม",
+  "@fieldOptionTitlePlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitlePromo": "เลือกข้อเสนอ",
+  "@fieldOptionTitlePromo": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleShow": "ดิสเพลย์",
+  "@fieldOptionTitleShow": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleShowItem": "รายการ",
+  "@fieldOptionTitleShowItem": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTitleTransferDate": "เวลาโอน",
+  "@fieldOptionTitleTransferDate": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType1": "เติมเงิน",
+  "@fieldOptionType1": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType2": "ถอน",
+  "@fieldOptionType2": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionType3": "โบนัส",
+  "@fieldOptionType3": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldOptionTypeAll": "ทั้งหมด",
+  "@fieldOptionTypeAll": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccount": "บัญชี",
+  "@fieldTitleAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccountHolder": "เจ้าของบัญชี",
+  "@fieldTitleAccountHolder": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleAccountName": "ชื่อบัญชี",
+  "@fieldTitleAccountName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBank": "ธนาคาร",
+  "@fieldTitleBank": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankAccount": "หมายเลขบัญชี (บัตร)",
+  "@fieldTitleBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankArea": "พื้นที่",
+  "@fieldTitleBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankBranch": "สาขาธนาคาร",
+  "@fieldTitleBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankName": "ชื่อธนาคาร",
+  "@fieldTitleBankName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBankProvince": "สาขาที่เปิดบัญชี",
+  "@fieldTitleBankProvince": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleBirthday": "วันเกิด",
+  "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleConfirm": "ยืนยันรหัสผ่าน",
+  "@fieldTitleConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCreditAmount": "จำนวนเงิน",
+  "@fieldTitleCreditAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDateEnd": "เวลาสิ้นสุด",
+  "@fieldTitleDateEnd": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDateStart": "เวลาเริ่มต้น",
+  "@fieldTitleDateStart": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositAmount": "จำนวนเงินฝาก",
+  "@fieldTitleDepositAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositBankAccount": "บัญชีธนาคารของผู้ชำระเงิน",
+  "@fieldTitleDepositBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositCode": "รหัสธุรกรรม",
+  "@fieldTitleDepositCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleDepositName": "ชื่อผู้ชำระเงิน",
+  "@fieldTitleDepositName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleEmail": "อีเมล",
+  "@fieldTitleEmail": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleFacebook": "เฟสบุ๊ค",
+  "@fieldTitleFacebook": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleLine": "เส้น",
+  "@fieldTitleLine": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMemberAccount": "ชื่อผู้ใช้",
+  "@fieldTitleMemberAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMemberName": "ชื่อจริง",
+  "@fieldTitleMemberName": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleMobileVerifyCode": "Mobile Verify Code",
+  "@fieldTitleMobileVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleNote": "หมายเหตุ",
+  "@fieldTitleNote": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePassword": "รหัสผ่าน",
+  "@fieldTitlePassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordNew": "รหัสผ่านใหม่",
+  "@fieldTitlePasswordNew": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordNewConfirm": "การยืนยันรหัสผ่านใหม่",
+  "@fieldTitlePasswordNewConfirm": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePasswordOld": "รหัสผ่านเก่า",
+  "@fieldTitlePasswordOld": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitlePhone": "หมายเลขโทรศัพท์มือถือ",
+  "@fieldTitlePhone": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleQQ": "QQ",
+  "@fieldTitleQQ": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleReferralCode": "รหัสคำแนะนำ",
+  "@fieldTitleReferralCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleRemark": "หมายเหตุ",
+  "@fieldTitleRemark": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleSkype": "Skype",
+  "@fieldTitleSkype": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleVerifyCode": "ยืนยันรหัส",
+  "@fieldTitleVerifyCode": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWechat": "Wechat",
+  "@fieldTitleWechat": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWithdrawAmount": "จำนวนเงินที่ถอน",
+  "@fieldTitleWithdrawAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleWithdrawPassword": "ถอนรหัสผ่าน",
+  "@fieldTitleWithdrawPassword": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleZalo": "Zalo",
+  "@fieldTitleZalo": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnBackHome": "กลับไปที่บ้าน",
+  "@gameToolBtnBackHome": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnLockRotate": "ล็อกหน้าจอหมุน",
+  "@gameToolBtnLockRotate": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolBtnRotate": "หมุนหน้าจอ",
+  "@gameToolBtnRotate": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolHintRestore": "ดับเบิลคลิกเพื่อคืนค่าการแสดงผล",
+  "@gameToolHintRestore": {
+    "description": "",
+    "type": "text"
+  },
+  "gameToolHintUsage": "คลิกเพื่อแสดงกดแบบยาวเพื่อซ่อน↗",
+  "@gameToolHintUsage": {
+    "description": "",
+    "type": "text"
+  },
+  "hintActionLogin": "กรุณาเข้าสู่ระบบก่อน",
+  "@hintActionLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAddBankcard": "เพิ่ม Bankcard",
+  "@hintAddBankcard": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAddBankcardDesc": "โปรดผูกบัตรธนาคารเพื่อรับเงิน",
+  "@hintAddBankcardDesc": {
+    "description": "",
+    "type": "text"
+  },
+  "hintAttentionNotice": "หมายเหตุ",
+  "@hintAttentionNotice": {
+    "description": "",
+    "type": "text"
+  },
+  "hintClickToLoginRegister": "คลิกเพื่อเข้าสู่ระบบ / ลงทะเบียน",
+  "@hintClickToLoginRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "hintCreditRemain": "ยอดคงเหลือทั้งหมด",
+  "@hintCreditRemain": {
+    "description": "",
+    "type": "text"
+  },
+  "hintFreeUsage": "ใช้งานฟรี",
+  "@hintFreeUsage": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHello": "สวัสดี!",
+  "@hintHello": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHelloLogin": "สวัสดีกรุณาเข้าสู่ระบบในฐานะสมาชิก",
+  "@hintHelloLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "hintHelloLoginRegister": "สวัสดีกรุณาเข้าสู่ระบบ / ลงทะเบียนก่อน",
+  "@hintHelloLoginRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "hintMaintenance": "การบำรุงรักษา",
+  "@hintMaintenance": {
+    "description": "",
+    "type": "text"
+  },
+  "hintNoHistoryData": "ไม่ตรวจสอบข้อมูล",
+  "@hintNoHistoryData": {
+    "description": "",
+    "type": "text"
+  },
+  "hintNoMessages": "ขณะนี้ไม่มีข้อความใด ๆ บนไซต์",
+  "@hintNoMessages": {
+    "description": "",
+    "type": "text"
+  },
+  "hintRefreshCreditAfterTransfer": "หากจำนวนแพลตฟอร์มไม่เปลี่ยนแปลงหลังจากการโอนสำเร็จโปรดเลือกแพลตฟอร์มเพื่อรีเฟรชจำนวนเงินอีกครั้งหรือติดต่อฝ่ายบริการลูกค้า",
+  "@hintRefreshCreditAfterTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelect": "โปรดเลือก",
+  "@hintSelect": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelectAmount": "โปรดเลือกจำนวนเงิน",
+  "@hintSelectAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "hintSelectPlatform": "โปรดเลือกแพลตฟอร์ม",
+  "@hintSelectPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "hintServiceIcon": "หากคุณมีคำถามใด ๆ โปรดคลิกที่ไอคอนนี้!",
+  "@hintServiceIcon": {
+    "description": "",
+    "type": "text"
+  },
+  "hintTips": "เคล็ดลับที่อบอุ่น",
+  "@hintTips": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWalletRemain": "ยอดคงเหลือใน Wallet",
+  "@hintWalletRemain": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWelcome": "ยินดีต้อนรับ",
+  "@hintWelcome": {
+    "description": "",
+    "type": "text"
+  },
+  "hintWelcomeMember": "สวัสดี {name}!",
+  "@hintWelcomeMember": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "name": {
@@ -838,373 +1381,144 @@
       }
     }
   },
-  "homeHintFreeUsage": "ไม่เสียค่าใช้จ่าย",
-  "@homeHintFreeUsage": {
+  "msgActionCheckTerms": "โปรดอ่านและทำเครื่องหมายเพื่อยอมรับกฎการเดิมพัน",
+  "@msgActionCheckTerms": {
+    "description": "",
     "type": "text"
   },
-  "homeHintMemberCreditLeft": "เครดิต",
-  "@homeHintMemberCreditLeft": {
+  "msgAutoLoginError": "ข้อมูลผิดพลาดโปรดเข้าสู่ระบบด้วยตนเอง",
+  "@msgAutoLoginError": {
+    "description": "",
     "type": "text"
   },
-  "homeHintDefaultMarquee": "สวัสดีสมาชิกที่รัก! หากคุณมีคำถามใด ๆ เกี่ยวกับเว็บไซต์นี้โปรดใช้ระบบบริการลูกค้าออนไลน์",
-  "@homeHintDefaultMarquee": {
+  "msgBalanceToMainPartFailed": "บางส่วนของการถ่ายโอนแพลตฟอร์มล้มเหลว",
+  "@msgBalanceToMainPartFailed": {
+    "description": "",
     "type": "text"
   },
-  "homeUserTabCategoryMovie": "ภาพยนตร์",
-  "@homeUserTabCategoryMovie": {
+  "msgCopyToClipboard": "คัดลอกไปยังคลิปบอร์ด",
+  "@msgCopyToClipboard": {
+    "description": "",
     "type": "text"
   },
-  "homeUserTabCategoryEgMovie": "ภาพยนตร์ EG",
-  "@homeUserTabCategoryEgMovie": {
+  "msgCopyToClipboardError": "คัดลอกล้มเหลว",
+  "@msgCopyToClipboardError": {
+    "description": "",
     "type": "text"
   },
-  "homeUserTabCategoryNewMovie": "ภาพยนตร์ใหม่",
-  "@homeUserTabCategoryNewMovie": {
+  "msgFailed": "การดำเนินการล้มเหลวโปรดลองอีกครั้งในภายหลัง",
+  "@msgFailed": {
+    "description": "",
     "type": "text"
   },
-  "homeUserTabCategoryRecommend": "แนะนำ",
-  "@homeUserTabCategoryRecommend": {
+  "msgFormError": "ข้อมูลผิดพลาดโปรดเลือกอีกครั้ง",
+  "@msgFormError": {
+    "description": "",
     "type": "text"
   },
-  "homeUserTabCategoryFavorite": "รายการโปรด",
-  "@homeUserTabCategoryFavorite": {
+  "msgFormNotFilled": "โปรดยืนยันข้อมูลในฟิลด์และกรอกให้ครบถ้วน",
+  "@msgFormNotFilled": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryCasino": "คาสิโน",
-  "@gameCategoryCasino": {
+  "msgLoadingGame": "กำลังโหลดเกมโปรดรอสักครู่ ... ",
+  "@msgLoadingGame": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryCasinoFull": "คาสิโน",
-  "@gameCategoryCasinoFull": {
+  "msgMobileVerifySent": "ส่งรหัสยืนยันแล้ว",
+  "@msgMobileVerifySent": {
+    "description": "",
     "type": "text"
   },
-  "gameCategorySlot": "สล็อต",
-  "@gameCategorySlot": {
+  "msgNetworkChanged": "ตรวจพบการเปลี่ยนแปลงสถานะเครือข่ายคุณต้องการรีเฟรชหน้านี้หรือไม่",
+  "@msgNetworkChanged": {
+    "description": "",
     "type": "text"
   },
-  "gameCategorySlotFull": "สล็อต",
-  "@gameCategorySlotFull": {
+  "msgNetworkError": "โปรดตรวจสอบสถานะเครือข่าย",
+  "@msgNetworkError": {
+    "description": "",
     "type": "text"
   },
-  "gameCategorySport": "กีฬา",
-  "@gameCategorySport": {
+  "msgNetworkLocationNoService": "ไม่สามารถใช้บริการนี้ในพื้นที่เครือข่ายของคุณได้",
+  "@msgNetworkLocationNoService": {
+    "description": "",
     "type": "text"
   },
-  "gameCategorySportFull": "กีฬา",
-  "@gameCategorySportFull": {
+  "msgNetworkUsingCellular": "คุณกำลังใช้เครือข่ายมือถือและค่าบริการเครือข่ายอาจเกิดขึ้นตามอัตราการใช้งานของคุณ",
+  "@msgNetworkUsingCellular": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryFish": "ปลา",
-  "@gameCategoryFish": {
+  "msgNoEvent": "ขณะนี้ไม่มีเหตุการณ์",
+  "@msgNoEvent": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryFishFull": "ตกปลา",
-  "@gameCategoryFishFull": {
+  "msgNoStoragePermission": "โปรดเปิด“ันทึก”สิทธิ์",
+  "@msgNoStoragePermission": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryLottery": "ลอตเตอรี",
-  "@gameCategoryLottery": {
+  "msgNotEnoughCredit": "ยอดเงินไม่เพียงพอ",
+  "@msgNotEnoughCredit": {
+    "description": "",
     "type": "text"
   },
-  "gameCategoryLotteryFull": "ลอตเตอรี",
-  "@gameCategoryLotteryFull": {
-    "type": "text"
-  },
-  "gameCategoryCard": "การ์ด",
-  "@gameCategoryCard": {
-    "type": "text"
-  },
-  "gameCategoryCardFull": "การ์ด",
-  "@gameCategoryCardFull": {
-    "type": "text"
-  },
-  "gameCategoryGift": "ของขวัญ",
-  "@gameCategoryGift": {
-    "type": "text"
-  },
-  "gameCategoryCockFighting": "ชนไก่",
-  "@gameCategoryCockFighting": {
-    "type": "text"
-  },
-  "gameCategoryAll": "ทั้งหมด",
-  "@gameCategoryAll": {
-    "type": "text"
-  },
-  "gameCategoryOther": "อื่น ๆ ",
-  "@gameCategoryOther": {
-    "type": "text"
-  },
-  "gameCategoryWeb": "เว็บไซต์",
-  "@gameCategoryWeb": {
-    "type": "text"
-  },
-  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ 85Bet",
-  "@gameCategoryWebHint": {
-    "type": "text"
-  },
-  "gameCategoryMovieWeb": "ดูหนัง",
-  "@gameCategoryMovieWeb": {
-    "type": "text"
-  },
-  "gameCategoryMovieWebHint": "คลิกฉันเพื่อชมภาพยนตร์",
-  "@gameCategoryMovieWebHint": {
-    "type": "text"
-  },
-  "gameCategoryAbout": "เกี่ยวกับเรา",
-  "@gameCategoryAbout": {
-    "type": "text"
-  },
-  "userPwdFieldTitleOld": "รหัสผ่านเดิม:",
-  "@userPwdFieldTitleOld": {
-    "type": "text"
-  },
-  "userPwdFieldTitleNew": "รหัสผ่านใหม่:",
-  "@userPwdFieldTitleNew": {
-    "type": "text"
-  },
-  "userPwdFieldTitleConfirm": "การยืนยันรหัสผ่าน:",
-  "@userPwdFieldTitleConfirm": {
-    "type": "text"
-  },
-  "userPwdFieldHintOld": "ป้อนรหัสผ่านเดิม",
-  "@userPwdFieldHintOld": {
-    "type": "text"
-  },
-  "userPwdFieldHintNew": "ป้อนรหัสผ่านใหม่",
-  "@userPwdFieldHintNew": {
-    "type": "text"
-  },
-  "userPwdFieldHintConfirm": "ป้อนรหัสผ่านใหม่อีกครั้ง",
-  "@userPwdFieldHintConfirm": {
-    "type": "text"
-  },
-  "userPwdButtonTitle": "เปลี่ยนรหัสผ่าน",
-  "@userPwdButtonTitle": {
-    "type": "text"
-  },
-  "userVerifyFieldTitle": "ยืนยัน:",
-  "@userVerifyFieldTitle": {
-    "type": "text"
-  },
-  "userVerifyFieldHint": "ป้อนรหัสยืนยัน",
-  "@userVerifyFieldHint": {
-    "type": "text"
-  },
-  "userVerifyFieldInfo": "คุณสามารถขอได้ครั้งเดียวใน 24 ชม.",
-  "@userVerifyFieldInfo": {
-    "type": "text"
-  },
-  "userVerifyButtonText": "ขอ {separator} รหัส",
-  "@userVerifyButtonText": {
+  "msgNoWalletBindUrl": "ไม่สามารถรับ URL ผูกกระเป๋าเงิน {wallet}",
+  "@msgNoWalletBindUrl": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "separator": {
-        "example": "\n"
+      "wallet": {
+        "example": "CGP"
       }
     }
   },
-  "registerFieldTitleAccount": "บัญชี",
-  "@registerFieldTitleAccount": {
+  "msgPleaseBindBankcard": "กรุณาผูกบัตรธนาคารก่อน!",
+  "@msgPleaseBindBankcard": {
+    "description": "",
     "type": "text"
   },
-  "registerFieldTitlePassword": "รหัสผ่าน",
-  "@registerFieldTitlePassword": {
+  "msgPleaseWait": "โปรดรอสักครู่ ... ",
+  "@msgPleaseWait": {
+    "description": "",
     "type": "text"
   },
-  "registerFieldTitleConfirm": "ยืนยันรหัสผ่าน",
-  "@registerFieldTitleConfirm": {
+  "msgProcessing": "กำลังดำเนินการตามคำขอโปรดรอสักครู่ ... ",
+  "@msgProcessing": {
+    "description": "",
     "type": "text"
   },
-  "registerFieldTitlePhone": "หมายเลขโทรศัพท์มือถือ",
-  "@registerFieldTitlePhone": {
+  "msgSuccess": "ดำเนินการสำเร็จ",
+  "@msgSuccess": {
+    "description": "",
     "type": "text"
   },
-  "registerFieldTitleEmail": "E-Mail",
-  "@registerFieldTitleEmail": {
-    "type": "text"
+  "msgTaskCanceled": "{task} ถูกยกเลิก",
+  "@msgTaskCanceled": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "task": {
+        "example": "login"
+      }
+    }
   },
-  "registerFieldTitleZalo": "Zalo",
-  "@registerFieldTitleZalo": {
-    "type": "text"
+  "msgTaskSuccess": "{task} Success",
+  "@msgTaskSuccess": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "task": {
+        "example": "login"
+      }
+    }
   },
-  "registerFieldTitleLine": "Line",
-  "@registerFieldTitleLine": {
-    "type": "text"
-  },
-  "registerFieldTitleQQ": "QQ",
-  "@registerFieldTitleQQ": {
-    "type": "text"
-  },
-  "registerFieldTitleVerify": "รหัสยืนยัน",
-  "@registerFieldTitleVerify": {
-    "type": "text"
-  },
-  "registerFieldHintVerify": "โปรดป้อนรหัสยืนยัน",
-  "@registerFieldHintVerify": {
-    "type": "text"
-  },
-  "registerFieldTitleRecommend": "รหัสที่แนะนำ",
-  "@registerFieldTitleRecommend": {
-    "type": "text"
-  },
-  "registerButtonTitleRefresh": "รีเฟรช",
-  "@registerButtonTitleRefresh": {
-    "type": "text"
-  },
-  "registerButtonTitleRegister": "ลงทะเบียน",
-  "@registerButtonTitleRegister": {
-    "type": "text"
-  },
-  "registerButtonTitleSendVerify": "ส่งรหัสยืนยัน",
-  "@registerButtonTitleSendVerify": {
-    "type": "text"
-  },
-  "registerCheckButtonNews": "รับข้อมูลโปรโมชั่น",
-  "@registerCheckButtonNews": {
-    "type": "text"
-  },
-  "registerCheckButtonTerms": "ได้อ่านและยอมรับกฎการเดิมพัน \"ข้อกำหนดและเงื่อนไข\"",
-  "@registerCheckButtonTerms": {
-    "type": "text"
-  },
-  "registerButtonServiceHint": "หากคุณมีคำถามใด ๆ โปรดคลิกที่ไอคอนนี้!",
-  "@registerButtonServiceHint": {
-    "type": "text"
-  },
-  "registerHintAutoLogin": "กำลังเข้าสู่ระบบ, โปรดรอสักครู่ ... ",
-  "@registerHintAutoLogin": {
-    "type": "text"
-  },
-  "promoDetailText": ">> รายละเอียด",
-  "@promoDetailText": {
-    "type": "text"
-  },
-  "promoCategoryAll": "ทั้งหมด",
-  "@promoCategoryAll": {
-    "type": "text"
-  },
-  "promoCategoryOther": "อื่น ๆ ",
-  "@promoCategoryOther": {
-    "type": "text"
-  },
-  "promoDetailPlatform": "แพลตฟอร์มที่ใช้งานได้",
-  "@promoDetailPlatform": {
-    "type": "text"
-  },
-  "promoDetailContent": "เนื้อหาเหตุการณ์",
-  "@promoDetailContent": {
-    "type": "text"
-  },
-  "promoDetailApply": "วิธีการสมัคร",
-  "@promoDetailApply": {
-    "type": "text"
-  },
-  "promoDetailRules": "รายละเอียดกิจกรรม",
-  "@promoDetailRules": {
-    "type": "text"
-  },
-  "memberGridTitleDeposit": "เติมเงิน",
-  "@memberGridTitleDeposit": {
-    "type": "text"
-  },
-  "memberGridTitleTransfer": "โอน",
-  "@memberGridTitleTransfer": {
-    "type": "text"
-  },
-  "memberGridTitleCard": "บัตรธนาคาร",
-  "@memberGridTitleCard": {
-    "type": "text"
-  },
-  "memberGridTitleWithdraw": "ถอน",
-  "@memberGridTitleWithdraw": {
-    "type": "text"
-  },
-  "memberGridTitleBalance": "ความสมดุลของแพลตฟอร์ม",
-  "@memberGridTitleBalance": {
-    "type": "text"
-  },
-  "memberGridTitleWallet": "โอนกระเป๋าเงิน",
-  "@memberGridTitleWallet": {
-    "type": "text"
-  },
-  "memberGridTitleMessage": "ข้อความของไซต์",
-  "@memberGridTitleMessage": {
-    "type": "text"
-  },
-  "memberGridTitleAccount": "ศูนย์บัญชี",
-  "@memberGridTitleAccount": {
-    "type": "text"
-  },
-  "memberGridTitleTransaction": "บันทึกการโอน",
-  "@memberGridTitleTransaction": {
-    "type": "text"
-  },
-  "memberGridTitleBet": "ประวัติการเดิมพัน",
-  "@memberGridTitleBet": {
-    "type": "text"
-  },
-  "memberGridTitleDeal": "ประวัติดีล",
-  "@memberGridTitleDeal": {
-    "type": "text"
-  },
-  "memberGridTitleFlow": "โฟลว์เรคคอร์ด",
-  "@memberGridTitleFlow": {
-    "type": "text"
-  },
-  "memberGridTitleAgent": "ตัวแทน",
-  "@memberGridTitleAgent": {
-    "type": "text"
-  },
-  "memberGridTitleLogout": "ออกจากระบบ",
-  "@memberGridTitleLogout": {
-    "type": "text"
-  },
-  "transferViewTitleIn": "ใน",
-  "@transferViewTitleIn": {
-    "type": "text"
-  },
-  "transferViewTitleOut": "ออก",
-  "@transferViewTitleOut": {
-    "type": "text"
-  },
-  "transferViewSiteHint": "เลือกหนึ่งรายการ",
-  "@transferViewSiteHint": {
-    "type": "text"
-  },
-  "transferViewTitleAmount": "จำนวนเงิน",
-  "@transferViewTitleAmount": {
-    "type": "text"
-  },
-  "transferViewTitleOption": "เลือกจำนวนเงิน",
-  "@transferViewTitleOption": {
-    "type": "text"
-  },
-  "transferViewTextOptionAll": "เครดิตทั้งหมด",
-  "@transferViewTextOptionAll": {
-    "type": "text"
-  },
-  "transferViewButtonConfirm": "ยืนยันการโอน",
-  "@transferViewButtonConfirm": {
-    "type": "text"
-  },
-  "transferDataError": "ข้อมูลผิดพลาดโปรดเลือกอีกครั้ง",
-  "@transferDataError": {
-    "type": "text"
-  },
-  "transferPlatformError": "แพลตฟอร์มที่เลือกกำลังบำรุงรักษา",
-  "@transferPlatformError": {
-    "type": "text"
-  },
-  "transferResultAlertTitle": "การโอนล้มเหลว",
-  "@transferResultAlertTitle": {
-    "type": "text"
-  },
-  "transferHintRefresh": "4. หากเครดิตแพลตฟอร์มไม่อัปเดตหลังโอนโปรดเลือกแพลตฟอร์มอีกครั้งเพื่อรีเฟรชหรือติดต่อฝ่ายบริการลูกค้า",
-  "@transferHintRefresh": {
-    "type": "text"
-  },
-  "transferMessage": "{from} ถึง {to}",
-  "@transferMessage": {
+  "msgTransferFromTo": "{from} ถึง {to}",
+  "@msgTransferFromTo": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "from": {
@@ -1215,1645 +1529,685 @@
       }
     }
   },
-  "bankcardViewTitleNew": "เพิ่มบัตรธนาคาร",
-  "@bankcardViewTitleNew": {
+  "msgUrlLaunchError": "ไม่สามารถเปิดลิงก์ของเว็บ: {url}",
+  "@msgUrlLaunchError": {
+    "description": "",
     "type": "text"
   },
-  "bankcardViewHintNew": "กรุณาผูกบัตรธนาคารเพื่อรับการชำระเงิน",
-  "@bankcardViewHintNew": {
+  "msgUrlNavNotSupported": "ไม่สามารถข้ามไปยัง URL ปลายทางได้",
+  "@msgUrlNavNotSupported": {
+    "description": "",
     "type": "text"
   },
-  "bankcardViewTitleOwner": "ชื่อบัญชี",
-  "@bankcardViewTitleOwner": {
-    "type": "text"
-  },
-  "bankcardViewTitleHolder": "เจ้าของบัญชี",
-  "@bankcardViewTitleHolder": {
-    "type": "text"
-  },
-  "bankcardViewTitleBank": "ธนาคาร",
-  "@bankcardViewTitleBank": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankName": "ชื่อธนาคาร",
-  "@bankcardViewTitleBankName": {
-    "type": "text"
-  },
-  "bankcardViewTitleCardNumber": "หมายเลขบัญชี (บัตร)",
-  "@bankcardViewTitleCardNumber": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankBranch": "สาขาธนาคาร",
-  "@bankcardViewTitleBankBranch": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankProvince": "เปิดบัญชี",
-  "@bankcardViewTitleBankProvince": {
-    "type": "text"
-  },
-  "bankcardViewTitleBankArea": "พื้นที่",
-  "@bankcardViewTitleBankArea": {
-    "type": "text"
-  },
-  "bankcardViewTitleSend": "ส่ง",
-  "@bankcardViewTitleSend": {
-    "type": "text"
-  },
-  "drawViewTitleAmount ": " จำนวนเงินที่ถอน ",
-  "@withdrawViewTitleAmount": {
-    "type": "text"
-  },
-  "drawViewTitlePwd ": " ถอนรหัสผ่าน ",
-  "@withdrawViewTitlePwd": {
-    "type": "text"
-  },
-  "drawViewTitleNote ": " หมายเหตุ ",
-  "@withdrawViewTitleNote": {
-    "type": "text"
-  },
-  "drawViewOptionVirtual ": " อย่าใช้สกุลเงินเสมือน ",
-  "@withdrawViewOptionVirtual": {
-    "type": "text"
-  },
-  "drawViewOptionCgp ": " ใช้ CGP ",
-  "@withdrawViewOptionCgp": {
-    "type": "text"
-  },
-  "drawViewOptionCpw ": " ใช้ CPW ",
-  "@withdrawViewOptionCpw": {
-    "type": "text"
-  },
-  "drawViewOptionHint1 ": " หากคุณต้องการถอนสกุลเงินเสมือนจริงโปรดเลือกหลังจากผูกมัด ",
-  "@drawViewOptionHint1": {
-    "type": "text"
-  },
-  "drawViewOptionHint2 ": " คุณจะต้องเก็บอย่างน้อย: ",
-  "@drawViewOptionHint2": {
-    "type": "text"
-  },
-  "drawViewOptionHint3 ": " ความล่าช้าของข้อมูลจะมากจากซัพพลายเออร์เกม ",
-  "@drawViewOptionHint3": {
-    "type": "text"
-  },
-  "drawViewHint1 ": " สมาชิกที่ต้องการเปลี่ยนบัตรธนาคารที่ผูกไว้กับเครือข่ายเมื่อถอนเงินโปรดติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อขอคำแนะนำ ",
-  "@drawViewHint1": {
-    "type": "text"
-  },
-  "drawViewHint2 ": " บัญชีสมาชิกแต่ละบัญชีสามารถถอนได้สูงสุด 3 ครั้งต่อวันหากถอนมากกว่า 3 ครั้งจะถูกเรียกเก็บค่าบริการ 5% ",
-  "@drawViewHint2": {
-    "type": "text"
-  },
-  "walletViewTitleMy": "กระเป๋าเงินของฉัน",
-  "@walletViewTitleMy": {
-    "type": "text"
-  },
-  "walletViewTitleRemain": "ยอดเงินทั้งหมด",
-  "@walletViewTitleRemain": {
-    "type": "text"
-  },
-  "walletViewTitleBalance": "ยอดคงเหลือใน กระเป๋าเงินของฉัน",
-  "@walletViewTitleBalance": {
-    "type": "text"
-  },
-  "walletViewTitleWalletSingle": "กระเป๋าเงินใบเดียว",
-  "@walletViewTitleWalletSingle": {
-    "type": "text"
-  },
-  "walletViewTitleWalletMulti": "กระเป๋าเงินหลายใบ",
-  "@walletViewTitleWalletMulti": {
-    "type": "text"
-  },
-  "walletViewButtonOneClick": "โอนที่นี่",
-  "@walletViewButtonOneClick": {
-    "type": "text"
-  },
-  "walletViewHintOneClick": "เครดิตแพลตฟอร์มทั้งหมดจะโอนไปยังกระเป๋าเงินหลัก",
-  "@walletViewHintOneClick": {
-    "type": "text"
-  },
-  "walletViewHintOneClickWait": "กำลังโอน ... ",
-  "@walletViewHintOneClickWait": {
-    "type": "text"
-  },
-  "walletViewHintWalletType": "* เมื่อเปิดการตั้งค่าขีด จำกัด กระเป๋าเงินจะถูกโอนไปยังแพลตฟอร์มเกมที่เปิดโดยอัตโนมัติ",
-  "@walletViewHintWalletType": {
-    "type": "text"
-  },
-  "walletViewHintWalletSingle": "* ระบบตั้งค่าล่วงหน้าโอนเครดิตไปยังแพลตฟอร์มเกมที่เปิดไว้โดยอัตโนมัติ",
-  "@walletViewHintWalletSingle": {
-    "type": "text"
-  },
-  "walletViewHintWalletMulti": "* โอนเครดิตไปยังแพลตฟอร์มเกมนี้ด้วยตนเอง",
-  "@walletViewHintWalletMulti": {
-    "type": "text"
-  },
-  "walletViewMessageSetting": "เปลี่ยนการตั้งค่ากระเป๋าเงิน",
-  "@walletViewMessageSetting": {
-    "type": "text"
-  },
-  "centerViewTitleData": "โปรไฟล์",
-  "@centerViewTitleData": {
-    "type": "text"
-  },
-  "centerViewTitleLotto": "รหัสนำโชค",
-  "@centerViewTitleLotto": {
-    "type": "text"
-  },
-  "centerViewTitleVipRank": "ระดับ VIP",
-  "@centerViewTitleVipRank": {
-    "type": "text"
-  },
-  "centerTextTitleAccount": "ชื่อผู้ใช้:",
-  "@centerTextTitleAccount": {
-    "type": "text"
-  },
-  "centerTextTitleName": "ชื่อ:",
-  "@centerTextTitleName": {
-    "type": "text"
-  },
-  "centerTextTitleBirth": "วันเกิด:",
-  "@centerTextTitleBirth": {
-    "type": "text"
-  },
-  "centerTextTitleDateHint": "รูปแบบคือ: 0000–00–00",
-  "@centerTextTitleDateHint": {
-    "type": "text"
-  },
-  "centerTextTitleDateError": "โปรดป้อนวันที่ที่ถูกต้อง (รูปแบบ: YYYY – MM – DD)",
-  "@centerTextTitleDateError": {
-    "type": "text"
-  },
-  "centerTextTitleMailError": "กรุณากรอกอีเมลที่ถูกต้อง",
-  "@centerTextTitleMailError": {
-    "type": "text"
-  },
-  "centerTextTitlePhone": "เบอร์มือถือ:",
-  "@centerTextTitlePhone": {
-    "type": "text"
-  },
-  "centerTextTitleMail": "กล่องจดหมาย:",
-  "@centerTextTitleMail": {
-    "type": "text"
-  },
-  "centerTextTitleWechat": "WeChat:",
-  "@centerTextTitleWechat": {
-    "type": "text"
-  },
-  "centerTextTitleCgp": "Cgp Wallet",
-  "@centerTextTitleCgp": {
-    "type": "text"
-  },
-  "centerTextTitleCpw": "ช็อปสมบัติกระเป๋าเงิน",
-  "@centerTextTitleCpw": {
-    "type": "text"
-  },
-  "centerTextButtonChangePwd": "เปลี่ยนรหัสผ่าน",
-  "@centerTextButtonChangePwd": {
-    "type": "text"
-  },
-  "centerTextButtonBind": "ผูก",
-  "@centerTextButtonBind": {
-    "type": "text"
-  },
-  "centerTextButtonEdit": "ปรับเปลี่ยน",
-  "@centerTextButtonEdit": {
-    "type": "text"
-  },
-  "centerTextButtonSend": "ส่ง",
-  "@centerTextButtonSend": {
-    "type": "text"
-  },
-  "centerHintNoName": "โปรดไปที่บัตรธนาคารที่มีผลผูกพันเพื่อทำการตั้งค่าที่เกี่ยวข้อง",
-  "@centerHintNoName": {
-    "type": "text"
-  },
-  "centerLuckyTitle": "กรุณากรอกตัวเลขตั้งแต่ 01 ถึง 49 ในช่องว่าง 7 ช่องต่อไปนี้",
-  "@centerLuckyTitle": {
-    "type": "text"
-  },
-  "centerLuckyNumberError": "ช่วงตัวเลข: 01 ~ 49",
-  "@centerLuckyNumberError": {
-    "type": "text"
-  },
-  "centerLuckyHint": "ผูกรหัสนำโชค คุณสามารถมีส่วนร่วมในรหัสจับคู่ลอตเตอรี ของขวัญที่ยอดเยี่ยมสำหรับคุณ !!!",
-  "@centerLuckyHint": {
-    "type": "text"
-  },
-  "centerLuckyButtonGenerate": "สร้างอัตโนมัติ",
-  "@centerLuckyButtonGenerate": {
-    "type": "text"
-  },
-  "centerLuckyButtonBind": "ยืนยันการผูก",
-  "@centerLuckyButtonBind": {
-    "type": "text"
-  },
-  "centerDialogCpwLeftTitle": "ไม่ได้ติดตั้ง APP？",
-  "@centerDialogCpwLeftTitle": {
-    "type": "text"
-  },
-  "centerDialogCpwLeftHint": "※จะปิด APP",
-  "@centerDialogCpwLeftHint": {
-    "type": "text"
-  },
-  "centerDialogCpwRightTitle": "ติดตั้ง APP แล้ว",
-  "@centerDialogCpwRightTitle": {
-    "type": "text"
-  },
-  "centerDialogCpwRightHint": "(โปรดรอให้หน้านี้อัปเดตหลังจากเชื่อมโยง)",
-  "@centerDialogCpwRightHint": {
-    "type": "text"
-  },
-  "centerDialogCpwRightHint2": "หรือ",
-  "@centerDialogCpwRightHint2": {
-    "type": "text"
-  },
-  "centerDialogCpwRightLinkError": "URL ผิดพลาดโปรดติดต่อฝ่ายบริการ",
-  "@centerDialogCpwRightLinkError": {
-    "type": "text"
-  },
-  "transactionViewSpinnerTitle": "เวลาโอน",
-  "@transactionViewSpinnerTitle": {
-    "type": "text"
-  },
-  "transactionHeaderSerial": "หมายเลขซีเรียล",
-  "@transactionHeaderSerial": {
-    "type": "text"
-  },
-  "transactionHeaderDate": "วันที่",
-  "@transactionHeaderDate": {
-    "type": "text"
-  },
-  "transactionHeaderType": "หมวดหมู่",
-  "@transactionHeaderType": {
-    "type": "text"
-  },
-  "transactionHeaderDesc": "คำอธิบาย",
-  "@transactionHeaderDesc": {
-    "type": "text"
-  },
-  "transactionHeaderAmount": "จำนวนเงิน",
-  "@transactionHeaderAmount": {
-    "type": "text"
-  },
-  "betsSpinnerTitlePlatform": "แพลตฟอร์มเกม",
-  "@betsSpinnerTitlePlatform": {
-    "type": "text"
-  },
-  "betsSpinnerOptionAllPlatform": "ทุกแพลตฟอร์ม",
-  "@betsSpinnerOptionAllPlatform": {
-    "type": "text"
-  },
-  "betsSpinnerTitleTime": "เวลาเดิมพัน",
-  "@betsSpinnerTitleTime": {
-    "type": "text"
-  },
-  "betsFieldTitleStartTime": "เริ่ม",
-  "@betsFieldTitleStartTime": {
-    "type": "text"
-  },
-  "betsFieldTitleEndTime": "สิ้นสุด",
-  "@betsFieldTitleEndTime": {
-    "type": "text"
-  },
-  "betsFieldDateError": "ข้อผิดพลาดช่วงวันที่",
-  "@betsFieldDateError": {
-    "type": "text"
-  },
-  "betsTextTotal": "ทั้งหมด: $ {value}",
-  "@betsTextTotal": {
+  "msgUserLogout": "{name} โปรดเข้าสู่ระบบอีกครั้ง",
+  "@msgUserLogout": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "80.0"
+      "name": {
+        "example": "user"
       }
     }
   },
-  "betsHeaderDate": "เวลา",
-  "@betsHeaderDate": {
+  "msgVerifySuccess": "การยืนยันสำเร็จ",
+  "@msgVerifySuccess": {
+    "description": "",
     "type": "text"
   },
-  "betsHeaderId": "หมายเลขสลิปพนัน",
-  "@betsHeaderId": {
+  "msgWaitLogin": "เข้าสู่ระบบโปรดรอ ... ",
+  "@msgWaitLogin": {
+    "description": "",
     "type": "text"
   },
-  "betsHeaderPlatform": "แพลตฟอร์ม",
-  "@betsHeaderPlatform": {
+  "msgWaitProcessComplete": "ห้ามออกขณะดำเนินการตามคำขอ",
+  "@msgWaitProcessComplete": {
+    "description": "",
     "type": "text"
   },
-  "betsHeaderGame": "ชื่อเกม",
-  "@betsHeaderGame": {
-    "type": "text"
-  },
-  "betsHeaderAmount": "จำนวนเงินเดิมพัน",
-  "@betsHeaderAmount": {
-    "type": "text"
-  },
-  "betsHeaderValidBet": "เดิมพันที่ถูกต้อง",
-  "@betsHeaderValidBet": {
-    "type": "text"
-  },
-  "betsHeaderBonus": "จำนวนเงินที่จ่าย",
-  "@betsHeaderBonus": {
-    "type": "text"
-  },
-  "betsHeaderSum": "ผลรวม",
-  "@betsHeaderSum": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType0": "ทั้งหมด",
-  "@dealsViewSpinnerType0": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType1": "เติมเงิน",
-  "@dealsViewSpinnerType1": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType2": "การถอน",
-  "@dealsViewSpinnerType2": {
-    "type": "text"
-  },
-  "dealsViewSpinnerType3": "โบนัส",
-  "@dealsViewSpinnerType3": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus0": "ทั้งหมด",
-  "@dealsViewSpinnerStatus0": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus1": "ความสำเร็จ",
-  "@dealsViewSpinnerStatus1": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus2": "ล้มเหลว",
-  "@dealsViewSpinnerStatus2": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus3": "กำลังประมวลผล",
-  "@dealsViewSpinnerStatus3": {
-    "type": "text"
-  },
-  "dealsViewSpinnerStatus4": "ดีลใหม่",
-  "@dealsViewSpinnerStatus4": {
-    "type": "text"
-  },
-  "dealsHeaderSerial": "หมายเลขเดียว",
-  "@dealsHeaderSerial": {
-    "type": "text"
-  },
-  "dealsHeaderType": "items",
-  "@dealsHeaderType": {
-    "type": "text"
-  },
-  "dealsHeaderDetail": "รายละเอียด",
-  "@dealsHeaderDetail": {
-    "type": "text"
-  },
-  "dealsHeaderStatus": "สถานะการสั่งซื้อ",
-  "@dealsHeaderStatus": {
-    "type": "text"
-  },
-  "dealsHeaderDate": "วันที่",
-  "@dealsHeaderDate": {
-    "type": "text"
-  },
-  "dealsHeaderAmount": "จำนวนเงิน",
-  "@dealsHeaderAmount": {
-    "type": "text"
-  },
-  "depositPaymentNoData": "ตรวจสอบว่าไม่มีวิธีการเติมเงิน",
-  "@depositPaymentNoData": {
-    "type": "text"
-  },
-  "DepositPaymentTitleBank": "เงินฝากธนาคาร",
-  "@depositPaymentTitleBank": {
-    "type": "text"
-  },
-  "DepositPaymentTitleQuick": "การจ่ายเงินด่วน (แนะนำ)",
-  "@depositPaymentTitleQuick": {
-    "type": "text"
-  },
-  "DepositPaymentTitleUnion": "ยูเนี่ยนเพย์",
-  "@depositPaymentTitleUnion": {
-    "type": "text"
-  },
-  "DepositPaymentTitleCgp": "CGPay",
-  "@depositPaymentTitleCgp": {
-    "type": "text"
-  },
-  "DepositPaymentTitleAli": "อาลีเพย์",
-  "@depositPaymentTitleAli": {
-    "type": "text"
-  },
-  "DepositPaymentTitleJd": "JD Pay",
-  "@depositPaymentTitleJd": {
-    "type": "text"
-  },
-  "DepositPaymentTitleOnline": "การชำระเงินออนไลน์",
-  "@depositPaymentTitleOnline": {
-    "type": "text"
-  },
-  "DepositPaymentTitleWechat": "WeChat Pay",
-  "@depositPaymentTitleWechat": {
-    "type": "text"
-  },
-  "DepositPaymentTitleAtm": "WEB ATM",
-  "@depositPaymentTitleAtm": {
-    "type": "text"
-  },
-  "DepositPaymentSpinnerTitlePromo": "เลือกข้อเสนอ",
-  "@depositPaymentSpinnerTitlePromo": {
-    "type": "text"
-  },
-  "DepositPaymentSpinnerTitleBank": "เงินฝากธนาคาร",
-  "@depositPaymentSpinnerTitleBank": {
-    "type": "text"
-  },
-  "DepositPaymentSpinnerTitleAccountBank": "ธนาคาร",
-  "@depositPaymentSpinnerTitleAccountBank": {
-    "type": "text"
-  },
-  "DepositPaymentSpinnerTitleMethod": "วิธีการเติมเงิน",
-  "@depositPaymentSpinnerTitleMethod": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleName": "ชื่อ",
-  "@depositPaymentEditTitleName": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleNameHint": "กรอกข้อมูลเจ้าของบัญชี",
-  "@depositPaymentEditTitleNameHint": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleAccount": "บัญชีธนาคาร",
-  "@depositPaymentEditTitleAccount": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleAccountHint": "กรอกบัญชีธนาคาร",
-  "@depositPaymentEditTitleAccountHint": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleAmount": "จำนวนเงินฝาก",
-  "@depositPaymentEditTitleAmount": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleAmountHintVND": "ความเป็นจริง: {value} VND",
-  "@depositPaymentEditTitleAmountHintVND": {
+  "msgWelcomeUser": "ยินดีต้อนรับ {name}",
+  "@msgWelcomeUser": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "value": {
-        "example": "100"
+      "name": {
+        "example": "user"
       }
     }
   },
-  "DepositPaymentEditTitleNote": "หมายเหตุ",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
-  "DepositPaymentEditTitleAmountHintRange": "ช่วง: {num} ~ {num2}",
-  "@depositPaymentEditTitleAmountHintRange": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "1"
-      },
-      "num2": {
-        "example": "100"
-      }
-    }
-  },
-  "DepositPaymentEditTitleAmountHintRangeStep": "ช่วง: {num} ~ {num2} (ขั้นตอน: {num3})",
-  "@depositPaymentEditTitleAmountHintRangeStep": {
-    "type": "text",
-    "placeholders": {
-      "num": {
-        "example": "50"
-      },
-      "num2": {
-        "example": "500"
-      },
-      "num3": {
-        "example": "50"
-      }
-    }
-  },
-  "DepositPaymentButtonTitleTutorial": "บทช่วยสอน",
-  "@depositPaymentButtonTitleTutorial": {
-    "type": "text"
-  },
-  "DepositPaymentTitleTutorial": "บทช่วยสอน",
-  "@depositPaymentTitleTutorial": {
-    "type": "text"
-  },
-  "DepositPaymentMethodLocal1": "โอนเงินภายในประเทศ",
-  "@DepositPaymentMethodLocal1": {
-    "type": "text"
-  },
-  "DepositPaymentMethodLocal2": "เงินฝาก ATM",
-  "@DepositPaymentMethodLocal2": {
-    "type": "text"
-  },
-  "DepositPaymentNoPromo": "ไม่มีโปรโมชั่น",
-  "@depositPaymentNoPromo": {
-    "type": "text"
-  },
-  "DepositHintRedirectBankcard": "โปรดเพิ่มบัตรธนาคารก่อน",
-  "@depositHintRedirectBankcard": {
-    "type": "text"
-  },
-  "DepositHintTextAccount": "โปรดติดต่อฝ่ายบริการลูกค้าสำหรับข้อมูลบัญชีเติมเงิน",
-  "@depositHintTextAccount": {
-    "type": "text"
-  },
-  "DepositHintTextAmount": "ขีด จำกัด การฝากเงินครั้งเดียว: ฿ {value}",
-  "@depositHintTextAmount": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "100"
-      }
-    }
-  },
-  "DepositHintTextService": "บริการลูกค้าออนไลน์",
-  "@depositHintTextService": {
-    "type": "text"
-  },
-  "DepositHintTextTitle": "หมายเหตุ",
-  "@depositHintTextTitle": {
-    "type": "text"
-  },
-  "DepositHintTextMax": "{no} ขีด จำกัด สูงสุดเดียว \n",
-  "@depositHintTextMax": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "1. "
-      }
-    }
-  },
-  "DepositHintTextClearInfo": "{no} [คำเตือนสำคัญ] อย่าเก็บบัญชีธนาคารของคุณไว้โปรดรับบัญชีเรียกเก็บเงินล่าสุดอีกครั้งก่อนการเติมเงินแต่ละครั้งหากคุณฝากเงินไปยังบัญชีรับเงินที่ปิดใช้งาน บริษัท จะไม่สามารถตรวจสอบการเรียกเก็บเงินและจะไม่ รับผิดชอบ! \n ",
-  "@depositHintTextClearInfo": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "2. "
-      }
-    }
-  },
-  "DepositHintTextMaxExceed": "{no} เกินขีด จำกัด การชำระเงินออนไลน์สำหรับหนึ่งวันหรือการฝากจำนวนมากเพียงครั้งเดียวสามารถใช้วิธีการฝากอื่นได้ \n",
-  "@depositHintTextMaxExceed": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "3. "
-      }
-    }
-  },
-  "DepositHintTextFailure": "{no} หากคุณพบความล้มเหลวเช่นการสแกนเงินฝากล้มเหลวโปรดลองรีเฟรชและลองอีกครั้งและติดต่อฝ่ายบริการลูกค้าเพื่อใช้ช่องทางอื่นทดแทน \n",
-  "@depositHintTextFailure": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "4. "
-      }
-    }
-  },
-  "DepositHintTextInfo": "{no} การชำระเงินธนาคารและชื่อบัญชีโปรดติดต่อ",
-  "@depositHintTextInfo": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "5. "
-      }
-    }
-  },
-  "DepositHintTextUnionShortcut": "{no} เปิดฟังก์ชันด่วนสำหรับ UnionPay เพื่อให้การชำระเงินของคุณสะดวกยิ่งขึ้น \n",
-  "@depositHintTextUnionShortcut": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "6. "
-      }
-    }
-  },
-  "DepositHintTextQuickpay": "{no} คำเตือนที่อบอุ่น: คุณต้องจ่ายทศนิยมสองตำแหน่งเพื่อการชำระเงินที่รวดเร็วและระบบจะนำเข้าโดยอัตโนมัติ (หากคุณส่ง 00 สำหรับทศนิยมสองตำแหน่งจะไม่สำเร็จ) \n",
-  "@depositHintTextQuickpay": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "7. "
-      }
-    }
-  },
-  "DepositHintTextUnion": "{no} ต้องการใช้รหัสสแกน UnionPay ในการชำระเงินตราบใดที่คุณมีบัตร UnionPay ที่ขึ้นต้นด้วยหมายเลขบัตร 62 ก็สามารถใช้บัตรเดบิตของบัตรเครดิตได้ \n",
-  "@depositHintTextUnion": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "8. "
-      }
-    }
-  },
-  "DepositHintTextUnionA": "A. ดาวน์โหลดแอพ China Bank หรือ UnionPay Wallet บนโทรศัพท์ของคุณ \n",
-  "@depositHintTextUnionA": {
-    "type": "text"
-  },
-  "DepositHintTextUnionB": "B. เข้าสู่ระบบแอป China Bank และใช้ฟังก์ชันการชำระเงินที่มุมขวาบนหรือฟังก์ชันการชำระเงินในโมดูลการชำระเงินผ่านมือถือ \n",
-  "@depositHintTextUnionB": {
-    "type": "text"
-  },
-  "DepositHintTextUnionC": "C. เข้าสู่หน้ารหัส QR สำหรับการชำระเงินให้กับผู้ขายเพียงแค่สแกนรหัสด้วยเครื่อง \n",
-  "@depositHintTextUnionC": {
-    "type": "text"
-  },
-  "DepositHintTextAli": "{no} บัตรเดบิตที่ถูก จำกัด และการชำระยอดคงเหลือ Alipay! \n",
-  "@depositHintTextAli": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "9. "
-      }
-    }
-  },
-  "DepositHintTextLastNum": "{no} หากการสิ้นสุดของธุรกรรมเดียวจำนวนเงินไม่ใช่ 0 (เช่น: 1,000 หยวน) จะทำให้การฝากเงินไม่สำเร็จ \n",
-  "@depositHintTextLastNum": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "10. "
-      }
-    }
-  },
-  "DepositHintTextLimit": "{no} โซลูชันการ จำกัด ผู้ออก: ต้องการให้ผู้ใช้โทรติดต่อฝ่ายบริการลูกค้าของผู้ออกบัตรเพื่อขอเพิ่มขีด จำกัด ธุรกรรมออนไลน์ \n",
-  "@depositHintTextLimit": {
-    "type": "text",
-    "placeholders": {
-      "no": {
-        "example": "11. "
-      }
-    }
-  },
-  "DepositMessageFailed": "การเติมเงินล้มเหลวโปรดลองอีกครั้งในภายหลังหรือติดต่อฝ่ายบริการลูกค้า",
-  "@depositMessageFailed": {
-    "type": "text"
-  },
-  "DepositMessageSuccessLocal": "ขอความสำเร็จหมายเลขคำสั่งซื้อ {value}",
-  "@depositMessageSuccessLocal": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "12345"
-      }
-    }
-  },
-  "DepositNewbieQuick0": "สอนทำบัตรเดบิต",
-  "@DepositNewbieQuick0": {
-    "type": "text"
-  },
-  "DepositNewbieAli0": "บทช่วยสอน Alipay",
-  "@DepositNewbieAli0": {
-    "type": "text"
-  },
-  "DepositNewbieAli1": "ขั้นแรกให้เปิด Alipay บนโทรศัพท์มือถือของคุณและเข้าสู่ระบบคลิกฟังก์ชัน [โอน] บนเมนบอร์ด",
-  "@DepositNewbieAli1": {
-    "type": "text"
-  },
-  "DepositNewbieAli2": "เลือกปุ่ม [ไปที่บัตรธนาคาร] ที่ด้านล่างของหน้าการโอนเงิน",
-  "@DepositNewbieAli2": {
-    "type": "text"
-  },
-  "DepositNewbieAli3": "นอกจากนี้ยังจำเป็นต้องกรอก [หมายเลขบัตรผู้รับเงิน] == [ธนาคาร] == [ชื่อผู้รับเงิน] == [จำนวนเงินที่ชำระ]",
-  "@DepositNewbieAli3": {
-    "type": "text"
-  },
-  "DepositNewbieAli4": "หลังจากส่งแล้วให้ป้อน Alipay [รหัสผ่านการชำระเงิน]",
-  "@DepositNewbieAli4": {
-    "type": "text"
-  },
-  "DepositNewbieAli5": "หลังจากการโอนเงินสำเร็จคุณสามารถดูได้ในรายละเอียดการเรียกเก็บเงิน Alipay และเปลี่ยนรายละเอียดการโอนเงินและเวลาที่มาถึง",
-  "@DepositNewbieAli5": {
-    "type": "text"
-  },
-  "DepositNewbieJd0": "บทช่วยสอน JD.COM",
-  "@DepositNewbieJd0": {
-    "type": "text"
-  },
-  "DepositNewbieJd1": "1、 ดาวน์โหลดแอป JD.COM",
-  "@DepositNewbieJd1": {
-    "type": "text"
-  },
-  "DepositNewbieJd2": "2、 เข้าสู่แอพและกดแท็บ 'My'",
-  "@DepositNewbieJd2": {
-    "type": "text"
-  },
-  "DepositNewbieJd3": "3、 ลงทะเบียนหรือเข้าสู่ระบบบัญชี",
-  "@DepositNewbieJd3": {
-    "type": "text"
-  },
-  "DepositNewbieJd4": "4、 กด 'Scanner' เพื่อชำระเงินหรือผูกบัตรธนาคาร",
-  "@DepositNewbieJd4": {
-    "type": "text"
-  },
-  "DepositNewbieUnion0": "บทแนะนำการชำระเงิน UnionPay",
-  "@DepositNewbieUnion0": {
-    "type": "text"
-  },
-  "DepositNewbieUnion1": "1. ดาวน์โหลดแอป UnionPay Wallet",
-  "@DepositNewbieUnion1": {
-    "type": "text"
-  },
-  "DepositNewbieUnion2": "2. ลงทะเบียนและเข้าสู่ระบบ",
-  "@DepositNewbieUnion2": {
-    "type": "text"
-  },
-  "DepositNewbieUnion3": "3. ผูกบัตรธนาคารเลือกตัวจัดการบัตร→รายการบัตร→เพิ่มบัตรธนาคาร→เพิ่มบัตรใหม่",
-  "@DepositNewbieUnion3": {
-    "type": "text"
-  },
-  "DepositNewbieUnion4": "คุณสามารถเพิ่มทั้งบัตรเครดิตและบัตรเดบิต",
-  "@DepositNewbieUnion4": {
-    "type": "text"
-  },
-  "DepositNewbieWechat0": "การสอนการสแกนโค้ด",
-  "@DepositNewbieWechat0": {
-    "type": "text"
-  },
-  "DepositNewbieWechat1": "1. รับรหัส QR สำหรับการชำระเงินด้วยโทรศัพท์มือถือ",
-  "@DepositNewbieWechat1": {
-    "type": "text"
-  },
-  "DepositNewbieWechat2": "2. จากนั้นใช้ WeChat โทรศัพท์มือถืออีกเครื่องสแกนโค้ด",
-  "@DepositNewbieWechat2": {
-    "type": "text"
-  },
-  "DepositNewbieCgp0": "ลิงก์ดาวน์โหลด",
-  "@DepositNewbieCgp0": {
-    "type": "text"
-  },
-  "DepositNewbieButtonCgp1": "APP",
-  "@DepositNewbieButtonCgp1": {
-    "type": "text"
-  },
-  "DepositNewbieButtonCgp2": "คู่มือ",
-  "@DepositNewbieButtonCgp2": {
-    "type": "text"
-  },
-  "balanceStatusMaintenance": "การบำรุงรักษา",
-  "@balanceStatusMaintenance": {
-    "type": "text"
-  },
-  "balanceTransferInText": "โอนเข้า",
-  "@balanceTransferInText": {
-    "type": "text"
-  },
-  "balanceTransferOutText": "โอนออก",
-  "@balanceTransferOutText": {
-    "type": "text"
-  },
-  "balanceTransferAmountError": "เครดิตไม่เพียงพอ: {value}",
-  "@balanceTransferAmountError": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "0.2"
-      }
-    }
-  },
-  "balanceTransferAlertTitle": "โปรดยืนยัน",
-  "@balanceTransferAlertTitle": {
-    "type": "text"
-  },
-  "balanceTransferAlertMsg": "คุณแน่ใจหรือไม่ว่า {action} ไปยังแพลตฟอร์ม {platform}",
-  "@balanceTransferAlertMsg": {
-    "type": "text",
-    "placeholders": {
-      "action": {
-        "example": "ช่อง"
-      },
-      "platform": {
-        "example": "AG"
-      }
-    }
-  },
-  "balanceHintTextTitle": "การแจ้งเตือน:",
-  "@balanceHintTextTitle": {
-    "type": "text"
-  },
-  "balanceHintText1": "1. กรุณาออกจากอินเทอร์เฟซการเดิมพันเกมหรือเกมก่อนโอนเงิน",
-  "@balanceHintText1": {
-    "type": "text"
-  },
-  "balanceHintText2": "2. เมื่อไม่ได้เข้าร่วมกิจกรรมจำนวนเงินรับส่งภายในอาคารต้องไม่ต่ำกว่า 1 หยวนและไม่มีค่าธรรมเนียมการจัดการสำหรับการโอนในร่ม",
-  "@balanceHintText2": {
-    "type": "text"
-  },
-  "balanceHintText3": "3. หากคุณมีการเชื่อมต่ออินเทอร์เน็ตที่ช้าโปรดรอสักครู่และอย่าส่งซ้ำหลายครั้ง",
-  "@balanceHintText3": {
-    "type": "text"
-  },
-  "balanceHintText4": "4. หากจำนวนแพลตฟอร์มไม่เปลี่ยนแปลงหลังจากการโอนสำเร็จ 4 ครั้งโปรดรีเฟรชแพลตฟอร์มด้วยตนเองหรือติดต่อฝ่ายบริการลูกค้า",
-  "@balanceHintText4": {
-    "type": "text"
-  },
-  "rollbackHeaderTextTime": "ช่วงเวลา",
-  "@rollbackHeaderTextTime": {
-    "type": "text"
-  },
-  "rollbackHeaderTextCode": "รหัสธุรกรรม",
-  "@rollbackHeaderTextCode": {
-    "type": "text"
-  },
-  "rollbackHeaderTextType": "ประเภท",
-  "@rollbackHeaderTextType": {
-    "type": "text"
-  },
-  "rollbackHeaderTextAmount": "จำนวนเงิน",
-  "@rollbackHeaderTextAmount": {
-    "type": "text"
-  },
-  "rollbackHeaderTextMultiple": "หลายรายการ",
-  "@rollbackHeaderTextMultiple": {
-    "type": "text"
-  },
-  "rollbackHeaderTextPromo": "ข้อเสนอเงินสด",
-  "@rollbackHeaderTextPromo": {
-    "type": "text"
-  },
-  "rollbackHeaderTextRequire": "ข้อกำหนดสำหรับจำนวนเงินเดิมพัน",
-  "@rollbackHeaderTextRequire": {
-    "type": "text"
-  },
-  "rollbackHeaderTextCurrent": "เดิมพันปัจจุบัน",
-  "@rollbackHeaderTextCurrent": {
-    "type": "text"
-  },
-  "rollbackHeaderTextNeed": "ต้องใช้เงินทุนที่เหลืออยู่",
-  "@rollbackHeaderTextNeed": {
-    "type": "text"
-  },
-  "rollbackHeaderTextTotal": "ทั้งหมด",
-  "@rollbackHeaderTextTotal": {
-    "type": "text"
-  },
-  "agentActionLoginHint": "กรุณาเข้าสู่ระบบบัญชีตัวแทนของคุณก่อน",
-  "@agentActionLoginHint": {
-    "type": "text"
-  },
-  "agentActionLogin": "เข้าสู่ระบบตัวแทน",
-  "@agentActionLogin": {
-    "type": "text"
-  },
-  "agentActionRegister": "การลงทะเบียนตัวแทน",
-  "@agentActionRegister": {
-    "type": "text"
-  },
-  "agentRegisterSuccess": "ส่งตัวแทนเข้ารับการตรวจสอบแล้วโปรดรอสักครู่",
-  "@agentRegisterSuccess": {
-    "type": "text"
-  },
-  "agentAccountLevelCompany": "บริษัท",
-  "@agentAccountLevelCompany": {
-    "type": "text"
-  },
-  "agentAccountLevelGrandMaster": "ประธานาธิบดีใหญ่",
-  "@agentAccountLevelGrandMaster": {
-    "type": "text"
-  },
-  "agentAccountLevelMaster": "รวมรุ่น",
-  "@agentAccountLevelMaster": {
-    "type": "text"
-  },
-  "agentAccountLevelAgent": "พร็อกซี",
-  "@agentAccountLevelAgent": {
-    "type": "text"
-  },
-  "agentAccountLevelMember": "สมาชิก",
-  "@agentAccountLevelMember": {
-    "type": "text"
-  },
-  "agentTitleAccount": "{level}หมายเลขบัญชี",
-  "@agentTitleAccount": {
-    "type": "text",
-    "placeholders": {
-      "level": {
-        "example": "agent"
-      }
-    }
-  },
-  "agentTabTitleInfo": "ข้อมูล",
-  "@agentTabTitleInfo": {
-    "type": "text"
-  },
-  "agentTabTitleChart": "แผนภูมิ",
-  "@agentTabTitleChart": {
-    "type": "text"
-  },
-  "agentTabTitleCommission": "ค่าคอมมิชชั่น",
-  "@agentTabTitleCommission": {
-    "type": "text"
-  },
-  "agentTabTitleLedger": "บัญชีแยกประเภท",
-  "@agentTabTitleLedger": {
-    "type": "text"
-  },
-  "agentTabTitleDownlineList": "{level}รายการ",
-  "@agentTabTitleDownlineList": {
-    "type": "text",
-    "placeholders": {
-      "level": {
-        "example": "agent"
-      }
-    }
-  },
-  "agentTabTitleCard": "แก้ไขบัตรธนาคาร",
-  "@agentTabTitleCard": {
-    "type": "text"
-  },
-  "agentTabTitleAds": "โฆษณา",
-  "@agentTabTitleAds": {
-    "type": "text"
-  },
-  "agentInfoFieldCode": "รหัสแนะนำ",
-  "@agentInfoTitleCode": {
-    "type": "text"
-  },
-  "agentInfoFieldLink": "ลิงก์ตัวแทน",
-  "@agentInfoFieldLink": {
-    "type": "text"
-  },
-  "agentInfoFieldAgents": "ตัวแทน",
-  "@agentInfoFieldAgents": {
-    "type": "text"
-  },
-  "agentInfoFieldButtonGetCode": "รับรหัส",
-  "@agentInfoFieldButtonGetCode": {
-    "type": "text"
-  },
-  "agentButtonTextShare": "แบ่งปัน",
-  "@agentButtonTextShare": {
-    "type": "text"
-  },
-  "agentButtonTextLink": "ลิงก์",
-  "@agentButtonTextLink": {
-    "type": "text"
-  },
-  "agentButtonTextCopy": "คัดลอก",
-  "@agentButtonTextCopy": {
-    "type": "text"
-  },
-  "agentTextChartDate": "เวลา:",
-  "@agentTextChartDate": {
-    "type": "text"
-  },
-  "agentTextChartMonth": "เดือนนี้",
-  "@agentTextChartMonth": {
-    "type": "text"
-  },
-  "agentTextChartMonthPrev": "เดือนที่แล้ว",
-  "@agentTextChartMonthPrev": {
-    "type": "text"
-  },
-  "agentTextChartOption": "เลือก",
-  "@agentTextChartOption": {
-    "type": "text"
-  },
-  "agentTextChartPlatform": "แพลตฟอร์ม",
-  "@agentTextChartPlatform": {
-    "type": "text"
-  },
-  "agentTextChartCategory": "หมวดหมู่",
-  "@agentTextChartCategory": {
-    "type": "text"
-  },
-  "agentTextChartQuery": "แบบสอบถาม",
-  "@agentTextChartQuery": {
-    "type": "text"
-  },
-  "agentTextChartCheckFull": "แสดงข้อมูลทั้งหมด",
-  "@agentTextChartCheckFull": {
-    "type": "text"
-  },
-  "agentChartTableSpinner": "แบบฟอร์ม",
-  "@agentChartTableSpinner": {
-    "type": "text"
-  },
-  "agentChartHeaderAccount": "บัญชี",
-  "@agentChartHeaderAccount": {
-    "type": "text"
-  },
-  "agentChartHeaderWager": "จำนวนเงินเดิมพัน",
-  "@agentChartHeaderWager": {
-    "type": "text"
-  },
-  "agentChartHeaderBet": "จำนวนเงินเดิมพัน",
-  "@agentChartHeaderBet": {
-    "type": "text"
-  },
-  "agentChartHeaderValid": "จำนวนเงินเดิมพันที่ถูกต้อง",
-  "@agentChartHeaderValid": {
-    "type": "text"
-  },
-  "agentChartHeaderPayout": "จ่าย",
-  "@agentChartHeaderPayout": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalWager": "ปริมาณการเดิมพันทั้งหมด",
-  "@agentChartHeaderTotalWager": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalBet": "เดิมพันทั้งหมด",
-  "@agentChartHeaderTotalBet": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalValid": "จำนวนเงินที่ถูกต้องทั้งหมด",
-  "@agentChartHeaderTotalValid": {
-    "type": "text"
-  },
-  "agentChartHeaderTotalPayout": "การจ่ายเงินทั้งหมด",
-  "@agentChartHeaderTotalPayout": {
-    "type": "text"
-  },
-  "agentCommissionHeaderMonth": "เดือน",
-  "@agentCommissionHeaderMonth": {
-    "type": "text"
-  },
-  "agentCommissionHeaderLowLine": "ค่าคอมมิชชั่นออฟไลน์",
-  "@agentCommissionHeaderLowLine": {
-    "type": "text"
-  },
-  "agentCommissionHeaderGroup": "ค่าคอมมิชชั่นกลุ่ม",
-  "@agentCommissionHeaderGroup": {
-    "type": "text"
-  },
-  "agentCommissionHeaderAdmin": "ค่าธรรมเนียมการดูแลระบบ",
-  "@agentCommissionHeaderAdmin": {
-    "type": "text"
-  },
-  "agentCommissionHeaderPlatform": "ค่าธรรมเนียมแพลตฟอร์ม",
-  "@agentCommissionHeaderPlatform": {
-    "type": "text"
-  },
-  "agentCommissionHeaderReceive": "ค่าคอมมิชชันจริง",
-  "@agentCommissionHeaderReceive": {
-    "type": "text"
-  },
-  "agentLedgerFieldTitleAccount": "โปรดป้อนชื่อตัวแทน",
-  "@agentLedgerFieldTitleAccount": {
-    "type": "text"
-  },
-  "agentLedgerFieldTitleDepositCheck": "ฝากสมาชิก",
-  "@agentLedgerFieldTitleDepositCheck": {
-    "type": "text"
-  },
-  "agentLedgerHeaderNo": "หมายเลขซีเรียล",
-  "@agentLedgerHeaderNo": {
-    "type": "text"
-  },
-  "agentLedgerHeaderAccount": "บัญชี",
-  "@agentLedgerHeaderAccount": {
-    "type": "text"
-  },
-  "agentLedgerHeaderDeposit": "เงินฝาก",
-  "@agentLedgerHeaderDeposit": {
-    "type": "text"
-  },
-  "agentLedgerHeaderWithdraw": "ถอน",
-  "@agentLedgerHeaderWithdraw": {
-    "type": "text"
-  },
-  "agentLedgerHeaderPromo": "โปรโมชั่น",
-  "@agentLedgerHeaderPromo": {
-    "type": "text"
-  },
-  "agentLedgerHeaderRefund": "การคืนเงิน",
-  "@agentLedgerHeaderRefund": {
-    "type": "text"
-  },
-  "agentLedgerHeaderRegDate": "เวลาลงทะเบียน",
-  "@agentLedgerHeaderRegDate": {
-    "type": "text"
-  },
-  "agentLedgerHeaderLastLogin": "เวลาเข้าสู่ระบบครั้งล่าสุด",
-  "@agentLedgerHeaderLastLogin": {
-    "type": "text"
-  },
-  "agentBankcardHint": "หลังจากเพิ่มบัตรธนาคารแล้วหากคุณต้องการแก้ไขโปรดติดต่อ บริษัท เพื่อทำการแก้ไข",
-  "@agentBankcardHint": {
-    "type": "text"
-  },
-  "agentAddDownlineHint": "※ {level} สามารถเพิ่มได้เฉพาะบัญชี {downline}",
-  "@agentAddDownlineHint": {
-    "type": "text",
-    "placeholders": {
-      "level": {
-        "example": "Slot"
-      },
-      "downline": {
-        "example": "AG"
-      }
-    }
-  },
-  "agentDownlineButtonAdd": "เพิ่มออฟไลน์",
-  "@agentDownlineButtonAdd": {
-    "type": "text"
-  },
-  "agentDownlineButtonProportion": "อัปเดตบัญชี",
-  "@agentDownlineButtonProportion": {
-    "type": "text"
-  },
-  "agentDownlineHeaderAccount": "หมายเลขบัญชี",
-  "@agentDownlineHeaderAccount": {
-    "type": "text"
-  },
-  "agentDownlineHeaderStatus": "สถานะ",
-  "@agentDownlineHeaderStatus": {
-    "type": "text"
-  },
-  "agentDownlineHeaderStatus0": "เปิดใช้งาน",
-  "@agentDownlineHeaderStatus0": {
-    "type": "text"
-  },
-  "agentDownlineHeaderStatus1": "ปิดการใช้งาน",
-  "@agentDownlineHeaderStatus1": {
-    "type": "text"
-  },
-  "agentDownlineHeaderUpdateHint": "อัปเดตบัญชี\n(คุณสามารถแก้ไขบัญชีได้โดยตรงหลังจากเพิ่มบัญชี)",
-  "@agentDownlineHeaderUpdateHint": {
-    "type": "text"
-  },
-  "agentDownlineHeaderUpdate": "อัปเดตบัญชี",
-  "@agentDownlineHeaderUpdate": {
-    "type": "text"
-  },
-  "agentDownlineHeaderMore": "มากกว่า",
-  "@agentDownlineHeaderMore": {
-    "type": "text"
-  },
-  "agentDownlineHeaderCategory": "ประเภท",
-  "@agentDownlineHeaderCategory": {
-    "type": "text"
-  },
-  "agentDownlineHeaderProportion": "คิดเป็น",
-  "@agentDownlineHeaderProportion": {
-    "type": "text"
-  },
-  "agentDownlineHeaderFee": "ค่าธรรมเนียมการจัดการ /\n ค่าธรรมเนียมแพลตฟอร์ม",
-  "@agentDownlineHeaderFee": {
-    "type": "text"
-  },
-  "agentAdTabAvailable": "ว่าง",
-  "@agentAdTabAvailable": {
-    "type": "text"
-  },
-  "agentAdTabGenerated": "สร้างแล้ว",
-  "@agentAdTabGenerated": {
-    "type": "text"
-  },
-  "agentAdButtonGenerate": "สร้างโฆษณา",
-  "@agentAdButtonGenerate": {
+  "msgWorkInProgress": "ฟีเจอร์จะเปิดตัวเร็ว ๆ นี้!",
+  "@msgWorkInProgress": {
+    "description": "",
     "type": "text"
   },
   "noticeTabGeneral": "ข้อความทั่วไป",
   "@noticeTabGeneral": {
+    "description": "",
     "type": "text"
   },
-  "noticeTabMaintenance": "การแจ้งเตือนการบำรุงรักษา",
+  "noticeTabMaintenance": "ประกาศเกี่ยวกับการบำรุงรักษา",
   "@noticeTabMaintenance": {
+    "description": "",
     "type": "text"
   },
-  "wheelTextTitleCount": "จับฉลากได้: {num} ครั้ง",
-  "@wheelTextTitleCount": {
+  "pageBtnChangePassword": "เปลี่ยนรหัสผ่าน",
+  "@pageBtnChangePassword": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnContactCs": "ติดต่อฝ่ายบริการลูกค้า",
+  "@pageBtnContactCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnHelp": "บทช่วยสอน",
+  "@pageBtnHelp": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnLogin": "เข้าสู่ระบบ",
+  "@pageBtnLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnLogout": "ออกจากระบบ",
+  "@pageBtnLogout": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnMenu": "เมนู",
+  "@pageBtnMenu": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnNotify": "แจ้งเตือน",
+  "@pageBtnNotify": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnOnlineCs": "บริการลูกค้าออนไลน์",
+  "@pageBtnOnlineCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnRegister": "ลงทะเบียน",
+  "@pageBtnRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnSetting": "การตั้งค่า",
+  "@pageBtnSetting": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintExchangeRecord": "การแลกเปลี่ยนรางวัลบันทึกโบนัส",
+  "@pageHintExchangeRecord": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintHelpCenter": "หากคุณมีคำถามเกี่ยวกับการฝากและถอนการเดิมพันโปรดดูที่นี่",
+  "@pageHintHelpCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintInvite": "ชวนเพื่อนมาแชร์เงินสดหมื่นล้าน",
+  "@pageHintInvite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintJoinUs": "แผนการเข้าร่วม",
+  "@pageHintJoinUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageHintWebsite": "เปิดหน้าเว็บไซต์",
+  "@pageHintWebsite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleAboutUs": "เกี่ยวกับเรา",
+  "@pageTitleAboutUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleCenter": "ศูนย์ส่วนบุคคล",
+  "@pageTitleCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleDeposit": "เติมเงิน",
+  "@pageTitleDeposit": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleExchangeRecord": "บันทึกการแลกรางวัล",
+  "@pageTitleExchangeRecord": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleHelpCenter": "ศูนย์ช่วยเหลือ",
+  "@pageTitleHelpCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleHome": "หน้าแรก",
+  "@pageTitleHome": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleInvite": "เชิญเพื่อน",
+  "@pageTitleInvite": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleJoinUs": "เข้าร่วมกับเรา",
+  "@pageTitleJoinUs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleLogin": "เข้าสู่ระบบ",
+  "@pageTitleLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMember": "ของฉัน",
+  "@pageTitleMember": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberBalance": "ยอดคงเหลือของแพลตฟอร์ม",
+  "@pageTitleMemberBalance": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberBets": "ประวัติการเดิมพัน",
+  "@pageTitleMemberBets": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberCard": "บัตรธนาคาร",
+  "@pageTitleMemberCard": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberCenter": "ศูนย์บัญชี",
+  "@pageTitleMemberCenter": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberDeals": "ประวัติการทำธุรกรรม",
+  "@pageTitleMemberDeals": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberFlow": "โฟลว์เรคคอร์ด",
+  "@pageTitleMemberFlow": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberLogin": "เข้าสู่ระบบสมาชิก",
+  "@pageTitleMemberLogin": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberMessage": "ข้อความของไซต์",
+  "@pageTitleMemberMessage": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberTransaction": "บันทึกการโอน",
+  "@pageTitleMemberTransaction": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberTransfer": "โอน",
+  "@pageTitleMemberTransfer": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberWallet": "โอนกระเป๋าเงินฟรี",
+  "@pageTitleMemberWallet": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleMemberWithdraw": "ถอน",
+  "@pageTitleMemberWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleNotice": "ประกาศ",
+  "@pageTitleNotice": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitlePromo": "โปรโมชั่น",
+  "@pageTitlePromo": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegister": "ลงทะเบียน",
+  "@pageTitleRegister": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegisterFree": "ลงทะเบียนฟรี",
+  "@pageTitleRegisterFree": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleRegisterMember": "สมาชิกที่ลงทะเบียน",
+  "@pageTitleRegisterMember": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleService": "ฝ่ายบริการลูกค้า",
+  "@pageTitleService": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleSponsor": "ผู้สนับสนุน",
+  "@pageTitleSponsor": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleStore": "ห้างสรรพสินค้ายาโบ",
+  "@pageTitleStore": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleVip": "วีไอพี",
+  "@pageTitleVip": {
+    "description": "",
+    "type": "text"
+  },
+  "pageTitleVipAbout": "สิทธิพิเศษระดับ VIP",
+  "@pageTitleVipAbout": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailApply": "วิธีการสมัคร",
+  "@promoDetailApply": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailBtn": ">> ข้อมูลโปรโมชั่น",
+  "@promoDetailBtn": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailContent": "เนื้อหากิจกรรม",
+  "@promoDetailContent": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailPlatform": "แพลตฟอร์มที่ใช้งานได้",
+  "@promoDetailPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "promoDetailRules": "กฎของกิจกรรม",
+  "@promoDetailRules": {
+    "description": "",
+    "type": "text"
+  },
+  "promoNoInfo": "ไม่ตรวจสอบข้อมูลส่วนลด",
+  "@promoNoInfo": {
+    "description": "",
+    "type": "text"
+  },
+  "promoNotFound": "ตรวจสอบว่าไม่มีส่วนลด",
+  "@promoNotFound": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexDeposit": "เงินฝาก",
+  "@rollbackIndexDeposit": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexPromo": "โปรโมชัน",
+  "@rollbackIndexPromo": {
+    "description": "",
+    "type": "text"
+  },
+  "rollbackIndexRollback": "คืนน้ำ",
+  "@rollbackIndexRollback": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceDescCustomerService": "บริการตลอด 24 ชั่วโมงไม่มีสะดุด",
+  "@serviceDescCustomerService": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceRouteHint": "ต้องการความช่วยเหลือหรือติดต่อเรา",
+  "@serviceRouteHint": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleAppQr": "APP Scan Code",
+  "@serviceTitleAppQr": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleCustomerService": "บริการลูกค้าออนไลน์",
+  "@serviceTitleCustomerService": {
+    "description": "",
+    "type": "text"
+  },
+  "serviceTitleZaloQr": "Zalo Scan Code",
+  "@serviceTitleZaloQr": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderAmount": "จำนวนเงิน",
+  "@tableHeaderAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetAmount": "จำนวนเงินเดิมพัน",
+  "@tableHeaderBetAmount": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsCurrent": "การเดิมพันปัจจุบัน",
+  "@tableHeaderBetsCurrent": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsNeed": "ต้องเหลือจำนวนเงินเดิมพัน",
+  "@tableHeaderBetsNeed": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBetsRequire": "จำนวนเงินเดิมพันที่ต้องการ",
+  "@tableHeaderBetsRequire": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderBonus": "จำนวนเงินที่จ่าย",
+  "@tableHeaderBonus": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDate": "วันที่",
+  "@tableHeaderDate": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDesc": "คำอธิบาย",
+  "@tableHeaderDesc": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderDetail": "รายละเอียด",
+  "@tableHeaderDetail": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderGame": "ชื่อเกม",
+  "@tableHeaderGame": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderId": "หมายเลขหมายเหตุ",
+  "@tableHeaderId": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderMultiple": "หลายรายการ",
+  "@tableHeaderMultiple": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderObject": "โครงการ",
+  "@tableHeaderObject": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderPlatform": "แพลตฟอร์ม",
+  "@tableHeaderPlatform": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderPromo": "โปรโมชั่นเงินสด",
+  "@tableHeaderPromo": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSerial": "หมายเลขซีเรียล",
+  "@tableHeaderSerial": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSheetNo": "หมายเลขเดียว",
+  "@tableHeaderSheetNo": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderStatus": "สถานะการสั่งซื้อ",
+  "@tableHeaderStatus": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderSum": "ทั้งหมด",
+  "@tableHeaderSum": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTime": "เวลา",
+  "@tableHeaderTime": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTimeRange": "ช่วงเวลา",
+  "@tableHeaderTimeRange": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTotal": "ทั้งหมด",
+  "@tableHeaderTotal": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderTransferCode": "รหัสธุรกรรม",
+  "@tableHeaderTransferCode": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderType": "หมวดหมู่",
+  "@tableHeaderType": {
+    "description": "",
+    "type": "text"
+  },
+  "tableHeaderValidBet": "เดิมพันที่ถูกต้อง",
+  "@tableHeaderValidBet": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryAbout": "เกี่ยวกับเรา",
+  "@textCategoryAbout": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryAll": "ทั้งหมด",
+  "@textCategoryAll": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCard": "หมากรุก",
+  "@textCategoryCard": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCardFull": "ไพ่หมากรุกยอดนิยม",
+  "@textCategoryCardFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCasino": "บุคคลจริง",
+  "@textCategoryCasino": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCasinoFull": "คาสิโนสด",
+  "@textCategoryCasinoFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryCockFighting": "ชนไก่",
+  "@textCategoryCockFighting": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryEsport": "Esports",
+  "@textCategoryEsport": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryEsportFull": "กีฬาอีสปอร์ต",
+  "@textCategoryEsportFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFavorite": "รายการโปรดของฉัน",
+  "@textCategoryFavorite": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFish": "ตกปลา",
+  "@textCategoryFish": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryFishFull": "วิดีโอเกมตกปลา",
+  "@textCategoryFishFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryGames": "เกม",
+  "@textCategoryGames": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryGift": "ของขวัญ",
+  "@textCategoryGift": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryLottery": "ลอตเตอรี",
+  "@textCategoryLottery": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryLotteryFull": "การพนันลอตเตอรี่",
+  "@textCategoryLotteryFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovie": "โรงภาพยนตร์",
+  "@textCategoryMovie": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovieWeb": "ดูหนัง",
+  "@textCategoryMovieWeb": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryMovieWebHint": "คลิกฉันเพื่อชมภาพยนตร์",
+  "@textCategoryMovieWebHint": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryOther": "อื่น ๆ ",
+  "@textCategoryOther": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryRecommend": "คำแนะนำสำหรับผู้ดูแลเว็บ",
+  "@textCategoryRecommend": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySlot": "อิเล็กทรอนิกส์",
+  "@textCategorySlot": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySlotFull": "วิดีโอเกม",
+  "@textCategorySlotFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySport": "กีฬา",
+  "@textCategorySport": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategorySportFull": "กีฬากีฬา",
+  "@textCategorySportFull": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryWeb": "เวอร์ชันเว็บ",
+  "@textCategoryWeb": {
+    "description": "",
+    "type": "text"
+  },
+  "textCategoryWebHint": "คลิกฉันเพื่อเปิดเวอร์ชันเว็บ {site}",
+  "@textCategoryWebHint": {
+    "description": "",
     "type": "text",
     "placeholders": {
-      "num": {
-        "example": "4"
+      "site": {
+        "example": "Yabo"
       }
     }
   },
-  "wheelTextTitlePrize": "ประวัติการชนะ",
-  "@wheelTextTitlePrize": {
+  "textDefaultMarquee": "สวัสดีสมาชิกที่รัก! หากคุณมีคำถามใด ๆ เกี่ยวกับการใช้งานโปรดใช้ระบบบริการลูกค้าออนไลน์",
+  "@textDefaultMarquee": {
+    "description": "",
     "type": "text"
   },
-  "wheelTextTitleRecord": "บันทึกการทำงาน",
-  "@wheelTextTitleRecord": {
-    "type": "text"
-  },
-  "wheelTextTitleGet": "รับการหมุน",
-  "@wheelTextTitleGet": {
-    "type": "text"
-  },
-  "wheelTextTitleRules": "กฎของเหตุการณ์",
-  "@wheelTextTitleRules": {
-    "type": "text"
-  },
-  "wheelMessageErrorPrizeUrl": "ข้อผิดพลาดของภาพรางวัลโปรดตรวจสอบลำดับ",
-  "@wheelMessageErrorPrizeUrl": {
-    "type": "text"
-  },
-  "wheelOrderTableTextTime": "เวลา",
-  "@wheelOrderTableTextTime": {
-    "type": "text"
-  },
-  "wheelOrderTableTextPrize": "รางวัล",
-  "@wheelOrderTableTextPrize": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus": "สถานะการจัดส่ง",
-  "@wheelOrderTableTextStatus": {
-    "type": "text"
-  },
-  "wheelRecordTableTextTime": "เวลา",
-  "@wheelRecordTableTextTime": {
-    "type": "text"
-  },
-  "wheelRecordTableTextOperate": "การทำงาน",
-  "@wheelRecordTableTextOperate": {
-    "type": "text"
-  },
-  "wheelRecordTableTextCount": "จำนวนครั้ง",
-  "@wheelRecordTableTextCount": {
-    "type": "text"
-  },
-  "wheelRecordTableTextContent": "เนื้อหา",
-  "@wheelRecordTableTextContent": {
-    "type": "text"
-  },
-  "wheelApplyTableTextContent": "เนื้อหา",
-  "@wheelApplyTableTextContent": {
-    "type": "text"
-  },
-  "wheelApplyTableTextProgress": "ความคืบหน้า",
-  "@wheelApplyTableTextProgress": {
-    "type": "text"
-  },
-  "wheelApplyTableTextCount": "จำนวนรอบการหมุน",
-  "@wheelApplyTableTextCount": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus": "สถานะ",
-  "@wheelApplyTableTextStatus": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus0": "ไม่ได้จัดส่ง",
-  "@wheelOrderTableTextStatus0": {
-    "type": "text"
-  },
-  "wheelOrderTableTextStatus1": "ส่ง",
-  "@wheelOrderTableTextStatus1": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus0": "ไม่ถึง",
-  "@wheelApplyTableTextStatus0": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus1": "สำเร็จ",
-  "@wheelApplyTableTextStatus1": {
-    "type": "text"
-  },
-  "wheelApplyTableTextStatus2": "ประยุกต์",
-  "@wheelApplyTableTextStatus2": {
-    "type": "text"
-  },
-  "storeTextTitleProduct": "แลกสินค้า",
-  "@storeTextTitleProduct": {
-    "type": "text"
-  },
-  "storeTextTitleRule": "กฎการแลกเปลี่ยน",
-  "@storeTextTitleRule": {
-    "type": "text"
-  },
-  "storeTextTitleRecord": "บันทึกคะแนน",
-  "@storeTextTitleRecord": {
-    "type": "text"
-  },
-  "storeTextTitlePoint": "คะแนนสมาชิก:",
-  "@storeTextTitlePoint": {
-    "type": "text"
-  },
-  "storeTextItemHint": "จำกัด จำนวน จำกัด ",
-  "@storeTextItemHint": {
-    "type": "text"
-  },
-  "storeTextItemPoint": "{value} คะแนน",
-  "@storeTextItemPoint": {
+  "textLanguage": "ภาษา",
+  "textTotalCredit": "ทั้งหมด: {value}",
+  "@textTotalCredit": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "value": {
-        "example": "100"
+        "example": "100.0"
       }
     }
   },
-  "storeTextItemButton": "แลกเลย",
-  "@storeTextItemButton": {
+  "textTransferHint1": "1. กรุณาออกจากอินเทอร์เฟซการเดิมพันของเกมหรือเกมก่อนโอนเงิน",
+  "@textTransferHint1": {
+    "description": "",
     "type": "text"
   },
-  "storeTextItemButtonDisabled": "คะแนนไม่เพียงพอ",
-  "@storeTextItemButtonDisabled": {
+  "textTransferHint2": "2. เมื่อคุณไม่ได้เข้าร่วมกิจกรรมจำนวนเงินในการรับส่งภายในอาคารต้องไม่ต่ำกว่า 1 หยวนและไม่มีค่าธรรมเนียมการจัดการสำหรับการโอนในร่ม",
+  "@textTransferHint2": {
+    "description": "",
     "type": "text"
   },
-  "storeRuleTableHeader": "คุณจะได้รับตารางคะแนนสำหรับทุกๆ 100 หยวนของการเดิมพันที่ถูกต้อง",
-  "@storeRuleTableHeader": {
+  "textTransferHint3": "3. หากความเร็วอินเทอร์เน็ตช้าโปรดรอสักครู่และอย่าส่งซ้ำหลายครั้ง",
+  "@textTransferHint3": {
+    "description": "",
     "type": "text"
   },
-  "storeRuleTableTitle": "แต่ละแพลตฟอร์ม {value}",
-  "@storeRuleTableTitle": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "100"
-      }
-    }
-  },
-  "storeRecordSpinnerTitle1": "แสดง",
-  "@storeRecordSpinnerTitle1": {
+  "textTransferHint4": "4. หากจำนวนแพลตฟอร์มไม่เปลี่ยนแปลงหลังจากการโอนสำเร็จโปรดรีเฟรชแพลตฟอร์มด้วยตนเองหรือติดต่อฝ่ายบริการลูกค้า",
+  "@textTransferHint4": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordSpinnerTitle2": "item",
-  "@storeRecordSpinnerTitle2": {
+  "textUpdateErrorUrl": "ไม่สามารถรับ URL ดาวน์โหลดได้โปรดติดต่อฝ่ายบริการลูกค้า !!",
+  "@textUpdateErrorUrl": {
+    "description": "",
     "type": "text"
   },
-  "storeRecordFieldHint": "โปรดป้อนชื่อผลิตภัณฑ์",
-  "@storeRecordFieldHint": {
-    "type": "text"
-  },
-  "storeRecordButtonTitle": "ค้นหา",
-  "@storeRecordButtonTitle": {
-    "type": "text"
-  },
-  "storeRecordTableTitleNo": "หมายเลขคำสั่งซื้อ",
-  "@storeRecordTableTitleNo": {
-    "type": "text"
-  },
-  "storeRecordTableTitleProduct": "ผลิตภัณฑ์",
-  "@storeRecordTableTitleProduct": {
-    "type": "text"
-  },
-  "storeRecordTableTitlePoint": "อินทิกรัล",
-  "@storeRecordTableTitlePoint": {
-    "type": "text"
-  },
-  "storeRecordTableTitleDate": "วันที่",
-  "@storeRecordTableTitleDate": {
-    "type": "text"
-  },
-  "storeRecordTableTitleState": "สถานะ",
-  "@storeRecordTableTitleState": {
-    "type": "text"
-  },
-  "storeRecordTableStatusPending": "รอดำเนินการ",
-  "@storeRecordTableStatusPending": {
-    "type": "text"
-  },
-  "storeRecordTableDetailName": "ชื่อ: {value}",
-  "@storeRecordTableDetailName": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "ชื่อ"
-      }
-    }
-  },
-  "storeRecordTableDetailPhone": "โทรศัพท์: {value}",
-  "@storeRecordTableDetailPhone": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "123"
-      }
-    }
-  },
-  "storeRecordTableDetailPostCode": "รหัสไปรษณีย์: {value}",
-  "@storeRecordTableDetailPostCode": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "110"
-      }
-    }
-  },
-  "storeRecordTableDetailAddress": "ที่อยู่: {value}",
-  "@storeRecordTableDetailAddress": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "ที่อยู่"
-      }
-    }
-  },
-  "storeRecordTableDetailItem": "แสดงผลลำดับที่ {from} ถึง {to}, ทั้งหมดคือ {total}",
-  "@storeRecordTableDetailItem": {
-    "type": "text",
-    "placeholders": {
-      "from": {
-        "example": "1"
-      },
-      "to": {
-        "example": "5"
-      },
-      "total": {
-        "example": "10"
-      }
-    }
-  },
-  "storeProductWindowTitle": "การแลกสมาชิก",
-  "@storeProductWindowTitle": {
-    "type": "text"
-  },
-  "storeProductWindowTextRemain": "ปริมาณที่เหลือ",
-  "@storeProductWindowTextRemain": {
-    "type": "text"
-  },
-  "storeProductWindowHint1": "มีจำนวน จำกัด จนกว่าสินค้าจะหมด",
-  "@storeProductWindowHint1": {
-    "type": "text"
-  },
-  "storeProductWindowHint2": "ใช้ต่อสาขา",
-  "@storeProductWindowHint2": {
-    "type": "text"
-  },
-  "storeProductWindowHint3": "การแลกเปลี่ยนคะแนน",
-  "@storeProductWindowHint3": {
-    "type": "text"
-  },
-  "storeRequestWindowTextPoint": "คะแนนสะสม:",
-  "@storeRequestWindowTextPoint": {
-    "type": "text"
-  },
-  "storeRequestWindowTitle": "ข้อมูลติดต่อ",
-  "@storeRequestWindowTitle": {
-    "type": "text"
-  },
-  "storeRequestWindowPoints": "คะแนน:",
-  "@storeRequestWindowPoints": {
-    "type": "text"
-  },
-  "storeRequestWindowHint": "ผู้รับ",
-  "@storeRequestWindowHint": {
-    "type": "text"
-  },
-  "storeRequestWindowFieldTitleName": "ชื่อ",
-  "@storeRequestWindowFieldTitleName": {
-    "type": "text"
-  },
-  "storeRequestWindowFieldTitlePhone": "โทรศัพท์",
-  "@storeRequestWindowFieldTitlePhone": {
-    "type": "text"
-  },
-  "storeRequestWindowFieldTitlePostno": "รหัสไปรษณีย์",
-  "@storeRequestWindowFieldTitlePostno": {
-    "type": "text"
-  },
-  "storeRequestWindowFieldTitleArea": "พื้นที่",
-  "@storeRequestWindowFieldTitleArea": {
-    "type": "text"
-  },
-  "storeRequestWindowFieldTitleAddress": "ที่อยู่",
-  "@storeRequestWindowFieldTitleAddress": {
-    "type": "text"
-  },
-  "storeRequestWindowSpinnerHint": "กรุณาเลือก",
-  "@storeRequestWindowSpinnerHint": {
-    "type": "text"
-  },
-  "storeExchangeResultWindowTitleSuccess": "แลกเปลี่ยนความสำเร็จ",
-  "@storeExchangeResultWindowTitleSuccess": {
-    "type": "text"
-  },
-  "storeExchangeResultWindowHint": "ขอแสดงความยินดี",
-  "@storeExchangeResultWindowHint": {
-    "type": "text"
-  },
-  "storeExchangeResultWindowHintItem1": "แลกเปลี่ยน",
-  "@storeExchangeResultWindowHintItem1": {
-    "type": "text"
-  },
-  "storeExchangeResultWindowHintItem2": "* 1",
-  "@storeExchangeResultWindowHintItem2": {
-    "type": "text"
-  },
-  "storeExchangeResultError": "การแลกเปลี่ยนล้มเหลว",
-  "@storeExchangeResultError": {
-    "type": "text"
-  },
-  "eventButtonSignUpTv": "ลงนามแล้ว {value} วัน",
-  "@eventButtonSignUpTv": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "3"
-      }
-    }
-  },
-  "eventSignUpHint1": "ลงชื่อสมัครใช้แล้ว",
-  "@eventSignUpHint1": {
-    "type": "text"
-  },
-  "eventSignUpHint2": "วัน",
-  "@eventSignUpHint2": {
-    "type": "text"
-  },
-  "eventButtonSignUpAlready": "ลงชื่อเข้าใช้",
-  "@eventButtonSignUpAlready": {
-    "type": "text"
-  },
-  "eventButtonSignUpSuccess": "ลงชื่อเข้าใช้สำเร็จ !!",
-  "@eventButtonSignUpSuccess": {
-    "type": "text"
-  },
-  "eventButtonSignUpFailed": "การลงชื่อเข้าใช้ล้มเหลว !!",
-  "@eventButtonSignUpFailed": {
-    "type": "text"
-  },
-  "movieCategoryLabelCollect": "คอลเลคชัน",
-  "@movieCategoryLabelCollect": {
-    "type": "text"
-  },
-  "movieCategoryLabelBuy": "ซื้อ",
-  "@movieCategoryLabelBuy": {
-    "type": "text"
-  },
-  "movieCategoryLabelExpand": "ขยาย",
-  "@movieCategoryLabelExpand": {
-    "type": "text"
-  },
-  "movieCategoryLabelFold": "พับ",
-  "@movieCategoryLabelFold": {
-    "type": "text"
-  },
-  "movieSeparatorTextHot": "คนอื่นกำลังดู",
-  "@movieSeparatorTextHot": {
-    "type": "text"
-  },
-  "movieTextBuyNow": "ซื้อเลย",
-  "@movieTextBuyNow": {
-    "type": "text"
-  },
-  "movieHintTextFree": "ฟรีวันนี้",
-  "@movieHintTextFree": {
-    "type": "text"
-  },
-  "movieHintTextPurchased": "ซื้อแล้ว",
-  "@movieHintTextPurchased": {
-    "type": "text"
-  },
-  "movieHintTextNotPurchased": "ยังไม่ได้ซื้อ",
-  "@movieHintTextNotPurchased": {
-    "type": "text"
-  },
-  "movieListHintLoad": "โหลดเพิ่มเติม",
-  "@movieListHintLoad": {
-    "type": "text"
-  },
-  "movieListHintLoadReady": "กำลังขอ ... ",
-  "@movieListHintLoadReady": {
-    "type": "text"
-  },
-  "movieListHintLoading": "กำลังโหลด ... ",
-  "@movieListHintLoading": {
-    "type": "text"
-  },
-  "movieListHintLoadSuccess": "โหลดสำเร็จ",
-  "@movieListHintLoadSuccess": {
-    "type": "text"
-  },
-  "movieListHintLoadFailed": "โหลดล้มเหลว",
-  "@movieListHintLoadFailed": {
-    "type": "text"
-  },
-  "movieListHintLoadNoMore": "ไม่มาก",
-  "@movieListHintLoadNoMore": {
-    "type": "text"
-  },
-  "movieDialogTitlePay": "ซื้อภาพยนตร์เรื่องนี้",
-  "@movieDialogTitlePay": {
-    "type": "text"
-  },
-  "movieDialogTextFreeTimes": "นาฬิกาฟรียังคงอยู่:",
-  "@movieDialogTextFreeTimes": {
-    "type": "text"
-  },
-  "movieDialogTextStorePoints": "จุดร้านค้าปัจจุบัน:",
-  "@movieDialogTextStorePoints": {
-    "type": "text"
-  },
-  "movieDialogButtonWatchFree": "ดูฟรี",
-  "@movieDialogButtonWatchFree": {
-    "type": "text"
-  },
-  "movieDialogButtonPayPoint": "จ่าย {value} คะแนนร้านค้า",
-  "@movieDialogButtonPayPoint": {
-    "type": "text",
-    "placeholders": {
-      "value": {
-        "example": "10"
-      }
-    }
-  },
-  "updateDialogErrorUrl": "ไม่สามารถรับ URL ดาวน์โหลดโปรดติดต่อฝ่ายบริการลูกค้า !!",
-  "@updateDialogErrorUrl": {
-    "type": "text"
-  },
-  "updateDialogMessage": "พบเวอร์ชันใหม่， โปรดคลิกปุ่ม 'อัปเดต' เพื่อดาวน์โหลดและติดตั้ง\nเวอร์ชันปัจจุบัน： {version}\nเวอร์ชันใหม่： {value}",
-  "@updateDialogMessage": {
+  "textUpdateMessage": "หากพบเวอร์ชันใหม่โปรดคลิกปุ่ม “อัปเดต” เพื่อดาวน์โหลดและติดตั้ง.\nหมายเลขเวอร์ชันปัจจุบัน: {version}\nหมายเลขเวอร์ชันใหม่: {value}",
+  "@textUpdateMessage": {
+    "description": "",
     "type": "text",
     "placeholders": {
       "value": {
@@ -2864,68 +2218,69 @@
       }
     }
   },
-  "serviceRouteHint": "ต้องการความช่วยเหลือหรือติดต่อเรา",
-  "@serviceRouteHint": {
+  "walletBtnHintOneClickTransfer": "โควต้าของแพลตฟอร์มทั้งหมดจะถูกโอนไปยังกระเป๋าเงินหลัก",
+  "@walletBtnHintOneClickTransfer": {
+    "description": "",
     "type": "text"
   },
-  "serviceButtonContact": "ติดต่อฝ่ายบริการลูกค้า",
-  "@serviceButtonContact": {
+  "walletBtnOneClickTransfer": "คลิกเดียวสู่บัญชี",
+  "@walletBtnOneClickTransfer": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleCustomerService": "บริการลูกค้าออนไลน์",
-  "@serviceTitleCustomerService": {
+  "walletHintWalletMulti": "* คุณต้องโอนเงินไปยังแพลตฟอร์มเกมด้วยตนเอง",
+  "@walletHintWalletMulti": {
+    "description": "",
     "type": "text"
   },
-  "serviceDescCustomerService": "บริการต่อเนื่องตลอด 24 ชั่วโมง",
-  "@serviceTitleCustomerServiceDesc": {
+  "walletHintWalletSingle": "* ค่าเริ่มต้นระบบจะโอนเครดิตไปยังแพลตฟอร์มเกมที่เปิดโดยอัตโนมัติ",
+  "@walletHintWalletSingle": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleEmail": "อีเมล์",
-  "@serviceTitleEmail": {
+  "walletHintWalletType": "* เมื่อเปิดการตั้งค่าขีด จำกัด กระเป๋าเงินจะถูกโอนไปยังแพลตฟอร์มเกมที่เปิดโดยอัตโนมัติ\n(การเปลี่ยนแปลงแต่ละครั้งต้องรอ 30 วินาทีเพื่อให้การตั้งค่ามีผล)",
+  "@walletHintWalletType": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitlePhone": "หมายเลขโทรศัพท์",
-  "@serviceTitlePhone": {
+  "walletOptionMulti": "กระเป๋าเงินหลายใบ",
+  "@walletOptionMulti": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleSkype": "Skype",
-  "@serviceTitleSkype": {
+  "walletOptionSingle": "กระเป๋าเงินใบเดียว",
+  "@walletOptionSingle": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleLine": "Line",
-  "@serviceTitleLine": {
+  "walletTextChangeType": "เปลี่ยนการตั้งค่า กระเป๋าสตางค์",
+  "@walletTextChangeType": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleZalo": "Zalo",
-  "@serviceTitleZalo": {
+  "walletTextWaitTransfer": "กำลังคืนบัญชีโปรดรอ ... ",
+  "@walletTextWaitTransfer": {
+    "description": "",
     "type": "text"
   },
-  "serviceTitleFacebook": "Facebook",
-  "@serviceTitleFacebook": {
+  "walletTitleCenter": "กระเป๋าเงินกลาง",
+  "@walletTitleCenter": {
+    "description": "",
     "type": "text"
   },
-  "downloadAndroidCgpay": "CGPAY สำหรับ Android",
-  "@downloadAndroidCgpay": {
-    "พิมพ์": "text"
+  "walletTitleMy": "กระเป๋าเงินของฉัน",
+  "@walletTitleMy": {
+    "description": "",
+    "type": "text"
   },
-  "downloadIosCgpay": "CGPAY สำหรับ IOS",
-  "@downloadIosCgpay": {
-    "พิมพ์": "text"
+  "withdrawHintChangeCard": "สมาชิกที่ต้องการเปลี่ยนบัตรธนาคารที่ผูกไว้กับเครือข่ายเมื่อถอนเงินโปรดติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อขอคำแนะนำ",
+  "@withdrawHintChangeCard": {
+    "description": "",
+    "type": "text"
   },
-  "downloadAndroidDns": "ซ่อมแซม DNS สำหรับ Android",
-  "@downloadAndroidDns": {
-    "พิมพ์": "text"
-  },
-  "downloadIosDns": "ซ่อมแซม DNS สำหรับ IOS",
-  "@downloadIosDns": {
-    "พิมพ์": "text"
-  },
-  "downloadHintPlatformAndroid": "(Android เท่านั้น)",
-  "@downloadHintPlatformAndroid": {
-    "พิมพ์": "text"
-  },
-  "downloadHintPlatformIos": "(iOS เท่านั้น)",
-  "@downloadHintPlatformIos": {
-    "พิมพ์": "text"
+  "withdrawHintFee": "บัญชีสมาชิกแต่ละบัญชีสามารถถอนได้สูงสุด 3 ครั้งต่อวันหากถอนมากกว่า 3 ครั้งจะถูกเรียกเก็บค่าบริการ 5%",
+  "@withdrawHintFee": {
+    "description": "",
+    "type": "text"
   }
 }

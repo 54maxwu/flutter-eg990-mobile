@@ -32,7 +32,7 @@ class UpdateDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      localeStr.updateDialogMessage(
+                      localeStr.textUpdateMessage(
                           newVersion, Global.device.appVersion),
                       style: TextStyle(height: 1.4),
                       maxLines: 6,

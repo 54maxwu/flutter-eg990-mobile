@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'application/device/orientation_helper.dart';
+import 'application/internal/language_code.dart';
 import 'application/global.dart';
 import 'application/themes/theme_color_enum.dart';
 import 'application/themes/theme_interface.dart';
@@ -27,10 +28,7 @@ Future<void> mainCommon(Environment env) async {
   await ConfigReader.initialize();
 
   switch (env) {
-    case Environment.DEV:
-      debugPrint('App Config Debug Version: ${ConfigReader.getVersion()}');
-      break;
-    case Environment.RELEASE:
+    default:
       MyLogger.log(msg: 'App Config Version: ${ConfigReader.getVersion()}');
       break;
   }
@@ -69,15 +67,24 @@ Future<void> mainCommon(Environment env) async {
     debugPrint('register hive adapter has error!! $e');
   }
 
-  // check app language setting
   try {
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
+    // check app language setting
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      Global.setLanguage =
-          box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
+      if (Global.lockLanguage == false) {
+        // set language as user preference
+        Global.setLocale = box.get(
+          Global.CACHE_APP_DATA_KEY_LANG,
+          defaultValue: defaultLocale.value.code,
+        );
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.localeCode) {
+        // override language if language is locked and different as default
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
+      }
     } else {
-      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
     }
+    // check app theme setting
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_THEME)) {
       String themeValue = box.get(Global.CACHE_APP_DATA_KEY_THEME,
           defaultValue: ThemeColorEnum.DEFAULT.value);
@@ -87,9 +94,9 @@ Future<void> mainCommon(Environment env) async {
       box.put(Global.CACHE_APP_DATA_KEY_THEME, ThemeColorEnum.DEFAULT.value);
     }
   } catch (e) {
-    debugPrint('read app setting has error!! $e');
+    debugPrint('read app language setting has error!! $e');
   } finally {
-    debugPrint('app language: ${Global.lang}');
+    debugPrint('app language: ${Global.localeCode}');
     debugPrint('app theme: ${ThemeInterface.theme.colorEnum.value}');
   }
 

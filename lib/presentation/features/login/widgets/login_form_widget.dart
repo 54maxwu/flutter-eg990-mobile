@@ -9,6 +9,7 @@ import 'package:flutter_eg990_mobile/presentation/common/fields/checkbox_widget.
 import 'package:flutter_eg990_mobile/presentation/common/fields/field_wrapper_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/field_input_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 
 typedef OnRequestLogin = void Function(LoginForm);
 
@@ -78,12 +79,11 @@ class LoginFormWidgetState extends State<LoginFormWidget>
                   Icons.person,
                   color: themeColor.fieldPrefixTextColor,
                 ),
-                labelText: localeStr.registerFieldTitleAccount,
-                hintText: localeStr.hintAccountInput,
+                labelText: localeStr.fieldTitleAccount,
+                hintText: localeStr.fieldHintInputAccount,
               ),
               onChanged: (value) => _username = Username.dirty(value: value),
-              validator: (_) =>
-                  _username.valid ? null : localeStr.messageErrorAccount,
+              validator: (_) => _username.valid ? null : localeStr.errorAccount,
             ),
           ),
           const SizedBox(height: 8.0),
@@ -98,25 +98,27 @@ class LoginFormWidgetState extends State<LoginFormWidget>
                   Icons.lock,
                   color: themeColor.fieldPrefixTextColor,
                 ),
-                labelText: localeStr.registerFieldTitlePassword,
-                hintText: localeStr.hintPasswordInput,
+                labelText: localeStr.fieldTitlePassword,
+                hintText: localeStr.fieldHintInputPassword,
               ),
               onChanged: (value) => _password = Password.dirty(value: value),
-              validator: (_) =>
-                  _password.valid ? null : localeStr.messageInvalidPassword,
+              validator: (_) => _password.valid
+                  ? null
+                  : localeStr.fieldErrorInvalidPassword(
+                      InputLimit.PASSWORD_MIN, InputLimit.PASSWORD_MAX),
             ),
           ),
           const SizedBox(height: 8.0),
           CheckboxWidget(
             key: _saveKey,
-            label: localeStr.btnFastLogin,
+            label: localeStr.fieldCheckBoxSaveLogin,
           ),
           const SizedBox(height: 16.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: RaisedButton(
               child: Text(
-                localeStr.btnLogin,
+                localeStr.pageBtnLogin,
                 style: TextStyle(
                   fontSize: FontSize.MESSAGE.value,
                   color: themeColor.secondaryTextColor1,
@@ -135,7 +137,7 @@ class LoginFormWidgetState extends State<LoginFormWidget>
                   debugPrint('login form is valid');
                   widget.onRequestLogin(form);
                 } else if (form.status.index == 0) {
-                  callToast(localeStr.messageActionFillForm);
+                  callToast(localeStr.msgFormNotFilled);
                 } else {
                   debugPrint(
                       'login form error: ${form.validate.getOrElse(() => null)}');

@@ -102,9 +102,9 @@ class _GamesPageState extends State<GamesPage>
             indicatorColor: themeColor.defaultAccentColor,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [
-              Tab(text: localeStr.gameCategoryAll),
-              Tab(text: localeStr.homeUserTabCategoryRecommend),
-              Tab(text: localeStr.homeUserTabCategoryFavorite),
+              Tab(text: localeStr.textCategoryAll),
+              Tab(text: localeStr.textCategoryRecommend),
+              Tab(text: localeStr.textCategoryFavorite),
             ],
           ),
         ),
@@ -120,7 +120,7 @@ class _GamesPageState extends State<GamesPage>
                     onTap: (url) {
                       debugPrint('requesting game url: $url');
                       // final toast = callToastLoading(
-                      //   message: localeStr.messageWait,
+                      //   message: localeStr.msgPleaseWait,
                       //   clickClose: false,
                       // );
                       // Future.microtask(() => widget.store.getGameUrl(url))
@@ -132,8 +132,8 @@ class _GamesPageState extends State<GamesPage>
                 }
               },
             ),
-            Center(child: Text(localeStr.workInProgress)),
-            Center(child: Text(localeStr.workInProgress)),
+            Center(child: Text(localeStr.msgWorkInProgress)),
+            Center(child: Text(localeStr.msgWorkInProgress)),
           ],
         ),
       ),

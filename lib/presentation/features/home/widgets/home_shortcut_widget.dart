@@ -30,12 +30,12 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
   Function onClickShortcut(ShortcutItem shortcut) => () {
         if (shortcut.value.route != null) {
           if (shortcut.value.isUserOnly && !_infoStore.hasUser) {
-            callToastInfo(localeStr.messageErrorNotLogin);
+            callToastInfo(localeStr.hintActionLogin);
           } else {
             AppNavigator.navigateTo(shortcut.value.route);
           }
         } else {
-          callToastInfo(localeStr.workInProgress);
+          callToastInfo(localeStr.msgWorkInProgress);
         }
       };
 

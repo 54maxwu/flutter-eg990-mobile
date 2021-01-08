@@ -30,7 +30,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  localeStr.walletViewTitleBalance,
+                  localeStr.hintWalletRemain,
                   style: TextStyle(
                     color: themeColor.balanceCardTitleColor,
                     fontSize: FontSize.SUBTITLE.value,
@@ -46,7 +46,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      localeStr.walletViewButtonOneClick,
+                      localeStr.walletBtnOneClickTransfer,
                       style: TextStyle(
                         color: themeColor.balanceRefreshColor,
                         fontSize: FontSize.MESSAGE.value,

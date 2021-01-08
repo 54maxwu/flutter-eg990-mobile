@@ -54,7 +54,7 @@ class DepositInfoData {
   const DepositInfoData.online(
       {@required this.amountData, @required this.gateway})
       : this.name = '',
-        assert(amountData == null, 'Deposit Amount Data is required');
+        assert(amountData != null, 'Deposit Amount Data is required');
 
   bool get isValidAmount => amountData.isInRange;
 

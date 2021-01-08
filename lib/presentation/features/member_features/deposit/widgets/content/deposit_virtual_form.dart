@@ -4,6 +4,7 @@ import 'package:flutter_eg990_mobile/domain/sector/deposit/form/deposit_form_dat
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
 import 'package:flutter_eg990_mobile/presentation/common/fields/input_field.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
+import 'package:flutter_eg990_mobile/presentation/common/toast/toast_text.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 import 'package:intl/intl.dart' show NumberFormat;
 
@@ -68,7 +69,7 @@ class DepositVirtualFormWidgetState extends State<DepositVirtualFormWidget> {
                   padding: const EdgeInsets.only(top: 8.0),
                   fieldPadding: const EdgeInsets.only(top: 2.0),
                   prefixWidget: FieldPrefixWidget.text(
-                    prefixText: localeStr.depositPaymentEditTitleAmount,
+                    prefixText: localeStr.fieldTitleCreditAmount,
                     textStyle: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultTextColor,
@@ -80,8 +81,8 @@ class DepositVirtualFormWidgetState extends State<DepositVirtualFormWidget> {
                     maxInputLength: '${_selected.max}'.length,
                     enableSuggestions: false,
                     inputDecoration: InputDecoration(
-                      hintText: localeStr
-                          .messageInvalidDepositAmountMin(_selected.min),
+                      hintText:
+                          localeStr.fieldErrorInvalidCreditMin(_selected.min),
                       hintStyle: TextStyle(
                         fontSize: FontSize.MESSAGE.value,
                         color: themeColor.defaultHintColor,
@@ -99,7 +100,7 @@ class DepositVirtualFormWidgetState extends State<DepositVirtualFormWidget> {
                     ),
                     validator: (_) => _info.valid
                         ? null
-                        : localeStr.messageInvalidDepositAmount,
+                        : localeStr.fieldErrorInvalidCreditAmount,
                   ),
                 ),
 
@@ -109,7 +110,7 @@ class DepositVirtualFormWidgetState extends State<DepositVirtualFormWidget> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
                   child: Text(
-                    localeStr.depositHintTextAmount(
+                    localeStr.depositHintOrderMaxAmount(
                         NumberFormat.simpleCurrency(decimalDigits: 0)
                             .format(_selected.max)),
                     style: TextStyle(color: themeColor.hintHighlight),
@@ -148,7 +149,7 @@ class DepositVirtualFormWidgetState extends State<DepositVirtualFormWidget> {
                   debugPrint('deposit form is valid');
                   widget.onDepositRequest(form);
                 } else if (form.status.index == 0) {
-                  callToast(localeStr.messageActionFillForm);
+                  callToast(localeStr.msgFormNotFilled);
                 } else {
                   debugPrint(
                       'deposit form error: ${form.validate.getOrElse(() => null)}');

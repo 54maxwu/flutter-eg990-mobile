@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_eg990_mobile/application/internal/error_message_map.dart';
-import 'package:flutter_eg990_mobile/domain/response/request_status_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/balance/balance_repository.dart';
 import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_form.dart';
+import 'package:flutter_eg990_mobile/domain/sector/transfer/transfer_result.dart';
 import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_form.dart';
 import 'package:flutter_eg990_mobile/domain/sector/withdraw/withdraw_model.dart';
 import 'package:flutter_eg990_mobile/presentation/features/member_features/balance/data/balance_grid_action.dart';
@@ -41,7 +41,7 @@ abstract class _BalanceStore with Store {
   bool waitForTransferResult = false;
 
   @observable
-  RequestStatusModel transferResult;
+  TransferResult transferResult;
 
   @observable
   bool waitForWithdrawResult = false;

@@ -31,7 +31,7 @@ class _DepositContentLocalState extends State<DepositContentLocal> {
       child: DepositLocalFormWidget(
         options: (widget.method).banks,
         onDepositRequest: (form) {
-          callToastInfo(localeStr.workInProgress);
+          callToastInfo(localeStr.msgWorkInProgress);
         },
       ),
     );

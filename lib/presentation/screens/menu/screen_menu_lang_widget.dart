@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/application/internal/language_code.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
@@ -11,24 +12,13 @@ class ScreenMenuLangWidget extends StatefulWidget {
 }
 
 class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
-  final List<String> langValues = ['zh', 'en', 'vi', 'th'];
-  final List<String> langOptions = ['CH', 'EN', 'VN', 'TH'];
-  final List<String> langImg = [
-    '/images/lang_chn.jpg',
-    '/images/lang_eng.jpg',
-    '/images/lang_vnm.jpg',
-    '/images/lang_thai.jpg'
-  ];
-
-//  final List<String> langValues = ['zh'];
-//  final List<String> langOptions = ['CH'];
-//  final List<String> langImg = ['/images/lang_chn.jpg'];
-
+  List<LanguageCode> _langs;
   String _currentLang;
 
   @override
   void initState() {
-    _currentLang = Global.lang;
+    _langs = LanguageCode.listAll;
+    _currentLang = Global.localeCode;
     super.initState();
   }
 
@@ -38,9 +28,9 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
       isDense: true,
       iconSize: 0,
       underline: SizedBox.shrink(),
-      items: List<DropdownMenuItem>.generate(langValues.length, (index) {
+      items: List<DropdownMenuItem>.generate(_langs.length, (index) {
         return DropdownMenuItem(
-          value: langValues[index],
+          value: _langs[index].value.code,
           child: FittedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -50,19 +40,19 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(36.0),
                     child: NetworkImageBuilder(
-                      langImg[index],
+                      _langs[index].value.imageUrl,
                       scale: (index == 3) ? 10.0 : 1,
                     ),
                   ),
                 ),
-                Text(langOptions[index]),
+                Text(_langs[index].value.optionString),
               ],
             ),
           ),
         );
       }),
       selectedItemBuilder: (context) =>
-          List<Widget>.generate(langValues.length, (index) {
+          List<Widget>.generate(_langs.length, (index) {
         return Container(
           padding: const EdgeInsets.only(right: 12.0),
           decoration: BoxDecoration(shape: BoxShape.circle),
@@ -71,7 +61,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(36.0),
               child: NetworkImageBuilder(
-                langImg[index],
+                _langs[index].value.imageUrl,
                 scale: (index == 3) ? 10.0 : 1,
               ),
             ),
@@ -81,7 +71,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
       value: _currentLang,
       onChanged: (value) {
         debugPrint('selected lang: $value');
-        if (Global.lang != value) {
+        if (Global.localeCode != value) {
           String newLang = value;
           try {
             sl.get<LocalStrings>()?.setLanguage(newLang);
@@ -97,7 +87,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             MyLogger.error(
                 msg: 'Localize File not initialized', tag: 'LocalStrings');
           } finally {
-            Global.setLanguage = newLang;
+            Global.setLocale = newLang;
             if (mounted) {
               _currentLang = newLang;
             }

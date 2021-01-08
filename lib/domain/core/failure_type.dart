@@ -5,9 +5,10 @@ class FailureType extends Vnum<int> {
   /// Case Definition
   static const FailureType INJECTOR = const FailureType.define(0);
   static const FailureType PROVIDER = const FailureType.define(10);
-  static const FailureType TASK = const FailureType.define(20);
-  static const FailureType JSON = const FailureType.define(30);
-  static const FailureType NAVIGATOR = const FailureType.define(40);
+  static const FailureType INHERIT = const FailureType.define(20);
+  static const FailureType TASK = const FailureType.define(40);
+  static const FailureType JSON = const FailureType.define(50);
+  static const FailureType NAVIGATOR = const FailureType.define(70);
   static const FailureType TOKEN = const FailureType.define(80);
 
   static const FailureType UPDATE = const FailureType.define(100);
@@ -28,7 +29,7 @@ class FailureType extends Vnum<int> {
   static const FailureType STORE = const FailureType.define(2700);
   static const FailureType TUTORIAL = const FailureType.define(2900);
 
-  static const FailureType CENTER = const FailureType.define(3000);
+  static const FailureType MEMBER = const FailureType.define(3000);
   static const FailureType BANKCARD = const FailureType.define(3100);
   static const FailureType DEPOSIT = const FailureType.define(3200);
   static const FailureType TRANSFER = const FailureType.define(3300);

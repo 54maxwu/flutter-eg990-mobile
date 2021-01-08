@@ -246,7 +246,7 @@ abstract class _DepositStore with Store {
   }
 
   @action
-  Future<void> sendRequest(DepositForm form) async {
+  Future<void> postDeposit(DepositForm form) async {
     try {
       if (waitForDepositResult) return;
       // Reset the possible previous error message.
@@ -261,7 +261,7 @@ abstract class _DepositStore with Store {
           .then((result) {
 //        debugPrint('deposit store promo result: $result');
         result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (failure) => setErrorMsg(msg: failure.message),
           (data) => depositResult = data,
         );
       });

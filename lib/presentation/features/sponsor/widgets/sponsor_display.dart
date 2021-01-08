@@ -17,13 +17,13 @@ class SponsorDisplay extends StatefulWidget {
 
 class _SponsorDisplayState extends State<SponsorDisplay>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  // TabController _tabController;
 
   @override
   void initState() {
     super.initState();
     // Create TabController for getting the index of current tab
-    _tabController = TabController(length: 3, vsync: this);
+    // _tabController = TabController(length: 3, vsync: this);
     // _tabController.addListener(() {
     //   setState(() {
     //     _selectedIndex = _tabController.index;
@@ -48,6 +48,6 @@ class _SponsorDisplayState extends State<SponsorDisplay>
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text(localeStr.workInProgress));
+    return Container(child: Text(localeStr.msgWorkInProgress));
   }
 }
