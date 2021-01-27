@@ -77,7 +77,9 @@ class BalanceGridItemState extends State<BalanceGridItem>
   }
 
   void updateVariables(bool state) {
-    _verticalActionLayout = Global.lang != 'zh' && Global.lang != 'en';
+    _verticalActionLayout = Global.lang != 'zh' &&
+        Global.lang != 'en' &&
+        (Global.lang == 'vn' && Global.device.widthScale < 1.0);
     _btn1Text = localeStr.balanceTransferOutText;
     _btn2Text = localeStr.balanceTransferInText;
     _maintenanceText = localeStr.balanceStatusMaintenance;
@@ -155,6 +157,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         _transferOutWidget(),
+                        SizedBox(height: 4.0),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
@@ -229,28 +232,31 @@ class BalanceGridItemState extends State<BalanceGridItem>
               ? themeColor.balanceAction2TextColor
               : themeColor.balanceActionDisableTextColor,
           fontWeight: FontWeight.bold,
+          fontSize: FontSize.SUBTITLE.value,
         ),
       ),
-      onTap: () {
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => new BalanceActionDialog(
-            targetPlatform: widget.platform,
-            isTransferIn: false,
-            onConfirm: () async {
-              if (widget.onTapAction != null) {
-                return await widget.onTapAction(
-                  BalanceGridAction.transferOut,
-                  widget.platform,
-                );
-              } else {
-                return Future.value(false);
-              }
+      onTap: (!canTransferOut)
+          ? null
+          : () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => new BalanceActionDialog(
+                  targetPlatform: widget.platform,
+                  isTransferIn: false,
+                  onConfirm: () async {
+                    if (widget.onTapAction != null) {
+                      return await widget.onTapAction(
+                        BalanceGridAction.transferOut,
+                        widget.platform,
+                      );
+                    } else {
+                      return Future.value(false);
+                    }
+                  },
+                ),
+              );
             },
-          ),
-        );
-      },
     );
   }
 
@@ -263,28 +269,31 @@ class BalanceGridItemState extends State<BalanceGridItem>
               ? themeColor.balanceActionTextColor
               : themeColor.balanceActionDisableTextColor,
           fontWeight: FontWeight.bold,
+          fontSize: FontSize.SUBTITLE.value,
         ),
       ),
-      onTap: () {
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => new BalanceActionDialog(
-            targetPlatform: widget.platform,
-            isTransferIn: true,
-            onConfirm: () async {
-              if (widget.onTapAction != null) {
-                return await widget.onTapAction(
-                  BalanceGridAction.transferIn,
-                  widget.platform,
-                );
-              } else {
-                return Future.value(false);
-              }
+      onTap: (!canTransferIn)
+          ? null
+          : () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => new BalanceActionDialog(
+                  targetPlatform: widget.platform,
+                  isTransferIn: true,
+                  onConfirm: () async {
+                    if (widget.onTapAction != null) {
+                      return await widget.onTapAction(
+                        BalanceGridAction.transferIn,
+                        widget.platform,
+                      );
+                    } else {
+                      return Future.value(false);
+                    }
+                  },
+                ),
+              );
             },
-          ),
-        );
-      },
     );
   }
 

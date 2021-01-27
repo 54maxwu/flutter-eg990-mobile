@@ -39,6 +39,7 @@ class _StoreDisplayRecordState extends State<StoreDisplayRecord>
   StoreExchangeModel tableData;
 
   void getRecord({int page}) {
+    debugPrint('request store record page: $page');
     _store.getRecord(
       form: StoreExchangeHistoryQuery(
         page: page ?? 1,

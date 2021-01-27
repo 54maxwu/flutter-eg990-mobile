@@ -266,6 +266,10 @@ abstract class _PointStore with Store {
 
   @action
   Future<void> getRecord({StoreExchangeHistoryForm form}) async {
+    if (waitForRecord) {
+      setErrorMsg(msg: localeStr.messageActionTooFrequent);
+      return;
+    }
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -275,7 +279,7 @@ abstract class _PointStore with Store {
           .getExchange(form ?? StoreExchangeHistoryInit())
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (value) => _recordController.sink.add(value),
             ),
           )

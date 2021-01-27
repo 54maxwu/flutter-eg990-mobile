@@ -29,11 +29,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m4(value) => "Not enough credit: ${value}";
 
-  static m5(value) => "Total: ฿ ${value}";
+  static m5(value) => "Total: VND ${value}";
 
   static m6(no) => "${no} Restricted Debit Card and Alipay Balance Payment!\n";
 
-  static m7(value) => "Single Deposit Limit: ฿ ${value}";
+  static m7(value) => "Single Deposit Limit: VND ${value}";
 
   static m8(no) => "${no} [Important reminder] Do not keep your bank account, please re-acquire the latest collection account before each recharge. If you deposit to a disabled collection account, the company cannot check the collection and will not be responsible!\n";
 
@@ -57,9 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(value) => "Request Success, Order No.${value}";
 
-  static m19(num, num2) => "Range: ${num} ~ ${num2}";
+  static m19(num, num2) => "Range: ${num}~${num2}";
 
-  static m20(num, num2, num3) => "Range: ${num} ~ ${num2} (Step:${num3})";
+  static m20(num, num2, num3) => "Range: ${num}~${num2} (Step:${num3})";
 
   static m21(value) => "Reality: ${value} VND";
 
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value} points";
 
-  static m46(value) => "฿ ${value}";
+  static m46(value) => "VND ${value}";
 
   static m47(from, to) => "${from} to ${to}";
 
@@ -269,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerLuckyButtonBind" : MessageLookupByLibrary.simpleMessage("Confirm Bind"),
     "centerLuckyButtonGenerate" : MessageLookupByLibrary.simpleMessage("Auto Generated"),
     "centerLuckyHint" : MessageLookupByLibrary.simpleMessage("Bind the Lucky Code, you can participate in the Lottery Match Code, wonderful gift for you !!!"),
-    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Number range: 01 ~ 49"),
+    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Number range: 01~49"),
     "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("Please fill in the numbers from 01 to 49 in the following 7 spaces"),
     "centerTextButtonBind" : MessageLookupByLibrary.simpleMessage("Bind"),
     "centerTextButtonChangePwd" : MessageLookupByLibrary.simpleMessage("Change Password"),
@@ -376,6 +376,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositPaymentTitleTutorial" : MessageLookupByLibrary.simpleMessage("Tutorial"),
     "depositPaymentTitleUnion" : MessageLookupByLibrary.simpleMessage("UnionPay"),
     "depositPaymentTitleWechat" : MessageLookupByLibrary.simpleMessage("WeChat Pay"),
+    "downloadAndroidCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY for Android"),
+    "downloadAndroidDns" : MessageLookupByLibrary.simpleMessage("DNS Repair for Android"),
+    "downloadHintPlatformAndroid" : MessageLookupByLibrary.simpleMessage("(Android Only)"),
+    "downloadHintPlatformIos" : MessageLookupByLibrary.simpleMessage("(iOS Only)"),
+    "downloadIosCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY for IOS"),
+    "downloadIosDns" : MessageLookupByLibrary.simpleMessage("DNS Repair for IOS"),
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("Signed in"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("Sign in failed!!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("Sign in successfully!!"),
@@ -489,20 +495,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("User token error, please logout and login again"),
     "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("withdrawal failed"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("Change failed, please try again later"),
-    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6 ~ 12 words"),
+    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6~12 lowercase words"),
+    "messageInvalidBirthDate" : MessageLookupByLibrary.simpleMessage("Date of Birth Error"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("The name must be greater than 3 characters"),
     "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 6~19 characters"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("Wrong cardholder name"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("Password does not match"),
+    "messageInvalidDate" : MessageLookupByLibrary.simpleMessage("Invalid date input"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("Amount Error"),
     "messageInvalidDepositAmountMin" : m30,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("Incorrect account name"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("Mailbox is malformed"),
-    "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("Error Data Format"),
+    "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("Error Format"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("Malformed name"),
-    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("Password should be 6~18 words"),
+    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("Password should be 6~20 words"),
     "messageInvalidPasswordArg" : m31,
-    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("Password should be 8~18 words"),
+    "messageInvalidPasswordFive" : MessageLookupByLibrary.simpleMessage("The password does not match, the account will be locked for five errors"),
+    "messageInvalidPasswordLocked" : MessageLookupByLibrary.simpleMessage("The password is wrong five times and the account is locked, please contact customer service"),
+    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("Password should be 6~20 words"),
     "messageInvalidPhone" : m32,
     "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("Error Post Code(5~8)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("Contains Invalid Symbols"),
@@ -510,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("Invalid WeChat account"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("Not enough credit"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("Password Error!(default is login password)"),
+    "messageInvalidWithdrawUnderAmount" : MessageLookupByLibrary.simpleMessage("Below the minimum amount"),
     "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("Invalid Zalo account"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("Loading..."),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("Login Failed"),
@@ -520,6 +531,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("Some of the transfer action has failed"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("Registration failed"),
     "messageRepeatAccount" : MessageLookupByLibrary.simpleMessage("Account name repeat"),
+    "messageRepeatPhone" : MessageLookupByLibrary.simpleMessage("Phone Number already registered"),
     "messageSentVerify" : MessageLookupByLibrary.simpleMessage("Verify Code has sent"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("Success"),
     "messageTaskCanceled" : m34,

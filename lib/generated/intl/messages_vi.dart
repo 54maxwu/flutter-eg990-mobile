@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m4(value) => "Thiếu cân bằng: ${value}";
 
-  static m5(value) => "Tổng cộng: ฿ ${value}";
+  static m5(value) => "Tổng cộng: VND ${value}";
 
   static m6(no) => "${no} Chỉ thẻ ghi nợ và thanh toán số dư Alipay！\n";
 
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "Tích điểm ${value}";
 
-  static m46(value) => "฿ ${value}";
+  static m46(value) => "VND ${value}";
 
   static m47(from, to) => "${from} Đến ${to}";
 
@@ -269,8 +269,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerLuckyButtonBind" : MessageLookupByLibrary.simpleMessage("Xác nhận ràng buộc"),
     "centerLuckyButtonGenerate" : MessageLookupByLibrary.simpleMessage("Được tạo tự động"),
     "centerLuckyHint" : MessageLookupByLibrary.simpleMessage("Mã may mắn，Đã có thể tham gia vào mã sáu màu may mắn，Món quà tuyệt vời cho bạn!!!"),
-    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Dải số: 01 ~ 49"),
-    "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01 ~ 49"),
+    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("Dải số: 01~49"),
+    "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01~49"),
     "centerTextButtonBind" : MessageLookupByLibrary.simpleMessage("Bắt buộc"),
     "centerTextButtonChangePwd" : MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
     "centerTextButtonEdit" : MessageLookupByLibrary.simpleMessage("Sửa đổi"),
@@ -376,6 +376,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositPaymentTitleTutorial" : MessageLookupByLibrary.simpleMessage("Sử dụng giảng dạy"),
     "depositPaymentTitleUnion" : MessageLookupByLibrary.simpleMessage("Thanh toán UnionPay"),
     "depositPaymentTitleWechat" : MessageLookupByLibrary.simpleMessage("Thanh toán WeChat"),
+    "downloadAndroidCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY cho Android"),
+    "downloadAndroidDns" : MessageLookupByLibrary.simpleMessage("Sửa chữa DNS cho Android"),
+    "downloadHintPlatformAndroid" : MessageLookupByLibrary.simpleMessage("(Chỉ dành cho Android)"),
+    "downloadHintPlatformIos" : MessageLookupByLibrary.simpleMessage("(Chỉ dành cho iOS)"),
+    "downloadIosCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY cho IOS"),
+    "downloadIosDns" : MessageLookupByLibrary.simpleMessage("Sửa chữa DNS cho IOS"),
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("hôm nay đã báo đến"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("Đăng nhập không thành công!!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("Đăng nhập thành công!!"),
@@ -421,7 +427,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintAccountPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu"),
     "hintActionLogin" : MessageLookupByLibrary.simpleMessage("Vui lòng đăng nhập vào tài khoản trước"),
     "hintActionSelect" : MessageLookupByLibrary.simpleMessage("---"),
-    "hintConfirmed" : MessageLookupByLibrary.simpleMessage("Độ dài từ 8 đến 18 ký tự"),
+    "hintConfirmed" : MessageLookupByLibrary.simpleMessage("Độ dài từ 6~20 ký tự"),
     "hintConfirmedInput" : MessageLookupByLibrary.simpleMessage("nhập lại mật khẩu"),
     "hintEmail" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập hộp thư"),
     "hintName" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập tài khoản thành viên"),
@@ -489,20 +495,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("Xác minh người dùng không thành công, vui lòng đăng nhập lại"),
     "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("Rút tiền không thành công"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("Thay đổi không thành công, vui lòng thử lại sau"),
-    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Số tài khoản là 6 ~ 12 ký tự"),
+    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Số tài khoản là văn bản chữ và số 6 ~ 12"),
+    "messageInvalidBirthDate" : MessageLookupByLibrary.simpleMessage("Ngày sinh nhật sai"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("Tên phải nhiều hơn 3 ký tự"),
     "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("Số thẻ là 6~19 ký tự"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("Tên chủ thẻ sai"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu không hợp lệ"),
+    "messageInvalidDate" : MessageLookupByLibrary.simpleMessage("Nhầm cuộc hẹn"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("Số tiền nhập không chính xác"),
     "messageInvalidDepositAmountMin" : m30,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("Tên tài khoản không chính xác"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("Định dạng hộp thư không chính xác"),
     "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("sai định dạng"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("Định dạng tên không chính xác"),
-    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu dài 6 ~ 18 ký tự"),
+    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu dài 6~20 ký tự"),
     "messageInvalidPasswordArg" : m31,
-    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("Mật khẩu dài 8 ~ 18 ký tự"),
+    "messageInvalidPasswordFive" : MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp, tài khoản sẽ bị khóa vì năm lỗi"),
+    "messageInvalidPasswordLocked" : MessageLookupByLibrary.simpleMessage("Tài khoản bị khóa, vui lòng liên hệ với bộ phận chăm sóc khách hàng"),
+    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("Mật khẩu dài 6~20 ký tự"),
     "messageInvalidPhone" : m32,
     "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("Mã bưu điện không chính xác(5~8)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("Chứa các ký tự bất hợp pháp"),
@@ -510,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("Lỗi định dạng wechat"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("Vượt quá số dư tài khoản"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu không hợp lệ"),
+    "messageInvalidWithdrawUnderAmount" : MessageLookupByLibrary.simpleMessage("Dưới số tiền rút tối thiểu"),
     "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("Lỗi định dạng zalo"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("Vui lòng đợi…"),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("Đăng nhập thất bại"),
@@ -520,6 +531,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("Một số nền tảng chuyển không thành công"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("đăng ký thất bại"),
     "messageRepeatAccount" : MessageLookupByLibrary.simpleMessage("Đăng ký tài khoản trùng lặp"),
+    "messageRepeatPhone" : MessageLookupByLibrary.simpleMessage("Số điện thoại trùng lặp"),
     "messageSentVerify" : MessageLookupByLibrary.simpleMessage("mã xác minh đã gửi"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("sự thành công"),
     "messageTaskCanceled" : m34,

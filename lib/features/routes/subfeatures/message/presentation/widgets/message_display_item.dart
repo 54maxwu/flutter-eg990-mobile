@@ -107,7 +107,9 @@ class MessageDisplayItemState extends State<MessageDisplayItem> {
                   right: 8.0,
                   top: (headerMultiLine && hasChinese)
                       ? 3
-                      : (hasChinese) ? 2 : 1,
+                      : (hasChinese)
+                          ? 2
+                          : 1,
                 ),
                 child: Icon(
                   Icons.check_box,

@@ -2,6 +2,7 @@ import 'dart:async' show StreamController;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/router/route_enum.dart';
@@ -54,7 +55,7 @@ class AppNavigator {
   static ExtendedNavigatorState get testNavigate =>
       ExtendedNavigator.named('TestRouter');
 
-  static switchScreen(Screens screen, {Object webUrl}) {
+  static switchScreen(Screens screen, {Object webUrl, bool force = false}) {
     try {
       switch (screen) {
         case Screens.Game:
@@ -77,27 +78,47 @@ class AppNavigator {
               return false;
             });
           } else {
-            screenNavigate.replace(MainStartupRoutes.featureScreen);
+            if (force) {
+              screenNavigate.popUntilRoot();
+              screenNavigate.replace(MainStartupRoutes.featureScreen);
+            } else {
+              screenNavigate.popUntilPath(homeName);
+            }
             screenIndex = 0;
           }
           break;
       }
+    } catch (e, s) {
+      debugPrint('stack trace: $s');
+      if (force) {
+        MyLogger.error(
+            msg:
+                'force switch screen has exception, restarting app!! ERROR: $e',
+            tag: _tag);
+        // restart app
+        Future.delayed(Duration(milliseconds: 200), () {
+          if (Global.device.isIos) {
+            callToastError(
+                'Encountered a fatal error!! Please restart your app manually');
+          } else {
+            callToastError('Encountered a fatal error, restarting in 2s...');
+            Future.delayed(
+                Duration(milliseconds: 2000), () => PlatformUtil.restart());
+          }
+        });
+      } else {
+        MyLogger.error(
+            msg:
+                'switch screen has exception, resetting home screen!! ERROR: $e',
+            tag: _tag);
+        // reset nested navigator by replace home screen with a new one
+        switchScreen(Screens.Feature, force: true);
+      }
+    } finally {
       if (screenIndex != 1) {
         debugPrint('restoring screen orientation...');
         OrientationHelper.restoreUI();
       }
-    } catch (e, s) {
-      MyLogger.error(
-          msg:
-              'force screen to switch has exception, restarting app!! ERROR: $e',
-          tag: _tag);
-      debugPrint('stack trace: $s');
-      // restart app
-      Future.delayed(Duration(milliseconds: 200), () {
-        callToastError('Encountered a fatal error, restarting in 2s...');
-        Future.delayed(
-            Duration(milliseconds: 2000), () => PlatformUtil.restart());
-      });
     }
   }
 
@@ -155,8 +176,15 @@ class AppNavigator {
           tag: _tag);
       return;
     }
-    // if root is not home, then push the page
-    if (_previous != homeName) {
+    // if current route is home, then push the page
+    if (_current == homeName) {
+      debugPrint('cannot replace home route, switch to navigate...');
+      navigateTo(page, arg: arg);
+      return;
+    }
+    // if the page does not have the same parent, then push the page
+    if (_previous != page.pageRoot) {
+      debugPrint('route does not have the same parent, switch to navigate...');
       navigateTo(page, arg: arg);
       return;
     }
@@ -239,10 +267,13 @@ class AppNavigator {
         switchScreen(Screens.Feature);
       } else {
         featureNavigate.popUntilPath(homeName);
+        // featureNavigate.popUntilRoot();
+        // featureNavigate.replace(homeName);
       }
       callCheckUser();
     } catch (e) {
       MyLogger.error(msg: 'navigate home has exception!! Error: $e', tag: _tag);
+      switchScreen(Screens.Feature);
     }
     _isWeb = false;
 

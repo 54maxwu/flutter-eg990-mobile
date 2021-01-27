@@ -29,7 +29,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   final String keyId = 'Navi';
   final GlobalKey<NavigatorState> screenNavKey =
       new GlobalKey(debugLabel: 'screenNavKey');
-  final GlobalKey<NavigatorState> navKey = new GlobalKey(debugLabel: 'navKey');
+  final GlobalKey<NavigatorState> _navKey = new GlobalKey(debugLabel: 'navKey');
 
   Future<bool> updateFuture;
   UpdateStore updateStore;
@@ -93,7 +93,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
           // ),
           body: ExtendedNavigator(
             key: screenNavKey,
-            navigatorKey: navKey,
+            navigatorKey: _navKey,
             initialRoute: MainStartupRoutes.featureScreen,
             router: MainStartupRouter(),
           ),

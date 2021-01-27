@@ -455,10 +455,10 @@ class S {
     );
   }
 
-  /// `฿ {value}`
+  /// `VND {value}`
   String toolBarMemberCredit(Object value) {
     return Intl.message(
-      '฿ $value',
+      'VND $value',
       name: 'toolBarMemberCredit',
       desc: '',
       args: [value],
@@ -1255,11 +1255,21 @@ class S {
     );
   }
 
-  /// `Error Data Format`
+  /// `Error Format`
   String get messageInvalidFormat {
     return Intl.message(
-      'Error Data Format',
+      'Error Format',
       name: 'messageInvalidFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid date input`
+  String get messageInvalidDate {
+    return Intl.message(
+      'Invalid date input',
+      name: 'messageInvalidDate',
       desc: '',
       args: [],
     );
@@ -1280,6 +1290,26 @@ class S {
     return Intl.message(
       'Mailbox is malformed',
       name: 'messageInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of Birth Error`
+  String get messageInvalidBirthDate {
+    return Intl.message(
+      'Date of Birth Error',
+      name: 'messageInvalidBirthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number already registered`
+  String get messageRepeatPhone {
+    return Intl.message(
+      'Phone Number already registered',
+      name: 'messageRepeatPhone',
       desc: '',
       args: [],
     );
@@ -1345,30 +1375,30 @@ class S {
     );
   }
 
-  /// `Username should be 6 ~ 12 words`
+  /// `Username should be 6~12 lowercase words`
   String get messageInvalidAccount {
     return Intl.message(
-      'Username should be 6 ~ 12 words',
+      'Username should be 6~12 lowercase words',
       name: 'messageInvalidAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be 6~18 words`
+  /// `Password should be 6~20 words`
   String get messageInvalidPassword {
     return Intl.message(
-      'Password should be 6~18 words',
+      'Password should be 6~20 words',
       name: 'messageInvalidPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be 8~18 words`
+  /// `Password should be 6~20 words`
   String get messageInvalidPasswordNew {
     return Intl.message(
-      'Password should be 8~18 words',
+      'Password should be 6~20 words',
       name: 'messageInvalidPasswordNew',
       desc: '',
       args: [],
@@ -1380,6 +1410,26 @@ class S {
     return Intl.message(
       'Password does not match',
       name: 'messageInvalidConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password does not match, the account will be locked for five errors`
+  String get messageInvalidPasswordFive {
+    return Intl.message(
+      'The password does not match, the account will be locked for five errors',
+      name: 'messageInvalidPasswordFive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is wrong five times and the account is locked, please contact customer service`
+  String get messageInvalidPasswordLocked {
+    return Intl.message(
+      'The password is wrong five times and the account is locked, please contact customer service',
+      name: 'messageInvalidPasswordLocked',
       desc: '',
       args: [],
     );
@@ -1460,6 +1510,16 @@ class S {
     return Intl.message(
       'Not enough credit',
       name: 'messageInvalidWithdrawAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Below the minimum amount`
+  String get messageInvalidWithdrawUnderAmount {
+    return Intl.message(
+      'Below the minimum amount',
+      name: 'messageInvalidWithdrawUnderAmount',
       desc: '',
       args: [],
     );
@@ -3305,10 +3365,10 @@ class S {
     );
   }
 
-  /// `Number range: 01 ~ 49`
+  /// `Number range: 01~49`
   String get centerLuckyNumberError {
     return Intl.message(
-      'Number range: 01 ~ 49',
+      'Number range: 01~49',
       name: 'centerLuckyNumberError',
       desc: '',
       args: [],
@@ -3525,10 +3585,10 @@ class S {
     );
   }
 
-  /// `Total: ฿ {value}`
+  /// `Total: VND {value}`
   String betsTextTotal(Object value) {
     return Intl.message(
-      'Total: ฿ $value',
+      'Total: VND $value',
       name: 'betsTextTotal',
       desc: '',
       args: [value],
@@ -3975,20 +4035,20 @@ class S {
     );
   }
 
-  /// `Range: {num} ~ {num2}`
+  /// `Range: {num}~{num2}`
   String depositPaymentEditTitleAmountHintRange(Object num, Object num2) {
     return Intl.message(
-      'Range: $num ~ $num2',
+      'Range: $num~$num2',
       name: 'depositPaymentEditTitleAmountHintRange',
       desc: '',
       args: [num, num2],
     );
   }
 
-  /// `Range: {num} ~ {num2} (Step:{num3})`
+  /// `Range: {num}~{num2} (Step:{num3})`
   String depositPaymentEditTitleAmountHintRangeStep(Object num, Object num2, Object num3) {
     return Intl.message(
-      'Range: $num ~ $num2 (Step:$num3)',
+      'Range: $num~$num2 (Step:$num3)',
       name: 'depositPaymentEditTitleAmountHintRangeStep',
       desc: '',
       args: [num, num2, num3],
@@ -4065,10 +4125,10 @@ class S {
     );
   }
 
-  /// `Single Deposit Limit: ฿ {value}`
+  /// `Single Deposit Limit: VND {value}`
   String depositHintTextAmount(Object value) {
     return Intl.message(
-      'Single Deposit Limit: ฿ $value',
+      'Single Deposit Limit: VND $value',
       name: 'depositHintTextAmount',
       desc: '',
       args: [value],
@@ -6510,6 +6570,66 @@ class S {
     return Intl.message(
       'Facebook',
       name: 'serviceTitleFacebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CGPAY for Android`
+  String get downloadAndroidCgpay {
+    return Intl.message(
+      'CGPAY for Android',
+      name: 'downloadAndroidCgpay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CGPAY for IOS`
+  String get downloadIosCgpay {
+    return Intl.message(
+      'CGPAY for IOS',
+      name: 'downloadIosCgpay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DNS Repair for Android`
+  String get downloadAndroidDns {
+    return Intl.message(
+      'DNS Repair for Android',
+      name: 'downloadAndroidDns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DNS Repair for IOS`
+  String get downloadIosDns {
+    return Intl.message(
+      'DNS Repair for IOS',
+      name: 'downloadIosDns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(Android Only)`
+  String get downloadHintPlatformAndroid {
+    return Intl.message(
+      '(Android Only)',
+      name: 'downloadHintPlatformAndroid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(iOS Only)`
+  String get downloadHintPlatformIos {
+    return Intl.message(
+      '(iOS Only)',
+      name: 'downloadHintPlatformIos',
       desc: '',
       args: [],
     );

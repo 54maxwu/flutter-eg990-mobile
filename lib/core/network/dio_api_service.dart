@@ -113,7 +113,9 @@ class DioApiService {
               ? Options(headers: {'JWT-TOKEN': userToken})
               : (agentToken != null)
                   ? Options(headers: {'JWT-TOKEN-AGENT': agentToken})
-                  : (headers != null) ? Options(headers: headers) : options,
+                  : (headers != null)
+                      ? Options(headers: headers)
+                      : options,
           cancelToken: cancelToken);
     } on DioError catch (e) {
       throw getErrorType(e);

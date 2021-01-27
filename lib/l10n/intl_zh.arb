@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "฿ {value}",
+  "toolBarMemberCredit": "VND {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -548,12 +548,24 @@
   "@messageInvalidFormat": {
     "type": "text"
   },
+  "messageInvalidDate": "日期错误",
+  "@messageInvalidDate": {
+    "type": "text"
+  },
   "messageInvalidName": "名称格式错误",
   "@messageInvalidName": {
     "type": "text"
   },
   "messageInvalidEmail": "信箱格式错误",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "生日日期错误",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "手机号重复",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "电话格式错误({num}碼)",
@@ -590,20 +602,28 @@
       }
     }
   },
-  "messageInvalidAccount": "帐号为6~12个字",
+  "messageInvalidAccount": "帐号为6~12个小写英数文本",
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "密码为6~18个字",
+  "messageInvalidPassword": "密码为6~20个字",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "密码为8~18个字",
+  "messageInvalidPasswordNew": "密码为6~20个字",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
   "messageInvalidConfirmPassword": "密码不符合",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "密码不符合，错误五次将锁定帐号",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "帐号已锁定，请联系客服",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "金额输入错误",
@@ -641,6 +661,10 @@
   },
   "messageInvalidWithdrawAmount": "超过帐户余额",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "低于最低提款金额",
+  "@messageInvalidWithdrawUnderAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "您正在使用移动网络",
@@ -1495,7 +1519,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "总计: ฿ {value}",
+  "betsTextTotal": "总计: VND {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -2878,6 +2902,30 @@
   },
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
+    "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY Android版",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY IOS版",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "DNS修复 Android版",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "DNS修复 IOS版",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(安卓适用)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(苹果适用)",
+  "@downloadHintPlatformIos": {
     "type": "text"
   }
 }

@@ -17,11 +17,13 @@ class _$WithdrawFormTearOff {
   _WithdrawForm call(
       {@required String amount,
       @required String password,
-      @required String type}) {
+      @required String type,
+      @required int minimum}) {
     return _WithdrawForm(
       amount: amount,
       password: password,
       type: type,
+      minimum: minimum,
     );
   }
 }
@@ -35,6 +37,7 @@ mixin _$WithdrawForm {
   String get amount;
   String get password;
   String get type;
+  int get minimum;
 
   $WithdrawFormCopyWith<WithdrawForm> get copyWith;
 }
@@ -44,7 +47,7 @@ abstract class $WithdrawFormCopyWith<$Res> {
   factory $WithdrawFormCopyWith(
           WithdrawForm value, $Res Function(WithdrawForm) then) =
       _$WithdrawFormCopyWithImpl<$Res>;
-  $Res call({String amount, String password, String type});
+  $Res call({String amount, String password, String type, int minimum});
 }
 
 /// @nodoc
@@ -60,11 +63,13 @@ class _$WithdrawFormCopyWithImpl<$Res> implements $WithdrawFormCopyWith<$Res> {
     Object amount = freezed,
     Object password = freezed,
     Object type = freezed,
+    Object minimum = freezed,
   }) {
     return _then(_value.copyWith(
       amount: amount == freezed ? _value.amount : amount as String,
       password: password == freezed ? _value.password : password as String,
       type: type == freezed ? _value.type : type as String,
+      minimum: minimum == freezed ? _value.minimum : minimum as int,
     ));
   }
 }
@@ -76,7 +81,7 @@ abstract class _$WithdrawFormCopyWith<$Res>
           _WithdrawForm value, $Res Function(_WithdrawForm) then) =
       __$WithdrawFormCopyWithImpl<$Res>;
   @override
-  $Res call({String amount, String password, String type});
+  $Res call({String amount, String password, String type, int minimum});
 }
 
 /// @nodoc
@@ -94,11 +99,13 @@ class __$WithdrawFormCopyWithImpl<$Res> extends _$WithdrawFormCopyWithImpl<$Res>
     Object amount = freezed,
     Object password = freezed,
     Object type = freezed,
+    Object minimum = freezed,
   }) {
     return _then(_WithdrawForm(
       amount: amount == freezed ? _value.amount : amount as String,
       password: password == freezed ? _value.password : password as String,
       type: type == freezed ? _value.type : type as String,
+      minimum: minimum == freezed ? _value.minimum : minimum as int,
     ));
   }
 }
@@ -106,10 +113,14 @@ class __$WithdrawFormCopyWithImpl<$Res> extends _$WithdrawFormCopyWithImpl<$Res>
 /// @nodoc
 class _$_WithdrawForm implements _WithdrawForm {
   const _$_WithdrawForm(
-      {@required this.amount, @required this.password, @required this.type})
+      {@required this.amount,
+      @required this.password,
+      @required this.type,
+      @required this.minimum})
       : assert(amount != null),
         assert(password != null),
-        assert(type != null);
+        assert(type != null),
+        assert(minimum != null);
 
   @override
   final String amount;
@@ -117,10 +128,12 @@ class _$_WithdrawForm implements _WithdrawForm {
   final String password;
   @override
   final String type;
+  @override
+  final int minimum;
 
   @override
   String toString() {
-    return 'WithdrawForm(amount: $amount, password: $password, type: $type)';
+    return 'WithdrawForm(amount: $amount, password: $password, type: $type, minimum: $minimum)';
   }
 
   @override
@@ -133,7 +146,9 @@ class _$_WithdrawForm implements _WithdrawForm {
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
             (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.minimum, minimum) ||
+                const DeepCollectionEquality().equals(other.minimum, minimum)));
   }
 
   @override
@@ -141,7 +156,8 @@ class _$_WithdrawForm implements _WithdrawForm {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(type);
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(minimum);
 
   @override
   _$WithdrawFormCopyWith<_WithdrawForm> get copyWith =>
@@ -152,7 +168,8 @@ abstract class _WithdrawForm implements WithdrawForm {
   const factory _WithdrawForm(
       {@required String amount,
       @required String password,
-      @required String type}) = _$_WithdrawForm;
+      @required String type,
+      @required int minimum}) = _$_WithdrawForm;
 
   @override
   String get amount;
@@ -160,6 +177,8 @@ abstract class _WithdrawForm implements WithdrawForm {
   String get password;
   @override
   String get type;
+  @override
+  int get minimum;
   @override
   _$WithdrawFormCopyWith<_WithdrawForm> get copyWith;
 }

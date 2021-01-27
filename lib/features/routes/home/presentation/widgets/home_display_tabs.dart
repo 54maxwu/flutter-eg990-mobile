@@ -139,8 +139,12 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
       if (_tabKeyMap != null) {
         bool keysChecked = widget.tabs
             .every((category) => _tabKeyMap.containsKey(category.type));
-        debugPrint('tab map check: $keysChecked');
-        if (keysChecked) return _tabBar;
+        if (keysChecked) {
+          debugPrint('home tab key-map check success');
+          return _tabBar;
+        } else {
+          debugPrint('home tab key-map check failed, rebuilding tab bar...');
+        }
       }
       _tabBar = _buildTabBar(_store);
     } else if (_tabController == null && _timer == null) {

@@ -4,8 +4,8 @@
 ///
 class InputLimit {
   static const int PASSWORD_MIN_OLD = 6;
-  static const int PASSWORD_MIN = 8;
-  static const int PASSWORD_MAX = 18;
+  static const int PASSWORD_MIN = 6;
+  static const int PASSWORD_MAX = 20;
 
   static const int ACCOUNT_MIN = 6;
   static const int ACCOUNT_MAX = 12;
@@ -14,7 +14,7 @@ class InputLimit {
   static const int AGENT_ACCOUNT_MAX = 12;
 
   static const int PHONE_MIN = 10;
-  static const int PHONE_MAX = 14;
+  static const int PHONE_MAX = 10;
 
   static const int NAME_MIN = 2;
   static const int NAME_MAX = 50;

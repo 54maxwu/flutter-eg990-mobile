@@ -72,8 +72,20 @@ class _HomeDisplayState extends State<HomeDisplay> {
     }
   }
 
+  void _widgetUrlCheck(String url) {
+    debugPrint('home widget url check: $url');
+    if (url == Global.CURRENT_BASE) return;
+    _widgetUrlNavigate(
+      url.contains('/api/open/'),
+      url
+          .substring(
+              url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length)
+          .replaceAll('/api/open/', ''),
+    );
+  }
+
   void _widgetUrlNavigate(bool openGame, String url) {
-    debugPrint('home widget url:$url, isGame:$openGame');
+    debugPrint('home widget url: $url, isGame: $openGame');
     if (openGame) {
       final gameUrl = url.substring(url.indexOf('.com/') + 4);
       debugPrint('opening game: $gameUrl');
@@ -99,7 +111,11 @@ class _HomeDisplayState extends State<HomeDisplay> {
       RoutePage newRoute = url.urlToRoutePage;
       debugPrint('checking url to app route: $newRoute');
       if (newRoute != null) {
-        AppNavigator.navigateTo(newRoute);
+        if (newRoute.isUserOnly && _store.hasUser == false) {
+          callToastInfo(localeStr.messageErrorNotLogin);
+        } else {
+          AppNavigator.navigateTo(newRoute);
+        }
       }
     }
   }
@@ -147,12 +163,10 @@ class _HomeDisplayState extends State<HomeDisplay> {
                     banners = _store.banners;
                     _bannerWidget = HomeDisplayBanner(
                       banners: banners,
-                      onBannerClicked: (openGame, url) =>
-                          _widgetUrlNavigate(openGame, url),
+                      onBannerClicked: (url) => _widgetUrlCheck(url),
                     );
                   }
-                  _bannerWidget ??=
-                      HomeDisplayBanner(onBannerClicked: (_, __) {});
+                  _bannerWidget ??= HomeDisplayBanner(onBannerClicked: (_) {});
                   return _bannerWidget;
                 },
               ),
@@ -165,8 +179,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
                       marquees = _store.marquees;
                       _marqueeWidget = HomeDisplayMarquee(
                         marquees: marquees,
-                        onMarqueeClicked: (url) =>
-                            _widgetUrlNavigate(false, url),
+                        onMarqueeClicked: (url) => _widgetUrlCheck(url),
                       );
                     }
                     _marqueeWidget ??= HomeDisplayMarquee();
@@ -195,7 +208,8 @@ class _HomeDisplayState extends State<HomeDisplay> {
                       stream: AppNavigator.routerStreams.recheckUserStream,
                       initialData: false,
                       builder: (context, snapshot) {
-//                debugPrint('checking shortcut widget: ${getAppGlobalStreams.lastUser}');
+                        // debugPrint(
+                        //     'checking shortcut widget: ${getAppGlobalStreams.lastStatus}');
                         if (_shortcutWidget == null) {
                           _shortcutWidget = HomeShortcutWidget(
                             key: _shortcutWidgetKey,

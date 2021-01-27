@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "฿ {value}",
+  "toolBarMemberCredit": "VND {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -404,7 +404,7 @@
   "@hintPassword": {
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8 đến 18 ký tự",
+  "hintConfirmed": "Độ dài từ 6~20 ký tự",
   "@hintConfirmed": {
     "type": "text"
   },
@@ -548,12 +548,24 @@
   "@messageInvalidFormat": {
     "type": "text"
   },
+  "messageInvalidDate": "Nhầm cuộc hẹn",
+  "@messageInvalidDate": {
+    "type": "text"
+  },
   "messageInvalidName": "Định dạng tên không chính xác",
   "@messageInvalidName": {
     "type": "text"
   },
   "messageInvalidEmail": "Định dạng hộp thư không chính xác",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "Ngày sinh nhật sai",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "Số điện thoại trùng lặp",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "Lỗi định dạng điện thoại({num})",
@@ -590,20 +602,28 @@
       }
     }
   },
-  "messageInvalidAccount": "Số tài khoản là 6 ~ 12 ký tự",
+  "messageInvalidAccount": "Số tài khoản là văn bản chữ và số 6 ~ 12",
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Mật khẩu dài 6 ~ 18 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài 6~20 ký tự",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
+  "messageInvalidPasswordNew": "Mật khẩu dài 6~20 ký tự",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
   "messageInvalidConfirmPassword": "Mật khẩu không hợp lệ",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "Mật khẩu không khớp, tài khoản sẽ bị khóa vì năm lỗi",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "Tài khoản bị khóa, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "Số tiền nhập không chính xác",
@@ -641,6 +661,10 @@
   },
   "messageInvalidWithdrawAmount": "Vượt quá số dư tài khoản",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "Dưới số tiền rút tối thiểu",
+  "@messageInvalidWithdrawUnderAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",
@@ -1403,11 +1427,11 @@
   "@centerHintNoName": {
     "type": "text"
   },
-  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01 ~ 49",
+  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01~49",
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "Dải số: 01 ~ 49",
+  "centerLuckyNumberError": "Dải số: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1495,7 +1519,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Tổng cộng: ฿ {value}",
+  "betsTextTotal": "Tổng cộng: VND {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -2878,6 +2902,30 @@
   },
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
+    "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY cho Android",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY cho IOS",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "Sửa chữa DNS cho Android",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "Sửa chữa DNS cho IOS",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(Chỉ dành cho Android)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(Chỉ dành cho iOS)",
+  "@downloadHintPlatformIos": {
     "type": "text"
   }
 }

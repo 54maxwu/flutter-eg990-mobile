@@ -1,4 +1,6 @@
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/data/error/error_message_map.dart';
 
 import '../../data/form/withdraw_form.dart';
 import '../../data/models/withdraw_model.dart';
@@ -132,12 +134,10 @@ abstract class _WithdrawStore with Store {
         debugPrint('withdraw result: $result');
         result.fold(
           (failure) {
-            if (failure.message == 'amountMoreThanBalance')
-              errorMessage = localeStr.messageInvalidWithdrawAmount;
-            else if (failure.message == 'wrongPassword')
-              errorMessage = localeStr.messageInvalidWithdrawPassword;
-            else
-              setErrorMsg(msg: failure.message, showOnce: true);
+            setErrorMsg(
+                msg: MessageMap.getErrorMessage(
+                    failure.message, RouteEnum.WITHDRAW),
+                showOnce: true);
           },
           (data) => withdrawResult = data,
         );

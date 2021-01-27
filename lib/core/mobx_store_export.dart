@@ -28,7 +28,8 @@ String getErrorMsg({
   FailureType type,
   int code = 0,
 }) {
-  debugPrint('failure from: ${from.value}, type: ${type?.value}, msg: $msg');
+  debugPrint(
+      'failure from: ${from.value}, type: ${type?.value}, msg: $msg, code:$code');
   if (msg != null && msg.contains('code: 82')) {
     String code =
         msg.substring(msg.indexOf('code:')).replaceAll(RegExp('[^0-9]'), '');

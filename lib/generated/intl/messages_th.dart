@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m6(no) => "${no} บัตรเดบิตที่ถูก จำกัด และการชำระยอดคงเหลือ Alipay! \n";
 
-  static m7(value) => "ขีดจำกัดการฝากเงินครั้งเดียว: ฿ ${value}";
+  static m7(value) => "ขีดจำกัดการฝากเงินครั้งเดียว: VND ${value}";
 
   static m8(no) => "${no} [คำเตือนสำคัญ] อย่าเก็บบัญชีธนาคารของคุณไว้โปรดรับบัญชีเรียกเก็บเงินล่าสุดอีกครั้งก่อนการเติมเงินแต่ละครั้งหากคุณฝากเงินไปยังบัญชีรับเงินที่ปิดใช้งาน บริษัท จะไม่สามารถตรวจสอบการเรียกเก็บเงินและจะไม่ รับผิดชอบ! \n ";
 
@@ -57,9 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(value) => "ขอความสำเร็จหมายเลขคำสั่งซื้อ ${value}";
 
-  static m19(num, num2) => "ช่วง: ${num} ~ ${num2}";
+  static m19(num, num2) => "ช่วง: ${num}~${num2}";
 
-  static m20(num, num2, num3) => "ช่วง: ${num} ~ ${num2} (ขั้นตอน: ${num3})";
+  static m20(num, num2, num3) => "ช่วง: ${num}~${num2} (ขั้นตอน: ${num3})";
 
   static m22(value) => "ลงนามแล้ว ${value} วัน";
 
@@ -109,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value} คะแนน";
 
-  static m46(value) => "฿ ${value}";
+  static m46(value) => "VND ${value}";
 
   static m47(from, to) => "${from} ถึง ${to}";
 
@@ -267,7 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerLuckyButtonBind" : MessageLookupByLibrary.simpleMessage("ยืนยันการผูก"),
     "centerLuckyButtonGenerate" : MessageLookupByLibrary.simpleMessage("สร้างอัตโนมัติ"),
     "centerLuckyHint" : MessageLookupByLibrary.simpleMessage("ผูกรหัสนำโชค คุณสามารถมีส่วนร่วมในรหัสจับคู่ลอตเตอรี ของขวัญที่ยอดเยี่ยมสำหรับคุณ !!!"),
-    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("ช่วงตัวเลข: 01 ~ 49"),
+    "centerLuckyNumberError" : MessageLookupByLibrary.simpleMessage("ช่วงตัวเลข: 01~49"),
     "centerLuckyTitle" : MessageLookupByLibrary.simpleMessage("กรุณากรอกตัวเลขตั้งแต่ 01 ถึง 49 ในช่องว่าง 7 ช่องต่อไปนี้"),
     "centerTextButtonBind" : MessageLookupByLibrary.simpleMessage("ผูก"),
     "centerTextButtonChangePwd" : MessageLookupByLibrary.simpleMessage("เปลี่ยนรหัสผ่าน"),
@@ -373,6 +373,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositPaymentTitleTutorial" : MessageLookupByLibrary.simpleMessage("บทช่วยสอน"),
     "depositPaymentTitleUnion" : MessageLookupByLibrary.simpleMessage("ยูเนี่ยนเพย์"),
     "depositPaymentTitleWechat" : MessageLookupByLibrary.simpleMessage("WeChat Pay"),
+    "downloadAndroidCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY สำหรับ Android"),
+    "downloadAndroidDns" : MessageLookupByLibrary.simpleMessage("ซ่อมแซม DNS สำหรับ Android"),
+    "downloadHintPlatformAndroid" : MessageLookupByLibrary.simpleMessage("(Android เท่านั้น)"),
+    "downloadHintPlatformIos" : MessageLookupByLibrary.simpleMessage("(iOS เท่านั้น)"),
+    "downloadIosCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY สำหรับ IOS"),
+    "downloadIosDns" : MessageLookupByLibrary.simpleMessage("ซ่อมแซม DNS สำหรับ IOS"),
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("ลงชื่อเข้าใช้"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("การลงชื่อเข้าใช้ล้มเหลว !!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("ลงชื่อเข้าใช้สำเร็จ !!"),
@@ -486,27 +492,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดโทเค็นของผู้ใช้โปรดออกจากระบบและเข้าสู่ระบบอีกครั้ง"),
     "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("การถอนล้มเหลว"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("การเปลี่ยนแปลงล้มเหลวโปรดลองอีกครั้งในภายหลัง"),
-    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ใช้ควรมีความยาว 6~12 คำ"),
+    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("หมายเลขบัญชีคือ 6~12 ตัวพิมพ์เล็กและตัวเลขคละกัน"),
+    "messageInvalidBirthDate" : MessageLookupByLibrary.simpleMessage("วันเกิดผิด"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("ชื่อต้องมีความยาวมากกว่า 3 อักขระ"),
     "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("หมายเลขบัตรคือ 6~19 อักขระ"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ถือบัตรไม่ถูกต้อง"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ตรงกัน"),
+    "messageInvalidDate" : MessageLookupByLibrary.simpleMessage("วันที่ไม่ถูกต้อง"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("จำนวนเงินผิดพลาด"),
     "messageInvalidDepositAmountMin" : m30,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("ชื่อบัญชีไม่ถูกต้อง"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("กล่องจดหมายผิดรูปแบบ"),
     "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("รูปแบบข้อมูลผิดพลาด"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("ชื่อผิดรูปแบบ"),
-    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านควรมีความยาว 6~18 คำ"),
+    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านควรมีความยาว 6~20 คำ"),
     "messageInvalidPasswordArg" : m31,
-    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("รหัสผ่านควรมีความยาว 8~18 คำ"),
+    "messageInvalidPasswordFive" : MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อคเนื่องจากข้อผิดพลาดห้าประการ"),
+    "messageInvalidPasswordLocked" : MessageLookupByLibrary.simpleMessage("บัญชีถูกล็อคโปรดติดต่อฝ่ายบริการลูกค้า"),
+    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("รหัสผ่านควรมีความยาว 6~20 คำ"),
     "messageInvalidPhone" : m32,
-    "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("รหัสโพสต์ผิดพลาด (5 ~ 8)"),
+    "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("รหัสโพสต์ผิดพลาด (5~8)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("มีสัญลักษณ์ที่ไม่ถูกต้อง"),
     "messageInvalidVerify" : MessageLookupByLibrary.simpleMessage("โปรดป้อนรหัสยืนยัน"),
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("บัญชี WeChat ไม่ถูกต้อง"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("เครดิตไม่เพียงพอ"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านผิดพลาด! (ค่าเริ่มต้นคือรหัสผ่านเข้าสู่ระบบ)"),
+    "messageInvalidWithdrawUnderAmount" : MessageLookupByLibrary.simpleMessage("ต่ำกว่าจำนวนเงินถอนขั้นต่ำ"),
     "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("บัญชี Zalo ไม่ถูกต้อง"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("กำลังโหลด ... "),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบล้มเหลว"),
@@ -517,6 +528,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("การโอนบางส่วนล้มเหลว"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("การลงทะเบียนล้มเหลว"),
     "messageRepeatAccount" : MessageLookupByLibrary.simpleMessage("การลงทะเบียนบัญชีที่ซ้ำกัน"),
+    "messageRepeatPhone" : MessageLookupByLibrary.simpleMessage("หมายเลขโทรศัพท์ซ้ำกัน"),
     "messageSentVerify" : MessageLookupByLibrary.simpleMessage("ยืนยันรหัสได้ส่งแล้ว"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("ความสำเร็จ"),
     "messageTaskCanceled" : m34,

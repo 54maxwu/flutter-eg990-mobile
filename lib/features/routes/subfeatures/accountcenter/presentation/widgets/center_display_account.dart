@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
+import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/entity/center_account_entity.dart'
@@ -176,10 +177,15 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       suffixAction: (input) {
                         debugPrint('request bind birth date: $input');
                         checkAndPost(context, () {
-                          if (input.isDate)
-                            _store.bindBirth(input);
-                          else
+                          if (input.isDate) {
+                            if (checkDateRange(input, getDate())) {
+                              _store.bindBirth(input);
+                            } else {
+                              callToast(localeStr.messageInvalidDate);
+                            }
+                          } else {
                             callToast(localeStr.messageInvalidFormat);
+                          }
                         });
                       },
                       readOnly: _storeData.canBindBirthDate == false,

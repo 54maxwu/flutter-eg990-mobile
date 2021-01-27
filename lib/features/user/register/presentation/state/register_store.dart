@@ -50,7 +50,7 @@ abstract class _RegisterStore with Store {
           .postRegister(form)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (model) {
 //                debugPrint('register result: $model');
                 registerResult = model;

@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "฿ {value}",
+  "toolBarMemberCredit": "VND {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -548,12 +548,24 @@
   "@messageInvalidFormat": {
     "type": "text"
   },
+  "messageInvalidDate": "วันที่ไม่ถูกต้อง",
+  "@messageInvalidDate": {
+    "type": "text"
+  },
   "messageInvalidName": "ชื่อผิดรูปแบบ",
   "@messageInvalidName": {
     "type": "text"
   },
   "messageInvalidEmail": "กล่องจดหมายผิดรูปแบบ",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "วันเกิดผิด",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "หมายเลขโทรศัพท์ซ้ำกัน",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "หมายเลขโทรศัพท์ผิดพลาด ({num})",
@@ -565,7 +577,7 @@
       }
     }
   },
-  "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5 ~ 8)",
+  "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
@@ -590,20 +602,28 @@
       }
     }
   },
-  "messageInvalidAccount": "ชื่อผู้ใช้ควรมีความยาว 6~12 คำ",
+  "messageInvalidAccount": "หมายเลขบัญชีคือ 6~12 ตัวพิมพ์เล็กและตัวเลขคละกัน",
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~18 คำ",
+  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~20 คำ",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8~18 คำ",
+  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 6~20 คำ",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
   "messageInvalidConfirmPassword": "รหัสผ่านไม่ตรงกัน",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อคเนื่องจากข้อผิดพลาดห้าประการ",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "บัญชีถูกล็อคโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "จำนวนเงินผิดพลาด",
@@ -641,6 +661,10 @@
   },
   "messageInvalidWithdrawAmount": "เครดิตไม่เพียงพอ",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "ต่ำกว่าจำนวนเงินถอนขั้นต่ำ",
+  "@messageInvalidWithdrawUnderAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "คุณกำลังใช้เครือข่ายมือถือ",
@@ -1407,7 +1431,7 @@
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "ช่วงตัวเลข: 01 ~ 49",
+  "centerLuckyNumberError": "ช่วงตัวเลข: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1672,7 +1696,7 @@
   "@depositPaymentEditTitleAmount": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintVnd": "ความเป็นจริง: ฿ {value}",
+  "depositPaymentEditTitleAmountHintVnd": "ความเป็นจริง: VND {value}",
   "@depositPaymentEditTitleAmountHintVND": {
     "type": "text",
     "placeholders": {
@@ -1685,7 +1709,7 @@
   "@depositPaymentEditTitleNote": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "ช่วง: {num} ~ {num2}",
+  "depositPaymentEditTitleAmountHintRange": "ช่วง: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -1697,7 +1721,7 @@
       }
     }
   },
-  "depositPaymentEditTitleAmountHintRangeStep": "ช่วง: {num} ~ {num2} (ขั้นตอน: {num3})",
+  "depositPaymentEditTitleAmountHintRangeStep": "ช่วง: {num}~{num2} (ขั้นตอน: {num3})",
   "@depositPaymentEditTitleAmountHintRangeStep": {
     "type": "text",
     "placeholders": {
@@ -1740,7 +1764,7 @@
   "@depositHintTextAccount": {
     "type": "text"
   },
-  "depositHintTextAmount": "ขีดจำกัดการฝากเงินครั้งเดียว: ฿ {value}",
+  "depositHintTextAmount": "ขีดจำกัดการฝากเงินครั้งเดียว: VND {value}",
   "@depositHintTextAmount": {
     "type": "text",
     "placeholders": {
@@ -2879,5 +2903,29 @@
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
     "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY สำหรับ Android",
+  "@downloadAndroidCgpay": {
+    "พิมพ์": "text"
+  },
+  "downloadIosCgpay": "CGPAY สำหรับ IOS",
+  "@downloadIosCgpay": {
+    "พิมพ์": "text"
+  },
+  "downloadAndroidDns": "ซ่อมแซม DNS สำหรับ Android",
+  "@downloadAndroidDns": {
+    "พิมพ์": "text"
+  },
+  "downloadIosDns": "ซ่อมแซม DNS สำหรับ IOS",
+  "@downloadIosDns": {
+    "พิมพ์": "text"
+  },
+  "downloadHintPlatformAndroid": "(Android เท่านั้น)",
+  "@downloadHintPlatformAndroid": {
+    "พิมพ์": "text"
+  },
+  "downloadHintPlatformIos": "(iOS เท่านั้น)",
+  "@downloadHintPlatformIos": {
+    "พิมพ์": "text"
   }
 }

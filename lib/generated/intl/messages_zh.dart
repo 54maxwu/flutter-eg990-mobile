@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m4(value) => "余额不足: ${value}";
 
-  static m5(value) => "总计: ฿ ${value}";
+  static m5(value) => "总计: VND ${value}";
 
   static m6(no) => "${no}限用借记卡与支付宝余额支付！\n";
 
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value}积分";
 
-  static m46(value) => "฿ ${value}";
+  static m46(value) => "VND ${value}";
 
   static m47(from, to) => "${from} 到 ${to}";
 
@@ -376,6 +376,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "depositPaymentTitleTutorial" : MessageLookupByLibrary.simpleMessage("使用教学"),
     "depositPaymentTitleUnion" : MessageLookupByLibrary.simpleMessage("银联支付"),
     "depositPaymentTitleWechat" : MessageLookupByLibrary.simpleMessage("微信支付"),
+    "downloadAndroidCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY Android版"),
+    "downloadAndroidDns" : MessageLookupByLibrary.simpleMessage("DNS修复 Android版"),
+    "downloadHintPlatformAndroid" : MessageLookupByLibrary.simpleMessage("(安卓适用)"),
+    "downloadHintPlatformIos" : MessageLookupByLibrary.simpleMessage("(苹果适用)"),
+    "downloadIosCgpay" : MessageLookupByLibrary.simpleMessage("CGPAY IOS版"),
+    "downloadIosDns" : MessageLookupByLibrary.simpleMessage("DNS修复 IOS版"),
     "eventButtonSignUpAlready" : MessageLookupByLibrary.simpleMessage("已签到"),
     "eventButtonSignUpFailed" : MessageLookupByLibrary.simpleMessage("签到失败!!"),
     "eventButtonSignUpSuccess" : MessageLookupByLibrary.simpleMessage("签到成功!!"),
@@ -489,20 +495,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageErrorToken" : MessageLookupByLibrary.simpleMessage("用户验证失败，请重新登入或联系客服"),
     "messageErrorWithdraw" : MessageLookupByLibrary.simpleMessage("提款失败"),
     "messageFailed" : MessageLookupByLibrary.simpleMessage("更改失败，请稍候再重试"),
-    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("帐号为6~12个字"),
+    "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("帐号为6~12个小写英数文本"),
+    "messageInvalidBirthDate" : MessageLookupByLibrary.simpleMessage("生日日期错误"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("名称需大于3个字"),
     "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("卡号为6~19个字"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("持卡人名称错误"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("密码不符合"),
+    "messageInvalidDate" : MessageLookupByLibrary.simpleMessage("日期错误"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("金额输入错误"),
     "messageInvalidDepositAmountMin" : m30,
     "messageInvalidDepositName" : MessageLookupByLibrary.simpleMessage("帐号名称错误"),
     "messageInvalidEmail" : MessageLookupByLibrary.simpleMessage("信箱格式错误"),
     "messageInvalidFormat" : MessageLookupByLibrary.simpleMessage("格式错误"),
     "messageInvalidName" : MessageLookupByLibrary.simpleMessage("名称格式错误"),
-    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("密码为6~18个字"),
+    "messageInvalidPassword" : MessageLookupByLibrary.simpleMessage("密码为6~20个字"),
     "messageInvalidPasswordArg" : m31,
-    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("密码为8~18个字"),
+    "messageInvalidPasswordFive" : MessageLookupByLibrary.simpleMessage("密码不符合，错误五次将锁定帐号"),
+    "messageInvalidPasswordLocked" : MessageLookupByLibrary.simpleMessage("帐号已锁定，请联系客服"),
+    "messageInvalidPasswordNew" : MessageLookupByLibrary.simpleMessage("密码为6~20个字"),
     "messageInvalidPhone" : m32,
     "messageInvalidPostCode" : MessageLookupByLibrary.simpleMessage("邮递区号错误(5~8碼)"),
     "messageInvalidSymbol" : MessageLookupByLibrary.simpleMessage("含非法字符"),
@@ -510,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("微信号格式错误"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("超过帐户余额"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("密码不符合(默认值为登录密码)"),
+    "messageInvalidWithdrawUnderAmount" : MessageLookupByLibrary.simpleMessage("低于最低提款金额"),
     "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("Zalo格式错误"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("请稍候…"),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("登入失败"),
@@ -520,6 +531,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messagePartFailed" : MessageLookupByLibrary.simpleMessage("部分平台转帐失败"),
     "messageRegisterFailed" : MessageLookupByLibrary.simpleMessage("注册失败"),
     "messageRepeatAccount" : MessageLookupByLibrary.simpleMessage("帐号重复注册"),
+    "messageRepeatPhone" : MessageLookupByLibrary.simpleMessage("手机号重复"),
     "messageSentVerify" : MessageLookupByLibrary.simpleMessage("已发送验证码"),
     "messageSuccess" : MessageLookupByLibrary.simpleMessage("成功"),
     "messageTaskCanceled" : m34,

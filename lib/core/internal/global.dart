@@ -49,6 +49,7 @@ class Global {
   static const String CURRENT_BASE = VW_OFFICIAL_URL;
   static String currentService = VW_SERVICE_URL;
 
+  static const String DOMAIN_NAME = "vwin84.com";
   static const String VW_OFFICIAL_URL = "https://vwin84.com/";
   static const String VW_BASE_URL = "http://10.20.14.11/";
   static const String VW_TEST_URL = "http://192.168.2.87:1411/";

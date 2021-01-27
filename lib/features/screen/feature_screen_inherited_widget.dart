@@ -7,12 +7,14 @@ import 'feature_screen_store.dart';
 ///@version 2020/2/26
 class FeatureScreenInheritedWidget extends InheritedWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final GlobalKey<NavigatorState> nestedNavigatorKey;
   final FeatureScreenStore store;
   final EventStore eventStore;
 
   const FeatureScreenInheritedWidget({
     Key key,
     @required this.scaffoldKey,
+    @required this.nestedNavigatorKey,
     @required this.store,
     @required this.eventStore,
     @required Widget child,
@@ -27,6 +29,7 @@ class FeatureScreenInheritedWidget extends InheritedWidget {
   @override
   bool updateShouldNotify(FeatureScreenInheritedWidget old) =>
       scaffoldKey != old.scaffoldKey ||
+      nestedNavigatorKey != old.nestedNavigatorKey ||
       store != old.store ||
       eventStore != old.eventStore;
 }

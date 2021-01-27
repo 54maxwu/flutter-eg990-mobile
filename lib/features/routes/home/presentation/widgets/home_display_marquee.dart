@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/marquee_span_widget.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/entity/marquee_entity.dart';
 
@@ -51,12 +54,15 @@ class HomeDisplayMarquee extends StatelessWidget {
                     startAfter: Duration(milliseconds: 1500),
                     callback: (index) {
                       // debugPrint('tapped marquee index: $index, data: ${marquees[index]}');
-                      if (marquees[index].url.isUrl &&
-                          onMarqueeClicked != null) {
-                        String url = marquees[index].url;
-                        debugPrint('clicked marquee $index, url: $url');
-                        onMarqueeClicked(
-                            url.replaceAll(Global.CURRENT_BASE, '/'));
+                      String url = marquees[index].url;
+                      debugPrint('clicked marquee $index, url: $url');
+                      if (url.isUrl == false) return;
+                      if (url.contains(Global.DOMAIN_NAME)) {
+                        if (onMarqueeClicked != null) {
+                          onMarqueeClicked(url);
+                        }
+                      } else if (url.isUrl) {
+                        launch(url);
                       }
                     },
                   ),

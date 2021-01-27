@@ -34,15 +34,16 @@ class BetRecordDisplayTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _availableWidth = Global.device.width - 16;
+    double remainWidth = _availableWidth - 90 - 90;
     Map<int, TableColumnWidth> _tableWidthMap = (!isAllData)
         ? {
             //指定索引及固定列宽
-            0: FixedColumnWidth(_availableWidth * 0.1),
-            1: FixedColumnWidth(_availableWidth * 0.2),
-            2: FixedColumnWidth(_availableWidth * 0.1),
-            3: FixedColumnWidth(_availableWidth * 0.2),
-            4: FixedColumnWidth(_availableWidth * 0.2),
-            5: FixedColumnWidth(_availableWidth * 0.2),
+            0: FixedColumnWidth(90.0),
+            1: FixedColumnWidth(remainWidth * 0.25),
+            2: FixedColumnWidth(remainWidth * 0.15),
+            3: FixedColumnWidth(remainWidth * 0.25),
+            4: FixedColumnWidth(remainWidth * 0.175),
+            5: FixedColumnWidth(remainWidth * 0.175),
           }
         : {
             //指定索引及固定列宽

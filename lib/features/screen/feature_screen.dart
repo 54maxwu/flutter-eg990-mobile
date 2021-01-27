@@ -128,7 +128,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
       child: StreamBuilder<String>(
           stream: getAppGlobalStreams.languageStream,
           initialData: Global.lang,
-          builder: (context, snapshot) {
+          builder: (ctx, snapshot) {
             locale ??= snapshot.data;
             if (snapshot.data != locale) {
               locale = snapshot.data;
@@ -137,6 +137,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
             }
             return FeatureScreenInheritedWidget(
               scaffoldKey: _scaffoldKey,
+              nestedNavigatorKey: featureNavKey,
               store: _store,
               eventStore: sl(),
               child: Scaffold(
@@ -146,6 +147,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
                 bottomNavigationBar: ScreenNavigationBar(),
                 /* Feature Route Navigator */
                 body: ExtendedNavigator(
+                  key: featureNavKey,
                   initialRoute: FeatureScreenRoutes.homeRoute,
                   router: FeatureScreenRouter(),
                 ),

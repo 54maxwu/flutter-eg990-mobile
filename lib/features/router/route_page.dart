@@ -26,7 +26,7 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage login = const RoutePage.define(RouteInfo(
     id: RouteEnum.LOGIN,
     route: FeatureScreenRoutes.loginRoute,
-    bottomNavIndex: 4,
+    bottomNavIndex: 3,
   ));
 
   static const RoutePage register = const RoutePage.define(RouteInfo(
@@ -40,7 +40,6 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.PROMO,
     route: FeatureScreenRoutes.promoRoute,
     webPageName: ('/promo/0'),
-    bottomNavIndex: 2,
     hideAppbarActions: false,
   ));
 
@@ -48,7 +47,7 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.SERVICE,
     route: FeatureScreenRoutes.serviceRoute,
     webPageName: ('/customer_service'),
-    bottomNavIndex: 3,
+    bottomNavIndex: 2,
     hideAppbarActions: false,
     hideLanguageOption: true,
   ));
@@ -57,7 +56,7 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.SERVICE_WEB,
     route: FeatureScreenRoutes.serviceWebRoute,
     root: FeatureScreenRoutes.serviceRoute,
-    bottomNavIndex: 3,
+    bottomNavIndex: 2,
     hideAppbarActions: false,
     hideLanguageOption: true,
   ));
@@ -66,7 +65,7 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.MEMBER,
     route: FeatureScreenRoutes.memberRoute,
     webPageName: ('/myaccount'),
-    bottomNavIndex: 4,
+    bottomNavIndex: 3,
     isUserOnly: true,
   ));
 
@@ -202,7 +201,6 @@ class RoutePage extends Vnum<RouteInfo> {
     route: FeatureScreenRoutes.noticeRoute,
     root: FeatureScreenRoutes.memberRoute,
     webPageName: ('/remind'),
-    bottomNavIndex: 4,
     isUserOnly: true,
   ));
 
@@ -210,7 +208,6 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.VIP,
     route: FeatureScreenRoutes.vipLevelRoute,
     root: FeatureScreenRoutes.memberRoute,
-    bottomNavIndex: 4,
   ));
 
   ///
@@ -236,7 +233,6 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.AGENT_LOGIN,
     route: FeatureScreenRoutes.agentLoginRoute,
     hideAppbarActions: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage agentRegister = const RoutePage.define(RouteInfo(
@@ -263,11 +259,10 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage sideStore = const RoutePage.define(RouteInfo(
     id: RouteEnum.STORE,
     route: FeatureScreenRoutes.storeRoute,
-    webPageName: ('/mall'),
+    webPageName: ('/mall/0'),
     showDrawer: true,
     hideLanguageOption: true,
     isUserOnly: true,
-    bottomNavIndex: 5,
   ));
 
   // static const RoutePage sideRoller = const RoutePage.define(RouteInfo(
@@ -284,14 +279,12 @@ class RoutePage extends Vnum<RouteInfo> {
     route: FeatureScreenRoutes.downloadAreaRoute,
     showDrawer: true,
     hideLanguageOption: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage sideNoticeBoard = const RoutePage.define(RouteInfo(
     id: RouteEnum.NOTICE,
     route: '${FeatureScreenRoutes.noticeRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage sideTutorial = const RoutePage.define(RouteInfo(
@@ -299,19 +292,17 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}$ROUTE_POSTFIX_SIDE-newbie',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     webPageName: ('/newbie'),
     showDrawer: true,
     hideLanguageOption: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage sideVipLevel = const RoutePage.define(RouteInfo(
     id: RouteEnum.VIP,
     route: '${FeatureScreenRoutes.vipLevelRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage sideWallet = const RoutePage.define(RouteInfo(
@@ -319,7 +310,6 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.walletRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
     isUserOnly: true,
-    bottomNavIndex: 5,
   ));
 
   ///
@@ -332,10 +322,9 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}-agent0',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}agentPage',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     hideLanguageOption: true,
-    bottomNavIndex: 5,
   ));
 
   static const RoutePage moreTutorial = const RoutePage.define(RouteInfo(
@@ -343,10 +332,9 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.moreRoute}-newbie',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
-      hideBars: true,
+      hideHtmlBars: true,
     ),
     hideLanguageOption: true,
-    bottomNavIndex: 5,
   ));
 
   ///
@@ -356,14 +344,12 @@ class RoutePage extends Vnum<RouteInfo> {
   //   id: RouteEnum.TEMPLATE,
   //   route: FeatureScreenRoutes.templateRoute,
   //   hideLanguageOption: true,
-  //   bottomNavIndex: 5,
   // ));
 
   static const RoutePage testArea = const RoutePage.define(RouteInfo(
     id: RouteEnum.TEST_UI,
     route: FeatureScreenRoutes.testAreaRoute,
     hideLanguageOption: true,
-    bottomNavIndex: 5,
   ));
 
   /// Used for defining cases

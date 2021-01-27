@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "฿ {value}",
+  "toolBarMemberCredit": "VND {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -544,8 +544,12 @@
   "@messageInvalidSymbol": {
     "type": "text"
   },
-  "messageInvalidFormat": "Error Data Format",
+  "messageInvalidFormat": "Error Format",
   "@messageInvalidFormat": {
+    "type": "text"
+  },
+  "messageInvalidDate": "Invalid date input",
+  "@messageInvalidDate": {
     "type": "text"
   },
   "messageInvalidName": "Malformed name",
@@ -554,6 +558,14 @@
   },
   "messageInvalidEmail": "Mailbox is malformed",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "Date of Birth Error",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "Phone Number already registered",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "Error Phone Number({num})",
@@ -590,20 +602,28 @@
       }
     }
   },
-  "messageInvalidAccount": "Username should be 6 ~ 12 words",
+  "messageInvalidAccount": "Username should be 6~12 lowercase words",
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Password should be 6~18 words",
+  "messageInvalidPassword": "Password should be 6~20 words",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Password should be 8~18 words",
+  "messageInvalidPasswordNew": "Password should be 6~20 words",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
   "messageInvalidConfirmPassword": "Password does not match",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "The password does not match, the account will be locked for five errors",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "The password is wrong five times and the account is locked, please contact customer service",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "Amount Error",
@@ -641,6 +661,10 @@
   },
   "messageInvalidWithdrawAmount": "Not enough credit",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "Below the minimum amount",
+  "@messageInvalidWithdrawUnderAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "You are using a mobile network",
@@ -1407,7 +1431,7 @@
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "Number range: 01 ~ 49",
+  "centerLuckyNumberError": "Number range: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1495,7 +1519,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Total: ฿ {value}",
+  "betsTextTotal": "Total: VND {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1685,7 +1709,7 @@
   "@depositPaymentEditTitleNote": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintRange": "Range: {num} ~ {num2}",
+  "depositPaymentEditTitleAmountHintRange": "Range: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
     "placeholders": {
@@ -1697,7 +1721,7 @@
       }
     }
   },
-  "depositPaymentEditTitleAmountHintRangeStep": "Range: {num} ~ {num2} (Step:{num3})",
+  "depositPaymentEditTitleAmountHintRangeStep": "Range: {num}~{num2} (Step:{num3})",
   "@depositPaymentEditTitleAmountHintRangeStep": {
     "type": "text",
     "placeholders": {
@@ -1740,7 +1764,7 @@
   "@depositHintTextAccount": {
     "type": "text"
   },
-  "depositHintTextAmount": "Single Deposit Limit: ฿ {value}",
+  "depositHintTextAmount": "Single Deposit Limit: VND {value}",
   "@depositHintTextAmount": {
     "type": "text",
     "placeholders": {
@@ -2878,6 +2902,30 @@
   },
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
+    "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY for Android",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY for IOS",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "DNS Repair for Android",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "DNS Repair for IOS",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(Android Only)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(iOS Only)",
+  "@downloadHintPlatformIos": {
     "type": "text"
   }
 }

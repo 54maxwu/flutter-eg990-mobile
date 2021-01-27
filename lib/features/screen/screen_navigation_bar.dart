@@ -26,16 +26,16 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   static final List<ScreenNavigationBarItem> _tabs = [
     ScreenNavigationBarItem.home,
     ScreenNavigationBarItem.deposit,
-    ScreenNavigationBarItem.promo,
+    // ScreenNavigationBarItem.promo,
     ScreenNavigationBarItem.service,
     ScreenNavigationBarItem.member,
-    ScreenNavigationBarItem.more,
+    // ScreenNavigationBarItem.more,
   ];
 
-  static final List<ScreenNavigationBarItem> _agentTabs = [
-    ScreenNavigationBarItem.home,
-    ScreenNavigationBarItem.agent,
-  ];
+  // static final List<ScreenNavigationBarItem> _agentTabs = [
+  //   ScreenNavigationBarItem.home,
+  //   ScreenNavigationBarItem.agent,
+  // ];
 
   FeatureScreenStore _store;
   EventStore _eventStore;
@@ -167,53 +167,53 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       if (index >= 0) _navIndex = index;
       // monitor observable value to show event dialog
       // if (_eventStore.showEventOnHome) _checkShowEvent();
-      if (_navIndex == 10) {
-        /// Agent route navigate bar
-        List<String> labels = _agentTabs.map((e) => e.value.title).toList();
-        return BottomNavigationBar(
-          onTap: (index) {
-            debugPrint('store state user: ${_store.userStatus}');
-            if (index == 1) return;
-            if (index == 0) AppNavigator.returnToHome();
-          },
-          currentIndex: 1,
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: FontSize.NORMAL.value,
-          unselectedFontSize: FontSize.NORMAL.value,
-          unselectedItemColor: themeColor.navigationColor,
-          fixedColor: themeColor.navigationColorFocus,
-          backgroundColor: themeColor.defaultAppbarColor,
-          items: List.generate(_agentTabs.length, (index) {
-            var itemValue = _agentTabs[index].value;
-            return _createBarItem(
-                itemValue: itemValue,
-                title: labels[index],
-                store: _store,
-                highlight: index == 1);
-          }),
-        );
-      } else {
-        List<String> labels = _tabs.map((e) => e.value.title).toList();
-        return BottomNavigationBar(
-          currentIndex: _navIndex,
-          onTap: (index) {
-            debugPrint('store state user: ${_store.userStatus}');
-            _itemTapped(index, _store.hasUser);
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: themeColor.defaultAppbarColor,
-          unselectedItemColor: themeColor.navigationColor,
-          fixedColor: themeColor.navigationColorFocus,
-          items: List.generate(_tabs.length, (index) {
-            var itemValue = _tabs[index].value;
-            return _createBarItem(
-                itemValue: itemValue,
-                title: labels[index],
-                store: _store,
-                highlight: index == _navIndex);
-          }),
-        );
-      }
+      // if (_navIndex == 10) {
+      //   /// Agent route navigate bar
+      //   List<String> labels = _agentTabs.map((e) => e.value.title).toList();
+      //   return BottomNavigationBar(
+      //     onTap: (index) {
+      //       debugPrint('store state user: ${_store.userStatus}');
+      //       if (index == 1) return;
+      //       if (index == 0) AppNavigator.returnToHome();
+      //     },
+      //     currentIndex: 1,
+      //     type: BottomNavigationBarType.fixed,
+      //     selectedFontSize: FontSize.NORMAL.value,
+      //     unselectedFontSize: FontSize.NORMAL.value,
+      //     unselectedItemColor: themeColor.navigationColor,
+      //     fixedColor: themeColor.navigationColorFocus,
+      //     backgroundColor: themeColor.defaultAppbarColor,
+      //     items: List.generate(_agentTabs.length, (index) {
+      //       var itemValue = _agentTabs[index].value;
+      //       return _createBarItem(
+      //           itemValue: itemValue,
+      //           title: labels[index],
+      //           store: _store,
+      //           highlight: index == 1);
+      //     }),
+      //   );
+      // } else {
+      List<String> labels = _tabs.map((e) => e.value.title).toList();
+      return BottomNavigationBar(
+        currentIndex: _navIndex,
+        onTap: (index) {
+          debugPrint('store state user: ${_store.userStatus}');
+          _itemTapped(index, _store.hasUser);
+        },
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: themeColor.defaultAppbarColor,
+        unselectedItemColor: themeColor.navigationColor,
+        fixedColor: themeColor.navigationColorFocus,
+        items: List.generate(_tabs.length, (index) {
+          var itemValue = _tabs[index].value;
+          return _createBarItem(
+              itemValue: itemValue,
+              title: labels[index],
+              store: _store,
+              highlight: index == _navIndex);
+        }),
+      );
+      // }
     });
   }
 

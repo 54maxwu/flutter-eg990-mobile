@@ -183,7 +183,7 @@ class HomeTabItemState extends State<HomeTabItem> {
                   child: AutoSizeText(
                     widget.category.label,
                     style: TextStyle(fontSize: FontSize.NORMAL.value),
-                    maxLines: 2,
+                    maxLines: 3,
                     minFontSize: FontSize.SMALL.value,
                     maxFontSize: FontSize.SUBTITLE.value,
                     overflow: TextOverflow.ellipsis,

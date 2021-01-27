@@ -477,7 +477,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       );
     } else if (widget.prefixText != null) {
       _prefixWidget = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 6.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(

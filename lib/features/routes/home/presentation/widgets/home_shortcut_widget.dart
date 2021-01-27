@@ -198,7 +198,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     if (!isUserContent) {
       /// if not logged in, show a login button
       return Container(
-        margin: const EdgeInsets.fromLTRB(12.0, 8.0, 4.0, 8.0),
+        margin: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
         child: RaisedButton(
           visualDensity: VisualDensity(horizontal: 3.0),
           color: themeColor.homeBoxBgColor,
@@ -207,10 +207,10 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             borderRadius: BorderRadius.circular(4.0),
           ),
           child: AutoSizeText(
-            localeStr.pageTitleLogin2,
+            localeStr.pageTitleLogin,
             style: TextStyle(color: themeColor.homeBoxButtonTextColor),
-            minFontSize: 10.0,
-            maxLines: 2,
+            minFontSize: 8.0,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           onPressed: () => showDialog(
@@ -285,7 +285,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
-            text: '${localeStr.homeHintMemberCreditLeft} ',
+            text: '${localeStr.homeHintMemberCreditLeft}\n',
             style: TextStyle(fontSize: _leftAreaTextSize),
           ),
           TextSpan(
@@ -363,7 +363,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     bool isLast = false,
   }) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 2.0, 2.0),
+      margin: const EdgeInsets.only(top: 4.0),
       child: GestureDetector(
         onTap: () {
           if (isUserOnly && !isUserContent && page != null) {
@@ -399,7 +399,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                   ),
             Expanded(
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(2.0, 4.0, 2.0, 0.0),
                   child: AutoSizeText.rich(
                     TextSpan(
                       text: replaceLabel ?? page.pageTitle ?? '',
@@ -411,7 +411,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
                       ),
                     ),
                     maxLines: 2,
-                    minFontSize: 10.0,
+                    minFontSize: 8.0,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                   )),

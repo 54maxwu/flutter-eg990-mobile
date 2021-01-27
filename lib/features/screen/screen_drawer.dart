@@ -19,21 +19,25 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.promo,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
     // ScreenDrawerItem.agent,
+    // ScreenDrawerItem.agentAbout,
   ];
 
   static final List<ScreenDrawerItem> _userMenuItems = [
     ScreenDrawerItem.member,
     ScreenDrawerItem.deposit,
-    ScreenDrawerItem.promo,
-    ScreenDrawerItem.message,
     ScreenDrawerItem.notice,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.promo,
     ScreenDrawerItem.store,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
     // ScreenDrawerItem.agent,
+    // ScreenDrawerItem.agentAbout,
     ScreenDrawerItem.logout,
   ];
 
