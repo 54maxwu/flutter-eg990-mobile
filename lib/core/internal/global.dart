@@ -9,9 +9,6 @@ class Global {
   /// Device Relative
   static Device device;
 
-  /// BuildType
-  static bool addAnalytics = false;
-
   /// APP Language
   static bool initLocale = false;
 
@@ -23,18 +20,20 @@ class Global {
 
   static String get localeCode => _locale.value.code;
 
+  static bool get isLocaleChinese => _locale == LanguageCode.zh;
+
   static set setLocale(String localeCode) =>
       _locale = LanguageCode.getByCode(localeCode);
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = SK_TEST_URL;
+  static const String CURRENT_BASE = SK_OFFICIAL_URL;
   static String currentService = SK_SERVICE_URL;
 
-  static const String DOMAIN_NAME = "192.168.2.87";
-  static const String SK_OFFICIAL_URL = "";
-  static const String SK_BASE_URL = "";
-  static const String SK_TEST_URL = "http://192.168.2.87:2211/";
+  static const String DOMAIN_NAME = "ska888.com";
+  static const String SK_OFFICIAL_URL = "https://ska888.com/";
+  static const String SK_BASE_URL = "http://10.20.20.11/";
+  static const String SK_TEST_URL = "http://192.168.2.87:2011/";
   static const String SK_SERVICE_URL = "";
 
   /// HIVE table name

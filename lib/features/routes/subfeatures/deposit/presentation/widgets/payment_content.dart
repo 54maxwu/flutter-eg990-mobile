@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/model/payment_type_data.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 import '../../data/model/deposit_info.dart';
@@ -52,16 +53,23 @@ class PaymentContentState extends State<PaymentContent> {
   void updateContent(PaymentType type) {
     _typeContent = (type.key == 1)
         ? new PaymentContentLocal(
-            dataList: type.data,
+            dataList:
+                type.data.where((t) => t is PaymentTypeLocalData).toList(),
             promoList: (widget.promos.containsKey(type.key))
                 ? widget.promos[type.key]
                 : [],
-            infoList: widget.infoList,
+            infoList: widget.infoList.where((i) => i.hasBankInfo).toList(),
             bankMap: widget.banks,
             depositFuncCall: widget.depositCall,
           )
         : new PaymentContentOnline(
-            dataList: type.data,
+            dataList:
+                type.data.where((t) => t is PaymentTypeOnlineData).toList(),
+            promoList: (type.key == 2 && widget.promos.containsKey(type.key))
+                ? widget.promos[type.key]
+                : (type.key > 2 && widget.promos.containsKey(3))
+                    ? widget.promos[3]
+                    : [],
             depositFuncCall: widget.depositCall,
           );
 

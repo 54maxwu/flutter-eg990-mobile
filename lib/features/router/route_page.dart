@@ -217,14 +217,14 @@ class RoutePage extends Vnum<RouteInfo> {
   /// * important:
   /// change route name if duplicate
   ///
-  static const RoutePage sideStore = const RoutePage.define(RouteInfo(
-    id: RouteEnum.STORE,
-    route: FeatureScreenRoutes.storeRoute,
-    webPageName: ('/mall/0'),
-    showDrawer: true,
-    hideLanguageOption: true,
-    isUserOnly: true,
-  ));
+  // static const RoutePage sideStore = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.STORE,
+  //   route: FeatureScreenRoutes.storeRoute,
+  //   webPageName: ('/mall/0'),
+  //   showDrawer: true,
+  //   hideLanguageOption: true,
+  //   isUserOnly: true,
+  // ));
 
   static const RoutePage sideDownload = const RoutePage.define(RouteInfo(
     id: RouteEnum.DOWNLOAD,

@@ -90,11 +90,15 @@ class _CenterDisplayAccountPasswordState
                     prefixText: localeStr.userPwdFieldTitleNew,
                     titleLetterSpacing: 8,
                     maxInputLength: InputLimit.PASSWORD_MAX,
-                    errorMsg: localeStr.messageInvalidPasswordNew,
+                    errorMsg: localeStr.messageInvalidPassword(
+                      InputLimit.PASSWORD_MIN,
+                      InputLimit.PASSWORD_MAX,
+                    ),
                     validCondition: (value) => rangeCheck(
-                        value: value.length,
-                        min: InputLimit.PASSWORD_MIN,
-                        max: InputLimit.PASSWORD_MAX),
+                      value: value.length,
+                      min: InputLimit.PASSWORD_MIN,
+                      max: InputLimit.PASSWORD_MAX,
+                    ),
                   ),
                   new CustomizeFieldWidget(
                     key: _conPwdFieldKey,

@@ -65,10 +65,10 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
     iconData: IconCode.gridWallet,
     route: RoutePage.sideWallet,
   ));
-  static ScreenDrawerItem store = ScreenDrawerItem.define(RouteListItem(
-    iconData: IconCode.drawerStore,
-    route: RoutePage.sideStore,
-  ));
+  // static ScreenDrawerItem store = ScreenDrawerItem.define(RouteListItem(
+  //   iconData: IconCode.drawerStore,
+  //   route: RoutePage.sideStore,
+  // ));
   // static ScreenDrawerItem roller = ScreenDrawerItem.define(RouteListItem(
   //   iconData: IconCode.drawerRoller,
   //   route: RoutePage.sideRoller,

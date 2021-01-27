@@ -390,8 +390,11 @@ class FeatureScreenRouter extends RouterBase {
       );
     },
     StoreRoute: (data) {
+      final args = data.getArgs<StoreRouteArguments>(
+        orElse: () => StoreRouteArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => StoreRoute(),
+        builder: (context) => StoreRoute(showProductId: args.showProductId),
         settings: data,
       );
     },
@@ -567,8 +570,13 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushNoticeRoute() =>
       push<dynamic>(FeatureScreenRoutes.noticeRoute);
 
-  Future<dynamic> pushStoreRoute() =>
-      push<dynamic>(FeatureScreenRoutes.storeRoute);
+  Future<dynamic> pushStoreRoute({
+    int showProductId,
+  }) =>
+      push<dynamic>(
+        FeatureScreenRoutes.storeRoute,
+        arguments: StoreRouteArguments(showProductId: showProductId),
+      );
 
   Future<dynamic> pushVipLevelRoute() =>
       push<dynamic>(FeatureScreenRoutes.vipLevelRoute);
@@ -631,4 +639,10 @@ class CenterDisplayAccountPasswordArguments {
 class PromoRouteArguments {
   final int openPromoId;
   PromoRouteArguments({this.openPromoId = -1});
+}
+
+/// StoreRoute arguments holder class
+class StoreRouteArguments {
+  final int showProductId;
+  StoreRouteArguments({this.showProductId});
 }

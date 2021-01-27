@@ -41,7 +41,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   //     new GlobalKey(debugLabel: 'terms');
 
   double _fieldInset;
-  double _phoneCodeContainerHeight;
+  // double _phoneCodeContainerHeight;
   double _errorTextPadding;
   Color _fieldPrefixBg;
 
@@ -80,10 +80,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
     _fieldPrefixBg = (widget.transparent)
         ? Colors.transparent
         : themeColor.fieldPrefixBgColor;
-    _phoneCodeContainerHeight = ((Global.device.isIos)
-            ? ThemeInterface.fieldHeight + 8
-            : ThemeInterface.fieldHeight) -
-        ThemeInterface.minusSize;
+    // _phoneCodeContainerHeight = ((Global.device.isIos)
+    //         ? ThemeInterface.fieldHeight + 8
+    //         : ThemeInterface.fieldHeight) -
+    //     ThemeInterface.minusSize;
     _errorTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
             ThemeInterface.prefixTextWidthFactor -
         ThemeInterface.minusSize +
@@ -423,7 +423,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     // clear text field focus
                     FocusScope.of(context).unfocus();
                     // validate and send request
-                    _validateForm();
+                    if (_showAccountError ||
+                        _showPasswordError ||
+                        _showConfirmError ||
+                        _showPhoneError) {
+                      callToastError(localeStr.messageActionFillForm);
+                    } else {
+                      _validateForm();
+                    }
                   },
                 ),
               ),

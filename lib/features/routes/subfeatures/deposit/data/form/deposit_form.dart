@@ -31,10 +31,10 @@ extension DepositDataFormExtension on DepositDataForm {
       'bankindex': this.bankIndex.toString(),
       'deposit_method': this.methodId.toString(),
       'promo': (this.promoId != -1) ? promoId : '',
-//      'localbank': this.localBank ?? -1,
-//      'localbankno': this.localBankCard ?? '',
-//      'gateway': this.gateway ?? '1',
-//      'remark': this.remark ?? '',
+      'localbank': this.localBank ?? -1,
+      'localbankno': this.localBankCard ?? '',
+      'gateway': this.gateway ?? '1',
+      // 'remark': this.remark ?? '',
     };
   }
 

@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "Next Step",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "Back",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "Return",
   "@sideBtnBackHome": {
     "type": "text"
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "Please fill the form",
+  "messageActionFillForm": "Please check your input and fill in all the required info",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -610,6 +618,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "Error Phone Number({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "Error Post Code(5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -659,10 +679,6 @@
       }
     }
   },
-  "messageInvalidPasswordNew": "Password should be 8~20 words",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
-  },
   "messageInvalidConfirmPassword": "Password does not match",
   "@messageInvalidConfirmPassword": {
     "type": "text"
@@ -688,8 +704,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "Exceeds the maximum withdrawal amount (please refer to the vip level detail)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "Deposit amount exceeds the upper limit",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "Deposit amount is lower than minimum limit",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "Incorrect account name",
@@ -700,12 +720,43 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 6~19 characters",
+  "messageInvalidCardNumber": "Card number should be {min}~{max} characters",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "Card number should be {min}~{max} characters and starts with {fixed}",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "The name must be greater than 3 characters",
   "@messageInvalidCardBankPoint": {
+    "type": "text"
+  },
+  "messageExceedRemainCredit": "Not enough credit",
+  "@messageExceedRemainCredit": {
+    "type": "text"
+  },
+  "messagePlatformMaintenance": "Platform under maintenance",
+  "@messagePlatformMaintenance": {
     "type": "text"
   },
   "messageInvalidWithdrawPassword": "Password Error!(default is login password)",
@@ -718,6 +769,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "Below the minimum amount",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "Exceeds the maximum withdrawal amount (please refer to the vip level detail)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "You are using a mobile network",
@@ -786,6 +841,10 @@
   },
   "messageErrorLoadingGame": "An error occurred while loading the game, please try again later",
   "@messageErrorLoadingGame": {
+    "type": "text"
+  },
+  "messageErrorGamePermission": "You do not have permission to play on this platform, please contact customer service.",
+  "@messageErrorGamePermission": {
     "type": "text"
   },
   "messageErrorLoadingPay": "Page loading error, please try again later",
@@ -1790,10 +1849,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "Remarks",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "Range: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1820,6 +1875,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "Transaction Code",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "please enter the transaction code",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "Remarks",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "Tutorial",
   "@depositPaymentButtonTitleTutorial": {
@@ -1977,8 +2044,12 @@
       }
     }
   },
-  "depositMessageFailed": "Recharge failed, please try again later or contact customer service",
+  "depositMessageFailed": "Deposit failed, please try again later or contact customer service",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "Deposit info error, please re-select the payment method or contact customer service",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "Request Success, Order No.{value}",

@@ -6,7 +6,6 @@ import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_ima
 import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';

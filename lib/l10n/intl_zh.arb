@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "下一步",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "上一步",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "回首页",
   "@sideBtnBackHome": {
     "type": "text"
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "请填写完整",
+  "messageActionFillForm": "请确认栏位信息并填写完整",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -610,6 +618,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "电话格式错误({min}~{max}碼)",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "邮递区号错误(5~8碼)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -684,8 +704,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "超过单笔最大提现金额(请参考会员等级制度)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "充值金额超过上限",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "充值金额低于下限",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "帐号名称错误",
@@ -696,12 +720,43 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "卡号为6~19个字",
+  "messageInvalidCardNumber": "卡号为{min}~{max}个字",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "卡号为{min}~{max}个字(开头为{fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "名称需大于3个字",
   "@messageInvalidCardBankPoint": {
+    "type": "text"
+  },
+  "messageExceedRemainCredit": "超过余额",
+  "@messageExceedRemainCredit": {
+    "type": "text"
+  },
+  "messagePlatformMaintenance": "平台维护中",
+  "@messagePlatformMaintenance": {
     "type": "text"
   },
   "messageInvalidWithdrawPassword": "密码不符合(默认值为登录密码)",
@@ -714,6 +769,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "低于最低提款金额",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "超过单笔最大提现金额(请参考会员等级制度)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "您正在使用移动网络",
@@ -782,6 +841,10 @@
   },
   "messageErrorLoadingGame": "游戏加载发生错误，请稍候再重试",
   "@messageErrorLoadingGame": {
+    "type": "text"
+  },
+  "messageErrorGamePermission": "您没有权限游玩此平台游戏，请联系客服",
+  "@messageErrorGamePermission": {
     "type": "text"
   },
   "messageErrorLoadingPay": "网页加载错误，请稍候再重试",
@@ -1786,10 +1849,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "备注",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "输入范围:{num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1816,6 +1875,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "交易码",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "请填写交易码",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "备注",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "点我看教学",
   "@depositPaymentButtonTitleTutorial": {
@@ -1975,6 +2046,10 @@
   },
   "depositMessageFailed": "充值失败，请稍候重试或联系客服",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "充值信息错误，请重新选择充值方式或联系客服",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "訂單已成立，訂單編號：{value}",

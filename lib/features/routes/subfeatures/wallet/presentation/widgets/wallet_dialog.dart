@@ -37,6 +37,7 @@ class _WalletDialogState extends State<WalletDialog> {
       transparentBg: themeColor.isDarkTheme,
       onClose: () {
         widget.store.showingDialog = false;
+        widget.store.cancelTransferAll();
         widget.store.closeStream();
       },
       children: <Widget>[

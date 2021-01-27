@@ -161,7 +161,7 @@ class HomeTabItemState extends State<HomeTabItem> {
     }
 
     _isImage ??= widget.category.iconUrl.isNotEmpty;
-    _isAsset ??= widget.category.info.value.assetPath.isNotEmpty;
+    _isAsset ??= widget.category.assetPath.isNotEmpty;
     _imageWidget ??= _buildImage();
 
     return Stack(
@@ -176,7 +176,7 @@ class HomeTabItemState extends State<HomeTabItem> {
               Container(
                 padding: const EdgeInsets.all(4.0),
                 constraints: BoxConstraints.tight(_iconSize),
-                child: _imageWidget,
+                child: _buildImage(),
               ),
               Expanded(
                 child: Container(
@@ -217,10 +217,12 @@ class HomeTabItemState extends State<HomeTabItem> {
                     : themeColor.defaultTabUnselectedColor,
               )
             : Icon(
-                (widget.category.iconCode != null)
-                    ? widget.category.iconCode
+                (widget.category.iconData != null)
+                    ? widget.category.iconData
                     : Icons.add,
-                size: _iconSize.width - 6.0,
+                size: (widget.category.info.value.id == HomeCategoryEnum.FISH)
+                    ? _iconSize.width - (12 * Global.device.widthScale)
+                    : _iconSize.width - (8 * Global.device.widthScale),
               );
   }
 

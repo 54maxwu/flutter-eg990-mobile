@@ -49,13 +49,25 @@ class MessageMap {
       case 'belowTheMinimum':
         return localeStr.messageInvalidDepositAmountMin(100);
       case 'aboveTheCeiling':
-        return localeStr.messageInvalidDepositAmountMax;
+        return localeStr.messageInvalidWithdrawExceedAmount;
+      case 'amountExceedsTheUpperLimit':
+        return localeStr.messageInvalidDepositAmountMaxLimit;
+      case 'amountIsBelowTheLowerLimit':
+        return localeStr.messageInvalidDepositAmountMinLimit;
+      case 'YouHaveInsufficientCredit':
+        return localeStr.messageExceedRemainCredit;
       case 'NoRecordsYet':
         return localeStr.messageWarnNoHistoryData;
+      case 'inMaintenance':
+        return localeStr.messagePlatformMaintenance;
+      case 'YouDoNotHavePpermissionToPlayThisPlatform,PleaseContact24-hourOnlineCustomerService':
+        return localeStr.messageErrorGamePermission;
       default:
         break;
     }
     switch (from) {
+      case RouteEnum.HOME:
+        return localeStr.messageErrorLoadingGame;
       case RouteEnum.LOGIN:
         return localeStr.messageLoginFailed;
       case RouteEnum.REGISTER:
@@ -64,8 +76,11 @@ class MessageMap {
         return localeStr.messageTaskFailed(localeStr.messageErrorBindBankcard);
       case RouteEnum.WITHDRAW:
         return localeStr.messageErrorWithdraw;
+      case RouteEnum.DEPOSIT:
+        return localeStr.depositMessageFailed;
       case RouteEnum.BALANCE:
-        return localeStr.messageTaskFailed(localeStr.transferResultAlertTitle);
+      case RouteEnum.TRANSFER:
+        return localeStr.transferResultAlertTitle;
       default:
         if (msgKey.isNotEmpty) {
           return localeStr.messageErrorStatus(msgKey);

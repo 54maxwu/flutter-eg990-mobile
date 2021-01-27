@@ -48,10 +48,12 @@ class HomeDisplaySizeCalc {
     // debugPrint('available width: $availableWidth');
     // debugPrint('tab bar width: $_barMinWidth~$_barMaxWidth');
 
-    if (_barMaxWidth > 180) _barMaxWidth = 180;
+    if (Global.isLocaleChinese && _barMaxWidth > 144) _barMaxWidth = 144;
+    if (!Global.isLocaleChinese && _barMaxWidth > 168) _barMaxWidth = 168;
     if (_barMinWidth > _barMaxWidth) _barMinWidth = _barMaxWidth - 16;
     // debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
-    _barItemHeight = (barItemIconSize * 1.5 + 4.0) * Global.device.widthScale;
+    _barItemHeight =
+        (barItemIconSize * 1.5 + 4.0) * Global.device.widthScaleHalf;
     if (Global.localeCode != 'zh') _barItemHeight = _barItemHeight * 1.25;
     _barItemWidth = _barMinWidth - _barItemInset;
 

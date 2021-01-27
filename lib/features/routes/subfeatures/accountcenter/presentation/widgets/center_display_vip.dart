@@ -36,7 +36,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
   String _getTitleByKey(String key) {
     switch (key) {
       case 'allgame':
-        return 'Mọi lúc';
+        return localeStr.gameCategoryAll;
       case 'casinogame':
         return localeStr.gameCategoryCasino;
       case 'slotgame':

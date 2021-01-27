@@ -11,7 +11,7 @@ description: EG990 mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.0
+version: 1.1.1+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -24,8 +24,8 @@ dependencies:
     sdk: flutter
 
   # Firebase analytics
-  firebase_core: ^0.5.3
-  firebase_analytics: ^6.3.0
+#  firebase_core: ^0.5.3
+#  firebase_analytics: ^6.3.0
 
   # Object Injectors https://pub.dev/packages/get_it
   get_it: ^5.0.3
@@ -121,7 +121,7 @@ dependencies:
   # Configurable Expansion List Tile https://pub.dev/packages/configurable_expansion_tile
   configurable_expansion_tile: ^1.0.0
   # Scroller Load & Refresh https://pub.dev/packages/flutter_easyrefresh
-  flutter_easyrefresh: ^2.1.7
+  flutter_easyrefresh: ^2.1.8
   # Official Video Player https://pub.dev/packages/video_player/example
   video_player: ^1.0.1
   # dot border

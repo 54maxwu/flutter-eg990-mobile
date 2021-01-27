@@ -84,7 +84,7 @@ class DepositRepositoryImpl implements DepositRepository {
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (data) => Right(decodePaymentTypes(data)),
+      (data) => Right((data is Map) ? decodePaymentTypes(data) : []),
     );
   }
 
@@ -134,18 +134,17 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, Map<int, String>>> getDepositRule() async {
-    final result = await requestModel<RequestCodeModel>(
+    final result = await requestData(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_RULE,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
     return result.fold(
       (failure) => Left(failure),
-      (data) => (data != null && data.data != null && data.data is Map)
-          ? Right(data.data.map<int, String>((key, value) {
+      (data) => (data != null && data.toString().isNotEmpty && data is Map)
+          ? Right(data.map<int, String>((key, value) {
               debugPrint('rule key: $key, data: $value');
               return MapEntry<int, String>('$key'.strToInt, """$value""");
             }))
@@ -174,19 +173,22 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, List<DepositInfo>>> getDepositInfo() async {
-    final result = await requestModel<RequestCodeModel>(
+    final result = await requestData(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_INFO,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
     return result.fold(
       (failure) => Left(failure),
-      (data) => Right(JsonUtil.decodeMapToModelList(
-          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
-          addKey: false)),
+      (data) => Right(
+        JsonUtil.decodeMapToModelList(
+          data,
+          (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
+          addKey: false,
+        ),
+      ),
     );
   }
 }

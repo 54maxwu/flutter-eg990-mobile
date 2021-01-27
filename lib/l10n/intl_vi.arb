@@ -349,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "Bước tiếp theo",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "Trước",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "Trang Chủ",
   "@sideBtnBackHome": {
     "type": "text"
@@ -437,7 +445,7 @@
   "@hintPassword": {
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8~20 ký tự",
+  "hintConfirmed": "Độ dài từ 8 ~ 18 ký tự",
   "@hintConfirmed": {
     "type": "text"
   },
@@ -478,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "Vui lòng hoàn thành",
+  "messageActionFillForm": "Vui lòng xác nhận thông tin trường và hoàn thành",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -610,6 +618,18 @@
       }
     }
   },
+  "messageInvalidPhone2": "Lỗi định dạng điện thoại({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "Mã bưu điện không chính xác(5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
@@ -659,10 +679,6 @@
       }
     }
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8~20 ký tự",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
-  },
   "messageInvalidConfirmPassword": "Mật khẩu không hợp lệ",
   "@messageInvalidConfirmPassword": {
     "type": "text"
@@ -688,8 +704,12 @@
       }
     }
   },
-  "messageInvalidDepositAmountMax": "Vượt quá số tiền rút tối đa của một giao dịch (vui lòng tham khảo hệ thống cấp độ thành viên)",
-  "@messageInvalidDepositAmountMax": {
+  "messageInvalidDepositAmountMaxLimit": "Số tiền nạp vượt quá giới hạn trên",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "Số tiền nạp dưới giới hạn thấp hơn",
+  "@messageInvalidDepositAmountMinLimit": {
     "type": "text"
   },
   "messageInvalidDepositName": "Tên tài khoản không chính xác",
@@ -700,12 +720,43 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 6~19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là {min}~{max} ký tự",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "Số thẻ là {min}~{max} ký tự (bắt đầu bằng {fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "Tên phải nhiều hơn 3 ký tự",
   "@messageInvalidCardBankPoint": {
+    "type": "text"
+  },
+  "messageExceedRemainCredit": "Số dư",
+  "@messageExceedRemainCredit": {
+    "type": "text"
+  },
+  "messagePlatformMaintenance": "Nền tảng đang được bảo trì",
+  "@messagePlatformMaintenance": {
     "type": "text"
   },
   "messageInvalidWithdrawPassword": "Mật khẩu không hợp lệ",
@@ -718,6 +769,10 @@
   },
   "messageInvalidWithdrawUnderAmount": "Dưới số tiền rút tối thiểu",
   "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "Vượt quá số tiền rút tối đa của một giao dịch (vui lòng tham khảo hệ thống cấp độ thành viên)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",
@@ -786,6 +841,10 @@
   },
   "messageErrorLoadingGame": "Đã xảy ra lỗi khi tải trò chơi, vui lòng thử lại sau",
   "@messageErrorLoadingGame": {
+    "type": "text"
+  },
+  "messageErrorGamePermission": "Bạn không được phép chơi trò chơi nền tảng này, vui lòng liên hệ với dịch vụ khách hàng",
+  "@messageErrorGamePermission": {
     "type": "text"
   },
   "messageErrorLoadingPay": "Lỗi tải trang, vui lòng thử lại sau",
@@ -1705,7 +1764,7 @@
   "@depositPaymentNoData": {
     "type": "text"
   },
-  "depositPaymentTitleBank": "Nạp tiền ngân hàng",
+  "depositPaymentTitleBank": "Ngân hàng điện tử",
   "@depositPaymentTitleBank": {
     "type": "text"
   },
@@ -1737,7 +1796,7 @@
   "@depositPaymentTitleWechat": {
     "type": "text"
   },
-  "depositPaymentTitleAtm": "Chuyển khoản ngân hàng trực tuyến",
+  "depositPaymentTitleAtm": "Chuyển tại ATM",
   "@depositPaymentTitleAtm": {
     "type": "text"
   },
@@ -1790,10 +1849,6 @@
       }
     }
   },
-  "depositPaymentEditTitleNote": "Nhận xét",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
-  },
   "depositPaymentEditTitleAmountHintRange": "{num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
     "type": "text",
@@ -1820,6 +1875,19 @@
         "example": "50"
       }
     }
+  },
+
+  "depositPaymentEditTitleCode": "Mã giao dịch",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "Vui lòng điền mã giao dịch",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "Nhận xét",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "Nhấp vào tôi để xem giảng dạy",
   "@depositPaymentButtonTitleTutorial": {
@@ -1979,6 +2047,10 @@
   },
   "depositMessageFailed": "Nạp tiền không thành công, vui lòng thử lại sau hoặc liên hệ với dịch vụ khách hàng",
   "@depositMessageFailed": {
+    "type": "text"
+  },
+  "depositMessageFormError": "Thông tin nạp tiền bị sai, vui lòng chọn lại phương thức nạp tiền hoặc liên hệ bộ phận chăm sóc khách hàng",
+  "@depositMessageFormError": {
     "type": "text"
   },
   "depositMessageSuccessLocal": "Đơn hàng đã được thiết lập, số đơn hàng: {value}",
@@ -2187,7 +2259,7 @@
   "@rollbackIndexDeposit": {
     "type": "text"
   },
-  "rollbackIndexRollback": "退水",
+  "rollbackIndexRollback": "Rút lui",
   "@rollbackIndexRollback": {
     "type": "text"
   },

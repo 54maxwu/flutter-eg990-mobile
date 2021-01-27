@@ -68,7 +68,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            resValue "string", "app_name", "SKA888"
+            resValue "string", "app_name", "SKA888 Mobile"
             versionNameSuffix "R"
         }
         debug {

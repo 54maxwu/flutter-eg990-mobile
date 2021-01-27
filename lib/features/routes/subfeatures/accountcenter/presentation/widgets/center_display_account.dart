@@ -35,8 +35,8 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       new GlobalKey(debugLabel: 'mail');
   // final GlobalKey<CustomizeFieldWidgetState> _wechatFieldKey =
   //     new GlobalKey(debugLabel: 'wechat');
-  final GlobalKey<CustomizeFieldWidgetState> _zaloFieldKey =
-      new GlobalKey(debugLabel: 'wechat');
+  // final GlobalKey<CustomizeFieldWidgetState> _zaloFieldKey =
+  //     new GlobalKey(debugLabel: 'wechat');
 
   CenterStore _store;
   CenterAccountEntity _storeData;
@@ -53,7 +53,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
     _phoneFieldKey.currentState.setInput = initTexts[3];
     _mailFieldKey.currentState.setInput = initTexts[4];
     // _wechatFieldKey.currentState.setInput = initTexts[5];
-    _zaloFieldKey.currentState.setInput = initTexts[6];
+    // _zaloFieldKey.currentState.setInput = initTexts[6];
     debugPrint('field updated');
   }
 
@@ -200,20 +200,20 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       prefixText: localeStr.centerTextTitlePhone,
                       maxInputLength: InputLimit.PHONE_MAX,
                       titleLetterSpacing: 4,
-                      suffixText: (_storeData.canVerifyPhone)
-                          ? localeStr.centerTextButtonSend
-                          : null,
-                      suffixAction: (_) {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => new CenterDialogMobile(
-                            store: _store,
-                            mobile: _phoneFieldKey.currentState.getInput
-                                .split('(')[0],
-                          ),
-                        );
-                      },
+                      // suffixText: (_storeData.canVerifyPhone)
+                      //     ? localeStr.centerTextButtonSend
+                      //     : null,
+                      // suffixAction: (_) {
+                      //   showDialog(
+                      //     context: context,
+                      //     barrierDismissible: false,
+                      //     builder: (context) => new CenterDialogMobile(
+                      //       store: _store,
+                      //       mobile: _phoneFieldKey.currentState.getInput
+                      //           .split('(')[0],
+                      //     ),
+                      //   );
+                      // },
                       readOnly: true,
                     ),
                     /* E-Mail Field */
@@ -240,33 +240,33 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       errorMsg: localeStr.messageInvalidEmail,
                       maxInputLength: InputLimit.ADDRESS_MAX,
                     ),
-                    /* WeChat Field */
-                    new CustomizeFieldWidget(
-                      key: _zaloFieldKey,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: 'Zalo',
-                      suffixText: (_storeData.canBindZalo)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (input) {
-                        debugPrint('request bind zalo: $input');
-                        if (input.isNotEmpty) {
-                          checkAndPost(context, () {
-                            _store.bindZalo(input);
-                          });
-                        } else {
-                          callToast(localeStr.messageInvalidFormat);
-                        }
-                      },
-                      readOnly: _storeData.canBindZalo == false,
-                      validCondition: (value) => rangeCheck(
-                          value: value.length,
-                          min: InputLimit.WECHAT_MIN,
-                          max: InputLimit.WECHAT_MAX),
-                      errorMsg: localeStr.messageInvalidZalo,
-                      maxInputLength: InputLimit.WECHAT_MAX,
-                    ),
+                    // /* WeChat Field */
+                    // new CustomizeFieldWidget(
+                    //   key: _zaloFieldKey,
+                    //   hint: '',
+                    //   persistHint: false,
+                    //   prefixText: 'Zalo',
+                    //   suffixText: (_storeData.canBindZalo)
+                    //       ? localeStr.centerTextButtonBind
+                    //       : null,
+                    //   suffixAction: (input) {
+                    //     debugPrint('request bind zalo: $input');
+                    //     if (input.isNotEmpty) {
+                    //       checkAndPost(context, () {
+                    //         _store.bindZalo(input);
+                    //       });
+                    //     } else {
+                    //       callToast(localeStr.messageInvalidFormat);
+                    //     }
+                    //   },
+                    //   readOnly: _storeData.canBindZalo == false,
+                    //   validCondition: (value) => rangeCheck(
+                    //       value: value.length,
+                    //       min: InputLimit.WECHAT_MIN,
+                    //       max: InputLimit.WECHAT_MAX),
+                    //   errorMsg: localeStr.messageInvalidZalo,
+                    //   maxInputLength: InputLimit.WECHAT_MAX,
+                    // ),
                   ],
                 ),
               ),

@@ -36,10 +36,6 @@ final RegExp _webResRegex = RegExp("^(?=.*(js|lib|gif|png|html)).*\$");
 
 final RegExp _htmlRegex = RegExp('<\s*html.*?>.*?<\s*/\s*html.*?>');
 
-final RegExp _urlRegex = RegExp(
-    r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?)',
-    caseSensitive: false);
-
 final RegExp _dateRegex =
     RegExp('((19|20)[0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])');
 
@@ -56,7 +52,7 @@ final _digitRegex = RegExp(r'\d+');
 
 extension RegexExtension on String {
   /// String Regex
-  bool get isUrl => Uri.parse(this).isAbsolute || _urlRegex.hasMatch(this);
+  bool get isUrl => Uri.parse(this).isAbsolute;
 
   bool get isEmail => EmailValidator.validate(this);
 

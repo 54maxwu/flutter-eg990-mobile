@@ -91,6 +91,7 @@ abstract class _BalanceStore with Store {
             promises = list;
             totalPlatform = list.length;
             debugPrint('balance promise list: $list');
+            if (promises.isEmpty) setErrorMsg(msg: Failure.server().message);
             if (promises.isNotEmpty) getBalances();
           },
         ),

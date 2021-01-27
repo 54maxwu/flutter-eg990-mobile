@@ -1,6 +1,7 @@
 import 'dart:collection' show HashMap;
 
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 
 import '../../data/entity/banner_entity.dart';
@@ -352,9 +353,9 @@ abstract class _HomeStore with Store {
     if (remove.isNotEmpty)
       remove.forEach((element) => homeTabs.remove(element));
 
-    customizePlatformMap();
+    // customizePlatformMap();
     homeTabs.insert(0, recommendCategory);
-    homeTabs.add(cockfightingCategory);
+    // homeTabs.add(cockfightingCategory);
 //    homeTabs.add(promoCategory);
 //    homeTabs.add(movieWebCategory);
 //     homeTabs.add(websiteCategory);
@@ -632,7 +633,13 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message),
+              (failure) {
+                String msg = MessageMap.getErrorMessage(
+                  failure.message,
+                  RouteEnum.HOME,
+                );
+                return setErrorMsg(msg: msg, type: FailureType.GAMES);
+              },
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;

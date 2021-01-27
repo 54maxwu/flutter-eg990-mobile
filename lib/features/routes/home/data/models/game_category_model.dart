@@ -3,7 +3,6 @@ import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:vnum/vnum.dart';
@@ -86,22 +85,8 @@ const Map<String, GameCategory> _categoryMap = {
 
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
-
   String get iconUrl => info.value.imageUrl ?? '';
-  String get assetPath => info.value.assetPath;
+  String get assetPath => info.value.assetPath ?? '';
+  IconData get iconData => info.value.iconData;
   GamePageType get pageType => info.value.pageType;
-
-  IconData get iconCode {
-//    debugPrint('looking for icon code: $type');
-    switch (type) {
-      case 'promo':
-        return IconCode.navPromo;
-      case 'movieweb':
-        return IconCode.tabMovieWebsite;
-      case 'website':
-        return IconCode.tabWebsite;
-      default:
-        return IconCode.tabUnknown;
-    }
-  }
 }

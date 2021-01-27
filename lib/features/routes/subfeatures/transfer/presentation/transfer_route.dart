@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/transfer/data/models/transfer_result_model.dart';
 
 import 'state/transfer_store.dart';
 import 'widgets/transfer_display.dart';
@@ -60,7 +60,7 @@ class _TransferRouteState extends State<TransferRoute> {
         // Tell the reaction which observable to observe
         (_) => _store.transferResult,
         // Run some logic with the content of the observed field
-        (RequestStatusModel result) {
+        (TransferResultModel result) {
           debugPrint('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {

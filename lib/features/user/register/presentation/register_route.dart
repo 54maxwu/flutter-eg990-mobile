@@ -70,9 +70,6 @@ class _RegisterRouteState extends State<RegisterRoute> {
             callToastInfo(
                 MessageMap.getSuccessMessage(result.msg, RouteEnum.REGISTER),
                 icon: Icons.check_circle_outline);
-          } else {
-            callToastError(
-                MessageMap.getErrorMessage(result.msg, RouteEnum.REGISTER));
           }
         },
       ),

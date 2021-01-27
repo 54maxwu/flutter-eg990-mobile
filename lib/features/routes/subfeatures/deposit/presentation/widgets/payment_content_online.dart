@@ -5,6 +5,7 @@ import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_enum_data.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_tutorial.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/model/payment_promo.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,10 +17,12 @@ import '../../data/model/payment_type_data.dart';
 ///@version 2020/3/26
 class PaymentContentOnline extends StatefulWidget {
   final List<PaymentTypeData> dataList;
+  final List<PaymentPromoData> promoList;
   final Function depositFuncCall;
 
   PaymentContentOnline({
     @required this.dataList,
+    @required this.promoList,
     @required this.depositFuncCall,
   });
 
@@ -42,6 +45,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
   PaymentTypeOnlineData _onlineData;
   int _bankSelectedIndex = -1;
   int _bankSelectedId = -1;
+  int _promoSelected = -1;
 //  int _amountVnd = 0;
   bool _hasTutorial = false;
   PaymentTutorialItem _tutorialItem;
@@ -56,6 +60,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
         bankId: _bankSelectedId,
         amount: _amountFieldKey.currentState?.getInput ?? '',
         gateway: _onlineData.gateway.toString(),
+        promoId: _promoSelected,
         remark: '',
         methodId: 3,
       );
@@ -148,6 +153,13 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
         ),
       );
     } else {
+      List<PaymentPromoData> promos = [
+        PaymentPromoData(
+          promoId: -1,
+          promoDesc: localeStr.depositPaymentNoPromo,
+        ),
+      ];
+      if (widget.promoList != null) promos.addAll(widget.promoList);
       return Padding(
         padding: const EdgeInsets.only(top: 12.0),
         child: new Form(
@@ -181,13 +193,35 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
               ///
               /// Account Hint
               ///
-//            Padding(
-//              padding: const EdgeInsets.only(top: 8.0),
-//              child: Text(
-//                localeStr.depositHintTextAccount,
-//                style: TextStyle(color: themeColor.hintHighlight),
-//              ),
-//            ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  localeStr.depositHintTextAccount,
+                  style: TextStyle(color: themeColor.hintHighlight),
+                ),
+              ),
+
+              ///
+              /// Promo Option
+              ///
+              if (promos.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: CustomizeDropdownWidget(
+                    prefixText: localeStr.depositPaymentSpinnerTitlePromo,
+                    horizontalInset: _fieldInset,
+                    optionValues: promos.map((item) => item.promoId).toList(),
+                    optionStrings:
+                        promos.map((item) => item.promoDesc).toList(),
+                    changeNotify: (data) {
+                      // clear text field focus
+                      FocusScope.of(context).unfocus();
+                      // set selected data
+                      if (data is PaymentPromoData)
+                        _promoSelected = data.promoId;
+                    },
+                  ),
+                ),
 
               ///
               /// Amount Input Field

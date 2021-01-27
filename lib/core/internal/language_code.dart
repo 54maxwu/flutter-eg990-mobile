@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:vnum/vnum.dart';
 
-final LanguageCode defaultLocale = LanguageCode.zh;
+final LanguageCode defaultLocale = LanguageCode.vn;
 
 @VnumDefinition
 class LanguageCode extends Vnum<LanguageData> {
@@ -27,12 +27,12 @@ class LanguageCode extends Vnum<LanguageData> {
     imageUrl: '/images/lang_vnm.jpg',
   ));
 
-  static const LanguageCode th = const LanguageCode.define(const LanguageData(
-    code: 'th',
-    optionString: 'TH',
-    contentKey: 'content_th',
-    imageUrl: '/images/lang_thai.jpg',
-  ));
+  // static const LanguageCode th = const LanguageCode.define(const LanguageData(
+  //   code: 'th',
+  //   optionString: 'TH',
+  //   contentKey: 'content_th',
+  //   imageUrl: '/images/lang_thai.jpg',
+  // ));
 
   /// Used for defining cases
   const LanguageCode.define(LanguageData fromValue) : super.define(fromValue);

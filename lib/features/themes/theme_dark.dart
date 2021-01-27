@@ -18,7 +18,7 @@ class ThemeDark implements ThemeColorInterface {
   /// Main color
   ///
   @override
-  Color defaultBackgroundColor = Color(0xff200000);
+  Color defaultBackgroundColor = Color(0xff260000);
 
   @override
   Color defaultLayeredBackgroundColor = Color(0xff313131);
@@ -99,7 +99,7 @@ class ThemeDark implements ThemeColorInterface {
   Color drawerIconSubColor = Color(0xffffffff);
 
   @override
-  Color sideMenuPrimaryColor = Color(0xff200000);
+  Color sideMenuPrimaryColor = Color(0xff260000);
 
   @override
   Color sideMenuSecondaryColor = Color(0xff460000);

@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class StoreDisplayProducts extends StatefulWidget {
   _StoreDisplayProductsState createState() => _StoreDisplayProductsState();
 }
 
-class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
+class _StoreDisplayProductsState extends State<StoreDisplayProducts>
+    with AfterLayoutMixin {
   PointStore _store;
   List<StoreProductModel> products;
   Widget _pointWidget;
@@ -171,5 +173,30 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
         ),
       ],
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    if (_store != null && _store.navProductId != null) {
+      final product = products.singleWhere(
+          (item) => item.productId == _store.navProductId,
+          orElse: () => null);
+      if (product != null) {
+        _store.navProductId = null;
+        Future.delayed(Duration(milliseconds: 500), () {
+          if (mounted) {
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => new StoreProductDialog(
+                store: _store,
+                product: product,
+                memberPoints: _store.memberPoints,
+              ),
+            );
+          }
+        });
+      }
+    }
   }
 }

@@ -139,14 +139,21 @@ class AppNavigator {
       final arguments = arg ?? page.value.routeArg;
       _isWeb = arguments != null && arguments is WebRouteArguments;
       if (_isWeb) {
-        debugPrint('web arg: $arguments');
-        featureNavigate.push(FeatureScreenRoutes.webRoute,
-            arguments: arguments);
+        debugPrint('navigating to in-app-web...');
+        featureNavigate.push(
+          FeatureScreenRoutes.webRoute,
+          arguments: arguments,
+        );
       } else {
-        featureNavigate.push(page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
-            arguments: arguments);
+        featureNavigate.push(
+          page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
+          arguments: arguments,
+        );
       }
-      updateNavigateRoute(page, parent: (_isWeb) ? page.pageRoot : _current);
+      updateNavigateRoute(page,
+          parent: (_isWeb && !_current.endsWith('-nav'))
+              ? page.pageRoot
+              : _current);
     } catch (e) {
       MyLogger.error(
           msg: 'navigate to ${page.pageName} has exception!! Error: $e',
