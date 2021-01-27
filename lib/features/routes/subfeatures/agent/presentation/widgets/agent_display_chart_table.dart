@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_fixed_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_fixed_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -28,10 +28,10 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
     localeStr.agentChartHeaderBet,
     localeStr.agentChartHeaderValid,
     localeStr.agentChartHeaderPayout,
-    localeStr.agentChartHeaderTotalWager,
-    localeStr.agentChartHeaderTotalBet,
-    localeStr.agentChartHeaderTotalValid,
-    localeStr.agentChartHeaderTotalPayout,
+    // localeStr.agentChartHeaderTotalWager,
+    // localeStr.agentChartHeaderTotalBet,
+    // localeStr.agentChartHeaderTotalValid,
+    // localeStr.agentChartHeaderTotalPayout,
   ];
 
   List<String> rowHeaders = [
@@ -77,16 +77,18 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
         rowHeaders[i],
         cellDimensions: cellDimensions,
       ),
-      contentCellBuilder: (i, j) {
-//        print('i:$i, j:$j');
-        if (j == rowHeaders.length - 1)
+      contentCellBuilder: (dataValueIndex, chartDataIndex) {
+//        debugPrint('i:$i, j:$j');
+        if (chartDataIndex == rowHeaders.length - 1)
           return TableFixedCellWidget.content(
-            formatNum(sumRow[i]),
+            formatNum(sumRow[dataValueIndex]),
             cellDimensions: cellDimensions,
           );
         else if (widget.showAll)
+          // get data value through [DataOperator]
+          // see [agent_chart_model.freezed.dart] operator [] overrides
           return TableFixedCellWidget.content(
-            formatNum(tableData[j][i]),
+            formatNum(tableData[chartDataIndex][dataValueIndex]),
             cellDimensions: cellDimensions,
           );
         else

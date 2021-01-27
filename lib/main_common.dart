@@ -1,6 +1,5 @@
 import 'dart:io' show Platform;
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
@@ -17,8 +16,6 @@ import 'env/environment.dart';
 import 'features/main_app.dart';
 import 'injection_container.dart' as di;
 
-FirebaseAnalytics _analytics;
-
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,19 +24,13 @@ Future<void> mainCommon(Environment env) async {
 
   switch (env) {
     case Environment.DEV:
-      {
-        Global.addAnalytics = false;
-        debugPrint(
-            'DEV Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
-        break;
-      }
+      debugPrint(
+          'DEV Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
+      break;
     case Environment.RELEASE:
-      {
-        Global.addAnalytics = true;
-        debugPrint(
-            'RELEASE Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
-        break;
-      }
+      debugPrint(
+          'RELEASE Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
+      break;
   }
 
   // request permission
@@ -78,10 +69,17 @@ Future<void> mainCommon(Environment env) async {
   // check app language setting
   try {
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-    if (box.containsKey('lang')) {
-      Global.setLanguage = box.get('lang', defaultValue: 'zh');
+    if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
+      if (Global.lockLanguage == false) {
+        // set language as user preference
+        Global.setLanguage =
+            box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.lang) {
+        // override language if language is locked and different as default
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+      }
     } else {
-      box.put('lang', Global.lang);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
     }
   } catch (e) {
     debugPrint('read app language setting has error!! $e');
@@ -93,13 +91,8 @@ Future<void> mainCommon(Environment env) async {
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
-  // Google Firebase
-  if (Global.addAnalytics) {
-    _analytics = FirebaseAnalytics();
-  }
-
   // run application
-  runApp(new MainApp(_analytics));
+  runApp(new MainApp());
 }
 
 void _setupLogging() {

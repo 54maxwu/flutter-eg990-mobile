@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../enum/balance_grid_action.dart';
@@ -23,18 +23,29 @@ class BalanceGridItem extends StatefulWidget {
 
 class BalanceGridItemState extends State<BalanceGridItem>
     with TickerProviderStateMixin {
-  static final String btn1Text = localeStr.balanceTransferOutText;
-  static final String btn2Text = localeStr.balanceTransferInText;
+  bool _verticalActionLayout;
+  String _btn1Text;
+  String _btn2Text;
+  String _maintenanceText;
 
   AnimationController _controller;
   TickerFuture tickerFuture;
 
+  String _credit = '---';
+  bool isMaintaining = false;
+  bool canTransferOut = true;
+  bool canTransferIn = true;
+  bool canRefresh = true;
+
   set setCredit(String credit) {
     stopAnim();
     if (_credit == credit) return;
+    debugPrint('${widget.platform} balance credit: $credit');
     _credit = credit;
-    isMaintaining = credit == '￥-1.00';
-    if (isMaintaining) {
+    isMaintaining = credit == '$creditSymbol-1.00' ||
+        credit == 'maintenance' ||
+        credit == 'InMaintenance';
+    if (isMaintaining || _credit == '---') {
       canTransferIn = false;
       canTransferOut = false;
     } else {
@@ -43,14 +54,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
       if (credit == 'x' || dCredit < 0) canTransferIn = false;
     }
     setState(() {});
-    print('${widget.platform} credit updated');
+    debugPrint('${widget.platform} credit updated: $_credit');
   }
-
-  String _credit = '---';
-  bool isMaintaining = false;
-  bool canTransferOut = true;
-  bool canTransferIn = true;
-  bool canRefresh = true;
 
   void startAnim() {
     canRefresh = false;
@@ -71,8 +76,20 @@ class BalanceGridItemState extends State<BalanceGridItem>
     });
   }
 
+  void updateVariables(bool state) {
+    _verticalActionLayout = Global.lang != 'zh' && Global.lang != 'en';
+    _btn1Text = localeStr.balanceTransferOutText;
+    _btn2Text = localeStr.balanceTransferInText;
+    _maintenanceText = localeStr.balanceStatusMaintenance;
+    if (state) {
+      setState(() {});
+    }
+  }
+
   @override
   void initState() {
+    updateVariables(false);
+    super.initState();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -84,7 +101,12 @@ class BalanceGridItemState extends State<BalanceGridItem>
 //      });
 //    });
     _controller.addListener(() => setState(() {}));
-    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(BalanceGridItem oldWidget) {
+    debugPrint('update balance grid item: ${widget.platform}');
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -117,123 +139,163 @@ class BalanceGridItemState extends State<BalanceGridItem>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              AutoSizeText(
                 widget.platform.toUpperCase(),
                 style: TextStyle(
                   color: themeColor.balanceCardTitleColor,
                   fontWeight: FontWeight.bold,
+                  fontSize: FontSize.HEADER.value,
+                ),
+                maxLines: 1,
+                minFontSize: FontSize.MESSAGE.value,
+                maxFontSize: FontSize.HEADER.value,
+              ),
+              (_verticalActionLayout)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _transferOutWidget(),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            _actionSeparator(),
+                            _transferInWidget(),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        _transferOutWidget(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                          child: _actionSeparator(),
+                        ),
+                        _transferInWidget(),
+                      ],
+                    ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: RichText(
+                  maxLines: 2,
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    text: (isMaintaining)
+                        ? _maintenanceText
+                        : '$creditSymbol $_credit',
+                    style: TextStyle(
+                      color: themeColor.balanceCardTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: FontSize.MESSAGE.value,
+                    ),
+                  ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  GestureDetector(
-                    child: Text(
-                      btn1Text,
-                      style: TextStyle(
-                        color: (canTransferOut)
-                            ? themeColor.balanceAction2TextColor
-                            : themeColor.balanceActionDisableTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new BalanceActionDialog(
-                          targetPlatform: widget.platform,
-                          isTransferIn: false,
-                          onConfirm: () {
-                            if (widget.onTapAction != null)
-                              widget.onTapAction(
-                                BalanceGridAction.transferOut,
-                                widget.platform,
-                              );
-                          },
-                        ),
-                      );
-                    },
+              GestureDetector(
+                child: RotationTransition(
+                  turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                  child: Icon(
+                    Icons.refresh,
+                    color: (canRefresh)
+                        ? themeColor.balanceRefreshColor
+                        : themeColor.defaultHintSubColor,
+                    size: 20,
                   ),
-                  Text(
-                    ' / ',
-                    style: TextStyle(
-                      color: (canTransferOut || canTransferIn)
-                          ? themeColor.balanceActionTextColor
-                          : themeColor.balanceActionDisableTextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Text(
-                      btn2Text,
-                      style: TextStyle(
-                        color: (canTransferIn)
-                            ? themeColor.balanceActionTextColor
-                            : themeColor.balanceActionDisableTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new BalanceActionDialog(
-                          targetPlatform: widget.platform,
-                          isTransferIn: true,
-                          onConfirm: () {
-                            if (widget.onTapAction != null)
-                              widget.onTapAction(
-                                BalanceGridAction.transferIn,
-                                widget.platform,
-                              );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      (isMaintaining)
-                          ? localeStr.balanceStatusMaintenance
-                          : _credit,
-                      style: TextStyle(
-                        color: themeColor.defaultGridTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: RotationTransition(
-                      turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-                      child: Icon(
-                        Icons.refresh,
-                        color: (canRefresh)
-                            ? themeColor.defaultWidgetColor
-                            : themeColor.defaultDisabledColor,
-                        size: 18,
-                      ),
-                    ),
-                    onTap: () {
-                      if (widget.onTapAction != null && canRefresh) {
-                        startAnim();
-                        widget.onTapAction(
-                          BalanceGridAction.refresh,
-                          widget.platform,
-                        );
-                      }
-                    },
-                  ),
-                ],
+                ),
+                onTap: () {
+                  if (widget.onTapAction != null && canRefresh) {
+                    startAnim();
+                    widget.onTapAction(
+                      BalanceGridAction.refresh,
+                      widget.platform,
+                    );
+                  }
+                },
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _transferOutWidget() {
+    return GestureDetector(
+      child: Text(
+        _btn1Text,
+        style: TextStyle(
+          color: (canTransferOut)
+              ? themeColor.balanceAction2TextColor
+              : themeColor.balanceActionDisableTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => new BalanceActionDialog(
+            targetPlatform: widget.platform,
+            isTransferIn: false,
+            onConfirm: () async {
+              if (widget.onTapAction != null) {
+                return await widget.onTapAction(
+                  BalanceGridAction.transferOut,
+                  widget.platform,
+                );
+              } else {
+                return Future.value(false);
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _transferInWidget() {
+    return GestureDetector(
+      child: Text(
+        _btn2Text,
+        style: TextStyle(
+          color: (canTransferIn)
+              ? themeColor.balanceActionTextColor
+              : themeColor.balanceActionDisableTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => new BalanceActionDialog(
+            targetPlatform: widget.platform,
+            isTransferIn: true,
+            onConfirm: () async {
+              if (widget.onTapAction != null) {
+                return await widget.onTapAction(
+                  BalanceGridAction.transferIn,
+                  widget.platform,
+                );
+              } else {
+                return Future.value(false);
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _actionSeparator() {
+    return Text(
+      ' / ',
+      style: TextStyle(
+        color: (canTransferOut || canTransferIn)
+            ? themeColor.balanceActionTextColor
+            : themeColor.balanceActionDisableTextColor,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

@@ -52,12 +52,12 @@
       "payout": "1070.00"
     }
   },
-  "first_page_url": "http:\/\/www.eg990.com:8775\/api\/getRecord\/1?page=1",
+  "first_page_url": "http:\/\/www.eg990.com\/api\/getRecord\/1?page=1",
   "from": 1,
   "last_page": 1,
-  "last_page_url": "http:\/\/www.eg990.com:8775\/api\/getRecord\/1?page=1",
+  "last_page_url": "http:\/\/www.eg990.com\/api\/getRecord\/1?page=1",
   "next_page_url": null,
-  "path": "http:\/\/www.eg990.com:8775\/api\/getRecord\/1",
+  "path": "http:\/\/www.eg990.com\/api\/getRecord\/1",
   "per_page": 10,
   "prev_page_url": null,
   "to": 6,

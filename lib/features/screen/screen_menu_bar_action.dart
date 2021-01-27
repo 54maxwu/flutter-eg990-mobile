@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 
@@ -59,28 +60,30 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login),
 //            ),
 //            SizedBox(width: 4.0),
+//            RaisedButton(
+//              child: new Text(
+//                localeStr.pageTitleLogin,
+//                style: TextStyle(
+//                  fontSize: FontSize.NORMAL.value + 1,
+//                  color: themeColor.buttonTextPrimaryColor,
+//                ),
+//              ),
+//              visualDensity: VisualDensity(horizontal: -3.0),
+//              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login,
+//                  arg: LoginRouteArguments(returnHomeAfterLogin: true)),
+//            ),
+//            SizedBox(width: 4.0),
             RaisedButton(
-              child: new Text(
-                localeStr.pageTitleLogin,
+              child: new AutoSizeText(
+                localeStr.pageTitleRegisterFree,
                 style: TextStyle(
                   fontSize: FontSize.NORMAL.value + 1,
                   color: themeColor.buttonTextPrimaryColor,
                 ),
+                minFontSize: 10.0,
+                maxLines: 1,
               ),
-              visualDensity: VisualDensity(horizontal: -3.0),
-              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login,
-                  arg: LoginRouteArguments(returnHomeAfterLogin: true)),
-            ),
-            SizedBox(width: 4.0),
-            RaisedButton(
-              child: new Text(
-                localeStr.pageTitleRegister,
-                style: TextStyle(
-                  fontSize: FontSize.NORMAL.value + 1,
-                  color: themeColor.buttonTextPrimaryColor,
-                ),
-              ),
-              visualDensity: VisualDensity(horizontal: -3.0),
+              visualDensity: VisualDensity(vertical: -1.0),
               onPressed: () {
                 RouterNavigate.navigateToPage(RoutePage.register);
               },

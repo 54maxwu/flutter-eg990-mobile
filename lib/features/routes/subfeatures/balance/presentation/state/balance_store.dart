@@ -1,7 +1,10 @@
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
+import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/transfer/data/form/transfer_form.dart';
+import 'package:flutter_eg990_mobile/features/user/data/repository/user_info_repository.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart'
     show ValueUtilExtension;
 
@@ -16,11 +19,12 @@ enum BalanceStoreState { initial, loading, loaded }
 
 abstract class _BalanceStore with Store {
   final BalanceRepository _repository;
+  final UserInfoRepository _infoRepository;
 
   final StreamController<String> _loadingController =
       StreamController<String>.broadcast();
 
-  _BalanceStore(this._repository);
+  _BalanceStore(this._repository, this._infoRepository);
 
   @observable
   ObservableFuture<Either<Failure, List<String>>> _promiseFuture;
@@ -49,18 +53,14 @@ abstract class _BalanceStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.BALANCE,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.BALANCE,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   BalanceStoreState get state {
@@ -148,8 +148,10 @@ abstract class _BalanceStore with Store {
             (failure) => balanceMap[platform] = 'x',
             (data) {
               if (showProgress) sinkProgress();
-              balanceMap[platform] = data;
-              debugPrint('add balance to map: $platform, credit: $data');
+              var credit =
+                  (data.isDigits) ? formatValue(data, floorIfInt: true) : data;
+              balanceMap[platform] = credit;
+              debugPrint('add balance to map: $platform, credit: $credit');
               balanceUpdated = platform;
             },
           );
@@ -161,16 +163,22 @@ abstract class _BalanceStore with Store {
   }
 
   @action
-  Future<void> getCreditLimit() async {
+  Future<void> getUserCredit() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       // Fetch from the repository and wrap the regular Future into an observable.
-      await _repository.getLimit().then(
+      await _infoRepository.updateCredit().then(
         (result) {
           result.fold(
-            (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-            (data) => creditLimit = data.strToDouble,
+            (failure) {
+              setErrorMsg(msg: failure.message, showOnce: true);
+              getAppGlobalStreams.resetCredit();
+            },
+            (value) {
+              getAppGlobalStreams.updateCredit(value);
+              creditLimit = value.strToDouble;
+            },
           );
         },
       ).whenComplete(() => debugPrint('credit limit: $creditLimit'));
@@ -180,19 +188,22 @@ abstract class _BalanceStore with Store {
   }
 
   @action
-  Future<void> postTransfer(TransferForm form) async {
+  Future<bool> postTransfer(TransferForm form) async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       transferResult = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository
+      return await _repository
           .postTransfer(form)
           .whenComplete(() => waitForTransferResult = false)
           .then((result) {
         debugPrint('transfer from ${form.from} to ${form.to} result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+        return result.fold(
+          (failure) {
+            setErrorMsg(msg: failure.message, showOnce: true);
+            return false;
+          },
           (data) {
             transferResult = data;
             if (data.isSuccess) {
@@ -200,8 +211,12 @@ abstract class _BalanceStore with Store {
                 (form.from == '0')
                     ? getBalance(form.to)
                     : getBalance(form.from);
-                getCreditLimit();
+                getUserCredit();
               });
+              return true;
+            } else {
+              setErrorMsg(msg: data.msg);
+              return false;
             }
           },
         );
@@ -209,11 +224,12 @@ abstract class _BalanceStore with Store {
     } on Exception {
       waitForTransferResult = false;
       setErrorMsg(code: 5);
+      return false;
     }
   }
 
   @action
-  Future<void> exeGridAction(BalanceGridAction action, String platform) async {
+  Future<bool> exeGridAction(BalanceGridAction action, String platform) async {
     debugPrint('execute $platform grid action: $action');
     if (action == BalanceGridAction.transferIn ||
         action == BalanceGridAction.transferOut) waitForTransferResult = true;
@@ -222,7 +238,7 @@ abstract class _BalanceStore with Store {
       case BalanceGridAction.transferIn:
         debugPrint('account limit: $creditLimit');
         if (creditLimit > 1) {
-          postTransfer(
+          return await postTransfer(
             TransferForm(
               from: '0',
               to: platform,
@@ -239,7 +255,7 @@ abstract class _BalanceStore with Store {
         var credit = balanceMap[platform].strToDouble;
         debugPrint('platform limit: $credit');
         if (credit >= 1) {
-          postTransfer(
+          return await postTransfer(
             TransferForm(
               from: platform,
               to: '0',
@@ -256,6 +272,9 @@ abstract class _BalanceStore with Store {
         getBalance(platform);
         break;
     }
+    // return value does not means anything for now
+    // it's just for the dialog to know the action was complete.
+    return false;
   }
 
   Future<void> closeStreams() {

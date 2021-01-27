@@ -3,16 +3,19 @@ import 'package:flutter/cupertino.dart';
 
 abstract class ThemeColorInterface {
   bool isDarkTheme;
+
   ThemeData get data;
 
   /*******************************************************************
    * General Color                                                   *
    *******************************************************************/
+
   ///
   /// Main color
   ///
   Color defaultBackgroundColor;
   Color defaultLayeredBackgroundColor;
+  Color defaultLayeredBackgroundColorAlpha;
   Color defaultPrimaryColor;
   Color defaultAccentColor;
   Color defaultBorderColor;
@@ -70,6 +73,7 @@ abstract class ThemeColorInterface {
   Color defaultTextColor;
   Color secondaryTextColor1;
   Color secondaryTextColor2;
+  Color defaultTitleColor;
   Color defaultSubtitleColor;
   Color defaultHintColor;
   Color defaultHintSubColor;
@@ -109,8 +113,10 @@ abstract class ThemeColorInterface {
   // default color or selected
   Color buttonPrimaryColor;
   Color buttonTextPrimaryColor;
+
   // unselected button
   Color buttonSecondaryColor;
+
   // sub color button (ex. readme)
   Color buttonSubColor;
   Color buttonTextSubColor;
@@ -125,6 +131,11 @@ abstract class ThemeColorInterface {
 
   Color pagerButtonColor;
   Color pagerButtonSelectedColor;
+
+  Color centerButtonColor;
+  Color centerButtonTextColor;
+  Color centerButtonBorderColor;
+  Color centerButtonStackColor;
 
   ///
   /// Input field color
@@ -157,6 +168,14 @@ abstract class ThemeColorInterface {
   /*******************************************************************
    * Specific Page Color                                             *
    *******************************************************************/
+
+  ///
+  /// Linear App Bar Color
+  ///
+  Color barLinearColor1;
+  Color barLinearColor2;
+  Color barLinearColor3;
+
   ///
   /// Home page color
   ///
@@ -179,6 +198,11 @@ abstract class ThemeColorInterface {
   Color homeBoxIconTextColor;
   Color homeBoxButtonTextColor;
 
+  Color homeTabSelectedLinearColor1;
+  Color homeTabSelectedLinearColor2;
+  Color homeTabLinearColor1;
+  Color homeTabLinearColor2;
+
   ///
   /// Promo page color
   ///
@@ -188,11 +212,15 @@ abstract class ThemeColorInterface {
   Color promoTabSelectedBgColor;
   Color promoTabSelectedIconColor;
   Color promoTabSelectedTextColor;
+  Color promoLinearColor1;
+  Color promoLinearColor2;
 
   ///
   /// Member page color
   ///
   Color memberIconColor;
+  Color memberIconLabelColor;
+  Color memberIconDecorColor;
   Color memberLinearColor1;
   Color memberLinearColor2;
   Color memberLinearColor3;
@@ -214,6 +242,9 @@ abstract class ThemeColorInterface {
   /// Balance page color
   ///
   Color balanceCardBackground;
+  Color balanceCardLinear1Color;
+  Color balanceCardLinear2Color;
+  Color balanceCardLinear3Color;
   Color balanceCardTitleColor;
   Color balanceCardTextColor;
   Color balanceActionTextColor;
@@ -228,6 +259,7 @@ abstract class ThemeColorInterface {
   Color walletCardIconBgColor;
   Color walletBoxBackgroundColor;
   Color walletBoxBorderColor;
+  Color walletBoxTitleColor;
   Color walletBoxButtonColor;
   Color walletRadioColor;
   Color walletCreditTitleColor;
@@ -258,6 +290,27 @@ abstract class ThemeColorInterface {
   Color storeDialogBackground;
   Color storeDialogSpanText;
   Color storeProductBgColor;
+  Color storeProductBorderColor;
+  Color storeRuleTitleColor;
+  Color storeRuleHighlightColor;
+  Color storeRuleTextColor;
   Color storeButtonColor;
   Color storeHighlightTextColor;
+
+  ///
+  /// Roller page color
+  ///
+  Color rollerBackgroundBlockTop;
+  Color rollerBackgroundBlock;
+  Color rollerTextCountColor;
+  Color rollerTextButtonColor;
+  Color rollerRuleBackgroundColor;
+  Color rollerRuleTitleColor;
+  Color rollerRuleHighlightColor;
+  Color rollerRuleTextColor;
+  Color rollerDialogTitleColor;
+  Color rollerDialogTitleBgColor;
+  Color rollerTableHeaderColor;
+  Color rollerTableTextColor;
+  Color rollerTableDividerColor;
 }

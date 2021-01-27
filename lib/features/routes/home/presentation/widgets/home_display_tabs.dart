@@ -10,7 +10,8 @@ import '../../data/models/game_category_model.dart';
 import '../state/home_store.dart';
 import 'home_display_size_calc.dart';
 import 'home_display_tab_page.dart';
-import 'home_display_tab_recommend.dart';
+import 'home_display_tab_page_mix.dart';
+import 'home_display_tab_website.dart';
 import 'home_store_inherit_widget.dart';
 import 'home_tab_item.dart';
 
@@ -58,7 +59,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
   }
 
   void showPlatform(int index, String platformClassName) {
-    print('jump to page $index and search $platformClassName');
+    debugPrint('jump to page $index and search $platformClassName');
     _pageController.jumpToPage(index);
     if (_store != null) _store.showSearchPlatform(platformClassName);
   }
@@ -133,8 +134,18 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
               Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
-    } else if (_tabController != null) {
+    } else if (_tabController != null || _tabKeyMap == null) {
       // build tab bar when game category is not null
+      if (_tabKeyMap != null) {
+        bool keysChecked = widget.tabs
+            .every((category) => _tabKeyMap.containsKey(category.type));
+        if (keysChecked) {
+          debugPrint('home tab key-map check success');
+          return _tabBar;
+        } else {
+          debugPrint('home tab key-map check failed, rebuilding tab bar...');
+        }
+      }
       _tabBar = _buildTabBar(_store);
     } else if (_tabController == null && _timer == null) {
       // set a period check timer and wait for data initialized
@@ -167,7 +178,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
         children: <Widget>[
           /// category tab bar
           Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 2.0, 10.0, 12.0),
+            padding: const EdgeInsets.fromLTRB(0.0, 4.0, 10.0, 0.0),
             child: Material(
               color: themeColor.homeTabBgColor,
               borderRadius: BorderRadius.circular(6.0),
@@ -178,7 +189,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
                   minWidth: widget.sizeCalc.barMinWidth,
                   maxWidth: widget.sizeCalc.barMaxWidth,
                 ),
-                margin: const EdgeInsets.only(bottom: 8.0),
+                margin: const EdgeInsets.only(bottom: 4.0),
                 /* Rotate to vertical */
                 child: RotatedBox(
                   quarterTurns: 1,
@@ -225,24 +236,32 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
                           return HomeDisplayTabPage(
                             category: category.type,
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
-                            textWidthFactor: widget.sizeCalc.textWidthFactor,
+                            itemLabelWidthFactor:
+                                widget.sizeCalc.textWidthFactor,
                             addSearchListener: true,
                           );
                         case GamePageType.Recommend:
-                          return new HomeDisplayTabRecommend(
+                          return HomeDisplayTabPageMix.recommend(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
-                            textWidthFactor: widget.sizeCalc.textWidthFactor,
+                            itemLabelWidthFactor:
+                                widget.sizeCalc.textWidthFactor,
                             addFavoritePlugin: false,
                             onPlatformClicked: (platform) {
-                              print('clicked recommend platform: $platform');
+                              debugPrint(
+                                  'clicked recommend platform: $platform');
                               int pageIndex = widget.tabs.indexWhere(
                                   (element) =>
                                       element.type == platform.category);
-                              print('found page index: $pageIndex');
+                              debugPrint('found page index: $pageIndex');
                               showPlatform(pageIndex, platform.className);
                             },
                           );
                           break;
+                        case GamePageType.Website:
+                          return HomeDisplayTabWebsite(
+                            url: Global.CURRENT_BASE,
+                            linkHint: localeStr.gameCategoryWebHint,
+                          );
                         default:
                           return SizedBox.shrink();
                       }
@@ -264,10 +283,10 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
     } else {
       key = new GlobalKey<HomeTabItemState>(debugLabel: category.type);
       _tabKeyMap[category.type] = key;
-      _tabItemMap[category.type] = new HomeTabItem(
+      _tabItemMap[category.type] = new HomeTabItem.transparent(
           key: key,
           category: category,
-          iconSize: widget.sizeCalc.barItemIconSize,
+          itemWidth: widget.sizeCalc.barItemIconSize,
           isFirst: widget.tabs.indexOf(category) == 0);
     }
 //    debugPrint('creating tab: $category');
@@ -298,7 +317,9 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
   void afterFirstLayout(BuildContext context) {
     _updateController.stream.listen((update) {
       debugPrint('update control listener: $update');
-      if (update[0].isNotEmpty && _tabKeyMap.containsKey(update[0])) {
+      if (update[0] != null &&
+          update[0].isNotEmpty &&
+          _tabKeyMap.containsKey(update[0])) {
         _tabKeyMap[update[0]].currentState.setSelected = false;
       }
       if (update[1].isNotEmpty && _tabKeyMap.containsKey(update[1])) {

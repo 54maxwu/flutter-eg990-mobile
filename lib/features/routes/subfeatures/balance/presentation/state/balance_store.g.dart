@@ -116,25 +116,24 @@ mixin _$BalanceStore on _BalanceStore, Store {
         .run(() => super.getBalance(platform, showProgress: showProgress));
   }
 
-  final _$getCreditLimitAsyncAction =
-      AsyncAction('_BalanceStore.getCreditLimit');
+  final _$getUserCreditAsyncAction = AsyncAction('_BalanceStore.getUserCredit');
 
   @override
-  Future<void> getCreditLimit() {
-    return _$getCreditLimitAsyncAction.run(() => super.getCreditLimit());
+  Future<void> getUserCredit() {
+    return _$getUserCreditAsyncAction.run(() => super.getUserCredit());
   }
 
   final _$postTransferAsyncAction = AsyncAction('_BalanceStore.postTransfer');
 
   @override
-  Future<void> postTransfer(TransferForm form) {
+  Future<bool> postTransfer(TransferForm form) {
     return _$postTransferAsyncAction.run(() => super.postTransfer(form));
   }
 
   final _$exeGridActionAsyncAction = AsyncAction('_BalanceStore.exeGridAction');
 
   @override
-  Future<void> exeGridAction(BalanceGridAction action, String platform) {
+  Future<bool> exeGridAction(BalanceGridAction action, String platform) {
     return _$exeGridActionAsyncAction
         .run(() => super.exeGridAction(action, platform));
   }

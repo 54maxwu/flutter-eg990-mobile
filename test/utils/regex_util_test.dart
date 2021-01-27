@@ -8,7 +8,11 @@ void main() {
   String tyRoute4Url = 'https://www.vip66432.com/';
 
   test('test router regex', () {
-    expect('${Global.EG_BASE_URL}'.isRouteUrl, true);
+    expect("[7]".replaceAll(RegExp(r'[\u005b|\u005d]'), ''), '7');
+  });
+
+  test('test router regex', () {
+    expect('${Global.CURRENT_BASE}'.isRouteUrl, true);
     expect(tyRoute7Url.testTyRouteUrl, true);
     expect(tyRoute6Url.testTyRouteUrl, true);
     expect(tyRoute4Url.testTyRouteUrl, false);
@@ -35,7 +39,7 @@ void main() {
 
   test('test date regex', () {
     String date = '1990-01-01';
-    expect(date.isValidDate, true);
+    expect(date.isDate, true);
   });
 
   test('test chinese regex', () {
@@ -49,6 +53,13 @@ void main() {
     expect(testStr4.hasChinese, true);
     String testStr5 = '一2三';
     expect(testStr5.hasChinese, true);
+  });
+
+  test('test mix string to int', () {
+    String mixStr = 'failure(code: 8000)';
+    String extract = mixStr.replaceAll(RegExp('[^0-9]'), '');
+    print('extract int:　$extract');
+    expect(int.parse(extract), 8000);
   });
 
   test('test html regex', () {

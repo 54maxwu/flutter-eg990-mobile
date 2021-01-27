@@ -16,11 +16,12 @@ abstract class ThemeInterface {
   /*******************************************************************
    * Variables                                                       *
    *******************************************************************/
+
   /// Input Field Settings
   static const double fieldHeight = 53.6;
   static const double fieldIconSize = 24.0;
   static const double prefixTextWidthFactor = 0.35;
-  static const double prefixTextSpacing = 5.0;
+  static const double prefixTextSpacing = 0.0;
   static const double prefixIconWidthFactor = 0.166;
   static const double suffixWidthFactor = 0.314;
   static const double horizontalInset = 32.0;
@@ -29,9 +30,26 @@ abstract class ThemeInterface {
   /*******************************************************************
    * Decoration                                                      *
    *******************************************************************/
+
+  /// Decor Color
+  static Color get themeIconBgColor =>
+      (themeColor.isDarkTheme) ? null : themeColor.iconBgColor;
+
+  static Gradient get themeIconBgGradient =>
+      (themeColor.isDarkTheme) ? radialGradient : radialGradientLight;
+
   /// Container Decor
+  static BoxDecoration get layerShadowDecor => BoxDecoration(
+      color: themeColor.defaultLayeredBackgroundColor,
+      boxShadow: ThemeInterface.layerShadow);
+
   static BoxDecoration get layerShadowDecorRound => BoxDecoration(
       color: themeColor.defaultLayeredBackgroundColor,
+      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      boxShadow: ThemeInterface.layerShadow);
+
+  static BoxDecoration get layerShadowDecorRoundAlpha => BoxDecoration(
+      color: themeColor.defaultLayeredBackgroundColorAlpha,
       borderRadius: BorderRadius.all(Radius.circular(4.0)),
       boxShadow: ThemeInterface.layerShadow);
 
@@ -50,11 +68,14 @@ abstract class ThemeInterface {
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       boxShadow: ThemeInterface.gridItemShadow);
 
-  static BoxDecoration get roundIconDecor => BoxDecoration(
-      shape: BoxShape.circle, boxShadow: ThemeInterface.roundIconShadowDark);
+  static BoxDecoration get iconDecorNoColor => BoxDecoration(
+      shape: BoxShape.circle, boxShadow: ThemeInterface.iconShadowExtend);
 
-  static BoxDecoration get roundIconDecorLight => BoxDecoration(
-      shape: BoxShape.circle, boxShadow: ThemeInterface.roundIconShadowLight);
+  static BoxDecoration get pageIconContainerDecor => BoxDecoration(
+      shape: BoxShape.circle,
+      color: themeIconBgColor,
+      gradient: themeIconBgGradient,
+      boxShadow: ThemeInterface.iconBottomShadow);
 
   /// Container Shadow
   static List<BoxShadow> layerShadow = <BoxShadow>[
@@ -84,7 +105,7 @@ abstract class ThemeInterface {
     ),
   ];
 
-  static List<BoxShadow> roundIconShadow = <BoxShadow>[
+  static List<BoxShadow> iconBottomShadow = <BoxShadow>[
     BoxShadow(
         color: Color(0x42000000),
         spreadRadius: 1.15,
@@ -92,7 +113,7 @@ abstract class ThemeInterface {
         offset: Offset(1, 2))
   ];
 
-  static List<BoxShadow> roundIconShadowDark = <BoxShadow>[
+  static List<BoxShadow> iconShadowExtend = <BoxShadow>[
     BoxShadow(
         color: Color(0x73000000),
         spreadRadius: 2.25,
@@ -100,11 +121,70 @@ abstract class ThemeInterface {
         offset: Offset(2, 6))
   ];
 
-  static List<BoxShadow> roundIconShadowLight = <BoxShadow>[
-    BoxShadow(
-        color: Color(0x42000000),
-        spreadRadius: 1.15,
-        blurRadius: 5.0,
-        offset: Offset(2, 5))
-  ];
+  /// Container Gradient
+  static Gradient radialGradient = RadialGradient(
+    colors: [
+      Color(0x40a4a4a4),
+      Color(0xcc25272c),
+    ],
+    stops: [0.1, 0.8],
+    radius: 0.7,
+    tileMode: TileMode.clamp,
+  );
+
+  static Gradient radialGradientLight = RadialGradient(
+    colors: [
+      Color(0xffd7c3b3),
+      Color(0xffc1a180),
+    ],
+    stops: [0.1, 0.8],
+    radius: 0.7,
+    tileMode: TileMode.clamp,
+  );
+  //
+  // static Gradient get navBarGradient => (themeColor.isDarkTheme)
+  //     ? LinearGradient(
+  //         begin: Alignment.bottomLeft,
+  //         end: Alignment.topRight,
+  //         colors: [
+  //           themeColor.barLinearColor1,
+  //           themeColor.barLinearColor2,
+  //           themeColor.barLinearColor3,
+  //         ],
+  //         stops: [0.1, 0.47, 1.0],
+  //         tileMode: TileMode.clamp,
+  //       )
+  //     : LinearGradient(
+  //         begin: Alignment.topLeft,
+  //         end: Alignment.bottomLeft,
+  //         colors: [
+  //           themeColor.barLinearColor1,
+  //           themeColor.barLinearColor2,
+  //         ],
+  //         stops: [0.1, 1.0],
+  //         tileMode: TileMode.clamp,
+  //       );
+  //
+  // static Gradient get menuBarGradient => (themeColor.isDarkTheme)
+  //     ? LinearGradient(
+  //         begin: Alignment.centerLeft,
+  //         end: Alignment.centerRight,
+  //         colors: [
+  //           themeColor.barLinearColor1,
+  //           themeColor.barLinearColor2,
+  //           themeColor.barLinearColor3,
+  //         ],
+  //         stops: [0.1, 0.2, 1.0],
+  //         tileMode: TileMode.clamp,
+  //       )
+  //     : LinearGradient(
+  //         begin: Alignment.topLeft,
+  //         end: Alignment.bottomLeft,
+  //         colors: [
+  //           themeColor.barLinearColor1,
+  //           themeColor.barLinearColor2,
+  //         ],
+  //         stops: [0.1, 1.0],
+  //         tileMode: TileMode.clamp,
+  //       );
 }

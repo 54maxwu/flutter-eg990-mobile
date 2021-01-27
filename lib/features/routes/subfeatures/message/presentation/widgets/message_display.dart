@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart'
     show getAppGlobalStreams;
@@ -35,32 +36,40 @@ class _MessageDisplayState extends State<MessageDisplay> {
     _eventStore = FeatureScreenInheritedWidget.of(context)?.eventStore;
     debugPrint('screen has new message: ${getAppGlobalStreams.hasNewMessage}');
 
-    itemKeys ??= new List();
-    listItems ??= widget.store.messageList.map((message) {
-      GlobalKey<MessageDisplayItemState> key =
-          new GlobalKey<MessageDisplayItemState>(debugLabel: 'm${message.id}');
-      itemKeys.add(key);
-      return MessageDisplayItem(
-        key,
-        data: message,
-        onItemTap: (id) {
-          widget.store.updateMessageStatus(id);
-          if (!waitDelayedCheck) {
-            waitDelayedCheck = true;
-            Future.delayed(Duration(milliseconds: 500), () {
-              _eventStore?.getNewMessageCount();
-              waitDelayedCheck = false;
-            });
-          }
+    if (widget.store.messageList == null || widget.store.messageList.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 12.0),
+        child: Text(localeStr.messageNoMessages),
+      );
+    } else {
+      itemKeys ??= new List();
+      listItems ??= widget.store.messageList.map((message) {
+        GlobalKey<MessageDisplayItemState> key =
+            new GlobalKey<MessageDisplayItemState>(
+                debugLabel: 'm${message.id}');
+        itemKeys.add(key);
+        return MessageDisplayItem(
+          key,
+          data: message,
+          onItemTap: (id) {
+            widget.store.updateMessageStatus(id);
+            if (!waitDelayedCheck) {
+              waitDelayedCheck = true;
+              Future.delayed(Duration(milliseconds: 500), () {
+                _eventStore?.getNewMessageCount();
+                waitDelayedCheck = false;
+              });
+            }
+          },
+        );
+      }).toList();
+
+      return ListView.builder(
+        itemCount: listItems.length,
+        itemBuilder: (_, index) {
+          return listItems[index];
         },
       );
-    }).toList();
-
-    return ListView.builder(
-      itemCount: listItems.length,
-      itemBuilder: (_, index) {
-        return listItems[index];
-      },
-    );
+    }
   }
 }

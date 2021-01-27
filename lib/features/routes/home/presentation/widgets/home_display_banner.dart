@@ -1,8 +1,13 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
-import 'package:flutter_eg990_mobile/features/routes/home/data/entity/banner_entity.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/customize_carousel.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../data/entity/banner_entity.dart';
+
+typedef OnBannerClicked = void Function(String);
 
 ///
 /// Create a [Carousel] widget to display banner images
@@ -11,8 +16,9 @@ import 'package:flutter_eg990_mobile/features/routes/home/data/entity/banner_ent
 ///
 class HomeDisplayBanner extends StatelessWidget {
   final List<BannerEntity> banners;
+  final OnBannerClicked onBannerClicked;
 
-  HomeDisplayBanner({this.banners});
+  HomeDisplayBanner({this.banners, @required this.onBannerClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +30,19 @@ class HomeDisplayBanner extends StatelessWidget {
         alignment: Alignment.center,
         margin: const EdgeInsets.only(bottom: 34.0),
         child: WarningDisplay(
-          message: localeStr.messageErrorNoServerConnection,
+          message:
+              (banners == null) ? localeStr.messageErrorNoServerConnection : '',
           widthFactor: 1,
           largerText: true,
-          highlight: true,
+          highlight: banners == null,
         ),
       );
     }
   }
 
   Widget _buildCarousel() {
-    List<int> promoIds = _listPromoIds();
-    return Carousel(
+    List<String> bannerUrls = _listBannerUrls();
+    return CustomizeCarousel(
       boxFit: BoxFit.fill,
       images: banners
           .map((banner) => networkImageBuilder(
@@ -52,26 +59,29 @@ class HomeDisplayBanner extends StatelessWidget {
       borderRadius: false,
       animationDuration: Duration(milliseconds: 2000),
       autoplayDuration: Duration(seconds: 10),
+      jumpOnEndPage: true,
       onImageTap: (index) {
-        var id = promoIds[index];
-        print('clicked image $index, promoId: $id');
-        if (id != -1)
-          RouterNavigate.navigateToPage(RoutePage.promo,
-              arg: PromoRouteArguments(openPromoId: id));
+        String url = bannerUrls[index];
+        debugPrint('clicked image $index, url: $url');
+        if (url.contains(Global.DOMAIN_NAME)) {
+          if (onBannerClicked != null) {
+            onBannerClicked(url);
+          }
+        } else if (url.isUrl) {
+          launch(url);
+        }
       },
     );
   }
 
-  List<int> _listPromoIds() {
+  List<String> _listBannerUrls() {
     try {
       return banners.map((data) {
-        if (data.noPromo || data.promoUrl.startsWith('promo') == false)
-          return -1;
-        return data.promoUrl.split('/').last.strToInt;
+        return data.promoUrl;
       }).toList();
     } on Exception catch (e) {
       MyLogger.error(
-        msg: 'map banners promo id has exception: $e',
+        msg: 'map banners jump url has exception: $e',
         tag: 'HomeBannerDisplay',
       );
       return [];

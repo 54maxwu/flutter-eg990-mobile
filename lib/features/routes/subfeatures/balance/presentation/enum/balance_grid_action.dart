@@ -1,3 +1,4 @@
 enum BalanceGridAction { transferIn, transferOut, refresh }
 
-typedef void BalanceGridCall(BalanceGridAction action, String platform);
+typedef BalanceGridCall = Future Function(
+    BalanceGridAction action, String platform);

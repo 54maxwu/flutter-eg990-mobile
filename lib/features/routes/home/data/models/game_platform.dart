@@ -128,5 +128,5 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
     }
   }
 
-  bool isLongText(int limit) => label.countLength > limit;
+  bool isLongText(double limit) => label.countLength > limit;
 }

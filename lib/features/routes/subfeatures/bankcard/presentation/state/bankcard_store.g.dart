@@ -47,21 +47,6 @@ mixin _$BankcardStore on _BankcardStore, Store {
     });
   }
 
-  final _$provinceMapAtom = Atom(name: '_BankcardStore.provinceMap');
-
-  @override
-  Map<String, String> get provinceMap {
-    _$provinceMapAtom.reportRead();
-    return super.provinceMap;
-  }
-
-  @override
-  set provinceMap(Map<String, String> value) {
-    _$provinceMapAtom.reportWrite(value, super.provinceMap, () {
-      super.provinceMap = value;
-    });
-  }
-
   final _$banksMapAtom = Atom(name: '_BankcardStore.banksMap');
 
   @override
@@ -74,36 +59,6 @@ mixin _$BankcardStore on _BankcardStore, Store {
   set banksMap(Map<String, String> value) {
     _$banksMapAtom.reportWrite(value, super.banksMap, () {
       super.banksMap = value;
-    });
-  }
-
-  final _$cityMapAtom = Atom(name: '_BankcardStore.cityMap');
-
-  @override
-  Map<String, String> get cityMap {
-    _$cityMapAtom.reportRead();
-    return super.cityMap;
-  }
-
-  @override
-  set cityMap(Map<String, String> value) {
-    _$cityMapAtom.reportWrite(value, super.cityMap, () {
-      super.cityMap = value;
-    });
-  }
-
-  final _$areaMapAtom = Atom(name: '_BankcardStore.areaMap');
-
-  @override
-  Map<String, String> get areaMap {
-    _$areaMapAtom.reportRead();
-    return super.areaMap;
-  }
-
-  @override
-  set areaMap(Map<String, String> value) {
-    _$areaMapAtom.reportWrite(value, super.areaMap, () {
-      super.areaMap = value;
     });
   }
 
@@ -168,28 +123,6 @@ mixin _$BankcardStore on _BankcardStore, Store {
     return _$getBanksAsyncAction.run(() => super.getBanks());
   }
 
-  final _$getProvincesAsyncAction = AsyncAction('_BankcardStore.getProvinces');
-
-  @override
-  Future<void> getProvinces() {
-    return _$getProvincesAsyncAction.run(() => super.getProvinces());
-  }
-
-  final _$getCitiesAsyncAction = AsyncAction('_BankcardStore.getCities');
-
-  @override
-  Future<void> getCities(String provinceCode, {bool showError = true}) {
-    return _$getCitiesAsyncAction
-        .run(() => super.getCities(provinceCode, showError: showError));
-  }
-
-  final _$getAreasAsyncAction = AsyncAction('_BankcardStore.getAreas');
-
-  @override
-  Future<void> getAreas(String cityCode) {
-    return _$getAreasAsyncAction.run(() => super.getAreas(cityCode));
-  }
-
   final _$sendRequestAsyncAction = AsyncAction('_BankcardStore.sendRequest');
 
   @override
@@ -200,15 +133,12 @@ mixin _$BankcardStore on _BankcardStore, Store {
   @override
   String toString() {
     return '''
-bankcard: $bankcard,
-provinceMap: $provinceMap,
-banksMap: $banksMap,
-cityMap: $cityMap,
-areaMap: $areaMap,
-waitForNewCardResult: $waitForNewCardResult,
-newCardResult: $newCardResult,
-errorMessage: $errorMessage,
-state: $state
+bankcard: ${bankcard},
+banksMap: ${banksMap},
+waitForNewCardResult: ${waitForNewCardResult},
+newCardResult: ${newCardResult},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

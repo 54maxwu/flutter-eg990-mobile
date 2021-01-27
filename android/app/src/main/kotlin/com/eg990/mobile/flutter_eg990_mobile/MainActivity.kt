@@ -1,4 +1,4 @@
-package com.eg990.mobile
+package com.opbkk365.mobile
 
 import android.content.Context
 import android.hardware.SensorManager
@@ -9,12 +9,12 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
 
-import com.eg990.mobile.RestartHelper
-import com.eg990.mobile.SensorListener
+import com.opbkk365.mobile.RestartHelper
+import com.opbkk365.mobile.SensorListener
 
 class MainActivity: FlutterActivity() {
-    private val CHANNEL = "com.eg990.mobile/restart"
-    private val CHANNEL2 = "com.eg990.mobile/sensorswitch"
+    private val CHANNEL = "com.opbkk365.mobile/restart"
+    private val CHANNEL2 = "com.opbkk365.mobile/sensorswitch"
 
     private lateinit var sensorListener: SensorListener
 

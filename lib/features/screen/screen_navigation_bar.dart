@@ -15,99 +15,34 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   static final List<ScreenNavigationBarItem> _tabs = [
     ScreenNavigationBarItem.home,
     ScreenNavigationBarItem.deposit,
-    ScreenNavigationBarItem.promo,
-    ScreenNavigationBarItem.service,
     ScreenNavigationBarItem.member,
-    ScreenNavigationBarItem.more,
+    ScreenNavigationBarItem.service,
   ];
+
+  // static final List<ScreenNavigationBarItem> _agentTabs = [
+  //   ScreenNavigationBarItem.home,
+  //   ScreenNavigationBarItem.agent,
+  // ];
 
   FeatureScreenStore _store;
   EventStore _eventStore;
   Widget _barWidget;
   String _locale;
 
-  bool _showingEventDialog = false;
-
   int _navIndex = 0;
 
   void _itemTapped(int index, bool hasUser) {
     var item = _tabs[index];
     debugPrint('tapped item: ${item.value}');
-    if (item == ScreenNavigationBarItem.more) {
-      showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) => new MoreDialog(_store, _eventStore),
-      );
-    } else if (item.value.route == null) {
+    if (item.value.route == null) {
       callToastInfo(localeStr.workInProgress);
     } else {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
         RouterNavigate.navigateToPage(RoutePage.login);
-      else if (item == ScreenNavigationBarItem.service)
-        RouterNavigate.navigateToPage(value.route,
-            arg: WebRouteArguments(
-              startUrl: Global.currentService,
-              hideBars: true,
-            ));
       else
         RouterNavigate.navigateToPage(value.route);
     }
-  }
-
-  void _checkShowEvent() {
-    _eventStore.debugEvent();
-    if (_eventStore.forceShowEvent && _eventStore.hasEvent == false) {
-      Future.delayed(Duration(milliseconds: 200), () {
-        callToastInfo(localeStr.messageNoEvent);
-      });
-      // set to false so it will not pop on other pages
-      _eventStore.setForceShowEvent = false;
-      return;
-    }
-    if (_eventStore.showEventOnHome && !_showingEventDialog) {
-      _showingEventDialog = true;
-      Future.delayed(Duration(milliseconds: 1200), () {
-        // will not show
-        if (_store.hasUser == false ||
-            (_store.navIndex != 0 && _eventStore.forceShowEvent == false)) {
-          _stopEventAutoShow();
-          return;
-        } else {
-          // set to false so it will not pop on other pages
-          _eventStore.setForceShowEvent = false;
-        }
-        _showEventDialog();
-      });
-    }
-  }
-
-  void _showEventDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => (_eventStore.hasSignedEvent == false)
-          ? new EventDialog(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onSign: () => _eventStore.signEvent(),
-              onSignError: () => _eventStore.getEventError(),
-              onDialogClose: () => _stopEventAutoShow(),
-            )
-          : new EventDialogSigned(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onDialogClose: () => _stopEventAutoShow(),
-            ),
-    );
-  }
-
-  void _stopEventAutoShow() {
-    if (_store == null) return;
-    _showingEventDialog = false;
-    // set to false so it will not pop again when return to home page
-    _eventStore.setShowEvent = false;
   }
 
   @override
@@ -151,13 +86,36 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   }
 
   Widget _buildWidget(bool hasUser) {
-    List<String> labels = _tabs.map((e) => e.value.title).toList();
     return Observer(builder: (_) {
       // observe nav index to change icon icon color (setState does not work).
       final index = _store.navIndex;
       if (index >= 0) _navIndex = index;
-      // monitor observable value to show event dialog
-      if (_eventStore.showEventOnHome) _checkShowEvent();
+      // if (_navIndex == 10) {  // Agent route navigate bar
+      //   List<String> labels = _agentTabs.map((e) => e.value.title).toList();
+      //   return BottomNavigationBar(
+      //     onTap: (index) {
+      //       debugPrint('store state user: ${_store.userStatus}');
+      //       if (index == 1) return;
+      //       if (index == 0) RouterNavigate.navigateClean();
+      //     },
+      //     currentIndex: 1,
+      //     type: BottomNavigationBarType.fixed,
+      //     selectedFontSize: FontSize.NORMAL.value,
+      //     unselectedFontSize: FontSize.NORMAL.value,
+      //     unselectedItemColor: themeColor.navigationColor,
+      //     fixedColor: themeColor.navigationColorFocus,
+      //     backgroundColor: themeColor.defaultAppbarColor,
+      //     items: List.generate(_agentTabs.length, (index) {
+      //       var itemValue = _agentTabs[index].value;
+      //       return _createBarItem(
+      //           itemValue: itemValue,
+      //           title: labels[index],
+      //           store: _store,
+      //           highlight: index == 1);
+      //     }),
+      //   );
+      // } else {
+      List<String> labels = _tabs.map((e) => e.value.title).toList();
       return BottomNavigationBar(
         onTap: (index) {
           debugPrint('store state user: ${_store.userStatus}');
@@ -172,14 +130,23 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
         backgroundColor: themeColor.defaultAppbarColor,
         items: List.generate(_tabs.length, (index) {
           var itemValue = _tabs[index].value;
-          return _createBarItem(itemValue, labels[index], false, _store);
+          return _createBarItem(
+              itemValue: itemValue, title: labels[index], store: _store);
         }),
       );
+      // }
     });
   }
 
-  BottomNavigationBarItem _createBarItem(RouteListItem itemValue, String title,
-      bool addBadge, FeatureScreenStore store) {
+  BottomNavigationBarItem _createBarItem({
+    RouteListItem itemValue,
+    String title,
+    bool addBadge = false,
+    FeatureScreenStore store,
+    bool highlight = false,
+  }) {
+    // debugPrint(
+    //     'navigate item $itemValue title: ${title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?'}');
     Widget icon = (itemValue.imageName != null)
         ? ClipRRect(
             borderRadius: BorderRadius.circular(30.0),
@@ -204,14 +171,34 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
                 ),
               ),
               padding: EdgeInsets.zero,
-              position: BadgePosition.topRight(top: -5, right: -6),
+              position: BadgePosition.topEnd(top: -5, end: -6),
               child: icon,
             )
           : icon,
       title: Padding(
-        padding: EdgeInsets.only(top: 2.0),
-        child:
-            Text(title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?'),
+        padding: (highlight)
+            ? const EdgeInsets.fromLTRB(9.0, 2.0, 3.0, 0.0)
+            : const EdgeInsets.fromLTRB(3.0, 2.0, 3.0, 0.0),
+        child: AutoSizeText(
+          title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+          style: TextStyle(
+            color: (highlight)
+                ? themeColor.navigationColorFocus
+                : themeColor.defaultTextColor,
+            fontSize: (Global.lang != 'zh')
+                ? FontSize.SMALL.value
+                : FontSize.NORMAL.value,
+          ),
+          minFontSize: (Global.lang != 'zh')
+              ? FontSize.SMALL.value - 4.0
+              : FontSize.NORMAL.value - 4.0,
+          maxFontSize: (Global.lang != 'zh')
+              ? FontSize.SMALL.value
+              : FontSize.NORMAL.value,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }

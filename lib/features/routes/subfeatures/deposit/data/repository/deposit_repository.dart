@@ -90,6 +90,8 @@ class DepositRepositoryImpl implements DepositRepository {
           return Right(decodePaymentTypes(data.data));
         else if (data.data is String)
           return Right(decodePaymentTypes(jsonDecode(data.data)));
+        else if (data.data is List && (data.data as List).isEmpty)
+          return Right([]);
         else
           return Left(Failure.dataType());
       } else {
@@ -120,6 +122,8 @@ class DepositRepositoryImpl implements DepositRepository {
           else if (data.data is String)
             return Right(
                 PaymentPromo.jsonToPaymentPromo(jsonDecode(data.data)));
+          else if (data.data is List && (data.data as List).isEmpty)
+            return Right(PaymentPromoTypeJson(local: '', other: ''));
           else
             return Left(Failure.dataType());
         } else {
@@ -200,7 +204,8 @@ class DepositRepositoryImpl implements DepositRepository {
     return result.fold(
       (failure) => Left(failure),
       (data) => Right(JsonUtil.decodeMapToModelList(
-          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap))),
+          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap),
+          addKey: false)),
     );
   }
 }

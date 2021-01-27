@@ -1,49 +1,58 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/checkbox_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/horizontal_radio_group_widget.dart';
+import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
-import '../../data/enum/agent_chart_time_enum.dart';
+import '../../data/form/agent_report_form.dart';
 import '../../data/enum/agent_chart_type_enum.dart';
 import '../../data/models/agent_chart_model.dart';
 import '../state/agent_store.dart';
 import 'agent_display_chart_content.dart';
-import 'agent_inherit_widget.dart';
+import 'agent_store_inherit_widget.dart';
 
 class AgentDisplayChart extends StatefulWidget {
   @override
   _AgentDisplayChartState createState() => _AgentDisplayChartState();
 }
 
-class _AgentDisplayChartState extends State<AgentDisplayChart> {
+class _AgentDisplayChartState extends State<AgentDisplayChart>
+    with AfterLayoutMixin {
   final GlobalKey _streamKey = new GlobalKey(debugLabel: 'reportstream');
-  final GlobalKey<CustomizeDropdownWidgetState> _selectorKey =
-      new GlobalKey(debugLabel: 'selector');
+
+  final GlobalKey<CustomizeFieldWidgetState> _startTimeKey =
+      new GlobalKey(debugLabel: 'start');
+  final GlobalKey<CustomizeFieldWidgetState> _endTimeKey =
+      new GlobalKey(debugLabel: 'end');
   final GlobalKey<HorizontalRadioGroupWidgetState> _radiosKey =
       new GlobalKey(debugLabel: 'radios');
   final GlobalKey<CheckboxWidgetState> _fullKey =
       new GlobalKey(debugLabel: 'full');
 
-  final List<String> _selectorStrings = [
-    localeStr.agentTextChartMonthPrev,
-    localeStr.agentTextChartMonth,
-  ];
-
-  final List<String> _radioLabels = [
-    localeStr.agentTextChartPlatform,
-    localeStr.agentTextChartCategory,
-  ];
-
   AgentStore _store;
-  AgentChartTime _dateSelected;
+  List<String> _radioLabels;
   bool query = false;
 
   @override
   void initState() {
-    _dateSelected = AgentChartTime.THIS_MONTH;
     super.initState();
+    _radioLabels = [
+      localeStr.agentTextChartPlatform,
+      localeStr.agentTextChartCategory,
+    ];
+  }
+
+  @override
+  void didUpdateWidget(AgentDisplayChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _radioLabels = [
+      localeStr.agentTextChartPlatform,
+      localeStr.agentTextChartCategory,
+    ];
   }
 
   @override
@@ -62,18 +71,35 @@ class _AgentDisplayChartState extends State<AgentDisplayChart> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomizeDropdownWidget(
-            key: _selectorKey,
-            horizontalInset: 16.0,
-            prefixText: localeStr.agentTextChartDate,
-            optionValues: AgentChartTime.LIST,
-            optionStrings: _selectorStrings,
-            defaultValueIndex: 1,
-            changeNotify: (data) {
-              _dateSelected = data;
-              debugPrint('selected: $data');
-            },
+          /// Start Date Field
+          new CustomizeFieldWidget(
+            key: _startTimeKey,
+            horizontalInset: 12.0,
+            fieldType: FieldType.Date,
+            maxInputLength: InputLimit.DATE,
+            hint: localeStr.centerTextTitleDateHint,
+            persistHint: false,
+            prefixText: localeStr.betsFieldTitleStartTime,
+            titleLetterSpacing: 4,
+            errorMsg: localeStr.messageInvalidFormat,
+            validCondition: (input) => input.isDate,
           ),
+
+          /// End Date Field
+          new CustomizeFieldWidget(
+            key: _endTimeKey,
+            horizontalInset: 12.0,
+            fieldType: FieldType.Date,
+            maxInputLength: InputLimit.DATE,
+            hint: localeStr.centerTextTitleDateHint,
+            persistHint: false,
+            prefixText: localeStr.betsFieldTitleEndTime,
+            titleLetterSpacing: 4,
+            errorMsg: localeStr.messageInvalidFormat,
+            validCondition: (input) => input.isDate,
+          ),
+
+          /// Radios
           CustomizeTitledContainer(
             horizontalInset: 16.0,
             childAlignment: Alignment.centerLeft,
@@ -84,6 +110,8 @@ class _AgentDisplayChartState extends State<AgentDisplayChart> {
               radioValues: AgentChartType.LIST,
             ),
           ),
+
+          /// Query Button
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
             child: Row(
@@ -95,23 +123,26 @@ class _AgentDisplayChartState extends State<AgentDisplayChart> {
                     child: Text(localeStr.agentTextChartQuery),
                     onPressed: () {
                       query = true;
-                      _store.getReport(
-                        time: _dateSelected,
+                      _store.getReport(AgentReportForm(
                         type: _radiosKey.currentState.getSelected,
-                      );
+                        startTime: _startTimeKey.currentState.getInput,
+                        endTime: _endTimeKey.currentState.getInput,
+                      ));
                     },
                   ),
                 ),
               ],
             ),
           ),
+
+          /// Full Data Checkbox
           CheckboxWidget(
             key: _fullKey,
             label: localeStr.agentTextChartCheckFull,
             initValue: true,
           ),
 
-          /// report data stream
+          /// history data stream
           StreamBuilder<List<AgentChartModel>>(
             key: _streamKey,
             stream: _store.reportStream,
@@ -140,5 +171,12 @@ class _AgentDisplayChartState extends State<AgentDisplayChart> {
         ],
       ),
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    String today = DateTime.now().toDateString;
+    _startTimeKey.currentState?.setInput = today;
+    _endTimeKey.currentState?.setInput = today;
   }
 }

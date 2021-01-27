@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
@@ -39,12 +38,8 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 
   final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =
       new GlobalKey(debugLabel: 'name');
-  final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
-      new GlobalKey(debugLabel: 'account');
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
-  final GlobalKey<CustomizeFieldWidgetState> _noteFieldKey =
-      new GlobalKey(debugLabel: 'note');
 
   final double _fieldInset = 56.0;
   final double _titleWidthFactor = 0.35;
@@ -67,16 +62,12 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 //      debugPrint('The user wants to login with $_username and $_password');
       try {
         DepositDataForm dataForm = DepositDataForm(
+          name: _nameFieldKey.currentState.getInput,
+          amount: _amountFieldKey.currentState.getInput,
           bankIndex: _localData.bankIndex,
           bankId: _localData.bankAccountId,
           methodId: _methodSelected,
-          name: _nameFieldKey.currentState.getInput,
-          amount: _amountFieldKey.currentState.getInput,
-          localBank: _bankSelected,
-          localBankCard: _accountFieldKey.currentState.getInput,
           promoId: _promoSelected,
-          gateway: '1',
-          remark: _noteFieldKey.currentState.getInput,
         );
         if (dataForm.isValid == false) {
           callToast(localeStr.messageActionFillForm);
@@ -106,10 +97,14 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
     _bankNames = widget.bankMap.values.toList()..sort();
     debugPrint('bank names sorted: $_bankNames\n\n');
     _bankIds = _bankNames
-        .map((value) => widget.bankMap.entries
-            .singleWhere((element) => element.value == value)
-            .key)
-        .toList();
+        .map((value) =>
+            widget.bankMap.entries
+                .firstWhere((element) => element.value == value,
+                    orElse: () => null)
+                ?.key ??
+            -1)
+        .toList()
+          ..removeWhere((element) => element == -1);
     debugPrint('bank ids sorted: $_bankIds\n\n');
   }
 
@@ -154,84 +149,10 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ///
-            /// Target Bank Option
-            ///
-            if (widget.infoList.isNotEmpty)
-              CustomizeDropdownWidget(
-                prefixText: localeStr.depositPaymentSpinnerTitleBank,
-                titleWidthFactor: _titleWidthFactor,
-                horizontalInset: _fieldInset,
-                optionValues:
-                    widget.infoList.map((item) => item.bankAccountId).toList(),
-                optionStrings: widget.infoList
-                    .map((item) => item.bankAccountName)
-                    .toList(),
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  // set selected data
-                  if (_selectedBankInfo == data) return;
-                  setState(() {
-                    _selectedBankInfo = data;
-                    _localData = widget.dataList.firstWhere((element) =>
-                        element.bankAccountId ==
-                        _selectedBankInfo.bankAccountId);
-                  });
-                },
-              ),
-
-            ///
-            /// Deposit Info Area
-            ///
-            if (widget.infoList.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: DottedBorder(
-                  dashPattern: const <double>[4, 2],
-                  color: const Color.fromRGBO(206, 0, 0, 0.2),
-                  padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 0.0),
-                  child: Center(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: themeColor.hintDarkRed,
-                          fontSize: FontSize.MESSAGE.value,
-                          fontWeight: FontWeight.w500,
-                          height: 1.5,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '${localeStr.bankcardViewTitleOwner}:\r\r'),
-                          TextSpan(
-                            text: '${_selectedBankInfo.accountName}\n',
-                            style: TextStyle(
-                                color: themeColor.hintHighlightDarkRed),
-                          ),
-                          TextSpan(
-                              text:
-                                  '${localeStr.bankcardViewTitleCardNumber}:\r\r'),
-                          TextSpan(
-                            text: '${_selectedBankInfo.bankAccountNo}\n',
-                            style: TextStyle(
-                                color: themeColor.hintHighlightDarkRed),
-                          ),
-                          TextSpan(
-                              text: '${localeStr.bankcardViewTitleBank}:\r\r'),
-                          TextSpan(
-                              text: '${_selectedBankInfo.bankAccountName}\n'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-            ///
             /// Promo Option
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 24.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: CustomizeDropdownWidget(
                 prefixText: localeStr.depositPaymentSpinnerTitlePromo,
                 titleWidthFactor: _titleWidthFactor,
@@ -269,15 +190,29 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             ),
 
             ///
-            /// Account Hint
+            /// Deposit Info Area
             ///
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
-              child: Text(
-                localeStr.depositHintTextAccount,
-                style: TextStyle(color: themeColor.hintHighlight),
+            if (widget.infoList.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                    style: TextStyle(
+                        color: themeColor.hintHighlight,
+                        fontSize: FontSize.NORMAL.value),
+                    children: <TextSpan>[
+                      TextSpan(text: '${localeStr.bankcardViewTitleBank}: '),
+                      TextSpan(text: '${_selectedBankInfo.bankAccountName}, '),
+                      TextSpan(
+                          text: '${localeStr.bankcardViewTitleCardNumber}: '),
+                      TextSpan(text: '${_selectedBankInfo.bankAccountNo}, '),
+                      TextSpan(text: '${localeStr.bankcardViewTitleOwner}: '),
+                      TextSpan(text: '${_selectedBankInfo.accountName}'),
+                    ],
+                  ),
+                ),
               ),
-            ),
 
             ///
             /// Method Option
@@ -306,7 +241,6 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
               padding: const EdgeInsets.only(top: 8.0),
               child: new CustomizeFieldWidget(
                 key: _nameFieldKey,
-                fieldType: FieldType.TextOnly,
                 hint: localeStr.depositPaymentEditTitleNameHint,
                 persistHint: false,
                 prefixText: localeStr.depositPaymentEditTitleName,

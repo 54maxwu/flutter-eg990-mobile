@@ -76,7 +76,7 @@ class _WalletRouteState extends State<WalletRoute> {
       },
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+          padding: EdgeInsets.all(8.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

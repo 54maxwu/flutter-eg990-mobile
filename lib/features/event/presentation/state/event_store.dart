@@ -1,7 +1,6 @@
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/features/event/data/models/event_model.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_info_repository.dart';
 
@@ -23,41 +22,41 @@ abstract class _EventStore with Store {
 
   _EventStore(this._repository, this._infoRepository) {
     _adsController.stream.listen((event) {
-//      print('home stream ads: ${event.length}');
+//      debugPrint('event stream ads: ${event.length}');
       ads = event;
     });
   }
 
   /// Event
-  EventModel _event;
-
-  // Observer is in [ScreenNavigationBar]
-  @observable
-  bool showEventOnHome = false;
-
-  @observable
-  bool hasSignedEvent = false;
-
-  int signedTimes;
-
-  bool forceShowEvent = false;
-
-  EventModel get event => _event;
-
-  bool get hasEvent =>
-      _event.hasData &&
-      _event.userLevelMatchEvent(getAppGlobalStreams.userLevel ?? 0);
-
-  String getEventError() => errorMessage;
-
-  set setShowEvent(bool show) {
-    showEventOnHome = show;
-  }
-
-  set setForceShowEvent(bool show) {
-    showEventOnHome = (!show) ? showEventOnHome : true;
-    forceShowEvent = show;
-  }
+  // EventModel _event;
+  //
+  // // Observer is in [ScreenNavigationBar]
+  // @observable
+  // bool showEventOnHome = false;
+  //
+  // @observable
+  // bool hasSignedEvent = false;
+  //
+  // int signedTimes;
+  //
+  // bool forceShowEvent = false;
+  //
+  // EventModel get event => _event;
+  //
+  // bool get hasEvent =>
+  //     _event.hasData &&
+  //     _event.userLevelMatchEvent(getAppGlobalStreams.userLevel ?? 0);
+  //
+  // String getEventError() => errorMessage;
+  //
+  // set setShowEvent(bool show) {
+  //   showEventOnHome = show;
+  // }
+  //
+  // set setForceShowEvent(bool show) {
+  //   showEventOnHome = (!show) ? showEventOnHome : true;
+  //   forceShowEvent = show;
+  // }
 
   /// Ads
   Stream<List<AdModel>> get adsStream => _adsController.stream;
@@ -84,19 +83,30 @@ abstract class _EventStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.EVENT,
-          code: code,
-        )).message;
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.EVENT,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
+
+  @action
+  Future<void> getWebsiteList() async {
+    // Reset the possible previous error message.
+    errorMessage = null;
+    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+    await _repository.getWebsiteList().then((result) {
+      debugPrint('website list result: $result');
+      result.fold(
+        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+        (value) {},
+      );
+    });
   }
 
+  @action
   Future<void> getNewMessageCount() async {
     // Reset the possible previous error message.
     errorMessage = null;
@@ -118,7 +128,7 @@ abstract class _EventStore with Store {
       if (getAppGlobalStreams.hasUser == false) return;
       getAppGlobalStreams.resetCredit();
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _infoRepository.updateCredit(getAppGlobalStreams.userName).then(
+      await _infoRepository.updateCredit().then(
             (result) => result.fold(
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);
@@ -134,84 +144,71 @@ abstract class _EventStore with Store {
     }
   }
 
-  @action
-  Future<void> getWebsiteList() async {
-    // Reset the possible previous error message.
-    errorMessage = null;
-    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-    await _repository.getWebsiteList().then((result) {
-      debugPrint('website list result: $result');
-      result.fold(
-        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-        (value) {},
-      );
-    });
-  }
-
-  @action
-  Future<void> getEvent() async {
-    // Reset the possible previous error message.
-    errorMessage = null;
-    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-    await _repository.getEvent().then((result) {
-      print('event result: $result');
-      result.fold(
-        (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-        (model) {
-          _event = model;
-          showEventOnHome =
-              _event.showDialog(getAppGlobalStreams.userLevel ?? 0);
-          forceShowEvent = false;
-          hasSignedEvent = !(_event.canSign);
-          signedTimes = _event.signData?.times ?? 0;
-          print('event show: $showEventOnHome, has signed: $hasSignedEvent');
-        },
-      );
-    });
-  }
-
-  @action
-  Future<bool> signEvent() async {
-    // Reset the possible previous error message.
-    errorMessage = null;
-    // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-    return await _repository
-        .signEvent(_event.eventData.id, _event.eventData.prize)
-        .then((result) {
-      print('event result: $result');
-      return result.fold(
-        (failure) {
-          setErrorMsg(msg: failure.message, showOnce: true);
-          return false;
-        },
-        (model) async {
-          if (model.isSuccess == false) {
-            errorMessage = localeStr.eventButtonSignUpFailed;
-          } else if (model.data is bool) {
-            showEventOnHome = false;
-            forceShowEvent = false;
-            hasSignedEvent = true;
-            signedTimes = (_event.signData?.times ?? 0) + 1;
-            getEvent();
-            return true;
-          } else if (model.data is Map) {
-            String msg = model.data['msg'];
-            errorMessage = (msg == 'alreadySign')
-                ? localeStr.eventButtonSignUpAlready
-                : msg;
-          }
-          return false;
-        },
-      );
-    });
-  }
-
-  void debugEvent() {
-    print('Event: $_event');
-    print('Event can sign: ${_event.canSign}');
-    print('Has Event? $hasEvent');
-    print('Has Signed? $hasSignedEvent');
-  }
+  // @action
+  // Future<void> getEvent() async {
+  //   // Reset the possible previous error message.
+  //   errorMessage = null;
+  //   // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+  //   await _repository.getEvent().then((result) {
+  //     debugPrint('event result: $result');
+  //     result.fold(
+  //       (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+  //       (model) {
+  //         _event = model;
+  //         showEventOnHome =
+  //             _event.showDialog(getAppGlobalStreams.userLevel ?? 0);
+  //         forceShowEvent = false;
+  //         hasSignedEvent = !(_event.canSign);
+  //         signedTimes = _event.signData?.times ?? 0;
+  //         debugPrint(
+  //             'event show: $showEventOnHome, has signed: $hasSignedEvent');
+  //       },
+  //     );
+  //   });
+  // }
+  //
+  // @action
+  // Future<bool> signEvent() async {
+  //   // Reset the possible previous error message.
+  //   errorMessage = null;
+  //   // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+  //   return await _repository
+  //       .signEvent(_event.eventData.id, _event.eventData.prize)
+  //       .then((result) {
+  //     debugPrint('event result: $result');
+  //     return result.fold(
+  //       (failure) {
+  //         setErrorMsg(msg: failure.message, showOnce: true);
+  //         return false;
+  //       },
+  //       (model) async {
+  //         if (model.isSuccess == false) {
+  //           errorMessage = localeStr.eventButtonSignUpFailed;
+  //         } else if (model.data is bool) {
+  //           showEventOnHome = false;
+  //           forceShowEvent = false;
+  //           hasSignedEvent = true;
+  //           signedTimes = (_event.signData?.times ?? 0) + 1;
+  //           getEvent();
+  //           return true;
+  //         } else if (model.data is Map) {
+  //           String msg = model.data['msg'];
+  //           errorMessage = (msg == 'alreadySign')
+  //               ? localeStr.eventButtonSignUpAlready
+  //               : msg;
+  //         }
+  //         return false;
+  //       },
+  //     );
+  //   });
+  // }
+  //
+  // void debugEvent() {
+  //   debugPrint('Event: $_event');
+  //   debugPrint('Event can sign: ${_event.canSign}');
+  //   debugPrint('Has Event? $hasEvent');
+  //   debugPrint('Has Signed? $hasSignedEvent');
+  // }
 
   @action
   Future<void> getAds() async {
@@ -246,10 +243,10 @@ abstract class _EventStore with Store {
         Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
         if (box != null) {
           await box.putAll({skipAdsKey: saveValue});
-          print('box ads: ${box.get(skipAdsKey)}');
+          debugPrint('box ads: ${box.get(skipAdsKey)}');
         }
       }
-      print('box saved: $skipAdsKey - $saveValue');
+      debugPrint('box saved: $skipAdsKey - $saveValue');
     });
   }
 

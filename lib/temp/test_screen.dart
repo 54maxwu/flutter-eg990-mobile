@@ -32,9 +32,8 @@ class _TestScreenState extends State<TestScreen> {
         },
         child: Scaffold(
           backgroundColor: themeColor.defaultBackgroundColor,
-          body: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          body: ListView(
+            shrinkWrap: true,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),

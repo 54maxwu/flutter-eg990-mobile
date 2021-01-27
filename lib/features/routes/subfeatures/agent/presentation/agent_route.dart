@@ -53,35 +53,13 @@ class _AgentRouteState extends State<AgentRoute> {
           }
         },
       ),
-      /* Reaction on agent request result */
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => _store.mergeAdResult,
-        // Run some logic with the content of the observed field
-        (result) {
-          debugPrint('reaction on merge ad result: $result');
-          if (result == null) return;
-          if (result.isSuccess) {
-            try {
-              Navigator.of(context).pop();
-            } on Exception {}
-            callToastInfo(
-              result.msg,
-              icon: Icons.check_circle_outline,
-            );
-          } else {
-            callToastError(result.msg);
-          }
-        },
-      ),
     ];
   }
 
   @override
   void dispose() {
     try {
-      _store.closeStreams();
+      _store.clearStreams();
       if (toastDismiss != null) {
         toastDismiss();
         toastDismiss = null;
@@ -96,7 +74,7 @@ class _AgentRouteState extends State<AgentRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop agent route');
-        RouterNavigate.navigateBack();
+        RouterNavigate.navigateClean();
         return Future(() => true);
       },
       child: Scaffold(
@@ -106,12 +84,10 @@ class _AgentRouteState extends State<AgentRoute> {
             // Observe using specific widget
             builder: (_) {
               switch (_store.state) {
-                case AgentStoreState.initial:
-                  return SizedBox.shrink();
                 case AgentStoreState.loading:
                   return LoadingWidget();
                 case AgentStoreState.loaded:
-                  return AgentDisplay(_store);
+                  return AgentDisplay();
                 default:
                   return SizedBox.shrink();
               }

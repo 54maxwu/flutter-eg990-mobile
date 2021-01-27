@@ -33,6 +33,7 @@ class JsonUtil {
     bool trim = true,
     String tag = debugTag,
   }) {
+    if (str is List) return str;
     final trimmed = (trim) ? trimJson(str) : str;
     if (trimmed.isEmpty) return [];
     try {
@@ -159,9 +160,6 @@ class JsonUtil {
     // transfer decoded data to model data
     try {
       return jsonToModel(map) as T;
-    } on TokenException catch (e) {
-      debugPrint('catch token exception');
-      throw e;
     } catch (e, s) {
       debugPrint('decode to model error: $e, stack:\n$s');
       MyLogger.error(

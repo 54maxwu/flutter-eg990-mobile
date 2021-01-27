@@ -86,7 +86,7 @@
   "from": 1,
   "to": 10,
   "last_page": 9,
-  "next_page_url": "http:\/\/www.eg990.com:8775\/api\/getTransaction?page=2",
+  "next_page_url": "http:\/\/www.eg990.com\/api\/getTransaction?page=2",
   "prev_page_url": null,
   "total": 81
 }

@@ -14,11 +14,13 @@ class Global {
   /// APP Language
   static bool initLocale = false;
 
-  // zh, th, en, vi
-  static String _language = 'zh';
+  static bool lockLanguage = false;
 
-  // content_cn, content_th, content_us, content_vn
-  static String _jsonContentKey = 'content_cn';
+  // zh, en, vi, th
+  static String _language = 'th';
+
+  // content_cn, content_us, content_vn, content_th
+  static String _jsonContentKey = 'content_th';
 
   static String get lang => _language;
 
@@ -36,25 +38,34 @@ class Global {
       case 'vi':
         _jsonContentKey = 'content_vn';
         break;
+      case 'th':
+        _jsonContentKey = 'content_th';
+        break;
     }
   }
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = EG_BASE_URL;
-  static String currentService = EG_SERVICE_URL;
+  static const String CURRENT_BASE = BKK_OFFICIAL_URL;
+  static String currentService = BKK_SERVICE_URL;
 
-  static const String EG_BASE_URL = "https://www.eg990.com/";
-  static const String EG_SERVICE_URL = "http://vip66741.com/";
+  static const String DOMAIN_NAME = "bkk365.com";
+  // static const String BKK_TEST_URL = "";
+  // static const String BKK_BASE_URL = "";
+  static const String BKK_OFFICIAL_URL = "https://bkk365.com/";
+  static const String BKK_SERVICE_URL = "https://vip77761.com";
 
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';
   static const String CACHE_LOGIN_FORM = 'CACHE_LOGIN_FORM';
   static const String CACHE_APP_DATA = 'CACHE_APP_DATA';
 
+  static const String CACHE_APP_DATA_KEY_LANG = 'lang';
+  static const String CACHE_APP_DATA_KEY_THEME = 'theme';
+
   /// Other static value
   static const double APP_MENU_HEIGHT = kToolbarHeight - 8.0;
-  static const double APP_NAV_HEIGHT = kToolbarHeight + 8.0;
+  static const double APP_NAV_HEIGHT = kToolbarHeight + 12.0;
   static const double APP_BARS_HEIGHT = Global.APP_MENU_HEIGHT + APP_NAV_HEIGHT;
   static const double TEST_DEVICE_HEIGHT = 785.45;
   static const double TEST_DEVICE_WIDTH = 392.72;

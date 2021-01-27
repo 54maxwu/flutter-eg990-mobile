@@ -17,25 +17,25 @@ class _$CenterVipEntityTearOff {
   _CenterVipEntity call(
       {dynamic vipOption,
       dynamic vipSetting,
-      int allGame,
+      num allGame,
       int allGameLevel,
       int allGameValue,
-      int cardGame,
+      num cardGame,
       int cardGameLevel,
       int cardGameValue,
-      int casinoGame,
+      num casinoGame,
       int casinoGameLevel,
       int casinoGameValue,
-      int fishGame,
+      num fishGame,
       int fishGameLevel,
       int fishGameValue,
-      int lotteryGame,
+      num lotteryGame,
       int lotteryGameLevel,
       int lotteryGameValue,
-      int slotGame,
+      num slotGame,
       int slotGameLevel,
       int slotGameValue,
-      int sportGame,
+      num sportGame,
       int sportGameLevel,
       int sportGameValue}) {
     return _CenterVipEntity(
@@ -74,25 +74,25 @@ const $CenterVipEntity = _$CenterVipEntityTearOff();
 mixin _$CenterVipEntity {
   dynamic get vipOption;
   dynamic get vipSetting;
-  int get allGame;
+  num get allGame;
   int get allGameLevel;
   int get allGameValue;
-  int get cardGame;
+  num get cardGame;
   int get cardGameLevel;
   int get cardGameValue;
-  int get casinoGame;
+  num get casinoGame;
   int get casinoGameLevel;
   int get casinoGameValue;
-  int get fishGame;
+  num get fishGame;
   int get fishGameLevel;
   int get fishGameValue;
-  int get lotteryGame;
+  num get lotteryGame;
   int get lotteryGameLevel;
   int get lotteryGameValue;
-  int get slotGame;
+  num get slotGame;
   int get slotGameLevel;
   int get slotGameValue;
-  int get sportGame;
+  num get sportGame;
   int get sportGameLevel;
   int get sportGameValue;
 
@@ -107,25 +107,25 @@ abstract class $CenterVipEntityCopyWith<$Res> {
   $Res call(
       {dynamic vipOption,
       dynamic vipSetting,
-      int allGame,
+      num allGame,
       int allGameLevel,
       int allGameValue,
-      int cardGame,
+      num cardGame,
       int cardGameLevel,
       int cardGameValue,
-      int casinoGame,
+      num casinoGame,
       int casinoGameLevel,
       int casinoGameValue,
-      int fishGame,
+      num fishGame,
       int fishGameLevel,
       int fishGameValue,
-      int lotteryGame,
+      num lotteryGame,
       int lotteryGameLevel,
       int lotteryGameValue,
-      int slotGame,
+      num slotGame,
       int slotGameLevel,
       int slotGameValue,
-      int sportGame,
+      num sportGame,
       int sportGameLevel,
       int sportGameValue});
 }
@@ -169,26 +169,26 @@ class _$CenterVipEntityCopyWithImpl<$Res>
       vipOption: vipOption == freezed ? _value.vipOption : vipOption as dynamic,
       vipSetting:
           vipSetting == freezed ? _value.vipSetting : vipSetting as dynamic,
-      allGame: allGame == freezed ? _value.allGame : allGame as int,
+      allGame: allGame == freezed ? _value.allGame : allGame as num,
       allGameLevel:
           allGameLevel == freezed ? _value.allGameLevel : allGameLevel as int,
       allGameValue:
           allGameValue == freezed ? _value.allGameValue : allGameValue as int,
-      cardGame: cardGame == freezed ? _value.cardGame : cardGame as int,
+      cardGame: cardGame == freezed ? _value.cardGame : cardGame as num,
       cardGameLevel: cardGameLevel == freezed
           ? _value.cardGameLevel
           : cardGameLevel as int,
       cardGameValue: cardGameValue == freezed
           ? _value.cardGameValue
           : cardGameValue as int,
-      casinoGame: casinoGame == freezed ? _value.casinoGame : casinoGame as int,
+      casinoGame: casinoGame == freezed ? _value.casinoGame : casinoGame as num,
       casinoGameLevel: casinoGameLevel == freezed
           ? _value.casinoGameLevel
           : casinoGameLevel as int,
       casinoGameValue: casinoGameValue == freezed
           ? _value.casinoGameValue
           : casinoGameValue as int,
-      fishGame: fishGame == freezed ? _value.fishGame : fishGame as int,
+      fishGame: fishGame == freezed ? _value.fishGame : fishGame as num,
       fishGameLevel: fishGameLevel == freezed
           ? _value.fishGameLevel
           : fishGameLevel as int,
@@ -196,21 +196,21 @@ class _$CenterVipEntityCopyWithImpl<$Res>
           ? _value.fishGameValue
           : fishGameValue as int,
       lotteryGame:
-          lotteryGame == freezed ? _value.lotteryGame : lotteryGame as int,
+          lotteryGame == freezed ? _value.lotteryGame : lotteryGame as num,
       lotteryGameLevel: lotteryGameLevel == freezed
           ? _value.lotteryGameLevel
           : lotteryGameLevel as int,
       lotteryGameValue: lotteryGameValue == freezed
           ? _value.lotteryGameValue
           : lotteryGameValue as int,
-      slotGame: slotGame == freezed ? _value.slotGame : slotGame as int,
+      slotGame: slotGame == freezed ? _value.slotGame : slotGame as num,
       slotGameLevel: slotGameLevel == freezed
           ? _value.slotGameLevel
           : slotGameLevel as int,
       slotGameValue: slotGameValue == freezed
           ? _value.slotGameValue
           : slotGameValue as int,
-      sportGame: sportGame == freezed ? _value.sportGame : sportGame as int,
+      sportGame: sportGame == freezed ? _value.sportGame : sportGame as num,
       sportGameLevel: sportGameLevel == freezed
           ? _value.sportGameLevel
           : sportGameLevel as int,
@@ -231,25 +231,25 @@ abstract class _$CenterVipEntityCopyWith<$Res>
   $Res call(
       {dynamic vipOption,
       dynamic vipSetting,
-      int allGame,
+      num allGame,
       int allGameLevel,
       int allGameValue,
-      int cardGame,
+      num cardGame,
       int cardGameLevel,
       int cardGameValue,
-      int casinoGame,
+      num casinoGame,
       int casinoGameLevel,
       int casinoGameValue,
-      int fishGame,
+      num fishGame,
       int fishGameLevel,
       int fishGameValue,
-      int lotteryGame,
+      num lotteryGame,
       int lotteryGameLevel,
       int lotteryGameValue,
-      int slotGame,
+      num slotGame,
       int slotGameLevel,
       int slotGameValue,
-      int sportGame,
+      num sportGame,
       int sportGameLevel,
       int sportGameValue});
 }
@@ -295,26 +295,26 @@ class __$CenterVipEntityCopyWithImpl<$Res>
       vipOption: vipOption == freezed ? _value.vipOption : vipOption as dynamic,
       vipSetting:
           vipSetting == freezed ? _value.vipSetting : vipSetting as dynamic,
-      allGame: allGame == freezed ? _value.allGame : allGame as int,
+      allGame: allGame == freezed ? _value.allGame : allGame as num,
       allGameLevel:
           allGameLevel == freezed ? _value.allGameLevel : allGameLevel as int,
       allGameValue:
           allGameValue == freezed ? _value.allGameValue : allGameValue as int,
-      cardGame: cardGame == freezed ? _value.cardGame : cardGame as int,
+      cardGame: cardGame == freezed ? _value.cardGame : cardGame as num,
       cardGameLevel: cardGameLevel == freezed
           ? _value.cardGameLevel
           : cardGameLevel as int,
       cardGameValue: cardGameValue == freezed
           ? _value.cardGameValue
           : cardGameValue as int,
-      casinoGame: casinoGame == freezed ? _value.casinoGame : casinoGame as int,
+      casinoGame: casinoGame == freezed ? _value.casinoGame : casinoGame as num,
       casinoGameLevel: casinoGameLevel == freezed
           ? _value.casinoGameLevel
           : casinoGameLevel as int,
       casinoGameValue: casinoGameValue == freezed
           ? _value.casinoGameValue
           : casinoGameValue as int,
-      fishGame: fishGame == freezed ? _value.fishGame : fishGame as int,
+      fishGame: fishGame == freezed ? _value.fishGame : fishGame as num,
       fishGameLevel: fishGameLevel == freezed
           ? _value.fishGameLevel
           : fishGameLevel as int,
@@ -322,21 +322,21 @@ class __$CenterVipEntityCopyWithImpl<$Res>
           ? _value.fishGameValue
           : fishGameValue as int,
       lotteryGame:
-          lotteryGame == freezed ? _value.lotteryGame : lotteryGame as int,
+          lotteryGame == freezed ? _value.lotteryGame : lotteryGame as num,
       lotteryGameLevel: lotteryGameLevel == freezed
           ? _value.lotteryGameLevel
           : lotteryGameLevel as int,
       lotteryGameValue: lotteryGameValue == freezed
           ? _value.lotteryGameValue
           : lotteryGameValue as int,
-      slotGame: slotGame == freezed ? _value.slotGame : slotGame as int,
+      slotGame: slotGame == freezed ? _value.slotGame : slotGame as num,
       slotGameLevel: slotGameLevel == freezed
           ? _value.slotGameLevel
           : slotGameLevel as int,
       slotGameValue: slotGameValue == freezed
           ? _value.slotGameValue
           : slotGameValue as int,
-      sportGame: sportGame == freezed ? _value.sportGame : sportGame as int,
+      sportGame: sportGame == freezed ? _value.sportGame : sportGame as num,
       sportGameLevel: sportGameLevel == freezed
           ? _value.sportGameLevel
           : sportGameLevel as int,
@@ -379,43 +379,43 @@ class _$_CenterVipEntity implements _CenterVipEntity {
   @override
   final dynamic vipSetting;
   @override
-  final int allGame;
+  final num allGame;
   @override
   final int allGameLevel;
   @override
   final int allGameValue;
   @override
-  final int cardGame;
+  final num cardGame;
   @override
   final int cardGameLevel;
   @override
   final int cardGameValue;
   @override
-  final int casinoGame;
+  final num casinoGame;
   @override
   final int casinoGameLevel;
   @override
   final int casinoGameValue;
   @override
-  final int fishGame;
+  final num fishGame;
   @override
   final int fishGameLevel;
   @override
   final int fishGameValue;
   @override
-  final int lotteryGame;
+  final num lotteryGame;
   @override
   final int lotteryGameLevel;
   @override
   final int lotteryGameValue;
   @override
-  final int slotGame;
+  final num slotGame;
   @override
   final int slotGameLevel;
   @override
   final int slotGameValue;
   @override
-  final int sportGame;
+  final num sportGame;
   @override
   final int sportGameLevel;
   @override
@@ -556,25 +556,25 @@ abstract class _CenterVipEntity implements CenterVipEntity {
   const factory _CenterVipEntity(
       {dynamic vipOption,
       dynamic vipSetting,
-      int allGame,
+      num allGame,
       int allGameLevel,
       int allGameValue,
-      int cardGame,
+      num cardGame,
       int cardGameLevel,
       int cardGameValue,
-      int casinoGame,
+      num casinoGame,
       int casinoGameLevel,
       int casinoGameValue,
-      int fishGame,
+      num fishGame,
       int fishGameLevel,
       int fishGameValue,
-      int lotteryGame,
+      num lotteryGame,
       int lotteryGameLevel,
       int lotteryGameValue,
-      int slotGame,
+      num slotGame,
       int slotGameLevel,
       int slotGameValue,
-      int sportGame,
+      num sportGame,
       int sportGameLevel,
       int sportGameValue}) = _$_CenterVipEntity;
 
@@ -583,43 +583,43 @@ abstract class _CenterVipEntity implements CenterVipEntity {
   @override
   dynamic get vipSetting;
   @override
-  int get allGame;
+  num get allGame;
   @override
   int get allGameLevel;
   @override
   int get allGameValue;
   @override
-  int get cardGame;
+  num get cardGame;
   @override
   int get cardGameLevel;
   @override
   int get cardGameValue;
   @override
-  int get casinoGame;
+  num get casinoGame;
   @override
   int get casinoGameLevel;
   @override
   int get casinoGameValue;
   @override
-  int get fishGame;
+  num get fishGame;
   @override
   int get fishGameLevel;
   @override
   int get fishGameValue;
   @override
-  int get lotteryGame;
+  num get lotteryGame;
   @override
   int get lotteryGameLevel;
   @override
   int get lotteryGameValue;
   @override
-  int get slotGame;
+  num get slotGame;
   @override
   int get slotGameLevel;
   @override
   int get slotGameValue;
   @override
-  int get sportGame;
+  num get sportGame;
   @override
   int get sportGameLevel;
   @override

@@ -1,6 +1,4 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
@@ -12,21 +10,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'main_startup.dart';
 import 'router/app_global_streams.dart';
 import 'routes/home/presentation/state/home_store.dart';
+import 'routes/subfeatures/agent/presentation/state/agent_store.dart';
 import 'themes/theme_settings.dart';
 
 class MainApp extends StatefulWidget {
-  final FirebaseAnalytics analytics;
-
-  MainApp(this.analytics);
-
   @override
   State<StatefulWidget> createState() => _MainAppState();
 }
 
 class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   final String tag = 'Main';
-
-  FirebaseAnalyticsObserver firebaseObserver;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -54,10 +47,6 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
     MyLogger.info(msg: 'app init', tag: tag);
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    if (widget.analytics != null) {
-      widget.analytics.logAppOpen();
-      firebaseObserver = FirebaseAnalyticsObserver(analytics: widget.analytics);
-    }
   }
 
   @override
@@ -70,6 +59,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   void dispose() {
     sl.get<AppGlobalStreams>().dispose();
     sl.get<HomeStore>().closeStreams();
+    sl.get<AgentStore>().closeStreams();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -90,38 +80,16 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
             ],
             supportedLocales: S.delegate.supportedLocales,
             localeResolutionCallback: (deviceLocale, supportedLocales) {
-//        if (Platform.isAndroid) {
-//          for (var supp in supportedLocales) {
-//            if (supp.languageCode == deviceLocale.languageCode) return supp;
-//          }
-//        }
               return Locale.fromSubtags(languageCode: Global.lang);
             },
             localeListResolutionCallback: (deviceLocales, supportedLocales) {
               debugPrint('device locales: $deviceLocales');
               debugPrint('supported locales: $supportedLocales');
-//        if (Platform.isAndroid) {
-//          for (var loc in deviceLocales) {
-//            for (var supp in supportedLocales) {
-//              if (supp.languageCode == loc.languageCode) return supp;
-//            }
-//          }
-//        }
               return Locale.fromSubtags(languageCode: Global.lang);
             },
             theme: ThemeInterface.theme.data,
-            // Tell MaterialApp to use our ExtendedNavigator instead of
-            // the native one by assigning it to it's builder
-//    builder: ExtendedNavigator<ScreenRouter>(router: ScreenRouter()),
             builder: BotToastInit(),
-//            builder: (context, child) {
-//              child = myBuilder(context,child);  //do something
-//              child = botToastBuilder(context,child);
-//              return child;
-//            },
-            navigatorObservers: (firebaseObserver != null)
-                ? [BotToastNavigatorObserver(), firebaseObserver]
-                : [BotToastNavigatorObserver()],
+            navigatorObservers: [BotToastNavigatorObserver()],
             home: new MainStartup(),
           );
         });

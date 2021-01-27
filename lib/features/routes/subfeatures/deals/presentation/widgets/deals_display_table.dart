@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 import '../../data/models/deals_model.dart';
@@ -14,15 +14,7 @@ class DealsDisplayTable extends StatefulWidget {
 }
 
 class DealsDisplayTableState extends State<DealsDisplayTable> {
-  final List<String> _headerRowTexts = [
-    localeStr.dealsHeaderSerial,
-    localeStr.dealsHeaderDate,
-    localeStr.dealsHeaderType,
-    localeStr.dealsHeaderDetail,
-    localeStr.dealsHeaderStatus,
-    localeStr.dealsHeaderAmount,
-  ];
-
+  List<String> _headerRowTexts;
   double _availableWidth;
   double _tableHeight;
   Map<int, TableColumnWidth> _tableWidthMap;
@@ -36,6 +28,17 @@ class DealsDisplayTableState extends State<DealsDisplayTable> {
       _dataList = list;
       setState(() {});
     }
+  }
+
+  _updateHeaders() {
+    _headerRowTexts = [
+      localeStr.dealsHeaderSerial,
+      localeStr.dealsHeaderDate,
+      localeStr.dealsHeaderType,
+      localeStr.dealsHeaderDetail,
+      localeStr.dealsHeaderStatus,
+      localeStr.dealsHeaderAmount,
+    ];
   }
 
   @override
@@ -63,7 +66,14 @@ class DealsDisplayTableState extends State<DealsDisplayTable> {
       4: FixedColumnWidth(remainWidth * 0.2),
       5: FixedColumnWidth(remainWidth * 0.4),
     };
+    _updateHeaders();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(DealsDisplayTable oldWidget) {
+    _updateHeaders();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

@@ -15,11 +15,14 @@ class BalanceDisplay extends StatefulWidget {
 
 class _BalanceDisplayState extends State<BalanceDisplay> {
   final GlobalKey progressTextKey = new GlobalKey();
+  final int _itemPerRow = 3;
+  final double _itemSpace = 12.0;
+  double _gridRatio;
+
   List<String> platforms;
   List<GlobalKey<BalanceGridItemState>> gridKeys;
   List<BalanceGridItem> gridItems;
   List<ReactionDisposer> _disposers;
-  double _gridRatio;
 
   @override
   void didChangeDependencies() {
@@ -32,11 +35,12 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
         // Run some logic with the content of the observed field
         (String platform) {
           if (platform == null || platform.isEmpty) return;
-          print('reaction on $platform update...');
+          debugPrint('reaction on $platform update...');
           int gridIndex = platforms.indexOf(platform);
-          print('grid index: $gridIndex');
+          debugPrint('grid index: $gridIndex');
           GlobalKey<BalanceGridItemState> key = gridItems[gridIndex].key;
-          print('new platform credit: ${widget.store.balanceMap[platform]}');
+          debugPrint(
+              'new platform credit: ${widget.store.balanceMap[platform]}');
           key.currentState.setCredit = widget.store.balanceMap[platform];
         },
       ),
@@ -55,11 +59,27 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
   @override
   void initState() {
     platforms = widget.store.promises;
-    double itemWidth = (Global.device.width - 24 - 10 * 5) / 3;
-    _gridRatio = itemWidth / 90.0;
-    debugPrint('grid item width: $itemWidth, gridRatio: $_gridRatio');
+    double gridItemWidth =
+        ((Global.device.width - 16) - _itemSpace * (_itemPerRow + 2)) /
+            _itemPerRow;
+    _gridRatio = (Global.lang != 'zh' && Global.lang != 'en')
+        ? gridItemWidth / 156
+        : gridItemWidth / 128;
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
-    widget.store.getCreditLimit();
+    widget.store.getUserCredit();
+  }
+
+  @override
+  void didUpdateWidget(BalanceDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (gridItems != null && gridItems.isNotEmpty) {
+      gridKeys.forEach((element) {
+        if (element.currentState?.mounted ?? false) {
+          element.currentState?.updateVariables(true);
+        }
+      });
+    }
   }
 
   @override
@@ -72,67 +92,72 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
       return BalanceGridItem(
         key,
         platform,
-        onTapAction: (action, platform) {
-          if (widget.store.waitForTransferResult)
+        onTapAction: (action, platform) async {
+          if (widget.store.waitForTransferResult) {
             callToast(localeStr.messageWait);
-          else
-            widget.store.exeGridAction(action, platform);
+          } else {
+            return await widget.store.exeGridAction(action, platform);
+          }
         },
       );
     }).toList();
-
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: SingleChildScrollView(
+        primary: true,
+        physics: BouncingScrollPhysics(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
-                  child: StreamBuilder<String>(
-                    stream: widget.store.loadingStream,
-                    builder: (context, snapshot) {
-                      if (snapshot != null &&
-                          snapshot.data != null &&
-                          snapshot.data.isNotEmpty) {
-//                        print('balance progress: ${snapshot.data}');
-                        return Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 14.0,
-                              height: 14.0,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 3.0,
-                              ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
+              child: StreamBuilder<String>(
+                stream: widget.store.loadingStream,
+                builder: (context, snapshot) {
+                  if (snapshot != null &&
+                      snapshot.data != null &&
+                      snapshot.data.isNotEmpty) {
+//                        debugPrint('balance progress: ${snapshot.data}');
+                    return Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 14.0,
+                          height: 14.0,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3.0,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            snapshot.data,
+                            key: progressTextKey,
+                            style: TextStyle(
+                              fontSize: FontSize.SUBTITLE.value,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                snapshot.data,
-                                key: progressTextKey,
-                              ),
-                            ),
-                          ],
-                        );
-                      } else
-                        return SizedBox.shrink();
-                    },
-                  ),
-                ),
-              ],
+                          ),
+                        ),
+                      ],
+                    );
+                  } else
+                    return SizedBox.shrink();
+                },
+              ),
             ),
-            GridView.count(
-              physics: ClampingScrollPhysics(),
-              crossAxisCount: 3,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: _gridRatio,
-              shrinkWrap: true,
-              children: gridItems,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: GridView.count(
+                physics: ClampingScrollPhysics(),
+                crossAxisCount: _itemPerRow,
+                mainAxisSpacing: _itemSpace,
+                crossAxisSpacing: _itemSpace,
+                childAspectRatio: _gridRatio,
+                shrinkWrap: true,
+                primary: false,
+                children: gridItems,
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 8.0),
@@ -158,7 +183,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
                                 '\n${localeStr.balanceHintText2}'
                                 '\n${localeStr.balanceHintText3}'
                                 '\n${localeStr.balanceHintText4}',
-                            style: TextStyle(height: 1.75),
+                            style: TextStyle(height: 1.5),
                           ),
                         ],
                       ),

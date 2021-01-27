@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter_eg990_mobile/builders/autoroute/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/temp/test_router.gr.dart';

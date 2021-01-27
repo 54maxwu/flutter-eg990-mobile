@@ -25,23 +25,21 @@ extension DepositDataFormExtension on DepositDataForm {
     String amt = this.amount;
     if (Global.lang == 'zh' && !amt.contains('.')) amt += ".00";
     return <String, dynamic>{
-      'bankaccountid': this.bankId,
-      'deposit_method': this.methodId.toString(),
       'account_name': (this.name != null) ? this.name : '',
-      'bankindex': this.bankIndex.toString(),
-      'localbank': this.localBank ?? -1,
-      'localbankno': this.localBankCard ?? '',
       'amount': amt,
+      'bankaccountid': this.bankId,
+      'bankindex': this.bankIndex.toString(),
+      'deposit_method': this.methodId.toString(),
       'promo': (this.promoId != -1) ? promoId : '',
-      'gateway': this.gateway ?? '1',
-      'remark': this.remark ?? '',
+//      'localbank': this.localBank ?? -1,
+//      'localbankno': this.localBankCard ?? '',
+//      'gateway': this.gateway ?? '1',
+//      'remark': this.remark ?? '',
     };
   }
 
   bool get isValid =>
-      amount != '-1' &&
-      amount.isNotEmpty &&
-      name.isNotEmpty &&
+      amount != '-1' && amount.isNotEmpty && name.isNotEmpty && bankId != -1;
 //      localBank != -1 &&
-      localBankCard.isNotEmpty;
+//      localBankCard.isNotEmpty &&
 }

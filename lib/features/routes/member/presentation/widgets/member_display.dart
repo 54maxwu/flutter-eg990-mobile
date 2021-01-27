@@ -1,13 +1,13 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
 
 import '../data/member_grid_item_v2.dart';
 import '../state/member_credit_store.dart';
 import 'member_display_header.dart';
+import 'member_grid_item_widget_v2.dart';
+import 'member_grid_item_widget_v2_badge.dart';
 
 class MemberDisplay extends StatefulWidget {
   final MemberCreditStore store;
@@ -25,11 +25,13 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   final int _itemPerRow = 3;
   final double _itemSpace = 4.0;
   final double _iconSize = 32 * Global.device.widthScale;
-  double _gridRatio;
 
   double headerMaxHeight;
   double headerMinHeight = 160;
-  double gridRatio;
+
+  double _gridRatio;
+  double _gridItemTextSize;
+  double _gridItemTextHeight;
 
   static final List<MemberGridItemV2> gridItems = [
     MemberGridItemV2.deposit,
@@ -44,7 +46,6 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
     MemberGridItemV2.betRecord,
     MemberGridItemV2.dealRecord,
     MemberGridItemV2.flowRecord,
-    MemberGridItemV2.agent,
     MemberGridItemV2.logout,
   ];
 
@@ -70,10 +71,14 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
     debugPrint('header height, max: $headerMaxHeight, min: $headerMinHeight');
     if (headerMaxHeight > 200) headerMaxHeight = 200;
     if (headerMaxHeight < headerMinHeight) headerMaxHeight = headerMinHeight;
+
+    _gridItemTextSize = FontSize.SUBTITLE.value - 1;
+    _gridItemTextHeight = _gridItemTextSize * 2.5;
+
     double gridItemWidth =
         ((Global.device.width - 32) - _itemSpace * (_itemPerRow + 2) - 12) /
             _itemPerRow;
-    _gridRatio = gridItemWidth / (_iconSize * 2.5);
+    _gridRatio = gridItemWidth / (_iconSize + _gridItemTextHeight + 20.0);
     debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
   }
@@ -174,84 +179,30 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
               crossAxisCount: _itemPerRow,
               mainAxisSpacing: _itemSpace,
               crossAxisSpacing: _itemSpace,
-              childAspectRatio: _gridRatio,
               shrinkWrap: true,
               children: gridItems
-                  .map((item) => GestureDetector(
-                        onTap: () => _itemTapped(item),
-                        child: _createGridItem(
-                            item.value, item.value.id == RouteEnum.MESSAGE),
-                      ))
+                  .map((item) => (item.value.id == RouteEnum.MESSAGE)
+                      ? MemberGridItemWidgetV2Badge(
+                          item: item,
+                          iconSize: _iconSize,
+                          textSize: _gridItemTextSize,
+                          textHeight: _gridItemTextHeight,
+                          store: widget.store,
+                          type: MemberGridItemV2BadgeType.NEW_MESSAGE,
+                          onItemTap: (value) => _itemTapped(value),
+                        )
+                      : MemberGridItemWidgetV2(
+                          item: item,
+                          iconSize: _iconSize,
+                          textSize: _gridItemTextSize,
+                          textHeight: _gridItemTextHeight,
+                          onItemTap: (value) => _itemTapped(value),
+                        ))
                   .toList(),
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget _createGridItem(RouteListItem itemValue, bool addBadge) {
-    return Container(
-      decoration: BoxDecoration(
-        color: themeColor.defaultGridColor,
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      ),
-      margin: const EdgeInsets.all(2.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          if (addBadge)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 6.0),
-              child: Observer(
-                builder: (_) => Badge(
-                  showBadge: widget.store.hasNewMessage,
-                  badgeColor: themeColor.hintHighlightRed,
-                  badgeContent: Container(
-                    margin: const EdgeInsets.all(1.0),
-                    child: Icon(
-                      const IconData(0xf129, fontFamily: 'FontAwesome'),
-                      color: Colors.white,
-                      size: 10.0,
-                    ),
-                  ),
-                  padding: EdgeInsets.zero,
-                  position: BadgePosition.topRight(top: -2, right: -6),
-                  child: Container(
-                    width: _iconSize * 0.85,
-                    height: _iconSize * 0.85,
-                    child: networkImageBuilder(
-                      itemValue.imageName,
-                      imgScale: 2.0,
-                      imgColor: themeColor.memberIconColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          if (!addBadge)
-            Container(
-                width: _iconSize * 1.5,
-                height: _iconSize * 1.5,
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 6.0),
-                child: networkImageBuilder(
-                  itemValue.imageName,
-                  imgScale: 2.0,
-                  imgColor: themeColor.memberIconColor,
-                )),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
-            child: Text(
-              itemValue.title ?? itemValue.route?.pageTitle ?? '??',
-              style: TextStyle(
-                fontSize: FontSize.SUBTITLE.value - 1,
-                color: themeColor.iconTextColor,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 

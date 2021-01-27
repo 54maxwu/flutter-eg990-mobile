@@ -1,4 +1,4 @@
-import 'package:dataclass/dataclass.dart';
+import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:vnum/vnum.dart';
 
 part 'failure_code.g.dart';
@@ -16,13 +16,13 @@ class FailureCode extends _$FailureCode {
 @VnumDefinition
 class FailureType extends Vnum<int> {
   /// Case Definition
-  static const FailureType UPDATE = const FailureType.define(0100);
-  static const FailureType LOGIN = const FailureType.define(0200);
-  static const FailureType REGISTER = const FailureType.define(0300);
-  static const FailureType EVENT = const FailureType.define(0400);
-  static const FailureType WEB = const FailureType.define(0700);
-  static const FailureType WEB_URL = const FailureType.define(0800);
-  static const FailureType SERVICE = const FailureType.define(0900);
+  static const FailureType UPDATE = const FailureType.define(100);
+  static const FailureType LOGIN = const FailureType.define(200);
+  static const FailureType REGISTER = const FailureType.define(300);
+  static const FailureType EVENT = const FailureType.define(400);
+  static const FailureType WEB = const FailureType.define(700);
+  static const FailureType WEB_URL = const FailureType.define(800);
+  static const FailureType SERVICE = const FailureType.define(900);
 
   static const FailureType HOME = const FailureType.define(1000);
   static const FailureType BANNER = const FailureType.define(1100);
@@ -58,13 +58,15 @@ class FailureType extends Vnum<int> {
   static const FailureType STORE = const FailureType.define(4500);
   static const FailureType ROLLER = const FailureType.define(4600);
 
+  static const FailureType CREDIT = const FailureType.define(6000);
+  static const FailureType NAVIGATE = const FailureType.define(6100);
+
   static const FailureType INHERIT = const FailureType.define(7000);
   static const FailureType INJECTOR = const FailureType.define(7100);
 
   static const FailureType TASK = const FailureType.define(8000);
   static const FailureType JSON = const FailureType.define(8100);
   static const FailureType TOKEN = const FailureType.define(8200);
-  static const FailureType CREDIT = const FailureType.define(8300);
 
   static const FailureType NOT_DEFINED = const FailureType.define(9000);
 

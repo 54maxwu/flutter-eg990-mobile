@@ -3,9 +3,10 @@ class Res {
   //  static const String fontawesome_webfont = "assets/fonts/fontawesome_webfont.ttf";
   static const String wallpaper = "";
 //  static const String shadow = "assets/images/shadow.png";
-  static const String homeBoxUserAreaBg = "assets/images/index_member.jpg";
+  static const String homeBoxUserAreaBg = "";
   static const String iconBarLogo = "assets/images/icon_bar_logo.png";
   static const String iconPending = "assets/images/icon_pending.png";
+  static const String iconLine = "assets/images/icon_line.png";
 
 //  static const String tbico_casino = "assets/images/index/tbico_casino.png";
 //  static const String tbico_slot = "assets/images/index/tbico_slot.png";
@@ -21,41 +22,18 @@ class Res {
 
   static const String flico_word = "assets/images/flico_word.png";
 
-//  static const String user_vip_0 = "assets/images/vip/user_vip_0.png";
-//  static const String user_vip_1 = "assets/images/vip/user_vip_1.png";
-//  static const String user_vip_2 = "assets/images/vip/user_vip_2.png";
-//  static const String user_vip_3 = "assets/images/vip/user_vip_3.png";
-//  static const String user_vip_4 = "assets/images/vip/user_vip_4.png";
-//  static const String user_vip_5 = "assets/images/vip/user_vip_5.png";
-//  static const String user_vip_6 = "assets/images/vip/user_vip_6.png";
-
   static const String walletBgIcon = "assets/images/wlpop_titico.png";
   static const String walletBgIconSmall =
       "assets/images/wlpop_titico_small.png";
 
-  static const String storeProductNewIcon = "assets/images/new_product.png";
-
-  static const String eventMoneyForeground = "assets/images/event_money.png";
-
   static const String homeMemberAreaIconDeposit =
-      "/images/index/idxusico_dsp.png";
+      "assets/images/icons/idxusico_dsp.png";
   static const String homeMemberAreaIconWithdraw =
-      "/images/index/idxusico_cash.png";
+      "assets/images/icons/idxusico_cash.png";
   static const String homeMemberAreaIconTransfer =
-      "/images/index/idxusico_tsf.png";
-  static const String homeMemberAreaIconVip = "/images/index/idxusico_vip.png";
-
-  static const String roller_title = "assets/images/roller/title.png";
-  static const String roller_top = "assets/images/roller/top_bg.jpg";
-  static const String roller_wheel_8 = "assets/images/roller/wheel8.png";
-  static const String roller_btn_go = "assets/images/roller/go.png";
-
-//  static const String movie_eg_base = "assets/images/movie_eg/";
-//  static const String movie_eg_dark_base = "assets/images/movie_eg_dark/";
-  static const String movie_new_base = "assets/images/movie_new/";
-  static const String movie_new_dark_base = "assets/images/movie_new_dark/";
-  static const String movie_category_action_expand =
-      "assets/images/movie_new/expand.png";
-  static const String movie_category_action_fold =
-      "assets/images/movie_new/fold.png";
+      "assets/images/icons/idxusico_tsf.png";
+  static const String homeMemberAreaIconVip =
+      "assets/images/icons/idxusico_vip.png";
+  static const String homeMemberAreaIconOther =
+      "assets/images/icons/icon_other.png";
 }

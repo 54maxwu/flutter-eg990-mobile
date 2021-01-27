@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/models/transaction_model.dart';
 
@@ -24,7 +25,7 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
   TableRow _headerRow;
 
   set updateContent(List<TransactionData> list) {
-    print('transaction list length: ${list.length}');
+    debugPrint('transaction list length: ${list.length}');
     if (_dataList != list) {
       _dataList = list;
       setState(() {});
@@ -39,7 +40,7 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
         48; // 96 = padding and pager
     int availableRows =
         (availableHeight / (FontSize.NORMAL.value * 2.35)).floor();
-    print('max height: $availableHeight, available rows: $availableRows');
+    debugPrint('max height: $availableHeight, available rows: $availableRows');
     // FontSize.NORMAL.value * 2 = font size * 2 line + space
     _tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
 
@@ -56,6 +57,13 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
       4: FixedColumnWidth(remainWidth * 0.475),
     };
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(TransactionDisplayTable oldWidget) {
+    _headerRow = null;
+    _headerRowTexts = null;
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -77,9 +85,11 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
         localeStr.transactionHeaderAmount,
       ];
       _headerRow ??= TableRow(
+        decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
         children: List.generate(
           _headerRowTexts.length,
-          (index) => TableCellTextWidget(text: _headerRowTexts[index]),
+          (index) =>
+              TableCellTextWidget(text: _headerRowTexts[index], isHeader: true),
         ),
       );
       return Container(
@@ -104,15 +114,18 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
                     _dataList.length,
                     (index) {
                       TransactionData data = _dataList[index];
-                      String explanation =
-                          (data.type == localeStr.transferViewTitleIn)
-                              ? '${data.type} ${data.to}'
-                              : '${data.from} ${data.type}';
+                      String explanation = (data.type == '\u8f6c\u5165')
+                          ? '${data.type} ${data.to}'
+                          : '${data.from} ${data.type}';
                       List<dynamic> dataTexts = [
                         data.key,
                         data.date,
-                        data.type,
-                        explanation,
+                        (data.type.hasChinese && Global.lang == 'zh')
+                            ? data.type
+                            : getTranslateData(data.type),
+                        (data.type.hasChinese && Global.lang == 'zh')
+                            ? explanation
+                            : getTranslateData(explanation),
                         data.amount,
                       ];
                       /* generate cell text */
@@ -130,5 +143,13 @@ class TransactionDisplayTableState extends State<TransactionDisplayTable> {
         ),
       );
     }
+  }
+
+  String getTranslateData(String str) {
+    debugPrint('translating transaction: $str');
+    return str
+        .replaceAll('\u4e2d\u5fc3\u94b1\u5305', localeStr.walletViewTitle)
+        .replaceAll('\u8f6c\u51fa', localeStr.balanceTransferOutText)
+        .replaceAll('\u8f6c\u5165', localeStr.balanceTransferInText);
   }
 }

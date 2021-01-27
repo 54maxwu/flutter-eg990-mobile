@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/pager_widget.dart';
@@ -9,7 +8,7 @@ import '../data/enum/deals_status_enum.dart';
 import '../data/enum/deals_type_enum.dart';
 import '../data/form/deals_form.dart';
 import 'state/deals_store.dart';
-import 'widgets/deals_display.dart';
+import 'widgets/deals_display_table.dart';
 
 class DealsRoute extends StatefulWidget {
   @override
@@ -23,30 +22,14 @@ class _DealsRouteState extends State<DealsRoute> {
 
 //  final GlobalKey<CustomizeDropdownWidgetState> _selectorKey =
 //      new GlobalKey(debugLabel: 'selector');
-  final GlobalKey<DealsDisplayState> contentKey =
+  final GlobalKey<DealsDisplayTableState> contentKey =
       new GlobalKey(debugLabel: 'content');
   final GlobalKey<PagerWidgetState> pagerKey =
       new GlobalKey(debugLabel: 'pager');
 
-  final List<String> _selectorDateStrings = [
-    localeStr.spinnerDateToday,
-    localeStr.spinnerDateYesterday,
-    localeStr.spinnerDateMonth,
-    localeStr.spinnerDateAll,
-  ];
-  final List<String> _selectorTypeStrings = [
-    localeStr.dealsViewSpinnerType0,
-    localeStr.dealsViewSpinnerType1,
-    localeStr.dealsViewSpinnerType2,
-    localeStr.dealsViewSpinnerType3,
-  ];
-  final List<String> _selectorStatusStrings = [
-    localeStr.dealsViewSpinnerStatus0,
-    localeStr.dealsViewSpinnerStatus1,
-    localeStr.dealsViewSpinnerStatus2,
-    localeStr.dealsViewSpinnerStatus3,
-    localeStr.dealsViewSpinnerStatus4,
-  ];
+  List<String> _selectorDateStrings;
+  List<String> _selectorTypeStrings;
+  List<String> _selectorStatusStrings;
 
   DealsDateEnum _selectedDate;
   DealsTypeEnum _selectedType;
@@ -62,13 +45,42 @@ class _DealsRouteState extends State<DealsRoute> {
     ));
   }
 
+  void _updateSelectors() {
+    _selectorDateStrings = [
+      localeStr.spinnerDateToday,
+      localeStr.spinnerDateYesterday,
+      localeStr.spinnerDateMonth,
+      localeStr.spinnerDateAll,
+    ];
+    _selectorTypeStrings = [
+      localeStr.dealsViewSpinnerType0,
+      localeStr.dealsViewSpinnerType1,
+      localeStr.dealsViewSpinnerType2,
+      localeStr.dealsViewSpinnerType3,
+    ];
+    _selectorStatusStrings = [
+      localeStr.dealsViewSpinnerStatus0,
+      localeStr.dealsViewSpinnerStatus1,
+      localeStr.dealsViewSpinnerStatus2,
+      localeStr.dealsViewSpinnerStatus3,
+      localeStr.dealsViewSpinnerStatus4,
+    ];
+  }
+
   @override
   void initState() {
     _store ??= sl.get<DealsStore>();
+    _updateSelectors();
     _selectedDate = DealsDateEnum.LIST[0];
     _selectedType = DealsTypeEnum.LIST[0];
     _selectedStatus = DealsStatusEnum.LIST[0];
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(DealsRoute oldWidget) {
+    _updateSelectors();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -207,7 +219,7 @@ class _DealsRouteState extends State<DealsRoute> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(2.0, 6.0, 2.0, 10.0),
-                child: DealsDisplay(contentKey),
+                child: DealsDisplayTable(contentKey),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,

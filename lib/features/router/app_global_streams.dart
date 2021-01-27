@@ -13,7 +13,7 @@ import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
-import 'app_navigate.dart' show RouterNavigate;
+import 'app_navigate.dart' show RoutePage, RouterNavigate;
 
 AppGlobalStreams get getAppGlobalStreams => sl.get<AppGlobalStreams>();
 
@@ -98,13 +98,13 @@ class AppGlobalStreams {
     lastStatus.currentUser.updateCredit(credit);
   }
 
-  String getCredit({bool addSymbol}) {
-    if (_userCredit.contains('---') == false)
+  String getCredit({bool addSymbol = false}) {
+    if (_userCredit.contains('-') == false) {
       return formatValue(_userCredit, creditSign: addSymbol);
-    else if (addSymbol)
-      return '$creditSymbol$_userCredit';
-    else
-      return _userCredit;
+    } else {
+      if (addSymbol) return '$creditSymbol$_userCredit';
+    }
+    return _userCredit;
   }
 
   resetCredit() {
@@ -128,7 +128,7 @@ class AppGlobalStreams {
     _themeControl.sink.add(color);
   }
 
-  logout() async {
+  logout({bool force = false, bool navToLogin = false}) async {
     if (!hasUser) return;
     String userName = _user.currentUser.account;
     MyLogger.info(msg: 'logging out user $userName', tag: tag);
@@ -136,21 +136,30 @@ class AppGlobalStreams {
       var jwtInterface = sl.get<JwtInterface>();
       _dioApiService ??= sl.get<DioApiService>();
 
-      String token = (jwtInterface.token.isNotEmpty)
-          ? jwtInterface.token
-          : await Future.value(UserTokenStorage.load(userName)).then((value) {
-              return value?.cookie?.value ?? '';
-            });
-      if (token.isNotEmpty)
-        _dioApiService.post(UserApi.LOGOUT, userToken: token);
+      if (!force) {
+        String token = (jwtInterface.token.isNotEmpty)
+            ? jwtInterface.token
+            : await Future.value(UserTokenStorage.load(userName)).then((value) {
+                return value?.cookie?.value ?? '';
+              });
+        if (token.isNotEmpty) {
+          _dioApiService.post(UserApi.LOGOUT, userToken: token);
+        }
+      } else {
+        UserTokenStorage.clear();
+      }
 
       jwtInterface.clearToken();
     } catch (e, s) {
       MyLogger.error(msg: 'logout $userName has error: $e', tag: tag);
       debugPrint('error stack:\n$s');
     }
-    Future.delayed(Duration(milliseconds: 500),
-        () => RouterNavigate.navigateClean(force: true));
+
+    Future.delayed(
+        Duration(milliseconds: 500),
+        () => (navToLogin)
+            ? RouterNavigate.navigateToPage(RoutePage.login)
+            : RouterNavigate.navigateClean(force: true));
 
     _userControl.sink.add(LoginStatus(loggedIn: false));
     _creditController.sink.add(creditResetStr);

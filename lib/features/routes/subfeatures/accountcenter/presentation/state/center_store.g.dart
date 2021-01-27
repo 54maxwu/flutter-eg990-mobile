@@ -99,20 +99,6 @@ mixin _$CenterStore on _CenterStore, Store {
     return _$getAccountAsyncAction.run(() => super.getAccount());
   }
 
-  final _$getCgpUrlAsyncAction = AsyncAction('_CenterStore.getCgpUrl');
-
-  @override
-  Future<void> getCgpUrl() {
-    return _$getCgpUrlAsyncAction.run(() => super.getCgpUrl());
-  }
-
-  final _$getCpwUrlAsyncAction = AsyncAction('_CenterStore.getCpwUrl');
-
-  @override
-  Future<void> getCpwUrl() {
-    return _$getCpwUrlAsyncAction.run(() => super.getCpwUrl());
-  }
-
   final _$initLoginDataBoxAsyncAction =
       AsyncAction('_CenterStore.initLoginDataBox');
 
@@ -138,13 +124,6 @@ mixin _$CenterStore on _CenterStore, Store {
         .run(() => super._postStringData(data, action, task, callback));
   }
 
-  final _$postLuckyAsyncAction = AsyncAction('_CenterStore.postLucky');
-
-  @override
-  Future<void> postLucky(List<int> numbers) {
-    return _$postLuckyAsyncAction.run(() => super.postLucky(numbers));
-  }
-
   final _$postVerifyRequestAsyncAction =
       AsyncAction('_CenterStore.postVerifyRequest');
 
@@ -164,11 +143,11 @@ mixin _$CenterStore on _CenterStore, Store {
   @override
   String toString() {
     return '''
-accountDataReady: $accountDataReady,
-waitForResponse: $waitForResponse,
-requestResponse: $requestResponse,
-errorMessage: $errorMessage,
-state: $state
+accountDataReady: ${accountDataReady},
+waitForResponse: ${waitForResponse},
+requestResponse: ${requestResponse},
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:vnum/vnum.dart';
@@ -90,17 +91,6 @@ const Map<String, GameCategory> _categoryMap = {
   'website': GameCategory.website,
 };
 
-///
-/// Define Category Font Icon
-///
-const _promoIcon = const IconData(0xf06b, fontFamily: 'FontAwesome');
-//const _promoIcon = const IconData(0xe965, fontFamily: 'IconMoon');
-const _websiteIcon = const IconData(0xf08e, fontFamily: 'FontAwesome');
-//const _websiteIcon = const IconData(0xe905, fontFamily: 'IconMoon');
-const _movieWebsiteIcon = const IconData(0xf08e, fontFamily: 'FontAwesome');
-//const _movieWebsiteIcon = const IconData(0xe977, fontFamily: 'IconMoon');
-const _unknownIcon = const IconData(0xe145, fontFamily: 'MaterialIcons');
-
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
 
@@ -112,13 +102,13 @@ extension GameCategoryModelExtension on GameCategoryModel {
 //    debugPrint('looking for icon code: $type');
     switch (type) {
       case 'promo':
-        return _promoIcon;
+        return IconCode.navPromo;
       case 'movieweb':
-        return _movieWebsiteIcon;
+        return IconCode.tabMovieWebsite;
       case 'website':
-        return _websiteIcon;
+        return IconCode.tabWebsite;
       default:
-        return _unknownIcon;
+        return IconCode.tabUnknown;
     }
   }
 }

@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter_eg990_mobile/builders/autoroute/auto_route.dart';
 import 'package:flutter_eg990_mobile/features/screen/feature_screen.dart';
 import 'package:flutter_eg990_mobile/features/screen/web_game_screen.dart';
 import 'package:flutter_eg990_mobile/temp/test_screen.dart';

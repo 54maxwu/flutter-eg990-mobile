@@ -120,9 +120,11 @@ class MyThemeData {
         focusedErrorBorder: InputBorder.none,
         enabledBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
-        filled: true, // filled the field with color
+        // filled the field with color
+        filled: true,
         fillColor: interface.fieldInputBgColor,
-        isDense: true, // used less vertical space
+        // used less vertical space
+        isDense: true,
         labelStyle: TextStyle(
             color: interface.fieldInputHintColor,
             fontSize: FontSize.NORMAL.value),

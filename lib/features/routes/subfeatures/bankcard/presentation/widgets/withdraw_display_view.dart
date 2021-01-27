@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/form/withdraw_form.dart';
@@ -27,17 +26,6 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
       new GlobalKey(debugLabel: 'amount');
   final GlobalKey<CustomizeFieldWidgetState> _passwordFieldKey =
       new GlobalKey(debugLabel: 'password');
-
-  List<String> radioLabels = [
-    localeStr.withdrawViewOptionVirtual,
-    localeStr.withdrawViewOptionCgp,
-    localeStr.withdrawViewOptionCpw,
-  ];
-  List<String> hintTexts = [
-    localeStr.withdrawViewOptionHint1,
-    localeStr.withdrawViewOptionHint2,
-    localeStr.withdrawViewOptionHint3,
-  ];
 
   // TODO observe rollback string
   String _flowLimit = '${creditSymbol}0';
@@ -92,7 +80,7 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
                     persistHint: false,
                     prefixText: localeStr.withdrawViewTitleAmount,
                     titleLetterSpacing: 4,
-                    maxInputLength: 8,
+                    maxInputLength: InputLimit.AMOUNT,
                     errorMsg: localeStr.messageInvalidDepositAmount,
                     validCondition: (value) => rangeCheck(
                       value: (value.isNotEmpty) ? int.parse(value) : 0,
@@ -117,98 +105,58 @@ class _WithdrawDisplayViewState extends State<WithdrawDisplayView> {
               ),
             ),
           ),
-          CustomizeTitledContainer(
-            childAlignment: Alignment.topLeft,
-            heightFactor: 3.6,
-            prefixText: localeStr.withdrawViewTitleNote,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  itemCount: radioLabels.length + hintTexts.length,
-                  itemBuilder: (context, index) {
-                    if (index < radioLabels.length) {
-                      /* Radio Options */
-                      return Row(
-                        children: <Widget>[
-                          Radio(
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                            value: index,
-                            groupValue: _typeSelected,
-                            onChanged: (value) {
-                              if ((value == 1 && widget.store.cgpUrl.isEmpty) ||
-                                  (value == 2 && widget.store.cpwUrl.isEmpty)) {
-                                callToast((value == 1)
-                                    ? localeStr.messageErrorBindCgp
-                                    : localeStr.messageErrorBindCpw);
-                                return;
-                              }
-                              setState(() {
-                                _typeSelected = value;
-                              });
-                              debugPrint('selected type: $_typeSelected');
-                            },
-                          ),
-                          Text(radioLabels[index]),
-                        ],
-                      );
-                    } else {
-                      /* Hint Texts */
-                      int hintIndex = index - radioLabels.length;
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, top: 4.0),
-                            child: Icon(
-                              const IconData(0xf05a, fontFamily: 'FontAwesome'),
-                              color: themeColor.hintHyperLink,
-                              size: FontSize.NORMAL.value,
-                            ),
-                          ),
-                          // Wrapped with expand to prevent text overflow and disappear
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: RichText(
-                                softWrap: true,
-                                maxLines: (hintIndex == 2) ? 2 : 1,
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: hintTexts[hintIndex],
-                                      style: TextStyle(
-                                        color: themeColor.hintHyperLink,
-                                      ),
-                                    ),
-                                    if (hintIndex == 1)
-                                      TextSpan(
-                                        text: _flowLimit,
-                                        style: TextStyle(
-                                          color: themeColor.hintHyperLink,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      );
-                    }
-                  },
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: RichText(
+              maxLines: 2,
+              text: TextSpan(
+                children: <InlineSpan>[
+                  WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 4.0, bottom: 2.0),
+                      child: Icon(
+                        const IconData(0xf05a, fontFamily: 'FontAwesome'),
+                        color: themeColor.hintHyperLink,
+                        size: FontSize.NORMAL.value,
+                      ),
+                    ),
+                  ),
+                  TextSpan(
+                    text: localeStr.withdrawViewOptionHint2,
+                    style: TextStyle(color: themeColor.hintHyperLink),
+                  ),
+                  TextSpan(
+                    text: '$_flowLimit',
+                    style: TextStyle(color: themeColor.hintHyperLink),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          RichText(
+            maxLines: 2,
+            text: TextSpan(
+              children: <InlineSpan>[
+                WidgetSpan(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4.0, bottom: 2.0),
+                    child: Icon(
+                      const IconData(0xf05a, fontFamily: 'FontAwesome'),
+                      color: themeColor.hintHyperLink,
+                      size: FontSize.NORMAL.value,
+                    ),
+                  ),
+                ),
+                TextSpan(
+                  text: localeStr.withdrawViewOptionHint3,
+                  style: TextStyle(color: themeColor.hintHyperLink),
                 ),
               ],
             ),
           ),
           /* Confirm Button */
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[

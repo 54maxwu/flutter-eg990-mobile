@@ -56,18 +56,14 @@ abstract class _TransferStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.TRANSFER,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.TRANSFER,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   TransferStoreState get state {
@@ -96,7 +92,7 @@ abstract class _TransferStore with Store {
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             platforms = data.list;
-            print('platforms: $platforms');
+            debugPrint('platforms: $platforms');
           },
         );
       });
@@ -116,22 +112,25 @@ abstract class _TransferStore with Store {
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
-            bool platformClosed = data.balance == '$creditSymbol-1.00';
+            bool platformClosed = data.balance == '$creditSymbol-1.00' ||
+                data.balance.toLowerCase().contains('maintenance');
             debugPrint('$site balance: ${data.balance}');
             if (isLimit) {
               creditLimit = (platformClosed) ? 0 : data.balance.strToInt;
               debugPrint('credit limit: $creditLimit');
               if (data.balance != site1) {
-                setSite1Value(
-                    (platformClosed) ? '$creditSymbol---' : data.balance);
+                setSite1Value((platformClosed)
+                    ? localeStr.balanceStatusMaintenance
+                    : data.balance);
               } else if (retryOnce) {
                 Future.delayed(Duration(milliseconds: 2000),
                     () => getBalance(site, isLimit: isLimit));
               }
             } else {
               if (data.balance != site2) {
-                setSite2Value(
-                    (platformClosed) ? '$creditSymbol---' : data.balance);
+                setSite2Value((platformClosed)
+                    ? localeStr.balanceStatusMaintenance
+                    : data.balance);
               } else if (retryOnce) {
                 Future.delayed(Duration(milliseconds: 2000),
                     () => getBalance(site, isLimit: isLimit));
@@ -158,7 +157,7 @@ abstract class _TransferStore with Store {
           .postTransfer(form)
           .whenComplete(() => waitForTransferResult = false)
           .then((result) {
-        print('transfer from ${form.from} to ${form.to} result: $result');
+        debugPrint('transfer from ${form.from} to ${form.to} result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
@@ -187,7 +186,7 @@ abstract class _TransferStore with Store {
         site1 != '$creditSymbol---' &&
         site2 != null &&
         site2 != '$creditSymbol---';
-    print('platform can transfer: $isPlatformValid');
+    debugPrint('platform can transfer: $isPlatformValid');
   }
 
   Future<void> closeStreams() async {

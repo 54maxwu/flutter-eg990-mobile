@@ -77,6 +77,11 @@ class DialogWidgetState extends State<DialogWidget> {
     setState(() {});
   }
 
+  void closeDialog() {
+    FocusScope.of(context).unfocus();
+    Navigator.of(context).pop();
+  }
+
   @override
   void initState() {
     dialogPadding = widget.padding ??

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
+import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
@@ -18,17 +18,20 @@ class MoreDialog extends StatelessWidget {
   MoreDialog(this.store, this.eventStore);
 
   static final List<MoreGridItem> gridItems = [
-    MoreGridItem.notice,
-    MoreGridItem.download,
+    // MoreGridItem.download,
     MoreGridItem.tutorial,
     MoreGridItem.service,
-    MoreGridItem.routeChange,
-    MoreGridItem.store,
-    MoreGridItem.roller,
-    MoreGridItem.task,
-    MoreGridItem.sign,
-    MoreGridItem.agentAbout,
-    MoreGridItem.collect,
+    MoreGridItem.vip,
+    // MoreGridItem.agentAbout,
+  ];
+
+  static final List<MoreGridItem> userGridItems = [
+    MoreGridItem.notice,
+    // MoreGridItem.download,
+    MoreGridItem.tutorial,
+    MoreGridItem.service,
+    MoreGridItem.vip,
+    // MoreGridItem.agentAbout,
   ];
 
   final double _titleHeight = 54.0;
@@ -40,13 +43,9 @@ class MoreDialog extends StatelessWidget {
       if (itemValue.isUserOnly && store.hasUser == false) {
         // navigate to login page
         RouterNavigate.navigateToPage(RoutePage.login);
-      } else if (itemValue.id == RouteEnum.SERVICE) {
-        RouterNavigate.replacePage(
-          itemValue.route,
-          arg: WebRouteArguments(startUrl: Global.currentService),
-        );
       } else if (itemValue.id == RouteEnum.TUTORIAL ||
-          itemValue.id == RouteEnum.AGENT_ABOUT) {
+          itemValue.id == RouteEnum.AGENT_ABOUT ||
+          itemValue.id == RouteEnum.SERVICE) {
         RouterNavigate.replacePage(itemValue.route);
       } else {
         // navigate to route
@@ -56,12 +55,12 @@ class MoreDialog extends StatelessWidget {
         Duration(milliseconds: 100),
         () => Navigator.of(context).pop(),
       );
-    } else if (itemValue == MoreGridItem.sign.value) {
-      if (store == null) return;
-      if (store.hasUser == false)
-        callToastError(localeStr.messageErrorNotLogin);
-      else
-        eventStore.setForceShowEvent = true;
+      // } else if (itemValue == MoreGridItem.sign.value) {
+      //   if (store == null) return;
+      //   if (store.hasUser == false)
+      //     callToastError(localeStr.messageErrorNotLogin);
+      //   else
+      //     eventStore.setForceShowEvent = true;
     } else {
       callToastInfo(localeStr.workInProgress);
     }
@@ -69,6 +68,8 @@ class MoreDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<MoreGridItem> items = (store.hasUser) ? userGridItems : gridItems;
+
     // screen width - widget padding - cross space = available width
     double itemWidth = (Global.device.width - 48) / 3;
     double gridRatio = itemWidth / _expectItemHeight;
@@ -79,11 +80,11 @@ class MoreDialog extends StatelessWidget {
         : FontSize.NORMAL.value;
     int availableCharacters = (itemWidth * 0.95 - 16.0 / baseTextSize).round();
     bool hasDoubleLineText =
-        gridItems.any((element) => element.isLongText(availableCharacters));
+        items.any((element) => element.isLongText(availableCharacters));
     debugPrint('item hasDoubleLineText: $hasDoubleLineText');
 
-    int row = gridItems.length ~/ 3;
-    if (gridItems.length % 3 > 0) row += 1;
+    int row = items.length ~/ 3;
+    if (items.length % 3 > 0) row += 1;
     int _generateGrid = row * 3;
     debugPrint('grid row: $row, generate: $_generateGrid');
 
@@ -141,9 +142,8 @@ class MoreDialog extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: _generateGrid,
                 itemBuilder: (context, index) {
-                  var itemValue = (index < gridItems.length)
-                      ? gridItems[index].value
-                      : null;
+                  var itemValue =
+                      (index < items.length) ? items[index].value : null;
                   return GestureDetector(
                     onTap: (itemValue != null)
                         ? () => _itemTapped(context, itemValue)

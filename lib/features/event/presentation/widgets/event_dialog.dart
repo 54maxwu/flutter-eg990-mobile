@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 
 import '../../data/models/event_model.dart';
 
@@ -95,7 +94,7 @@ class _EventDialogState extends State<EventDialog> {
                                 ),
                                 onPressed: () async {
                                   final result = await widget.onSign();
-                                  print('sign event result = $result');
+                                  debugPrint('sign event result = $result');
                                   if (result) {
                                     signed = true;
                                     count += 1;
@@ -161,13 +160,13 @@ class _EventDialogState extends State<EventDialog> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, bottom: 6.0),
-          child: Image.asset(
-            Res.eventMoneyForeground,
-            fit: BoxFit.fitWidth,
-          ),
-        ),
+//        Padding(
+//          padding: const EdgeInsets.only(left: 20.0, bottom: 6.0),
+//          child: Image.asset(
+//            Res.eventMoneyForeground,
+//            fit: BoxFit.fitWidth,
+//          ),
+//        ),
         Positioned(
           bottom: 0,
           left: (dialogWidth + 60) / 2 - 25,

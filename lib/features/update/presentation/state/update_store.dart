@@ -34,18 +34,14 @@ abstract class _UpdateStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.UPDATE,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.UPDATE,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @action
   Future<bool> getVersion() async {
@@ -81,11 +77,12 @@ abstract class _UpdateStore with Store {
 
   bool isNewVersion() {
     // if contains chars that have not been replaced, current will be -1
-    int current =
-        Global.device.appVersion.replaceAll(RegExp(r'[.|+|R]'), '').strToInt;
+    int current = Global.device.appVersion
+        .replaceAll(RegExp(r'[.|+|R]'), '')
+        .strToIntSilent;
     debugPrint('current version as int: $current');
     int server =
-        _updateVersion.replaceAll('.', '').replaceAll('+', '').strToInt;
+        _updateVersion.replaceAll('.', '').replaceAll('+', '').strToIntSilent;
     debugPrint('server version as int: $server');
     return (current == -1 || server == -1) ? false : current < server;
   }

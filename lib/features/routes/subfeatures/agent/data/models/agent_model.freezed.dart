@@ -15,17 +15,21 @@ class _$AgentModelTearOff {
 
 // ignore: unused_element
   _AgentModel call(
-      {int code,
-      List<dynamic> descendant,
-      String qrcode,
-      String upline,
-      String url}) {
+      {@JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'creditlimit') String credit,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'success') String success,
+      @JsonKey(name: 'vip') int vip,
+      @JsonKey(name: 'vip_img') String vipImg,
+      @JsonKey(name: 'vip_name') String vipName}) {
     return _AgentModel(
-      code: code,
-      descendant: descendant,
-      qrcode: qrcode,
-      upline: upline,
-      url: url,
+      account: account,
+      credit: credit,
+      status: status,
+      success: success,
+      vip: vip,
+      vipImg: vipImg,
+      vipName: vipName,
     );
   }
 }
@@ -36,11 +40,20 @@ const $AgentModel = _$AgentModelTearOff();
 
 /// @nodoc
 mixin _$AgentModel {
-  int get code;
-  List<dynamic> get descendant;
-  String get qrcode;
-  String get upline;
-  String get url;
+  @JsonKey(name: 'accountcode')
+  String get account;
+  @JsonKey(name: 'creditlimit')
+  String get credit;
+  @JsonKey(name: 'status')
+  String get status;
+  @JsonKey(name: 'success')
+  String get success;
+  @JsonKey(name: 'vip')
+  int get vip;
+  @JsonKey(name: 'vip_img')
+  String get vipImg;
+  @JsonKey(name: 'vip_name')
+  String get vipName;
 
   $AgentModelCopyWith<AgentModel> get copyWith;
 }
@@ -51,11 +64,13 @@ abstract class $AgentModelCopyWith<$Res> {
           AgentModel value, $Res Function(AgentModel) then) =
       _$AgentModelCopyWithImpl<$Res>;
   $Res call(
-      {int code,
-      List<dynamic> descendant,
-      String qrcode,
-      String upline,
-      String url});
+      {@JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'creditlimit') String credit,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'success') String success,
+      @JsonKey(name: 'vip') int vip,
+      @JsonKey(name: 'vip_img') String vipImg,
+      @JsonKey(name: 'vip_name') String vipName});
 }
 
 /// @nodoc
@@ -68,20 +83,22 @@ class _$AgentModelCopyWithImpl<$Res> implements $AgentModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object code = freezed,
-    Object descendant = freezed,
-    Object qrcode = freezed,
-    Object upline = freezed,
-    Object url = freezed,
+    Object account = freezed,
+    Object credit = freezed,
+    Object status = freezed,
+    Object success = freezed,
+    Object vip = freezed,
+    Object vipImg = freezed,
+    Object vipName = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed ? _value.code : code as int,
-      descendant: descendant == freezed
-          ? _value.descendant
-          : descendant as List<dynamic>,
-      qrcode: qrcode == freezed ? _value.qrcode : qrcode as String,
-      upline: upline == freezed ? _value.upline : upline as String,
-      url: url == freezed ? _value.url : url as String,
+      account: account == freezed ? _value.account : account as String,
+      credit: credit == freezed ? _value.credit : credit as String,
+      status: status == freezed ? _value.status : status as String,
+      success: success == freezed ? _value.success : success as String,
+      vip: vip == freezed ? _value.vip : vip as int,
+      vipImg: vipImg == freezed ? _value.vipImg : vipImg as String,
+      vipName: vipName == freezed ? _value.vipName : vipName as String,
     ));
   }
 }
@@ -93,11 +110,13 @@ abstract class _$AgentModelCopyWith<$Res> implements $AgentModelCopyWith<$Res> {
       __$AgentModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int code,
-      List<dynamic> descendant,
-      String qrcode,
-      String upline,
-      String url});
+      {@JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'creditlimit') String credit,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'success') String success,
+      @JsonKey(name: 'vip') int vip,
+      @JsonKey(name: 'vip_img') String vipImg,
+      @JsonKey(name: 'vip_name') String vipName});
 }
 
 /// @nodoc
@@ -112,20 +131,22 @@ class __$AgentModelCopyWithImpl<$Res> extends _$AgentModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object code = freezed,
-    Object descendant = freezed,
-    Object qrcode = freezed,
-    Object upline = freezed,
-    Object url = freezed,
+    Object account = freezed,
+    Object credit = freezed,
+    Object status = freezed,
+    Object success = freezed,
+    Object vip = freezed,
+    Object vipImg = freezed,
+    Object vipName = freezed,
   }) {
     return _then(_AgentModel(
-      code: code == freezed ? _value.code : code as int,
-      descendant: descendant == freezed
-          ? _value.descendant
-          : descendant as List<dynamic>,
-      qrcode: qrcode == freezed ? _value.qrcode : qrcode as String,
-      upline: upline == freezed ? _value.upline : upline as String,
-      url: url == freezed ? _value.url : url as String,
+      account: account == freezed ? _value.account : account as String,
+      credit: credit == freezed ? _value.credit : credit as String,
+      status: status == freezed ? _value.status : status as String,
+      success: success == freezed ? _value.success : success as String,
+      vip: vip == freezed ? _value.vip : vip as int,
+      vipImg: vipImg == freezed ? _value.vipImg : vipImg as String,
+      vipName: vipName == freezed ? _value.vipName : vipName as String,
     ));
   }
 }
@@ -133,49 +154,73 @@ class __$AgentModelCopyWithImpl<$Res> extends _$AgentModelCopyWithImpl<$Res>
 /// @nodoc
 class _$_AgentModel implements _AgentModel {
   const _$_AgentModel(
-      {this.code, this.descendant, this.qrcode, this.upline, this.url});
+      {@JsonKey(name: 'accountcode') this.account,
+      @JsonKey(name: 'creditlimit') this.credit,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'success') this.success,
+      @JsonKey(name: 'vip') this.vip,
+      @JsonKey(name: 'vip_img') this.vipImg,
+      @JsonKey(name: 'vip_name') this.vipName});
 
   @override
-  final int code;
+  @JsonKey(name: 'accountcode')
+  final String account;
   @override
-  final List<dynamic> descendant;
+  @JsonKey(name: 'creditlimit')
+  final String credit;
   @override
-  final String qrcode;
+  @JsonKey(name: 'status')
+  final String status;
   @override
-  final String upline;
+  @JsonKey(name: 'success')
+  final String success;
   @override
-  final String url;
+  @JsonKey(name: 'vip')
+  final int vip;
+  @override
+  @JsonKey(name: 'vip_img')
+  final String vipImg;
+  @override
+  @JsonKey(name: 'vip_name')
+  final String vipName;
 
   @override
   String toString() {
-    return 'AgentModel(code: $code, descendant: $descendant, qrcode: $qrcode, upline: $upline, url: $url)';
+    return 'AgentModel(account: $account, credit: $credit, status: $status, success: $success, vip: $vip, vipImg: $vipImg, vipName: $vipName)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AgentModel &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.descendant, descendant) ||
+            (identical(other.account, account) ||
                 const DeepCollectionEquality()
-                    .equals(other.descendant, descendant)) &&
-            (identical(other.qrcode, qrcode) ||
-                const DeepCollectionEquality().equals(other.qrcode, qrcode)) &&
-            (identical(other.upline, upline) ||
-                const DeepCollectionEquality().equals(other.upline, upline)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+                    .equals(other.account, account)) &&
+            (identical(other.credit, credit) ||
+                const DeepCollectionEquality().equals(other.credit, credit)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.success, success) ||
+                const DeepCollectionEquality()
+                    .equals(other.success, success)) &&
+            (identical(other.vip, vip) ||
+                const DeepCollectionEquality().equals(other.vip, vip)) &&
+            (identical(other.vipImg, vipImg) ||
+                const DeepCollectionEquality().equals(other.vipImg, vipImg)) &&
+            (identical(other.vipName, vipName) ||
+                const DeepCollectionEquality().equals(other.vipName, vipName)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(descendant) ^
-      const DeepCollectionEquality().hash(qrcode) ^
-      const DeepCollectionEquality().hash(upline) ^
-      const DeepCollectionEquality().hash(url);
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(credit) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(success) ^
+      const DeepCollectionEquality().hash(vip) ^
+      const DeepCollectionEquality().hash(vipImg) ^
+      const DeepCollectionEquality().hash(vipName);
 
   @override
   _$AgentModelCopyWith<_AgentModel> get copyWith =>
@@ -184,22 +229,35 @@ class _$_AgentModel implements _AgentModel {
 
 abstract class _AgentModel implements AgentModel {
   const factory _AgentModel(
-      {int code,
-      List<dynamic> descendant,
-      String qrcode,
-      String upline,
-      String url}) = _$_AgentModel;
+      {@JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'creditlimit') String credit,
+      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'success') String success,
+      @JsonKey(name: 'vip') int vip,
+      @JsonKey(name: 'vip_img') String vipImg,
+      @JsonKey(name: 'vip_name') String vipName}) = _$_AgentModel;
 
   @override
-  int get code;
+  @JsonKey(name: 'accountcode')
+  String get account;
   @override
-  List<dynamic> get descendant;
+  @JsonKey(name: 'creditlimit')
+  String get credit;
   @override
-  String get qrcode;
+  @JsonKey(name: 'status')
+  String get status;
   @override
-  String get upline;
+  @JsonKey(name: 'success')
+  String get success;
   @override
-  String get url;
+  @JsonKey(name: 'vip')
+  int get vip;
+  @override
+  @JsonKey(name: 'vip_img')
+  String get vipImg;
+  @override
+  @JsonKey(name: 'vip_name')
+  String get vipName;
   @override
   _$AgentModelCopyWith<_AgentModel> get copyWith;
 }

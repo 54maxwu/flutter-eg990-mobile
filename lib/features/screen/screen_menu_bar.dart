@@ -23,7 +23,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       reaction(
           // Observe in page
           // Tell the reaction which observable to observe
-          (_) => _viewState.store.pageInfo.disableLanguageDropDown,
+          (_) => _viewState.store.pageInfo.hideLanguageOption,
           // Run some logic with the content of the observed field
           (bool disable) {
         if (disable != _hideLangOption) {
@@ -80,28 +80,40 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
     if (_disposers == null) initDisposers();
     return AppBar(
       /* App bar Icon */
-      title: Image.asset(Res.iconBarLogo, scale: 2.5),
+      title: Container(
+          width: Global.device.width * 0.225,
+          height: Global.APP_MENU_HEIGHT,
+          child: Image.asset(Res.iconBarLogo, scale: 2.5)),
       titleSpacing: 0,
       centerTitle: false,
       /* Appbar Title */
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        title: Observer(builder: (_) {
-          final page = _viewState.store.pageInfo ?? RoutePage.home.value;
-          return Container(
-            width: Global.device.width / 5,
-            height: Global.APP_MENU_HEIGHT / 2,
-            child: FittedBox(
-              child: Text(
-                (page.id == RouteEnum.HOME) ? '' : page.id.title,
-                style: TextStyle(fontSize: FontSize.MESSAGE.value),
-              ),
-            ),
-          );
-        }),
+        title: SizedBox(
+          width: Global.device.width * 0.275,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Observer(builder: (_) {
+                final page = _viewState.store.pageInfo ?? RoutePage.home.value;
+                return AutoSizeText.rich(
+                  TextSpan(
+                    text: (page.id == RouteEnum.HOME) ? '' : page.id.title,
+                    style: TextStyle(fontSize: FontSize.MESSAGE.value),
+                  ),
+                  maxLines: (Global.lang == 'zh') ? 1 : 2,
+                  maxFontSize: FontSize.MESSAGE.value,
+                  minFontSize: FontSize.SMALLER.value,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.visible,
+                );
+              }),
+            ],
+          ),
+        ),
         titlePadding: EdgeInsetsDirectional.only(
           start: Global.APP_MENU_HEIGHT / 3,
-          bottom: (Global.APP_MENU_HEIGHT / 3) - 4,
         ),
       ),
       /* App bar Left Actions */
@@ -121,7 +133,8 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
                   Icon(Icons.arrow_back, color: themeColor.drawerIconSubColor),
               tooltip: localeStr.btnBack,
               onPressed: () {
-                RouterNavigate.navigateBack();
+                Future.delayed(Duration(milliseconds: 100),
+                    () => RouterNavigate.navigateBack());
               },
             );
           }

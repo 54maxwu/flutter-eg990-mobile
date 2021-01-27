@@ -1,12 +1,13 @@
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
+import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 
 class UserInfoApi {
-  static const String GET_LIMIT = "api/get_account/creditlimit";
+  static const String GET_ACCOUNT_LIMIT = "api/get_account";
   static const String GET_NEW_MESSAGE_COUNT = 'api/stationCount';
 }
 
 abstract class UserInfoRepository {
-  Future<Either<Failure, String>> updateCredit(String account);
+  Future<Either<Failure, String>> updateCredit();
   Future<Either<Failure, bool>> checkNewMessage();
 }
 
@@ -21,33 +22,17 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
   }
 
   @override
-  Future<Either<Failure, String>> updateCredit(String account) async {
-    final result = await requestDataString(
-      request: dioApiService.get(
-        UserInfoApi.GET_LIMIT,
-        userToken: jwtInterface.token,
-      ),
-      allowJsonString: true,
-      tag: 'remote-MEMBER',
+  Future<Either<Failure, String>> updateCredit() async {
+    final result = await requestModel<UserModel>(
+      request: dioApiService.get(UserInfoApi.GET_ACCOUNT_LIMIT,
+          userToken: jwtInterface.token),
+      jsonToModel: UserModel.jsonToUserModel,
+      tag: 'remote-USER_INFO',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (data) {
-        try {
-          var map = jsonDecode(data);
-          if (map.containsKey('creditlimit')) {
-            debugPrint('decoded limit: ${map['creditlimit']}');
-            return Right(map['creditlimit']);
-          } else {
-            debugPrint('decoded: $map');
-            return Left(Failure.token(FailureType.CREDIT));
-          }
-        } catch (e) {
-          debugPrint('credit limit error: $e');
-          return Left(Failure.server());
-        }
-      },
+      (data) => Right(data.credit),
     );
   }
 

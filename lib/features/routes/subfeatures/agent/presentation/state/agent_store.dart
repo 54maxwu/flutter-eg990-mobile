@@ -1,10 +1,16 @@
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/transactions/data/enum/transaction_date_enum.dart';
-import 'package:meta/meta.dart' show required;
+import 'package:flutter_eg990_mobile/core/network/handler/request_code_model.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/data/form/agent_downline_form.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/data/form/agent_proportion_form.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/data/models/downline_agent_model.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/bankcard/data/form/bankcard_form.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/bankcard/data/models/bankcard_model.dart';
+import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
 
-import '../../data/enum/agent_chart_time_enum.dart';
-import '../../data/enum/agent_chart_type_enum.dart';
-import '../../data/models/agent_ad_model.dart';
+import '../../data/entity/agent_entity.dart';
+import '../../data/form/agent_ledger_form.dart';
+import '../../data/form/agent_register_form.dart';
+import '../../data/form/agent_report_form.dart';
 import '../../data/models/agent_chart_model.dart';
 import '../../data/models/agent_commission_model.dart';
 import '../../data/models/agent_ledger_model.dart';
@@ -19,87 +25,152 @@ enum AgentStoreState { initial, loading, loaded }
 
 abstract class _AgentStore with Store {
   final AgentRepository _repository;
-  final StreamController<AgentModel> _agentController =
-      StreamController<AgentModel>.broadcast();
-  final StreamController<List<AgentCommissionModel>> _commissionController =
-      StreamController<List<AgentCommissionModel>>.broadcast();
   final StreamController<List<AgentChartModel>> _reportController =
       StreamController<List<AgentChartModel>>.broadcast();
   final StreamController<AgentLedgerModel> _ledgerController =
       StreamController<AgentLedgerModel>.broadcast();
-  final StreamController<List<AgentAdModel>> _adController =
-      StreamController<List<AgentAdModel>>.broadcast();
-  final StreamController<List<AgentAdModel>> _mergeAdController =
-      StreamController<List<AgentAdModel>>.broadcast();
+  final StreamController<List<AgentCommissionModel>> _commissionController =
+      StreamController<List<AgentCommissionModel>>.broadcast();
+  final StreamController<List<DownlineAgentModel>> _downlinesController =
+      StreamController<List<DownlineAgentModel>>.broadcast();
 
   _AgentStore(this._repository) {
-    _agentController.stream.listen((event) {
-      debugPrint('agent data: $event');
-      if (event == null)
-        errorMessage = Failure.jsonFormat().message;
-      else
-        agentData = event;
-    });
-    _commissionController.stream.listen((event) {
-//      debugPrint('commission data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
-    });
     _reportController.stream.listen((event) {
 //      debugPrint('report data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
+      if (event == null)
+        setErrorMsg(msg: Failure.jsonFormat().message, showOnce: true);
     });
     _ledgerController.stream.listen((event) {
 //      debugPrint('ledger data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
+      if (event == null)
+        setErrorMsg(msg: Failure.jsonFormat().message, showOnce: true);
     });
-    _adController.stream.listen((event) {
-//      debugPrint('ad data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
+    _commissionController.stream.listen((event) {
+//      debugPrint('commission data: $event');
+      if (event == null)
+        setErrorMsg(msg: Failure.jsonFormat().message, showOnce: true);
     });
-    _mergeAdController.stream.listen((event) {
-//      debugPrint('merge ad data: $event');
-      if (event == null) errorMessage = Failure.jsonFormat().message;
+    _downlinesController.stream.listen((event) {
+//      debugPrint('downline data: $event');
+      if (event == null)
+        setErrorMsg(msg: Failure.jsonFormat().message, showOnce: true);
     });
   }
-
-  Stream<AgentModel> get agentStream => _agentController.stream;
-
-  Stream<List<AgentCommissionModel>> get commissionStream =>
-      _commissionController.stream;
 
   Stream<List<AgentChartModel>> get reportStream => _reportController.stream;
 
   Stream<AgentLedgerModel> get ledgerStream => _ledgerController.stream;
 
-  Stream<List<AgentAdModel>> get adStream => _adController.stream;
+  Stream<List<AgentCommissionModel>> get commissionStream =>
+      _commissionController.stream;
 
-  Stream<List<AgentAdModel>> get mergeAdStream => _mergeAdController.stream;
+  Stream<List<DownlineAgentModel>> get downlinesStream =>
+      _downlinesController.stream;
 
+  /// Agent Login
+  @observable
+  bool waitForAgentLogin = false;
+
+  @observable
+  AgentEntity agent = AgentEntity(hasValidToken: false);
+
+  /// Agent Register
+  @observable
+  bool waitForAgentRegister = false;
+
+  @observable
+  RequestCodeModel registerResult;
+
+  /// Agent Data
   @observable
   ObservableFuture<Either<Failure, AgentModel>> _agentFuture;
 
   @observable
   bool waitForAgentResponse = false;
 
-  @observable
-  dynamic mergeAdResult;
-
   AgentModel agentData;
 
+  /// Agent Bankcard
+  @observable
+  ObservableFuture<Either<Failure, BankcardModel>> _bankcardFuture;
+
+  @observable
+  BankcardModel bankcard;
+
+  @observable
+  Map<String, String> banksMap;
+
+  @observable
+  bool waitForNewCardResult = false;
+
+  @observable
+  RequestCodeModel newCardResult;
+
+  /// Error
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.AGENT,
-          code: code,
-        )).message;
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.AGENT,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
+
+  @action
+  Future<void> loginAgent(LoginForm form) async {
+    if (waitForAgentLogin) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      waitForAgentLogin = true;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository.postAgentLogin(form).then((result) {
+        debugPrint('agent login result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) => agent = data,
+        );
+      }).whenComplete(() => waitForAgentLogin = false);
+    } on Exception {
+      waitForAgentLogin = false;
+      setErrorMsg(code: 11);
+    }
+  }
+
+  @action
+  Future<void> logoutAgent() async {
+    if (agent == null) return;
+    try {
+      agent = AgentEntity(hasValidToken: false);
+      agentData = null;
+      await _repository.logoutAgent();
+    } on Exception {
+      setErrorMsg(code: 12);
+    }
+  }
+
+  @action
+  Future<void> registerAgent(AgentRegisterForm form) async {
+    if (waitForAgentRegister) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      waitForAgentRegister = true;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository.postAgentRegister(form).then((result) {
+        debugPrint('agent register result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) => registerResult = data,
+        );
+      }).whenComplete(() => waitForAgentRegister = false);
+    } on Exception {
+      waitForAgentRegister = false;
+      setErrorMsg(code: 10);
+    }
   }
 
   @computed
@@ -110,7 +181,9 @@ abstract class _AgentStore with Store {
     }
     // Pending Future means "loading"
     // Fulfilled Future means "loaded"
-    return _agentFuture.status == FutureStatus.pending
+    return _agentFuture.status == FutureStatus.pending ||
+            bankcard == null ||
+            _bankcardFuture.status == FutureStatus.pending
         ? AgentStoreState.loading
         : AgentStoreState.loaded;
   }
@@ -128,9 +201,12 @@ abstract class _AgentStore with Store {
         debugPrint('agent result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _agentController.sink.add(data),
+          (data) => agentData = data,
         );
-      }).whenComplete(() => waitForAgentResponse = false);
+      }).whenComplete(() {
+        waitForAgentResponse = false;
+        getBankcard();
+      });
     } on Exception {
       waitForAgentResponse = false;
       setErrorMsg(code: 1);
@@ -138,23 +214,64 @@ abstract class _AgentStore with Store {
   }
 
   @action
-  Future<void> getAgentQr() async {
+  Future<void> getBankcard() async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      _bankcardFuture = ObservableFuture(_repository.getBankcard());
+      await _bankcardFuture.then((result) {
+//        debugPrint('bankcard result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) => bankcard = data,
+        );
+      });
+    } on Exception {
+      setErrorMsg(code: 1);
+    }
+  }
+
+  @action
+  Future<void> getReport(AgentReportForm form) async {
+    if (waitForAgentResponse) return;
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      _reportController.sink.add([]);
+      waitForAgentResponse = true;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository.getReport(form).then((result) {
+//        debugPrint('agent report result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) => _reportController.sink.add(data),
+        );
+      }).whenComplete(() => waitForAgentResponse = false);
+    } on Exception {
+      waitForAgentResponse = false;
+      setErrorMsg(code: 2);
+    }
+  }
+
+  @action
+  Future<void> getLedger(AgentLedgerForm form) async {
     if (waitForAgentResponse) return;
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.postAgentStatus().then((result) {
-        debugPrint('agent qr result: $result');
+      await _repository.getLedger(form).then((result) {
+        debugPrint('agent ledger result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _agentController.sink.add(data),
+          (data) => _ledgerController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      setErrorMsg(code: 2);
+      setErrorMsg(code: 3);
     }
   }
 
@@ -175,54 +292,23 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
-      setErrorMsg(code: 3);
-    }
-  }
-
-  @action
-  Future<void> getReport({
-    @required AgentChartTime time,
-    @required AgentChartType type,
-  }) async {
-    if (waitForAgentResponse) return;
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      _reportController.sink.add([]);
-      waitForAgentResponse = true;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getReport(time: time, type: type).then((result) {
-//        debugPrint('agent report result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _reportController.sink.add(data),
-        );
-      }).whenComplete(() => waitForAgentResponse = false);
-    } on Exception {
-      waitForAgentResponse = false;
       setErrorMsg(code: 4);
     }
   }
 
   @action
-  Future<void> getLedger({
-    @required String agent,
-    @required TransactionDateSelected dateSelected,
-    int page = 1,
-  }) async {
+  Future<void> getDownlines() async {
     if (waitForAgentResponse) return;
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository
-          .getLedger(agent: agent, page: page, dateSelected: dateSelected)
-          .then((result) {
-        debugPrint('agent ledger result: $result');
+      await _repository.getDownlines().then((result) {
+        debugPrint('agent downlines result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _ledgerController.sink.add(data),
+          (data) => _downlinesController.sink.add(data),
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
@@ -232,90 +318,126 @@ abstract class _AgentStore with Store {
   }
 
   @action
-  Future<void> getAds({bool alsoRequestMergedAds = false}) async {
-    if (waitForAgentResponse) return;
+  Future<bool> postDownline(AgentDownlineForm form) async {
+    if (waitForAgentResponse) return false;
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getAds().then((result) {
-        debugPrint('agent available ad data: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _adController.sink.add(data),
+      return await _repository.postDownline(form).then((result) {
+        debugPrint('agent downline submit result: $result');
+        return result.fold(
+          (failure) {
+            setErrorMsg(msg: failure.message, showOnce: true);
+            return false;
+          },
+          (data) {
+            if (data.isSuccess == false) {
+              setErrorMsg(msg: data.msg);
+            }
+            return data.isSuccess;
+          },
         );
-      }).whenComplete(() {
-        if (alsoRequestMergedAds)
-          getMergedAds(force: true);
-        else
-          waitForAgentResponse = false;
-      });
+      }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
       setErrorMsg(code: 6);
+      return false;
     }
   }
 
   @action
-  Future<void> getMergedAds({bool force = false}) async {
-    if (waitForAgentResponse && !force) return;
+  Future<bool> editProportion(AgentProportionForm form) async {
+    if (waitForAgentResponse) return false;
     try {
       // Reset the possible previous error message.
       errorMessage = null;
       waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getMergeAds().then((result) {
-        debugPrint('agent merged ads data: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) => _mergeAdController.sink.add(data),
+      return await _repository.postProportion(form).then((result) {
+        debugPrint('agent propotion update result: $result');
+        return result.fold(
+          (failure) {
+            setErrorMsg(msg: failure.message, showOnce: true);
+            return false;
+          },
+          (data) => true,
         );
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
       setErrorMsg(code: 7);
+      return false;
     }
   }
 
   @action
-  Future<void> postAd(int id) async {
-    if (waitForAgentResponse) return;
+  Future<void> getBanks() async {
     try {
       // Reset the possible previous error message.
       errorMessage = null;
-      waitForAgentResponse = true;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.postAgentAd(id).then((result) {
-        debugPrint('merge ad result: $result');
+      await _repository.getBanks().then((result) {
+//        debugPrint('bank ids map result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
-            if (data.isSuccess) {
-              mergeAdResult = data;
-              getMergedAds(force: true);
-            } else {
-              waitForAgentResponse = false;
-              errorMessage = data.msg;
-            }
+            if (data != null) banksMap = data;
           },
         );
       });
     } on Exception {
-      waitForAgentResponse = false;
-      setErrorMsg(code: 8);
+      setErrorMsg(code: 2);
+    }
+  }
+
+  @action
+  Future<void> addBankcard(BankcardForm form) async {
+    try {
+      // Reset the possible previous error message.
+      errorMessage = null;
+      newCardResult = null;
+      waitForNewCardResult = true;
+      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+      await _repository
+          .postBankcard(form)
+          .whenComplete(() => waitForNewCardResult = false)
+          .then((result) {
+        debugPrint('bankcard bind result: $result');
+        result.fold(
+          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+          (data) => newCardResult = data,
+        );
+      });
+    } on Exception {
+      waitForNewCardResult = false;
+      setErrorMsg(code: 6);
+    }
+  }
+
+  Future<void> clearStreams() {
+    try {
+      return Future.wait([
+        _reportController.stream.drain(),
+        _ledgerController.stream.drain(),
+        _commissionController.stream.drain(),
+        _downlinesController.stream.drain(),
+      ]);
+    } catch (e) {
+      MyLogger.warn(
+          msg: 'clean agent stream error', error: e, tag: 'AgentStore');
+      return null;
     }
   }
 
   Future<void> closeStreams() {
     try {
       return Future.wait([
-        _agentController.close(),
         _reportController.close(),
-        _commissionController.close(),
         _ledgerController.close(),
-        _adController.close(),
-        _mergeAdController.close(),
+        _commissionController.close(),
+        _downlinesController.close(),
       ]);
     } catch (e) {
       MyLogger.warn(

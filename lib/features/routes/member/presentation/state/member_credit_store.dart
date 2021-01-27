@@ -41,18 +41,14 @@ abstract class _MemberCreditStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.CREDIT,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.MEMBER,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @action
   Future<void> getNewMessageCount() async {
@@ -77,10 +73,10 @@ abstract class _MemberCreditStore with Store {
       if (user == null) return;
       credit = creditResetStr;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _infoRepository.updateCredit(user.account).then(
+      await _infoRepository.updateCredit().then(
             (result) => result.fold(
               (failure) {
-                setErrorMsg(msg: failure.message, showOnce: true);
+                setErrorMsg(msg: failure.message);
                 getAppGlobalStreams.resetCredit();
               },
               (value) {

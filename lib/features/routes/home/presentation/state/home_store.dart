@@ -53,17 +53,17 @@ abstract class _HomeStore with Store {
       marquees = event;
     });
 //    _tabController.stream.listen((event) {
-//      print('home stream games tab: ${event.length}');
+//      debugPrint('home stream games tab: ${event.length}');
 //    });
     _gamesRetrieveController.stream.listen((event) {
       debugPrint('home stream games retrieve: $event');
     });
     _recommendController.stream.listen((event) {
-//      print('home stream games recommend: ${event.length}');
+//      debugPrint('home stream games recommend: ${event.length}');
       recommends = event;
     });
     _favoriteController.stream.listen((event) {
-//      print('home stream games favorite: ${event.length}');
+//      debugPrint('home stream games favorite: ${event.length}');
       favorites = event
         ..removeWhere(
           (element) => (element is GameEntity || element is GamePlatformEntity)
@@ -72,7 +72,7 @@ abstract class _HomeStore with Store {
         );
     });
     _searchPlatformController.stream.listen((event) {
-//      print('home stream search platform: $event');
+//      debugPrint('home stream search platform: $event');
       searchPlatform = event;
     });
 //    _searchGameController.stream.listen((event) {
@@ -157,18 +157,14 @@ abstract class _HomeStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.HOME,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.HOME,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   HomeStoreState get state {
@@ -225,7 +221,7 @@ abstract class _HomeStore with Store {
             (result) => result.fold(
               (failure) {
                 setErrorMsg(msg: failure.message, showOnce: true);
-                _bannerController.sink.add([]);
+                _bannerController.sink.add(null);
               },
               (list) {
 //                debugPrint('home store banners: $list');
@@ -264,7 +260,12 @@ abstract class _HomeStore with Store {
                 // creates a new list then add to stream
                 // otherwise the data will lost after navigate
                 if (list.isNotEmpty) {
-                  _marqueeController.sink.add(List.from(list));
+                  if (list.length == 1) {
+                    // repeat the text for marquee to run anim
+                    _marqueeController.sink.add(List.from(list)..addAll(list));
+                  } else {
+                    _marqueeController.sink.add(List.from(list));
+                  }
                 } else {
                   _marqueeController.sink.add([
                     MarqueeEntity(
@@ -326,13 +327,10 @@ abstract class _HomeStore with Store {
 
   @computed
   List<GameCategoryModel> get homeUserTabs =>
-      new List.from([recommendCategory, favoriteCategory] + homeTabs
-            ..removeAt(0) //+ [movieNewCategory],
-          );
+      new List.from([recommendCategory, favoriteCategory] + homeTabs);
 
   void _processHomeContent() {
     homeTabs = new List.from(_gameTypes.categories, growable: true);
-    homeTabs.insert(0, recommendCategory);
     if (homeTabs == null || homeTabs.isEmpty) return;
     final all = _gameTypes.platforms;
     List remove = new List();
@@ -358,10 +356,11 @@ abstract class _HomeStore with Store {
       remove.forEach((element) => homeTabs.remove(element));
 
 //    customizePlatformMap();
+//    homeTabs.insert(0, recommendCategory);
 //    homeTabs.add(cockfightingCategory);
 //    homeTabs.add(promoCategory);
 //    homeTabs.add(movieWebCategory);
-//    homeTabs.add(websiteCategory);
+    homeTabs.add(websiteCategory);
 
 //    homePlatformMap.keys.forEach((key) => MyLogger.print(
 //        msg: '$key: ${homePlatformMap[key]}\n', tag: 'HomePlatformMap'));
@@ -402,6 +401,7 @@ abstract class _HomeStore with Store {
     } else {
       _tabController.sink.add(homeTabs);
     }
+    // _tabController.sink.add(homeTabs);
   }
 
   @action
@@ -439,14 +439,14 @@ abstract class _HomeStore with Store {
       errorMessage = null;
       waitForRecommend = true;
       // Fetch from the repository and wrap the regular Future into an observable.
-      print('requesting home recommend data...');
+      debugPrint('requesting home recommend data...');
       await _repository
           .getRecommend()
           .then(
             (result) => result.fold(
               (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
-//                print('home store game recommend: $list');
+//                debugPrint('home store game recommend: $list');
                 // creates a new data instance then add to stream
                 // otherwise the data will lost after navigate
                 if (recommends != list)
@@ -469,14 +469,14 @@ abstract class _HomeStore with Store {
       errorMessage = null;
       waitForFavorite = true;
       // Fetch from the repository and wrap the regular Future into an observable.
-      print('requesting home favorite data...');
+      debugPrint('requesting home favorite data...');
       await _repository
           .getFavorites()
           .then(
             (result) => result.fold(
               (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (list) {
-                print('home store game favorite: $list');
+                debugPrint('home store game favorite: $list');
                 // creates a new data instance then add to stream
                 // otherwise the data will lost after navigate
                 if (list != favorites)
@@ -502,7 +502,7 @@ abstract class _HomeStore with Store {
       // Reset the possible previous error message.
       errorMessage = null;
       // Fetch from the repository and wrap the regular Future into an observable.
-      print('posting home favorite: $entity');
+      debugPrint('posting home favorite: $entity');
       if (isPlatform)
         await _repository.postFavoritePlatform(id, favorite).then(
               (result) => result.fold(
@@ -536,13 +536,13 @@ abstract class _HomeStore with Store {
     final newItem = entity.copyWith(favorite: (isFavorite) ? '1' : '0');
     try {
       String key = entity.category;
-//      print('platforms: ${homePlatformMap[key]}');
-//      print('looking for $entity in ${homePlatformMap[key]}');
+//      debugPrint('platforms: ${homePlatformMap[key]}');
+//      debugPrint('looking for $entity in ${homePlatformMap[key]}');
       int index = homePlatformMap[key].indexOf(entity);
-//      print('platform index: $index');
+//      debugPrint('platform index: $index');
       if (index >= 0) {
         homePlatformMap[key][index] = newItem;
-        print('updated platform map item: ${homePlatformMap[key][index]}');
+        debugPrint('updated platform map item: ${homePlatformMap[key][index]}');
       }
     } catch (e) {
       MyLogger.warn(
@@ -553,8 +553,8 @@ abstract class _HomeStore with Store {
 
     if (recommends != null && recommends.isNotEmpty) {
       try {
-//        print('looking for $entity in $recommends');
-//        print('recommend has platform: ${recommends.contains(entity)}');
+//        debugPrint('looking for $entity in $recommends');
+//        debugPrint('recommend has platform: ${recommends.contains(entity)}');
         final item = recommends.singleWhere(
           (element) =>
               element is GamePlatformEntity &&
@@ -565,7 +565,7 @@ abstract class _HomeStore with Store {
         if (item == null) return;
         int rIndex = recommends.indexOf(item);
         recommends[rIndex] = newItem;
-        print('updated recommend list item: ${recommends[rIndex]}');
+        debugPrint('updated recommend list item: ${recommends[rIndex]}');
       } catch (e) {
         MyLogger.warn(
             msg: 'update recommend platform failed: $e', tag: 'HomeStore');
@@ -579,13 +579,13 @@ abstract class _HomeStore with Store {
     final newItem = entity.copyWith(favorite: (isFavorite) ? 1 : 0);
     List info = entity.gameUrl.split('/');
     String key = '${info[0]}/${info[1]}';
-    print('game map key: $key');
+    debugPrint('game map key: $key');
 
     if (_homeGamesMap != null && _homeGamesMap.containsKey(key)) {
       try {
         int index = _homeGamesMap[key].indexOf(entity);
         _homeGamesMap[key][index] = newItem;
-        print('updated game map item: ${_homeGamesMap[key][index]}');
+        debugPrint('updated game map item: ${_homeGamesMap[key][index]}');
       } catch (e) {
         MyLogger.warn(
             msg: 'update game map ($key) failed: $e', tag: 'HomeStore');
@@ -600,8 +600,8 @@ abstract class _HomeStore with Store {
 
     if (recommends != null && recommends.isNotEmpty) {
       try {
-//        print('looking for $entity in $recommends');
-//        print('recommend has game: ${recommends.contains(entity)}');
+//        debugPrint('looking for $entity in $recommends');
+//        debugPrint('recommend has game: ${recommends.contains(entity)}');
         final item = recommends.singleWhere(
           (element) =>
               element is GameEntity &&
@@ -612,7 +612,7 @@ abstract class _HomeStore with Store {
         if (item == null) return;
         int rIndex = recommends.indexOf(item);
         recommends[rIndex] = newItem;
-        print('updated recommend list item: ${recommends[rIndex]}');
+        debugPrint('updated recommend list item: ${recommends[rIndex]}');
       } catch (e) {
         MyLogger.warn(
             msg: 'update recommend game failed: $e', tag: 'HomeStore');
@@ -635,7 +635,7 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;

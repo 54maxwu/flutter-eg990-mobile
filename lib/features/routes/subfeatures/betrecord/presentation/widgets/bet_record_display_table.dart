@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -132,16 +132,19 @@ class BetRecordDisplayTable extends StatelessWidget {
   TableRow _buildHeaderRow() {
     return (!isAllData)
         ? TableRow(
+            decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
             children: List.generate(
               _headerRowTexts.length,
-              (index) => TableCellTextWidget(text: _headerRowTexts[index]),
+              (index) => TableCellTextWidget(
+                  text: _headerRowTexts[index], isHeader: true),
             ),
           )
         : TableRow(
+            decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
             children: List.generate(
               _platformHeaderRowTexts.length,
-              (index) =>
-                  TableCellTextWidget(text: _platformHeaderRowTexts[index]),
+              (index) => TableCellTextWidget(
+                  text: _platformHeaderRowTexts[index], isHeader: true),
             ),
           );
   }

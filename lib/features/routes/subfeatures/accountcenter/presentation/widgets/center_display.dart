@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
 import 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/data/models/center_category.dart';
 
 import 'center_display_account.dart';
-import 'center_display_lotto.dart';
 import 'center_display_vip.dart';
 
 class CenterDisplay extends StatefulWidget {
@@ -17,23 +15,12 @@ class _CenterDisplayState extends State<CenterDisplay> {
   final MemberGridItem pageItem = MemberGridItem.accountCenter;
   final List<CenterCategoryEnum> tabs = [
     CenterCategoryEnum.info,
-    CenterCategoryEnum.lotto,
     CenterCategoryEnum.vip,
   ];
   final int tabsPerRow = 3;
   final double expectTabHeight = 36.0;
 
   int _clicked = 0;
-  double gridRatio;
-
-  @override
-  void initState() {
-    double gridItemWidth = (Global.device.width - 6 * 5 - 12) / 3;
-    gridRatio = gridItemWidth / 36;
-    print('grid item width: $gridItemWidth, gridRatio: $gridRatio');
-    if (gridRatio > 4.16) gridRatio = 4.16;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +51,6 @@ class _CenterDisplayState extends State<CenterDisplay> {
               index: _clicked,
               children: <Widget>[
                 CenterDisplayAccount(),
-                CenterDisplayLotto(),
                 CenterDisplayVip(),
               ],
             ),

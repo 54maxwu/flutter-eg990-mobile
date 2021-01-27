@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'
     show
+        FilteringTextInputFormatter,
         LengthLimitingTextInputFormatter,
-        TextInputFormatter,
-        WhitelistingTextInputFormatter;
+        TextInputFormatter;
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
@@ -312,28 +312,28 @@ class SingleInputWidgetState extends State<SingleInputWidget> {
     switch (widget.fieldType) {
       case FieldType.ChineseOnly:
         return [
-          WhitelistingTextInputFormatter(RegExp("[\u4e00-\u9fa5]")),
+          FilteringTextInputFormatter.allow(RegExp("[\u4e00-\u9fa5]")),
           LengthLimitingTextInputFormatter(widget.maxInputLength ~/ 2),
         ];
       case FieldType.NoEnglish:
         return [
-          WhitelistingTextInputFormatter(RegExp("[\u4e00-\u9fa5]|[0-9]")),
+          FilteringTextInputFormatter.allow(RegExp("[\u4e00-\u9fa5]|[0-9]")),
           LengthLimitingTextInputFormatter(widget.maxInputLength ~/ 2),
         ];
       case FieldType.Numbers:
         return [
-          WhitelistingTextInputFormatter.digitsOnly,
+          FilteringTextInputFormatter.digitsOnly,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
       case FieldType.NoChinese:
       case FieldType.Password:
         return [
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z]|[0-9]")),
+          FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]")),
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
       default:
         return [
-          WhitelistingTextInputFormatter(
+          FilteringTextInputFormatter.allow(
               RegExp("[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]")),
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];

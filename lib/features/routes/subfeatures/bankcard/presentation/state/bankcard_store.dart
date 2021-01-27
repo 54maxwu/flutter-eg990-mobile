@@ -23,16 +23,7 @@ abstract class _BankcardStore with Store {
   BankcardModel bankcard;
 
   @observable
-  Map<String, String> provinceMap;
-
-  @observable
   Map<String, String> banksMap;
-
-  @observable
-  Map<String, String> cityMap;
-
-  @observable
-  Map<String, String> areaMap;
 
   @observable
   bool waitForNewCardResult = false;
@@ -43,18 +34,14 @@ abstract class _BankcardStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.BANKCARD,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.BANKCARD,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   BankcardStoreState get state {
@@ -106,73 +93,6 @@ abstract class _BankcardStore with Store {
       });
     } on Exception {
       setErrorMsg(code: 2);
-    }
-  }
-
-  @action
-  Future<void> getProvinces() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getProvinces().then((result) {
-//        debugPrint('province map result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) {
-            if (data != null && data.isNotEmpty) {
-              provinceMap = data;
-            }
-          },
-        );
-      });
-    } on Exception {
-      setErrorMsg(code: 3);
-    }
-  }
-
-  @action
-  Future<void> getCities(String provinceCode, {bool showError = true}) async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getMapByCode(provinceCode).then((result) {
-//        debugPrint('city map result: $result');
-        result.fold(
-          (failure) {
-            if (showError)
-              setErrorMsg(msg: failure.message, showOnce: true);
-            else
-              debugPrint(failure.message);
-          },
-          (data) {
-            if (data != null && data.isNotEmpty) cityMap = data;
-          },
-        );
-      });
-    } on Exception {
-      setErrorMsg(code: 4);
-    }
-  }
-
-  @action
-  Future<void> getAreas(String cityCode) async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getMapByCode(cityCode).then((result) {
-//        debugPrint('area map result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) {
-            if (data != null && data.isNotEmpty) areaMap = data;
-          },
-        );
-      });
-    } on Exception {
-      setErrorMsg(code: 5);
     }
   }
 

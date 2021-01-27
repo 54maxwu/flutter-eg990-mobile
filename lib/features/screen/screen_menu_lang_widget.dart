@@ -13,17 +13,18 @@ class ScreenMenuLangWidget extends StatefulWidget {
 }
 
 class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
-//  final List<String> langValues = ['zh', 'en', 'vi'];
-//  final List<String> langOptions = ['CH', 'EN', 'VN'];
-//  final List<String> langImg = [
-//    '/images/lang_chn.jpg',
-//    '/images/lang_eng.jpg',
-//    '/images/lang_vnm.jpg'
-//  ];
+  final List<String> langValues = ['zh', 'en', 'vi', 'th'];
+  final List<String> langOptions = ['CH', 'EN', 'VN', 'TH'];
+  final List<String> langImg = [
+    '/images/lang_chn.jpg',
+    '/images/lang_eng.jpg',
+    '/images/lang_vnm.jpg',
+    '/images/lang_thai.jpg'
+  ];
 
-  final List<String> langValues = ['zh'];
-  final List<String> langOptions = ['CH'];
-  final List<String> langImg = ['/images/lang_chn.jpg'];
+//  final List<String> langValues = ['zh'];
+//  final List<String> langOptions = ['CH'];
+//  final List<String> langImg = ['/images/lang_chn.jpg'];
 
   String _currentLang;
 
@@ -50,7 +51,10 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
                   scale: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(36.0),
-                    child: networkImageBuilder(langImg[index]),
+                    child: networkImageBuilder(
+                      langImg[index],
+                      imgScale: (index == 3) ? 10.0 : 1,
+                    ),
                   ),
                 ),
                 Text(langOptions[index]),
@@ -68,7 +72,10 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             scale: 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(36.0),
-              child: networkImageBuilder(langImg[index]),
+              child: networkImageBuilder(
+                langImg[index],
+                imgScale: (index == 3) ? 10.0 : 1,
+              ),
             ),
           ),
         );
@@ -83,8 +90,9 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             Future.microtask(() async {
               Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
               if (box != null) {
-                await box.put('lang', newLang);
-                debugPrint('box lang: ${box.get('lang')}');
+                await box.put(Global.CACHE_APP_DATA_KEY_LANG, newLang);
+                debugPrint(
+                    'box lang: ${box.get(Global.CACHE_APP_DATA_KEY_LANG)}');
               }
             });
           } catch (e) {

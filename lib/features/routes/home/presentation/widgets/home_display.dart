@@ -23,6 +23,10 @@ class HomeDisplay extends StatefulWidget {
 class _HomeDisplayState extends State<HomeDisplay> {
   final GlobalKey<HomeShortcutWidgetState> _shortcutWidgetKey =
       new GlobalKey<HomeShortcutWidgetState>();
+  final GlobalKey<HomeDisplayTabsState> _tabsWidgetKey =
+      new GlobalKey<HomeDisplayTabsState>();
+  final GlobalKey<HomeDisplayUserTabsState> _userTabsWidgetKey =
+      new GlobalKey<HomeDisplayUserTabsState>();
 
   EventStore _eventStore;
   UpdateStore _updateStore;
@@ -37,6 +41,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
   List marquees;
   List tabs;
   bool showingAds = false;
+  bool hasUser = false;
 
   void showAdsDialog(List list) {
     if (showingAds || RouterNavigate.current != '/') return;
@@ -70,6 +75,58 @@ class _HomeDisplayState extends State<HomeDisplay> {
     }
   }
 
+  void _widgetUrlCheck(String url) {
+    debugPrint('home widget url check: $url');
+    if (url == Global.CURRENT_BASE) return;
+    _widgetUrlNavigate(
+      url.contains('/api/open/'),
+      url
+          .substring(
+              url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length)
+          .replaceAll('/api/open/', ''),
+    );
+  }
+
+  void _widgetUrlNavigate(bool openGame, String url) {
+    debugPrint('home widget url: $url, isGame: $openGame');
+    if (openGame) {
+      final gameUrl = url.substring(url.indexOf('.com/') + 4);
+      debugPrint('opening game: $gameUrl');
+      if (_store.hasUser) {
+        _store.getGameUrl(gameUrl);
+      } else {
+        callToastInfo(localeStr.messageErrorNotLogin);
+      }
+    } else if (url.startsWith('/gamelist/')) {
+      String className = url.replaceAll('/gamelist/', '').replaceAll('/', '-');
+      debugPrint('searching platform name: $className');
+      if (hasUser) {
+        _userTabsWidgetKey.currentState?.findPage(className.split('-')[1]);
+      } else {
+        _tabsWidgetKey.currentState?.findPage(className.split('-')[1]);
+      }
+      _store.showSearchPlatform(className);
+    } else if (url.startsWith('/promo/')) {
+      int promoId =
+          url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      debugPrint('url promo id: $promoId');
+      RouterNavigate.navigateToPage(
+        RoutePage.promo,
+        arg: (promoId > 0) ? PromoRouteArguments(openPromoId: promoId) : null,
+      );
+    } else {
+      RoutePage newRoute = url.urlToRoutePage;
+      debugPrint('checking url to app route: $newRoute');
+      if (newRoute != null) {
+        if (newRoute.isUserOnly && _store.hasUser == false) {
+          callToastInfo(localeStr.messageErrorNotLogin);
+        } else {
+          RouterNavigate.navigateToPage(newRoute);
+        }
+      }
+    }
+  }
+
   @override
   void initState() {
     _sizeCalc = HomeDisplaySizeCalc();
@@ -100,7 +157,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
                       snapshot.data.isNotEmpty &&
                       _eventStore.autoShowAds &&
                       _eventStore.checkSkip == false) {
-                    print('stream home ads: ${snapshot.data.length}');
+                    debugPrint('stream home ads: ${snapshot.data.length}');
                     showAdsDialog(new List.from(snapshot.data));
                   }
                   return SizedBox.shrink();
@@ -111,33 +168,43 @@ class _HomeDisplayState extends State<HomeDisplay> {
                 builder: (ctx, _) {
                   if (banners != _store.banners) {
                     banners = _store.banners;
-                    _bannerWidget = HomeDisplayBanner(banners: banners);
+                    _bannerWidget = HomeDisplayBanner(
+                      banners: banners,
+                      onBannerClicked: (url) => _widgetUrlCheck(url),
+                    );
                   }
-                  _bannerWidget ??= HomeDisplayBanner();
+                  _bannerWidget ??= HomeDisplayBanner(onBannerClicked: (_) {});
                   return _bannerWidget;
                 },
-              ),
-              Positioned(
-                bottom: 0,
-                child: StreamBuilder(
-                  stream: _store.marqueeStream,
-                  builder: (ctx, _) {
-                    if (marquees != _store.marquees) {
-                      marquees = _store.marquees;
-                      _marqueeWidget = HomeDisplayMarquee(marquees: marquees);
-                    }
-                    _marqueeWidget ??= HomeDisplayMarquee();
-                    return _marqueeWidget;
-                  },
-                ),
               ),
             ],
           ),
         ),
         Container(
           constraints: BoxConstraints.tight(
-            Size(Global.device.width,
-                Global.device.featureContentHeight - _sizeCalc.bannerHeight),
+              Size(Global.device.width, _sizeCalc.marqueeHeight)),
+          child: StreamBuilder(
+            stream: _store.marqueeStream,
+            builder: (ctx, _) {
+              if (marquees != _store.marquees) {
+                marquees = _store.marquees;
+                _marqueeWidget = HomeDisplayMarquee(
+                  marquees: marquees,
+                  onMarqueeClicked: (url) => _widgetUrlCheck(url),
+                );
+              }
+              _marqueeWidget ??= HomeDisplayMarquee();
+              return _marqueeWidget;
+            },
+          ),
+        ),
+        Container(
+          constraints: BoxConstraints.tight(
+            Size(
+                Global.device.width,
+                Global.device.featureContentHeight -
+                    _sizeCalc.bannerHeight -
+                    _sizeCalc.marqueeHeight),
           ),
           child: Stack(
             fit: StackFit.expand,
@@ -152,7 +219,8 @@ class _HomeDisplayState extends State<HomeDisplay> {
                       stream: RouterNavigate.routerStreams.recheckUserStream,
                       initialData: false,
                       builder: (context, snapshot) {
-//                print('checking shortcut widget: ${getAppGlobalStreams.lastUser}');
+                        // debugPrint(
+                        //     'checking shortcut widget: ${getAppGlobalStreams.lastStatus}');
                         if (_shortcutWidget == null) {
                           _shortcutWidget = HomeShortcutWidget(
                             key: _shortcutWidgetKey,
@@ -177,26 +245,29 @@ class _HomeDisplayState extends State<HomeDisplay> {
                           : _store.homeTabs,
                       builder: (ctx, snapshot) {
                         if (tabs != snapshot.data) {
-//                print('update display tabs: ${snapshot.data}');
                           tabs =
                               new List<GameCategoryModel>.from(snapshot.data);
                           // use different widget to avoid tab controller's dispose error
-                          if (tabs.contains(favoriteCategory))
+                          if (tabs.contains(favoriteCategory)) {
+                            hasUser = true;
                             _contentWidget = new HomeDisplayUserTabs(
-                              tabs: tabs,
+                              key: _userTabsWidgetKey,
+                              tabs: _store.homeTabs,
                               sizeCalc: _sizeCalc,
+                              addFavoritePlugin: false,
                             );
-                          else
+                          } else {
+                            hasUser = false;
                             _contentWidget = new HomeDisplayTabs(
+                              key: _tabsWidgetKey,
                               tabs: tabs,
                               sizeCalc: _sizeCalc,
                             );
+                          }
                         }
-                        _contentWidget ??= HomeDisplayTabs(sizeCalc: _sizeCalc);
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 6.0),
-                          child: _contentWidget,
-                        );
+                        _contentWidget ??= HomeDisplayTabs(
+                            key: _tabsWidgetKey, sizeCalc: _sizeCalc);
+                        return _contentWidget;
                       },
                     ),
                   ),

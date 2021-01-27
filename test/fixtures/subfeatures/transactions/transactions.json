@@ -86,7 +86,7 @@
   "from": 1,
   "to": 10,
   "last_page": 11,
-  "next_page_url": "http:\/\/www.eg990.com:8775\/api\/transferRecord?page=2",
+  "next_page_url": "http:\/\/www.eg990.com\/api\/transferRecord?page=2",
   "prev_page_url": null,
   "total": 102
 }

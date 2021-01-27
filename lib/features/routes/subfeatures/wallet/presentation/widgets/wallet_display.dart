@@ -25,6 +25,11 @@ class _WalletDisplayState extends State<WalletDisplay> {
   double _bgHeight;
   double _bgWidth;
   double _bgMarginBottom;
+
+  double _innerBoxMaxHeight;
+  double _innerBoxMinHeight;
+  bool _higherBox = false;
+
   String _credit;
   WalletType _selected;
   WalletType _walletType;
@@ -91,12 +96,16 @@ class _WalletDisplayState extends State<WalletDisplay> {
     _heightFactor = Global.device.heightScale;
     if (_heightFactor < 1.0) _heightFactor = 1.0;
     // 100 = expect margin top(10)+bottom(90)
-    _bgHeight = Global.device.featureContentHeight - 100;
+    _bgHeight = Global.device.featureContentHeight - 48;
     if (_bgHeight > 480) _bgHeight = _bgHeight / _heightFactor;
     if (_bgHeight < 442) _bgHeight = 442;
     _bgMarginBottom = Global.device.featureContentHeight - 20 - _bgHeight;
 
-    _bgWidth = Global.device.width - 28.0;
+    _higherBox = Global.lang != 'zh';
+    _innerBoxMaxHeight = (_higherBox) ? _bgHeight * 0.35 : _bgHeight * 0.325;
+    _innerBoxMinHeight = _innerBoxMaxHeight - 24.0;
+
+    _bgWidth = Global.device.width - 20.0;
     if (_bgWidth > 380) _bgWidth = 380;
     debugPrint('wallet bg w$_bgWidth*h$_bgHeight');
 
@@ -213,7 +222,8 @@ class _WalletDisplayState extends State<WalletDisplay> {
                           child: _buildWalletBox(),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
                           child: _buildOptions(),
                         ),
                       ],
@@ -234,8 +244,8 @@ class _WalletDisplayState extends State<WalletDisplay> {
   Widget _buildWalletBox() {
     return Container(
       constraints: BoxConstraints(
-        minHeight: (_bgHeight - 24) * 0.325,
-        maxHeight: _bgHeight * 0.325,
+        minHeight: _innerBoxMinHeight,
+        maxHeight: _innerBoxMaxHeight,
         minWidth: _bgWidth - 32,
       ),
       decoration: BoxDecoration(
@@ -254,44 +264,107 @@ class _WalletDisplayState extends State<WalletDisplay> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           /// Wallet Credit
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(
-                  localeStr.walletViewTitleRemain,
-                  style: TextStyle(color: themeColor.walletCreditTitleColor),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: themeColor.iconSubColor2,
-                  ),
-                  child: Icon(
-                    const IconData(0xf155, fontFamily: 'FontAwesome'),
-                    color: Colors.white,
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: <InlineSpan>[
+                WidgetSpan(
+                  child: Padding(
+                    padding: (Global.lang != 'zh')
+                        ? EdgeInsets.only(bottom: 4.0)
+                        : EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      localeStr.walletViewTitleRemain,
+                      style:
+                          TextStyle(color: themeColor.walletCreditTitleColor),
+                    ),
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () => widget.store.updateCredit(),
-                child: Text(
-                  _credit,
-                  style: TextStyle(
-                    fontSize: FontSize.XLARGE.value,
-                    fontWeight: FontWeight.bold,
-                    color: themeColor.defaultAccentColor,
+                if (Global.lang != 'zh') TextSpan(text: '\n'),
+                WidgetSpan(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 3.0),
+                    child: Transform.scale(
+                      scale: 0.9,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: themeColor.iconSubColor2,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Icon(
+                            const IconData(0xf155, fontFamily: 'FontAwesome'),
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  overflow: TextOverflow.visible,
                 ),
-              ),
-            ],
+                WidgetSpan(
+                  child: GestureDetector(
+                    onTap: () => widget.store.updateCredit(),
+                    child: Text(
+                      _credit,
+                      style: TextStyle(
+                        fontSize: FontSize.XLARGE.value,
+                        fontWeight: FontWeight.bold,
+                        color: themeColor.defaultAccentColor,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                if (Global.lang != 'zh')
+                  WidgetSpan(child: SizedBox(height: 4.0)),
+              ],
+            ),
           ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.end,
+          //   children: <Widget>[
+          //     Padding(
+          //       padding: const EdgeInsets.only(bottom: 8.0),
+          //       child: Text(
+          //         localeStr.walletViewTitleRemain,
+          //         style: TextStyle(color: themeColor.walletCreditTitleColor),
+          //       ),
+          //     ),
+          //     Padding(
+          //       padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 3.0),
+          //       child: Transform.scale(
+          //         scale: 0.9,
+          //         child: DecoratedBox(
+          //           decoration: BoxDecoration(
+          //             shape: BoxShape.circle,
+          //             color: themeColor.iconSubColor2,
+          //           ),
+          //           child: Padding(
+          //             padding: const EdgeInsets.all(4.0),
+          //             child: Icon(
+          //               const IconData(0xf155, fontFamily: 'FontAwesome'),
+          //               color: Colors.white,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     GestureDetector(
+          //       onTap: () => widget.store.updateCredit(),
+          //       child: Text(
+          //         _credit,
+          //         style: TextStyle(
+          //           fontSize: FontSize.XLARGE.value,
+          //           fontWeight: FontWeight.bold,
+          //           color: themeColor.defaultAccentColor,
+          //         ),
+          //         overflow: TextOverflow.visible,
+          //       ),
+          //     ),
+          //   ],
+          // ),
 
           /// Transfer Button
           SizedBox(
@@ -306,16 +379,23 @@ class _WalletDisplayState extends State<WalletDisplay> {
                 ),
               ),
               onPressed: () {
-                if (widget.store.waitForTransfer != true)
+                if (widget.store.waitForTransfer != true) {
                   widget.store.postWalletTransfer();
+                }
               },
             ),
           ),
 
           /// Transfer Hint
-          Text(
-            localeStr.walletViewHintOneClick,
-            style: TextStyle(fontSize: FontSize.SMALLER.value),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              localeStr.walletViewHintOneClick,
+              style: TextStyle(
+                  fontSize: FontSize.SMALLER.value,
+                  color: themeColor.defaultHintColor),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
@@ -332,7 +412,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
         // (_bgHeight * 0.325) = wallet box
         // 64 = parent padding and items above
         // 60 = child padding and font line space
-        maxHeight: _bgHeight - (_bgHeight * 0.325) - 64 - 60 - 18,
+        maxHeight: _bgHeight - _innerBoxMaxHeight - 64 - 60,
       ),
       child: Scrollbar(
         controller: _scrollController,
@@ -427,7 +507,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                               callToast(localeStr.messageWait);
                             } else if (_walletType != _selected) {
                               if (_selected == WalletType.SINGLE)
-                                widget.store.postWalletTransfer(toSingle: true);
+                                widget.store.postWalletType(true);
                               else
                                 widget.store.postWalletType(false);
                             }

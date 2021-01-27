@@ -1,10 +1,8 @@
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
-import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
-import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:hive/hive.dart';
 
 import '../../data/entity/center_account_entity.dart';
@@ -36,8 +34,6 @@ abstract class _CenterStore with Store {
 
   final StreamController<CenterAccountEntity> _accountController =
       StreamController<CenterAccountEntity>.broadcast();
-  final StreamController<List<int>> _lottoController =
-      StreamController<List<int>>.broadcast();
   final StreamController<CenterVipEntity> _vipController =
       StreamController<CenterVipEntity>.broadcast();
 
@@ -47,11 +43,6 @@ abstract class _CenterStore with Store {
       debugPrint('account data: $event');
       if (accountEntity == null) errorMessage = Failure.jsonFormat().message;
     });
-//    _lottoController.stream.listen((event) {
-//      accountLotto = event;
-//      debugPrint('account lotto: $event');
-//      if (accountLotto == null) errorMessage = Failure.jsonFormat().message;
-//    });
     _vipController.stream.listen((event) {
       accountVip = event;
       debugPrint('account vip: $event');
@@ -68,15 +59,9 @@ abstract class _CenterStore with Store {
   Box _loginDataBox;
 
   CenterAccountEntity accountEntity;
-  List<int> accountLotto;
   CenterVipEntity accountVip;
 
-  List<String> cgpUrl;
-  List<String> cpwUrl;
-
   Stream<CenterAccountEntity> get accountStream => _accountController.stream;
-
-  Stream<List<int>> get lottoStream => _lottoController.stream;
 
   Stream<CenterVipEntity> get vipStream => _vipController.stream;
 
@@ -91,20 +76,16 @@ abstract class _CenterStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   bool _errorState = false;
 
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.CENTER,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.CENTER,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   CenterStoreState get state {
@@ -139,10 +120,7 @@ abstract class _CenterStore with Store {
             _errorState = true;
           },
           (model) {
-            if (model.cgpWallet.isEmpty && cgpUrl == null) getCgpUrl();
-            if (model.cpwWallet.isEmpty && cpwUrl == null) getCpwUrl();
             _accountController.sink.add(model.wrapAccountData);
-//            _lottoController.sink.add(model.getLottoList);
             _vipController.sink.add(model.wrapVipData);
             accountDataReady = true;
           },
@@ -151,56 +129,6 @@ abstract class _CenterStore with Store {
     } on Exception {
       _errorState = true;
       setErrorMsg(code: 1);
-    }
-  }
-
-  @action
-  Future<void> getCgpUrl() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getCgpBindUrl().then((result) {
-//        debugPrint('cpg url result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (list) {
-            if (list.isEmpty) {
-              errorMessage = '${localeStr.messageErrorBindUrl('CGP')}';
-              _accountController.sink
-                  .add(accountEntity.copyWith(cgpWallet: '-1'));
-            }
-            cgpUrl = list;
-          },
-        );
-      });
-    } on Exception {
-      cgpUrl = [];
-    }
-  }
-
-  @action
-  Future<void> getCpwUrl() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getCpwBindUrl().then((result) {
-//        debugPrint('cpw url result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (list) {
-            if (list.isEmpty) {
-              errorMessage = '${localeStr.messageErrorBindUrl('CPW')}';
-              _accountController.sink
-                  .add(accountEntity.copyWith(cpwWallet: '-1'));
-            }
-            cpwUrl = list;
-          },
-        );
-      });
-    } on Exception {
-      cpwUrl = [];
     }
   }
 
@@ -314,35 +242,6 @@ abstract class _CenterStore with Store {
   }
 
   @action
-  Future<void> postLucky(List<int> numbers) async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      requestResponse = null;
-      waitForResponse = true;
-      // Fetch from the repository and wrap the regular Future into an observable.
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      currentRequest = CenterStoreAction.lucky;
-      await _repository.postLucky(numbers).then((result) {
-//        debugPrint('center lotto result: $result');
-        return result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (data) {
-            if (data.isSuccess) {
-              _lottoController.sink
-                  .add(JsonUtil.decodeArray(data.msg).cast<int>());
-            }
-            requestResponse = data;
-          },
-        );
-      }).whenComplete(() => waitForResponse = false);
-    } on Exception {
-      waitForResponse = false;
-      setErrorMsg(code: 4);
-    }
-  }
-
-  @action
   Future<void> postVerifyRequest(String mobile) async {
     try {
       // Reset the possible previous error message.
@@ -398,7 +297,6 @@ abstract class _CenterStore with Store {
     try {
       return Future.wait([
         _accountController.close(),
-        _lottoController.close(),
         _vipController.close(),
       ]);
     } catch (e) {

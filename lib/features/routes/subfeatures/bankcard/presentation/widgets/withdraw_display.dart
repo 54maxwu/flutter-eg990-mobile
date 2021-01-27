@@ -30,8 +30,6 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
   void initState() {
     _store ??= sl.get<WithdrawStore>();
     super.initState();
-    _store.getCgpWallet();
-    _store.getCpwWallet();
     _store.getRollback();
   }
 
@@ -102,38 +100,22 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case WithdrawStoreState.initial:
-              return SizedBox.shrink();
-            case WithdrawStoreState.loading:
-              return Center(child: LoadingWidget());
-            case WithdrawStoreState.loaded:
-              return Container(
-                constraints: BoxConstraints(
-                  maxWidth: Global.device.width - 12,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      BankcardDisplayCard(
-                        store: widget.store,
-                        bankcard: widget.bankcard,
-                        nested: true,
-                      ),
-                      WithdrawDisplayView(store: _store),
-                    ],
-                  ),
-                ),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        },
+      constraints: BoxConstraints(
+        maxWidth: Global.device.width - 12,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            BankcardDisplayCard(
+              store: widget.store,
+              bankcard: widget.bankcard,
+              nested: true,
+            ),
+            WithdrawDisplayView(store: _store),
+          ],
+        ),
       ),
     );
   }

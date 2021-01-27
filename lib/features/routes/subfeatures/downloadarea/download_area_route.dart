@@ -11,14 +11,14 @@ class DownloadAreaRoute extends StatelessWidget {
     '/images/download/dns_ios.jpg',
   ];
   final List<String> appLabels = [
-    'CGPAY Android版',
-    'CGPAY IOS版',
-    'DNS修复 Android版',
-    'DNS修复 IOS版'
+    localeStr.downloadAndroidCgpay,
+    localeStr.downloadIosCgpay,
+    localeStr.downloadAndroidDns,
+    localeStr.downloadIosDns,
   ];
   final List<String> appHints = [
-    '(安卓适用)',
-    '(苹果适用)',
+    localeStr.downloadHintPlatformAndroid,
+    localeStr.downloadHintPlatformIos,
   ];
   final List<String> appLinks = [
     'https://mobile.cgpay.io/cgpdownload.aspx?type=android',
@@ -45,7 +45,7 @@ class DownloadAreaRoute extends StatelessWidget {
             : Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
                 child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: appLinks.length,
                   itemBuilder: (_, index) {
                     return Column(
                       children: <Widget>[

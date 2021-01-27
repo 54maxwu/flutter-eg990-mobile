@@ -43,18 +43,14 @@ abstract class _LoginStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   void setErrorMsg(
-      {String msg, bool showOnce = false, FailureType type, int code}) {
-    if (showOnce && _lastError != null && msg == _lastError) return;
-    if (msg.isNotEmpty) _lastError = msg;
-    errorMessage = msg ??
-        Failure.internal(FailureCode(
-          type: type ?? FailureType.LOGIN,
-          code: code,
-        )).message;
-  }
+          {String msg, bool showOnce = false, FailureType type, int code}) =>
+      errorMessage = getErrorMsg(
+          from: FailureType.LOGIN,
+          msg: msg,
+          showOnce: showOnce,
+          type: type,
+          code: code);
 
   @computed
   LoginStoreState get state {
@@ -122,7 +118,7 @@ abstract class _LoginStore with Store {
               else if (failure.message == 'pwdErrorFive')
                 errorMessage = localeStr.messageErrorPasswordHint;
               else
-                setErrorMsg(msg: failure.message, showOnce: true);
+                setErrorMsg(msg: failure.message);
             },
             (model) async {
               if (saveForm)

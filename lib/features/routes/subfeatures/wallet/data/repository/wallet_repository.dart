@@ -17,9 +17,7 @@ class WalletApi {
 
 abstract class WalletRepository {
   Future<Either<Failure, WalletModel>> getWallet();
-
   Future<Either<Failure, String>> postWalletType(bool toSingle);
-
   Future<Either<Failure, Map<String, dynamic>>> postTransferAll(
     StreamController<String> progressController,
   );
@@ -51,7 +49,7 @@ class WalletRepositoryImpl implements WalletRepository {
       (failure) => Left(failure),
       (model) => (model.auto != '-1')
           ? Right(model)
-          : Left(Failure.token(FailureType.WALLET)),
+          : Left(Failure.token(FailureType.CREDIT)),
     );
   }
 
@@ -79,27 +77,29 @@ class WalletRepositoryImpl implements WalletRepository {
   }
 
   Future<List> _getPromiseList() async {
-    final result = await requestDataString(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
         WalletApi.GET_PROMISE,
         userToken: jwtInterface.token,
       ),
-      allowJsonString: true,
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-WALLET_PROMISE',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => [],
-      (data) {
-        if (data.isNotEmpty) {
+      (model) {
+        if (model.data.isNotEmpty) {
           try {
             // decode list in json format to string list
-            List decoded = JsonUtil.decodeArray(data, trim: false);
-            MyLogger.print(msg: 'bankcard decoded list: $decoded', tag: tag);
+            List decoded = JsonUtil.decodeArray(model.data, trim: false);
+            MyLogger.print(msg: 'wallet decoded list: $decoded', tag: tag);
             return decoded;
           } on Exception catch (e) {
-            MyLogger.error(msg: 'bankcard map error!!', error: e, tag: tag);
+            MyLogger.error(msg: 'wallet map error!!', error: e, tag: tag);
           }
+        } else if (model.isSuccess == false) {
+          return null;
         }
         return [];
       },

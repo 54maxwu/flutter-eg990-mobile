@@ -8,7 +8,6 @@ import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import '../../data/entity/center_account_entity.dart'
     show CenterAccountEntity, CenterAccountEntityExtension;
 import '../state/center_store.dart';
-import 'center_dialog_cpw.dart';
 import 'center_dialog_mobile.dart';
 import 'center_store_inherit_widget.dart';
 
@@ -34,13 +33,6 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       new GlobalKey(debugLabel: 'phone');
   final GlobalKey<CustomizeFieldWidgetState> _mailFieldKey =
       new GlobalKey(debugLabel: 'mail');
-  final GlobalKey<CustomizeFieldWidgetState> _wechatFieldKey =
-      new GlobalKey(debugLabel: 'wechat');
-
-//  final GlobalKey<CustomizeFieldWidgetState> _cgpFieldKey =
-//      new GlobalKey(debugLabel: 'cgp');
-  final GlobalKey<CustomizeFieldWidgetState> _cpwFieldKey =
-      new GlobalKey(debugLabel: 'cpw');
 
   CenterStore _store;
   CenterAccountEntity _storeData;
@@ -56,9 +48,6 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
     _birthFieldKey.currentState.setInput = initTexts[2];
     _phoneFieldKey.currentState.setInput = initTexts[3];
     _mailFieldKey.currentState.setInput = initTexts[4];
-    _wechatFieldKey.currentState.setInput = initTexts[5];
-//    if (initTexts[6] != '-1') _cgpFieldKey.currentState.setInput = initTexts[6];
-    if (initTexts[7] != '-1') _cpwFieldKey.currentState.setInput = initTexts[7];
     debugPrint('field updated');
   }
 
@@ -142,6 +131,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.centerTextTitleAccount,
+                      maxInputLength: InputLimit.ACCOUNT_MAX,
                       titleLetterSpacing: 4,
                       suffixText: localeStr.centerTextButtonChangePwd,
                       suffixAction: (account) {
@@ -160,6 +150,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: localeStr.centerHintNoName,
                       persistHint: false,
                       coloredHint: true,
+                      maxInputLength: InputLimit.NAME_MAX,
                       prefixText: localeStr.centerTextTitleName,
                       suffixText: (_storeData.canBindCard)
                           ? localeStr.centerTextButtonBind
@@ -173,7 +164,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                     new CustomizeFieldWidget(
                       key: _birthFieldKey,
                       fieldType: FieldType.Date,
-                      maxInputLength: 10,
+                      maxInputLength: InputLimit.DATE,
                       hint: localeStr.centerTextTitleDateHint,
                       persistHint: false,
                       prefixText: localeStr.centerTextTitleBirth,
@@ -183,13 +174,15 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       suffixAction: (input) {
                         debugPrint('request bind birth date: $input');
                         checkAndPost(context, () {
-                          if (input.isValidDate)
+                          if (input.isDate)
                             _store.bindBirth(input);
                           else
                             callToast(localeStr.messageInvalidFormat);
                         });
                       },
                       readOnly: _storeData.canBindBirthDate == false,
+                      errorMsg: localeStr.messageInvalidFormat,
+                      validCondition: (input) => input.isDate,
                     ),
                     /* Phone Field */
                     new CustomizeFieldWidget(
@@ -197,6 +190,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.centerTextTitlePhone,
+                      maxInputLength: InputLimit.PHONE_MAX,
                       titleLetterSpacing: 4,
                       suffixText: (_storeData.canVerifyPhone)
                           ? localeStr.centerTextButtonSend
@@ -236,77 +230,11 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
                       readOnly: _storeData.canBindMail == false,
                       validCondition: (value) => value.isEmail,
                       errorMsg: localeStr.messageInvalidEmail,
-                      maxInputLength: 50,
-                    ),
-                    /* WeChat Field */
-                    new CustomizeFieldWidget(
-                      key: _wechatFieldKey,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitleWechat,
-                      titleLetterSpacing: 4,
-                      suffixText: (_storeData.canBindWechat)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (input) {
-                        debugPrint('request bind wechat: $input');
-                        checkAndPost(context, () {
-                          _store.bindWechat(input);
-                        });
-                      },
-                      readOnly: _storeData.canBindWechat == false,
-                      validCondition: (value) => rangeCheck(
-                          value: value.length,
-                          min: InputLimit.WECHAT_MIN,
-                          max: InputLimit.WECHAT_MAX),
-                      errorMsg: localeStr.messageInvalidWechat,
-                      maxInputLength: InputLimit.WECHAT_MAX,
+                      maxInputLength: InputLimit.ADDRESS_MAX,
                     ),
                   ],
                 ),
               ),
-            ),
-//                /* CGP Field */
-//                new CustomizeFieldWidget(
-//                  key: _cgpFieldKey,
-//                  hint: '',
-//                  persistHint: false,
-//                  prefixText: localeStr.centerTextTitleCgp,
-//                  titleLetterSpacing: 0.4,
-//                  suffixText: (_storeData.canBindCgp)
-//                      ? localeStr.centerTextButtonBind
-//                      : null,
-//                  suffixAction: (_) {
-//                    debugPrint('cgp url: ${_store.cgpUrl}');
-//                    if (_store.cgpUrl != null && _store.cgpUrl.isNotEmpty)
-//                      RouterNavigate.navigateToPage(
-//                        RoutePage.centerWeb,
-//                        arg: WebRouteArguments(startUrl: _store.cgpUrl[0]),
-//                      );
-//                  },
-//                  useSameBgColor: true,
-//                  readOnly: true,
-//                ),
-            /* CPW Field */
-            new CustomizeFieldWidget(
-              key: _cpwFieldKey,
-              hint: '',
-              persistHint: false,
-              prefixText: localeStr.centerTextTitleCpw,
-              titleLetterSpacing: 0,
-              suffixText: (_storeData.canBindCpw)
-                  ? localeStr.centerTextButtonBind
-                  : null,
-              suffixAction: (_) {
-                debugPrint('request bind cpw');
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (context) => new CenterDialogCpw(store: _store),
-                );
-              },
-              useSameBgColor: themeColor.isDarkTheme == false,
-              readOnly: true,
             ),
           ],
         ),
