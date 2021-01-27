@@ -20,7 +20,8 @@ class BankcardDisplay extends StatefulWidget {
 class _BankcardDisplayState extends State<BankcardDisplay> {
   final String tag = 'BankcardDisplay';
 
-  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
+  static final GlobalKey<FormState> _formKey =
+      new GlobalKey(debugLabel: 'form');
 
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =
@@ -30,24 +31,12 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
   final GlobalKey<CustomizeFieldWidgetState> _branchFieldKey =
       new GlobalKey(debugLabel: 'branch');
 
-  // Dropdowns
-  final GlobalKey<CustomizeDropdownWidgetState> _cityKey =
-      new GlobalKey(debugLabel: 'city');
-  final GlobalKey<CustomizeDropdownWidgetState> _areaKey =
-      new GlobalKey(debugLabel: 'area');
-
   List<ReactionDisposer> _disposers;
-  Map<String, String> provinceMap;
   Map<String, String> bankMap;
-  Map<String, String> cityMap;
-  Map<String, String> areaMap;
 
   bool _waitBankMap = true;
-  bool _waitProvinceMap = true;
+  bool _waitProvinceMap = false;
   String _bankSelected;
-  String _provinceSelected;
-  String _citySelected;
-  String _areaSelected;
 
   void _validateForm() {
     final form = _formKey.currentState;
@@ -58,21 +47,21 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         bankId: _bankSelected ?? '',
         card: _accountFieldKey.currentState.getInput,
         branch: _branchFieldKey.currentState.getInput,
-        province: _provinceSelected ?? '',
-        area: (_areaSelected != null)
-            ? _areaSelected
-            : (_citySelected != null)
-                ? _citySelected
-                : '',
       );
+      debugPrint('bankcard form: ${dataForm.toJson()}');
       if (dataForm.isValid) {
-        debugPrint('bankcard form: ${dataForm.toJson()}');
-        if (widget.store.waitForNewCardResult)
+        if (widget.store.waitForNewCardResult) {
           callToast(localeStr.messageWait);
-        else
+        } else {
           widget.store.sendRequest(dataForm);
+        }
       } else {
-        callToast(localeStr.messageActionFillForm);
+        String info = '${localeStr.bankcardViewTitleOwner}: ${(dataForm.owner.isNotEmpty) ? dataForm.owner : "?"}\n' +
+            '${localeStr.bankcardViewTitleBankName}: ${(dataForm.bankId.isNotEmpty) ? bankMap[dataForm.bankId] : "?"}\n' +
+            '${localeStr.bankcardViewTitleCardNumber}: ${(dataForm.card.isNotEmpty) ? dataForm.card : "?"}\n' +
+            '${localeStr.bankcardViewTitleBankBranch}: ${(dataForm.branch.isNotEmpty) ? dataForm.branch : "?"}';
+        callToastInfo(localeStr.messageActionFillForm + '\n$info',
+            duration: ToastDuration.LONG);
       }
     }
   }
@@ -81,7 +70,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
   void initState() {
     super.initState();
     widget.store.getBanks();
-    widget.store.getProvinces();
+//    widget.store.getProvinces();
   }
 
   @override
@@ -100,42 +89,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
           if (!_waitBankMap && !_waitProvinceMap) setState(() {});
         },
       ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.provinceMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('province map changed, size: ${map.keys.length}');
-          provinceMap = map;
-          _waitProvinceMap = false;
-          if (!_waitBankMap && !_waitProvinceMap) setState(() {});
-        },
-      ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.cityMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('city map changed, size: ${map.keys.length}');
-          cityMap = map;
-          _citySelected = null;
-          setState(() {});
-        },
-      ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.areaMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('area map changed, size: ${map.keys.length}');
-          areaMap = map;
-          _areaSelected = null;
-          setState(() {});
-        },
-      ),
     ];
   }
 
@@ -152,6 +105,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         padding: const EdgeInsets.symmetric(horizontal: 6.0),
         constraints: BoxConstraints(
           maxWidth: Global.device.width - 12,
+          maxHeight: Global.device.featureContentHeight,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -229,65 +183,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                 ),
               ),
             ),
-            /* Province Option */
-            CustomizeDropdownWidget(
-              prefixText: localeStr.bankcardViewTitleBankProvince,
-              titleLetterSpacing: 4,
-              optionValues:
-                  (provinceMap != null) ? provinceMap.keys.toList() : [],
-              optionStrings:
-                  (provinceMap != null) ? provinceMap.values.toList() : [],
-              changeNotify: (data) {
-                // clear text field focus
-                FocusScope.of(context).unfocus();
-                // set selected data
-                _provinceSelected = data;
-                // clear dropdown value that's relative
-                cityMap = null;
-                _citySelected = null;
-                areaMap = null;
-                _areaSelected = null;
-                // request cities map
-                widget.store.getCities(data);
-              },
-            ),
-            /* City Option */
-            if (cityMap != null)
-              CustomizeDropdownWidget(
-                key: _cityKey,
-                prefixText: localeStr.bankcardViewTitleBankArea,
-                titleLetterSpacing: 4,
-                optionValues: cityMap.keys.toList(),
-                optionStrings: cityMap.values.toList(),
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  // set selected data
-                  _citySelected = data;
-                  // clear dropdown value that's relative
-                  areaMap = null;
-                  _areaSelected = null;
-                  // request areas map
-                  widget.store.getAreas(data);
-                },
-                clearValueOnMenuChanged: true,
-              ),
-            /* Area Option */
-            if (areaMap != null)
-              CustomizeDropdownWidget(
-                key: _areaKey,
-                prefixText: '${localeStr.bankcardViewTitleBankArea}2',
-                titleLetterSpacing: 4,
-                optionValues: areaMap.keys.toList(),
-                optionStrings: areaMap.values.toList(),
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  // set selected data
-                  _areaSelected = data;
-                },
-                clearValueOnMenuChanged: true,
-              ),
             /* Confirm Button */
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -317,34 +212,4 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
       ),
     );
   }
-
-//  Widget _buildDataTest() {
-//    return Container(
-//      constraints: BoxConstraints(
-//        maxHeight: Global.device.height * 0.75,
-//        maxWidth: Global.device.width - 16,
-//      ),
-//      padding: const EdgeInsets.all(8.0),
-//      child: Column(
-//        mainAxisSize: MainAxisSize.min,
-//        children: <Widget>[
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: widget.bankcard.toString())),
-//            ),
-//          ),
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: provinceMap.toString())),
-//            ),
-//          ),
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: bankMap.toString())),
-//            ),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
 }

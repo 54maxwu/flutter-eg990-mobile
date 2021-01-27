@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/ad_dialog.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_category_model.dart';
-import 'package:flutter_eg990_mobile/features/update/presentation/state/update_store.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
 import '../state/home_store.dart';
@@ -27,7 +25,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
       new GlobalKey<HomeDisplayTabsState>();
 
   EventStore _eventStore;
-  UpdateStore _updateStore;
   HomeStore _store;
   HomeShortcutWidget _shortcutWidget;
   HomeDisplayBanner _bannerWidget;
@@ -40,69 +37,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
   List tabs;
   bool showingAds = false;
 
-  void showAdsDialog(List list) {
-    if (showingAds || AppNavigator.isAtHome) return;
-    if (_updateStore.showingUpdateDialog) {
-      Future.delayed(Duration(seconds: 2), () {
-        showAdsDialog(list);
-      });
-    } else {
-      Future.delayed(Duration(milliseconds: 500), () {
-        if (!mounted)
-          showAdsDialog(list);
-        else {
-          showingAds = true;
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => new AdDialog(
-              ads: new List.from(list),
-              initCheck: _eventStore.checkSkip,
-              onClose: (skipNextTime) {
-                debugPrint('ads dialog close, skip=$skipNextTime');
-                showingAds = false;
-                _eventStore.setAutoShowAds = false;
-                _eventStore.setSkipAd(skipNextTime);
-                _eventStore.adsDialogClose();
-              },
-            ),
-          );
-        }
-      });
-    }
-  }
-
-  void _onBannerClicked(bool openGame, String url) {
-    debugPrint('onBannerClicked isGame:$openGame, url:$url');
-    if (openGame) {
-      final gameUrl = url.substring(url.indexOf('.com/') + 4);
-      debugPrint('opening banner game: $gameUrl');
-      if (_store.hasUser) {
-        _store.getGameUrl(gameUrl);
-      } else {
-        callToastInfo(localeStr.messageErrorNotLogin);
-      }
-    } else if (url.startsWith('/gamelist/')) {
-      String className = url.replaceAll('/gamelist/', '').replaceAll('/', '-');
-      debugPrint('banner platform name: $className');
-      _tabsWidgetKey.currentState?.findPage(className.split('-')[1]);
-      _store.showSearchPlatform(className);
-    } else if (url.startsWith('/promo/')) {
-      int promoId = url.substring(url.indexOf('/') + 1, url.length).strToInt;
-      debugPrint('banner promo id: $promoId');
-      AppNavigator.navigateTo(RoutePage.promo,
-          arg: PromoRouteArguments(openPromoId: promoId));
-    } else {
-      RoutePage newRoute = url.urlToRoutePage;
-      debugPrint('checking banner route: $newRoute');
-      if (newRoute != null) {
-        AppNavigator.navigateTo(newRoute);
-      }
-    }
-
-    /// TODO need to write a function to map weburl and route
-  }
-
   @override
   void initState() {
     _sizeCalc = HomeDisplaySizeCalc();
@@ -113,7 +47,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
   Widget build(BuildContext context) {
     _store ??= HomeStoreInheritedWidget.of(context).store;
     _eventStore ??= sl.get<EventStore>();
-    _updateStore ??= sl.get<UpdateStore>();
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -125,20 +58,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
           ),
           child: Stack(
             children: [
-              StreamBuilder<List>(
-                stream: _eventStore.adsStream,
-                initialData: _eventStore.ads ?? [],
-                builder: (ctx, snapshot) {
-                  if (snapshot.data != null &&
-                      snapshot.data.isNotEmpty &&
-                      _eventStore.autoShowAds &&
-                      _eventStore.checkSkip == false) {
-                    debugPrint('stream home ads: ${snapshot.data.length}');
-                    showAdsDialog(new List.from(snapshot.data));
-                  }
-                  return SizedBox.shrink();
-                },
-              ),
               StreamBuilder(
                 stream: _store.bannerStream,
                 builder: (ctx, _) {
@@ -146,12 +65,10 @@ class _HomeDisplayState extends State<HomeDisplay> {
                     banners = _store.banners;
                     _bannerWidget = HomeDisplayBanner(
                       banners: banners,
-                      onBannerClicked: (openGame, url) =>
-                          _onBannerClicked(openGame, url),
+                      onBannerClicked: (url) => _widgetUrlCheck(url),
                     );
                   }
-                  _bannerWidget ??=
-                      HomeDisplayBanner(onBannerClicked: (_, __) {});
+                  _bannerWidget ??= HomeDisplayBanner(onBannerClicked: (_) {});
                   return _bannerWidget;
                 },
               ),
@@ -162,7 +79,10 @@ class _HomeDisplayState extends State<HomeDisplay> {
                   builder: (ctx, _) {
                     if (marquees != _store.marquees) {
                       marquees = _store.marquees;
-                      _marqueeWidget = HomeDisplayMarquee(marquees: marquees);
+                      _marqueeWidget = HomeDisplayMarquee(
+                        marquees: marquees,
+                        onMarqueeClicked: (url) => _widgetUrlCheck(url),
+                      );
                     }
                     _marqueeWidget ??= HomeDisplayMarquee();
                     return _marqueeWidget;
@@ -180,8 +100,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              if (Res.wallpaper.isNotEmpty)
-                Image.asset(Res.wallpaper, fit: BoxFit.fill),
               Column(
                 children: [
                   Container(
@@ -190,7 +108,8 @@ class _HomeDisplayState extends State<HomeDisplay> {
                       stream: AppNavigator.routerStreams.recheckUserStream,
                       initialData: false,
                       builder: (context, snapshot) {
-//                debugPrint('checking shortcut widget: ${getAppGlobalStreams.lastUser}');
+                        // debugPrint(
+                        //     'checking shortcut widget: ${getAppGlobalStreams.lastStatus}');
                         if (_shortcutWidget == null) {
                           _shortcutWidget = HomeShortcutWidget(
                             key: _shortcutWidgetKey,
@@ -200,7 +119,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
                         } else if (snapshot.data) {
                           _shortcutWidgetKey.currentState.updateUser();
                           _store.checkHomeTabs();
-                          _eventStore.getUserCredit();
                           AppNavigator.resetCheckUser();
                         }
                         return _shortcutWidget;
@@ -224,7 +142,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
                               tabs: tabs,
                               sizeCalc: _sizeCalc,
                             );
-                          } else {
+                          } else if (tabs != null) {
                             _contentWidget = new HomeDisplayTabs(
                               key: _tabsWidgetKey,
                               tabs: tabs,
@@ -248,5 +166,78 @@ class _HomeDisplayState extends State<HomeDisplay> {
         ),
       ],
     );
+  }
+
+  void _widgetUrlCheck(String url) {
+    debugPrint('home widget url check: $url');
+    _widgetUrlNavigate(
+      url.contains('/api/open/'),
+      url
+          .substring(
+              url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length)
+          .replaceAll('/api/open/', ''),
+    );
+  }
+
+  void _widgetUrlNavigate(bool openGame, String url) {
+    debugPrint('home widget url: $url, isGame: $openGame');
+    if (openGame) {
+      if (!getAppGlobalStreams.hasUser) {
+        callToastInfo(localeStr.messageErrorNotLogin);
+        return;
+      } else {
+        _openGame(url);
+      }
+
+      /// Show game category view
+    } else if (url.startsWith('/gamelist/')) {
+      callToast(localeStr.urlActionNotSupported);
+      MyLogger.debug(msg: 'Found unsupported Game URL: $url');
+
+      /// Jump to promo page with promo id if provided
+    } else if (url.startsWith('/promo/')) {
+      int promoId =
+          url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      debugPrint('url promo id: $promoId');
+      AppNavigator.navigateTo(
+        RoutePage.promo,
+        arg: (promoId > 0) ? PromoRouteArguments(openPromoId: promoId) : null,
+      );
+
+      /// Jump to route page if path name exist
+    } else {
+      RoutePage newRoute = url.urlToRoutePage;
+      debugPrint('checking url to app route: $newRoute');
+      if (newRoute != null) {
+        AppNavigator.navigateTo(newRoute);
+      } else {
+        callToast(localeStr.urlActionNotSupported);
+        MyLogger.debug(msg: 'Found unsupported Route URL: $url');
+      }
+    }
+  }
+
+  void _openGame(String url) {
+    final gameParam = url.split('/');
+    debugPrint('game url query: $gameParam');
+
+    /// Open game's web page if game can be found in stored map
+    if (gameParam.length == 3 &&
+        _store.hasGameInMap(
+          gameParam.take(2).join('/0'),
+          gameParam.last.strToInt,
+        )) {
+      final gameUrl = url.substring(url.indexOf('.com/') + 4);
+      debugPrint('opening game: $gameUrl');
+      _store.getGameUrl(gameUrl);
+      return;
+
+      /// Jump to game platform page
+    } else if (gameParam.length == 2) {
+      return;
+    }
+
+    callToast(localeStr.urlActionNotSupported);
+    MyLogger.debug(msg: 'Found unsupported Game URL: $url');
   }
 }

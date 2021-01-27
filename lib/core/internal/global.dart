@@ -3,6 +3,7 @@ import 'dart:convert' show Encoding;
 import 'package:flutter/material.dart' show kToolbarHeight;
 
 import 'device.dart';
+import 'language_code.dart';
 
 class Global {
   /// Device Relative
@@ -14,41 +15,27 @@ class Global {
   /// APP Language
   static bool initLocale = false;
 
-  // zh, en, vi, th
-  static String _language = 'zh';
+  static bool lockLanguage = false;
 
-  // content_cn, content_us, content_vn, content_th
-  static String _jsonContentKey = 'content_cn';
+  static LanguageCode _locale = defaultLocale;
 
-  static String get lang => _language;
+  static String get localeJsonKey => _locale.value.contentKey;
 
-  static String get jsonContentKey => _jsonContentKey;
+  static String get localeCode => _locale.value.code;
 
-  static set setLanguage(String langCode) {
-    _language = langCode;
-    switch (langCode) {
-      case 'zh':
-        _jsonContentKey = 'content_cn';
-        break;
-      case 'en':
-        _jsonContentKey = 'content_us';
-        break;
-      case 'vi':
-        _jsonContentKey = 'content_vn';
-        break;
-      case 'th':
-        _jsonContentKey = 'content_th';
-        break;
-    }
-  }
+  static set setLocale(String localeCode) =>
+      _locale = LanguageCode.getByCode(localeCode);
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = EG_BASE_URL;
-  static String currentService = EG_SERVICE_URL;
+  static const String CURRENT_BASE = SK_TEST_URL;
+  static String currentService = SK_SERVICE_URL;
 
-  static const String EG_BASE_URL = "https://www.eg990.com/";
-  static const String EG_SERVICE_URL = "http://vip66741.com/";
+  static const String DOMAIN_NAME = "192.168.2.87";
+  static const String SK_OFFICIAL_URL = "";
+  static const String SK_BASE_URL = "";
+  static const String SK_TEST_URL = "http://192.168.2.87:2211/";
+  static const String SK_SERVICE_URL = "";
 
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';

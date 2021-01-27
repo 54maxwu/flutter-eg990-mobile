@@ -23,6 +23,8 @@ final _symbolsInputRegex = RegExp("[\$&+,:;=?@#|'<>.-^*()%!_ ]");
 
 final _engInputRegex = RegExp("[a-zA-Z]");
 
+final _engInputNoCapRegex = RegExp("[a-z]");
+
 final _engSpaceInputRegex = RegExp("[a-zA-Z ]");
 
 final _numInputRegex = RegExp("[0-9]");
@@ -40,7 +42,7 @@ final _textOnlyInputFormatter = FilteringTextInputFormatter.allow(
 );
 
 final _accountInputFormatter = FilteringTextInputFormatter.allow(
-  RegExp("${_engInputRegex.pattern}|"
+  RegExp("${_engInputNoCapRegex.pattern}|"
       "${_numInputRegex.pattern}|[!#_\$%&*+-=?^@]"),
 );
 

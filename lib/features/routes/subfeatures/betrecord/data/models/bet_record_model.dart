@@ -1,4 +1,5 @@
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
+import 'package:flutter_eg990_mobile/utils/value_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bet_record_model.freezed.dart';
@@ -94,9 +95,9 @@ abstract class BetRecordDataAllPlatform with _$BetRecordDataAllPlatform {
   static BetRecordDataAllPlatform jsonToBetRecordDataAllPlatform(
       Map<String, dynamic> jsonMap) {
     return _$_BetRecordDataAllPlatform(
-      bet: jsonMap['bet'] as num,
-      valid: jsonMap['validbet'] as num,
-      payout: jsonMap['payout'] as num,
+      bet: '${jsonMap['bet']}'.strToDouble,
+      valid: '${jsonMap['validbet']}'.strToDouble,
+      payout: '${jsonMap['payout']}'.strToDouble,
       key: jsonMap['key'],
     );
   }

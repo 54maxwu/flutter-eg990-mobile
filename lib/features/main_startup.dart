@@ -10,7 +10,6 @@ import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
 
 import 'router/app_navigator_export.dart';
-import 'router/app_navigator_names.dart';
 import 'screen/web_game_screen_store.dart';
 import 'update/presentation/state/update_store.dart';
 
@@ -30,6 +29,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   final String keyId = 'Navi';
   final GlobalKey<NavigatorState> screenNavKey =
       new GlobalKey(debugLabel: 'screenNavKey');
+  final GlobalKey<NavigatorState> _navKey = new GlobalKey(debugLabel: 'navKey');
 
   Future<bool> updateFuture;
   UpdateStore updateStore;
@@ -93,9 +93,9 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
           // ),
           body: ExtendedNavigator(
             key: screenNavKey,
+            navigatorKey: _navKey,
             initialRoute: MainStartupRoutes.featureScreen,
             router: MainStartupRouter(),
-            name: SCREEN_NAV_NAME,
           ),
         ),
       ),

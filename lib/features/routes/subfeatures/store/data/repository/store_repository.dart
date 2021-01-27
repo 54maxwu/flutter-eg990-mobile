@@ -162,7 +162,7 @@ class StoreRepositoryImpl implements StoreRepository {
       (left) => null,
       (right) => (right.isSuccess) ? right.data : null,
     );
-    if (rulesData == null || rulesData.toString().isEmpty) {
+    if (rulesData == null) {
       MyLogger.warn(
           msg: 'store rules data empty. rules: $rulesData',
           tag: 'remote-STORE');
@@ -175,10 +175,12 @@ class StoreRepositoryImpl implements StoreRepository {
           dollarData,
           (jsonMap) => StorePlatformDollar.jsonToStorePlatformDollar(jsonMap),
         ),
-        rules: JsonUtil.decodeArrayToModel(
-          rulesData,
-          (jsonMap) => StoreRuleData.jsonToStoreRuleData(jsonMap),
-        ),
+        rules: (rulesData.isNotEmpty)
+            ? JsonUtil.decodeArrayToModel(
+                rulesData,
+                (jsonMap) => StoreRuleData.jsonToStoreRuleData(jsonMap),
+              )
+            : [],
       ));
     } on Exception {
       MyLogger.error(

@@ -39,26 +39,26 @@ mixin _$StoreExchangeHistoryForm {
   int get page;
 
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(int page), {
-    @required Result query(int page, int perPage, String search),
+  TResult when<TResult extends Object>(
+    TResult $default(int page), {
+    @required TResult query(int page, int perPage, String search),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(int page), {
-    Result query(int page, int perPage, String search),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(int page), {
+    TResult query(int page, int perPage, String search),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    @required Result query(StoreExchangeHistoryQuery value),
+  TResult map<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    @required TResult query(StoreExchangeHistoryQuery value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    Result query(StoreExchangeHistoryQuery value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    TResult query(StoreExchangeHistoryQuery value),
+    @required TResult orElse(),
   });
 
   $StoreExchangeHistoryFormCopyWith<StoreExchangeHistoryForm> get copyWith;
@@ -154,9 +154,9 @@ class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(int page), {
-    @required Result query(int page, int perPage, String search),
+  TResult when<TResult extends Object>(
+    TResult $default(int page), {
+    @required TResult query(int page, int perPage, String search),
   }) {
     assert($default != null);
     assert(query != null);
@@ -165,10 +165,10 @@ class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(int page), {
-    Result query(int page, int perPage, String search),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(int page), {
+    TResult query(int page, int perPage, String search),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -179,9 +179,9 @@ class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    @required Result query(StoreExchangeHistoryQuery value),
+  TResult map<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    @required TResult query(StoreExchangeHistoryQuery value),
   }) {
     assert($default != null);
     assert(query != null);
@@ -190,10 +190,10 @@ class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    Result query(StoreExchangeHistoryQuery value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    TResult query(StoreExchangeHistoryQuery value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -292,9 +292,9 @@ class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(int page), {
-    @required Result query(int page, int perPage, String search),
+  TResult when<TResult extends Object>(
+    TResult $default(int page), {
+    @required TResult query(int page, int perPage, String search),
   }) {
     assert($default != null);
     assert(query != null);
@@ -303,10 +303,10 @@ class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(int page), {
-    Result query(int page, int perPage, String search),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(int page), {
+    TResult query(int page, int perPage, String search),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (query != null) {
@@ -317,9 +317,9 @@ class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    @required Result query(StoreExchangeHistoryQuery value),
+  TResult map<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    @required TResult query(StoreExchangeHistoryQuery value),
   }) {
     assert($default != null);
     assert(query != null);
@@ -328,10 +328,10 @@ class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(StoreExchangeHistoryInit value), {
-    Result query(StoreExchangeHistoryQuery value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(StoreExchangeHistoryInit value), {
+    TResult query(StoreExchangeHistoryQuery value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (query != null) {

@@ -105,7 +105,7 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
 
   String get iconUrl => '/images/index/logo/${site.toUpperCase()}.png';
 
-  String get imageUrl => '/images/index/nav_${site}_$category.png';
+  String get imageUrl => '/images/nav/nav_${site}_$category.png';
 
   String get gameUrl => '$site/$category/0';
 
@@ -128,5 +128,5 @@ extension GamePlatformEntityExtension on GamePlatformEntity {
     }
   }
 
-  bool isLongText(int limit) => label.countLength > limit;
+  bool isLongText(double limit) => label.countLength > limit;
 }

@@ -18,7 +18,7 @@ class ThemeDark implements ThemeColorInterface {
   /// Main color
   ///
   @override
-  Color defaultBackgroundColor = Color(0xff313131);
+  Color defaultBackgroundColor = Color(0xff200000);
 
   @override
   Color defaultLayeredBackgroundColor = Color(0xff313131);
@@ -39,10 +39,10 @@ class ThemeDark implements ThemeColorInterface {
   Color defaultDividerColor = Color(0xffa8a8a8);
 
   @override
-  Color defaultAppbarColor = Color(0xff222222);
+  Color defaultAppbarColor = Color(0xff540000);
 
   @override
-  Color navigationColor = Color(0xffb5b5b5);
+  Color navigationColor = Color(0xfff5f5f5);
 
   @override
   Color navigationColorFocus = Color(0xffe7c080);
@@ -72,7 +72,7 @@ class ThemeDark implements ThemeColorInterface {
   Color defaultGridTextColor = Color(0xfff0f0f0);
 
   @override
-  Color defaultCardColor = Color(0xff606060);
+  Color defaultCardColor = Color(0xff585858);
 
   @override
   Color defaultCardTitleColor = Color(0xff2a60ba);
@@ -99,10 +99,10 @@ class ThemeDark implements ThemeColorInterface {
   Color drawerIconSubColor = Color(0xffffffff);
 
   @override
-  Color sideMenuPrimaryColor = Color(0xff222222);
+  Color sideMenuPrimaryColor = Color(0xff200000);
 
   @override
-  Color sideMenuSecondaryColor = Color(0xff313131);
+  Color sideMenuSecondaryColor = Color(0xff460000);
 
   @override
   Color sideMenuButtonColor = Color(0xfff4daa3);
@@ -354,13 +354,13 @@ class ThemeDark implements ThemeColorInterface {
   Color chartBorderColor = Color(0xff6a6a6a);
 
   @override
-  Color chartPrimaryHeaderColor = Color(0xff2a8fbd);
+  Color chartPrimaryHeaderColor = Color(0xffffd89c);
 
   @override
-  Color chartPrimaryHeaderTextColor = Color(0xffffffff);
+  Color chartPrimaryHeaderTextColor = Color(0xff222222);
 
   @override
-  Color chartSecondaryHeaderColor = Color(0xff222222);
+  Color chartSecondaryHeaderColor = Color(0xff303030);
 
   @override
   Color chartBgColor = Color(0xff3a3a3a);
@@ -387,7 +387,7 @@ class ThemeDark implements ThemeColorInterface {
   /// Home page color
   ///
   @override
-  Color defaultMarqueeBarColor = Color(0xA0000000);
+  Color defaultMarqueeBarColor = Color(0xC0200000);
 
   @override
   Color defaultMarqueeTextColor = Color(0xfff0f0f0);
@@ -396,7 +396,7 @@ class ThemeDark implements ThemeColorInterface {
   Color homeFavoriteColor = Color(0xffffffff);
 
   @override
-  Color homeTabBgColor = Color(0x8a000000);
+  Color homeTabBgColor = Color(0xff801010);
 
   @override
   Color homeTabDividerColor = Color(0xffe7c080);
@@ -408,13 +408,13 @@ class ThemeDark implements ThemeColorInterface {
   Color homeTabIconBgColor = Color(0xffe7c080);
 
   @override
-  Color homeTabTextColor = Color(0xffb5b5b5);
+  Color homeTabTextColor = Color(0xfff0f0f0);
 
   @override
   Color homeTabSelectedTextColor = Color(0xffe7c080);
 
   @override
-  Color homeBoxBgColor = Color(0xff222222);
+  Color homeBoxBgColor = Color(0xff540000);
 
   @override
   Color homeBoxHintBgColor = Color(0xffe7c080);
@@ -435,7 +435,7 @@ class ThemeDark implements ThemeColorInterface {
   Color homeBoxIconBgColor = Color(0xffe7c080);
 
   @override
-  Color homeBoxIconTextColor = Color(0xffb5b5b5);
+  Color homeBoxIconTextColor = Color(0xfff5f5f5);
 
   @override
   Color homeBoxButtonTextColor = Color(0xffe7c080);

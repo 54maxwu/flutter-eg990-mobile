@@ -31,12 +31,6 @@ abstract class _FeatureScreenStore with Store {
       _loginStateController.sink.add(userStatus.loggedIn);
       if (userStatus.loggedIn) {
         getNewMessageCount();
-        getEvent();
-      } else {
-        _eventStore.showEventOnHome = false;
-        _eventStore.forceShowEvent = false;
-        _eventStore.hasSignedEvent = false;
-        _eventStore.signedTimes = null;
       }
     });
 
@@ -90,8 +84,6 @@ abstract class _FeatureScreenStore with Store {
 
   Future<void> getNewMessageCount() async =>
       await _eventStore.getNewMessageCount();
-
-  Future<void> getEvent() async => await _eventStore.getEvent();
 
   Future<void> getAds() async => await _eventStore.getAds();
 

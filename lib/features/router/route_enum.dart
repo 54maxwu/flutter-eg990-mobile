@@ -20,9 +20,6 @@ enum RouteEnum {
   DEALS,
   BETS,
   ROLLBACK,
-  AGENT,
-  AGENT_LOGIN,
-  AGENT_REGISTER,
 
   ///
   NOTICE,
@@ -36,22 +33,10 @@ enum RouteEnum {
   LINE_QR,
 
   ///
-  MORE,
-  ROUTE_CHANGE,
-  ROLLER,
-  TASK,
-  COLLECT,
-
-  ///
   LOGIN,
   REGISTER,
   PASSWORD,
   LOGOUT,
-
-  ///
-  TEMPLATE,
-  TEST_UI,
-  TEST,
 
   ///
   BACK_HOME,
@@ -97,12 +82,6 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleMemberBets;
       case RouteEnum.ROLLBACK:
         return localeStr.pageTitleMemberFlow;
-      case RouteEnum.AGENT:
-        return localeStr.pageTitleMemberAgent;
-      case RouteEnum.AGENT_LOGIN:
-        return localeStr.pageTitleMemberAgentLogin;
-      case RouteEnum.AGENT_REGISTER:
-        return localeStr.pageTitleMemberAgentRegister;
 
       /// Side
       case RouteEnum.NOTICE:
@@ -117,24 +96,14 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleVip;
       case RouteEnum.STORE:
         return localeStr.pageTitleStore;
-      case RouteEnum.ROLLER:
-        return localeStr.pageTitleRoller;
+      // case RouteEnum.ROLLER:
+      //   return localeStr.pageTitleRoller;
       case RouteEnum.SIGN:
         return localeStr.pageTitleSign;
       case RouteEnum.WEBSITE:
         return localeStr.gameCategoryWeb;
       case RouteEnum.LINE_QR:
         return 'LINE';
-
-      /// More
-      case RouteEnum.MORE:
-        return localeStr.pageTitleMore;
-      case RouteEnum.ROUTE_CHANGE:
-        return localeStr.pageTitleRouter;
-      case RouteEnum.TASK:
-        return localeStr.pageTitleTask;
-      case RouteEnum.COLLECT:
-        return localeStr.pageTitleCollect;
 
       /// User
       case RouteEnum.PASSWORD:
@@ -145,14 +114,6 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleRegister;
       case RouteEnum.LOGOUT:
         return localeStr.memberGridTitleLogout;
-
-      /// Tests
-      case RouteEnum.TEMPLATE:
-        return 'TEST MOBX';
-      case RouteEnum.TEST_UI:
-        return 'TEST UI';
-      case RouteEnum.TEST:
-        return 'TEST PAGE';
 
       /// Float Tools
       case RouteEnum.BACK_HOME:
@@ -193,8 +154,6 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.memberGridTitleDeal;
       case RouteEnum.ROLLBACK:
         return localeStr.memberGridTitleFlow;
-      case RouteEnum.AGENT:
-        return localeStr.memberGridTitleAgent;
       default:
         return null;
     }

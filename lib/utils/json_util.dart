@@ -66,6 +66,7 @@ class JsonUtil {
     dynamic data,
     Function(Map<String, dynamic> jsonMap) jsonToModel, {
     bool trim = true,
+    bool addIndexAsId = false,
     String tag = debugTag,
   }) {
     MyLogger.print(msg: 'start decoding array data to $T...', tag: tag);
@@ -84,7 +85,12 @@ class JsonUtil {
     // mapped decoded data to model data list
     final dataList = (list.isEmpty)
         ? new List<T>()
-        : list.map((model) => jsonToModel(model) as T).toList();
+        : list.map((map) {
+            if (addIndexAsId) {
+              map['id'] = list.indexOf(map);
+            }
+            return jsonToModel(map) as T;
+          }).toList();
 
     if (dataList.isEmpty && list.isNotEmpty) {
       MyLogger.error(
@@ -151,11 +157,13 @@ class JsonUtil {
     MyLogger.debug(
         msg: 'start decoding ${str.runtimeType} to model $T...', tag: tag);
     Map<String, dynamic> map;
-    if (str is Map == false) {
+    if (str is Map) {
+      map = str;
+    } else if (str is List) {
+      return jsonToModel({});
+    } else {
       var trimmed = (trim) ? trimJson(str) : str;
       map = jsonDecode(trimmed);
-    } else {
-      map = str;
     }
     // transfer decoded data to model data
     try {

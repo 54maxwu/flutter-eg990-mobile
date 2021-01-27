@@ -1,22 +1,23 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "BKK365 Mobile",
+  "title": "SKA888 Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "SKA888 Demo",
     "type": "text",
     "placeholders": {}
   },
+  "appVersion": "Phiên bản {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
+  },
   "pageTitleHome": "Trang Chủ",
   "@pageTitleHome": {
-    "type": "text"
-  },
-  "pageTitleMovieEG": "Rạp chiếu phim 1",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "Rạp chiếu phim 2",
-  "@pageTitleMovie": {
     "type": "text"
   },
   "pageTitleDownload": "Khu vực tải ứng dụng",
@@ -95,7 +96,7 @@
   "@pageTitleRegisterMember": {
     "type": "text"
   },
-  "pageTitleMemberTransfer": "Chuyển khoản nhanh",
+  "pageTitleMemberTransfer": "Chuyển khoản",
   "@pageTitleMemberTransfer": {
     "type": "text"
   },
@@ -171,7 +172,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "￥ {value}",
+  "toolBarMemberCredit": "VDK {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -196,6 +197,10 @@
   "@themeColorLight": {
     "type": "text"
   },
+  "urlActionNotSupported": "Không thể chuyển đến URL đích",
+  "@urlActionNotSupported": {
+    "type": "text"
+  },
   "workInProgress": "Sắp có!",
   "@workInProgress": {
     "type": "text"
@@ -214,6 +219,26 @@
   },
   "gameToolHintRestore": "Nhấp đúp để khôi phục màn hình",
   "@gameToolHintRestore": {
+    "type": "text"
+  },
+  "actionNotify": "Thông báo",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "Cài đặt",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "Tìm kiếm",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionHelp": "Hướng dẫn",
+  "@actionHelp": {
+    "type": "text"
+  },
+  "actionBack": "Quay lại",
+  "@actionBack": {
     "type": "text"
   },
   "btnMenu": "Thực đơn",
@@ -258,6 +283,10 @@
   },
   "btnConfirmSend": "Xác định",
   "@btnConfirmSend": {
+    "type": "text"
+  },
+  "btnOpenGame": "Bật",
+  "@btnOpenGame": {
     "type": "text"
   },
   "btnLogin": "Đăng nhập",
@@ -356,6 +385,10 @@
   "@hintActionSelect": {
     "type": "text"
   },
+  "hintActionSearchGame": "Vui lòng nhập tên trò chơi",
+  "@hintActionSearchGame": {
+    "type": "text"
+  },
   "hintActionLogin": "Vui lòng đăng nhập vào tài khoản trước",
   "@hintActionLogin": {
     "type": "text"
@@ -404,7 +437,7 @@
   "@hintPassword": {
     "type": "text"
   },
-  "hintConfirmed": "Độ dài từ 8 đến 18 ký tự",
+  "hintConfirmed": "Độ dài từ 8~20 ký tự",
   "@hintConfirmed": {
     "type": "text"
   },
@@ -548,12 +581,24 @@
   "@messageInvalidFormat": {
     "type": "text"
   },
+  "messageInvalidDate": "Nhầm cuộc hẹn",
+  "@messageInvalidDate": {
+    "type": "text"
+  },
   "messageInvalidName": "Định dạng tên không chính xác",
   "@messageInvalidName": {
     "type": "text"
   },
   "messageInvalidEmail": "Định dạng hộp thư không chính xác",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "Ngày sinh nhật sai",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "Số điện thoại trùng lặp",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "Lỗi định dạng điện thoại({num})",
@@ -573,6 +618,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Lỗi định dạng zalo",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "vui lòng nhập mã xác nhận",
   "@messageInvalidVerify": {
     "type": "text"
@@ -586,20 +635,44 @@
       }
     }
   },
-  "messageInvalidAccount": "Số tài khoản là 6 ~ 12 ký tự",
+  "messageInvalidAccount": "Số tài khoản là {min}~{max} chữ thường tiếng Anh / chữ số",
   "@messageInvalidAccount": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
   },
-  "messageInvalidPassword": "Mật khẩu dài 6 ~ 18 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài {min}~{max} ký tự",
   "@messageInvalidPassword": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
+  "messageInvalidPasswordNew": "Mật khẩu dài 8~20 ký tự",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
   "messageInvalidConfirmPassword": "Mật khẩu không hợp lệ",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "Mật khẩu không khớp, tài khoản sẽ bị khóa vì năm lỗi",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "Tài khoản bị khóa, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "Số tiền nhập không chính xác",
@@ -615,6 +688,10 @@
       }
     }
   },
+  "messageInvalidDepositAmountMax": "Vượt quá số tiền rút tối đa của một giao dịch (vui lòng tham khảo hệ thống cấp độ thành viên)",
+  "@messageInvalidDepositAmountMax": {
+    "type": "text"
+  },
   "messageInvalidDepositName": "Tên tài khoản không chính xác",
   "@messageInvalidDepositName": {
     "type": "text"
@@ -623,7 +700,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 16 ~ 19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là 6~19 ký tự",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -637,6 +714,10 @@
   },
   "messageInvalidWithdrawAmount": "Vượt quá số dư tài khoản",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "Dưới số tiền rút tối thiểu",
+  "@messageInvalidWithdrawUnderAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "Bạn đang sử dụng mạng di động",
@@ -753,8 +834,20 @@
   "@messageErrorAccount": {
     "type": "text"
   },
+  "messageErrorAccountIsLocked": "Tài khoản bị khóa, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "@messageErrorAccountIsLocked": {
+    "type": "text"
+  },
   "messageRepeatAccount": "Đăng ký tài khoản trùng lặp",
   "@messageRepeatAccount": {
+    "type": "text"
+  },
+  "messageErrorMobile": "Lỗi số điện thoại di động",
+  "@messageErrorMobile": {
+    "type": "text"
+  },
+  "messageRepeatMobile": "Đăng ký nhiều lần số điện thoại di động",
+  "@messageRepeatMobile": {
     "type": "text"
   },
   "messageErrorPassword": "sai mật khẩu",
@@ -763,6 +856,10 @@
   },
   "messageErrorPasswordHint": "Mật khẩu không khớp, tài khoản sẽ bị khóa sau 5 lỗi",
   "@messageErrorPasswordHint": {
+    "type": "text"
+  },
+  "messageErrorReferral": "Mã giới thiệu không hợp lệ",
+  "@messageErrorReferral": {
     "type": "text"
   },
   "messageErrorWithdraw": "Rút tiền không thành công",
@@ -834,20 +931,16 @@
   "@homeUserTabCategoryMovie": {
     "type": "text"
   },
-  "homeUserTabCategoryEgMovie": "Rạp chiếu phim EG",
-  "@homeUserTabCategoryEgMovie": {
-    "type": "text"
-  },
-  "homeUserTabCategoryNewMovie": "Rạp chiếu phim mới",
-  "@homeUserTabCategoryNewMovie": {
-    "type": "text"
-  },
   "homeUserTabCategoryRecommend": "giới thiệu",
   "@homeUserTabCategoryRecommend": {
     "type": "text"
   },
   "homeUserTabCategoryFavorite": "Yêu thích",
   "@homeUserTabCategoryFavorite": {
+    "type": "text"
+  },
+  "homeUserTabCategoryGames": "trò chơi",
+  "@homeUserTabCategoryGames": {
     "type": "text"
   },
   "gameCategoryCasino": "SÒNG BẠC",
@@ -1087,7 +1180,7 @@
   "@memberGridTitleDeposit": {
     "type": "text"
   },
-  "memberGridTitleTransfer": "Chuyển khoản nhanh",
+  "memberGridTitleTransfer": "Chuyển khoản",
   "@memberGridTitleTransfer": {
     "type": "text"
   },
@@ -1194,6 +1287,14 @@
         "example": "site2"
       }
     }
+  },
+  "bankcardViewTitleNew": "Thêm thẻ ngân hàng",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "Vui lòng liên kết thẻ ngân hàng để nhận thanh toán",
+  "@bankcardViewHintNew": {
+    "type": "text"
   },
   "bankcardViewTitleOwner": "Tên tài khoản",
   "@bankcardViewTitleOwner": {
@@ -1399,11 +1500,11 @@
   "@centerHintNoName": {
     "type": "text"
   },
-  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01 ~ 49",
+  "centerLuckyTitle": "Xin vui lòng trong 7 ô trống sau đây，Điền vào các số 01~49",
   "@centerLuckyTitle": {
     "type": "text"
   },
-  "centerLuckyNumberError": "Dải số: 01 ~ 49",
+  "centerLuckyNumberError": "Dải số: 01~49",
   "@centerLuckyNumberError": {
     "type": "text"
   },
@@ -1459,11 +1560,11 @@
   "@transactionHeaderType": {
     "type": "text"
   },
-  "transactionHeaderDesc": "Để ý",
+  "transactionHeaderDesc": "Mô tả",
   "@transactionHeaderDesc": {
     "type": "text"
   },
-  "transactionHeaderAmount": "Số tiền",
+  "transactionHeaderAmount": "tiền",
   "@transactionHeaderAmount": {
     "type": "text"
   },
@@ -1491,7 +1592,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Tổng cộng: ￥ {value}",
+  "betsTextTotal": "Tổng cộng: VDK {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1500,7 +1601,7 @@
       }
     }
   },
-  "betsHeaderDate": "thời gian",
+  "betsHeaderDate": "Thời gian",
   "@betsHeaderDate": {
     "type": "text"
   },
@@ -1512,7 +1613,7 @@
   "@betsHeaderPlatform": {
     "type": "text"
   },
-  "betsHeaderGame": "Tên trò chơi",
+  "betsHeaderGame": "Tên TRÒ CHƠI",
   "@betsHeaderGame": {
     "type": "text"
   },
@@ -1592,6 +1693,14 @@
   "@dealsHeaderAmount": {
     "type": "text"
   },
+  "dealsDetailTypeAdjustDeposit": "Số tiền điều chỉnh",
+  "@dealsDetailTypeAdjustDeposit": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustWithdraw": "Điều chỉnh việc rút tiền",
+  "@dealsDetailTypeAdjustWithdraw": {
+    "type": "text"
+  },
   "depositPaymentNoData": "Kiểm tra xem không có phương thức nạp tiền nào",
   "@depositPaymentNoData": {
     "type": "text"
@@ -1630,6 +1739,10 @@
   },
   "depositPaymentTitleAtm": "Chuyển khoản ngân hàng trực tuyến",
   "@depositPaymentTitleAtm": {
+    "type": "text"
+  },
+  "depositPaymentTitleQr": "Mã quét QR",
+  "@depositPaymentTitleQr": {
     "type": "text"
   },
   "depositPaymentSpinnerTitlePromo": "Chọn ưu đãi",
@@ -2026,44 +2139,56 @@
   "@balanceHintText4": {
     "type": "text"
   },
-  "flowHeaderTextTime": "Khoảng thời gian",
-  "@flowHeaderTextTime": {
+  "rollbackHeaderTextTime": "Khoảng thời gian",
+  "@rollbackHeaderTextTime": {
     "type": "text"
   },
-  "flowHeaderTextCode": "Mã giao dịch",
-  "@flowHeaderTextCode": {
+  "rollbackHeaderTextCode": "Mã giao dịch",
+  "@rollbackHeaderTextCode": {
     "type": "text"
   },
-  "flowHeaderTextType": "Loại hình",
-  "@flowHeaderTextType": {
+  "rollbackHeaderTextType": "Loại hình",
+  "@rollbackHeaderTextType": {
     "type": "text"
   },
-  "flowHeaderTextAmount": "Số tiền",
-  "@flowHeaderTextAmount": {
+  "rollbackHeaderTextAmount": "Số tiền",
+  "@rollbackHeaderTextAmount": {
     "type": "text"
   },
-  "flowHeaderTextMultiple": "Yêu cầu vòng cược",
-  "@flowHeaderTextMultiple": {
+  "rollbackHeaderTextMultiple": "Yêu cầu vòng cược",
+  "@rollbackHeaderTextMultiple": {
     "type": "text"
   },
-  "flowHeaderTextPromo": "Tên ưu đãi",
-  "@flowHeaderTextPromo": {
+  "rollbackHeaderTextPromo": "Tên ưu đãi",
+  "@rollbackHeaderTextPromo": {
     "type": "text"
   },
-  "flowHeaderTextRequire": "Doanh thu yêu cầu",
-  "@flowHeaderTextRequire": {
+  "rollbackHeaderTextRequire": "Doanh thu yêu cầu",
+  "@rollbackHeaderTextRequire": {
     "type": "text"
   },
-  "flowHeaderTextCurrent": "Tổng cược",
-  "@flowHeaderTextCurrent": {
+  "rollbackHeaderTextCurrent": "Tổng cược",
+  "@rollbackHeaderTextCurrent": {
     "type": "text"
   },
-  "flowHeaderTextNeed": "Tổng cược hợp lệ",
-  "@flowHeaderTextNeed": {
+  "rollbackHeaderTextNeed": "Tổng cược hợp lệ",
+  "@rollbackHeaderTextNeed": {
     "type": "text"
   },
-  "flowHeaderTextTotal": "Tổng cộng",
-  "@flowHeaderTextTotal": {
+  "rollbackHeaderTextTotal": "Tổng cộng",
+  "@rollbackHeaderTextTotal": {
+    "type": "text"
+  },
+  "rollbackIndexPromo": "Giảm giá",
+  "@rollbackIndexPromo": {
+    "type": "text"
+  },
+  "rollbackIndexDeposit": "tiền gửi",
+  "@rollbackIndexDeposit": {
+    "type": "text"
+  },
+  "rollbackIndexRollback": "退水",
+  "@rollbackIndexRollback": {
     "type": "text"
   },
   "agentActionLoginHint": "Đăng nhập đại lý",
@@ -2874,6 +2999,30 @@
   },
   "serviceTitleFacebook": "Facebook",
   "@serviceTitleFacebook": {
+    "type": "text"
+  },
+  "downloadAndroidCgpay": "CGPAY cho Android",
+  "@downloadAndroidCgpay": {
+    "type": "text"
+  },
+  "downloadIosCgpay": "CGPAY cho IOS",
+  "@downloadIosCgpay": {
+    "type": "text"
+  },
+  "downloadAndroidDns": "Sửa chữa DNS cho Android",
+  "@downloadAndroidDns": {
+    "type": "text"
+  },
+  "downloadIosDns": "Sửa chữa DNS cho IOS",
+  "@downloadIosDns": {
+    "type": "text"
+  },
+  "downloadHintPlatformAndroid": "(Chỉ dành cho Android)",
+  "@downloadHintPlatformAndroid": {
+    "type": "text"
+  },
+  "downloadHintPlatformIos": "(Chỉ dành cho iOS)",
+  "@downloadHintPlatformIos": {
     "type": "text"
   }
 }

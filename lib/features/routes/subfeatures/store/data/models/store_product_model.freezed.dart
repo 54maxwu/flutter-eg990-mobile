@@ -19,7 +19,7 @@ class _$StoreProductModelTearOff {
       @JsonKey(name: 'productname', defaultValue: '?') String productName,
       num point,
       @JsonKey(name: 'sequence') int remain,
-      int pic,
+      String pic,
       @JsonKey(name: 'new') String isNew}) {
     return _StoreProductModel(
       productId: productId,
@@ -45,7 +45,7 @@ mixin _$StoreProductModel {
   num get point;
   @JsonKey(name: 'sequence')
   int get remain;
-  int get pic;
+  String get pic;
   @JsonKey(name: 'new')
   String get isNew;
 
@@ -62,7 +62,7 @@ abstract class $StoreProductModelCopyWith<$Res> {
       @JsonKey(name: 'productname', defaultValue: '?') String productName,
       num point,
       @JsonKey(name: 'sequence') int remain,
-      int pic,
+      String pic,
       @JsonKey(name: 'new') String isNew});
 }
 
@@ -90,7 +90,7 @@ class _$StoreProductModelCopyWithImpl<$Res>
           productName == freezed ? _value.productName : productName as String,
       point: point == freezed ? _value.point : point as num,
       remain: remain == freezed ? _value.remain : remain as int,
-      pic: pic == freezed ? _value.pic : pic as int,
+      pic: pic == freezed ? _value.pic : pic as String,
       isNew: isNew == freezed ? _value.isNew : isNew as String,
     ));
   }
@@ -108,7 +108,7 @@ abstract class _$StoreProductModelCopyWith<$Res>
       @JsonKey(name: 'productname', defaultValue: '?') String productName,
       num point,
       @JsonKey(name: 'sequence') int remain,
-      int pic,
+      String pic,
       @JsonKey(name: 'new') String isNew});
 }
 
@@ -138,7 +138,7 @@ class __$StoreProductModelCopyWithImpl<$Res>
           productName == freezed ? _value.productName : productName as String,
       point: point == freezed ? _value.point : point as num,
       remain: remain == freezed ? _value.remain : remain as int,
-      pic: pic == freezed ? _value.pic : pic as int,
+      pic: pic == freezed ? _value.pic : pic as String,
       isNew: isNew == freezed ? _value.isNew : isNew as String,
     ));
   }
@@ -166,7 +166,7 @@ class _$_StoreProductModel implements _StoreProductModel {
   @JsonKey(name: 'sequence')
   final int remain;
   @override
-  final int pic;
+  final String pic;
   @override
   @JsonKey(name: 'new')
   final String isNew;
@@ -217,7 +217,7 @@ abstract class _StoreProductModel implements StoreProductModel {
       @JsonKey(name: 'productname', defaultValue: '?') String productName,
       num point,
       @JsonKey(name: 'sequence') int remain,
-      int pic,
+      String pic,
       @JsonKey(name: 'new') String isNew}) = _$_StoreProductModel;
 
   @override
@@ -232,7 +232,7 @@ abstract class _StoreProductModel implements StoreProductModel {
   @JsonKey(name: 'sequence')
   int get remain;
   @override
-  int get pic;
+  String get pic;
   @override
   @JsonKey(name: 'new')
   String get isNew;

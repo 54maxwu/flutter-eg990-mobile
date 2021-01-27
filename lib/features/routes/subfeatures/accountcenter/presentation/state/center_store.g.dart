@@ -99,20 +99,6 @@ mixin _$CenterStore on _CenterStore, Store {
     return _$getAccountAsyncAction.run(() => super.getAccount());
   }
 
-  final _$getCgpUrlAsyncAction = AsyncAction('_CenterStore.getCgpUrl');
-
-  @override
-  Future<void> getCgpUrl() {
-    return _$getCgpUrlAsyncAction.run(() => super.getCgpUrl());
-  }
-
-  final _$getCpwUrlAsyncAction = AsyncAction('_CenterStore.getCpwUrl');
-
-  @override
-  Future<void> getCpwUrl() {
-    return _$getCpwUrlAsyncAction.run(() => super.getCpwUrl());
-  }
-
   final _$initLoginDataBoxAsyncAction =
       AsyncAction('_CenterStore.initLoginDataBox');
 

@@ -1,13 +1,13 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item_new.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/widgets/member_grid_item_widget_new_badge.dart';
 import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
 
-import '../data/member_grid_item_v2.dart';
 import '../state/member_credit_store.dart';
 import 'member_display_header.dart';
-import 'member_grid_item_widget_v2.dart';
-import 'member_grid_item_widget_v2_badge.dart';
+import 'member_grid_item_widget_new.dart';
 
 class MemberDisplay extends StatefulWidget {
   final MemberCreditStore store;
@@ -22,37 +22,32 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
   final GlobalKey<MemberDisplayHeaderState> headerKey =
       new GlobalKey<MemberDisplayHeaderState>(debugLabel: 'header');
-  final int _itemPerRow = 3;
-  final double _itemSpace = 4.0;
-  final double _iconSize = 32 * Global.device.widthScale;
+  final double _gridExtent = 160.0;
+  final double _gridItemSpace = 8.0;
 
   double headerMaxHeight;
   double headerMinHeight = 160;
 
-  double _gridRatio;
-  double _gridItemTextSize;
-  double _gridItemTextHeight;
-
-  static final List<MemberGridItemV2> gridItems = [
-    MemberGridItemV2.deposit,
-    MemberGridItemV2.transfer,
-    MemberGridItemV2.bankcard,
-    MemberGridItemV2.withdraw,
-    MemberGridItemV2.balance,
-    MemberGridItemV2.wallet,
-    MemberGridItemV2.stationMessages,
-    MemberGridItemV2.accountCenter,
-    MemberGridItemV2.transferRecord,
-    MemberGridItemV2.betRecord,
-    MemberGridItemV2.dealRecord,
-    MemberGridItemV2.flowRecord,
-    MemberGridItemV2.logout,
+  static final List<MemberGridItemNew> _gridItems = [
+    MemberGridItemNew.deposit,
+    MemberGridItemNew.transfer,
+    MemberGridItemNew.bankcard,
+    MemberGridItemNew.withdraw,
+    MemberGridItemNew.balance,
+    MemberGridItemNew.wallet,
+    MemberGridItemNew.stationMessages,
+    MemberGridItemNew.accountCenter,
+    MemberGridItemNew.transferRecord,
+    MemberGridItemNew.betRecord,
+    MemberGridItemNew.dealRecord,
+    MemberGridItemNew.rollbacks,
+    MemberGridItemNew.logout,
   ];
 
-  void _itemTapped(MemberGridItemV2 item) {
+  void _itemTapped(MemberGridItemNew item) {
     debugPrint('item tapped: $item');
-    if (item == MemberGridItemV2.logout) {
-      getAppGlobalStreams.logout();
+    if (item == MemberGridItemNew.logout) {
+      getAppGlobalStreams.logout(navToLogin: true);
     } else if (item.value.route != null) {
       AppNavigator.navigateTo(item.value.route);
     } else {
@@ -66,15 +61,6 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
     debugPrint('header height, max: $headerMaxHeight, min: $headerMinHeight');
     if (headerMaxHeight > 200) headerMaxHeight = 200;
     if (headerMaxHeight < headerMinHeight) headerMaxHeight = headerMinHeight;
-
-    _gridItemTextSize = FontSize.SUBTITLE.value - 1;
-    _gridItemTextHeight = _gridItemTextSize * 2.5;
-
-    double gridItemWidth =
-        ((Global.device.width - 32) - _itemSpace * (_itemPerRow + 2) - 12) /
-            _itemPerRow;
-    _gridRatio = gridItemWidth / (_iconSize + _gridItemTextHeight + 20.0);
-    debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
   }
 
@@ -168,32 +154,31 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
         /* Features Grid */
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 2.0),
-            child: GridView.count(
-              physics: BouncingScrollPhysics(),
-              crossAxisCount: _itemPerRow,
-              mainAxisSpacing: _itemSpace,
-              crossAxisSpacing: _itemSpace,
+            padding: const EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 12.0),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: _gridExtent,
+                mainAxisSpacing: _gridItemSpace,
+                crossAxisSpacing: _gridItemSpace,
+              ),
+              physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
-              children: gridItems
-                  .map((item) => (item.value.id == RouteEnum.MESSAGE)
-                      ? MemberGridItemWidgetV2Badge(
-                          item: item,
-                          iconSize: _iconSize,
-                          textSize: _gridItemTextSize,
-                          textHeight: _gridItemTextHeight,
-                          store: widget.store,
-                          type: MemberGridItemV2BadgeType.NEW_MESSAGE,
-                          onItemTap: (value) => _itemTapped(value),
-                        )
-                      : MemberGridItemWidgetV2(
-                          item: item,
-                          iconSize: _iconSize,
-                          textSize: _gridItemTextSize,
-                          textHeight: _gridItemTextHeight,
-                          onItemTap: (value) => _itemTapped(value),
-                        ))
-                  .toList(),
+              itemCount: _gridItems.length,
+              // itemCount: _gridItems.length,
+              itemBuilder: (_, index) {
+                if (_gridItems[index].value.id == RouteEnum.MESSAGE) {
+                  return MemberGridItemWidgetNewBadge(
+                    item: _gridItems[index],
+                    onItemTap: (value) => _itemTapped(value),
+                    store: widget.store,
+                  );
+                } else {
+                  return MemberGridItemWidgetNew(
+                    item: _gridItems[index],
+                    onItemTap: (value) => _itemTapped(value),
+                  );
+                }
+              },
             ),
           ),
         ),

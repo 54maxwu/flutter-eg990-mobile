@@ -17,11 +17,11 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
     iconData: IconCode.navDeposit,
     route: RoutePage.depositFeature,
   ));
-  static ScreenNavigationBarItem promo =
-      ScreenNavigationBarItem.define(RouteListItem(
-    iconData: IconCode.navPromo,
-    route: RoutePage.promo,
-  ));
+  // static ScreenNavigationBarItem promo =
+  //     ScreenNavigationBarItem.define(RouteListItem(
+  //   iconData: IconCode.navPromo,
+  //   route: RoutePage.promo,
+  // ));
   static ScreenNavigationBarItem service =
       ScreenNavigationBarItem.define(RouteListItem(
     iconData: IconCode.navService,
@@ -32,16 +32,16 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
     iconData: IconCode.navMember,
     route: RoutePage.member,
   ));
-  static ScreenNavigationBarItem more =
-      ScreenNavigationBarItem.define(RouteListItem(
-    routeId: RouteEnum.MORE,
-    iconData: IconCode.navMore,
-  ));
-  static ScreenNavigationBarItem agent =
-      ScreenNavigationBarItem.define(RouteListItem(
-    iconData: IconCode.navAgent,
-    route: RoutePage.agentOld,
-  ));
+  // static ScreenNavigationBarItem more =
+  //     ScreenNavigationBarItem.define(RouteListItem(
+  //   routeId: RouteEnum.MORE,
+  //   iconData: IconCode.navMore,
+  // ));
+  // static ScreenNavigationBarItem agent =
+  //     ScreenNavigationBarItem.define(RouteListItem(
+  //   iconData: IconCode.navAgent,
+  //   route: RoutePage.agent,
+  // ));
 
   /// Used for defining cases
   const ScreenNavigationBarItem.define(RouteListItem fromValue)

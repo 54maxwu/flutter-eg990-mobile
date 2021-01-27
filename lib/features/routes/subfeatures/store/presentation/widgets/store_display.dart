@@ -27,7 +27,10 @@ class _StoreDisplayState extends State<StoreDisplay> {
     debugPrint('store banner height: $imageHeight');
 
     availableHeight = Global.device.featureContentHeight - 4.0;
-    contentHeight = availableHeight - imageHeight;
+    contentHeight =
+        (widget.store.banners != null && widget.store.banners.isNotEmpty)
+            ? availableHeight - imageHeight
+            : availableHeight;
     debugPrint('store content height: $contentHeight');
     super.initState();
   }
@@ -36,15 +39,16 @@ class _StoreDisplayState extends State<StoreDisplay> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: Global.device.width,
-            maxWidth: Global.device.width,
-            minHeight: imageHeight,
-            maxHeight: imageHeight,
+        if (widget.store.banners != null && widget.store.banners.isNotEmpty)
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: Global.device.width,
+              maxWidth: Global.device.width,
+              minHeight: imageHeight,
+              maxHeight: imageHeight,
+            ),
+            child: StoreDisplayBanner(images: widget.store.banners),
           ),
-          child: StoreDisplayBanner(images: widget.store.banners),
-        ),
         ConstrainedBox(
           constraints: BoxConstraints(
             minWidth: Global.device.width,

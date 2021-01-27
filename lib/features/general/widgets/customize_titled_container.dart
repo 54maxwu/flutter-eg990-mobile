@@ -111,7 +111,9 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
     // update text max lines
     _currentPrefixMaxLines = (widget.prefixTextMaxLines != null)
         ? widget.prefixTextMaxLines
-        : (Global.lang == 'zh') ? 1 : 2;
+        : (Global.localeCode == 'zh')
+            ? 1
+            : 2;
 
     if (widget.debug) {
       debugPrint('screen width: ${Global.device.width}');
@@ -213,21 +215,22 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing,
-                    letterSpacing:
-                        (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
+                    letterSpacing: (Global.localeCode == 'zh')
+                        ? widget.titleLetterSpacing
+                        : 0,
                     color: _prefixColor,
                   ),
                   children: [
+                    TextSpan(text: widget.prefixText),
                     if (widget.requiredInput)
                       TextSpan(
-                        text: ' *',
+                        text: '*',
                         style: TextStyle(
                           fontSize:
                               widget.prefixTextSize ?? FontSize.NORMAL.value,
                           color: themeColor.hintHighlightRed,
                         ),
                       ),
-                    TextSpan(text: widget.prefixText),
                   ],
                 ),
               ),
@@ -248,19 +251,19 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
                 letterSpacing:
-                    (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
+                    (Global.localeCode == 'zh') ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [
+                TextSpan(text: widget.prefixText),
                 if (widget.requiredInput)
                   TextSpan(
-                    text: ' *',
+                    text: '*',
                     style: TextStyle(
                       fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                       color: themeColor.hintHighlightRed,
                     ),
                   ),
-                TextSpan(text: widget.prefixText),
               ],
             ),
           ),

@@ -2,9 +2,9 @@ import 'dart:async' show StreamController;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/features/router/route_enum.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
@@ -41,21 +41,25 @@ class AppNavigator {
 
   static Stream<RouteInfo> get routeStream => _routeInfo.stream;
 
+  static callCheckUser() => routerStreams.setCheck(true);
+
+  static resetCheckUser() => routerStreams.setCheck(false);
+
   static dispose() {
     MyLogger.warn(msg: 'disposing router stream!!', tag: _tag);
     _routeInfo.close();
   }
 
   static ExtendedNavigatorState get screenNavigate =>
-      ExtendedNavigator.named(SCREEN_NAV_NAME);
+      ExtendedNavigator.named('MainStartupRouter');
 
   static ExtendedNavigatorState get featureNavigate =>
-      ExtendedNavigator.named(FEATURE_NAV_NAME);
+      ExtendedNavigator.named('FeatureScreenRouter');
 
   static ExtendedNavigatorState get testNavigate =>
-      ExtendedNavigator.named(TEST_NAV_NAME);
+      ExtendedNavigator.named('TestRouter');
 
-  static switchScreen(Screens screen, {Object webUrl}) {
+  static switchScreen(Screens screen, {Object webUrl, bool force = false}) {
     try {
       switch (screen) {
         case Screens.Game:
@@ -63,46 +67,54 @@ class AppNavigator {
           OrientationHelper.disabledSystemUIOverlays();
           screenIndex = 1;
           break;
-        case Screens.Test:
-          screenNavigate.pushTestScreen();
-          screenIndex = 2;
-          break;
-        case Screens.TestNav:
-          screenNavigate.pushTestNestedNavScreen();
-          screenIndex = 2;
-          break;
         default:
-          if (screenIndex == 0) {
-            if (screenNavigate.canPop()) {
-              screenNavigate.popUntil((route) {
-                debugPrint('popping to feature screen: $route');
-                return false;
-              });
-            } else {
-              featureNavigate.pushFeatureScreen();
-            }
+          if (screenIndex == 0 && screenNavigate.canPop()) {
+            screenNavigate.popUntil((route) {
+              debugPrint('popping to feature screen: $route');
+              return false;
+            });
           } else {
-            screenNavigate.replace(MainStartupRoutes.featureScreen);
+            if (force) {
+              screenNavigate.popUntilRoot();
+              screenNavigate.replace(MainStartupRoutes.featureScreen);
+            } else {
+              screenNavigate.popUntilPath(homeName);
+            }
             screenIndex = 0;
           }
           break;
       }
+    } catch (e, s) {
+      debugPrint('stack trace: $s');
+      if (force) {
+        MyLogger.error(
+            msg:
+                'force switch screen has exception, restarting app!! ERROR: $e',
+            tag: _tag);
+        // restart app
+        Future.delayed(Duration(milliseconds: 200), () {
+          if (Global.device.isIos) {
+            callToastError(
+                'Encountered a fatal error!! Please restart your app manually');
+          } else {
+            callToastError('Encountered a fatal error, restarting in 2s...');
+            Future.delayed(
+                Duration(milliseconds: 2000), () => PlatformUtil.restart());
+          }
+        });
+      } else {
+        MyLogger.error(
+            msg:
+                'switch screen has exception, resetting home screen!! ERROR: $e',
+            tag: _tag);
+        // reset nested navigator by replace home screen with a new one
+        switchScreen(Screens.Feature, force: true);
+      }
+    } finally {
       if (screenIndex != 1) {
         debugPrint('restoring screen orientation...');
         OrientationHelper.restoreUI();
       }
-    } catch (e, s) {
-      MyLogger.error(
-          msg:
-              'force screen to switch has exception, restarting app!! ERROR: $e',
-          tag: _tag);
-      debugPrint('stack trace: $s');
-      // restart app
-      Future.delayed(Duration(milliseconds: 200), () {
-        callToastError('Encountered a fatal error, restarting in 2s...');
-        Future.delayed(
-            Duration(milliseconds: 2000), () => PlatformUtil.restart());
-      });
     }
   }
 
@@ -134,9 +146,7 @@ class AppNavigator {
         featureNavigate.push(page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
             arguments: arguments);
       }
-
-      _setPath(page, parent: (_isWeb) ? page.pageRoot : _current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(page, parent: (_isWeb) ? page.pageRoot : _current);
     } catch (e) {
       MyLogger.error(
           msg: 'navigate to ${page.pageName} has exception!! Error: $e',
@@ -145,7 +155,9 @@ class AppNavigator {
 
       // retry navigate
       returnToHome(force: true);
-      navigateTo(page, arg: arg ?? page.value.routeArg);
+      if (featureNavigate != null) {
+        navigateTo(page, arg: arg ?? page.value.routeArg);
+      }
     }
   }
 
@@ -158,8 +170,15 @@ class AppNavigator {
           tag: _tag);
       return;
     }
-    // if root is not home, then push the page
-    if (_previous != homeName) {
+    // if current route is home, then push the page
+    if (_current == homeName) {
+      debugPrint('cannot replace home route, switch to navigate...');
+      navigateTo(page, arg: arg);
+      return;
+    }
+    // if the page does not have the same parent, then push the page
+    if (_previous != page.pageRoot) {
+      debugPrint('route does not have the same parent, switch to navigate...');
       navigateTo(page, arg: arg);
       return;
     }
@@ -179,12 +198,13 @@ class AppNavigator {
             arguments: arguments);
       }
 
-      _setPath(page,
-          parent:
-              (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
-                  ? page.pageRoot
-                  : current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(
+        page,
+        parent:
+            (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
+                ? page.pageRoot
+                : current,
+      );
     } catch (e) {
       MyLogger.error(
           msg: 'replace $current to ${page.pageId} has exception!! Error: $e',
@@ -193,7 +213,9 @@ class AppNavigator {
 
       // retry navigate
       returnToHome(force: true);
-      navigateTo(page, arg: arg ?? page.value.routeArg);
+      if (featureNavigate != null) {
+        navigateTo(page, arg: arg ?? page.value.routeArg);
+      }
     }
   }
 
@@ -217,8 +239,7 @@ class AppNavigator {
         if (dest != null) {
           debugPrint('popping route until: ${dest.pageName}');
           featureNavigate.popUntilPath(dest.pageName);
-          _setPath(dest);
-          _streamRouteInfo(dest.value);
+          updateNavigateRoute(dest);
         } else {
           MyLogger.warn(msg: 'destination error, returning home', tag: _tag);
           returnToHome();
@@ -237,24 +258,28 @@ class AppNavigator {
     debugPrint('returning to home, from: $_current');
     try {
       if (force && _current == homeName) {
-        screenNavigate.pushFeatureScreen();
-      } else if (_current != homeName) {
-        featureNavigate.pushHomeRoute();
+        switchScreen(Screens.Feature);
+      } else {
+        featureNavigate.popUntilPath(homeName);
+        // featureNavigate.popUntilRoot();
+        // featureNavigate.replace(homeName);
       }
       callCheckUser();
     } catch (e) {
       MyLogger.error(msg: 'navigate home has exception!! Error: $e', tag: _tag);
+      switchScreen(Screens.Feature);
     }
     _isWeb = false;
 
     final dest = RoutePage.home;
-    _setPath(dest);
-    _streamRouteInfo(dest.value);
+    updateNavigateRoute(dest);
   }
 
-  static callCheckUser() => routerStreams.setCheck(true);
-
-  static resetCheckUser() => routerStreams.setCheck(false);
+  static updateNavigateRoute(RoutePage page,
+      {String parent, bool updateParent = true}) {
+    _setPath(page, parent: (updateParent) ? parent : _previous);
+    _streamRouteInfo(page.value);
+  }
 
   static _streamRouteInfo(RouteInfo pageInfo) => _routeInfo.sink.add(pageInfo);
 
@@ -264,12 +289,12 @@ class AppNavigator {
     }
     _previous = parent ?? route.pageRoot;
     _current = route.pageName;
-    debugPrint('update navigate path, current:$_current, previous: $_previous');
+    debugPrint(
+        'update navigate path, current: $_current, previous: $_previous');
   }
 
   static testNavigateTo(RoutePage page) {
     debugPrint('test navigate...page: ${page.value}');
-    _setPath(page);
-    _streamRouteInfo(page.value);
+    updateNavigateRoute(page);
   }
 }

@@ -100,6 +100,6 @@ extension RegexExtension on String {
         en += 1;
     }
 //    debugPrint('$this -> ch=$ch, en=$en');
-    return ch + (en / 2).ceil();
+    return ch + (en * 0.45).ceil();
   }
 }

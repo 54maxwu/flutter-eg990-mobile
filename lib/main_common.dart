@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_eg990_mobile/core/internal/language_code.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/main_app_with_firebase.dart';
 import 'package:hive/hive.dart';
@@ -17,8 +18,7 @@ import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
 import 'injection_container.dart' as di;
-
-FirebaseAnalytics _analytics;
+import 'ga_interface.dart';
 
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
@@ -80,30 +80,38 @@ Future<void> mainCommon(Environment env) async {
   try {
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      Global.setLanguage =
-          box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
+      if (Global.lockLanguage == false) {
+        // set language as user preference
+        Global.setLocale = box.get(
+          Global.CACHE_APP_DATA_KEY_LANG,
+          defaultValue: defaultLocale.value.code,
+        );
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.localeCode) {
+        // override language if language is locked and different as default
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
+      }
     } else {
-      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
     }
   } catch (e) {
     debugPrint('read app language setting has error!! $e');
   } finally {
-    debugPrint('app language: ${Global.lang}');
+    debugPrint('app language: ${Global.localeCode}');
   }
 
   // hide keyboard and wait for 500ms to get the correct viewInset
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
-  // Google Firebase
   if (Global.addAnalytics) {
-    _analytics = FirebaseAnalytics();
+    final FirebaseAnalytics _analytics = FirebaseAnalytics();
+    GaInterface.setAnalytics = _analytics;
+    // run application with Firebase
+    runApp(new MainAppWithFirebase(analytics: _analytics));
+  } else {
+    // run application
+    runApp(new MainApp());
   }
-
-  // run application
-  runApp((_analytics != null)
-      ? new MainAppWithFirebase(analytics: _analytics)
-      : new MainApp());
 }
 
 void _setupLogging() {

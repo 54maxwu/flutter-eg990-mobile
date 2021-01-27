@@ -18,6 +18,8 @@ class _RegisterRouteState extends State<RegisterRoute> {
   RegisterStore _store;
   List<ReactionDisposer> _disposers;
 
+  CancelFunc _toastDismiss;
+
   @override
   void initState() {
     _store ??= sl.get<RegisterStore>();
@@ -39,14 +41,53 @@ class _RegisterRouteState extends State<RegisterRoute> {
           }
         },
       ),
+      /* Reaction on register action */
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.waitForRegister,
+        // Run some logic with the content of the observed field
+        (bool wait) {
+          debugPrint('reaction on wait register: $wait');
+          if (wait) {
+            _toastDismiss = callToastLoading();
+          } else if (_toastDismiss != null) {
+            _toastDismiss();
+            _toastDismiss = null;
+          }
+        },
+      ),
+      /* Reaction on register result changed */
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.registerResult,
+        // Run some logic with the content of the observed field
+        (result) {
+          debugPrint('reaction on register result: $result');
+          if (result == null) return;
+          if (result.isSuccess) {
+            callToastInfo(
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.REGISTER),
+                icon: Icons.check_circle_outline);
+          } else {
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.REGISTER));
+          }
+        },
+      ),
     ];
   }
 
   @override
   void dispose() {
     try {
-      _store.closeStreams();
+      if (_toastDismiss != null) {
+        _toastDismiss();
+        _toastDismiss = null;
+      }
       _disposers.forEach((d) => d());
+      _store.closeStreams();
     } on Exception {}
     super.dispose();
   }

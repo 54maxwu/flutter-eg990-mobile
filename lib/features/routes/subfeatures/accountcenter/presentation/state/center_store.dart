@@ -23,6 +23,7 @@ enum CenterStoreAction {
   birth,
   email,
   wechat,
+  zalo,
   lucky,
   verify_request,
   verify,
@@ -69,9 +70,6 @@ abstract class _CenterStore with Store {
   CenterAccountEntity accountEntity;
   List<int> accountLotto;
   CenterVipEntity accountVip;
-
-  List<String> cgpUrl;
-  List<String> cpwUrl;
 
   Stream<CenterAccountEntity> get accountStream => _accountController.stream;
 
@@ -134,8 +132,6 @@ abstract class _CenterStore with Store {
             _errorState = true;
           },
           (model) {
-            if (model.cgpWallet.isEmpty && cgpUrl == null) getCgpUrl();
-            if (model.cpwWallet.isEmpty && cpwUrl == null) getCpwUrl();
             _accountController.sink.add(model.wrapAccountData);
 //            _lottoController.sink.add(model.getLottoList);
             _vipController.sink.add(model.wrapVipData);
@@ -146,56 +142,6 @@ abstract class _CenterStore with Store {
     } on Exception {
       _errorState = true;
       setErrorMsg(code: 1);
-    }
-  }
-
-  @action
-  Future<void> getCgpUrl() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getCgpBindUrl().then((result) {
-//        debugPrint('cpg url result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (list) {
-            if (list.isEmpty) {
-              errorMessage = '${localeStr.messageErrorBindUrl('CGP')}';
-              _accountController.sink
-                  .add(accountEntity.copyWith(cgpWallet: '-1'));
-            }
-            cgpUrl = list;
-          },
-        );
-      });
-    } on Exception {
-      cgpUrl = [];
-    }
-  }
-
-  @action
-  Future<void> getCpwUrl() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _repository.getCpwBindUrl().then((result) {
-//        debugPrint('cpw url result: $result');
-        result.fold(
-          (failure) => setErrorMsg(msg: failure.message, showOnce: true),
-          (list) {
-            if (list.isEmpty) {
-              errorMessage = '${localeStr.messageErrorBindUrl('CPW')}';
-              _accountController.sink
-                  .add(accountEntity.copyWith(cpwWallet: '-1'));
-            }
-            cpwUrl = list;
-          },
-        );
-      });
-    } on Exception {
-      cpwUrl = [];
     }
   }
 
@@ -274,6 +220,15 @@ abstract class _CenterStore with Store {
       _repository.postWechat,
       () =>
           _accountController.sink.add(accountEntity.copyWith(wechat: wechatno)),
+    );
+  }
+
+  void bindZalo(String zalo) {
+    _postStringData(
+      zalo,
+      CenterStoreAction.zalo,
+      _repository.postZalo,
+      () => _accountController.sink.add(accountEntity.copyWith(zalo: zalo)),
     );
   }
 

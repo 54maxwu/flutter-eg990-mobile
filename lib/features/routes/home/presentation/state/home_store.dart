@@ -119,6 +119,10 @@ abstract class _HomeStore with Store {
   bool hasPlatformGames(String key) =>
       _homeGamesMap != null && _homeGamesMap.containsKey(key);
 
+  bool hasGameInMap(String key, int gameId) =>
+      _homeGamesMap.containsKey(key) &&
+      _homeGamesMap[key].any((game) => game.gameUrl.endsWith('/$gameId'));
+
   List<GameEntity> getPlatformGames(String key) =>
       (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
 
@@ -266,13 +270,6 @@ abstract class _HomeStore with Store {
                   } else {
                     _marqueeController.sink.add(List.from(list));
                   }
-                } else {
-                  _marqueeController.sink.add([
-                    MarqueeEntity(
-                        id: 0,
-                        content: localeStr.homeHintDefaultMarquee,
-                        url: '')
-                  ]);
                 }
               },
             ),
@@ -355,9 +352,9 @@ abstract class _HomeStore with Store {
     if (remove.isNotEmpty)
       remove.forEach((element) => homeTabs.remove(element));
 
-//    customizePlatformMap();
+    customizePlatformMap();
     homeTabs.insert(0, recommendCategory);
-//    homeTabs.add(cockfightingCategory);
+    homeTabs.add(cockfightingCategory);
 //    homeTabs.add(promoCategory);
 //    homeTabs.add(movieWebCategory);
 //     homeTabs.add(websiteCategory);
@@ -635,7 +632,7 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;

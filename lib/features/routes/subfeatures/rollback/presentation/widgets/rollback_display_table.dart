@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/models/rollback_model.dart';
@@ -53,7 +53,7 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
 
   TableRow updateTotalRow() {
     _totalRowTexts = [
-      localeStr.flowHeaderTextTotal,
+      localeStr.rollbackHeaderTextTotal,
       '',
       '',
       formatValue(totalAmount, floorIfInt: true, creditSign: true),
@@ -106,18 +106,18 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
   @override
   Widget build(BuildContext context) {
     _headerRowTexts ??= [
-      localeStr.flowHeaderTextTime,
-      localeStr.flowHeaderTextCode,
-      localeStr.flowHeaderTextType,
-      localeStr.flowHeaderTextAmount,
-      localeStr.flowHeaderTextMultiple,
-      localeStr.flowHeaderTextPromo,
-      localeStr.flowHeaderTextRequire,
-      localeStr.flowHeaderTextCurrent,
-      localeStr.flowHeaderTextNeed,
+      localeStr.rollbackHeaderTextTime,
+      localeStr.rollbackHeaderTextCode,
+      localeStr.rollbackHeaderTextType,
+      localeStr.rollbackHeaderTextAmount,
+      localeStr.rollbackHeaderTextMultiple,
+      localeStr.rollbackHeaderTextPromo,
+      localeStr.rollbackHeaderTextRequire,
+      localeStr.rollbackHeaderTextCurrent,
+      localeStr.rollbackHeaderTextNeed,
     ];
     _headerRow ??= TableRow(
-      decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
+      decoration: BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
       children: List.generate(
         _headerRowTexts.length,
         (index) =>
@@ -172,9 +172,9 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
               List.generate(_dataList.length, (index) {
                 RollbackModel data = _dataList[index];
                 List<dynamic> dataTexts = [
-                  "${data.startTime}\n｜\n${data.endTime}",
-                  data.code,
-                  data.index,
+                  "${data.startTime} ~ ${data.endTime}",
+                  data.code ?? data.key,
+                  getStatusIndex(data.index),
                   formatValue(data.amount, creditSign: true),
                   '${data.multiply}',
                   '${data.promoSimplified}',
@@ -194,5 +194,25 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
         ),
       ),
     );
+  }
+
+  String getStatusIndex(String state) {
+    switch (state.toLowerCase()) {
+      case 'webbank':
+        return localeStr.memberGridTitleTransfer;
+      case 'deposit':
+        return localeStr.rollbackIndexDeposit;
+      case 'promo':
+        return localeStr.rollbackIndexPromo;
+      case 'adjustdeposit':
+        return localeStr.dealsDetailTypeAdjustDeposit;
+      case 'adjustwithdraw':
+        return localeStr.dealsDetailTypeAdjustWithdraw;
+      case '退水':
+      case 'rollback':
+        return localeStr.rollbackIndexRollback;
+      default:
+        return state;
+    }
   }
 }

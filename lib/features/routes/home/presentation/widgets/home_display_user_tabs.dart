@@ -228,7 +228,8 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                         case GamePageType.Recommend:
                           return HomeDisplayTabPageMix.recommend(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
-                            textWidthFactor: widget.sizeCalc.textWidthFactor,
+                            itemLabelWidthFactor:
+                                widget.sizeCalc.textWidthFactor,
                             onPlatformClicked: (platform) {
                               debugPrint(
                                   'clicked recommend platform: $platform');
@@ -243,7 +244,8 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                         case GamePageType.Favorite:
                           return HomeDisplayTabPageMix.favorite(
                             pageMaxWidth: widget.sizeCalc.pageMaxWidth,
-                            textWidthFactor: widget.sizeCalc.textWidthFactor,
+                            itemLabelWidthFactor:
+                                widget.sizeCalc.textWidthFactor,
                             onPlatformClicked: (platform) {
                               debugPrint(
                                   'clicked favorite platform: $platform');

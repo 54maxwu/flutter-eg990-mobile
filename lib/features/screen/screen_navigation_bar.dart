@@ -1,12 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog_signed.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/ext/badge/badge.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
-import 'package:flutter_eg990_mobile/features/routes/more/more_dialog.dart';
 
 import 'feature_screen_inherited_widget.dart';
 import 'feature_screen_store.dart';
@@ -27,104 +25,96 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   static final List<ScreenNavigationBarItem> _tabs = [
     ScreenNavigationBarItem.home,
     ScreenNavigationBarItem.deposit,
-    ScreenNavigationBarItem.promo,
+    // ScreenNavigationBarItem.promo,
     ScreenNavigationBarItem.service,
     ScreenNavigationBarItem.member,
-    ScreenNavigationBarItem.more,
   ];
+
+  // static final List<ScreenNavigationBarItem> _agentTabs = [
+  //   ScreenNavigationBarItem.home,
+  //   ScreenNavigationBarItem.agent,
+  // ];
 
   FeatureScreenStore _store;
   EventStore _eventStore;
   Widget _barWidget;
   String _locale;
 
-  bool _showingEventDialog = false;
+  // bool _showingEventDialog = false;
 
   int _navIndex = 0;
 
   void _itemTapped(int index, bool hasUser) {
     var item = _tabs[index];
     debugPrint('tapped item: ${item.value}');
-    if (item.value.id == RouteEnum.MORE) {
-      showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) => new MoreDialog(_store, _eventStore),
-      );
-    } else if (item.value.route == null) {
+    if (item.value.route == null) {
       callToastInfo(localeStr.workInProgress);
     } else {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
         AppNavigator.navigateTo(RoutePage.login);
-      else if (item.value.id == RouteEnum.SERVICE)
-        AppNavigator.navigateTo(value.route,
-            arg: WebRouteArguments(
-              startUrl: Global.currentService,
-              hideBars: true,
-            ));
       else
         AppNavigator.navigateTo(value.route);
     }
   }
 
-  void _checkShowEvent() {
-    _eventStore.debugEvent();
-    if (_eventStore.forceShowEvent && _eventStore.hasEvent == false) {
-      Future.delayed(Duration(milliseconds: 200), () {
-        callToastInfo(localeStr.messageNoEvent);
-      });
-      // set to false so it will not pop on other pages
-      _eventStore.setForceShowEvent = false;
-      return;
-    }
-    if (_eventStore.showEventOnHome && !_showingEventDialog) {
-      _showingEventDialog = true;
-      Future.delayed(Duration(milliseconds: 1200), () {
-        // will not show
-        if (_store.hasUser == false ||
-            (_store.navIndex != 0 && _eventStore.forceShowEvent == false)) {
-          _stopEventAutoShow();
-          return;
-        } else {
-          // set to false so it will not pop on other pages
-          _eventStore.setForceShowEvent = false;
-        }
-        _showEventDialog();
-      });
-    }
-  }
-
-  void _showEventDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => (_eventStore.hasSignedEvent == false)
-          ? new EventDialog(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onSign: () => _eventStore.signEvent(),
-              onSignError: () => _eventStore.getEventError(),
-              onDialogClose: () => _stopEventAutoShow(),
-            )
-          : new EventDialogSigned(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onDialogClose: () => _stopEventAutoShow(),
-            ),
-    );
-  }
-
-  void _stopEventAutoShow() {
-    if (_store == null) return;
-    _showingEventDialog = false;
-    // set to false so it will not pop again when return to home page
-    _eventStore.setShowEvent = false;
-  }
+  // void _checkShowEvent() {
+  //   _eventStore.debugEvent();
+  //   if (_eventStore.forceShowEvent && _eventStore.hasEvent == false) {
+  //     Future.delayed(Duration(milliseconds: 200), () {
+  //       callToastInfo(localeStr.messageNoEvent);
+  //     });
+  //     // set to false so it will not pop on other pages
+  //     _eventStore.setForceShowEvent = false;
+  //     return;
+  //   }
+  //   if (_eventStore.showEventOnHome && !_showingEventDialog) {
+  //     _showingEventDialog = true;
+  //     Future.delayed(Duration(milliseconds: 1200), () {
+  //       // will not show
+  //       if (_store.hasUser == false ||
+  //           (_store.navIndex != 0 && _eventStore.forceShowEvent == false)) {
+  //         _stopEventAutoShow();
+  //         return;
+  //       } else {
+  //         // set to false so it will not pop on other pages
+  //         _eventStore.setForceShowEvent = false;
+  //       }
+  //       _showEventDialog();
+  //     });
+  //   }
+  // }
+  //
+  // void _showEventDialog() {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (_) => (_eventStore.hasSignedEvent == false)
+  //         ? new EventDialog(
+  //             event: _eventStore.event.eventData,
+  //             signCount: _eventStore.event.signData.times,
+  //             onSign: () => _eventStore.signEvent(),
+  //             onSignError: () => _eventStore.getEventError(),
+  //             onDialogClose: () => _stopEventAutoShow(),
+  //           )
+  //         : new EventDialogSigned(
+  //             event: _eventStore.event.eventData,
+  //             signCount: _eventStore.event.signData.times,
+  //             onDialogClose: () => _stopEventAutoShow(),
+  //           ),
+  //   );
+  // }
+  //
+  // void _stopEventAutoShow() {
+  //   if (_store == null) return;
+  //   _showingEventDialog = false;
+  //   // set to false so it will not pop again when return to home page
+  //   _eventStore.setShowEvent = false;
+  // }
 
   @override
   void initState() {
-    _locale = Global.lang;
+    _locale = Global.localeCode;
     super.initState();
   }
 
@@ -152,9 +142,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
           stream: _store.loginStateStream,
           initialData: false,
           builder: (context, snapshot) {
-            if (_barWidget != null && _locale != Global.lang) {
+            if (_barWidget != null && _locale != Global.localeCode) {
               _barWidget = _buildWidget(snapshot.data);
-              _locale = Global.lang;
+              _locale = Global.localeCode;
             }
             _barWidget ??= _buildWidget(snapshot.data);
             return _barWidget;
@@ -168,14 +158,15 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       final index = _store.navIndex;
       if (index >= 0) _navIndex = index;
       // monitor observable value to show event dialog
-      if (_eventStore.showEventOnHome) _checkShowEvent();
-      // if (_navIndex == 10) {  // Agent route navigate bar
+      // if (_eventStore.showEventOnHome) _checkShowEvent();
+      // if (_navIndex == 10) {
+      //   /// Agent route navigate bar
       //   List<String> labels = _agentTabs.map((e) => e.value.title).toList();
       //   return BottomNavigationBar(
       //     onTap: (index) {
       //       debugPrint('store state user: ${_store.userStatus}');
       //       if (index == 1) return;
-      //       if (index == 0) AppNavigator.navigateClean();
+      //       if (index == 0) AppNavigator.returnToHome();
       //     },
       //     currentIndex: 1,
       //     type: BottomNavigationBarType.fixed,
@@ -257,7 +248,28 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
               child: icon,
             )
           : icon,
-      label: title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+      title: Padding(
+          padding: const EdgeInsets.fromLTRB(3.0, 2.0, 3.0, 0.0),
+          child: AutoSizeText(
+            title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+            style: TextStyle(
+              color: (highlight)
+                  ? themeColor.navigationColorFocus
+                  : themeColor.defaultTextColor,
+              fontSize: (Global.localeCode != 'zh')
+                  ? FontSize.SMALL.value
+                  : FontSize.NORMAL.value,
+            ),
+            minFontSize: (Global.localeCode != 'zh')
+                ? FontSize.SMALL.value - 4.0
+                : FontSize.NORMAL.value - 4.0,
+            maxFontSize: (Global.localeCode != 'zh')
+                ? FontSize.SMALL.value
+                : FontSize.NORMAL.value,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          )),
     );
   }
 }

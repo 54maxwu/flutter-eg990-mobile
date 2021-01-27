@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_span_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_span_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 
 import '../../data/models/store_exchange_model.dart';
@@ -128,14 +128,13 @@ class StoreDisplayRecordTable extends StatelessWidget {
 
   TableRow _buildHeaderRow() {
     return TableRow(
-      decoration: BoxDecoration(
-        color: themeColor.defaultAccentColor,
-      ),
+      decoration: BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
       children: List.generate(
         _headerRowTexts.length,
         (index) => TableCellTextWidget(
           text: _headerRowTexts[index],
-          textColor: themeColor.chartPrimaryHeaderTextColor,
+          textColor: themeColor.chartSecondaryHeaderColor,
+          isHeader: true,
         ),
       ),
     );

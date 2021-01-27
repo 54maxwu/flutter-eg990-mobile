@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/temp/test_router.gr.dart';
 
 class TestNestedNavScreen extends StatefulWidget {
@@ -26,7 +25,6 @@ class _TestNestedNavScreenState extends State<TestNestedNavScreen> {
           key: testNavKey,
           initialRoute: TestRouterRoutes.testNestedNavScreenView,
           router: TestRouter(),
-          name: TEST_NAV_NAME,
         ),
       ),
     );

@@ -45,14 +45,14 @@ class HomeTabItem extends StatefulWidget {
 }
 
 class HomeTabItemState extends State<HomeTabItem> {
-  final Size _iconSize =
-      Size(36.0, 30.0) * ((Global.device.widthScale + 1.0) / 2);
   final Size _cornerSize = Size(16.0, 12.0) * Global.device.heightScale;
 
+  Size _iconSize;
   Decoration _boxDecor;
   Decoration _boxSelectedDecor;
 
   bool _isImage;
+  bool _isAsset;
   Widget _corner;
   Widget _divider;
   Widget _imageWidget;
@@ -71,6 +71,8 @@ class HomeTabItemState extends State<HomeTabItem> {
   @override
   void initState() {
     _isSelected = widget.isFirst;
+    _iconSize = Size(widget.itemWidth + 4, widget.itemWidth) *
+        ((Global.device.widthScale + 1.0) / 2);
     super.initState();
   }
 
@@ -159,6 +161,7 @@ class HomeTabItemState extends State<HomeTabItem> {
     }
 
     _isImage ??= widget.category.iconUrl.isNotEmpty;
+    _isAsset ??= widget.category.info.value.assetPath.isNotEmpty;
     _imageWidget ??= _buildImage();
 
     return Stack(
@@ -178,11 +181,11 @@ class HomeTabItemState extends State<HomeTabItem> {
               Expanded(
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: AutoSizeText(
                     widget.category.label,
                     style: TextStyle(fontSize: FontSize.NORMAL.value),
-                    maxLines: 2,
+                    maxLines: 3,
                     minFontSize: FontSize.SMALL.value,
                     maxFontSize: FontSize.SUBTITLE.value,
                     overflow: TextOverflow.ellipsis,
@@ -206,12 +209,19 @@ class HomeTabItemState extends State<HomeTabItem> {
                 ? themeColor.defaultAccentColor
                 : themeColor.defaultTabUnselectedColor,
           )
-        : Icon(
-            (widget.category.iconCode != null)
-                ? widget.category.iconCode
-                : Icons.add,
-            size: _iconSize.width - 6.0,
-          );
+        : (_isAsset)
+            ? Image.asset(
+                widget.category.info.value.assetPath,
+                color: (_isSelected)
+                    ? themeColor.defaultAccentColor
+                    : themeColor.defaultTabUnselectedColor,
+              )
+            : Icon(
+                (widget.category.iconCode != null)
+                    ? widget.category.iconCode
+                    : Icons.add,
+                size: _iconSize.width - 6.0,
+              );
   }
 
   Widget _buildCornerClipperWidget() {

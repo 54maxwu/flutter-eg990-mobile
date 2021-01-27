@@ -76,8 +76,11 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       debugPrint(
           'clicked platform: ${itemData.category}, from search: $fromSearch');
       if (fromSearch) {
-        // open requested platform's game view
-        _setGridContent(_buildGamesView(itemData));
+        if (itemData.isGameHall == false) {
+          _setGridContent(_buildGamesView(itemData));
+        } else {
+          _openGame(itemData.gameUrl);
+        }
       } else if (_isGameGrid) {
         // if current is showing games grid, change to platforms grid
         _setGridContent(_createPlatformGrid());
@@ -183,7 +186,7 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
           alignment: Alignment.bottomRight,
           padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
           child: FloatingActionButton(
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.white24,
             mini: true,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             child: FittedBox(

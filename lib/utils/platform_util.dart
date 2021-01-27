@@ -9,13 +9,14 @@ import '../mylogger.dart';
 
 class PlatformUtil {
   static const String TAG = 'PlatformUtil';
-  static const restartChannel = const MethodChannel('com.eg990.mobile/restart');
+  static const restartChannel =
+      const MethodChannel('com.opska888.mobile/restart');
   static const sensorChannel =
-      const MethodChannel('com.eg990.mobile/sensorswitch');
+      const MethodChannel('com.opska888.mobile/sensorswitch');
   static const sensorEventChannel =
-      const EventChannel('com.eg990.mobile/sensor');
+      const EventChannel('com.opska888.mobile/sensor');
   static const iosRotationChannel =
-      const MethodChannel('com.eg990.mobile/orientation');
+      const MethodChannel('com.opska888.mobile/orientation');
 
   static StreamSubscription sensorSubscription;
   static Stream sensorStream;

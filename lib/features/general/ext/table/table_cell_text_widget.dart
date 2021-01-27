@@ -32,9 +32,10 @@ class TableCellTextWidget extends StatelessWidget {
       textWidget = Text(text,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: (isHeader)
-                  ? themeColor.chartPrimaryHeaderTextColor
-                  : themeColor.defaultTextColor));
+            color: (isHeader)
+                ? themeColor.chartPrimaryHeaderTextColor
+                : themeColor.defaultTextColor,
+          ));
 
     if (shrinkInset) {
       return Container(

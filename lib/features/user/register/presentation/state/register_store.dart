@@ -1,5 +1,6 @@
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
 import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
 import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart';
@@ -49,7 +50,7 @@ abstract class _RegisterStore with Store {
           .postRegister(form)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (model) {
 //                debugPrint('register result: $model');
                 registerResult = model;
@@ -62,9 +63,8 @@ abstract class _RegisterStore with Store {
                   });
                 } else {
                   setErrorMsg(
-                      msg: (model.msg == 'RepeatAccount')
-                          ? localeStr.messageRepeatAccount
-                          : localeStr.messageRegisterFailed);
+                      msg: MessageMap.getErrorMessage(
+                          model.msg, RouteEnum.REGISTER));
                 }
               },
             ),

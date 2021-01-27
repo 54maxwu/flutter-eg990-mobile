@@ -30,8 +30,6 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
   void initState() {
     _store ??= sl.get<WithdrawStore>();
     super.initState();
-    _store.getCgpWallet();
-    _store.getCpwWallet();
     _store.getRollback();
   }
 
@@ -75,14 +73,11 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
           if (result == null) return;
           if (result.code == 0) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.WITHDRAW),
                 icon: Icons.check_circle_outline);
           } else {
-            callToastError((result.msg.isNotEmpty && result.msg.hasChinese)
-                ? result.msg
-                : localeStr.messageTaskFailed(localeStr.messageErrorWithdraw));
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.WITHDRAW));
           }
         },
       ),

@@ -5,7 +5,7 @@ import 'model/service_model.dart';
 class ServiceData {
   static ServiceModel data;
 
-  static String get cs => data.cs ?? Global.EG_SERVICE_URL;
+  static String get cs => data.cs ?? Global.currentService;
   static String get fb => data.fb ?? '';
   static String get zalo => data.zalo ?? '';
   static String get line => data.line ?? '';

@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/gen/dataclass.dart';
+import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/utils/json_util.dart';

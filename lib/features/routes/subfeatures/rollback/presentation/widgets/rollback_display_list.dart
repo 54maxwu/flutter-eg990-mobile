@@ -9,27 +9,27 @@ class RollbackDisplayList extends StatelessWidget {
   RollbackDisplayList(this.dataList);
 
   final List<String> _headerTexts = [
-    localeStr.flowHeaderTextTime,
-    localeStr.flowHeaderTextCode,
-    localeStr.flowHeaderTextType,
-    localeStr.flowHeaderTextAmount,
-    localeStr.flowHeaderTextMultiple,
-    localeStr.flowHeaderTextPromo,
-    localeStr.flowHeaderTextRequire,
-    localeStr.flowHeaderTextCurrent,
-    localeStr.flowHeaderTextNeed,
+    localeStr.rollbackHeaderTextTime,
+    localeStr.rollbackHeaderTextCode,
+    localeStr.rollbackHeaderTextType,
+    localeStr.rollbackHeaderTextAmount,
+    localeStr.rollbackHeaderTextMultiple,
+    localeStr.rollbackHeaderTextPromo,
+    localeStr.rollbackHeaderTextRequire,
+    localeStr.rollbackHeaderTextCurrent,
+    localeStr.rollbackHeaderTextNeed,
   ];
 
   final List<String> _totalHeaderTexts = [
-    localeStr.flowHeaderTextTotal,
-//    localeStr.flowHeaderTextCode,
-//    localeStr.flowHeaderTextType,
-    localeStr.flowHeaderTextAmount,
-//    localeStr.flowHeaderTextMultiple,
-//    localeStr.flowHeaderTextPromo,
-    localeStr.flowHeaderTextRequire,
-    localeStr.flowHeaderTextCurrent,
-    localeStr.flowHeaderTextNeed,
+    localeStr.rollbackHeaderTextTotal,
+//    localeStr.rollbackHeaderTextCode,
+//    localeStr.rollbackHeaderTextType,
+    localeStr.rollbackHeaderTextAmount,
+//    localeStr.rollbackHeaderTextMultiple,
+//    localeStr.rollbackHeaderTextPromo,
+    localeStr.rollbackHeaderTextRequire,
+    localeStr.rollbackHeaderTextCurrent,
+    localeStr.rollbackHeaderTextNeed,
   ];
 
   final BorderSide _borderSide =
@@ -49,7 +49,7 @@ class RollbackDisplayList extends StatelessWidget {
     });
 
     return [
-      localeStr.flowHeaderTextTotal,
+      localeStr.rollbackHeaderTextTotal,
 //      '',
 //      '',
       formatValue(totalAmount, floorIfInt: true, creditSign: true),
@@ -78,7 +78,7 @@ class RollbackDisplayList extends StatelessWidget {
           dataTexts = [
             "${data.startTime} ~ ${data.endTime}",
             data.code ?? data.key,
-            data.index,
+            getStatusIndex(data.index),
             formatValue(data.amount, creditSign: true),
             '${data.multiply}',
             '${data.promoSimplified}',
@@ -134,5 +134,25 @@ class RollbackDisplayList extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getStatusIndex(String state) {
+    switch (state.toLowerCase()) {
+      case 'webbank':
+        return localeStr.memberGridTitleTransfer;
+      case 'deposit':
+        return localeStr.rollbackIndexDeposit;
+      case 'promo':
+        return localeStr.rollbackIndexPromo;
+      case 'adjustdeposit':
+        return localeStr.dealsDetailTypeAdjustDeposit;
+      case 'adjustwithdraw':
+        return localeStr.dealsDetailTypeAdjustWithdraw;
+      case '退水':
+      case 'rollback':
+        return localeStr.rollbackIndexRollback;
+      default:
+        return state;
+    }
   }
 }

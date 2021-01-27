@@ -159,7 +159,7 @@ class AppGlobalStreams {
         Duration(milliseconds: 500),
         () => (navToLogin)
             ? AppNavigator.navigateTo(RoutePage.login)
-            : AppNavigator.returnToHome(force: true));
+            : AppNavigator.returnToHome());
 
     _userControl.sink.add(LoginStatus(loggedIn: false));
     _creditController.sink.add(creditResetStr);

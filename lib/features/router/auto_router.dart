@@ -1,15 +1,10 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:flutter_eg990_mobile/features/main_startup.dart';
-import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen.dart';
-import 'package:flutter_eg990_mobile/temp/test_screen.dart';
-import 'package:flutter_eg990_mobile/template/mobx/presentation/template_route.dart';
 
 import '../routes/home/presentation/home_route.dart';
 import '../routes/member/presentation/member_route.dart';
-import '../routes/more/more_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/center_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
-import '../routes/subfeatures/agent/presentation/agent_route.dart';
 import '../routes/subfeatures/balance/presentation/balance_route.dart';
 import '../routes/subfeatures/bankcard/presentation/bankcard_route.dart';
 import '../routes/subfeatures/betrecord/presentation/bet_record_route.dart';
@@ -20,7 +15,6 @@ import '../routes/subfeatures/message/presentation/message_route.dart';
 import '../routes/subfeatures/notice/presentation/notice_route.dart';
 import '../routes/subfeatures/promo/presentation/promo_route.dart';
 import '../routes/subfeatures/rollback/presentation/rollback_route.dart';
-import '../routes/subfeatures/roller/presentation/roller_route.dart';
 import '../routes/subfeatures/service/presentation/service_route.dart';
 import '../routes/subfeatures/store/presentation/store_route.dart';
 import '../routes/subfeatures/transactions/presentation/transaction_route.dart';
@@ -30,7 +24,6 @@ import '../routes/subfeatures/wallet/presentation/wallet_route.dart';
 import '../routes/web/web_route.dart';
 import '../screen/feature_screen.dart';
 import '../screen/web_game_screen.dart';
-import '../test_area_route.dart';
 import '../user/login/presentation/login_route.dart';
 import '../user/register/presentation/register_route.dart';
 
@@ -47,7 +40,8 @@ import '../user/register/presentation/register_route.dart';
             initial: true,
             maintainState: true,
             children: <AutoRoute>[
-              MaterialRoute(page: HomeRoute, initial: true),
+              MaterialRoute(
+                  page: HomeRoute, initial: true, maintainState: true),
               MaterialRoute(page: LoginRoute, path: '/login'),
               MaterialRoute(page: RegisterRoute, path: '/register'),
               MaterialRoute(page: ServiceRoute, path: '/service'),
@@ -83,44 +77,28 @@ import '../user/register/presentation/register_route.dart';
               MaterialRoute(page: BetRecordRoute, path: '/bets'),
               MaterialRoute(page: DealsRoute, path: '/deals'),
               MaterialRoute(page: RollbackRoute, path: '/rollback'),
-              MaterialRoute(page: AgentRoute, path: '/agent'),
               MaterialRoute(page: PromoRoute, path: '/promo'),
-              MaterialRoute(page: MoreRoute, path: '/more'),
               MaterialRoute(
                   page: DepositRoute,
                   name: 'depositFeatureRoute',
                   path: '/deposit-nav'),
-              MaterialRoute(
-                  page: AgentRoute,
-                  name: 'agentFeatureRoute',
-                  path: '/agent-nav'),
-              // CustomRoute(page: AgentRoute, name:'agentNewRoute'),
-              // CustomRoute(page: AgentLoginRoute),
-              // CustomRoute(page: AgentRegisterRoute),
-              // CustomRoute(page: AboutRoute),
               MaterialRoute(page: DownloadAreaRoute, path: '/download'),
+              MaterialRoute(
+                  page: WebRoute,
+                  name: 'tutorialWebRoute',
+                  path: '/tutorial-web'),
               MaterialRoute(page: NoticeRoute, path: '/notice'),
               MaterialRoute(page: StoreRoute, path: '/store'),
-              MaterialRoute(page: RollerRoute, path: '/roller'),
               MaterialRoute(page: VipLevelRoute, path: '/level'),
-              MaterialRoute(page: TestAreaRoute, path: '/test-area'),
-              MaterialRoute(page: TemplateRoute, path: '/template'),
             ],
           ),
           AdaptiveRoute(page: WebGameScreen, path: '/game-web'),
-          AdaptiveRoute(page: TestScreen, path: '/test'),
-          AdaptiveRoute(page: TestNestedNavScreen, path: '/test-nested'),
         ]),
   ],
 )
 class $AutoRouter {}
 
 enum Screens { Feature, Game, Test, TestNav }
-
-// Future pushFeatureScreen() => pushNamedAndRemoveUntil(
-//   ScreenRoutes.featureScreen,
-//       (route) => false, // true => same as push, false => push and clear stack
-// );
 
 // Widget slideRightTransition(BuildContext context, Animation<double> animation,
 //     Animation<double> secondaryAnimation, Widget child) {

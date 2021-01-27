@@ -79,7 +79,7 @@ abstract class _DepositStore with Store {
       errorMessage = null;
       // Fetch from the repository and wrap the regular Future into an observable.
       _initFuture = ObservableFuture(Future.wait([
-        if (hasCard == null || !hasCard) Future.value(checkBankcard()),
+        // if (hasCard == null || !hasCard) Future.value(checkBankcard()),
         if (paymentTypes == null)
           Future.value(getPaymentTypes()).whenComplete(() {
             if (infoList == null) getDepositInfo();

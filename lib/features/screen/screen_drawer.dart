@@ -1,13 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'feature_screen_inherited_widget.dart';
-import 'feature_screen_store.dart';
 import 'screen_drawer_item.dart';
 
 ///
@@ -18,83 +16,33 @@ class ScreenDrawer extends StatelessWidget {
   static final List<ScreenDrawerItem> _menuItems = [
     ScreenDrawerItem.promo,
     ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
+    ScreenDrawerItem.webHome,
   ];
 
   static final List<ScreenDrawerItem> _userMenuItems = [
     ScreenDrawerItem.member,
     ScreenDrawerItem.deposit,
-    ScreenDrawerItem.promo,
-    ScreenDrawerItem.message,
     ScreenDrawerItem.notice,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.promo,
     ScreenDrawerItem.store,
-    ScreenDrawerItem.roller,
-    ScreenDrawerItem.task,
-    ScreenDrawerItem.collect,
-    ScreenDrawerItem.sign,
     ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
+    ScreenDrawerItem.webHome,
     ScreenDrawerItem.logout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
   ];
 
-  bool _itemTapped(ScreenDrawerItem item,
-      {FeatureScreenStore store, EventStore eventStore, BuildContext context}) {
+  bool _itemTapped(ScreenDrawerItem item, {BuildContext context}) {
     debugPrint('tap drawer item ${item.value.id}');
     switch (item.value.id) {
       case RouteEnum.LOGOUT:
         getAppGlobalStreams.logout();
         return true;
-      case RouteEnum.TEST:
-        AppNavigator.switchScreen(Screens.Test);
-        return true;
       case RouteEnum.WEBSITE:
         launch(Global.CURRENT_BASE);
-        return true;
-      case RouteEnum.SERVICE:
-        AppNavigator.replaceWith(
-          item.value.route,
-          arg: WebRouteArguments(
-              startUrl: Global.currentService, hideBars: true),
-        );
-        return true;
-      case RouteEnum.SIGN:
-        if (eventStore == null) return false;
-        if (store.hasUser == false) {
-          callToastError(localeStr.messageErrorNotLogin);
-        } else {
-          eventStore?.setForceShowEvent = true;
-        }
-        return true;
-      case RouteEnum.LINE_QR:
-        if (context == null) throw Exception();
-        //   showDialog(
-        //     context: context,
-        //     barrierDismissible: false,
-        //     builder: (context) => DialogWidget(
-        //       constraints: BoxConstraints.tight(Size(160, 180)),
-        //       children: [
-        //         Column(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           mainAxisSize: MainAxisSize.max,
-        //           crossAxisAlignment: CrossAxisAlignment.center,
-        //           children: [
-        //             Padding(
-        //               padding: const EdgeInsets.only(top: 16.0, left: 30.0),
-        //               child: networkImageBuilder('images/aside/116.png'),
-        //             ),
-        //           ],
-        //         ),
-        //       ],
-        //     ),
-        //   );
         return true;
       default:
         var route = item.value.route;
@@ -120,7 +68,7 @@ class ScreenDrawer extends StatelessWidget {
 
     double gridItemWidth = drawerWidth / 2;
     double gridRatio =
-        (Global.lang == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
+        (Global.localeCode == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
 
     return Container(
       width: drawerWidth,
@@ -156,9 +104,9 @@ class ScreenDrawer extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(localeStr.messageWelcomeHint,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: themeColor.sideMenuHeaderTextColor,
-                            )),
+                                color: themeColor.sideMenuHeaderTextColor)),
                         SizedBox(height: 12.0),
                         RaisedButton(
                           visualDensity: VisualDensity(horizontal: 3.0),
@@ -199,15 +147,11 @@ class ScreenDrawer extends StatelessWidget {
                         : _menuItems[index];
                     return GestureDetector(
                       onTap: () {
-                        if ((item == ScreenDrawerItem.sign)
-                            ? _itemTapped(item,
-                                store: viewState.store,
-                                eventStore: viewState.eventStore)
-                            : _itemTapped(item, context: context)) {
-                          // if (_itemTapped(item, context: context)) {
+                        if (_itemTapped(item, context: context)) {
                           // close the drawer
-                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
+                          if (viewState.scaffoldKey.currentState.isDrawerOpen) {
                             Navigator.of(context).pop();
+                          }
                         }
                       },
                       child: _buildListItem(item.value),
@@ -284,7 +228,7 @@ class ScreenDrawer extends StatelessWidget {
                         ? localeStr.pageTitleCenter
                         : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: (Global.lang == 'zh')
+                      fontSize: (Global.localeCode == 'zh')
                           ? FontSize.SUBTITLE.value
                           : FontSize.NORMAL.value,
                       color: themeColor.sideMenuIconTextColor,

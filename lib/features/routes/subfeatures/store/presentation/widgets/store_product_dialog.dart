@@ -157,31 +157,37 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                 child: Divider(height: 2.0, thickness: 2.0),
               ),
               if (_contentEnum != _ContentEnum.RESULT)
-                Container(
-                  padding: const EdgeInsets.only(top: 12.0),
-                  constraints: BoxConstraints.tight(Size(imageSize, imageSize)),
-                  child: Stack(
-                    children: <Widget>[
-                      Center(
-                        child: networkImageBuilder(
-                          'images/mall_product/${widget.product.pic}.jpg',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      if (widget.product.isNewProduct)
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: 10.0,
-                            top: 5.0,
+                Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Container(
+                    margin: const EdgeInsets.all(2.0),
+                    color: Colors.white,
+                    constraints:
+                        BoxConstraints.tight(Size(imageSize, imageSize)),
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            child: networkImageBuilder(
+                                'images/mall_product/${widget.product.pic}.jpg',
+                                fit: BoxFit.fill),
                           ),
-                          alignment: Alignment.topLeft,
-                          child: Image.asset(
-                            Res.storeProductNewIcon,
+                        ),
+                        if (widget.product.isNewProduct)
+                          Container(
+                            margin: EdgeInsets.only(
+                              left: 10.0,
+                              top: 5.0,
+                            ),
                             alignment: Alignment.topLeft,
-                            fit: BoxFit.none,
+                            child: Image.asset(
+                              Res.new_product,
+                              alignment: Alignment.topLeft,
+                              fit: BoxFit.none,
+                            ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               if (_contentEnum != _ContentEnum.RESULT)

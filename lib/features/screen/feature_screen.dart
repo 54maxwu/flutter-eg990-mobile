@@ -5,7 +5,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/network/util/network_info.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 import '../routes/home/presentation/state/home_store.dart';
@@ -100,10 +99,10 @@ class _FeatureScreenState extends State<FeatureScreen> {
   @override
   void initState() {
     MyLogger.debug(msg: 'init feature screen', tag: tag);
-    locale = Global.lang;
+    locale = Global.localeCode;
     super.initState();
     if (_store != null) {
-//      _store.getWebsiteList();
+      _store.getWebsiteList();
       _store.getAds();
     }
     setNetworkListener();
@@ -125,11 +124,14 @@ class _FeatureScreenState extends State<FeatureScreen> {
   @override
   Widget build(BuildContext context) {
     MyLogger.debug(msg: 'build feature screen', tag: tag);
+    // debugPrint('test provider: ${Provider.of<NavigateProvider>(context)}');
+    // debugPrint(
+    //     'test provider key: ${Provider.of<NavigateProvider>(context).getRootNavigatorKey}');
     return WillPopScope(
       child: StreamBuilder<String>(
           stream: getAppGlobalStreams.languageStream,
-          initialData: Global.lang,
-          builder: (context, snapshot) {
+          initialData: Global.localeCode,
+          builder: (ctx, snapshot) {
             locale ??= snapshot.data;
             if (snapshot.data != locale) {
               locale = snapshot.data;
@@ -138,6 +140,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
             }
             return FeatureScreenInheritedWidget(
               scaffoldKey: _scaffoldKey,
+              nestedNavigatorKey: featureNavKey,
               store: _store,
               eventStore: sl(),
               child: Scaffold(
@@ -150,7 +153,6 @@ class _FeatureScreenState extends State<FeatureScreen> {
                   key: featureNavKey,
                   initialRoute: FeatureScreenRoutes.homeRoute,
                   router: FeatureScreenRouter(),
-                  name: FEATURE_NAV_NAME,
                 ),
               ),
             );

@@ -101,7 +101,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
     if (_bgHeight < 442) _bgHeight = 442;
     _bgMarginBottom = Global.device.featureContentHeight - 20 - _bgHeight;
 
-    _higherBox = Global.lang != 'zh';
+    _higherBox = Global.localeCode != 'zh';
     _innerBoxMaxHeight = (_higherBox) ? _bgHeight * 0.35 : _bgHeight * 0.325;
     _innerBoxMinHeight = _innerBoxMaxHeight - 24.0;
 
@@ -137,7 +137,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
         ///Background Container
         constraints: BoxConstraints.tight(Size(_bgWidth, _bgHeight)),
         decoration: BoxDecoration(
-          color: themeColor.defaultBackgroundColor,
+          color: themeColor.dialogBgColor1,
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -172,7 +172,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                       ),
                     ),
                     child: Image.asset(
-                      Res.walletBgIcon,
+                      Res.wlpop_titico,
                       alignment: Alignment.topLeft,
                       fit: BoxFit.none,
                       color: themeColor.walletCardIconBgColor,
@@ -203,7 +203,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset(
-                              Res.walletBgIconSmall,
+                              Res.wlpop_titico_small,
                               color: themeColor.iconColor,
                             ),
                             Padding(
@@ -270,7 +270,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
               children: <InlineSpan>[
                 WidgetSpan(
                   child: Padding(
-                    padding: (Global.lang != 'zh')
+                    padding: (Global.localeCode != 'zh')
                         ? EdgeInsets.only(bottom: 4.0)
                         : EdgeInsets.only(bottom: 8.0),
                     child: Text(
@@ -280,7 +280,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.lang != 'zh') TextSpan(text: '\n'),
+                if (Global.localeCode != 'zh') TextSpan(text: '\n'),
                 WidgetSpan(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 3.0),
@@ -316,7 +316,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.lang != 'zh')
+                if (Global.localeCode != 'zh')
                   WidgetSpan(child: SizedBox(height: 4.0)),
               ],
             ),

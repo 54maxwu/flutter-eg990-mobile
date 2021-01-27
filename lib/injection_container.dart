@@ -11,7 +11,6 @@ import 'features/routes/home/home_inject.dart';
 import 'features/routes/member/member_inject.dart';
 import 'features/routes/subfeatures/promo/promo_inject.dart';
 import 'features/routes/subfeatures/accountcenter/center_inject.dart';
-import 'features/routes/subfeatures/agent/agent_inject.dart';
 import 'features/routes/subfeatures/balance/balance_inject.dart';
 import 'features/routes/subfeatures/bankcard/bankcard_inject.dart';
 import 'features/routes/subfeatures/betrecord/bet_record_inject.dart';
@@ -20,7 +19,6 @@ import 'features/routes/subfeatures/deposit/deposit_inject.dart';
 import 'features/routes/subfeatures/rollback/rollback_inject.dart';
 import 'features/routes/subfeatures/message/message_inject.dart';
 import 'features/routes/subfeatures/notice/notice_inject.dart';
-import 'features/routes/subfeatures/roller/roller_inject.dart';
 import 'features/routes/subfeatures/service/presentation/state/service_store.dart';
 import 'features/routes/subfeatures/store/store_inject.dart';
 import 'features/routes/subfeatures/transactions/transaction_inject.dart';
@@ -115,9 +113,6 @@ Future<void> init() async {
   sl.registerLazySingleton<RollbackRepository>(
     () => RollbackRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
-  sl.registerLazySingleton<AgentRepository>(
-    () => AgentRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
   sl.registerLazySingleton<NoticeRepository>(
     () => NoticeRepositoryImpl(dioApiService: sl()),
   );
@@ -126,9 +121,6 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<StoreRepository>(
     () => StoreRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
-  sl.registerLazySingleton<RollerRepository>(
-    () => RollerRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
 
   /// Mobx Store
@@ -193,9 +185,6 @@ Future<void> init() async {
     () => RollbackStore(sl<RollbackRepository>()),
   );
   sl.registerFactory(
-    () => AgentStore(sl<AgentRepository>()),
-  );
-  sl.registerFactory(
     () => NoticeStore(sl<NoticeRepository>()),
   );
   sl.registerFactory(
@@ -206,9 +195,6 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => PointStore(sl<StoreRepository>()),
-  );
-  sl.registerFactory(
-    () => RollerStore(sl<RollerRepository>()),
   );
 
   /// Test only

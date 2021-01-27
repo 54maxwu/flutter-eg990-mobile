@@ -22,10 +22,9 @@ class _$CenterAccountEntityTearOff {
       String gender,
       String email,
       String wechat,
+      String zalo,
       String firstName,
-      String autoTransfer,
-      String cgpWallet,
-      String cpwWallet}) {
+      String autoTransfer}) {
     return _CenterAccountEntity(
       accountCode: accountCode,
       accountId: accountId,
@@ -34,10 +33,9 @@ class _$CenterAccountEntityTearOff {
       gender: gender,
       email: email,
       wechat: wechat,
+      zalo: zalo,
       firstName: firstName,
       autoTransfer: autoTransfer,
-      cgpWallet: cgpWallet,
-      cpwWallet: cpwWallet,
     );
   }
 }
@@ -55,10 +53,9 @@ mixin _$CenterAccountEntity {
   String get gender;
   String get email;
   String get wechat;
+  String get zalo;
   String get firstName;
   String get autoTransfer;
-  String get cgpWallet;
-  String get cpwWallet;
 
   $CenterAccountEntityCopyWith<CenterAccountEntity> get copyWith;
 }
@@ -76,10 +73,9 @@ abstract class $CenterAccountEntityCopyWith<$Res> {
       String gender,
       String email,
       String wechat,
+      String zalo,
       String firstName,
-      String autoTransfer,
-      String cgpWallet,
-      String cpwWallet});
+      String autoTransfer});
 }
 
 /// @nodoc
@@ -100,10 +96,9 @@ class _$CenterAccountEntityCopyWithImpl<$Res>
     Object gender = freezed,
     Object email = freezed,
     Object wechat = freezed,
+    Object zalo = freezed,
     Object firstName = freezed,
     Object autoTransfer = freezed,
-    Object cgpWallet = freezed,
-    Object cpwWallet = freezed,
   }) {
     return _then(_value.copyWith(
       accountCode:
@@ -114,12 +109,11 @@ class _$CenterAccountEntityCopyWithImpl<$Res>
       gender: gender == freezed ? _value.gender : gender as String,
       email: email == freezed ? _value.email : email as String,
       wechat: wechat == freezed ? _value.wechat : wechat as String,
+      zalo: zalo == freezed ? _value.zalo : zalo as String,
       firstName: firstName == freezed ? _value.firstName : firstName as String,
       autoTransfer: autoTransfer == freezed
           ? _value.autoTransfer
           : autoTransfer as String,
-      cgpWallet: cgpWallet == freezed ? _value.cgpWallet : cgpWallet as String,
-      cpwWallet: cpwWallet == freezed ? _value.cpwWallet : cpwWallet as String,
     ));
   }
 }
@@ -139,10 +133,9 @@ abstract class _$CenterAccountEntityCopyWith<$Res>
       String gender,
       String email,
       String wechat,
+      String zalo,
       String firstName,
-      String autoTransfer,
-      String cgpWallet,
-      String cpwWallet});
+      String autoTransfer});
 }
 
 /// @nodoc
@@ -165,10 +158,9 @@ class __$CenterAccountEntityCopyWithImpl<$Res>
     Object gender = freezed,
     Object email = freezed,
     Object wechat = freezed,
+    Object zalo = freezed,
     Object firstName = freezed,
     Object autoTransfer = freezed,
-    Object cgpWallet = freezed,
-    Object cpwWallet = freezed,
   }) {
     return _then(_CenterAccountEntity(
       accountCode:
@@ -179,12 +171,11 @@ class __$CenterAccountEntityCopyWithImpl<$Res>
       gender: gender == freezed ? _value.gender : gender as String,
       email: email == freezed ? _value.email : email as String,
       wechat: wechat == freezed ? _value.wechat : wechat as String,
+      zalo: zalo == freezed ? _value.zalo : zalo as String,
       firstName: firstName == freezed ? _value.firstName : firstName as String,
       autoTransfer: autoTransfer == freezed
           ? _value.autoTransfer
           : autoTransfer as String,
-      cgpWallet: cgpWallet == freezed ? _value.cgpWallet : cgpWallet as String,
-      cpwWallet: cpwWallet == freezed ? _value.cpwWallet : cpwWallet as String,
     ));
   }
 }
@@ -199,10 +190,9 @@ class _$_CenterAccountEntity implements _CenterAccountEntity {
       this.gender,
       this.email,
       this.wechat,
+      this.zalo,
       this.firstName,
-      this.autoTransfer,
-      this.cgpWallet,
-      this.cpwWallet});
+      this.autoTransfer});
 
   @override
   final String accountCode;
@@ -219,17 +209,15 @@ class _$_CenterAccountEntity implements _CenterAccountEntity {
   @override
   final String wechat;
   @override
+  final String zalo;
+  @override
   final String firstName;
   @override
   final String autoTransfer;
-  @override
-  final String cgpWallet;
-  @override
-  final String cpwWallet;
 
   @override
   String toString() {
-    return 'CenterAccountEntity(accountCode: $accountCode, accountId: $accountId, birthDate: $birthDate, phone: $phone, gender: $gender, email: $email, wechat: $wechat, firstName: $firstName, autoTransfer: $autoTransfer, cgpWallet: $cgpWallet, cpwWallet: $cpwWallet)';
+    return 'CenterAccountEntity(accountCode: $accountCode, accountId: $accountId, birthDate: $birthDate, phone: $phone, gender: $gender, email: $email, wechat: $wechat, zalo: $zalo, firstName: $firstName, autoTransfer: $autoTransfer)';
   }
 
   @override
@@ -253,18 +241,14 @@ class _$_CenterAccountEntity implements _CenterAccountEntity {
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.wechat, wechat) ||
                 const DeepCollectionEquality().equals(other.wechat, wechat)) &&
+            (identical(other.zalo, zalo) ||
+                const DeepCollectionEquality().equals(other.zalo, zalo)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
             (identical(other.autoTransfer, autoTransfer) ||
                 const DeepCollectionEquality()
-                    .equals(other.autoTransfer, autoTransfer)) &&
-            (identical(other.cgpWallet, cgpWallet) ||
-                const DeepCollectionEquality()
-                    .equals(other.cgpWallet, cgpWallet)) &&
-            (identical(other.cpwWallet, cpwWallet) ||
-                const DeepCollectionEquality()
-                    .equals(other.cpwWallet, cpwWallet)));
+                    .equals(other.autoTransfer, autoTransfer)));
   }
 
   @override
@@ -277,10 +261,9 @@ class _$_CenterAccountEntity implements _CenterAccountEntity {
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(wechat) ^
+      const DeepCollectionEquality().hash(zalo) ^
       const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(autoTransfer) ^
-      const DeepCollectionEquality().hash(cgpWallet) ^
-      const DeepCollectionEquality().hash(cpwWallet);
+      const DeepCollectionEquality().hash(autoTransfer);
 
   @override
   _$CenterAccountEntityCopyWith<_CenterAccountEntity> get copyWith =>
@@ -297,10 +280,9 @@ abstract class _CenterAccountEntity implements CenterAccountEntity {
       String gender,
       String email,
       String wechat,
+      String zalo,
       String firstName,
-      String autoTransfer,
-      String cgpWallet,
-      String cpwWallet}) = _$_CenterAccountEntity;
+      String autoTransfer}) = _$_CenterAccountEntity;
 
   @override
   String get accountCode;
@@ -317,13 +299,11 @@ abstract class _CenterAccountEntity implements CenterAccountEntity {
   @override
   String get wechat;
   @override
+  String get zalo;
+  @override
   String get firstName;
   @override
   String get autoTransfer;
-  @override
-  String get cgpWallet;
-  @override
-  String get cpwWallet;
   @override
   _$CenterAccountEntityCopyWith<_CenterAccountEntity> get copyWith;
 }

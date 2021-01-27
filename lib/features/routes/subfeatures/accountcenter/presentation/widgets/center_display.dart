@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/data/models/center_category.dart';
 
 import 'center_display_account.dart';
-import 'center_display_lotto.dart';
 import 'center_display_vip.dart';
 
 class CenterDisplay extends StatefulWidget {
@@ -13,10 +11,8 @@ class CenterDisplay extends StatefulWidget {
 }
 
 class _CenterDisplayState extends State<CenterDisplay> {
-  final MemberGridItem pageItem = MemberGridItem.accountCenter;
   final List<CenterCategoryEnum> tabs = [
     CenterCategoryEnum.info,
-    CenterCategoryEnum.lotto,
     CenterCategoryEnum.vip,
   ];
   final int tabsPerRow = 3;
@@ -53,7 +49,6 @@ class _CenterDisplayState extends State<CenterDisplay> {
               index: _clicked,
               children: <Widget>[
                 CenterDisplayAccount(),
-                CenterDisplayLotto(),
                 CenterDisplayVip(),
               ],
             ),
