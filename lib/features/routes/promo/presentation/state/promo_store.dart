@@ -1,6 +1,6 @@
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/promo/data/models/promo_freezed.dart';
 
+import '../../data/models/promo_freezed.dart';
 import '../../data/repository/promo_repository.dart';
 
 part 'promo_store.g.dart';
@@ -50,6 +50,7 @@ abstract class _PromoStore with Store {
 
   @action
   Future<void> getPromoList() async {
+    if (promos != null) return;
     try {
       // Reset the possible previous error message.
       errorMessage = null;
@@ -57,7 +58,7 @@ abstract class _PromoStore with Store {
       _promoFuture = ObservableFuture(_repository.getPromos());
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _promoFuture.then((result) {
-//        print('promo store result: $result');
+//        debugPrint('promo store result: $result');
         result.fold(
           (failure) {
             setErrorMsg(msg: failure.message, showOnce: true);

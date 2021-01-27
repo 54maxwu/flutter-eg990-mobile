@@ -130,7 +130,7 @@ class _CenterRouteState extends State<CenterRoute> {
       },
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+          padding: const EdgeInsets.all(12.0),
           child: CenterStoreInheritedWidget(
             key: routeKey,
             store: _store,
@@ -144,12 +144,12 @@ class _CenterRouteState extends State<CenterRoute> {
                     return CenterDisplay();
                   case CenterStoreState.error:
                     return Center(
-                        child: WarningDisplay(
-                      message: Failure.internal(FailureCode(
-                        type: FailureType.CENTER,
-                        code: 10,
-                      )).message,
-                    ));
+                      child: WarningDisplay(
+                        message: Failure.internal(
+                                FailureCode(type: FailureType.CENTER, code: 10))
+                            .message,
+                      ),
+                    );
                   default:
                     return SizedBox.shrink();
                 }

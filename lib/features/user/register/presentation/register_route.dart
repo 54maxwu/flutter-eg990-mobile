@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
 
 import 'state/register_store.dart';
 import 'widget/register_display.dart';
+import 'widget/register_display_dialog.dart';
 import 'widget/register_store_inherited_widget.dart';
 
 class RegisterRoute extends StatefulWidget {
@@ -53,18 +55,18 @@ class _RegisterRouteState extends State<RegisterRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        print('pop register route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
-        return Future(() => true);
-      },
-      child: Scaffold(
-        body: Container(
-          width: Global.device.width,
-          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 12.0),
-          child: InkWell(
+    if (widget.isDialog) {
+      return DialogWidget(
+        constraints: BoxConstraints.tight(Size(
+          Global.device.width,
+          Global.device.height,
+        )),
+        padding: EdgeInsets.zero,
+        customBg: const Color(0xa0ffffff),
+        roundParam: 0.0,
+        canClose: false,
+        children: [
+          InkWell(
             // to dismiss the keyboard when the user tabs out of the TextField
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
@@ -74,11 +76,39 @@ class _RegisterRouteState extends State<RegisterRoute> {
             },
             child: RegisterStoreInheritedWidget(
               store: _store,
-              child: RegisterDisplay(),
+              child: RegisterDisplayDialog(),
+            ),
+          ),
+        ],
+      );
+    } else {
+      return WillPopScope(
+        onWillPop: () {
+          debugPrint('pop register route');
+          Future.delayed(
+              Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+          return Future(() => true);
+        },
+        child: Scaffold(
+          body: Container(
+            width: Global.device.width,
+            padding: const EdgeInsets.all(12.0),
+            child: InkWell(
+              // to dismiss the keyboard when the user tabs out of the TextField
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: RegisterStoreInheritedWidget(
+                store: _store,
+                child: RegisterDisplay(),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

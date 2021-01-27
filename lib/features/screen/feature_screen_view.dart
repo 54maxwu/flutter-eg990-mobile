@@ -2,20 +2,18 @@ import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/ad_dialog.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/event_dialog_signed.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/routes/more/more_dialog.dart';
-import 'package:flutter_eg990_mobile/features/screen/screen_menu_bar_action.dart';
 import 'package:flutter_eg990_mobile/res.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../export_internal_file.dart';
+import '../user/register/presentation/register_route.dart';
 import 'feature_screen_inherited_widget.dart';
 import 'feature_screen_store.dart';
 import 'screen_drawer_item.dart';
-import 'screen_menu_lang_widget.dart';
+import 'screen_menu_bar_action.dart';
 import 'screen_navigation_bar_item.dart';
 
 part 'screen_drawer.dart';

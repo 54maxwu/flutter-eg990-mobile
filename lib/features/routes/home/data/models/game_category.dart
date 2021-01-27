@@ -15,6 +15,7 @@ enum HomeCategoryEnum {
   RECOMMEND,
   FAVORITE,
   PROMO,
+  MOVIE_WEBSITE,
   WEBSITE,
   UNDEFINE,
 }
@@ -40,28 +41,28 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
   /// GAMES
   static const GameCategory casino = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CASINO,
-    imageUrl: 'images/index/tbico_casino.png',
+    imageUrl: 'images/phone_nav_casino_Color1.png',
   ));
   static const GameCategory slot = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SLOT,
-    imageUrl: 'images/index/tbico_slot.png',
+    imageUrl: 'images/phone_nav_slot_Color1.png',
   ));
   static const GameCategory sport = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SPORT,
-    imageUrl: 'images/index/tbico_sport.png',
+    imageUrl: 'images/phone_nav_sport_Color1.png',
   ));
   static const GameCategory fish = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.FISH,
-    imageUrl: 'images/index/tbico_fish.png',
+    imageUrl: 'images/phone_nav_fish_Color1.png',
   ));
   static const GameCategory lottery =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.LOTTERY,
-    imageUrl: 'images/index/tbico_lottery.png',
+    imageUrl: 'images/phone_nav_lottery_Color1.png',
   ));
   static const GameCategory card = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CARD,
-    imageUrl: 'images/index/tbico_card.png',
+    imageUrl: 'images/phone_nav_card_Color1.png',
   ));
   static const GameCategory gift = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.GIFT,
@@ -106,6 +107,12 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
     id: HomeCategoryEnum.PROMO,
     imageUrl: '',
     pageType: GamePageType.Promo,
+  ));
+  static const GameCategory movieWebsite =
+      const GameCategory.define(HomeCategoryInfo(
+    id: HomeCategoryEnum.MOVIE_WEBSITE,
+    imageUrl: '',
+    pageType: GamePageType.MovieWebsite,
   ));
   static const GameCategory website =
       const GameCategory.define(HomeCategoryInfo(
@@ -171,6 +178,8 @@ extension HomeCategoryExtension on HomeCategoryInfo {
         return localeStr.homeUserTabCategoryFavorite;
       case HomeCategoryEnum.PROMO:
         return localeStr.pageTitlePromo;
+      case HomeCategoryEnum.MOVIE_WEBSITE:
+        return localeStr.gameCategoryMovieWeb;
       case HomeCategoryEnum.WEBSITE:
         return localeStr.gameCategoryWeb;
       default:

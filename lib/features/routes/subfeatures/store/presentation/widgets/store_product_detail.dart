@@ -107,23 +107,27 @@ class StoreProductDetail extends StatelessWidget {
             )),
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Expanded(
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(36.0),
-                  ),
-                  onPressed: (!canExchange) ? null : () => onExchange(),
-                  child: Text(
-                    (canExchange)
-                        ? localeStr.storeTextItemButton
-                        : localeStr.storeTextItemButtonDisabled,
-                  ),
-                ),
+          child: FlatButton(
+            visualDensity: const VisualDensity(horizontal: 3.0, vertical: -2.0),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Themes.storeButtonColor, width: 2.0),
+              borderRadius: new BorderRadius.circular(6.0),
+            ),
+            disabledColor: Themes.defaultHintColor,
+            child: RichText(
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                text: (canExchange)
+                    ? localeStr.storeTextItemButton
+                    : localeStr.storeTextItemButtonDisabled,
+                style: TextStyle(
+                    fontSize: FontSize.SUBTITLE.value,
+                    color: Themes.storeButtonColor,
+                    fontWeight: FontWeight.bold),
               ),
-            ],
+            ),
+            onPressed: (!canExchange) ? null : () => onExchange(),
           ),
         ),
       ],

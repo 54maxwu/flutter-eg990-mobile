@@ -1,8 +1,9 @@
 import 'package:flutter_eg990_mobile/core/data/hive_actions.dart';
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart'
     show HiveDataException;
-import 'package:flutter_eg990_mobile/features/routes/promo/data/models/promo_freezed.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
+
+import '../models/promo_freezed.dart';
 
 abstract class PromoLocalStorage {
   void closeBox();

@@ -17,7 +17,6 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<List<BannerEntity>> getCachedBanners();
-
   Future<void> cacheBanners(List<BannerEntity> bannersToCache);
 
   /// Gets the cached [MarqueeEntity] which was gotten the last time
@@ -25,7 +24,6 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<List<MarqueeEntity>> getCachedMarquees();
-
   Future<void> cacheMarquees(List<MarqueeEntity> marqueesToCache);
 
   /// Gets the cached [GameTypes] which was gotten the last time
@@ -33,7 +31,6 @@ abstract class HomeLocalStorage {
   ///
   /// Throws [HiveDataException] if no cached data is present.
   Future<GameTypes> getCachedGameTypes();
-
   Future<void> cacheGameTypes(GameTypes typesToCache);
 }
 

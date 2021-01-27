@@ -8,11 +8,13 @@ import '../state/point_store.dart';
 ///
 class PointStoreInheritedWidget extends InheritedWidget {
   final PointStore store;
+  final Widget pointWidget;
 
   const PointStoreInheritedWidget({
     Key key,
     @required this.store,
     @required Widget child,
+    @required this.pointWidget,
   })  : assert(child != null),
         super(key: key, child: child);
 
@@ -23,5 +25,5 @@ class PointStoreInheritedWidget extends InheritedWidget {
 
   @override
   bool updateShouldNotify(PointStoreInheritedWidget old) =>
-      key != old.key || store != old.store;
+      key != old.key || store != old.store || pointWidget != old.pointWidget;
 }

@@ -16,6 +16,7 @@ import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
 import 'injection_container.dart' as di;
+import 'mylogger.dart';
 
 FirebaseAnalytics _analytics;
 
@@ -31,8 +32,7 @@ Future<void> mainCommon(String env) async {
       Global.addAnalytics = false;
       break;
     case Environment.release:
-      debugPrint('App Config Version: ${ConfigReader.getVersion()}');
-      Global.addAnalytics = true;
+      MyLogger.log(msg: 'App Config Version: ${ConfigReader.getVersion()}');
       break;
   }
 
@@ -91,6 +91,7 @@ Future<void> mainCommon(String env) async {
   if (Global.addAnalytics) {
     _analytics = FirebaseAnalytics();
   }
+
   // run application
   runApp(new MainApp(_analytics));
 }

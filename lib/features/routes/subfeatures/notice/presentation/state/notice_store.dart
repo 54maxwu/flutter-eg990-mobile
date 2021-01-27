@@ -65,11 +65,11 @@ abstract class _NoticeStore with Store {
         ),
       );
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }
 
   List<NoticeData> get getMaintenanceList => dataModel.data.maintenanceList;
-
   List<NoticeData> get getMarqueeList => dataModel.data.marqueeList;
 }

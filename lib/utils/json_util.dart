@@ -159,9 +159,6 @@ class JsonUtil {
     // transfer decoded data to model data
     try {
       return jsonToModel(map) as T;
-    } on TokenException catch (e) {
-      debugPrint('catch token exception');
-      throw e;
     } catch (e, s) {
       debugPrint('decode to model error: $e, stack:\n$s');
       MyLogger.error(

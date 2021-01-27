@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/pager_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/warning_display.dart';
 
 import '../data/enum/deals_date_enum.dart';
 import '../data/enum/deals_status_enum.dart';
 import '../data/enum/deals_type_enum.dart';
 import '../data/form/deals_form.dart';
 import 'state/deals_store.dart';
-import 'widgets/deals_display.dart';
+import 'widgets/deals_display_list.dart';
 
 class DealsRoute extends StatefulWidget {
   @override
@@ -16,36 +18,19 @@ class DealsRoute extends StatefulWidget {
 }
 
 class _DealsRouteState extends State<DealsRoute> {
+  final MemberGridItem pageItem = MemberGridItem.dealRecord;
   DealsStore _store;
   List<ReactionDisposer> _disposers;
   CancelFunc toastDismiss;
 
-//  final GlobalKey<CustomizeDropdownWidgetState> _selectorKey =
-//      new GlobalKey(debugLabel: 'selector');
-  final GlobalKey<DealsDisplayState> contentKey =
+  final GlobalKey<DealsDisplayListState> contentKey =
       new GlobalKey(debugLabel: 'content');
   final GlobalKey<PagerWidgetState> pagerKey =
       new GlobalKey(debugLabel: 'pager');
 
-  final List<String> _selectorDateStrings = [
-    localeStr.spinnerDateToday,
-    localeStr.spinnerDateYesterday,
-    localeStr.spinnerDateMonth,
-    localeStr.spinnerDateAll,
-  ];
-  final List<String> _selectorTypeStrings = [
-    localeStr.dealsViewSpinnerType0,
-    localeStr.dealsViewSpinnerType1,
-    localeStr.dealsViewSpinnerType2,
-    localeStr.dealsViewSpinnerType3,
-  ];
-  final List<String> _selectorStatusStrings = [
-    localeStr.dealsViewSpinnerStatus0,
-    localeStr.dealsViewSpinnerStatus1,
-    localeStr.dealsViewSpinnerStatus2,
-    localeStr.dealsViewSpinnerStatus3,
-    localeStr.dealsViewSpinnerStatus4,
-  ];
+  List<String> _selectorDateStrings;
+  List<String> _selectorTypeStrings;
+  List<String> _selectorStatusStrings;
 
   DealsDateEnum _selectedDate;
   DealsTypeEnum _selectedType;
@@ -53,6 +38,7 @@ class _DealsRouteState extends State<DealsRoute> {
 
   void getPageData(int page) {
     if (_store == null) return;
+    contentKey.currentState.updateContent = null;
     _store.getRecord(DealsForm(
       page: page,
       time: _selectedDate.value,
@@ -61,13 +47,43 @@ class _DealsRouteState extends State<DealsRoute> {
     ));
   }
 
+  void updateDropdowns() {
+    _selectorDateStrings = [
+      localeStr.spinnerDateToday,
+      localeStr.spinnerDateYesterday,
+      localeStr.spinnerDateMonth,
+      localeStr.spinnerDateAll,
+    ];
+    _selectorTypeStrings = [
+      localeStr.dealsViewSpinnerType0,
+      localeStr.dealsViewSpinnerType1,
+      localeStr.dealsViewSpinnerType2,
+      localeStr.dealsViewSpinnerType3,
+    ];
+    _selectorStatusStrings = [
+      localeStr.dealsViewSpinnerStatus0,
+      localeStr.dealsViewSpinnerStatus1,
+      localeStr.dealsViewSpinnerStatus2,
+      localeStr.dealsViewSpinnerStatus3,
+      localeStr.dealsViewSpinnerStatus4,
+    ];
+  }
+
   @override
   void initState() {
     _store ??= sl.get<DealsStore>();
+    updateDropdowns();
     _selectedDate = DealsDateEnum.LIST[0];
     _selectedType = DealsTypeEnum.LIST[0];
     _selectedStatus = DealsStatusEnum.LIST[0];
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(DealsRoute oldWidget) {
+    updateDropdowns();
+    super.didUpdateWidget(oldWidget);
+    contentKey.currentState?.updateHeaders(true);
   }
 
   @override
@@ -92,14 +108,14 @@ class _DealsRouteState extends State<DealsRoute> {
         (_) => _store.waitForPageData,
         // Run some logic with the content of the observed field
         (bool wait) {
-          print('reaction on wait deals: $wait');
+          debugPrint('reaction on wait deals: $wait');
           if (wait) {
             toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
             toastDismiss();
             toastDismiss = null;
             if (_store.dataModel != null) {
-              print(
+              debugPrint(
                   'updating deals record, page: ${_store.dataModel.currentPage}');
               try {
                 if (_store.dataModel.total > 0) {
@@ -133,86 +149,169 @@ class _DealsRouteState extends State<DealsRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsDateEnum.LIST,
-                    optionStrings: _selectorDateStrings,
-                    changeNotify: (data) {
-                      _selectedDate = data;
-                      print('selected date: $data');
-                    },
+    return WillPopScope(
+      onWillPop: () {
+        debugPrint('pop deals route');
+        Future.delayed(
+            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.all(12.0),
+          child: (_store == null)
+              ? Center(
+                  child: WarningDisplay(
+                    message:
+                        Failure.internal(FailureCode(type: FailureType.INHERIT))
+                            .message,
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsTypeEnum.LIST,
-                    optionStrings: _selectorTypeStrings,
-                    changeNotify: (data) {
-                      _selectedType = data;
-                      print('selected type: $data');
-                    },
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: CustomizeDropdownWidget(
-                    optionValues: DealsStatusEnum.LIST,
-                    optionStrings: _selectorStatusStrings,
-                    changeNotify: (data) {
-                      _selectedStatus = data;
-                      print('selected status: $data');
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: SizedBox(
-                      height: Global.device.comfortButtonHeight,
-                      child: RaisedButton(
-                        child: Text(localeStr.btnQueryNow),
-                        onPressed: () => getPageData(1),
+                )
+              : InkWell(
+                  // to dismiss the keyboard when the user tabs out of the TextField
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: ListView(
+                    primary: true,
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Themes.iconBgColor,
+                                boxShadow: Themes.roundIconShadow,
+                              ),
+                              child: DecoratedBox(
+                                decoration: Themes.roundIconDecor,
+                                child: Icon(
+                                  pageItem.value.iconData,
+                                  size: 32 * Global.device.widthScale,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                pageItem.value.label,
+                                style:
+                                    TextStyle(fontSize: FontSize.HEADER.value),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 16.0),
+                        child: Container(
+                          decoration: Themes.layerShadowDecorRound,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              SizedBox(height: 24.0),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomizeDropdownWidget(
+                                        optionValues: DealsDateEnum.LIST,
+                                        optionStrings: _selectorDateStrings,
+                                        changeNotify: (data) {
+                                          _selectedDate = data;
+                                          debugPrint('selected date: $data');
+                                        },
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomizeDropdownWidget(
+                                        optionValues: DealsTypeEnum.LIST,
+                                        optionStrings: _selectorTypeStrings,
+                                        changeNotify: (data) {
+                                          _selectedType = data;
+                                          debugPrint('selected type: $data');
+                                        },
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomizeDropdownWidget(
+                                        optionValues: DealsStatusEnum.LIST,
+                                        optionStrings: _selectorStatusStrings,
+                                        changeNotify: (data) {
+                                          _selectedStatus = data;
+                                          debugPrint('selected status: $data');
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 24.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: SizedBox(
+                                        height:
+                                            Global.device.comfortButtonHeight,
+                                        child: GradientButton(
+                                          expand: true,
+                                          child: Text(localeStr.btnQueryNow),
+                                          onPressed: () => getPageData(1),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.fromLTRB(2.0, 12.0, 2.0, 8.0),
+                                child: DealsDisplayList(contentKey),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    PagerWidget(
+                                      pagerKey,
+                                      horizontalInset: 20.0,
+                                      onAction: (page) => getPageData(page),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.0, 6.0, 2.0, 10.0),
-              child: DealsDisplay(contentKey),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                PagerWidget(
-                  pagerKey,
-                  horizontalInset: 36.0,
-                  onAction: (page) => getPageData(page),
                 ),
-              ],
-            ),
-          ],
         ),
       ),
     );

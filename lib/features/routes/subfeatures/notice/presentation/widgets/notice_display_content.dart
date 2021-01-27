@@ -11,41 +11,65 @@ class NoticeDisplayContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 12.0),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: dataList.length,
-        itemBuilder: (_, index) {
-          NoticeData data = dataList[index];
-          return Container(
-            margin: const EdgeInsets.only(bottom: 8.0),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 12.0,
-            ),
-            decoration: new BoxDecoration(
-              color: Themes.defaultCardColor,
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  data.date.replaceAll(' ~ ', ' ~ \n'),
-                  style: TextStyle(
-                    color: Themes.defaultAccentColor,
-                    fontSize: FontSize.TITLE.value,
+      constraints: BoxConstraints(minHeight: 60),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Themes.defaultBorderColor),
+          left: BorderSide(color: Themes.defaultBorderColor),
+        ),
+      ),
+      child: Container(
+        decoration: Themes.layerShadowDecorRoundBottom,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            ListView.builder(
+              primary: false,
+              shrinkWrap: true,
+              itemCount: dataList.length,
+              itemBuilder: (_, index) {
+                NoticeData data = dataList[index];
+                return Container(
+                  margin: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Themes.noticeBgColor,
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
-                SizedBox(height: 6.0),
-                Text(
-                  data.content,
-                  textAlign: TextAlign.start,
-                ),
-              ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 4.0),
+                        child: Text(
+                          data.date.replaceAll(' ~ ', ' ~ \n'),
+                          style: TextStyle(
+                              fontSize: FontSize.MESSAGE.value,
+                              color: Themes.noticeTitleColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 20.0),
+                        child: Text(
+                          data.content,
+                          style: TextStyle(
+                              fontSize: FontSize.SUBTITLE.value,
+                              color: Themes.noticeTextColor,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

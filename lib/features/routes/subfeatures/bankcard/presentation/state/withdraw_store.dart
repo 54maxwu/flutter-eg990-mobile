@@ -77,7 +77,7 @@ abstract class _WithdrawStore with Store {
         );
       });
     } on Exception {
-      setErrorMsg(code: 2);
+      setErrorMsg(code: 1);
     }
   }
 
@@ -97,7 +97,7 @@ abstract class _WithdrawStore with Store {
         );
       });
     } on Exception {
-      setErrorMsg(code: 3);
+      setErrorMsg(code: 2);
     }
   }
 
@@ -115,7 +115,7 @@ abstract class _WithdrawStore with Store {
         );
       });
     } on Exception {
-      setErrorMsg(code: 1);
+      setErrorMsg(code: 3);
     }
   }
 

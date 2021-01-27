@@ -8,6 +8,7 @@ import '../model/payment_promo.dart';
 import '../model/payment_type.dart';
 
 class DepositApi {
+  static const String GET_CARD = "api/bankcard";
   static const String GET_PAYMENT = "api/getPayment";
   static const String GET_PAYMENT_PROMO = "api/getPromo";
   static const String GET_DEPOSIT_INFO = "/api/getShowAcc";
@@ -18,16 +19,12 @@ class DepositApi {
 }
 
 abstract class DepositRepository {
+  Future<Either<Failure, bool>> checkBankcard();
   Future<Either<Failure, List<PaymentType>>> getPayment();
-
   Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo();
-
   Future<Either<Failure, List<DepositInfo>>> getDepositInfo();
-
   Future<Either<Failure, Map<int, String>>> getDepositBanks();
-
   Future<Either<Failure, Map<int, String>>> getDepositRule();
-
   Future<Either<Failure, DepositResult>> postDeposit(DepositDataForm form);
 }
 
@@ -42,60 +39,64 @@ class DepositRepositoryImpl implements DepositRepository {
   }
 
   @override
-  Future<Either<Failure, List<PaymentType>>> getPayment() async {
+  Future<Either<Failure, bool>> checkBankcard() async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
-        DepositApi.GET_PAYMENT,
+        DepositApi.GET_CARD,
         userToken: jwtInterface.token,
       ),
       jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-DEPOSIT',
-    );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold((failure) => Left(failure), (data) {
-      if (data.isSuccess) {
-        MyLogger.print(msg: 'payment map: ${data.data}', tag: tag);
-        if (data.data is Map)
-          return Right(decodePaymentTypes(data.data));
-        else if (data.data is String)
-          return Right(decodePaymentTypes(jsonDecode(data.data)));
-        else
-          return Left(Failure.dataType());
-      } else {
-        MyLogger.error(msg: 'payment data error: $data', tag: tag);
-        return Left(Failure.token(FailureType.DEPOSIT));
-      }
-    });
-  }
-
-  @override
-  Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo() async {
-    final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.get(
-        DepositApi.GET_PAYMENT_PROMO,
-        userToken: jwtInterface.token,
-      ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-DEPOSIT',
+      tag: 'remote-BANKCARD',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        if (data.isSuccess) {
-          MyLogger.print(msg: 'payment promo map: ${data.data}', tag: tag);
+        if (data.isSuccess && data.data.toString().isNotEmpty) {
+          MyLogger.print(msg: 'bankcard map: ${data.data}', tag: tag);
           if (data.data is Map)
-            return Right(PaymentPromo.jsonToPaymentPromo(data.data));
+            return Right(true);
           else if (data.data is String)
-            return Right(
-                PaymentPromo.jsonToPaymentPromo(jsonDecode(data.data)));
+            return Right(true);
           else
             return Left(Failure.dataType());
         } else {
-          MyLogger.error(msg: 'payment promo data error: $data', tag: tag);
-          return Left(Failure.token(FailureType.DEPOSIT));
+          return Right(false);
         }
       },
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<PaymentType>>> getPayment() async {
+    final result = await requestData(
+      request: dioApiService.get(
+        DepositApi.GET_PAYMENT,
+        userToken: jwtInterface.token,
+      ),
+      tag: 'remote-DEPOSIT',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (data) => Right(decodePaymentTypes(data)),
+    );
+  }
+
+  @override
+  Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo() async {
+    final result = await requestModel<PaymentPromo>(
+      request: dioApiService.get(
+        DepositApi.GET_PAYMENT_PROMO,
+        userToken: jwtInterface.token,
+      ),
+      jsonToModel: PaymentPromo.jsonToPaymentPromo,
+      tag: 'remote-DEPOSIT',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (data) => Right(data),
     );
   }
 
@@ -120,17 +121,17 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, Map<int, String>>> getDepositRule() async {
-    final result = await requestModel<RequestCodeModel>(
+    final result = await requestData(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_RULE,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (data) => Right(data.data.map<int, String>((key, value) {
+      (data) => Right(data.map<int, String>((key, value) {
         debugPrint('rule key: $key, data: $value');
         return MapEntry<int, String>('$key'.strToInt, """$value""");
       })),
@@ -158,18 +159,19 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, List<DepositInfo>>> getDepositInfo() async {
-    final result = await requestModel<RequestCodeModel>(
+    final result = await requestModelList<DepositInfo>(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_INFO,
         userToken: jwtInterface.token,
       ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
+      jsonToModel: DepositInfo.jsonToDepositInfo,
+      addKey: false,
       tag: 'remote-DEPOSIT',
     );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
-      (data) => Right(JsonUtil.decodeMapToModelList(
-          data.data, (jsonMap) => DepositInfo.jsonToDepositInfo(jsonMap))),
+      (list) => Right(list),
     );
   }
 }

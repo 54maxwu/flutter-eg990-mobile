@@ -20,6 +20,8 @@ class BankcardDisplay extends StatefulWidget {
 
 class _BankcardDisplayState extends State<BankcardDisplay> {
   final String tag = 'BankcardDisplay';
+  final MemberGridItem pageItem = MemberGridItem.bankcard;
+  final double _fieldInset = 72.0;
 
   static final GlobalKey<FormState> _formKey =
       new GlobalKey(debugLabel: 'form');
@@ -31,25 +33,12 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
       new GlobalKey(debugLabel: 'account');
   final GlobalKey<CustomizeFieldWidgetState> _branchFieldKey =
       new GlobalKey(debugLabel: 'branch');
-
-  // Dropdowns
-  final GlobalKey<CustomizeDropdownWidgetState> _cityKey =
-      new GlobalKey(debugLabel: 'city');
-  final GlobalKey<CustomizeDropdownWidgetState> _areaKey =
-      new GlobalKey(debugLabel: 'area');
+  final GlobalKey<CustomizeFieldWidgetState> _provinceFieldKey =
+      new GlobalKey(debugLabel: 'branch');
 
   List<ReactionDisposer> _disposers;
-  Map<String, String> provinceMap;
   Map<String, String> bankMap;
-  Map<String, String> cityMap;
-  Map<String, String> areaMap;
-
-  bool _waitBankMap = true;
-  bool _waitProvinceMap = true;
   String _bankSelected;
-  String _provinceSelected;
-  String _citySelected;
-  String _areaSelected;
 
   void _validateForm() {
     final form = _formKey.currentState;
@@ -60,10 +49,8 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         bankId: _bankSelected ?? '',
         card: _accountFieldKey.currentState.getInput,
         branch: _branchFieldKey.currentState.getInput,
-        province: _provinceSelected ?? '',
-        area: (_areaSelected != null)
-            ? _areaSelected
-            : (_citySelected != null) ? _citySelected : '',
+        province: _provinceFieldKey.currentState.getInput,
+        area: '',
       );
       if (dataForm.owner.hasInvalidChinese ||
           dataForm.branch.hasInvalidChinese) {
@@ -71,7 +58,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         return;
       }
       if (dataForm.isValid) {
-        debugPrint('bankcard form: ${dataForm.toJson()}');
+        print('bankcard form: ${dataForm.toJson()}');
         if (widget.store.waitForNewCardResult)
           callToast(localeStr.messageWait);
         else
@@ -86,7 +73,6 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
   void initState() {
     super.initState();
     widget.store.getBanks();
-    widget.store.getProvinces();
   }
 
   @override
@@ -99,46 +85,10 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         (_) => widget.store.banksMap,
         // Run some logic with the content of the observed field
         (map) {
-          debugPrint('bank map changed, size: ${map.keys.length}');
-          bankMap = map;
-          _waitBankMap = false;
-          if (!_waitBankMap && !_waitProvinceMap) setState(() {});
-        },
-      ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.provinceMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('province map changed, size: ${map.keys.length}');
-          provinceMap = map;
-          _waitProvinceMap = false;
-          if (!_waitBankMap && !_waitProvinceMap) setState(() {});
-        },
-      ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.cityMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('city map changed, size: ${map.keys.length}');
-          cityMap = map;
-          _citySelected = null;
-          setState(() {});
-        },
-      ),
-      reaction(
-        // Observe in page
-        // Tell the reaction which observable to observe
-        (_) => widget.store.areaMap,
-        // Run some logic with the content of the observed field
-        (map) {
-          debugPrint('area map changed, size: ${map.keys.length}');
-          areaMap = map;
-          _areaSelected = null;
-          setState(() {});
+          print('bank map changed, size: ${map.keys.length}');
+          setState(() {
+            bankMap = map;
+          });
         },
       ),
     ];
@@ -152,165 +102,203 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-        constraints: BoxConstraints(
-          maxWidth: Global.device.width - 12,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            InkWell(
-              // to dismiss the keyboard when the user tabs out of the TextField
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: new Form(
-                key: _formKey,
-                child: ListView(
-                  primary: false,
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    /* Name Input Field */
-                    new CustomizeFieldWidget(
-                      key: _nameFieldKey,
-                      fieldType: FieldType.ChineseOnly,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.bankcardViewTitleOwner,
-                      errorMsg: localeStr.messageInvalidCardOwner,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 2, max: 12),
-                      titleLetterSpacing: 4,
-                      maxInputLength: 12,
-                    ),
-                    /* Bank Option */
-                    CustomizeDropdownWidget(
-                      prefixText: localeStr.bankcardViewTitleBankName,
-                      titleLetterSpacing: 4,
-                      optionValues:
-                          (bankMap != null) ? bankMap.keys.toList() : [],
-                      optionStrings:
-                          (bankMap != null) ? bankMap.values.toList() : [],
-                      changeNotify: (data) {
-                        _bankSelected = data;
-                      },
-                    ),
-                    /* Account Input Field */
-                    new CustomizeFieldWidget(
-                      key: _accountFieldKey,
-                      fieldType: FieldType.Numbers,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.bankcardViewTitleCardNumber,
-                      errorMsg: localeStr.messageInvalidCardNumber,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 16, max: 19),
-                      titleLetterSpacing: 4,
-                      maxInputLength: 19,
-                    ),
-                    /* Branch Input Field */
-                    new CustomizeFieldWidget(
-                      key: _branchFieldKey,
-                      fieldType: FieldType.ChineseOnly,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.bankcardViewTitleBankBranch,
-                      errorMsg: localeStr.messageInvalidCardBankPoint,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 3, max: 10),
-                      titleLetterSpacing: 4,
-                      maxInputLength: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            /* Province Option */
-            CustomizeDropdownWidget(
-              prefixText: localeStr.bankcardViewTitleBankProvince,
-              titleLetterSpacing: 4,
-              optionValues:
-                  (provinceMap != null) ? provinceMap.keys.toList() : [],
-              optionStrings:
-                  (provinceMap != null) ? provinceMap.values.toList() : [],
-              changeNotify: (data) {
-                // clear text field focus
-                FocusScope.of(context).unfocus();
-                // set selected data
-                _provinceSelected = data;
-                // clear dropdown value that's relative
-                cityMap = null;
-                _citySelected = null;
-                areaMap = null;
-                _areaSelected = null;
-                // request cities map
-                widget.store.getCities(data);
-              },
-            ),
-            /* City Option */
-            if (cityMap != null)
-              CustomizeDropdownWidget(
-                key: _cityKey,
-                prefixText: localeStr.bankcardViewTitleBankArea,
-                titleLetterSpacing: 4,
-                optionValues: cityMap.keys.toList(),
-                optionStrings: cityMap.values.toList(),
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  // set selected data
-                  _citySelected = data;
-                  // clear dropdown value that's relative
-                  areaMap = null;
-                  _areaSelected = null;
-                  // request areas map
-                  widget.store.getAreas(data);
-                },
-                clearValueOnMenuChanged: true,
-              ),
-            /* Area Option */
-            if (areaMap != null)
-              CustomizeDropdownWidget(
-                key: _areaKey,
-                prefixText: '${localeStr.bankcardViewTitleBankArea}2',
-                titleLetterSpacing: 4,
-                optionValues: areaMap.keys.toList(),
-                optionStrings: areaMap.values.toList(),
-                changeNotify: (data) {
-                  // clear text field focus
-                  FocusScope.of(context).unfocus();
-                  // set selected data
-                  _areaSelected = data;
-                },
-                clearValueOnMenuChanged: true,
-              ),
-            /* Confirm Button */
+    return SizedBox(
+      width: Global.device.width - 24.0,
+      child: InkWell(
+        // to dismiss the keyboard when the user tabs out of the TextField
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: ListView(
+          primary: true,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
               child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: SizedBox(
-                      height: Global.device.comfortButtonHeight,
-                      child: RaisedButton(
-                        child: Text(localeStr.btnSend),
-                        onPressed: () {
-                          try {
-                            _validateForm();
-                          } catch (e, s) {
-                            MyLogger.error(msg: 'form error: $e\n$s', tag: tag);
-                          }
-                        },
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Themes.iconBgColor,
+                      boxShadow: Themes.roundIconShadow,
+                    ),
+                    child: DecoratedBox(
+                      decoration: Themes.roundIconDecor,
+                      child: Icon(
+                        pageItem.value.iconData,
+                        size: 32 * Global.device.widthScale,
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      pageItem.value.label,
+                      style: TextStyle(fontSize: FontSize.HEADER.value),
+                    ),
+                  )
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 16.0),
+              child: Container(
+                decoration: Themes.layerShadowDecorRound,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    SizedBox(height: 24.0),
+                    new Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: <Widget>[
+                            ///
+                            /// Name Input Field
+                            ///
+                            new CustomizeFieldWidget(
+                              key: _nameFieldKey,
+                              hint: '',
+                              fieldType: FieldType.TextOnly,
+                              persistHint: false,
+                              prefixText: localeStr.bankcardViewTitleOwner,
+                              prefixTextSize: FontSize.SUBTITLE.value,
+                              maxInputLength: InputLimit.NAME_MAX,
+                              horizontalInset: _fieldInset,
+                              errorMsg: localeStr.messageInvalidCardOwner,
+                              validCondition: (value) => rangeCheck(
+                                  value: value.length,
+                                  min: 2,
+                                  max: InputLimit.NAME_MAX),
+                            ),
+
+                            ///
+                            /// Bank Option
+                            ///
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              child: CustomizeDropdownWidget(
+                                prefixText: localeStr.bankcardViewTitleBankName,
+                                prefixTextSize: FontSize.SUBTITLE.value,
+                                horizontalInset: _fieldInset,
+                                optionValues: (bankMap != null)
+                                    ? bankMap.keys.toList()
+                                    : [],
+                                optionStrings: (bankMap != null)
+                                    ? bankMap.values.toList()
+                                    : [],
+                                changeNotify: (data) {
+                                  _bankSelected = data;
+                                },
+                              ),
+                            ),
+
+                            ///
+                            /// Account Input Field
+                            ///
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              child: new CustomizeFieldWidget(
+                                key: _accountFieldKey,
+                                fieldType: FieldType.Numbers,
+                                hint: '',
+                                persistHint: false,
+                                prefixText:
+                                    localeStr.bankcardViewTitleCardNumber,
+                                prefixTextSize: FontSize.SUBTITLE.value,
+                                maxInputLength: InputLimit.CARD_MAX,
+                                horizontalInset: _fieldInset,
+                                errorMsg: localeStr.messageInvalidCardNumber,
+                                validCondition: (value) => rangeCheck(
+                                  value: value.length,
+                                  min: InputLimit.CARD_MIN,
+                                  max: InputLimit.CARD_MAX,
+                                ),
+                              ),
+                            ),
+
+                            ///
+                            /// Branch Input Field
+                            ///
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              child: new CustomizeFieldWidget(
+                                key: _branchFieldKey,
+                                hint: '',
+                                persistHint: false,
+                                prefixText:
+                                    localeStr.bankcardViewTitleBankBranch,
+                                prefixTextSize: FontSize.SUBTITLE.value,
+                                maxInputLength: InputLimit.NAME_MAX,
+                                horizontalInset: _fieldInset,
+                                errorMsg: localeStr.messageInvalidCardBankPoint,
+                                validCondition: (value) => rangeCheck(
+                                    value: value.length,
+                                    min: 3,
+                                    max: InputLimit.NAME_MAX),
+                              ),
+                            ),
+
+                            ///
+                            /// Bank Province Field
+                            ///
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 6.0),
+                              child: new CustomizeFieldWidget(
+                                key: _provinceFieldKey,
+                                hint: '',
+                                persistHint: false,
+                                prefixText:
+                                    localeStr.bankcardViewTitleBankProvince,
+                                prefixTextSize: FontSize.SUBTITLE.value,
+                                maxInputLength: InputLimit.NAME_MAX,
+                                horizontalInset: _fieldInset,
+                                errorMsg: localeStr.messageInvalidCardBankPoint,
+                                validCondition: (value) => rangeCheck(
+                                    value: value.length,
+                                    min: 3,
+                                    max: InputLimit.NAME_MAX),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    ///
+                    /// Confirm Button
+                    ///
+                    Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 24.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: RaisedButton(
+                              child: Text(localeStr.btnConfirm),
+                              onPressed: () => _validateForm(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -318,34 +306,4 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
       ),
     );
   }
-
-//  Widget _buildDataTest() {
-//    return Container(
-//      constraints: BoxConstraints(
-//        maxHeight: Global.device.height * 0.75,
-//        maxWidth: Global.device.width - 16,
-//      ),
-//      padding: const EdgeInsets.all(8.0),
-//      child: Column(
-//        mainAxisSize: MainAxisSize.min,
-//        children: <Widget>[
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: widget.bankcard.toString())),
-//            ),
-//          ),
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: provinceMap.toString())),
-//            ),
-//          ),
-//          Expanded(
-//            child: SingleChildScrollView(
-//              child: RichText(text: TextSpan(text: bankMap.toString())),
-//            ),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
 }

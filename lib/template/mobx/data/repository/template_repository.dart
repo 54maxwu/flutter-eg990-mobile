@@ -1,6 +1,5 @@
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-
-import '../../data/source/template_data_source.dart';
+import 'package:flutter_eg990_mobile/template/mobx/data/source/template_data_source.dart';
 
 abstract class TemplateRepository {
   Future<String> fetchString();
@@ -19,7 +18,7 @@ class TemplateRepositoryImpl implements TemplateRepository {
   @override
   Future<String> fetchString() async {
     final connected = await networkInfo.isConnected;
-    debugPrint('network connected: $connected');
+    print('network connected: $connected');
     // Simulate network delay
     return Future.delayed(
       Duration(seconds: 3),

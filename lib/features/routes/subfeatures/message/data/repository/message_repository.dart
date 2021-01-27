@@ -9,7 +9,6 @@ class MessageApi {
 
 abstract class MessageRepository {
   Future<Either<Failure, List<MessageModel>>> getMessageList();
-
   Future<Either<Failure, RequestCodeModel>> updateMessageStatus(int id);
 }
 

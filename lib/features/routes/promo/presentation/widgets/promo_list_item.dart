@@ -43,6 +43,7 @@ class PromoListItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                       promo.name,
+                      style: TextStyle(fontSize: FontSize.SUBTITLE.value),
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.start,
                     ),
@@ -50,7 +51,7 @@ class PromoListItem extends StatelessWidget {
                   GestureDetector(
                     child: Text(localeStr.promoDetailText),
                     onTap: () {
-                      print('clicked promo: ${promo.name}');
+                      debugPrint('clicked promo: ${promo.name}');
                       showDialog(
                           context: context,
                           barrierDismissible: false,

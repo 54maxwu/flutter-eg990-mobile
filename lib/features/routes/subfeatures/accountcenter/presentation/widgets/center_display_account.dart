@@ -1,15 +1,14 @@
-import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/utils/datetime_format.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../../data/entity/center_account_entity.dart'
     show CenterAccountEntity, CenterAccountEntityExtension;
 import '../state/center_store.dart';
-import 'center_dialog_cpw.dart';
-import 'center_dialog_mobile.dart';
 import 'center_store_inherit_widget.dart';
 
 class CenterDisplayAccount extends StatefulWidget {
@@ -17,63 +16,37 @@ class CenterDisplayAccount extends StatefulWidget {
   _CenterDisplayAccountState createState() => _CenterDisplayAccountState();
 }
 
-class _CenterDisplayAccountState extends State<CenterDisplayAccount>
-    with AfterLayoutMixin {
+class _CenterDisplayAccountState extends State<CenterDisplayAccount> {
+  final MemberGridItem pageItem = MemberGridItem.accountCenter;
+
   static final Key _streamKey = new Key('accountstream');
-
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'dataform');
-
-  final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
-      new GlobalKey(debugLabel: 'account');
-  final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =
-      new GlobalKey(debugLabel: 'name');
-  final GlobalKey<CustomizeFieldWidgetState> _birthFieldKey =
-      new GlobalKey(debugLabel: 'birth');
-  final GlobalKey<CustomizeFieldWidgetState> _phoneFieldKey =
-      new GlobalKey(debugLabel: 'phone');
   final GlobalKey<CustomizeFieldWidgetState> _mailFieldKey =
       new GlobalKey(debugLabel: 'mail');
-  final GlobalKey<CustomizeFieldWidgetState> _wechatFieldKey =
-      new GlobalKey(debugLabel: 'wechat');
-
-//  final GlobalKey<CustomizeFieldWidgetState> _cgpFieldKey =
-//      new GlobalKey(debugLabel: 'cgp');
-  final GlobalKey<CustomizeFieldWidgetState> _cpwFieldKey =
-      new GlobalKey(debugLabel: 'cpw');
 
   CenterStore _store;
   CenterAccountEntity _storeData;
-  bool layoutReady = false;
   Widget contentWidget;
 
-  void updateField() {
-    if (_store == null) return;
-    List<String> initTexts = _store.accountEntity.getInitInput;
-    print('field data: $initTexts');
-    _accountFieldKey.currentState.setInput = initTexts[0];
-    _nameFieldKey.currentState.setInput = initTexts[1];
-    _birthFieldKey.currentState.setInput = initTexts[2];
-    _phoneFieldKey.currentState.setInput = initTexts[3];
-    _mailFieldKey.currentState.setInput = initTexts[4];
-    _wechatFieldKey.currentState.setInput = initTexts[5];
-//    if (initTexts[6] != '-1') _cgpFieldKey.currentState.setInput = initTexts[6];
-    if (initTexts[7] != '-1') _cpwFieldKey.currentState.setInput = initTexts[7];
-    print('field updated');
-  }
+  double maxFieldWidth;
+
+  int _selectedYear;
+  int _selectedMonth;
+  int _selectedDay;
 
   void checkAndPost(BuildContext context, Function postCall) {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(context).unfocus();
     if (_store == null) return;
     if (_store.waitForResponse) {
       callToast(localeStr.messageWait);
       return;
     }
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      postCall();
-    }
+    postCall();
+  }
+
+  @override
+  void initState() {
+    maxFieldWidth = (Global.device.width - 48) / 7 * 4;
+    super.initState();
   }
 
   @override
@@ -87,234 +60,291 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
         ),
       );
     }
-    return StreamBuilder(
-      key: _streamKey,
-      stream: _store.accountStream,
-      builder: (context, snapshot) {
+    return Container(
+      decoration: Themes.layerShadowDecorRoundBottom,
+      constraints: BoxConstraints(minHeight: 60),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: InkWell(
+        // to dismiss the keyboard when the user tabs out of the TextField
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: StreamBuilder(
+          key: _streamKey,
+          stream: _store.accountStream,
+          builder: (context, snapshot) {
 //        print('account stream snapshot: $snapshot');
-        if (_storeData != _store.accountEntity) {
-          _storeData = _store.accountEntity;
-          if (layoutReady) updateField();
-          contentWidget = _buildContent();
-        }
-        contentWidget ??= _buildContent();
-        return contentWidget;
-      },
-    );
-  }
-
-  Widget _buildContent() {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 4.0),
-        constraints: BoxConstraints(
-          maxWidth: Global.device.width - 12,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
-              child: Text(
-                localeStr.centerViewTitleData,
-                style: TextStyle(
-                  color: Themes.secondaryTextColor1,
-                ),
-              ),
-            ),
-            InkWell(
-              // to dismiss the keyboard when the user tabs out of the TextField
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: new Form(
-                key: _formKey,
-                child: ListView(
-                  primary: false,
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    /* Account Field */
-                    new CustomizeFieldWidget(
-                      key: _accountFieldKey,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitleAccount,
-                      titleLetterSpacing: 4,
-                      suffixText: localeStr.centerTextButtonChangePwd,
-                      suffixAction: (account) {
-                        RouterNavigate.navigateToPage(
-                          RoutePage.centerPassword,
-                          arg: CenterDisplayAccountPasswordArguments(
-                            store: _store,
-                          ),
-                        );
-                      },
-                      readOnly: true,
-                    ),
-                    /* Name Field */
-                    new CustomizeFieldWidget(
-                      key: _nameFieldKey,
-                      hint: localeStr.centerHintNoName,
-                      persistHint: false,
-                      coloredHint: true,
-                      prefixText: localeStr.centerTextTitleName,
-                      suffixText: (_storeData.canBindCard)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (_) {
-                        RouterNavigate.navigateToPage(RoutePage.bankcard);
-                      },
-                      readOnly: true,
-                    ),
-                    /* Birth Date Field */
-                    new CustomizeFieldWidget(
-                      key: _birthFieldKey,
-                      fieldType: FieldType.Date,
-                      maxInputLength: 10,
-                      hint: localeStr.centerTextTitleDateHint,
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitleBirth,
-                      suffixText: (_storeData.canBindBirthDate)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (input) {
-                        print('request bind birth date: $input');
-                        checkAndPost(context, () {
-                          if (input.isValidDate)
-                            _store.bindBirth(input);
-                          else
-                            callToast(localeStr.messageInvalidFormat);
-                        });
-                      },
-                      readOnly: _storeData.canBindBirthDate == false,
-                    ),
-                    /* Phone Field */
-                    new CustomizeFieldWidget(
-                      key: _phoneFieldKey,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitlePhone,
-                      titleLetterSpacing: 4,
-                      suffixText: (_storeData.canVerifyPhone)
-                          ? localeStr.centerTextButtonSend
-                          : null,
-                      suffixAction: (_) {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => new CenterDialogMobile(
-                            store: _store,
-                            mobile: _phoneFieldKey.currentState.getInput
-                                .split('(')[0],
-                          ),
-                        );
-                      },
-                      readOnly: true,
-                    ),
-                    /* E-Mail Field */
-                    new CustomizeFieldWidget(
-                      key: _mailFieldKey,
-                      fieldType: FieldType.Email,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitleMail,
-                      suffixText: (_storeData.canBindMail)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (input) {
-                        print('request bind email: $input');
-                        checkAndPost(context, () {
-                          if (input.isEmail)
-                            _store.bindEmail(input);
-                          else
-                            callToast(localeStr.messageInvalidFormat);
-                        });
-                      },
-                      readOnly: _storeData.canBindMail == false,
-                      validCondition: (value) => value.isEmail,
-                      errorMsg: localeStr.messageInvalidEmail,
-                      maxInputLength: 50,
-                    ),
-                    /* WeChat Field */
-                    new CustomizeFieldWidget(
-                      key: _wechatFieldKey,
-                      hint: '',
-                      persistHint: false,
-                      prefixText: localeStr.centerTextTitleWechat,
-                      titleLetterSpacing: 4,
-                      suffixText: (_storeData.canBindWechat)
-                          ? localeStr.centerTextButtonBind
-                          : null,
-                      suffixAction: (input) {
-                        print('request bind wechat: $input');
-                        checkAndPost(context, () {
-                          _store.bindWechat(input);
-                        });
-                      },
-                      readOnly: _storeData.canBindWechat == false,
-                      validCondition: (value) =>
-                          rangeCheck(value: value.length, min: 6, max: 20),
-                      errorMsg: localeStr.messageInvalidWechat,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-//                /* CGP Field */
-//                new CustomizeFieldWidget(
-//                  key: _cgpFieldKey,
-//                  hint: '',
-//                  persistHint: false,
-//                  prefixText: localeStr.centerTextTitleCgp,
-//                  titleLetterSpacing: 0.4,
-//                  suffixText: (_storeData.canBindCgp)
-//                      ? localeStr.centerTextButtonBind
-//                      : null,
-//                  suffixAction: (_) {
-//                    print('cgp url: ${_store.cgpUrl}');
-//                    if (_store.cgpUrl != null && _store.cgpUrl.isNotEmpty)
-//                      RouterNavigate.navigateToPage(
-//                        RoutePage.centerWeb,
-//                        arg: WebRouteArguments(startUrl: _store.cgpUrl[0]),
-//                      );
-//                  },
-//                  useSameBgColor: true,
-//                  readOnly: true,
-//                ),
-            /* CPW Field */
-            new CustomizeFieldWidget(
-              key: _cpwFieldKey,
-              hint: '',
-              persistHint: false,
-              prefixText: localeStr.centerTextTitleCpw,
-              titleLetterSpacing: 0,
-              suffixText: (_storeData.canBindCpw)
-                  ? localeStr.centerTextButtonBind
-                  : null,
-              suffixAction: (_) {
-                print('request bind cpw');
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (context) => new CenterDialogCpw(store: _store),
-                );
-              },
-              useSameBgColor: Themes.isDarkTheme == false,
-              readOnly: true,
-            ),
-          ],
+            if (_storeData != _store.accountEntity) {
+              _storeData = _store.accountEntity;
+              contentWidget = _buildContent();
+            }
+            contentWidget ??= _buildContent();
+            return contentWidget;
+          },
         ),
       ),
     );
   }
 
-  @override
-  void afterFirstLayout(BuildContext context) {
-    layoutReady = true;
-    updateField();
-    setState(() {});
+  Widget _buildContent() {
+    return ListView(
+      primary: true,
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      children: [
+        _buildRow(
+          localeStr.centerTextTitleAccount,
+          Text('${_storeData.accountCode}'),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: GestureDetector(
+              child: _buildButtonContainer(localeStr.centerTextButtonChangePwd),
+              onTap: () {
+                RouterNavigate.navigateToPage(
+                  RoutePage.centerPassword,
+                  arg: CenterDisplayAccountPasswordArguments(store: _store),
+                );
+              },
+            ),
+          ),
+        ),
+        _buildRow(
+          localeStr.centerTextTitleName,
+          (_storeData.firstName.isNotEmpty)
+              ? Text(
+                  '${_storeData.firstName}',
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                )
+              : Text(
+                  '${_storeData.accountCode}',
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                ),
+        ),
+        _buildRow(
+          localeStr.centerTextTitleBirth,
+          (_storeData.canBindBirthDate)
+              ? _buildDateSelector()
+              : Text(
+                  '${_storeData.birthDate}',
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                ),
+          child: (_storeData.canBindBirthDate)
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: GestureDetector(
+                    child:
+                        _buildButtonContainer(localeStr.centerTextButtonBind),
+                    onTap: () {
+                      if (_selectedYear != null &&
+                          _selectedMonth != null &&
+                          _selectedDay != null) {
+//                        print('request bind birth date: $_selectedYear-$_selectedMonth-$_selectedDay');
+                        DateTime date = DateTime(
+                            _selectedYear, _selectedMonth, _selectedDay);
+                        String birth = date.toDateString;
+//                        print('birth date: $birth');
+                        checkAndPost(context, () {
+                          if (birth.isValidDate)
+                            _store.bindBirth(birth);
+                          else
+                            callToast(localeStr.messageInvalidFormat);
+                        });
+                      }
+                    },
+                  ),
+                )
+              : null,
+          wrapInColumn: _storeData.canBindBirthDate,
+        ),
+        _buildRow(
+          localeStr.centerTextTitlePhone,
+          Text(
+            '${_storeData.phone}',
+            style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+          ),
+        ),
+        _buildRow(
+          localeStr.centerTextTitleMail,
+          (_storeData.canBindMail)
+              ? new CustomizeFieldWidget(
+                  key: _mailFieldKey,
+                  persistHint: false,
+                  hint: '',
+                  horizontalInset: Global.device.width - maxFieldWidth,
+                  maxInputLength: InputLimit.ADDRESS_MAX,
+                )
+              : Text(
+                  '${_storeData.email}',
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                ),
+          child: (_storeData.canBindMail)
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: GestureDetector(
+                    child:
+                        _buildButtonContainer(localeStr.centerTextButtonEdit),
+                    onTap: () {
+                      checkAndPost(context, () {
+                        String mail = _mailFieldKey.currentState.getInput;
+                        if (mail.isNotEmpty && mail.isEmail)
+                          _store.bindEmail(mail);
+                        else
+                          callToast(localeStr.messageInvalidFormat);
+                      });
+                    },
+                  ),
+                )
+              : null,
+          wrapInColumn: _storeData.canBindMail,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRow(
+    String title,
+    Widget content, {
+    Widget child,
+    bool wrapInColumn = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Text(
+              '$title:',
+              style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: (wrapInColumn)
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      content,
+                      if (child != null) child,
+                    ],
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        content,
+                        if (child != null) child,
+                      ],
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButtonContainer(String text) {
+    return Container(
+      constraints: BoxConstraints(
+        minHeight: Global.device.comfortButtonHeight * 0.75,
+        maxHeight: Global.device.comfortButtonHeight,
+        minWidth: Global.device.comfortButtonHeight,
+        maxWidth: maxFieldWidth * 0.4,
+      ),
+      decoration: BoxDecoration(
+        color: const Color(0xf0ffffff),
+        border: Border.all(color: Color(0xfffec017)),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(8.0),
+          bottomLeft: Radius.circular(8.0),
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: const Color(0xffe88200),
+            blurRadius: 1.0,
+            offset: Offset(1, 1), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Stack(
+        children: [
+          /// use stack to apply foreground color
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(255, 152, 0, 0.1),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(8.0),
+                bottomLeft: Radius.circular(8.0),
+              ),
+            ),
+          ),
+          Center(
+              child: Text(
+            text,
+            style: TextStyle(color: const Color(0xffe88200)),
+            maxLines: 2,
+            textAlign: TextAlign.center,
+          )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDateSelector() {
+    int thisYear = DateTime.now().year;
+    List<int> years = List.generate(120, (index) => thisYear - index);
+    List<int> months =
+        List.generate(12, (index) => 12 - index).reversed.toList();
+    List<int> days = List.generate(31, (index) => 31 - index).reversed.toList();
+    _selectedYear = years.first;
+    _selectedMonth = months.first;
+    _selectedDay = days.first;
+    return SizedBox(
+      width: maxFieldWidth,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            flex: 3,
+            child: CustomizeDropdownWidget(
+              optionValues: years,
+              changeNotify: (data) {
+                _selectedYear = data;
+              },
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: CustomizeDropdownWidget(
+              optionValues: months,
+              changeNotify: (data) {
+                _selectedMonth = data;
+              },
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: CustomizeDropdownWidget(
+              optionValues: days,
+              changeNotify: (data) {
+                _selectedDay = data;
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

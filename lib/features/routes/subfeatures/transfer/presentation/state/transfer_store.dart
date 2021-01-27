@@ -31,7 +31,6 @@ abstract class _TransferStore with Store {
       new StreamController<String>.broadcast();
 
   Stream<String> get site1ValueStream => _site1ValueController.stream;
-
   Stream<String> get site2ValueStream => _site2ValueController.stream;
 
   @observable
@@ -95,7 +94,7 @@ abstract class _TransferStore with Store {
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
             platforms = data.list;
-            print('platforms: $platforms');
+            debugPrint('platforms: $platforms');
           },
         );
       });
@@ -115,26 +114,23 @@ abstract class _TransferStore with Store {
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
-            bool platformClosed = data.balance == '$creditSymbol-1.00';
             debugPrint('$site balance: ${data.balance}');
+            bool platformClosed = data.balance == '$creditSymbol-1.00';
             if (isLimit) {
               creditLimit = (platformClosed) ? 0 : data.balance.strToInt;
-              debugPrint('credit limit: $creditLimit');
-              if (data.balance != site1) {
+              if (data.balance != site1)
                 setSite1Value(
                     (platformClosed) ? '$creditSymbol---' : data.balance);
-              } else if (retryOnce) {
+              else if (retryOnce)
                 Future.delayed(Duration(milliseconds: 2000),
                     () => getBalance(site, isLimit: isLimit));
-              }
             } else {
-              if (data.balance != site2) {
+              if (data.balance != site2)
                 setSite2Value(
                     (platformClosed) ? '$creditSymbol---' : data.balance);
-              } else if (retryOnce) {
+              else if (retryOnce)
                 Future.delayed(Duration(milliseconds: 2000),
                     () => getBalance(site, isLimit: isLimit));
-              }
             }
           },
         );
@@ -157,7 +153,7 @@ abstract class _TransferStore with Store {
           .postTransfer(form)
           .whenComplete(() => waitForTransferResult = false)
           .then((result) {
-        print('transfer from ${form.from} to ${form.to} result: $result');
+        debugPrint('transfer from ${form.from} to ${form.to} result: $result');
         result.fold(
           (failure) => setErrorMsg(msg: failure.message, showOnce: true),
           (data) {
@@ -186,7 +182,7 @@ abstract class _TransferStore with Store {
         site1 != '$creditSymbol---' &&
         site2 != null &&
         site2 != '$creditSymbol---';
-    print('platform can transfer: $isPlatformValid');
+    debugPrint('platform can transfer: $isPlatformValid');
   }
 
   Future<void> closeStreams() async {

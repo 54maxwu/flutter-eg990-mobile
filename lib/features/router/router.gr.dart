@@ -4,45 +4,41 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/router/my_static_page_transition.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/presentation/home_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/presentation/member_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/movie/presentation/data/movie_route_form.dart';
-import 'package:flutter_eg990_mobile/features/routes/movie/presentation/movie_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/promo/presentation/promo_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/center_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/state/center_store.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/balance/presentation/balance_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/bankcard/presentation/bankcard_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/betrecord/presentation/bet_record_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/deals/presentation/deals_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/presentation/deposit_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/downloadarea/download_area_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/flows/presentation/flows_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/message/presentation/message_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/notice/presentation/notice_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/roller/presentation/roller_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/presentation/store_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/transactions/presentation/transaction_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/transfer/presentation/transfer_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/viplevel/presentation/vip_level_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/wallet/presentation/wallet_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/web/web_route.dart';
-import 'package:flutter_eg990_mobile/features/test_area_route.dart';
+import 'package:flutter_eg990_mobile/features/router/my_static_page_transition.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
 import 'package:flutter_eg990_mobile/features/user/register/presentation/register_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/web/web_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/member_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/promo/presentation/promo_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/presentation/deposit_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/transfer/presentation/transfer_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/bankcard/presentation/bankcard_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/balance/presentation/balance_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/wallet/presentation/wallet_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/message/presentation/message_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/center_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/presentation/state/center_store.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/transactions/presentation/transaction_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/betrecord/presentation/bet_record_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/deals/presentation/deals_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/flows/presentation/flows_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/downloadarea/download_area_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/notice/presentation/notice_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/presentation/store_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/viplevel/presentation/vip_level_route.dart';
+import 'package:flutter_eg990_mobile/features/test_area_route.dart';
 
 abstract class Routes {
   static const homeRoute = '/';
   static const loginRoute = '/login-route';
   static const registerRoute = '/register-route';
   static const serviceRoute = '/service-route';
-  static const movieRoute = '/movie-route';
   static const memberRoute = '/member-route';
   static const promoRoute = '/promo-route';
   static const depositRoute = '/deposit-route';
@@ -66,16 +62,14 @@ abstract class Routes {
   static const moreWebPage = '/more-web-page';
   static const downloadAreaRoute = '/download-area-route';
   static const noticeRoute = '/notice-route';
-  static const levelRoute = '/level-route';
   static const storeRoute = '/store-route';
-  static const rollerRoute = '/roller-route';
+  static const levelRoute = '/level-route';
   static const testAreaRoute = '/test-area-route';
   static const all = {
     homeRoute,
     loginRoute,
     registerRoute,
     serviceRoute,
-    movieRoute,
     memberRoute,
     promoRoute,
     depositRoute,
@@ -99,9 +93,8 @@ abstract class Routes {
     moreWebPage,
     downloadAreaRoute,
     noticeRoute,
-    levelRoute,
     storeRoute,
-    rollerRoute,
+    levelRoute,
     testAreaRoute,
   };
 }
@@ -159,18 +152,6 @@ class Router extends RouterBase {
         return PageRouteBuilder<dynamic>(
           pageBuilder: (context, animation, secondaryAnimation) => WebRoute(
               startUrl: typedArgs.startUrl, hideBars: typedArgs.hideBars),
-          settings: settings,
-          transitionsBuilder: MyStaticPageTransition.slide,
-          transitionDuration: const Duration(milliseconds: 400),
-        );
-      case Routes.movieRoute:
-        if (hasInvalidArgs<MovieRouteArguments>(args, isRequired: true)) {
-          return misTypedArgsRoute<MovieRouteArguments>(args);
-        }
-        final typedArgs = args as MovieRouteArguments;
-        return PageRouteBuilder<dynamic>(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              MovieRoute(typedArgs.form),
           settings: settings,
           transitionsBuilder: MyStaticPageTransition.slide,
           transitionDuration: const Duration(milliseconds: 400),
@@ -391,14 +372,6 @@ class Router extends RouterBase {
           transitionsBuilder: MyStaticPageTransition.slide,
           transitionDuration: const Duration(milliseconds: 400),
         );
-      case Routes.levelRoute:
-        return PageRouteBuilder<dynamic>(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              VipLevelRoute(),
-          settings: settings,
-          transitionsBuilder: MyStaticPageTransition.slide,
-          transitionDuration: const Duration(milliseconds: 400),
-        );
       case Routes.storeRoute:
         return PageRouteBuilder<dynamic>(
           pageBuilder: (context, animation, secondaryAnimation) => StoreRoute(),
@@ -406,10 +379,10 @@ class Router extends RouterBase {
           transitionsBuilder: MyStaticPageTransition.slide,
           transitionDuration: const Duration(milliseconds: 400),
         );
-      case Routes.rollerRoute:
+      case Routes.levelRoute:
         return PageRouteBuilder<dynamic>(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              RollerRoute(),
+              VipLevelRoute(),
           settings: settings,
           transitionsBuilder: MyStaticPageTransition.slide,
           transitionDuration: const Duration(milliseconds: 400),
@@ -451,12 +424,6 @@ class WebRouteArguments {
   final String startUrl;
   final bool hideBars;
   const WebRouteArguments({@required this.startUrl, this.hideBars = false});
-}
-
-//MovieRoute arguments holder class
-class MovieRouteArguments {
-  final MovieRouteForm form;
-  MovieRouteArguments({@required this.form});
 }
 
 //MemberRoute arguments holder class

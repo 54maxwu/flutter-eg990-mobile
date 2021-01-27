@@ -5,30 +5,28 @@ import 'package:vnum/vnum.dart';
 class PromoCategory {
   final int id;
   final String category;
-  final String label;
   final String iconUrl;
 
-  const PromoCategory(this.id, this.category, this.label, this.iconUrl);
+  const PromoCategory(this.id, this.category, this.iconUrl);
 }
 
 @VnumDefinition
 class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   /// Case Definition
-  static final PromoCategoryEnum all = PromoCategoryEnum.define(PromoCategory(
-      0, 'All', localeStr.gameCategoryAll, 'images/index/all.png'));
-  static final PromoCategoryEnum fish = PromoCategoryEnum.define(PromoCategory(
-      1, 'fish', localeStr.gameCategoryFish, 'images/index/fish.png'));
-  static final PromoCategoryEnum slot = PromoCategoryEnum.define(PromoCategory(
-      2, 'slot', localeStr.gameCategorySlot, 'images/index/slot.png'));
-  static final PromoCategoryEnum live = PromoCategoryEnum.define(PromoCategory(
-      3, 'live', localeStr.gameCategoryCasino, 'images/index/casino.png'));
-  static final PromoCategoryEnum sport = PromoCategoryEnum.define(PromoCategory(
-      4, 'sports', localeStr.gameCategorySport, 'images/index/sport.png'));
-  static final PromoCategoryEnum lottery = PromoCategoryEnum.define(
-      PromoCategory(5, 'lotto', localeStr.gameCategoryLottery,
-          'images/index/lottery.png'));
-  static final PromoCategoryEnum other = PromoCategoryEnum.define(PromoCategory(
-      6, 'other', localeStr.gameCategoryOther, 'images/index/icon-other.png'));
+  static const PromoCategoryEnum all = const PromoCategoryEnum.define(
+      PromoCategory(0, 'All', 'images/index/all.png'));
+  static const PromoCategoryEnum fish = const PromoCategoryEnum.define(
+      PromoCategory(1, 'fish', 'images/index/fish.png'));
+  static const PromoCategoryEnum slot = const PromoCategoryEnum.define(
+      PromoCategory(2, 'slot', 'images/index/slot.png'));
+  static const PromoCategoryEnum live = const PromoCategoryEnum.define(
+      PromoCategory(3, 'live', 'images/index/casino.png'));
+  static const PromoCategoryEnum sport = const PromoCategoryEnum.define(
+      PromoCategory(4, 'sports', 'images/index/sport.png'));
+  static const PromoCategoryEnum lottery = const PromoCategoryEnum.define(
+      PromoCategory(5, 'lotto', 'images/index/lottery.png'));
+  static const PromoCategoryEnum other = const PromoCategoryEnum.define(
+      PromoCategory(6, 'other', 'images/index/icon-other.png'));
 
   /// Used for defining cases
   const PromoCategoryEnum.define(PromoCategory fromValue)
@@ -38,19 +36,35 @@ class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   factory PromoCategoryEnum(PromoCategory value) =>
       Vnum.fromValue(value, PromoCategoryEnum);
 
-  /// Iterating cases
-  Iterable get listAll => Vnum.allCasesFor(PromoCategoryEnum);
-
   @override
-  String operator [](String key) {
-    throw UnimplementedError();
+  String operator [](String key) => this.label;
+
+  String get label {
+    switch (value.category) {
+      case 'All':
+        return localeStr.gameCategoryAll;
+      case 'fish':
+        return localeStr.gameCategoryFish;
+      case 'slot':
+        return localeStr.gameCategorySlot;
+      case 'live':
+        return localeStr.gameCategoryCasino;
+      case 'sports':
+        return localeStr.gameCategorySport;
+      case 'lotto':
+        return localeStr.gameCategoryLottery;
+      case 'other':
+        return localeStr.gameCategoryOther;
+      default:
+        return '???';
+    }
   }
 
   /// (optional) Extend your Vnums
-//PromoCategory example() {
-//  switch(value) {
-//    default:
-//      return PromoCategoryEnum.example.value;
-//  };
-//}
+  //PromoCategory example() {
+  //  switch(value) {
+  //    default:
+  //      return PromoCategoryEnum.example.value;
+  //  };
+  //}
 }

@@ -10,7 +10,6 @@ class PromoApi {
 
 abstract class PromoRepository {
   Future<Either<Failure, List<PromoEntity>>> getPromos();
-
   Future<Either<Failure, List<PromoEntity>>> getCachedPromos();
 }
 
@@ -37,31 +36,32 @@ class PromoRepositoryImpl implements PromoRepository {
   @override
   Future<Either<Failure, List<PromoEntity>>> getPromos() async {
     final connected = await networkInfo.isConnected;
-    if (!connected) return getCachedPromos();
-
-    final result = await requestModelList<PromoModel>(
-      request: dioApiService.get(PromoApi.GET_PROMO),
-      jsonToModel: PromoModel.jsonToPromoModel,
-      tag: 'remote-PROMO',
-    );
-//      print('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) {
-        if (failure.typeIndex == 0)
-          return getCachedPromos();
-        else
-          return Left(failure);
-      },
-      (models) => Right(_transformPromoModels(models)),
-    );
+    if (connected) {
+      final result = await requestModelList<PromoModel>(
+        request: dioApiService.get(PromoApi.GET_PROMO),
+        jsonToModel: PromoModel.jsonToPromoModel,
+        tag: 'remote-PROMO',
+      );
+//      debugPrint('test response type: ${result.runtimeType}, data: $result');
+      return result.fold(
+        (failure) {
+          if (failure.typeIndex == 0)
+            return getCachedPromos();
+          else
+            return Left(failure);
+        },
+        (models) => Right(_transformPromoModels(models)),
+      );
+    }
+    return getCachedPromos();
   }
 
   @override
   Future<Either<Failure, List<PromoEntity>>> getCachedPromos() async {
     try {
-      print('accessing promo data storage...');
+      debugPrint('accessing promo data storage...');
       var cached = await localStorage.getCachedPromos();
-//      print('data from cached source: $cached');
+//      debugPrint('data from cached source: $cached');
       if (cached.isNotEmpty)
         return Right(cached);
       else

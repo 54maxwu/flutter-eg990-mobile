@@ -8,7 +8,6 @@ import 'features/event/event_inject.dart';
 import 'features/router/app_global_streams.dart';
 import 'features/routes/home/home_inject.dart';
 import 'features/routes/member/member_inject.dart';
-import 'features/routes/movie/movie_inject.dart';
 import 'features/routes/promo/promo_inject.dart';
 import 'features/routes/subfeatures/accountcenter/center_inject.dart';
 import 'features/routes/subfeatures/agent/agent_inject.dart';
@@ -20,7 +19,6 @@ import 'features/routes/subfeatures/deposit/deposit_inject.dart';
 import 'features/routes/subfeatures/flows/flows_inject.dart';
 import 'features/routes/subfeatures/message/message_inject.dart';
 import 'features/routes/subfeatures/notice/notice_inject.dart';
-import 'features/routes/subfeatures/roller/roller_inject.dart';
 import 'features/routes/subfeatures/store/store_inject.dart';
 import 'features/routes/subfeatures/transactions/transaction_inject.dart';
 import 'features/routes/subfeatures/transfer/transfer_inject.dart';
@@ -29,6 +27,7 @@ import 'features/routes/subfeatures/wallet/wallet_inject.dart';
 import 'features/screen/web_game_screen_store.dart';
 import 'features/update/update_inject.dart';
 import 'features/user/user_repo_inject.dart';
+import 'template/template_inject.dart';
 
 final sl = GetIt.instance;
 
@@ -51,6 +50,9 @@ Future<void> init() async {
   sl.registerLazySingleton<HomeLocalStorage>(
     () => HomeLocalStorageImpl(),
   );
+  sl.registerLazySingleton<JwtInterface>(
+    () => JwtInterfaceImpl(dioApiService: sl()),
+  );
   sl.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(
         dioApiService: sl(),
@@ -61,6 +63,9 @@ Future<void> init() async {
   sl.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
+  sl.registerLazySingleton<UserInfoRepository>(
+    () => UserInfoRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  );
   sl.registerLazySingleton<EventRepository>(
     () => EventRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
@@ -70,15 +75,6 @@ Future<void> init() async {
   sl.registerLazySingleton<PromoRepository>(
     () => PromoRepositoryImpl(
         dioApiService: sl(), localStorage: sl(), networkInfo: sl()),
-  );
-  sl.registerLazySingleton<JwtInterface>(
-    () => JwtInterfaceImpl(dioApiService: sl()),
-  );
-  sl.registerLazySingleton<MemberRepository>(
-    () => MemberRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
-  );
-  sl.registerLazySingleton<MovieRepository>(
-    () => MovieRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
   sl.registerLazySingleton<DepositRepository>(
     () => DepositRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
@@ -122,14 +118,11 @@ Future<void> init() async {
   sl.registerLazySingleton<NoticeRepository>(
     () => NoticeRepositoryImpl(dioApiService: sl()),
   );
-  sl.registerLazySingleton<VipLevelRepository>(
-    () => VipLevelRepositoryImpl(dioApiService: sl()),
-  );
   sl.registerLazySingleton<StoreRepository>(
     () => StoreRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
   );
-  sl.registerLazySingleton<RollerRepository>(
-    () => RollerRepositoryImpl(dioApiService: sl(), jwtInterface: sl()),
+  sl.registerLazySingleton<VipLevelRepository>(
+    () => VipLevelRepositoryImpl(dioApiService: sl()),
   );
 
   /// Mobx Store
@@ -140,13 +133,13 @@ Future<void> init() async {
     () => UpdateStore(sl<UpdateRepository>()),
   );
   sl.registerLazySingleton(
-    () => EventStore(sl<EventRepository>()),
+    () => EventStore(sl<EventRepository>(), sl<UserInfoRepository>()),
   );
   sl.registerLazySingleton(
     () => HomeStore(sl<HomeRepository>()),
   );
   sl.registerLazySingleton(
-    () => MovieStore(sl<MovieRepository>()),
+    () => PromoStore(sl<PromoRepository>()),
   );
   sl.registerFactory(
     () => LoginStore(sl<UserRepository>()),
@@ -155,10 +148,7 @@ Future<void> init() async {
     () => RegisterStore(sl<UserRepository>()),
   );
   sl.registerFactory(
-    () => PromoStore(sl<PromoRepository>()),
-  );
-  sl.registerFactory(
-    () => MemberCreditStore(sl<MemberRepository>()),
+    () => MemberCreditStore(sl<UserInfoRepository>()),
   );
   sl.registerFactory(
     () => DepositStore(sl<DepositRepository>()),
@@ -203,29 +193,26 @@ Future<void> init() async {
     () => NoticeStore(sl<NoticeRepository>()),
   );
   sl.registerFactory(
-    () => VipLevelStore(sl<VipLevelRepository>()),
-  );
-  sl.registerFactory(
     () => PointStore(sl<StoreRepository>()),
   );
   sl.registerFactory(
-    () => RollerStore(sl<RollerRepository>()),
+    () => VipLevelStore(sl<VipLevelRepository>()),
   );
 
   /// Test only
   /* Template Mobx */
-//  sl.registerLazySingleton<TemplateRemoteDataSource>(
-//    () => TemplateRemoteDataSourceImpl(dioApiService: sl()),
-//  );
-//
-//  sl.registerLazySingleton<TemplateRepository>(
-//    () => TemplateRepositoryImpl(
-//      networkInfo: sl(),
-//      remoteDataSource: sl(),
-//    ),
-//  );
-//
-//  sl.registerLazySingleton<TemplateStore>(
-//    () => TemplateStore(sl<TemplateRepository>()),
-//  );
+  sl.registerLazySingleton<TemplateRemoteDataSource>(
+    () => TemplateRemoteDataSourceImpl(dioApiService: sl()),
+  );
+
+  sl.registerLazySingleton<TemplateRepository>(
+    () => TemplateRepositoryImpl(
+      networkInfo: sl(),
+      remoteDataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<TemplateStore>(
+    () => TemplateStore(sl<TemplateRepository>()),
+  );
 }

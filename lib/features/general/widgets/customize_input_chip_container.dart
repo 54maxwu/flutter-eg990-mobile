@@ -94,16 +94,9 @@ class _CustomizeInputChipContainerState
       titleWidthFactor: widget.titleWidthFactor,
       titleLetterSpacing: widget.titleLetterSpacing,
       iconWidthFactor: widget.iconWidthFactor,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return Wrap(spacing: widget.chipSpacing, children: chips);
-          },
-        ),
+      child: Wrap(
+        spacing: widget.chipSpacing,
+        children: chips,
       ),
     );
   }
@@ -118,7 +111,7 @@ class _CustomizeInputChipContainerState
           left: Radius.circular(4.0),
           right: Radius.circular(4.0),
         )),
-        backgroundColor: Themes.fieldInputBgColor,
+        backgroundColor: Themes.defaultChipColor,
         onPressed: () => (widget.chipTapCall != null)
             ? widget.chipTapCall(returnOnPress)
             : {},

@@ -31,27 +31,35 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
   double progressGroupMaxHeight;
 
   void updateData() {
-    titles = vipData.getBlockTitles;
-//    print('vip block title: $titles');
-
     blockKeys = vipData.getBlockKeys;
-//    print('vip block keys: $blockKeys');
+    debugPrint('vip block keys: $blockKeys');
+
+    var blockTitles = vipData.getBlockTitles;
+    titles = new List();
+    // check block titles
+    for (int i = 0; i < blockTitles.length; i++) {
+      String title = blockTitles[i];
+      if (title == null || title.isNotEmpty)
+        title = getBlockTitleWithKey(blockKeys[i]);
+      titles.add(title);
+    }
+    debugPrint('vip block title: $titles');
 
     sortedLevelKeys ??= new List();
     levelRequirements = vipData.getLevelRequirements;
     levelRequirements.forEach((key, value) {
       sortedLevelKeys.add(key);
-//      print('vip level $key requirements: $value');
+//      debugPrint('vip level $key requirements: $value');
     });
 
     sortedLevelKeys.sort((a, b) => a.compareTo(b));
-//    print('vip levels: $sortedLevelKeys');
+//    debugPrint('vip levels: $sortedLevelKeys');
 
     levelLabels = vipData.getLevelLabels;
-//    print('vip level labels: $levelLabels');
+//    debugPrint('vip level labels: $levelLabels');
 
     blockValue = List.from(blockKeys.map((key) => '${vipData[key]}'.strToInt));
-//    print('vip block value: $blockValue');
+//    debugPrint('vip block value: $blockValue');
   }
 
   @override
@@ -71,96 +79,119 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
         ),
       );
     }
-    return StreamBuilder(
-      key: _streamKey,
-      stream: _store.vipStream,
-      builder: (_, snapshot) {
-//        print('vip stream snapshot: $snapshot');
-        if (contentWidget == null || _store.accountVip != vipData) {
-          vipData = _store.accountVip;
-          updateData();
-          contentWidget = _buildView();
-        }
-        return contentWidget;
-      },
-    );
-  }
-
-  Widget _buildView() {
-    print('build vip view');
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: SingleChildScrollView(
-        child: Container(
-          constraints: BoxConstraints(
-            minHeight: Global.device.height / 2,
-            maxWidth: Global.device.width - 16,
-          ),
-          child: ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            itemCount: titles.length,
-            itemBuilder: (_, index) {
-              /// prepare block data
-              String blockKey = blockKeys[index];
-              print('sorting block: $blockKey');
-              List<String> blockLevelLabels = new List.from(levelLabels);
-              List<int> blockLevelRequirements =
-                  new List.generate(sortedLevelKeys.length, (index) {
-                CenterVipSettingItem setting =
-                    levelRequirements[sortedLevelKeys[index]];
-                int value = '${setting.toJson()[blockKey]}'.strToInt;
-                if (value == -1) blockLevelLabels.removeAt(index);
-                return value;
-              });
-              blockLevelRequirements.removeWhere((value) => value == -1);
-
-              /// combine level list
-              List<String> blockLevel = new List();
-              for (int i = 0; i < blockLevelRequirements.length; i++) {
-                blockLevel
-                    .add('${blockLevelLabels[i]}=${blockLevelRequirements[i]}');
-              }
-
-              /// sort block data
-              blockLevel.sort((a, b) {
-                int aValue = a.split('=')[1].strToInt;
-                int bValue = b.split('=')[1].strToInt;
-                int cp = aValue.compareTo(bValue);
-                return cp;
-              });
-
-              /// split level list
-              blockLevelLabels.clear();
-              blockLevelRequirements.clear();
-              blockLevel.forEach((level) {
-                var split = level.split('=');
-                blockLevelRequirements.add(split[1].strToInt);
-                blockLevelLabels.add(split[0]);
-              });
-
-              print('----------sorted: ${titles[index]}----------');
-              print('sorted level labels: $blockLevelLabels');
-              print('sorted level values: $blockLevelRequirements');
-              print('--------------------------------------\n\n\n');
-
-              /// generate block
-              return _generateBlock(
-                titles[index],
-                blockLevelLabels,
-                blockLevelRequirements,
-                blockValue[index],
-              );
-            },
-          ),
+    return Container(
+      decoration: Themes.layerShadowDecorRoundBottom,
+      constraints: BoxConstraints(minHeight: 60),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: InkWell(
+        // to dismiss the keyboard when the user tabs out of the TextField
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: StreamBuilder(
+          key: _streamKey,
+          stream: _store.vipStream,
+          builder: (_, snapshot) {
+//        debugPrint('vip stream snapshot: $snapshot');
+            if (contentWidget == null || _store.accountVip != vipData) {
+              vipData = _store.accountVip;
+              updateData();
+              contentWidget = _buildView();
+            }
+            return contentWidget;
+          },
         ),
       ),
     );
   }
 
+  Widget _buildView() {
+    return ListView.builder(
+      primary: true,
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      itemCount: titles.length,
+      itemBuilder: (_, index) {
+        /// prepare block data
+        String blockKey = blockKeys[index];
+        debugPrint('sorting block: $blockKey');
+
+        List<String> blockLevelLabels = new List.from(levelLabels);
+        List<int> blockLevelRequirements =
+            new List.generate(sortedLevelKeys.length, (index) {
+          CenterVipSettingItem setting =
+              levelRequirements[sortedLevelKeys[index]];
+          int value = '${setting.toJson()[blockKey]}'.strToInt;
+          if (value == -1) blockLevelLabels.removeAt(index);
+          return value;
+        });
+        blockLevelRequirements.removeWhere((value) => value == -1);
+
+        /// combine level list
+        List<String> blockLevel = new List();
+        for (int i = 0; i < blockLevelRequirements.length; i++) {
+          blockLevel.add('${blockLevelLabels[i]}=${blockLevelRequirements[i]}');
+        }
+
+        /// sort block data
+        blockLevel.sort((a, b) {
+          int aValue = a.split('=')[1].strToInt;
+          int bValue = b.split('=')[1].strToInt;
+          int cp = aValue.compareTo(bValue);
+          return cp;
+        });
+
+        /// split level list
+        blockLevelLabels.clear();
+        blockLevelRequirements.clear();
+        blockLevel.forEach((level) {
+          var split = level.split('=');
+          blockLevelRequirements.add(split[1].strToInt);
+          blockLevelLabels.add(split[0]);
+        });
+
+        debugPrint('----------sorted: ${titles[index]}----------');
+        debugPrint('sorted level labels: $blockLevelLabels');
+        debugPrint('sorted level values: $blockLevelRequirements');
+        debugPrint('--------------------------------------\n\n\n');
+
+        /// generate block
+        return _generateBlock(
+          titles[index],
+          blockLevelLabels,
+          blockLevelRequirements,
+          blockValue[index],
+        );
+      },
+    );
+  }
+
+  String getBlockTitleWithKey(String key) {
+//    debugPrint('get block title with key: $key');
+    switch (key) {
+      case 'allgame':
+        return localeStr.gameCategoryAll;
+      case 'slotgame':
+        return localeStr.gameCategorySlot;
+      case 'casinogame':
+        return localeStr.gameCategoryCasino;
+      case 'sportgame':
+        return localeStr.gameCategorySport;
+      case 'fishgame':
+        return localeStr.gameCategoryFish;
+      case 'lotterygame':
+        return localeStr.gameCategoryLottery;
+      default:
+        return key;
+    }
+  }
+
   Widget _generateBlock(String title, List<String> labelList,
       List<int> requiredList, int current) {
-    print('$title block: $labelList \<-\> $requiredList');
+    debugPrint('$title block: $labelList \<-\> $requiredList');
     if (labelList.length != requiredList.length)
       MyLogger.warn(msg: '$title block data length not match');
 
@@ -176,71 +207,44 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
         isLast: i == requiredList.length - 1,
         labelOnRight: i % 2 == 1,
       ));
-//      print('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
+//      debugPrint('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
     }
 
     return Padding(
       /// block's padding
       padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Themes.vipCardBackgroundColor,
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.max,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 1,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Themes.vipTitleBackgroundColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8.0),
-                          ),
-                        ),
-                        child: Padding(
-                          /// add padding to make container higher
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 8.0,
-                          ),
-                          child: Text(
-                            title,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(color: Themes.vipIconTextColor),
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 24.0, left: 8.0),
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(fontSize: FontSize.SUBTITLE.value),
                         ),
                       ),
                     ),
                     Expanded(
-                      flex: 2,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Themes.vipTitleBackgroundSubColor,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(8.0),
-                          ),
-                        ),
-                        child: Padding(
-                          /// add padding to make container higher
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0, // 12 + Font height diff
-                            horizontal: 8.0,
-                          ),
-                          child: Text('$current'),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 36.0, right: 8.0),
+                        child: Text(
+                          '$current',
+                          style: TextStyle(fontSize: FontSize.SUBTITLE.value),
                         ),
                       ),
                     ),
                   ],
                 ),
-              ] +
-              progressWidgets,
-        ),
+              ),
+            ] +
+            progressWidgets,
       ),
     );
   }
@@ -254,7 +258,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
     bool isLast = false,
     bool labelOnRight = false,
   }) {
-//    print('generating progress widget: $required, isFirst: $isFirst');
+//    debugPrint('generating progress widget: $required, isFirst: $isFirst');
     if (isLast) {
       progressGroupMaxHeight = circleSize.height;
     } else {
@@ -285,9 +289,10 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
                 width: progressBarHeight,
                 height: 10,
                 child: LinearProgressIndicator(
-                  backgroundColor: Themes.vipIconBackgroundColor,
+                  backgroundColor: Themes.vipProgressColor,
                   value: progress,
-                  valueColor: AlwaysStoppedAnimation(Themes.defaultAccentColor),
+                  valueColor:
+                      AlwaysStoppedAnimation(Themes.vipProgressCircleColor),
                 ),
               ),
             )
@@ -314,29 +319,35 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
               constraints: BoxConstraints.tight(circleSize),
               decoration: BoxDecoration(
                 color: (current >= required)
-                    ? Themes.vipIconColor
-                    : Themes.vipIconBackgroundColor,
+                    ? Themes.vipProgressBorderColor
+                    : Themes.vipProgressCircleColor,
                 shape: BoxShape.circle,
                 border: new Border.all(
-                  color: Themes.vipIconBackgroundColor,
+                  color: (current >= required)
+                      ? Themes.vipProgressBorderColor
+                      : Themes.vipProgressCircleColor,
                   width: 6.0,
                 ),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.black54,
-                    spreadRadius: 0.6,
-                    blurRadius: 4,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ],
+//                boxShadow: <BoxShadow>[
+//                  BoxShadow(
+//                    color: Colors.black54,
+//                    spreadRadius: 0.6,
+//                    blurRadius: 4,
+//                    offset: Offset(0, 1), // changes position of shadow
+//                  ),
+//                ],
               ),
               child: Center(
                 child: Text(
                   required.toString(),
                   style: TextStyle(
+                    fontSize: FontSize.SUBTITLE.value,
+//                    color: (current >= required)
+//                        ? Themes.vipIconTextColor
+//                        : Themes.vipTextColor,
                     color: (current >= required)
-                        ? Themes.vipIconTextColor
-                        : Themes.vipTextColor,
+                        ? Themes.vipIconTextSubColor
+                        : Themes.vipIconTextColor,
                   ),
                 ),
               ),
@@ -351,7 +362,8 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 12.0),
-                    child: Text(label),
+                    child: Text(label,
+                        style: TextStyle(color: Themes.vipLevelTextColor)),
                   ),
                 )
               : LayoutId(
@@ -362,7 +374,8 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12.0),
-                    child: Text(label),
+                    child: Text(label,
+                        style: TextStyle(color: Themes.vipLevelTextColor)),
                   ),
                 ),
         ],

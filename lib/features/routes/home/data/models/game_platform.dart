@@ -46,7 +46,7 @@ abstract class GamePlatform with _$GamePlatform {
   static GamePlatformModel jsonToGamePlatformModel(
           Map<String, dynamic> jsonMap) =>
       _$GamePlatformModel(
-        id: jsonMap['id'] as int,
+        id: jsonMap['id'] as int ?? jsonMap['sort'],
         className: decodePlatformClassName(jsonMap),
         ch: decodePlatformChName(jsonMap),
         cid: jsonMap['cid'] as int,
@@ -102,13 +102,9 @@ extension GamePlatformModelExtension on GamePlatformModel {
 
 extension GamePlatformEntityExtension on GamePlatformEntity {
   bool get isGameHall => ['casino', 'sport', 'lottery'].contains(category);
-
   String get iconUrl => '/images/index/logo/${site.toUpperCase()}.png';
-
-  String get imageUrl => '/images/index/nav_${site}_$category.png';
-
+  String get imageUrl => '/images/nav/nav_${category}_$site.png';
   String get gameUrl => '$site/$category/0';
-
   String get label {
     switch (category) {
       case 'casino':

@@ -1,7 +1,6 @@
 import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../models/game_platform.dart';
 import 'game_category_model.dart';
 import 'game_platform.dart';
 

@@ -90,7 +90,7 @@ class _PromoDetailState extends State<PromoDetail> {
                       _viewHeight = (height > dialogHeight)
                           ? dialogHeight
                           : (height < _viewMinHeight) ? _viewMinHeight : height;
-                      print('view height: $_viewHeight');
+                      debugPrint('view height: $_viewHeight');
                       Future.delayed(
                         Duration(milliseconds: 150),
                         () => setState(() {
@@ -109,7 +109,8 @@ class _PromoDetailState extends State<PromoDetail> {
         if (html.isEmpty)
           WarningDisplay(
             message:
-                Failure.internal(FailureCode(type: FailureType.PROMO)).message,
+                Failure.internal(FailureCode(type: FailureType.PROMO, code: 11))
+                    .message,
           ),
       ],
     );
@@ -122,7 +123,7 @@ class _PromoDetailState extends State<PromoDetail> {
       _htmlPromoApply(),
       _htmlPromoRules(),
     ].join('<br>');
-    print('promo detail:\n$detail');
+    debugPrint('promo detail:\n$detail');
 
     return '<html>'
         '<head><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></head>'

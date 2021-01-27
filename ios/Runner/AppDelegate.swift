@@ -8,10 +8,10 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     // flutter channel
-    // static const _rotationChannel = const MethodChannel('com.eg990.mobile/orientation');
+    // static const _rotationChannel = const MethodChannel('com.opkk888.mobile/orientation');
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
     let rotationChannel = FlutterMethodChannel(
-        name: "com.eg990.mobile/orientation",
+        name: "com.opkk888.mobile/orientation",
         binaryMessenger: controller.binaryMessenger)
 
     // flutter call (call SystemChrome.setPreferredOrientation before invoke)

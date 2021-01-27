@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/res.dart';
@@ -15,32 +16,36 @@ class StoreDisplayProducts extends StatefulWidget {
 class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
   PointStore _store;
   List<StoreProductModel> products;
-  int memberPoints;
   int rowItemCount;
-  Widget pointWidget;
+  Widget _pointWidget;
 
-  double productImageSize;
+  final double expectItemHeight = 300;
+  double _gridRatio;
+  double _productImageSize;
 
   @override
   void initState() {
     rowItemCount = (Global.device.widthScale > 1.5)
         ? (2 * Global.device.widthScale).floor()
         : 2;
-    double gridItemWidth =
+    double itemWidth =
         (Global.device.width - 8 * (rowItemCount + 1) - 24) / rowItemCount;
-    productImageSize = gridItemWidth - 32;
-    debugPrint('product image size: $productImageSize');
+    _gridRatio = itemWidth / expectItemHeight;
+    debugPrint('grid item width: $itemWidth, gridRatio: $_gridRatio');
+    _productImageSize = itemWidth - 32;
+    print('product image size: $_productImageSize');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     _store ??= PointStoreInheritedWidget.of(context).store;
+    _pointWidget ??= PointStoreInheritedWidget.of(context).pointWidget;
     if (_store == null) {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
+              Failure.internal(FailureCode(type: FailureType.STORE)).message,
         ),
       );
     }
@@ -52,37 +57,11 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
       shrinkWrap: true,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Text(
-                localeStr.storeTextTitlePoint,
-                style: TextStyle(color: Themes.defaultHintColor),
-              ),
-              StreamBuilder<num>(
-                stream: _store.pointStream,
-                initialData: _store.memberPoints,
-                builder: (_, snapshot) {
-                  debugPrint('store point stream: ${snapshot?.data}');
-                  if (snapshot == null || snapshot.data == null)
-                    return SizedBox.shrink();
-                  if (memberPoints != snapshot.data || pointWidget == null) {
-                    memberPoints = snapshot.data;
-                    pointWidget = Padding(
-                      padding: const EdgeInsets.only(left: 3.0, top: 2.0),
-                      child: Text(
-                        '$memberPoints',
-                        style: TextStyle(color: Themes.storeHighlightTextColor),
-                      ),
-                    );
-                  }
-                  return pointWidget;
-                },
-              )
-            ],
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+          child: _pointWidget,
         ),
+        Divider(
+            height: 4.0, thickness: 2.0, color: Themes.defaultWidgetBgColor),
         Padding(
           padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
           child: GridView.builder(
@@ -90,7 +69,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
               crossAxisCount: rowItemCount,
               crossAxisSpacing: 12.0,
               mainAxisSpacing: 16.0,
-              childAspectRatio: 0.63,
+              childAspectRatio: _gridRatio,
             ),
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
@@ -99,10 +78,9 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
               StoreProductModel product = products[index];
               return Container(
                 decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.all(const Radius.circular(12.0)),
-                  color: Themes.defaultCardColor,
-                ),
+                    borderRadius:
+                        const BorderRadius.all(const Radius.circular(12.0)),
+                    border: Border.all(color: Themes.storeProductBgColor)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 10.0,
@@ -113,7 +91,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                     children: <Widget>[
                       ConstrainedBox(
                         constraints: BoxConstraints.tight(
-                            Size(productImageSize, productImageSize)),
+                            Size(_productImageSize, _productImageSize)),
                         child: Stack(
                           children: <Widget>[
                             Container(
@@ -136,51 +114,60 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2.0),
-                        child: Text(product.productName,
-                            textAlign: TextAlign.center),
+                        child: Text(
+                          product.productName,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: FontSize.TITLE.value),
+                        ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 2.0),
+                        padding: const EdgeInsets.only(bottom: 2.0, top: 8.0),
                         child: Text(
                           localeStr.storeTextItemHint,
-                          style: TextStyle(
-                            color: Themes.defaultHintColor,
-                          ),
+                          style: TextStyle(color: Themes.defaultHintColor),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 4.0),
                         child: Text(
-                          localeStr.storeTextItemPoint(product.point),
+                          localeStr.storeTextItemPoint(
+                              '${formatAsCreditNum(product.point)} '),
                           style: TextStyle(
-                            color: Themes.storeHighlightTextColor,
-                          ),
+                              color: Themes.storeHighlightTextColor,
+                              fontSize: FontSize.MESSAGE.value,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Expanded(
-                              child: RaisedButton(
-                                visualDensity: VisualDensity.compact,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(36.0),
-                                ),
-                                onPressed: () => showDialog(
-                                  context: context,
-                                  barrierDismissible: true,
-                                  builder: (context) => new StoreProductDialog(
-                                    store: _store,
-                                    product: product,
-                                    memberPoints: memberPoints,
-                                  ),
-                                ),
-                                child: Text(localeStr.storeTextItemButton),
-                              ),
+                        child: FlatButton(
+                          visualDensity:
+                              VisualDensity(horizontal: 3.0, vertical: -2.0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Themes.storeButtonColor, width: 2.0),
+                            borderRadius: new BorderRadius.circular(6.0),
+                          ),
+                          onPressed: () => showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (context) => new StoreProductDialog(
+                              store: _store,
+                              product: product,
+                              memberPoints: _store.memberPoints,
                             ),
-                          ],
+                          ),
+                          child: RichText(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(
+                              text: localeStr.storeTextItemButton,
+                              style: TextStyle(
+                                  fontSize: FontSize.SUBTITLE.value,
+                                  color: Themes.storeButtonColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                       ),
                     ],

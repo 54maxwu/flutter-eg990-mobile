@@ -124,12 +124,20 @@ class FlowsDisplayList extends StatelessWidget {
             flex: 4,
             child: Text(
               '$title',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Expanded(
             flex: 7,
-            child: Text('$content'),
+            child: Text(
+              '$content',
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+              ),
+            ),
           ),
         ],
       ),

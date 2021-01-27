@@ -5,36 +5,15 @@ part of 'feature_screen_view.dart';
 ///@version 2020/6/2
 ///
 class ScreenDrawer extends StatelessWidget {
-  const ScreenDrawer();
-
   static final List<ScreenDrawerItem> _menuItems = [
-    ScreenDrawerItem.promo,
-    ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
+    ScreenDrawerItem.home,
+    ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
-  ];
-
-  static final List<ScreenDrawerItem> _userMenuItems = [
-    ScreenDrawerItem.member,
-    ScreenDrawerItem.deposit,
-    ScreenDrawerItem.promo,
-    ScreenDrawerItem.message,
-    ScreenDrawerItem.notice,
     ScreenDrawerItem.store,
-    ScreenDrawerItem.roller,
-    ScreenDrawerItem.task,
-    ScreenDrawerItem.collect,
-    ScreenDrawerItem.sign,
-    ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
-    ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
+    ScreenDrawerItem.website,
     ScreenDrawerItem.logout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
+//    ScreenDrawerItem.testUI,
+//    ScreenDrawerItem.test,
   ];
 
   bool _itemTapped(ScreenDrawerItem item, {FeatureScreenStore store}) {
@@ -42,20 +21,22 @@ class ScreenDrawer extends StatelessWidget {
       getAppGlobalStreams.logout();
       return true;
     }
+    if (item == ScreenDrawerItem.website) {
+      launch(Global.CURRENT_BASE);
+      return true;
+    }
     if (item == ScreenDrawerItem.test) {
       ScreenNavigate.switchScreen(screen: ScreenEnum.Test);
       return true;
     }
-//    if (item == ScreenDrawerItem.sign) {
-//      store.setForceShowEvent = true;
-//      return true;
-//    }
     var route = item.value.route;
     if (route == null) {
       callToastInfo(localeStr.workInProgress);
-    } else if (route == RoutePage.tutorial || route == RoutePage.agentAbout) {
+    } else if (item.value.id == RouteEnum.TUTORIAL ||
+        item.value.id == RouteEnum.AGENT_ABOUT) {
+      debugPrint('${item.value.id} route arg: ${route.value.routeArg}');
       // open web page
-      RouterNavigate.replacePage(route, arg: route.value.routeArg);
+      RouterNavigate.replacePage(route);
       return true;
     } else if (route.page != RouterNavigate.current) {
       RouterNavigate.navigateToPage(route);
@@ -67,117 +48,195 @@ class ScreenDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewState = FeatureScreenInheritedWidget.of(context);
-    double drawerWidth = Global.device.width / 6 * 5;
-    if (drawerWidth < 300) drawerWidth = 300;
+    double drawerWidth = Global.device.width * 0.7;
+    if (drawerWidth < 240) drawerWidth = 240;
 
-    double gridItemWidth = drawerWidth / 2;
-    double gridRatio = gridItemWidth / 48;
+    final List<String> _menuLabels =
+        _menuItems.map((e) => e.value.title).toList();
 
     return Container(
-      width: drawerWidth,
-      height: Global.device.height,
+      constraints: BoxConstraints(
+        maxWidth: drawerWidth,
+        maxHeight: Global.device.height,
+      ),
       child: Drawer(
         elevation: 8.0,
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            /* Drawer Header */
-            DrawerHeader(
-              decoration: BoxDecoration(color: Themes.sideMenuSecondaryColor),
-              margin: const EdgeInsets.only(bottom: 4.0),
-              child: (viewState.store.hasUser)
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Image.asset(
-                            'assets/images/vip/user_vip_${viewState.store.user.vip}.png',
+          children: [
+            Expanded(
+              child: ListView(
+                primary: true,
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  /* Drawer Header */
+                  if (viewState.store.hasUser == false)
+                    Container(
+                      constraints: BoxConstraints(minHeight: 161.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.only(top: 72.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Center(
+                            child: Text(localeStr.messageWelcome,
+                                style: TextStyle(
+                                  fontSize: FontSize.MESSAGE.value,
+                                )),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                            localeStr.messageWelcomeUser(
-                                viewState.store.user.account),
-                            style: TextStyle(color: Colors.white)),
-                      ],
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(localeStr.messageWelcome,
-                            style: TextStyle(
-                              color: Themes.sideMenuHeaderTextColor,
-                            )),
-                        SizedBox(height: 8),
-                        ButtonTheme(
-                          child: RaisedButton(
-                            color: Themes.sideMenuButtonColor,
-                            textColor: Themes.sideMenuButtonTextColor,
-                            child: Text(localeStr.pageTitleLogin2),
+                          Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12.0),
+                              child: Text(
+                                localeStr.messageWelcomeHint,
+                                style: TextStyle(
+                                    fontSize: FontSize.SUBTITLE.value),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: RaisedButton(
+                              color: Themes.buttonPrimaryColor,
+                              textColor: Themes.buttonTextPrimaryColor,
+                              child: Text(
+                                localeStr.pageTitleLogin,
+                                style: TextStyle(
+                                    fontSize: FontSize.SUBTITLE.value),
+                              ),
+                              onPressed: () {
+                                if (viewState.scaffoldKey.currentState
+                                    .isDrawerOpen) Navigator.of(context).pop();
+                                RouterNavigate.navigateToPage(
+                                  RoutePage.login,
+                                  arg: LoginRouteArguments(
+                                      returnHomeAfterLogin: true),
+                                );
+                              },
+                            ),
+                          ),
+                          RaisedButton(
+                            color: Themes.buttonPrimaryColor,
+                            textColor: Themes.buttonTextPrimaryColor,
+                            child: Text(
+                              localeStr.pageTitleRegister,
+                              style:
+                                  TextStyle(fontSize: FontSize.SUBTITLE.value),
+                            ),
                             onPressed: () {
-                              if (viewState.scaffoldKey.currentState
-                                  .isDrawerOpen) Navigator.of(context).pop();
-                              RouterNavigate.navigateToPage(
-                                RoutePage.login,
-                                arg: LoginRouteArguments(
-                                    returnHomeAfterLogin: true),
-                              );
+                              if (viewState
+                                  .scaffoldKey.currentState.isDrawerOpen) {
+                                Navigator.of(context).pop();
+                              }
+                              Future.delayed(Duration(milliseconds: 100), () {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (_) =>
+                                      new RegisterRoute(isDialog: true),
+                                );
+                              });
                             },
                           ),
-                        ),
-                      ],
+                          Container(
+                            width: 160,
+                            height: 160,
+                            margin: const EdgeInsets.symmetric(vertical: 30.0),
+                            child:
+                                networkImageBuilder('images/member-star.png'),
+                          ),
+                        ],
+                      ),
                     ),
-            ),
-            Expanded(
-              child: Container(
-                constraints: BoxConstraints(
-                  // _kDrawerHeaderHeight = 161
-                  maxHeight: Global.device.height - 161.0 - 36.0,
-                ),
-                padding: const EdgeInsets.only(top: 12.0),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: gridRatio,
-                  ),
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: (getAppGlobalStreams.hasUser)
-                      ? _userMenuItems.length
-                      : _menuItems.length,
-                  itemBuilder: (_, index) {
-                    ScreenDrawerItem item = (getAppGlobalStreams.hasUser)
-                        ? _userMenuItems[index]
-                        : _menuItems[index];
-                    return GestureDetector(
-                      onTap: () {
-                        if ((item == ScreenDrawerItem.sign)
-                            ? _itemTapped(item, store: viewState.store)
-                            : _itemTapped(item)) {
-                          // close the drawer
-                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
-                            Navigator.of(context).pop();
-                        }
+                  if (viewState.store.hasUser)
+                    Container(
+                      constraints: BoxConstraints(minHeight: 161.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            width: 160,
+                            height: 160,
+                            margin: const EdgeInsets.symmetric(vertical: 12.0),
+                            child:
+                                networkImageBuilder('images/member-star.png'),
+                          ),
+                          Center(
+                            child: Text(
+                              localeStr.messageWelcomeUser(
+                                  getAppGlobalStreams.userName),
+                              style: TextStyle(
+                                fontSize: FontSize.MESSAGE.value,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12.0),
+                              child: Text(
+                                formatValue(getAppGlobalStreams.userCredit,
+                                    creditSign: true),
+                                style:
+                                    TextStyle(fontSize: FontSize.TITLE.value),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  Column(
+                    children: List<Widget>.generate(
+                      _menuItems.length,
+                      (index) {
+                        ScreenDrawerItem item = _menuItems[index];
+                        if (item.value.isUserOnly &&
+                            getAppGlobalStreams.hasUser == false)
+                          return SizedBox.shrink();
+                        return GestureDetector(
+                          onTap: () {
+                            if ((item == ScreenDrawerItem.sign)
+                                ? _itemTapped(item, store: viewState.store)
+                                : _itemTapped(item)) {
+                              // close the drawer
+                              if (viewState.scaffoldKey.currentState
+                                  .isDrawerOpen) Navigator.of(context).pop();
+                            }
+                          },
+                          child: _buildListItem(item.value, _menuLabels[index]),
+                        );
                       },
-                      child: _buildListItem(item.value),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-              child: Row(
-                children: [
-                  Text(
-                    'version: ${Global.device.appVersionSide}',
-                    style: TextStyle(
-                      fontSize: FontSize.SMALL.value,
-                      color: Themes.defaultHintSubColor,
                     ),
                   ),
                 ],
+              ),
+            ),
+            Expanded(
+              flex: 0,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'version: ${Global.device.appVersionSide}',
+                      style: TextStyle(
+                        fontSize: FontSize.SMALL.value,
+                        color: Themes.defaultHintSubColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -186,57 +245,45 @@ class ScreenDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildListItem(RouteListItem itemValue) {
-    bool shrink =
-        itemValue.iconData != null && itemValue.iconData.codePoint == 0xf219;
+  Widget _buildListItem(RouteListItem itemValue, String title) {
+    bool shrink = itemValue.iconData.codePoint == 0xf219;
     return Padding(
       padding: (shrink)
-          ? const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 16.0)
-          : const EdgeInsets.fromLTRB(10.0, 0.0, 8.0, 16.0),
+          ? const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0)
+          : const EdgeInsets.fromLTRB(18.0, 0.0, 16.0, 16.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Transform.scale(
-            scale: 1.05,
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Themes.sideMenuIconColor)),
-              child: Transform.scale(
-                scale: (shrink) ? 0.7 : 0.75,
-                child: Container(
-                  margin: (shrink)
-                      ? const EdgeInsets.only(right: 4.0)
-                      : EdgeInsets.zero,
-                  child: (itemValue.imageName != null)
-                      ? SizedBox(
-                          width: 24.0,
-                          height: 24.0,
-                          child: networkImageBuilder(
-                            itemValue.imageName,
-                            imgColor: Themes.sideMenuIconColor,
-                          ),
-                        )
-                      : Icon(
-                          itemValue.iconData,
-                          color: Themes.sideMenuIconColor,
-                        ),
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Themes.sideMenuIconBgColor,
+            ),
+            padding: const EdgeInsets.all(4.0),
+            child: Transform.scale(
+              scale: (shrink) ? 0.7 : 0.75,
+              child: Container(
+                margin: (shrink)
+                    ? const EdgeInsets.only(right: 4.0)
+                    : EdgeInsets.zero,
+                child: Icon(
+                  itemValue.iconData,
+                  color: Themes.sideMenuIconColor,
+                  size: 36.0,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+              title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
               style: TextStyle(
-                fontSize: FontSize.SUBTITLE.value,
+                fontSize: FontSize.MESSAGE.value,
                 color: Themes.sideMenuIconTextColor,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

@@ -9,19 +9,15 @@ class Global {
   static Device device;
 
   /// BuildType
-  static bool addAnalytics = true;
+  static bool addAnalytics = false;
 
   /// APP Language
   static bool initLocale = false;
-
-  // zh, th, en, vi
-  static String _language = 'zh';
-
-  // content_cn, content_th, content_us, content_vn
-  static String _jsonContentKey = 'content_cn';
-
+  // zh, en, vi, th
+  static String _language = 'vi';
+  // content_cn, content_us, content_vn, content_th
+  static String _jsonContentKey = 'content_vn';
   static String get lang => _language;
-
   static String get jsonContentKey => _jsonContentKey;
 
   static set setLanguage(String langCode) {
@@ -41,21 +37,15 @@ class Global {
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = EG_BASE_URL;
-  static String currentService = EG_SERVICE_URL;
+  static const String CURRENT_BASE = KK_OFFICIAL_URL;
+  static String currentService = KK_SERVICE_URL;
 
   static const String EG_BASE_URL = "https://www.eg990.com/";
   static const String EG_SERVICE_URL = "http://vip66741.com/";
 
-  static const String BET85_BASE_URL = "http://10.20.10.11/";
-  static const String BET85_OFFICIAL_URL = "https://www.85bet.com/";
-  static const String BET85_TEST_URL = "http://192.168.2.87:7315/";
-  static const String BET85_SERVICE_URL =
-      "https://vm.providesupport.com/095ecqycnij4h0q56020owowxq";
-
-  static const String GS_BASE_URL = "http://10.20.12.23/";
-  static const String GS_OFFICIAL_URL = "https://vip66660.com";
-  static const String GS_SERVICE_URL = "";
+  static const String KK_BASE_URL = "http://10.20.8.11/";
+  static const String KK_OFFICIAL_URL = "https://vnm888.com/";
+  static const String KK_SERVICE_URL = "https://direct.lc.chat/12177138/";
 
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';
@@ -63,8 +53,9 @@ class Global {
   static const String CACHE_APP_DATA = 'CACHE_APP_DATA';
 
   /// Other static value
-  static const double APP_BAR_HEIGHT = kToolbarHeight - 8;
-  static const double APP_TOOLS_HEIGHT = Global.APP_BAR_HEIGHT * 2 + 8;
+  static const double APP_MENU_HEIGHT = kToolbarHeight - 8.0;
+  static const double APP_NAV_HEIGHT = kToolbarHeight + 8.0;
+  static const double APP_BARS_HEIGHT = Global.APP_MENU_HEIGHT + APP_NAV_HEIGHT;
   static const double TEST_DEVICE_HEIGHT = 785.45;
   static const double TEST_DEVICE_WIDTH = 392.72;
 

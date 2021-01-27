@@ -17,9 +17,7 @@ class WalletApi {
 
 abstract class WalletRepository {
   Future<Either<Failure, WalletModel>> getWallet();
-
   Future<Either<Failure, String>> postWalletType(bool toSingle);
-
   Future<Either<Failure, Map<String, dynamic>>> postTransferAll(
     StreamController<String> progressController,
   );
@@ -51,7 +49,7 @@ class WalletRepositoryImpl implements WalletRepository {
       (failure) => Left(failure),
       (model) => (model.auto != '-1')
           ? Right(model)
-          : Left(Failure.token(FailureType.WALLET)),
+          : Left(Failure.token(FailureType.CREDIT)),
     );
   }
 

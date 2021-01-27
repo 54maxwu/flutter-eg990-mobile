@@ -38,6 +38,6 @@ extension GameEntityExtension on GameEntity {
     return data;
   }
 
-  String get imageUrl => '/images/index/gamelist/$id.jpg';
+  String get imageUrl => '/images/games/game/$id.jpg';
   bool isLongText(int limit) => cname.countLength > limit;
 }

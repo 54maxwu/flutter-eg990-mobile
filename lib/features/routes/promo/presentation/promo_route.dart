@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 
 import 'state/promo_store.dart';
-import 'widgets/promo_display.dart';
+import 'widgets/promo_tab_display.dart';
 
 ///
 /// Main View of [Router.promoRoute]
@@ -57,7 +57,7 @@ class _PromoRouteState extends State<PromoRoute> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
+      onWillPop: () {
         debugPrint('pop promo route');
         Future.delayed(
             Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
@@ -72,8 +72,10 @@ class _PromoRouteState extends State<PromoRoute> {
                 case PromoStoreState.loading:
                   return LoadingWidget();
                 case PromoStoreState.loaded:
-                  return PromoDisplay(_store.promos,
-                      showPromoId: widget.openPromoId);
+                  return PromoTabDisplay(
+                    _store.promos,
+                    showPromoId: widget.openPromoId,
+                  );
                 default:
                   return SizedBox.shrink();
               }

@@ -64,7 +64,11 @@ class _TransferRouteState extends State<TransferRoute> {
           print('reaction on transfer result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            callToastInfo(result.msg, icon: Icons.check_circle_outline);
+            callToastInfo(
+                (result.msg.isNotEmpty && result.msg.hasChinese)
+                    ? result.msg
+                    : localeStr.messageSuccess,
+                icon: Icons.check_circle_outline);
           } else {
             callToastError(result.msg);
           }

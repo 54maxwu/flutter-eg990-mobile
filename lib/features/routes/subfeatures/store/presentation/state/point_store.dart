@@ -145,6 +145,7 @@ abstract class _PointStore with Store {
       await _initFuture.whenComplete(() => waitForInitializeData = false);
     } on Exception {
       waitForInitializeData = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }
@@ -235,8 +236,7 @@ abstract class _PointStore with Store {
                 exchangeResult.isSuccess) {
               _repository.getPoint().then(
                     (result) => result.fold(
-                      (failure) =>
-                          setErrorMsg(msg: failure.message, showOnce: true),
+                      (failure) => errorMessage = failure.message,
                       (value) => _pointController.sink.add(value),
                     ),
                   );

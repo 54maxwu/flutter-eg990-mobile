@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'state/web_route_store.dart';
+
 class WebRoute extends StatefulWidget {
   final String startUrl;
   final bool hideBars;
@@ -13,13 +15,50 @@ class WebRoute extends StatefulWidget {
 }
 
 class _WebRouteState extends State<WebRoute> {
+  WebRouteStore _store;
+//  JwtInterface _jwtInterface;
+  List<ReactionDisposer> _disposers;
+
   WebViewController _controller;
   num _stackToView = 1;
 
   @override
   void initState() {
+    _store ??= WebRouteStore();
+//    _jwtInterface = sl.get<JwtInterface>();
     super.initState();
     debugPrint('opening url: ${widget.startUrl}');
+  }
+
+  @override
+  void didUpdateWidget(WebRoute oldWidget) {
+    debugPrint('didUpdateWidget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _disposers ??= [
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.errorMessage,
+        // Run some logic with the content of the observed field
+        (String message) {
+          if (message != null && message.isNotEmpty) {
+            Future.delayed(Duration(milliseconds: 200))
+                .then((value) => callToastError(message));
+          }
+        },
+      ),
+    ];
+  }
+
+  @override
+  void dispose() {
+    _disposers.forEach((d) => d());
+    super.dispose();
   }
 
   @override

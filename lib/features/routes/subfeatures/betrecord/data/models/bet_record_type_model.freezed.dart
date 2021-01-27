@@ -13,7 +13,7 @@ class _$BetRecordTypeModelTearOff {
   const _$BetRecordTypeModelTearOff();
 
 // ignore: unused_element
-  _BetRecordTypeModel call(
+  BetRecordType call(
       {@JsonKey(name: 'id')
           int categoryId,
       @Deprecated('use label getter instead')
@@ -22,7 +22,7 @@ class _$BetRecordTypeModelTearOff {
       @JsonKey(name: 'type')
           String categoryType,
       Map<String, dynamic> platformMap}) {
-    return _BetRecordTypeModel(
+    return BetRecordType(
       categoryId: categoryId,
       categoryName: categoryName,
       categoryType: categoryType,
@@ -92,11 +92,11 @@ class _$BetRecordTypeModelCopyWithImpl<$Res>
   }
 }
 
-abstract class _$BetRecordTypeModelCopyWith<$Res>
+abstract class $BetRecordTypeCopyWith<$Res>
     implements $BetRecordTypeModelCopyWith<$Res> {
-  factory _$BetRecordTypeModelCopyWith(
-          _BetRecordTypeModel value, $Res Function(_BetRecordTypeModel) then) =
-      __$BetRecordTypeModelCopyWithImpl<$Res>;
+  factory $BetRecordTypeCopyWith(
+          BetRecordType value, $Res Function(BetRecordType) then) =
+      _$BetRecordTypeCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id')
@@ -109,15 +109,15 @@ abstract class _$BetRecordTypeModelCopyWith<$Res>
       Map<String, dynamic> platformMap});
 }
 
-class __$BetRecordTypeModelCopyWithImpl<$Res>
+class _$BetRecordTypeCopyWithImpl<$Res>
     extends _$BetRecordTypeModelCopyWithImpl<$Res>
-    implements _$BetRecordTypeModelCopyWith<$Res> {
-  __$BetRecordTypeModelCopyWithImpl(
-      _BetRecordTypeModel _value, $Res Function(_BetRecordTypeModel) _then)
-      : super(_value, (v) => _then(v as _BetRecordTypeModel));
+    implements $BetRecordTypeCopyWith<$Res> {
+  _$BetRecordTypeCopyWithImpl(
+      BetRecordType _value, $Res Function(BetRecordType) _then)
+      : super(_value, (v) => _then(v as BetRecordType));
 
   @override
-  _BetRecordTypeModel get _value => super._value as _BetRecordTypeModel;
+  BetRecordType get _value => super._value as BetRecordType;
 
   @override
   $Res call({
@@ -126,7 +126,7 @@ class __$BetRecordTypeModelCopyWithImpl<$Res>
     Object categoryType = freezed,
     Object platformMap = freezed,
   }) {
-    return _then(_BetRecordTypeModel(
+    return _then(BetRecordType(
       categoryId: categoryId == freezed ? _value.categoryId : categoryId as int,
       categoryName: categoryName == freezed
           ? _value.categoryName
@@ -141,8 +141,9 @@ class __$BetRecordTypeModelCopyWithImpl<$Res>
   }
 }
 
-class _$_BetRecordTypeModel implements _BetRecordTypeModel {
-  const _$_BetRecordTypeModel(
+@Implements(DataOperator)
+class _$BetRecordType implements BetRecordType {
+  const _$BetRecordType(
       {@JsonKey(name: 'id')
           this.categoryId,
       @Deprecated('use label getter instead')
@@ -173,7 +174,7 @@ class _$_BetRecordTypeModel implements _BetRecordTypeModel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BetRecordTypeModel &&
+        (other is BetRecordType &&
             (identical(other.categoryId, categoryId) ||
                 const DeepCollectionEquality()
                     .equals(other.categoryId, categoryId)) &&
@@ -197,12 +198,15 @@ class _$_BetRecordTypeModel implements _BetRecordTypeModel {
       const DeepCollectionEquality().hash(platformMap);
 
   @override
-  _$BetRecordTypeModelCopyWith<_BetRecordTypeModel> get copyWith =>
-      __$BetRecordTypeModelCopyWithImpl<_BetRecordTypeModel>(this, _$identity);
+  $BetRecordTypeCopyWith<BetRecordType> get copyWith =>
+      _$BetRecordTypeCopyWithImpl<BetRecordType>(this, _$identity);
+
+  @override
+  String operator [](String key) => this.label;
 }
 
-abstract class _BetRecordTypeModel implements BetRecordTypeModel {
-  const factory _BetRecordTypeModel(
+abstract class BetRecordType implements BetRecordTypeModel, DataOperator {
+  const factory BetRecordType(
       {@JsonKey(name: 'id')
           int categoryId,
       @Deprecated('use label getter instead')
@@ -210,7 +214,7 @@ abstract class _BetRecordTypeModel implements BetRecordTypeModel {
           String categoryName,
       @JsonKey(name: 'type')
           String categoryType,
-      Map<String, dynamic> platformMap}) = _$_BetRecordTypeModel;
+      Map<String, dynamic> platformMap}) = _$BetRecordType;
 
   @override
   @JsonKey(name: 'id')
@@ -225,5 +229,5 @@ abstract class _BetRecordTypeModel implements BetRecordTypeModel {
   @override
   Map<String, dynamic> get platformMap;
   @override
-  _$BetRecordTypeModelCopyWith<_BetRecordTypeModel> get copyWith;
+  $BetRecordTypeCopyWith<BetRecordType> get copyWith;
 }

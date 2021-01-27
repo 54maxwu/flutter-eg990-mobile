@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/checkbox_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
@@ -36,11 +37,11 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //      new GlobalKey(debugLabel: 'phone');
   final GlobalKey<CustomizeFieldWidgetState> _introFieldKey =
       new GlobalKey(debugLabel: 'intro');
-//
-//  final GlobalKey<CheckboxWidgetState> _newsCheckKey =
-//      new GlobalKey(debugLabel: 'news');
-//  final GlobalKey<CheckboxWidgetState> _termsCheckKey =
-//      new GlobalKey(debugLabel: 'terms');
+
+  final GlobalKey<CheckboxWidgetState> _newsCheckKey =
+      new GlobalKey(debugLabel: 'news');
+  final GlobalKey<CheckboxWidgetState> _termsCheckKey =
+      new GlobalKey(debugLabel: 'terms');
 
   double _fieldInset;
 //  double _phoneCodeContainerHeight;
@@ -61,7 +62,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-//      debugPrint('The user wants to login with $_username and $_password');
+//      print('The user wants to login with $_username and $_password');
       RegisterForm regForm = RegisterForm(
         username: _accountFieldKey.currentState.getInput,
         password: _pwdFieldKey.currentState.getInput,
@@ -69,17 +70,19 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //        mobileno: _phoneFieldKey.currentState.getInput,
         intro: _introFieldKey.currentState.getInput,
       );
-//      if (regForm.isValid && _termsCheckKey.currentState.boxChecked)
-      if (regForm.isValid)
+      if (_termsCheckKey.currentState.boxChecked == false) {
+        callToast(localeStr.messageActionCheckTerms);
+      } else if (regForm.isValid) {
         _store.postRegister(regForm);
-      else
+      } else {
         callToast(localeStr.messageActionFillForm);
+      }
     }
   }
 
   @override
   void initState() {
-    _fieldInset = widget.parentPadding;
+    _fieldInset = widget.parentPadding + 32.0;
     _fieldPrefixBg =
         (widget.transparent) ? Colors.transparent : Themes.fieldPrefixBgColor;
 //    _phoneCodeContainerHeight =
@@ -103,7 +106,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         (_) => _store.waitForRegister,
         // Run some logic with the content of the observed field
         (bool wait) {
-          debugPrint('reaction on wait register: $wait');
+          print('reaction on wait register: $wait');
           if (wait) {
             _toastDismiss = callToastLoading();
           } else if (_toastDismiss != null) {
@@ -119,10 +122,13 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         (_) => _store.registerResult,
         // Run some logic with the content of the observed field
         (result) {
-          debugPrint('reaction on register result: $result');
+          print('reaction on register result: $result');
           if (result == null) return;
           if (result.isSuccess) {
-            callToastInfo(localeStr.messageSuccess,
+            callToastInfo(
+                (result.msg.isNotEmpty && result.msg.hasChinese)
+                    ? result.msg
+                    : localeStr.messageSuccess,
                 icon: Icons.check_circle_outline);
           } else {
             callToastError(result.msg);
@@ -160,154 +166,155 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-//        SizedBox(height: 24.0),
+        SizedBox(height: 24.0),
         new Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              ///
-              /// Account Field
-              ///
-              ///
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: new CustomizeTitledContainer(
-                  prefixText: localeStr.registerFieldTitleAccount,
-                  prefixBgColor: _fieldPrefixBg,
-                  backgroundColor: Themes.fieldPrefixBgColor,
-                  requiredInput: true,
-                  roundCorner: false,
-                  child: new CustomizeFieldWidget(
-                    key: _accountFieldKey,
-                    fieldType: FieldType.Account,
-                    hint: localeStr.hintAccountInput,
-                    persistHint: false,
-                    padding: const EdgeInsets.symmetric(vertical: 0.0),
-                    maxInputLength: InputLimit.ACCOUNT_MAX,
-                    roundCorner: false,
-                    onInputChanged: (input) {
-                      setState(() {
-                        _showAccountError = !rangeCheck(
-                          value: input.length,
-                          min: InputLimit.ACCOUNT_MIN,
-                          max: InputLimit.ACCOUNT_MAX,
-                        );
-                      });
-                    },
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
-                    child: Visibility(
-                      visible: _showAccountError,
-                      child: Text(
-                        localeStr.messageInvalidAccount,
-                        style: TextStyle(color: Themes.defaultErrorColor),
-                      ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              children: <Widget>[
+                ///
+                /// Account Field
+                ///
+                ///
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: new CustomizeTitledContainer(
+                    prefixText: localeStr.registerFieldTitleAccount,
+                    prefixTextSize: FontSize.SUBTITLE.value,
+                    prefixBgColor: _fieldPrefixBg,
+                    backgroundColor: Themes.fieldPrefixBgColor,
+                    horizontalInset: _fieldInset,
+                    requiredInput: true,
+                    child: new CustomizeFieldWidget(
+                      key: _accountFieldKey,
+                      fieldType: FieldType.Account,
+                      hint: localeStr.hintAccountInput,
+                      persistHint: false,
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      maxInputLength: InputLimit.ACCOUNT_MAX,
+                      onInputChanged: (input) {
+                        setState(() {
+                          _showAccountError = !rangeCheck(
+                            value: input.length,
+                            min: InputLimit.ACCOUNT_MIN,
+                            max: InputLimit.ACCOUNT_MAX,
+                          );
+                        });
+                      },
                     ),
                   ),
-                ],
-              ),
-
-              ///
-              /// Password Field
-              ///
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: new CustomizeTitledContainer(
-                  prefixText: localeStr.registerFieldTitlePassword,
-                  prefixBgColor: _fieldPrefixBg,
-                  backgroundColor: Colors.transparent,
-                  requiredInput: true,
-                  roundCorner: false,
-                  child: new CustomizeFieldWidget(
-                    key: _pwdFieldKey,
-                    fieldType: FieldType.Password,
-                    hint: localeStr.hintAccountPassword,
-                    persistHint: false,
-                    padding: const EdgeInsets.symmetric(vertical: 0.0),
-                    roundCorner: false,
-                    maxInputLength: InputLimit.PASSWORD_MAX,
-                    onInputChanged: (input) {
-                      setState(() {
-                        _showPasswordError = !rangeCheck(
-                          value: input.length,
-                          min: InputLimit.PASSWORD_MIN_OLD,
-                          max: InputLimit.PASSWORD_MAX,
-                        );
-                      });
-                    },
-                  ),
                 ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
-                    child: Visibility(
-                      visible: _showPasswordError,
-                      child: Text(
-                        localeStr.messageInvalidPassword,
-                        style: TextStyle(color: Themes.defaultErrorColor),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: _valueTextPadding),
+                      child: Visibility(
+                        visible: _showAccountError,
+                        child: Text(
+                          localeStr.messageInvalidAccount,
+                          style: TextStyle(color: Themes.defaultErrorColor),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-
-              ///
-              /// Confirm Password Field
-              ///
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: new CustomizeTitledContainer(
-                  prefixText: localeStr.registerFieldTitleConfirm,
-                  prefixBgColor: _fieldPrefixBg,
-                  titleLetterSpacing: 2.0,
-                  backgroundColor: Colors.transparent,
-                  requiredInput: true,
-                  roundCorner: false,
-                  child: new CustomizeFieldWidget(
-                    key: _confirmFieldKey,
-                    fieldType: FieldType.Password,
-                    hint: localeStr.hintConfirmedInput,
-                    persistHint: false,
-                    padding: const EdgeInsets.symmetric(vertical: 0.0),
-                    maxInputLength: InputLimit.PASSWORD_MAX,
-                    roundCorner: false,
-                    onInputChanged: (input) {
-                      setState(() {
-                        _showConfirmError = input.isEmpty ||
-                            input != _pwdFieldKey.currentState.getInput;
-                      });
-                    },
-                  ),
+                  ],
                 ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: _valueTextPadding),
-                    child: Visibility(
-                      visible: _showConfirmError,
-                      child: Text(
-                        localeStr.messageInvalidAccount,
-                        style: TextStyle(color: Themes.defaultErrorColor),
-                      ),
+
+                ///
+                /// Password Field
+                ///
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: new CustomizeTitledContainer(
+                    prefixText: localeStr.registerFieldTitlePassword,
+                    prefixTextSize: FontSize.SUBTITLE.value,
+                    prefixBgColor: _fieldPrefixBg,
+                    backgroundColor: Colors.transparent,
+                    horizontalInset: _fieldInset,
+                    requiredInput: true,
+                    child: new CustomizeFieldWidget(
+                      key: _pwdFieldKey,
+                      fieldType: FieldType.Password,
+                      hint: localeStr.hintAccountPassword,
+                      persistHint: false,
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      maxInputLength: InputLimit.PASSWORD_MAX,
+                      onInputChanged: (input) {
+                        setState(() {
+                          _showPasswordError = !rangeCheck(
+                            value: input.length,
+                            min: InputLimit.PASSWORD_MIN_OLD,
+                            max: InputLimit.PASSWORD_MAX,
+                          );
+                        });
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: _valueTextPadding),
+                      child: Visibility(
+                        visible: _showPasswordError,
+                        child: Text(
+                          localeStr.messageInvalidPassword,
+                          style: TextStyle(color: Themes.defaultErrorColor),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
 
-              ///
-              /// Phone Field
-              ///
+                ///
+                /// Confirm Password Field
+                ///
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: new CustomizeTitledContainer(
+                    prefixText: localeStr.registerFieldTitleConfirm,
+                    prefixTextSize: FontSize.SUBTITLE.value,
+                    prefixBgColor: _fieldPrefixBg,
+                    backgroundColor: Colors.transparent,
+                    horizontalInset: _fieldInset,
+                    requiredInput: true,
+                    child: new CustomizeFieldWidget(
+                      key: _confirmFieldKey,
+                      fieldType: FieldType.Password,
+                      hint: localeStr.hintConfirmedInput,
+                      persistHint: false,
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      maxInputLength: InputLimit.PASSWORD_MAX,
+                      onInputChanged: (input) {
+                        setState(() {
+                          _showConfirmError = input.isEmpty ||
+                              input != _pwdFieldKey.currentState.getInput;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: _valueTextPadding),
+                      child: Visibility(
+                        visible: _showConfirmError,
+                        child: Text(
+                          localeStr.messageInvalidAccount,
+                          style: TextStyle(color: Themes.defaultErrorColor),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                ///
+                /// Phone Field
+                ///
 //                Padding(
 //                  padding: const EdgeInsets.only(top: 8.0),
 //                  child: new CustomizeTitledContainer(
@@ -372,74 +379,76 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 //                  ],
 //                ),
 
-              ///
-              /// Referral Code Field
-              ///
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: new CustomizeTitledContainer(
-                  prefixText: localeStr.registerFieldTitleRecommend,
-                  prefixBgColor: _fieldPrefixBg,
-                  backgroundColor: Themes.fieldPrefixBgColor,
-                  roundCorner: false,
-                  child: new CustomizeFieldWidget(
-                    key: _introFieldKey,
-                    fieldType: FieldType.Numbers,
-                    hint: localeStr.hintReferralInput,
-                    persistHint: false,
-                    padding: const EdgeInsets.symmetric(vertical: 0.0),
-                    maxInputLength: InputLimit.RECOMMEND,
-                    roundCorner: false,
+                ///
+                /// Referral Code Field
+                ///
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: new CustomizeTitledContainer(
+                    prefixText: localeStr.registerFieldTitleRecommend,
+                    prefixTextSize: FontSize.SUBTITLE.value,
+                    prefixBgColor: _fieldPrefixBg,
+                    backgroundColor: Themes.fieldPrefixBgColor,
+                    horizontalInset: _fieldInset,
+                    child: new CustomizeFieldWidget(
+                      key: _introFieldKey,
+                      fieldType: FieldType.Numbers,
+                      hint: localeStr.hintReferralInput,
+                      persistHint: false,
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      maxInputLength: InputLimit.RECOMMEND,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
 
-//        Padding(
-//          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 0.0),
-//          child: Divider(height: 16.0),
-//        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 0.0),
+          child: Divider(height: 16.0),
+        ),
 
         ///
         /// Promo News Check Box
         ///
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-//          child: CheckboxWidget(
-//            key: _newsCheckKey,
-//            widgetPadding: EdgeInsets.zero,
-//            textPadding: const EdgeInsets.only(left: 8.0),
-//            label: localeStr.registerCheckButtonNews,
-//            boxBackgroundColor: Themes.fieldInputBgColor,
-//            textSize: FontSize.SUBTITLE.value,
-//            scale: 1.75,
-//          ),
-//        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          child: CheckboxWidget(
+            key: _newsCheckKey,
+            widgetPadding: EdgeInsets.zero,
+            textPadding: const EdgeInsets.only(left: 8.0),
+            label: localeStr.registerCheckButtonNews,
+            boxBackgroundColor: Themes.fieldInputBgColor,
+            textSize: FontSize.SUBTITLE.value,
+            scale: 1.75,
+          ),
+        ),
 
         ///
         /// Terms Check Box
         ///
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-//          child: CheckboxWidget(
-//            key: _termsCheckKey,
-//            widgetPadding: EdgeInsets.zero,
-//            textPadding: const EdgeInsets.only(left: 8.0),
-//            label: localeStr.registerCheckButtonTerms,
-//            boxBackgroundColor: Themes.fieldInputBgColor,
-//            textSize: FontSize.SUBTITLE.value,
-//            maxLines: 2,
-//            scale: 1.75,
-//          ),
-//        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          child: CheckboxWidget(
+            key: _termsCheckKey,
+            widgetPadding: EdgeInsets.zero,
+            textPadding: const EdgeInsets.only(left: 8.0),
+            label: localeStr.registerCheckButtonTerms,
+            boxBackgroundColor: Themes.fieldInputBgColor,
+            textSize: FontSize.SUBTITLE.value,
+            maxLines: 2,
+            scale: 1.75,
+            mustCheck: true,
+          ),
+        ),
 
         ///
         /// Confirm Button
         ///
         Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 24.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 24.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -449,7 +458,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                   child: Text(localeStr.btnRegister),
                   onPressed: () {
                     // clear text field focus
-                    FocusScope.of(context).unfocus();
+                    FocusScope.of(context).requestFocus(new FocusNode());
                     // validate and send request
                     _validateForm();
                   },
@@ -462,40 +471,40 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         ///
         /// Customer Service Hint
         ///
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-//          child: Row(
-//            mainAxisAlignment: MainAxisAlignment.center,
-//            crossAxisAlignment: CrossAxisAlignment.center,
-//            children: [
-//              IconButton(
-//                visualDensity: VisualDensity.compact,
-//                padding: EdgeInsets.zero,
-//                icon: Icon(
-//                  const IconData(0xf27a, fontFamily: 'FontAwesome'),
-//                  color: Themes.defaultTextColor,
-//                ),
-//                onPressed: () {
-//                  RouterNavigate.navigateToPage(
-//                    RoutePage.service,
-//                    arg: WebRouteArguments(
-//                      startUrl: Global.currentService,
-//                      hideBars: true,
-//                    ),
-//                  );
-//                },
-//              ),
-//              Expanded(
-//                child: Text(
-//                  localeStr.registerButtonServiceHint,
-//                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
-//                  maxLines: 3,
-//                  overflow: TextOverflow.visible,
-//                ),
-//              ),
-//            ],
-//          ),
-//        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+                icon: Icon(
+                  const IconData(0xe968, fontFamily: 'IconMoon'),
+                  color: Themes.defaultTextColor,
+                ),
+                onPressed: () {
+                  RouterNavigate.navigateToPage(
+                    RoutePage.service,
+                    arg: WebRouteArguments(
+                      startUrl: Global.currentService,
+                      hideBars: true,
+                    ),
+                  );
+                },
+              ),
+              Expanded(
+                child: Text(
+                  localeStr.registerButtonServiceHint,
+                  style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                  maxLines: 3,
+                  overflow: TextOverflow.visible,
+                ),
+              ),
+            ],
+          ),
+        ),
 
         ///
         /// Auto Login

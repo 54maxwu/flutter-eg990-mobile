@@ -15,19 +15,14 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
   static final List<ScreenNavigationBarItem> _tabs = [
     ScreenNavigationBarItem.home,
     ScreenNavigationBarItem.deposit,
-    ScreenNavigationBarItem.promo,
-    ScreenNavigationBarItem.service,
     ScreenNavigationBarItem.member,
-    ScreenNavigationBarItem.more,
+    ScreenNavigationBarItem.service,
   ];
 
   FeatureScreenStore _store;
   EventStore _eventStore;
   Widget _barWidget;
   String _locale;
-
-  bool _showingEventDialog = false;
-
   int _navIndex = 0;
 
   void _itemTapped(int index, bool hasUser) {
@@ -37,7 +32,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       showDialog(
         context: context,
         barrierDismissible: true,
-        builder: (context) => new MoreDialog(_store, _eventStore),
+        builder: (context) => new MoreDialog(_store),
       );
     } else if (item.value.route == null) {
       callToastInfo(localeStr.workInProgress);
@@ -54,60 +49,6 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       else
         RouterNavigate.navigateToPage(value.route);
     }
-  }
-
-  void _checkShowEvent() {
-    _eventStore.debugEvent();
-    if (_eventStore.forceShowEvent && _eventStore.hasEvent == false) {
-      Future.delayed(Duration(milliseconds: 200), () {
-        callToastInfo(localeStr.messageNoEvent);
-      });
-      // set to false so it will not pop on other pages
-      _eventStore.setForceShowEvent = false;
-      return;
-    }
-    if (_eventStore.showEventOnHome && !_showingEventDialog) {
-      _showingEventDialog = true;
-      Future.delayed(Duration(milliseconds: 1200), () {
-        // will not show
-        if (_store.hasUser == false ||
-            (_store.navIndex != 0 && _eventStore.forceShowEvent == false)) {
-          _stopEventAutoShow();
-          return;
-        } else {
-          // set to false so it will not pop on other pages
-          _eventStore.setForceShowEvent = false;
-        }
-        _showEventDialog();
-      });
-    }
-  }
-
-  void _showEventDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => (_eventStore.hasSignedEvent == false)
-          ? new EventDialog(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onSign: () => _eventStore.signEvent(),
-              onSignError: () => _eventStore.getEventError(),
-              onDialogClose: () => _stopEventAutoShow(),
-            )
-          : new EventDialogSigned(
-              event: _eventStore.event.eventData,
-              signCount: _eventStore.event.signData.times,
-              onDialogClose: () => _stopEventAutoShow(),
-            ),
-    );
-  }
-
-  void _stopEventAutoShow() {
-    if (_store == null) return;
-    _showingEventDialog = false;
-    // set to false so it will not pop again when return to home page
-    _eventStore.setShowEvent = false;
   }
 
   @override
@@ -131,6 +72,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       _eventStore ??= viewState?.eventStore;
     }
     return Container(
+      height: Global.APP_NAV_HEIGHT,
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(width: 1.0, color: Themes.defaultAccentColor),
@@ -157,10 +99,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       final index = _store.navIndex;
       if (index >= 0) _navIndex = index;
       // monitor observable value to show event dialog
-      if (_eventStore.showEventOnHome) _checkShowEvent();
       return BottomNavigationBar(
         onTap: (index) {
-          debugPrint('store state user: ${_store.userStatus}');
+          debugPrint('navigate bar has user: ${_store.hasUser}');
           _itemTapped(index, _store.hasUser);
         },
         currentIndex: _navIndex,
@@ -172,18 +113,38 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
         backgroundColor: Themes.defaultAppbarColor,
         items: List.generate(_tabs.length, (index) {
           var itemValue = _tabs[index].value;
-          return _createBarItem(itemValue, labels[index], false, _store);
+          return _createBarItem(
+            itemValue: itemValue,
+            title: labels[index],
+            store: _store,
+            addBadge: itemValue.id == RouteEnum.MEMBER &&
+                getAppGlobalStreams.hasNewMessage,
+          );
         }),
       );
     });
   }
 
-  BottomNavigationBarItem _createBarItem(RouteListItem itemValue, String title,
-      bool addBadge, FeatureScreenStore store) {
+  BottomNavigationBarItem _createBarItem({
+    @required RouteListItem itemValue,
+    @required String title,
+    @required FeatureScreenStore store,
+    @required bool addBadge,
+  }) {
+    Widget icon = (itemValue.imageName != null)
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: SizedBox(
+              width: 30.0,
+              height: 30.0,
+              child: networkImageBuilder(itemValue.imageName),
+            ),
+          )
+        : Icon(itemValue.iconData, size: 30);
     return BottomNavigationBarItem(
       icon: (addBadge)
           ? Badge(
-              showBadge: _eventStore.hasNewMessage,
+              showBadge: getAppGlobalStreams.hasNewMessage,
               badgeColor: Themes.hintHighlightRed,
               badgeContent: Container(
                 margin: const EdgeInsets.all(1.0),
@@ -194,14 +155,16 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
                 ),
               ),
               padding: EdgeInsets.zero,
-              position: BadgePosition.topRight(top: -5, right: -6),
-              child: Icon(itemValue.iconData, size: 30),
+              position: BadgePosition.topRight(top: -2, right: -2),
+              child: icon,
             )
-          : Icon(itemValue.iconData, size: 30),
+          : icon,
       title: Padding(
         padding: EdgeInsets.only(top: 2.0),
-        child:
-            Text(title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?'),
+        child: Text(
+          title ?? itemValue.title ?? itemValue.route?.pageTitle ?? '?',
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }

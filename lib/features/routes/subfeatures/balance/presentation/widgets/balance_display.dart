@@ -14,12 +14,17 @@ class BalanceDisplay extends StatefulWidget {
 }
 
 class _BalanceDisplayState extends State<BalanceDisplay> {
+  final MemberGridItem pageItem = MemberGridItem.balance;
+
   final GlobalKey progressTextKey = new GlobalKey();
+  final int _itemPerRow = 3;
+  final double _itemSpace = 12.0;
+  double _gridRatio;
+
   List<String> platforms;
   List<GlobalKey<BalanceGridItemState>> gridKeys;
   List<BalanceGridItem> gridItems;
   List<ReactionDisposer> _disposers;
-  double _gridRatio;
 
   @override
   void didChangeDependencies() {
@@ -32,11 +37,12 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
         // Run some logic with the content of the observed field
         (String platform) {
           if (platform == null || platform.isEmpty) return;
-          print('reaction on $platform update...');
+          debugPrint('reaction on $platform update...');
           int gridIndex = platforms.indexOf(platform);
-          print('grid index: $gridIndex');
+          debugPrint('grid index: $gridIndex');
           GlobalKey<BalanceGridItemState> key = gridItems[gridIndex].key;
-          print('new platform credit: ${widget.store.balanceMap[platform]}');
+          debugPrint(
+              'new platform credit: ${widget.store.balanceMap[platform]}');
           key.currentState.setCredit = widget.store.balanceMap[platform];
         },
       ),
@@ -55,11 +61,25 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
   @override
   void initState() {
     platforms = widget.store.promises;
-    double itemWidth = (Global.device.width - 24 - 10 * 5) / 3;
-    _gridRatio = itemWidth / 90.0;
-    debugPrint('grid item width: $itemWidth, gridRatio: $_gridRatio');
+    double gridItemWidth =
+        ((Global.device.width - 32) - _itemSpace * (_itemPerRow + 2) - 32) /
+            _itemPerRow;
+    _gridRatio = gridItemWidth / 128;
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
     widget.store.getCreditLimit();
+  }
+
+  @override
+  void didUpdateWidget(BalanceDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (gridItems != null && gridItems.isNotEmpty) {
+      gridKeys.forEach((element) {
+        if (element.currentState?.mounted ?? false) {
+          element.currentState?.updateVariables(true);
+        }
+      });
+    }
   }
 
   @override
@@ -80,95 +100,126 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
         },
       );
     }).toList();
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
+    return SizedBox(
+      width: Global.device.width - 24.0,
+      child: ListView(
+        primary: true,
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Themes.iconBgColor,
+                    boxShadow: Themes.roundIconShadow,
+                  ),
+                  child: DecoratedBox(
+                    decoration: Themes.roundIconDecor,
+                    child: Icon(
+                      pageItem.value.iconData,
+                      size: 32 * Global.device.widthScale,
+                    ),
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
-                  child: StreamBuilder<String>(
-                    stream: widget.store.loadingStream,
-                    builder: (context, snapshot) {
-                      if (snapshot != null &&
-                          snapshot.data != null &&
-                          snapshot.data.isNotEmpty) {
-//                        print('balance progress: ${snapshot.data}');
-                        return Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 14.0,
-                              height: 14.0,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 3.0,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                snapshot.data,
-                                key: progressTextKey,
-                              ),
-                            ),
-                          ],
-                        );
-                      } else
-                        return SizedBox.shrink();
-                    },
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    pageItem.value.label,
+                    style: TextStyle(fontSize: FontSize.HEADER.value),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 8.0),
+            child: StreamBuilder<String>(
+              stream: widget.store.loadingStream,
+              builder: (context, snapshot) {
+                if (snapshot != null &&
+                    snapshot.data != null &&
+                    snapshot.data.isNotEmpty) {
+//                        debugPrint('balance progress: ${snapshot.data}');
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 14.0,
+                        height: 14.0,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3.0,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          snapshot.data,
+                          key: progressTextKey,
+                          style: TextStyle(
+                            fontSize: FontSize.SUBTITLE.value,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                } else
+                  return SizedBox.shrink();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: GridView.count(
+              physics: ClampingScrollPhysics(),
+              crossAxisCount: _itemPerRow,
+              mainAxisSpacing: _itemSpace,
+              crossAxisSpacing: _itemSpace * 1.5,
+              childAspectRatio: _gridRatio,
+              shrinkWrap: true,
+              primary: false,
+              children: gridItems,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 12.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(color: Themes.defaultTextColor),
+                      children: [
+                        TextSpan(
+                          text: '${localeStr.balanceHintTextTitle}\n',
+                          style: TextStyle(
+                            color: Themes.defaultSubtitleColor,
+                            fontWeight: FontWeight.bold,
+                            height: 3,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '${localeStr.balanceHintText1}'
+                              '\n${localeStr.balanceHintText2}'
+                              '\n${localeStr.balanceHintText3}'
+                              '\n${localeStr.balanceHintText4}',
+                          style: TextStyle(height: 1.5),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-            GridView.count(
-              physics: ClampingScrollPhysics(),
-              crossAxisCount: 3,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: _gridRatio,
-              shrinkWrap: true,
-              children: gridItems,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: RichText(
-                      text: TextSpan(
-                        style: TextStyle(color: Themes.defaultTextColor),
-                        children: [
-                          TextSpan(
-                            text: '${localeStr.balanceHintTextTitle}\n',
-                            style: TextStyle(
-                              color: Themes.defaultSubtitleColor,
-                              fontWeight: FontWeight.bold,
-                              height: 3,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '${localeStr.balanceHintText1}'
-                                '\n${localeStr.balanceHintText2}'
-                                '\n${localeStr.balanceHintText3}'
-                                '\n${localeStr.balanceHintText4}',
-                            style: TextStyle(height: 1.75),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

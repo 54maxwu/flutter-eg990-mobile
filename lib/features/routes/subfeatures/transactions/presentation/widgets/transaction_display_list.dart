@@ -21,7 +21,7 @@ class TransactionDisplayListState extends State<TransactionDisplayList> {
   String _textOut;
 
   set updateContent(List<TransactionData> list) {
-    debugPrint('transaction list length: ${list?.length ?? -1}');
+    print('transaction list length: ${list?.length ?? -1}');
     if (_dataList != list) {
       _dataList = list;
       setState(() {});
@@ -101,12 +101,20 @@ class TransactionDisplayListState extends State<TransactionDisplayList> {
             flex: 2,
             child: Text(
               '$title',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Expanded(
             flex: 5,
-            child: Text('$content'),
+            child: Text(
+              '$content',
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+              ),
+            ),
           ),
         ],
       ),

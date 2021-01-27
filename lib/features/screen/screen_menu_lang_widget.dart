@@ -13,17 +13,13 @@ class ScreenMenuLangWidget extends StatefulWidget {
 }
 
 class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
-//  final List<String> langValues = ['zh', 'en', 'vi'];
-//  final List<String> langOptions = ['CH', 'EN', 'VN'];
-//  final List<String> langImg = [
-//    '/images/lang_chn.jpg',
-//    '/images/lang_eng.jpg',
-//    '/images/lang_vnm.jpg'
-//  ];
-
-  final List<String> langValues = ['zh'];
-  final List<String> langOptions = ['CH'];
-  final List<String> langImg = ['/images/lang_chn.jpg'];
+  final List<String> langValues = ['zh', 'en', 'vi'];
+  final List<String> langOptions = ['CH', 'EN', 'VN'];
+  final List<String> langImg = [
+    '/images/lang_chn.jpg',
+    '/images/lang_eng.jpg',
+    '/images/lang_vnm.jpg'
+  ];
 
   String _currentLang;
 
@@ -47,10 +43,10 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Transform.scale(
-                  scale: 1,
+                  scale: 0.75,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(36.0),
-                    child: networkImageBuilder(langImg[index]),
+                    child: networkImageBuilder(langImg[index], imgScale: 3.0),
                   ),
                 ),
                 Text(langOptions[index]),
@@ -65,10 +61,10 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
           padding: const EdgeInsets.only(right: 12.0),
           decoration: BoxDecoration(shape: BoxShape.circle),
           child: Transform.scale(
-            scale: 1,
+            scale: 0.75,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(36.0),
-              child: networkImageBuilder(langImg[index]),
+              child: networkImageBuilder(langImg[index], imgScale: 3.0),
             ),
           ),
         );

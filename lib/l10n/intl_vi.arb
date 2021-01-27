@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "85Bet Mobile",
+  "title": "KK Mobile",
   "@title": {
-    "description": "85Bet Demo",
+    "description": "KK Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -167,6 +167,22 @@
         "example": "100.00"
       }
     }
+  },
+  "themeColorHintSelect": "Chọn màu chủ đề",
+  "@themeColorHintSelect": {
+    "type": "text"
+  },
+  "themeColorDefault": "Đặt trước",
+  "@themeColorDefault": {
+    "type": "text"
+  },
+  "themeColorDark": "Tối",
+  "@themeColorDark": {
+    "type": "text"
+  },
+  "themeColorLight": "Màu sáng",
+  "@themeColorLight": {
+    "type": "text"
   },
   "workInProgress": "Sắp có!",
   "@workInProgress": {
@@ -393,6 +409,10 @@
   "@messageActionFillForm": {
     "type": "text"
   },
+  "messageActionCheckTerms": "Vui lòng đọc và đánh dấu để đồng ý với các quy tắc cá cược",
+  "@messageActionCheckTerms": {
+    "type": "text"
+  },
   "messageLogout": "{name}，xin vui lòng đăng nhập lại",
   "@messageLogout": {
     "type": "text",
@@ -525,11 +545,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "Mật khẩu dài 6 ~ 20 ký tự",
+  "messageInvalidPassword": "Mật khẩu dài 8 ~ 18 ký tự",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 20 ký tự",
+  "messageInvalidPasswordNew": "Mật khẩu dài 8 ~ 18 ký tự",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -745,6 +765,10 @@
       }
     }
   },
+  "homeHintFreeUsage": "Dùng miễn phí",
+  "@homeHintFreeUsage": {
+    "type": "text"
+  },
   "homeHintMemberCreditLeft": "Thăng bằng",
   "@homeHintMemberCreditLeft": {
     "type": "text"
@@ -839,6 +863,14 @@
   },
   "gameCategoryWeb": "Phiên bản web",
   "@gameCategoryWeb": {
+    "type": "text"
+  },
+  "gameCategoryMovieWeb": "Rạp chiếu phim",
+  "@gameCategoryMovieWeb": {
+    "type": "text"
+  },
+  "gameCategoryMovieWebHint": "Bấm để xem phim",
+  "@gameCategoryMovieWebHint": {
     "type": "text"
   },
   "gameCategoryWebHint": "Nhấp vào tôi để mở phiên bản web",
@@ -1597,6 +1629,10 @@
   },
   "depositPaymentNoPromo": "Từ bỏ đề nghị",
   "@depositPaymentNoPromo": {
+    "type": "text"
+  },
+  "depositHintRedirectBankcard": "Vui lòng điền thông tin thẻ ngân hàng trước",
+  "@depositHintRedirectBankcard": {
     "type": "text"
   },
   "depositHintTextAccount": "Nạp thông tin tài khoản, vui lòng liên hệ với dịch vụ",

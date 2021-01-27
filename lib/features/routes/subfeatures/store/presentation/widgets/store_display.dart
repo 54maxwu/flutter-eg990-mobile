@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_eg990_mobile/core/internal/global.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 
 import '../state/point_store.dart';
 import 'store_display_banner.dart';
@@ -17,6 +17,8 @@ class StoreDisplay extends StatefulWidget {
 class _StoreDisplayState extends State<StoreDisplay> {
   double availableHeight;
   double imageHeight;
+  double titleHeight;
+  double titleImageSize;
   double contentHeight;
 
   @override
@@ -24,10 +26,12 @@ class _StoreDisplayState extends State<StoreDisplay> {
     double imageContainerScale = 1920 / Global.device.width;
     // origin pic size is w1920*h530
     imageHeight = 530 / imageContainerScale;
+    titleImageSize = 32 * Global.device.widthScale;
+    titleHeight = titleImageSize * 2 + 10.0;
     print('store banner height: $imageHeight');
 
     availableHeight = Global.device.featureContentHeight - 8;
-    contentHeight = availableHeight - imageHeight;
+    contentHeight = availableHeight - imageHeight - titleHeight - 8.0;
     print('store content height: $contentHeight');
     super.initState();
   }
@@ -44,6 +48,37 @@ class _StoreDisplayState extends State<StoreDisplay> {
             maxHeight: imageHeight,
           ),
           child: StoreDisplayBanner(images: widget.store.banners),
+        ),
+        Container(
+          constraints: BoxConstraints.tightFor(height: titleHeight),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          margin: const EdgeInsets.only(top: 4.0, bottom: 6.0),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Themes.iconBgColor,
+                  boxShadow: Themes.roundIconShadow,
+                ),
+                child: DecoratedBox(
+                  decoration: Themes.roundIconDecor,
+                  child: Icon(
+                    const IconData(0xe961, fontFamily: 'IconMoon'),
+                    size: titleImageSize,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  localeStr.pageTitleStore,
+                  style: TextStyle(fontSize: FontSize.HEADER.value),
+                ),
+              )
+            ],
+          ),
         ),
         ConstrainedBox(
           constraints: BoxConstraints(

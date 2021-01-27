@@ -194,14 +194,14 @@ class PaymentEnum extends Vnum<PaymentEnumData> {
     tutorialItem: [
       PaymentTutorialItem(
         sortId: 81,
-        value: 'images/download/GOBO_QR.png',
-        link: 'https://www.gamewallet.asia/version.php?fn=gp_a&latest',
-        type: TutorialItemType.Image,
+        value: localeStr.depositNewbieButtonCgp1,
+        // https://www.gamewallet.asia/version.php?fn=gp_a&latest
+        type: TutorialItemType.Button,
       ),
       PaymentTutorialItem(
         sortId: 82,
         value: localeStr.depositNewbieButtonCgp2,
-        link: 'https://www.vip66729.com/pdf/cpw.pdf',
+        // https://www.vip66729.com/pdf/cpw.pdf
         type: TutorialItemType.Button,
       ),
     ],

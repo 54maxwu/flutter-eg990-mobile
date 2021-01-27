@@ -63,6 +63,7 @@ abstract class _VipLevelStore with Store {
         );
       });
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }

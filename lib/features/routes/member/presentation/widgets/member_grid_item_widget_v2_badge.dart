@@ -9,13 +9,13 @@ import '../state/member_credit_store.dart';
 
 typedef onMemberGridItemV2Tap = void Function(MemberGridItemV2);
 
-enum MemberGridItemBadgeType { NEW_MESSAGE }
+enum MemberGridItemV2BadgeType { NEW_MESSAGE }
 
 class MemberGridItemWidgetV2Badge extends StatefulWidget {
   final MemberGridItemV2 item;
   final onMemberGridItemV2Tap onItemTap;
   final MemberCreditStore store;
-  final MemberGridItemBadgeType type;
+  final MemberGridItemV2BadgeType type;
 
   MemberGridItemWidgetV2Badge({
     @required this.item,

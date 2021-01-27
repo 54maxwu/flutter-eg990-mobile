@@ -1,11 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/internal/themes.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/balance/presentation/enum/balance_grid_action.dart';
+import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
+import '../enum/balance_grid_action.dart';
 import 'balance_action_dialog.dart';
+
+const LinearGradient _itemBackgroundColor = const LinearGradient(
+  begin: Alignment.bottomLeft,
+  end: Alignment.topRight,
+  colors: [
+    const Color(0xffb68f72),
+    const Color(0xffffe6b9),
+    const Color(0xffd9935c),
+  ],
+  stops: [0.0, 0.48, 1.0],
+  tileMode: TileMode.clamp,
+);
 
 class BalanceGridItem extends StatefulWidget {
   final String platform;
@@ -23,17 +34,26 @@ class BalanceGridItem extends StatefulWidget {
 
 class BalanceGridItemState extends State<BalanceGridItem>
     with TickerProviderStateMixin {
-  static final String btn1Text = localeStr.balanceTransferOutText;
-  static final String btn2Text = localeStr.balanceTransferInText;
+  bool _verticalActionLayout;
+  String _btn1Text;
+  String _btn2Text;
+  String _maintenanceText;
 
   AnimationController _controller;
   TickerFuture tickerFuture;
 
+  String _credit = '---';
+  bool isMaintaining = false;
+  bool canTransferOut = true;
+  bool canTransferIn = true;
+  bool canRefresh = true;
+
   set setCredit(String credit) {
     stopAnim();
     if (_credit == credit) return;
+    debugPrint('${widget.platform} balance credit: $credit');
     _credit = credit;
-    isMaintaining = credit == '$creditSymbol-1.00';
+    isMaintaining = credit == '$creditSymbol-1.00' || credit == 'maintenance';
     if (isMaintaining || _credit == '---') {
       canTransferIn = false;
       canTransferOut = false;
@@ -43,14 +63,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
       if (credit == 'x' || dCredit < 0) canTransferIn = false;
     }
     setState(() {});
-    debugPrint('${widget.platform} credit updated');
+    print('${widget.platform} credit updated');
   }
-
-  String _credit = '---';
-  bool isMaintaining = false;
-  bool canTransferOut = true;
-  bool canTransferIn = true;
-  bool canRefresh = true;
 
   void startAnim() {
     canRefresh = false;
@@ -62,7 +76,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
 
   void stopAnim() {
     if (_controller.isAnimating) {
-      debugPrint('stop anim');
+      print('stop anim');
       _controller.forward(from: 0);
       _controller.stop(canceled: true);
     }
@@ -71,8 +85,20 @@ class BalanceGridItemState extends State<BalanceGridItem>
     });
   }
 
+  void updateVariables(bool state) {
+    _verticalActionLayout = Global.lang != 'zh';
+    _btn1Text = localeStr.balanceTransferOutText;
+    _btn2Text = localeStr.balanceTransferInText;
+    _maintenanceText = localeStr.balanceStatusMaintenance;
+    if (state) {
+      setState(() {});
+    }
+  }
+
   @override
   void initState() {
+    updateVariables(false);
+    super.initState();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -84,7 +110,12 @@ class BalanceGridItemState extends State<BalanceGridItem>
 //      });
 //    });
     _controller.addListener(() => setState(() {}));
-    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(BalanceGridItem oldWidget) {
+    debugPrint('update balance grid item: ${widget.platform}');
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -99,8 +130,8 @@ class BalanceGridItemState extends State<BalanceGridItem>
       borderRadius: BorderRadius.circular(6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Themes.balanceCardBackground,
           borderRadius: BorderRadius.circular(6.0),
+          gradient: _itemBackgroundColor,
           boxShadow: [
             BoxShadow(
               color: Colors.black54,
@@ -122,118 +153,147 @@ class BalanceGridItemState extends State<BalanceGridItem>
                 style: TextStyle(
                   color: Themes.balanceCardTitleColor,
                   fontWeight: FontWeight.bold,
+                  fontSize: FontSize.HEADER.value,
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  GestureDetector(
-                    child: Text(
-                      btn1Text,
-                      style: TextStyle(
-                        color: (canTransferOut)
-                            ? Themes.balanceAction2TextColor
-                            : Themes.balanceActionDisableTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new BalanceActionDialog(
-                          targetPlatform: widget.platform,
-                          isTransferIn: false,
-                          onConfirm: () {
-                            if (widget.onTapAction != null)
-                              widget.onTapAction(
-                                BalanceGridAction.transferOut,
-                                widget.platform,
-                              );
-                          },
+              (_verticalActionLayout)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _transferOutWidget(),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            _actionSeparator(),
+                            _transferInWidget(),
+                          ],
                         ),
-                      );
-                    },
-                  ),
-                  Text(
-                    ' / ',
+                      ],
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        _transferOutWidget(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                          child: _actionSeparator(),
+                        ),
+                        _transferInWidget(),
+                      ],
+                    ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: RichText(
+                  maxLines: 2,
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    text: (isMaintaining) ? _maintenanceText : 'VDK $_credit',
                     style: TextStyle(
-                      color: (canTransferOut || canTransferIn)
-                          ? Themes.balanceActionTextColor
-                          : Themes.balanceActionDisableTextColor,
+                      color: Themes.balanceCardTextColor,
                       fontWeight: FontWeight.bold,
+                      fontSize: FontSize.MESSAGE.value,
                     ),
                   ),
-                  GestureDetector(
-                    child: Text(
-                      btn2Text,
-                      style: TextStyle(
-                        color: (canTransferIn)
-                            ? Themes.balanceActionTextColor
-                            : Themes.balanceActionDisableTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new BalanceActionDialog(
-                          targetPlatform: widget.platform,
-                          isTransferIn: true,
-                          onConfirm: () {
-                            if (widget.onTapAction != null)
-                              widget.onTapAction(
-                                BalanceGridAction.transferIn,
-                                widget.platform,
-                              );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      (isMaintaining)
-                          ? localeStr.balanceStatusMaintenance
-                          : _credit,
-                      style: TextStyle(
-                        color: Themes.defaultGridTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+              GestureDetector(
+                child: RotationTransition(
+                  turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                  child: Icon(
+                    Icons.refresh,
+                    color: (canRefresh)
+                        ? Themes.defaultHintColor
+                        : Themes.defaultHintSubColor,
+                    size: 20,
                   ),
-                  GestureDetector(
-                    child: RotationTransition(
-                      turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-                      child: Icon(
-                        Icons.refresh,
-                        color: (canRefresh)
-                            ? Themes.defaultHintColor
-                            : Themes.defaultHintSubColor,
-                        size: 18,
-                      ),
-                    ),
-                    onTap: () {
-                      if (widget.onTapAction != null && canRefresh) {
-                        startAnim();
-                        widget.onTapAction(
-                          BalanceGridAction.refresh,
-                          widget.platform,
-                        );
-                      }
-                    },
-                  ),
-                ],
+                ),
+                onTap: () {
+                  if (widget.onTapAction != null && canRefresh) {
+                    startAnim();
+                    widget.onTapAction(
+                      BalanceGridAction.refresh,
+                      widget.platform,
+                    );
+                  }
+                },
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _transferOutWidget() {
+    return GestureDetector(
+      child: Text(
+        _btn1Text,
+        style: TextStyle(
+          color: (canTransferOut)
+              ? Themes.balanceAction2TextColor
+              : Themes.balanceActionDisableTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => new BalanceActionDialog(
+            targetPlatform: widget.platform,
+            isTransferIn: false,
+            onConfirm: () {
+              if (widget.onTapAction != null)
+                widget.onTapAction(
+                  BalanceGridAction.transferOut,
+                  widget.platform,
+                );
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _transferInWidget() {
+    return GestureDetector(
+      child: Text(
+        _btn2Text,
+        style: TextStyle(
+          color: (canTransferIn)
+              ? Themes.balanceActionTextColor
+              : Themes.balanceActionDisableTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => new BalanceActionDialog(
+            targetPlatform: widget.platform,
+            isTransferIn: true,
+            onConfirm: () {
+              if (widget.onTapAction != null)
+                widget.onTapAction(
+                  BalanceGridAction.transferIn,
+                  widget.platform,
+                );
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _actionSeparator() {
+    return Text(
+      ' / ',
+      style: TextStyle(
+        color: (canTransferOut || canTransferIn)
+            ? Themes.balanceActionTextColor
+            : Themes.balanceActionDisableTextColor,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

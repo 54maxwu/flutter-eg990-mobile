@@ -22,9 +22,9 @@ abstract class _BetRecordStore with Store {
   }
 
   @observable
-  ObservableFuture<Either<Failure, List<BetRecordTypeModel>>> _typeFuture;
+  ObservableFuture<Either<Failure, List<BetRecordType>>> _typeFuture;
 
-  List<BetRecordTypeModel> typeList;
+  List<BetRecordType> typeList;
 
   Stream get dataStream => _dataController.stream;
 
@@ -77,7 +77,8 @@ abstract class _BetRecordStore with Store {
         ),
       );
     } on Exception {
-      setErrorMsg(code: 1);
+      //errorMessage = "Couldn't fetch description. Is the device online?";
+      setErrorMsg(code: 2);
     }
   }
 
@@ -117,8 +118,9 @@ abstract class _BetRecordStore with Store {
             .whenComplete(() => waitForRecordResponse = false);
       }
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       waitForRecordResponse = false;
-      setErrorMsg(code: 2);
+      setErrorMsg(code: 3);
     }
   }
 

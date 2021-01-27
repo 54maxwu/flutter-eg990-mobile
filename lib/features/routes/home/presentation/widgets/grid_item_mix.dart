@@ -82,7 +82,7 @@ class GridItemMix extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: (twoLineText) ? 2 : 1,
                         style: TextStyle(
-                          fontSize: FontSize.SMALLER.value,
+                          fontSize: FontSize.NORMAL.value,
                           color: Themes.defaultGridTextColor,
                         ),
                       ),

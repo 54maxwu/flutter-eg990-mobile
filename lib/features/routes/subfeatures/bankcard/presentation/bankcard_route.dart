@@ -52,7 +52,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
         (_) => _store.waitForNewCardResult,
         // Run some logic with the content of the observed field
         (bool wait) {
-          debugPrint('reaction on wait bankcard: $wait');
+          print('reaction on wait bankcard: $wait');
           if (wait) {
             toastDismiss = callToastLoading();
           } else if (toastDismiss != null) {
@@ -68,7 +68,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
         (_) => _store.newCardResult,
         // Run some logic with the content of the observed field
         (RequestCodeModel result) {
-          debugPrint('new bankcard result: $result');
+          print('new bankcard result: $result');
           if (result == null) return;
           if (result.isSuccess) {
             callToastInfo(
@@ -102,7 +102,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        debugPrint('pop bankcard/withdraw route');
+        print('pop bankcard/withdraw route');
         Future.delayed(
             Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
         return Future(() => true);
@@ -125,14 +125,14 @@ class _BankcardRouteState extends State<BankcardRoute> {
                     });
                   }
                   if (validCard && widget.withdraw) {
-                    return WithdrawDisplay(
-                        store: _store, bankcard: _store.bankcard);
+                    return WithdrawDisplay(bankcard: _store.bankcard);
                   } else if (validCard) {
-                    return BankcardDisplayCard(
-                        store: _store, bankcard: _store.bankcard);
+                    return BankcardDisplayCard(bankcard: _store.bankcard);
                   } else {
                     return BankcardDisplay(
-                        store: _store, bankcard: _store.bankcard);
+                      store: _store,
+                      bankcard: _store.bankcard,
+                    );
                   }
                   break;
                 default:

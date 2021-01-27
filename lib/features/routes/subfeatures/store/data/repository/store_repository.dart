@@ -1,7 +1,10 @@
+import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/data/form/store_exchange_form.dart';
+import 'package:flutter_eg990_mobile/utils/json_util.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
+import 'package:meta/meta.dart' show required;
 
-import '../form/store_exchange_form.dart';
 import '../form/store_exchange_history_form.dart';
 import '../models/store_banner_model.dart';
 import '../models/store_exchange_model.dart';
@@ -22,20 +25,13 @@ class StoreApi {
 
 abstract class StoreRepository {
   Future<Either<Failure, List<StoreBannerModel>>> getBanners();
-
   Future<Either<Failure, List<StoreProductModel>>> getProduct({int productId});
-
   Future<Either<Failure, num>> getPoint();
-
   Future<Either<Failure, StoreRulesModel>> getRules();
-
   Future<Either<Failure, StoreExchangeModel>> getExchange(
       StoreExchangeHistoryForm form);
-
   Future<Either<Failure, Map<String, String>>> getProvinces();
-
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
-
   Future<Either<Failure, dynamic>> postExchange(StoreExchangeForm form);
 }
 
@@ -59,7 +55,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -91,7 +87,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -121,7 +117,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -199,7 +195,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),
@@ -215,7 +211,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) => Right(model),
@@ -236,7 +232,7 @@ class StoreRepositoryImpl implements StoreRepository {
       jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (model) {
@@ -274,7 +270,7 @@ class StoreRepositoryImpl implements StoreRepository {
       allowJsonString: true,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (str) {
@@ -304,7 +300,7 @@ class StoreRepositoryImpl implements StoreRepository {
       allowJsonString: true,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (str) {
@@ -334,7 +330,7 @@ class StoreRepositoryImpl implements StoreRepository {
       allowJsonString: true,
       tag: 'remote-STORE',
     );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+//    print('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (str) {

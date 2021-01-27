@@ -16,12 +16,10 @@ class _$PaymentTutorialItemTearOff {
   _PaymentTutorialItem call(
       {@required int sortId,
       @required String value,
-      String link,
       @required TutorialItemType type}) {
     return _PaymentTutorialItem(
       sortId: sortId,
       value: value,
-      link: link,
       type: type,
     );
   }
@@ -33,7 +31,6 @@ const $PaymentTutorialItem = _$PaymentTutorialItemTearOff();
 mixin _$PaymentTutorialItem {
   int get sortId;
   String get value;
-  String get link;
   TutorialItemType get type;
 
   $PaymentTutorialItemCopyWith<PaymentTutorialItem> get copyWith;
@@ -43,7 +40,7 @@ abstract class $PaymentTutorialItemCopyWith<$Res> {
   factory $PaymentTutorialItemCopyWith(
           PaymentTutorialItem value, $Res Function(PaymentTutorialItem) then) =
       _$PaymentTutorialItemCopyWithImpl<$Res>;
-  $Res call({int sortId, String value, String link, TutorialItemType type});
+  $Res call({int sortId, String value, TutorialItemType type});
 }
 
 class _$PaymentTutorialItemCopyWithImpl<$Res>
@@ -58,13 +55,11 @@ class _$PaymentTutorialItemCopyWithImpl<$Res>
   $Res call({
     Object sortId = freezed,
     Object value = freezed,
-    Object link = freezed,
     Object type = freezed,
   }) {
     return _then(_value.copyWith(
       sortId: sortId == freezed ? _value.sortId : sortId as int,
       value: value == freezed ? _value.value : value as String,
-      link: link == freezed ? _value.link : link as String,
       type: type == freezed ? _value.type : type as TutorialItemType,
     ));
   }
@@ -76,7 +71,7 @@ abstract class _$PaymentTutorialItemCopyWith<$Res>
           $Res Function(_PaymentTutorialItem) then) =
       __$PaymentTutorialItemCopyWithImpl<$Res>;
   @override
-  $Res call({int sortId, String value, String link, TutorialItemType type});
+  $Res call({int sortId, String value, TutorialItemType type});
 }
 
 class __$PaymentTutorialItemCopyWithImpl<$Res>
@@ -93,13 +88,11 @@ class __$PaymentTutorialItemCopyWithImpl<$Res>
   $Res call({
     Object sortId = freezed,
     Object value = freezed,
-    Object link = freezed,
     Object type = freezed,
   }) {
     return _then(_PaymentTutorialItem(
       sortId: sortId == freezed ? _value.sortId : sortId as int,
       value: value == freezed ? _value.value : value as String,
-      link: link == freezed ? _value.link : link as String,
       type: type == freezed ? _value.type : type as TutorialItemType,
     ));
   }
@@ -107,10 +100,7 @@ class __$PaymentTutorialItemCopyWithImpl<$Res>
 
 class _$_PaymentTutorialItem implements _PaymentTutorialItem {
   const _$_PaymentTutorialItem(
-      {@required this.sortId,
-      @required this.value,
-      this.link,
-      @required this.type})
+      {@required this.sortId, @required this.value, @required this.type})
       : assert(sortId != null),
         assert(value != null),
         assert(type != null);
@@ -120,13 +110,11 @@ class _$_PaymentTutorialItem implements _PaymentTutorialItem {
   @override
   final String value;
   @override
-  final String link;
-  @override
   final TutorialItemType type;
 
   @override
   String toString() {
-    return 'PaymentTutorialItem(sortId: $sortId, value: $value, link: $link, type: $type)';
+    return 'PaymentTutorialItem(sortId: $sortId, value: $value, type: $type)';
   }
 
   @override
@@ -137,8 +125,6 @@ class _$_PaymentTutorialItem implements _PaymentTutorialItem {
                 const DeepCollectionEquality().equals(other.sortId, sortId)) &&
             (identical(other.value, value) ||
                 const DeepCollectionEquality().equals(other.value, value)) &&
-            (identical(other.link, link) ||
-                const DeepCollectionEquality().equals(other.link, link)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
@@ -148,7 +134,6 @@ class _$_PaymentTutorialItem implements _PaymentTutorialItem {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(sortId) ^
       const DeepCollectionEquality().hash(value) ^
-      const DeepCollectionEquality().hash(link) ^
       const DeepCollectionEquality().hash(type);
 
   @override
@@ -161,15 +146,12 @@ abstract class _PaymentTutorialItem implements PaymentTutorialItem {
   const factory _PaymentTutorialItem(
       {@required int sortId,
       @required String value,
-      String link,
       @required TutorialItemType type}) = _$_PaymentTutorialItem;
 
   @override
   int get sortId;
   @override
   String get value;
-  @override
-  String get link;
   @override
   TutorialItemType get type;
   @override

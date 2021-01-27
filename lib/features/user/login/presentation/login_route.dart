@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
 
 import 'state/login_store.dart';
 import 'widgets/login_display.dart';
@@ -60,56 +59,32 @@ class _LoginRouteState extends State<LoginRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return (widget.isDialog)
-        ? DialogWidget(
-            maxHeight: 320.0,
-            minHeight: 300.0,
-            children: [
-              Observer(
-                // Observe using specific widget
-                builder: (_) {
-                  switch (_store.state) {
-                    case LoginStoreState.loading:
-                      return LoadingWidget();
-                    case LoginStoreState.loaded:
-                      return new LoginDisplay(
-                        store: _store,
-                        returnHome: widget.returnHomeAfterLogin,
-                        isDialog: widget.isDialog,
-                      );
-                    default:
-                      return SizedBox.shrink();
-                  }
-                },
-              ),
-            ],
-          )
-        : WillPopScope(
-            onWillPop: () {
-              debugPrint('pop login route');
-              Future.delayed(Duration(milliseconds: 100),
-                  () => RouterNavigate.navigateBack());
-              return Future(() => true);
-            },
-            child: Scaffold(
-              body: Observer(
-                // Observe using specific widget
-                builder: (_) {
-                  switch (_store.state) {
-                    case LoginStoreState.loading:
-                      return LoadingWidget();
-                    case LoginStoreState.loaded:
-                      return new LoginDisplay(
-                        store: _store,
-                        returnHome: widget.returnHomeAfterLogin,
-                        isDialog: widget.isDialog,
-                      );
-                    default:
-                      return SizedBox.shrink();
-                  }
-                },
-              ),
-            ),
-          );
+    return WillPopScope(
+      onWillPop: () {
+        debugPrint('pop login route');
+        Future.delayed(
+            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Observer(
+          // Observe using specific widget
+          builder: (_) {
+            switch (_store.state) {
+              case LoginStoreState.loading:
+                return LoadingWidget();
+              case LoginStoreState.loaded:
+                return new LoginDisplay(
+                  store: _store,
+                  returnHome: widget.returnHomeAfterLogin,
+                  isDialog: widget.isDialog,
+                );
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
+      ),
+    );
   }
 }

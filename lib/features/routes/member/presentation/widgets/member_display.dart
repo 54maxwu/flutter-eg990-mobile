@@ -1,13 +1,13 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/widgets/member_grid_item_widget_bage.dart';
 import 'package:flutter_eg990_mobile/features/screen/feature_screen_inherited_widget.dart';
 
-import '../data/member_grid_item_v2.dart';
+import '../data/member_grid_item.dart';
 import '../state/member_credit_store.dart';
 import 'member_display_header.dart';
+import 'member_grid_item_widget.dart';
 
 class MemberDisplay extends StatefulWidget {
   final MemberCreditStore store;
@@ -20,40 +20,35 @@ class MemberDisplay extends StatefulWidget {
 
 class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
-  final GlobalKey<MemberDisplayHeaderState> headerKey =
+  final GlobalKey<MemberDisplayHeaderState> _headerKey =
       new GlobalKey<MemberDisplayHeaderState>(debugLabel: 'header');
+  final int _itemPerRow = 3;
+  final double _itemSpace = 12.0;
 
-  double headerMaxHeight;
-  double headerMinHeight = 160;
-  double gridRatio;
+  double _iconSize;
+  double _textHeight;
+  double _gridRatio;
 
-  static final List<MemberGridItemV2> gridItems = [
-    MemberGridItemV2.deposit,
-    MemberGridItemV2.transfer,
-    MemberGridItemV2.bankcard,
-    MemberGridItemV2.withdraw,
-    MemberGridItemV2.balance,
-    MemberGridItemV2.wallet,
-    MemberGridItemV2.stationMessages,
-    MemberGridItemV2.accountCenter,
-    MemberGridItemV2.transferRecord,
-    MemberGridItemV2.betRecord,
-    MemberGridItemV2.dealRecord,
-    MemberGridItemV2.flowRecord,
-    MemberGridItemV2.agent,
-    MemberGridItemV2.logout,
+  static final List<MemberGridItem> _gridItems = [
+    MemberGridItem.notice,
+    MemberGridItem.deposit,
+    MemberGridItem.transfer,
+    MemberGridItem.bankcard,
+    MemberGridItem.withdraw,
+    MemberGridItem.balance,
+    MemberGridItem.wallet,
+    MemberGridItem.stationMessages,
+    MemberGridItem.accountCenter,
+    MemberGridItem.transferRecord,
+    MemberGridItem.betRecord,
+    MemberGridItem.dealRecord,
+    MemberGridItem.flowRecord,
+    MemberGridItem.vip,
   ];
 
-  void _itemTapped(MemberGridItemV2 item) {
+  void _itemTapped(MemberGridItem item) {
     debugPrint('item tapped: $item');
-    if (item == MemberGridItemV2.logout) {
-      getAppGlobalStreams.logout();
-    } else if (item == MemberGridItemV2.withdraw && item.value.route != null) {
-      RouterNavigate.navigateToPage(
-        item.value.route,
-        arg: BankcardRouteArguments(withdraw: true),
-      );
-    } else if (item.value.route != null) {
+    if (item.value.route != null) {
       RouterNavigate.navigateToPage(item.value.route);
     } else {
       callToastInfo(localeStr.workInProgress);
@@ -62,14 +57,15 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
 
   @override
   void initState() {
-    headerMaxHeight =
-        (Global.device.height - Global.APP_BAR_HEIGHT * 2) / 7 * 2;
-    debugPrint('header height, max: $headerMaxHeight, min: $headerMinHeight');
-    if (headerMaxHeight > 200) headerMaxHeight = 200;
-    if (headerMaxHeight < headerMinHeight) headerMaxHeight = headerMinHeight;
-    double gridItemWidth = (Global.device.width - 4 * 5 - 12) / 3;
-    gridRatio = gridItemWidth / 90;
-    debugPrint('grid item width: $gridItemWidth, gridRatio: $gridRatio');
+    double gridItemWidth =
+        ((Global.device.width - 32) - _itemSpace * (_itemPerRow + 2) - 12) /
+            _itemPerRow;
+    _iconSize = 32 * Global.device.widthScale;
+    _textHeight = (Global.lang == 'zh')
+        ? (FontSize.SUBTITLE.value - 1) * 1.5
+        : (FontSize.SUBTITLE.value - 1) * 2.75;
+    _gridRatio = gridItemWidth / (_iconSize * 1.75 + _textHeight + 16.0);
+    debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
     super.initState();
   }
 
@@ -96,7 +92,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
         // Run some logic with the content of the observed field
         (credit) {
           debugPrint('reaction on credit update');
-          headerKey.currentState.updateCredit = credit;
+          _headerKey.currentState.updateCredit = credit;
         },
       ),
     ];
@@ -110,10 +106,10 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListView(
+      primary: true,
+      physics: BouncingScrollPhysics(),
+      shrinkWrap: true,
       children: <Widget>[
         /// update new message count and member credit
         /// triggered by navigate back and user login/logout
@@ -122,7 +118,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
           initialData: false,
           builder: (context, snapshot) {
             if (snapshot.data) {
-              widget.store.getCredit();
+              widget.store.getUserCredit();
               widget.store.getNewMessageCount();
               try {
                 final featureInherit =
@@ -134,162 +130,78 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
             return SizedBox.shrink();
           },
         ),
-        Container(
-          constraints: BoxConstraints(
-            minHeight: headerMinHeight,
-            maxHeight: headerMaxHeight,
-            maxWidth: Global.device.width,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Themes.iconBgColor,
+                  boxShadow: Themes.roundIconShadow,
+                ),
+                child: DecoratedBox(
+                  decoration: Themes.roundIconDecor,
+                  child: Icon(
+                    const IconData(0xe962, fontFamily: 'IconMoon'),
+                    size: _iconSize,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  localeStr.pageTitleCenter,
+                  style: TextStyle(fontSize: FontSize.HEADER.value),
+                ),
+              )
+            ],
           ),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              stops: [0.0, 0.5, 1.0],
-              colors: [
-                Themes.memberLinearColor1,
-                Themes.memberLinearColor2,
-                Themes.memberLinearColor3
-              ],
-              tileMode: TileMode.clamp,
-            ),
-          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 6.0),
           child: MemberDisplayHeader(
-            key: headerKey,
+            key: _headerKey,
             userName: widget.store.user.account,
             vipLevel: widget.store.user.vip,
-            onRefresh: () => widget.store.getCredit(),
+            onRefresh: () => widget.store.getUserCredit(),
           ),
         ),
         /* Features Grid */
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 2.0),
-            child: GridView.count(
-              physics: BouncingScrollPhysics(),
-              crossAxisCount: 3,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 4.0,
-              childAspectRatio: gridRatio,
-              shrinkWrap: true,
-              children: gridItems
-                  .map((item) => GestureDetector(
-                        onTap: () => _itemTapped(item),
-                        child: _createGridItem(
-                          item.value,
-                          item == gridItems[6],
-                        ),
-                      ))
-                  .toList(),
-            ),
+        Padding(
+          padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
+          child: GridView.count(
+            primary: false,
+            physics: BouncingScrollPhysics(),
+            crossAxisCount: _itemPerRow,
+            mainAxisSpacing: _itemSpace,
+            crossAxisSpacing: _itemSpace,
+            childAspectRatio: _gridRatio,
+            shrinkWrap: true,
+            children: _gridItems
+                .map((item) => (item.value.id == RouteEnum.MESSAGE)
+                    ? MemberGridItemBadgeWidget(
+                        item: item,
+                        iconSize: _iconSize,
+                        textHeight: _textHeight,
+                        onItemTap: (gridItem) => _itemTapped(gridItem),
+                        store: widget.store,
+                        type: MemberGridItemBadgeType.NEW_MESSAGE)
+                    : MemberGridItemWidget(
+                        item: item,
+                        iconSize: _iconSize,
+                        textHeight: _textHeight,
+                        onItemTap: (gridItem) => _itemTapped(gridItem)))
+                .toList(),
           ),
         ),
       ],
     );
   }
 
-  Widget _createGridItem(RouteListItem itemValue, bool addBadge) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Themes.defaultGridColor,
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      ),
-      margin: const EdgeInsets.all(2.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          if (addBadge)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 6.0),
-              child: Observer(
-                builder: (_) => Badge(
-                  showBadge: widget.store.hasNewMessage,
-                  badgeColor: Themes.hintHighlightRed,
-                  badgeContent: Container(
-                    margin: const EdgeInsets.all(1.0),
-                    child: Icon(
-                      const IconData(0xf129, fontFamily: 'FontAwesome'),
-                      color: Colors.white,
-                      size: 10.0,
-                    ),
-                  ),
-                  padding: EdgeInsets.zero,
-                  position: BadgePosition.topRight(top: -2, right: -6),
-                  child: networkImageBuilder(
-                    itemValue.imageName,
-                    imgScale: 2.0,
-                    imgColor: Themes.memberIconColor,
-                  ),
-                ),
-              ),
-            ),
-          if (!addBadge)
-            Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 6.0),
-                child: networkImageBuilder(
-                  itemValue.imageName,
-                  imgScale: 2.0,
-                  imgColor: Themes.memberIconColor,
-                )),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
-            child: Text(
-              itemValue.title ?? itemValue.route?.pageTitle ?? '??',
-              style: TextStyle(
-                fontSize: FontSize.SUBTITLE.value - 1,
-                color: Themes.iconTextColor,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   void afterFirstLayout(BuildContext context) {
-    widget.store.getCredit();
+    widget.store.getUserCredit();
   }
 }
-
-//  Widget _createGridItem(MemberGridData data) {
-//    return GestureDetector(
-//      onTap: () => itemTapped(data),
-//      child: Container(
-//        decoration: BoxDecoration(
-//          color: Colors.black45,
-//          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-//        ),
-//        margin: const EdgeInsets.all(2.0),
-//        child: Column(
-//          mainAxisSize: MainAxisSize.min,
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: <Widget>[
-//            Padding(
-//              padding: const EdgeInsets.only(top: 4.0),
-//              child: Container(
-//                padding: const EdgeInsets.all(10.0),
-//                decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                    begin: Alignment.topCenter,
-//                    end: Alignment.bottomCenter,
-//                    colors: [data.iconDecorColorStart, data.iconDecorColorEnd],
-//                    tileMode: TileMode.clamp,
-//                  ),
-//                  shape: BoxShape.circle,
-//                ),
-//                child: Icon(data.iconData),
-//              ),
-//            ),
-//            Padding(
-//              padding: const EdgeInsets.only(top: 6.0),
-//              child: Text(
-//                data.title,
-//                style: TextStyle(fontSize: FontSize.SUBTITLE.value - 1),
-//              ),
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
-//  }

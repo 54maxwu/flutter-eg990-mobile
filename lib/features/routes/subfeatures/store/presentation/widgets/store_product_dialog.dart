@@ -43,7 +43,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
       _contentEnum = type;
     else
       return;
-    debugPrint('update to dialog type: $type');
+    print('update to dialog type: $type');
     switch (_contentEnum) {
       case _ContentEnum.DETAIL:
         dialogHeight = 484;
@@ -70,7 +70,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
 
   @override
   void didChangeDependencies() {
-    debugPrint('store dialog changed');
+    print('store dialog changed');
     super.didChangeDependencies();
     _disposers ??= [
       /* Reaction on wait exchange change */
@@ -95,7 +95,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
         (_) => widget.store.exchangeResult,
         // Run some logic with the content of the observed field
         (result) {
-          debugPrint('store exchange result: $result');
+          print('store exchange result: $result');
           if (result == null) return;
           if (result is RequestStatusModel || result is RequestCodeModel) {
             if (result.isSuccess) {
@@ -186,11 +186,11 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                 ),
               if (_contentEnum != _ContentEnum.RESULT)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     widget.product.productName,
                     style: TextStyle(
-                      fontSize: FontSize.SUBTITLE.value,
+                      fontSize: FontSize.TITLE.value,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

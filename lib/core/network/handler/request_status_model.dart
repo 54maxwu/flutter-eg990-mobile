@@ -11,6 +11,9 @@ abstract class RequestStatusModel with _$RequestStatusModel {
   }) = _RequestStatusModel;
 
   static RequestStatusModel jsonToStatusModel(Map<String, dynamic> jsonMap) {
+//    if (jsonMap.containsKey('msg') &&
+//        '${jsonMap['msg']}'.toLowerCase() == 'Repeat token'.toLowerCase())
+//      throw TokenException();
     return _$_RequestStatusModel(
       status: jsonMap['status'] as String,
       msg: JsonUtil.getRawJson(jsonMap['msg']),

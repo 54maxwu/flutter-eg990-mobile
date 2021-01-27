@@ -138,6 +138,7 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
                 Text(
                   localeStr.centerLuckyTitle,
                   style: TextStyle(
+                    fontSize: FontSize.SUBTITLE.value,
                     fontWeight: FontWeight.bold,
                     color: Themes.defaultHintColor,
                   ),
@@ -170,7 +171,6 @@ class _CenterDisplayLottoState extends State<CenterDisplayLotto> {
                     fieldType: FieldType.Numbers,
                     hint: '',
                     persistHint: false,
-                    titleLetterSpacing: 0,
                     centerFieldText: true,
 //                    validCondition: (value) => rangeCheck(value: value.strToInt, min: 1, max: 49),
 //                    errorMsg: 'x',

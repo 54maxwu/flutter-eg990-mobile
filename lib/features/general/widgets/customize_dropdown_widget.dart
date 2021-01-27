@@ -81,7 +81,7 @@ class CustomizeDropdownWidget extends StatefulWidget {
     this.clearValueOnMenuChanged = false,
     this.subTheme = false,
     this.scaleText = false,
-    this.roundCorner = true,
+    this.roundCorner = false,
     this.requiredInput = false,
     this.debug = false,
   }) : super(key: key);
@@ -289,7 +289,7 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                     color: (widget.subTheme)
                         ? Themes.fieldInputSubColor
                         : Themes.defaultTextColor,
-                    fontSize: FontSize.NORMAL.value,
+                    fontSize: FontSize.SUBTITLE.value,
                   ),
                   dropdownColor: (widget.subTheme)
                       ? Themes.fieldInputSubBgColor
@@ -418,7 +418,9 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
       );
     } else if (widget.prefixText != null) {
       _prefixWidget = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: (_currentPrefixMaxLines > 1)
+            ? EdgeInsets.only(left: 4.0, right: 4.0)
+            : EdgeInsets.only(right: 4.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(

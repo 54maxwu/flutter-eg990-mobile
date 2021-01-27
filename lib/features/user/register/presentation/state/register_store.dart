@@ -5,7 +5,6 @@ import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart';
 
 import '../../../data/form/register_form.dart';
-import '../../../data/repository/user_repository.dart';
 
 part 'register_store.g.dart';
 
@@ -54,7 +53,7 @@ abstract class _RegisterStore with Store {
             (result) => result.fold(
               (failure) => setErrorMsg(msg: failure.message, showOnce: true),
               (model) {
-//                print('register result: $model');
+//                debugPrint('register result: $model');
                 registerResult = model;
                 if (model.isSuccess) {
                   Future.delayed(Duration(milliseconds: 500), () {
@@ -83,16 +82,17 @@ abstract class _RegisterStore with Store {
       await _repository.login(form).then(
             (result) => result.fold(
               (failure) {
-                print('auto login failed: $failure');
+                debugPrint('auto login failed: $failure');
                 _loginController.sink.add('');
               },
               (UserModel model) {
-                print('login result: $model');
+                debugPrint('login result: $model');
                 _loginController.sink.add(model.entity);
               },
             ),
           );
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 2);
     }
   }

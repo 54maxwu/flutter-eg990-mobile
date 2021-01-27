@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "zh",
-  "title": "85Bet Mobile",
+  "title": "KK Mobile",
   "@title": {
-    "description": "85Bet Demo",
+    "description": "KK Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -167,6 +167,22 @@
         "example": "100.00"
       }
     }
+  },
+  "themeColorHintSelect": "选择主题颜色",
+  "@themeColorHintSelect": {
+    "type": "text"
+  },
+  "themeColorDefault": "预设",
+  "@themeColorDefault": {
+    "type": "text"
+  },
+  "themeColorDark": "深色",
+  "@themeColorDark": {
+    "type": "text"
+  },
+  "themeColorLight": "浅色",
+  "@themeColorLight": {
+    "type": "text"
   },
   "workInProgress": "功能即将上线!",
   "@workInProgress": {
@@ -393,6 +409,10 @@
   "@messageActionFillForm": {
     "type": "text"
   },
+  "messageActionCheckTerms": "请阅读并勾选同意投注規则",
+  "@messageActionCheckTerms": {
+    "type": "text"
+  },
   "messageLogout": "{name}，请重新登入",
   "@messageLogout": {
     "type": "text",
@@ -525,11 +545,11 @@
   "@messageInvalidAccount": {
     "type": "text"
   },
-  "messageInvalidPassword": "密码为6~20个字",
+  "messageInvalidPassword": "密码为8~18个字",
   "@messageInvalidPassword": {
     "type": "text"
   },
-  "messageInvalidPasswordNew": "密码为8~20个字",
+  "messageInvalidPasswordNew": "密码为8~18个字",
   "@messageInvalidPasswordNew": {
     "type": "text"
   },
@@ -745,6 +765,10 @@
       }
     }
   },
+  "homeHintFreeUsage": "免费使用",
+  "@homeHintFreeUsage": {
+    "type": "text"
+  },
   "homeHintMemberCreditLeft": "总余额",
   "@homeHintMemberCreditLeft": {
     "type": "text"
@@ -841,7 +865,15 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "点我开启85Bet网页版",
+  "gameCategoryMovieWeb": "观看电影",
+  "@gameCategoryMovieWeb": {
+    "type": "text"
+  },
+  "gameCategoryMovieWebHint": "点我观看电影",
+  "@gameCategoryMovieWebHint": {
+    "type": "text"
+  },
+  "gameCategoryWebHint": "点我开启KK网页版",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -1597,6 +1629,10 @@
   },
   "depositPaymentNoPromo": "放弃申请优惠",
   "@depositPaymentNoPromo": {
+    "type": "text"
+  },
+  "depositHintRedirectBankcard": "充值请先填写银行卡资讯",
+  "@depositHintRedirectBankcard": {
     "type": "text"
   },
   "depositHintTextAccount": "充值帐号资讯请联络客服",

@@ -11,7 +11,7 @@ description: EG990 mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.3+7
+version: 1.0.3+4
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -73,7 +73,7 @@ dependencies:
   # Super Enum (Enum with dynamic data) https://pub.dev/packages/super_enum
   super_enum: ^0.4.2
   # Value equality https://pub.dev/packages/equatable
-  equatable: ^1.2.4
+  #  equatable: ^1.2.0
   # Dart class to String https://pub.dev/packages/to_string
   to_string: ^1.2.1
 
@@ -119,6 +119,9 @@ dependencies:
   video_player: ^0.10.12+2
   # dot border
   dotted_border: ^1.0.6
+  # custom round corner border
+  custom_rounded_rectangle_border: ^0.0.1
+
 
   # Utils
   # Localization & Datetime format
@@ -128,7 +131,7 @@ dependencies:
   # Launch Url https://pub.dev/packages/url_launcher
   url_launcher: ^5.5.0
   # Share Function https://pub.dev/packages/share_extend
-  share_extend: ^1.1.9
+#  share_extend: ^1.1.9
 
 dev_dependencies:
   flutter_test:
@@ -174,11 +177,6 @@ flutter:
     - assets/images/
     - assets/images/vip/
     - assets/images/index/
-    - assets/images/roller/
-#    - assets/images/movie_eg/
-#    - assets/images/movie_eg_dark/
-    - assets/images/movie_new/
-    - assets/images/movie_new_dark/
     - config/app_config.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -212,6 +210,10 @@ flutter:
     - family: FontAwesome
       fonts:
         - asset: assets/fonts/fontawesome_webfont.ttf
+          weight: 400
+    - family: IconMoon
+      fonts:
+        - asset: assets/fonts/icomoon.ttf
           weight: 400
 
 # Flutter localization tool

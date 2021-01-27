@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/member/presentation/data/member_grid_item.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/accountcenter/data/models/center_category.dart';
 
 import 'center_display_account.dart';
-import 'center_display_lotto.dart';
 import 'center_display_vip.dart';
 
 class CenterDisplay extends StatefulWidget {
@@ -11,19 +13,24 @@ class CenterDisplay extends StatefulWidget {
 }
 
 class _CenterDisplayState extends State<CenterDisplay> {
-  final List<String> tabs = [
-    localeStr.centerViewTitleData,
-    localeStr.centerViewTitleLotto,
-    localeStr.centerViewTitleVip,
+  final MemberGridItem pageItem = MemberGridItem.accountCenter;
+  final List<CenterCategoryEnum> tabs = [
+    CenterCategoryEnum.info,
+//    CenterCategoryEnum.lotto,
+    CenterCategoryEnum.vip,
   ];
+
+  final int tabsPerRow = 3;
+  final double expectTabHeight = 42.0;
 
   int _clicked = 0;
   double gridRatio;
 
   @override
   void initState() {
-    double gridItemWidth = (Global.device.width - 6 * 5 - 12) / 3;
-    gridRatio = gridItemWidth / 36;
+    double gridItemWidth =
+        (Global.device.width - 6 * (tabsPerRow + 2) - 48) / tabsPerRow;
+    gridRatio = gridItemWidth / expectTabHeight;
     print('grid item width: $gridItemWidth, gridRatio: $gridRatio');
     if (gridRatio > 4.16) gridRatio = 4.16;
     super.initState();
@@ -31,51 +38,72 @@ class _CenterDisplayState extends State<CenterDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 6,
-              childAspectRatio: gridRatio,
+    return SizedBox(
+      width: Global.device.width - 24.0,
+      child: ListView(
+        primary: true,
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Themes.iconBgColor,
+                    boxShadow: Themes.roundIconShadow,
+                  ),
+                  child: DecoratedBox(
+                    decoration: Themes.roundIconDecor,
+                    child: Icon(
+                      pageItem.value.iconData,
+                      size: 32 * Global.device.widthScale,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    pageItem.value.label,
+                    style: TextStyle(fontSize: FontSize.HEADER.value),
+                  ),
+                )
+              ],
             ),
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: tabs.length,
-            itemBuilder: (_, index) {
-              return ConstrainedBox(
-                constraints: BoxConstraints.tightFor(
-                  height: Global.device.comfortButtonHeight,
-                ),
-                child: RaisedButton(
-                  visualDensity: VisualDensity.compact,
-                  color: (_clicked == index)
-                      ? Themes.buttonPrimaryColor
-                      : Themes.buttonSecondaryColor,
-                  textColor: (_clicked == index)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.defaultTextColor,
-                  child: Text(tabs[index]),
-                  onPressed: () {
-                    if (_clicked == index) return;
-                    setState(() {
-                      _clicked = index;
-                    });
-                  },
-                ),
-              );
-            },
           ),
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 0.0),
+            child: TypesGridWidget<CenterCategoryEnum>(
+              types: tabs,
+              titleKey: 'label',
+              onTypeGridTap: (_, type) {
+                int index = tabs.indexOf(type);
+                if (index != _clicked) {
+                  setState(() {
+                    _clicked = index;
+                  });
+                }
+              },
+              tabsPerRow: tabsPerRow,
+              itemSpace: 0,
+              expectTabHeight: expectTabHeight,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 8.0),
             child: IndexedStack(
               index: _clicked,
               children: <Widget>[
                 CenterDisplayAccount(),
-                CenterDisplayLotto(),
-                CenterDisplayVip(),
+//                CenterDisplayLotto(),
+                Visibility(
+                  visible: _clicked == 1,
+                  maintainState: true,
+                  child: CenterDisplayVip(),
+                ),
               ],
             ),
           ),

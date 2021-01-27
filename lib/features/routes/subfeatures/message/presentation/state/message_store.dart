@@ -65,6 +65,7 @@ abstract class _MessageStore with Store {
         ),
       );
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }
@@ -83,6 +84,7 @@ abstract class _MessageStore with Store {
             ),
           );
     } on Exception {
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 2);
     }
   }

@@ -32,6 +32,19 @@ class _DepositRouteState extends State<DepositRoute> {
           }
         },
       ),
+      reaction(
+        // Observe in page
+        // Tell the reaction which observable to observe
+        (_) => _store.hasCard,
+        // Run some logic with the content of the observed field
+        (bool hasCard) {
+          if (hasCard != null && !hasCard && mounted) {
+            RouterNavigate.replacePage(RoutePage.bankcard);
+            callToast(localeStr.depositHintRedirectBankcard,
+                duration: ToastDuration.LONG);
+          }
+        },
+      ),
     ];
   }
 
@@ -52,14 +65,14 @@ class _DepositRouteState extends State<DepositRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        debugPrint('pop deposit route');
+        print('pop deposit route');
         Future.delayed(
             Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
         return Future(() => true);
       },
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Observer(
             builder: (_) {
               switch (_store.state) {

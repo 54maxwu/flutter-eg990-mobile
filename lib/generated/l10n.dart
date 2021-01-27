@@ -33,12 +33,12 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `85Bet Mobile`
+  /// `KK Mobile`
   String get title {
     return Intl.message(
-      '85Bet Mobile',
+      'KK Mobile',
       name: 'title',
-      desc: '85Bet Demo',
+      desc: 'KK Demo',
       args: [],
     );
   }
@@ -430,6 +430,46 @@ class S {
       name: 'toolBarMemberCredit',
       desc: '',
       args: [value],
+    );
+  }
+
+  /// `Select Theme Color`
+  String get themeColorHintSelect {
+    return Intl.message(
+      'Select Theme Color',
+      name: 'themeColorHintSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default`
+  String get themeColorDefault {
+    return Intl.message(
+      'Default',
+      name: 'themeColorDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark`
+  String get themeColorDark {
+    return Intl.message(
+      'Dark',
+      name: 'themeColorDark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get themeColorLight {
+    return Intl.message(
+      'Light',
+      name: 'themeColorLight',
+      desc: '',
+      args: [],
     );
   }
 
@@ -983,6 +1023,16 @@ class S {
     );
   }
 
+  /// `Please read and agree the bet terms`
+  String get messageActionCheckTerms {
+    return Intl.message(
+      'Please read and agree the bet terms',
+      name: 'messageActionCheckTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{name}, please log in again`
   String messageLogout(Object name) {
     return Intl.message(
@@ -1193,20 +1243,20 @@ class S {
     );
   }
 
-  /// `Password should be 6 ~ 20 words`
+  /// `Password should be 8 ~ 18 words`
   String get messageInvalidPassword {
     return Intl.message(
-      'Password should be 6 ~ 20 words',
+      'Password should be 8 ~ 18 words',
       name: 'messageInvalidPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be 8 ~ 20 words`
+  /// `Password should be 8 ~ 18 words`
   String get messageInvalidPasswordNew {
     return Intl.message(
-      'Password should be 8 ~ 20 words',
+      'Password should be 8 ~ 18 words',
       name: 'messageInvalidPasswordNew',
       desc: '',
       args: [],
@@ -1693,6 +1743,16 @@ class S {
     );
   }
 
+  /// `Free of charge`
+  String get homeHintFreeUsage {
+    return Intl.message(
+      'Free of charge',
+      name: 'homeHintFreeUsage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Credit`
   String get homeHintMemberCreditLeft {
     return Intl.message(
@@ -1933,10 +1993,30 @@ class S {
     );
   }
 
-  /// `Click me to open 85Bet website`
+  /// `Watch Movie`
+  String get gameCategoryMovieWeb {
+    return Intl.message(
+      'Watch Movie',
+      name: 'gameCategoryMovieWeb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click me to watch movie`
+  String get gameCategoryMovieWebHint {
+    return Intl.message(
+      'Click me to watch movie',
+      name: 'gameCategoryMovieWebHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click me to open KK website`
   String get gameCategoryWebHint {
     return Intl.message(
-      'Click me to open 85Bet website',
+      'Click me to open KK website',
       name: 'gameCategoryWebHint',
       desc: '',
       args: [],
@@ -3738,6 +3818,16 @@ class S {
     return Intl.message(
       'Without Promo',
       name: 'depositPaymentNoPromo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add a bankcard first`
+  String get depositHintRedirectBankcard {
+    return Intl.message(
+      'Please add a bankcard first',
+      name: 'depositHintRedirectBankcard',
       desc: '',
       args: [],
     );

@@ -34,7 +34,6 @@ class _StoreDisplayRecordState extends State<StoreDisplayRecord>
   PointStore _store;
   Widget _pointWidget;
   Widget _tableWidget;
-  int _memberPoints;
   int _showItemSelected;
 
   StoreExchangeModel tableData;
@@ -58,129 +57,88 @@ class _StoreDisplayRecordState extends State<StoreDisplayRecord>
   @override
   Widget build(BuildContext context) {
     _store ??= PointStoreInheritedWidget.of(context).store;
+    _pointWidget ??= PointStoreInheritedWidget.of(context).pointWidget;
     if (_store == null) {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
+              Failure.internal(FailureCode(type: FailureType.STORE)).message,
         ),
       );
     }
 
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.0),
-      constraints: BoxConstraints.tight(
-        Size(
-          Global.device.width - 24,
-          widget.maxViewHeight,
+    return ListView(
+      primary: true,
+      shrinkWrap: true,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+          child: _pointWidget,
         ),
-      ),
-      child: ListView(
-        primary: true,
-        shrinkWrap: true,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Text(
-                  localeStr.storeTextTitlePoint,
-                  style: TextStyle(color: Themes.defaultHintColor),
-                ),
-                StreamBuilder<num>(
-                  stream: _store.pointStream,
-                  initialData: _store.memberPoints,
-                  builder: (_, snapshot) {
-                    debugPrint('store point stream: ${snapshot?.data}');
-                    if (snapshot == null || snapshot.data == null)
-                      return SizedBox.shrink();
-                    if (_memberPoints != snapshot.data ||
-                        _pointWidget == null) {
-                      _memberPoints = snapshot.data;
-                      _pointWidget = Padding(
-                        padding: const EdgeInsets.only(left: 3.0, top: 2.0),
-                        child: Text(
-                          '$_memberPoints',
-                          style:
-                              TextStyle(color: Themes.storeHighlightTextColor),
-                        ),
-                      );
-                    }
-                    return _pointWidget;
-                  },
-                ),
-              ],
+        Divider(
+            height: 4.0, thickness: 2.0, color: Themes.defaultWidgetBgColor),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(localeStr.storeRecordSpinnerTitle1),
+            Container(
+              width: 72,
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: CustomizeDropdownWidget(
+                key: _showItemKey,
+                optionValues: _showItemValues,
+                optionStrings: _showItemValues.map((e) => '$e').toList(),
+                changeNotify: (data) {
+                  // clear text field focus
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  // set selected data
+                  _showItemSelected = data;
+                },
+                minusHeight: 16.0,
+                subTheme: Themes.isDarkTheme,
+                scaleText: true,
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(localeStr.storeRecordSpinnerTitle1),
-              Container(
-                width: 72,
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: CustomizeDropdownWidget(
-                  key: _showItemKey,
-                  optionValues: _showItemValues,
-                  optionStrings: _showItemValues.map((e) => '$e').toList(),
-                  changeNotify: (data) {
-                    // clear text field focus
-                    FocusScope.of(context).unfocus();
-                    // set selected data
-                    _showItemSelected = data;
-                  },
-                  minusHeight: 16.0,
-                  subTheme: Themes.isDarkTheme,
-                  scaleText: true,
-                ),
+            Text(localeStr.storeRecordSpinnerTitle2),
+          ],
+        ),
+        SizedBox(height: 8.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: Global.device.width * 0.5,
+              child: new CustomizeFieldWidget(
+                key: _searchFieldKey,
+                hint: localeStr.storeRecordFieldHint,
+                persistHint: false,
+                minusHeight: 16.0,
+                subTheme: Themes.isDarkTheme,
               ),
-              Text(localeStr.storeRecordSpinnerTitle2),
-            ],
-          ),
-          SizedBox(height: 8.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: Global.device.width / 3,
-                child: new CustomizeFieldWidget(
-                  key: _searchFieldKey,
-                  hint: localeStr.storeRecordFieldHint,
-                  persistHint: false,
-                  minusHeight: 16.0,
-                  subTheme: Themes.isDarkTheme,
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0),
+              child: GradientButton(
+                child: Text(localeStr.storeRecordButtonTitle),
+                onPressed: () => getRecord(),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: RaisedButton(
-                  visualDensity: VisualDensity.compact,
-                  color: Colors.black87,
-                  child: Text(
-                    localeStr.storeRecordButtonTitle,
-                    style: TextStyle(color: Themes.secondaryTextColor1),
-                  ),
-                  onPressed: () => getRecord(),
-                ),
-              ),
-            ],
-          ),
-          StreamBuilder<StoreExchangeModel>(
-            stream: _store.recordStream,
-            builder: (_, snapshot) {
-              if (snapshot != null && tableData != snapshot.data) {
-                tableData = snapshot.data;
-                pagerKey.currentState.currentPage = tableData.currentPage;
-                pagerKey.currentState.updateTotalPage = tableData.lastPage;
-                _tableWidget = _buildTable();
-              }
-              _tableWidget ??= _buildTable();
-              return _tableWidget;
-            },
-          )
-        ],
-      ),
+            ),
+          ],
+        ),
+        StreamBuilder<StoreExchangeModel>(
+          stream: _store.recordStream,
+          builder: (_, snapshot) {
+            if (snapshot != null && tableData != snapshot.data) {
+              tableData = snapshot.data;
+              pagerKey.currentState.currentPage = tableData.currentPage;
+              pagerKey.currentState.updateTotalPage = tableData.lastPage;
+              _tableWidget = _buildTable();
+            }
+            _tableWidget ??= _buildTable();
+            return _tableWidget;
+          },
+        )
+      ],
     );
   }
 

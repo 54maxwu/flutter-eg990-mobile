@@ -1,8 +1,11 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
-import 'package:flutter_eg990_mobile/features/routes/home/data/entity/banner_entity.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/customize_carousel.dart';
+
+import '../../data/entity/banner_entity.dart';
+
+typedef OnBannerClicked = void Function(bool, String);
 
 ///
 /// Create a [Carousel] widget to display banner images
@@ -11,13 +14,17 @@ import 'package:flutter_eg990_mobile/features/routes/home/data/entity/banner_ent
 ///
 class HomeDisplayBanner extends StatelessWidget {
   final List<BannerEntity> banners;
+  final OnBannerClicked onBannerClicked;
 
-  HomeDisplayBanner({this.banners});
+  HomeDisplayBanner({this.banners, this.onBannerClicked});
 
   @override
   Widget build(BuildContext context) {
     if (banners != null && banners.isNotEmpty) {
-      return _buildCarousel();
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 12.0),
+        child: _buildCarousel(),
+      );
     } else {
       return Container(
         color: Themes.defaultBackgroundColor,
@@ -34,8 +41,8 @@ class HomeDisplayBanner extends StatelessWidget {
   }
 
   Widget _buildCarousel() {
-    List<int> promoIds = _listPromoIds();
-    return Carousel(
+    List<String> bannerUrls = _listBannerUrls();
+    return CustomizeCarousel(
       boxFit: BoxFit.fill,
       images: banners
           .map((banner) => networkImageBuilder(
@@ -43,35 +50,31 @@ class HomeDisplayBanner extends StatelessWidget {
                 fit: BoxFit.fill,
               ))
           .toList(),
-      showIndicator: false,
-//      dotSize: 3.0,
-//      dotSpacing: 16.0,
-//      dotColor: Themes.defaultAccentColor,
-//      indicatorBgPadding: 4.0,
-//      dotBgColor: Colors.white12,
-      borderRadius: false,
-      animationDuration: Duration(milliseconds: 2000),
-      autoplayDuration: Duration(seconds: 10),
+      showIndicator: true,
+      indicatorSize: 48.0,
+      indicatorColor: Themes.defaultMarqueeBarColor,
+      indicatorPadding: const EdgeInsets.only(bottom: 12.0),
+      animationDuration: Duration(milliseconds: 1000),
+      autoplayDuration: Duration(seconds: 6),
+      jumpOnEndPage: true,
       onImageTap: (index) {
-        var id = promoIds[index];
-        print('clicked image $index, promoId: $id');
-        if (id != -1)
-          RouterNavigate.navigateToPage(RoutePage.promo,
-              arg: PromoRouteArguments(openPromoId: id));
+        var url = bannerUrls[index];
+        debugPrint('clicked image $index, url: $url');
+        if (onBannerClicked != null)
+          onBannerClicked(
+              url.startsWith('/api/open/'), url.replaceAll('/api/open/', ''));
       },
     );
   }
 
-  List<int> _listPromoIds() {
+  List<String> _listBannerUrls() {
     try {
       return banners.map((data) {
-        if (data.noPromo || data.promoUrl.startsWith('promo') == false)
-          return -1;
-        return data.promoUrl.split('/').last.strToInt;
+        return data.promoUrl;
       }).toList();
     } on Exception catch (e) {
       MyLogger.error(
-        msg: 'map banners promo id has exception: $e',
+        msg: 'map banners jump url has exception: $e',
         tag: 'HomeBannerDisplay',
       );
       return [];

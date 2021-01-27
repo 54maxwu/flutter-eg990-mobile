@@ -135,7 +135,8 @@ class StoreDisplayRecordTable extends StatelessWidget {
         _headerRowTexts.length,
         (index) => TableCellTextWidget(
           text: _headerRowTexts[index],
-          textColor: Themes.chartPrimaryHeaderTextColor,
+          textColor: Themes.chartPrimaryHeaderColor,
+          bgColor: Themes.chartHeaderBgColor,
         ),
       ),
     );

@@ -9,7 +9,6 @@ abstract class PaymentTutorialItem with _$PaymentTutorialItem {
   const factory PaymentTutorialItem({
     @required int sortId,
     @required String value,
-    String link,
     @required TutorialItemType type,
   }) = _PaymentTutorialItem;
 }

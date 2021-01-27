@@ -91,33 +91,37 @@ class PaymentContentState extends State<PaymentContent> {
   Widget build(BuildContext context) {
     _noticeContent ??= _buildNotice(context, _noticeType);
     _typeContent ??= SizedBox.shrink();
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        if (_paymentType != null) _typeContent,
-        Padding(
-          padding: const EdgeInsets.only(top: 12.0),
-          child: Row(
-            children: <Widget>[
-              Text(
-                '${localeStr.depositHintTextTitle}：',
-                style: TextStyle(
-                  color: Themes.hintHighlightNotice,
-                  fontSize: FontSize.SUBTITLE.value,
-                  fontWeight: FontWeight.w600,
+    return Container(
+      constraints: BoxConstraints(minHeight: 100),
+      decoration: Themes.layerShadowDecorRoundBottom,
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          if (_paymentType != null) _typeContent,
+          Padding(
+            padding: const EdgeInsets.only(top: 24.0),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  '${localeStr.depositHintTextTitle}：',
+                  style: TextStyle(
+                    color: Themes.defaultTextColor,
+                    fontSize: FontSize.TITLE.value,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Divider(height: 8.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: _noticeContent,
-        ),
-      ],
+          Divider(height: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: _noticeContent,
+          ),
+        ],
+      ),
     );
   }
 

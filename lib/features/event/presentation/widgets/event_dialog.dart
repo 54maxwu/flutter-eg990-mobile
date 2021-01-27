@@ -91,7 +91,9 @@ class _EventDialogState extends State<EventDialog> {
                                 child: Text(
                                   localeStr.btnSignUp,
                                   style: TextStyle(
-                                      color: Themes.buttonTextPrimaryColor),
+                                    color: Themes.buttonTextPrimaryColor,
+                                    fontSize: FontSize.SUBTITLE.value,
+                                  ),
                                 ),
                                 onPressed: () async {
                                   final result = await widget.onSign();
@@ -137,7 +139,10 @@ class _EventDialogState extends State<EventDialog> {
                         children: <TextSpan>[
                           TextSpan(
                             text: localeStr.eventSignUpHint1,
-                            style: TextStyle(color: Themes.secondaryTextColor2),
+                            style: TextStyle(
+                              color: Themes.secondaryTextColor2,
+                              fontSize: FontSize.SUBTITLE.value,
+                            ),
                           ),
                           TextSpan(
                             text: ' $count ',
@@ -148,7 +153,10 @@ class _EventDialogState extends State<EventDialog> {
                           ),
                           TextSpan(
                             text: localeStr.eventSignUpHint2,
-                            style: TextStyle(color: Themes.secondaryTextColor2),
+                            style: TextStyle(
+                              color: Themes.secondaryTextColor2,
+                              fontSize: FontSize.SUBTITLE.value,
+                            ),
                           ),
                         ],
                       ),

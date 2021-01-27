@@ -3,19 +3,13 @@ import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 
 import '../../data/models/bankcard_model.dart';
 import '../../data/models/withdraw_model.dart';
-import '../state/bankcard_store.dart';
 import '../state/withdraw_store.dart';
-import 'bankcard_display_card.dart';
 import 'withdraw_display_view.dart';
 
 class WithdrawDisplay extends StatefulWidget {
-  final BankcardStore store;
   final BankcardModel bankcard;
 
-  WithdrawDisplay({
-    @required this.store,
-    @required this.bankcard,
-  });
+  WithdrawDisplay({@required this.bankcard});
 
   @override
   _WithdrawDisplayState createState() => _WithdrawDisplayState();
@@ -30,9 +24,6 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
   void initState() {
     _store ??= sl.get<WithdrawStore>();
     super.initState();
-    _store.getCgpWallet();
-    _store.getCpwWallet();
-    _store.getRollback();
   }
 
   @override
@@ -82,7 +73,8 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
           } else {
             callToastError((result.msg.isNotEmpty && result.msg.hasChinese)
                 ? result.msg
-                : localeStr.messageTaskFailed(localeStr.messageErrorWithdraw));
+                : localeStr
+                    .messageTaskFailed(localeStr.transferResultAlertTitle));
           }
         },
       ),
@@ -101,40 +93,9 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Observer(
-        // Observe using specific widget
-        builder: (_) {
-          switch (_store.state) {
-            case WithdrawStoreState.initial:
-              return SizedBox.shrink();
-            case WithdrawStoreState.loading:
-              return Center(child: LoadingWidget());
-            case WithdrawStoreState.loaded:
-              return Container(
-                constraints: BoxConstraints(
-                  maxWidth: Global.device.width - 12,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      BankcardDisplayCard(
-                        store: widget.store,
-                        bankcard: widget.bankcard,
-                        nested: true,
-                      ),
-                      WithdrawDisplayView(store: _store),
-                    ],
-                  ),
-                ),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        },
-      ),
+    return WithdrawDisplayView(
+      store: _store,
+      bankcard: widget.bankcard,
     );
   }
 }

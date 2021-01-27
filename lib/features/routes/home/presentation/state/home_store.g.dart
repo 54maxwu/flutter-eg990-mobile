@@ -9,18 +9,18 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStore, Store {
-  Computed<HomeStoreState> _$stateComputed;
-
-  @override
-  HomeStoreState get state => (_$stateComputed ??=
-          Computed<HomeStoreState>(() => super.state, name: '_HomeStore.state'))
-      .value;
   Computed<List<GameCategoryModel>> _$homeUserTabsComputed;
 
   @override
   List<GameCategoryModel> get homeUserTabs => (_$homeUserTabsComputed ??=
           Computed<List<GameCategoryModel>>(() => super.homeUserTabs,
               name: '_HomeStore.homeUserTabs'))
+      .value;
+  Computed<HomeStoreState> _$stateComputed;
+
+  @override
+  HomeStoreState get state => (_$stateComputed ??=
+          Computed<HomeStoreState>(() => super.state, name: '_HomeStore.state'))
       .value;
 
   final _$_initFutureAtom = Atom(name: '_HomeStore._initFuture');
@@ -120,41 +120,11 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getGamesAsyncAction.run(() => super.getGames(form, key));
   }
 
-  final _$getRecommendAsyncAction = AsyncAction('_HomeStore.getRecommend');
-
-  @override
-  Future<void> getRecommend() {
-    return _$getRecommendAsyncAction.run(() => super.getRecommend());
-  }
-
-  final _$getFavoritesAsyncAction = AsyncAction('_HomeStore.getFavorites');
-
-  @override
-  Future<void> getFavorites() {
-    return _$getFavoritesAsyncAction.run(() => super.getFavorites());
-  }
-
-  final _$postFavoriteAsyncAction = AsyncAction('_HomeStore.postFavorite');
-
-  @override
-  Future<void> postFavorite(
-      {@required dynamic entity, @required bool favorite}) {
-    return _$postFavoriteAsyncAction
-        .run(() => super.postFavorite(entity: entity, favorite: favorite));
-  }
-
   final _$getGameUrlAsyncAction = AsyncAction('_HomeStore.getGameUrl');
 
   @override
   Future<void> getGameUrl(String param) {
     return _$getGameUrlAsyncAction.run(() => super.getGameUrl(param));
-  }
-
-  final _$getCreditAsyncAction = AsyncAction('_HomeStore.getCredit');
-
-  @override
-  Future<void> getCredit() {
-    return _$getCreditAsyncAction.run(() => super.getCredit());
   }
 
   @override
@@ -163,8 +133,8 @@ mixin _$HomeStore on _HomeStore, Store {
 waitForGameUrl: ${waitForGameUrl},
 gameUrl: ${gameUrl},
 errorMessage: ${errorMessage},
-state: ${state},
-homeUserTabs: ${homeUserTabs}
+homeUserTabs: ${homeUserTabs},
+state: ${state}
     ''';
   }
 }

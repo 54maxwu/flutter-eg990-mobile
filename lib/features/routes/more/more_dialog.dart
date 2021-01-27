@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/dialog_widget.dart';
@@ -13,9 +12,8 @@ import 'more_grid_item.dart';
 ///
 class MoreDialog extends StatelessWidget {
   final FeatureScreenStore store;
-  final EventStore eventStore;
 
-  MoreDialog(this.store, this.eventStore);
+  MoreDialog(this.store);
 
   static final List<MoreGridItem> gridItems = [
     MoreGridItem.notice,
@@ -23,8 +21,8 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.tutorial,
     MoreGridItem.service,
     MoreGridItem.routeChange,
-    MoreGridItem.store,
-    MoreGridItem.roller,
+//    MoreGridItem.store,
+//    MoreGridItem.roller,
     MoreGridItem.task,
     MoreGridItem.sign,
     MoreGridItem.agentAbout,
@@ -32,7 +30,7 @@ class MoreDialog extends StatelessWidget {
   ];
 
   final double _titleHeight = 54.0;
-  final double _expectItemHeight = 96.0;
+  final double _gridRatio = 1.15;
 
   void _itemTapped(BuildContext context, RouteListItem itemValue) {
     debugPrint('item tapped: $itemValue');
@@ -40,13 +38,9 @@ class MoreDialog extends StatelessWidget {
       if (itemValue.isUserOnly && store.hasUser == false) {
         // navigate to login page
         RouterNavigate.navigateToPage(RoutePage.login);
-      } else if (itemValue.id == RouteEnum.SERVICE) {
-        RouterNavigate.replacePage(
-          itemValue.route,
-          arg: WebRouteArguments(startUrl: Global.currentService),
-        );
       } else if (itemValue.id == RouteEnum.TUTORIAL ||
-          itemValue.id == RouteEnum.AGENT_ABOUT) {
+          itemValue.id == RouteEnum.AGENT_ABOUT ||
+          itemValue.id == RouteEnum.SERVICE) {
         RouterNavigate.replacePage(itemValue.route);
       } else {
         // navigate to route
@@ -60,8 +54,8 @@ class MoreDialog extends StatelessWidget {
       if (store == null) return;
       if (store.hasUser == false)
         callToastError(localeStr.messageErrorNotLogin);
-      else
-        eventStore.setForceShowEvent = true;
+//      else
+//        store.setForceShowEvent = true;
     } else {
       callToastInfo(localeStr.workInProgress);
     }
@@ -69,31 +63,19 @@ class MoreDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // screen width - widget padding - cross space = available width
-    double itemWidth = (Global.device.width - 48) / 3;
-    double gridRatio = itemWidth / _expectItemHeight;
-    debugPrint('grid item width: $itemWidth, gridRatio: $gridRatio');
-
-    double baseTextSize = (Global.device.isIos)
-        ? FontSize.NORMAL.value + 1
-        : FontSize.NORMAL.value;
-    int availableCharacters = (itemWidth * 0.95 - 16.0 / baseTextSize).round();
-    bool hasDoubleLineText =
-        gridItems.any((element) => element.isLongText(availableCharacters));
-    debugPrint('item hasDoubleLineText: $hasDoubleLineText');
+    double gridItemHeight = 320 / 3 / _gridRatio;
+    debugPrint('grid item height: $gridItemHeight');
 
     int row = gridItems.length ~/ 3;
     if (gridItems.length % 3 > 0) row += 1;
     int _generateGrid = row * 3;
     debugPrint('grid row: $row, generate: $_generateGrid');
 
-    // 16.0 = border radius
-    double _height =
-        (_titleHeight + row * _expectItemHeight).ceilToDouble() + 16.0;
+    double _height = (_titleHeight + row * gridItemHeight).ceilToDouble();
     debugPrint('dialog height: $_height');
 
     return DialogWidget(
-      maxHeight: _height,
+      constraints: BoxConstraints.tight(Size(320.0, _height)),
       customBg: Themes.moreDialogColor,
       children: <Widget>[
         Column(
@@ -125,7 +107,6 @@ class MoreDialog extends StatelessWidget {
               ],
             ),
             Container(
-              height: _expectItemHeight * row + 16.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
@@ -135,7 +116,7 @@ class MoreDialog extends StatelessWidget {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: gridRatio,
+                  childAspectRatio: _gridRatio,
                 ),
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
@@ -150,9 +131,6 @@ class MoreDialog extends StatelessWidget {
                         : null,
                     child: _createGridItem(
                       itemValue,
-                      hasDoubleLineText: hasDoubleLineText,
-                      fixedMarginLeft: index % 3 == 2,
-                      fixedMarginBottom: (index / 3).floor() == 1,
                       cornerBorderLeft: index == _generateGrid - 3,
                       cornerBorderRight: index == _generateGrid - 1,
                     ),
@@ -168,9 +146,6 @@ class MoreDialog extends StatelessWidget {
 
   Widget _createGridItem(
     RouteListItem itemValue, {
-    bool hasDoubleLineText,
-    bool fixedMarginLeft,
-    bool fixedMarginBottom,
     bool cornerBorderLeft,
     bool cornerBorderRight,
   }) {
@@ -187,27 +162,21 @@ class MoreDialog extends StatelessWidget {
       cornerBorder = BorderRadius.zero;
 
     return Container(
-      height: _expectItemHeight,
       decoration: BoxDecoration(
         color: Themes.moreGridColor,
         borderRadius: cornerBorder,
       ),
-      margin: EdgeInsets.fromLTRB((fixedMarginLeft) ? 0.2 : 0.5, 0.5, 0.0,
-          (fixedMarginBottom) ? 0.2 : 0.5),
+      margin: const EdgeInsets.fromLTRB(0.5, 0.5, 0.0, 0.5),
       alignment: Alignment.center,
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: (hasDoubleLineText)
-            ? MainAxisAlignment.start
-            : MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: (itemValue == null)
             ? []
             : <Widget>[
                 Padding(
-                  padding: (hasDoubleLineText)
-                      ? const EdgeInsets.only(top: 16.0)
-                      : EdgeInsets.zero,
+                  padding: const EdgeInsets.only(top: 12.0),
                   child: (itemValue.imageName != null)
                       ? SizedBox(
                           width: 32.0,
@@ -229,18 +198,15 @@ class MoreDialog extends StatelessWidget {
                         ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 8.0),
-                  height: (hasDoubleLineText)
-                      ? FontSize.NORMAL.value * 3.5
-                      : FontSize.NORMAL.value * 2,
+                  margin: const EdgeInsets.symmetric(vertical: 3.0),
+                  height: (FontSize.SUBTITLE.value - 1) * 3,
                   child: Text(
                     itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: FontSize.NORMAL.value,
+                      fontSize: FontSize.SUBTITLE.value - 1,
                       color: Themes.defaultGridTextColor,
                     ),
-                    maxLines: (hasDoubleLineText) ? 2 : 1,
+                    maxLines: 2,
                     textAlign: TextAlign.center,
                   ),
                 ),

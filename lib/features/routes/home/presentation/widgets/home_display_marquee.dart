@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/routes/home/data/entity/marquee_entity.dart';
 
+import '../../data/entity/marquee_entity.dart';
 import 'marquee_widget.dart';
 
 class HomeDisplayMarquee extends StatelessWidget {
@@ -12,30 +13,28 @@ class HomeDisplayMarquee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (marquees == null || marquees.isEmpty) return SizedBox.shrink();
     return Container(
       constraints: BoxConstraints.tight(
-        Size(Global.device.width, 30.0),
+        Size(Global.device.width - 20.0, 30),
       ),
       color: Themes.defaultMarqueeBarColor,
-      padding: const EdgeInsets.only(top: 3.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(6.0, 0.0, 2.0, 2.0),
-            child: Icon(
-              const IconData(0xf027, fontFamily: 'FontAwesome'),
-              color: Colors.white,
-              size: 20.0,
-            ),
+            padding: const EdgeInsets.only(bottom: 2.0),
+            child: networkImageBuilder('images/marquee_Color1.png'),
           ),
           Expanded(
             child: FutureBuilder(
               future: compute(_marqueeToString, marquees),
               builder: (context, snapshot) {
-//        print('marquee display state: ${snapshot.connectionState}, '
+//        debugPrint('marquee display state: ${snapshot.connectionState}, '
 //            'error: ${snapshot.hasError}');
                 if (snapshot.connectionState == ConnectionState.done &&
                     !snapshot.hasError) {
@@ -46,9 +45,9 @@ class HomeDisplayMarquee extends StatelessWidget {
                       color: Themes.defaultMarqueeTextColor,
                     ),
                     loop: true,
-                    velocity: 0.8,
-                    height: 28,
-                    padding: EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 2.0),
+                    velocity: 0.6,
+                    height: 32.0,
+                    padding: EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 4.0),
                   );
                 } else {
                   if (snapshot.hasError) {
@@ -59,28 +58,6 @@ class HomeDisplayMarquee extends StatelessWidget {
                   return Icon(Icons.sync_problem);
                 }
               },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(6.0, 0.0, 6.0, 2.0),
-            child: ButtonTheme(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minWidth: 64.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: RaisedButton(
-                child: Text(
-                  localeStr.pageTitleNotice,
-                  style: TextStyle(
-                    fontSize: FontSize.NORMAL.value,
-                    color: Themes.buttonTextPrimaryColor,
-                  ),
-                ),
-                visualDensity: VisualDensity(horizontal: -2.0, vertical: -3.0),
-                onPressed: () =>
-                    RouterNavigate.navigateToPage(RoutePage.noticeBoard),
-              ),
             ),
           ),
         ],
@@ -97,12 +74,12 @@ String _marqueeToString(List<dynamic> list) {
   list.forEach((item) {
     try {
       contents.add(item.content.replaceAll('\n', '\t'));
-//      print('add marquee content to list: ${item.id}');
+//      debugPrint('add marquee content to list: ${item.id}');
     } catch (e) {
-      print(e);
+      debugPrint(e);
     }
   });
-//  print('computed list: $contents');
+//  debugPrint('computed list: $contents');
   if (list.isNotEmpty && contents.isEmpty) {
     MyLogger.warn(
         msg: 'error marquee type condition!! item: $list',

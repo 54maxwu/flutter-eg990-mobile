@@ -13,13 +13,9 @@ class BankcardApi {
 
 abstract class BankcardRepository {
   Future<Either<Failure, BankcardModel>> getBankcard();
-
   Future<Either<Failure, RequestCodeModel>> postBankcard(BankcardForm form);
-
   Future<Either<Failure, Map<String, String>>> getBanks();
-
   Future<Either<Failure, Map<String, String>>> getProvinces();
-
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
 }
 

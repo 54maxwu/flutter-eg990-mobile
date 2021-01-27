@@ -20,11 +20,11 @@ class CenterDialogCpw extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('CPW urls: ${store?.cpwUrl}');
+    debugPrint('CPW urls: ${store?.cpwUrl}');
     bool hasUrl =
         store != null && store.cpwUrl != null && store.cpwUrl.isNotEmpty;
     bool hasQr = hasUrl && store.cpwUrl.length >= 2;
-    if (hasQr) print('qr code: ${store.cpwUrl[1].split('base64,')[1]}');
+    if (hasQr) debugPrint('qr code: ${store.cpwUrl[1].split('base64,')[1]}');
     return DialogWidget(
       key: _dialogKey,
       heightFactor: 0.35,

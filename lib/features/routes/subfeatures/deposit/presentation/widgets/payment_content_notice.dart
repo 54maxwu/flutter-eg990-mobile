@@ -14,7 +14,8 @@ class PaymentContentNotice extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: TextStyle(color: Themes.defaultTextColor),
+        style: TextStyle(
+            color: Themes.defaultTextColor, fontSize: FontSize.SUBTITLE.value),
         children: _buildNoticeList,
       ),
     );

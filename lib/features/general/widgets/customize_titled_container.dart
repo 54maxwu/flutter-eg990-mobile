@@ -49,7 +49,7 @@ class CustomizeTitledContainer extends StatefulWidget {
     this.padding,
     this.horizontalInset = Themes.horizontalInset,
     this.heightFactor = 1,
-    this.roundCorner = true,
+    this.roundCorner = false,
     this.backgroundColor = Themes.fieldInputBgColor,
     this.prefixText,
     this.prefixTextSize,
@@ -228,7 +228,9 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
       );
     } else if (widget.prefixText != null) {
       _prefixWidget = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: (_currentPrefixMaxLines > 1)
+            ? EdgeInsets.only(left: 4.0, right: 4.0)
+            : EdgeInsets.only(right: 4.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(

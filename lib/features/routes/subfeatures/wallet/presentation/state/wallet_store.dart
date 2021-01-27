@@ -115,7 +115,7 @@ abstract class _WalletStore with Store {
           .whenComplete(() => waitForUpdate = false);
     } on Exception {
       waitForUpdate = false;
-      setErrorMsg(code: 3);
+      setErrorMsg(code: 2);
     }
   }
 

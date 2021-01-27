@@ -69,34 +69,43 @@ class _StoreRouteState extends State<StoreRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Observer(
-          // Observe using specific widget
-          builder: (_) {
-            switch (_store.state) {
-              case PointStoreState.initial:
-                return SizedBox.shrink();
-              case PointStoreState.loading:
-                return LoadingWidget();
-              case PointStoreState.loaded:
-                return SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(), // user can't scroll
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.tight(Size(
-                      Global.device.width,
-                      Global.device.featureContentHeight,
-                    )),
-                    child: IntrinsicHeight(
-                      child: StoreDisplay(_store),
+    return WillPopScope(
+      onWillPop: () {
+        print('pop store route');
+        Future.delayed(
+            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        return Future(() => true);
+      },
+      child: Scaffold(
+        body: Container(
+          alignment: Alignment.center,
+          child: Observer(
+            // Observe using specific widget
+            builder: (_) {
+              switch (_store.state) {
+                case PointStoreState.initial:
+                  return SizedBox.shrink();
+                case PointStoreState.loading:
+                  return LoadingWidget();
+                case PointStoreState.loaded:
+                  return SingleChildScrollView(
+                    physics:
+                        NeverScrollableScrollPhysics(), // user can't scroll
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.tight(Size(
+                        Global.device.width,
+                        Global.device.featureContentHeight,
+                      )),
+                      child: IntrinsicHeight(
+                        child: StoreDisplay(_store),
+                      ),
                     ),
-                  ),
-                );
-              default:
-                return SizedBox.shrink();
-            }
-          },
+                  );
+                default:
+                  return SizedBox.shrink();
+              }
+            },
+          ),
         ),
       ),
     );

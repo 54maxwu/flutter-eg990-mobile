@@ -31,12 +31,12 @@ class RoutePage extends Vnum<RouteInfo> {
 //    route: Routes.movieRoute,
 //    disableLanguageDropDown: true,
 //  ));
-
-  static const RoutePage movieNew = const RoutePage.define(RouteInfo(
-    id: RouteEnum.MOVIE_NEW,
-    route: Routes.movieRoute,
-    disableLanguageDropDown: true,
-  ));
+//
+//  static const RoutePage movieNew = const RoutePage.define(RouteInfo(
+//    id: RouteEnum.MOVIE_NEW,
+//    route: Routes.movieRoute,
+//    disableLanguageDropDown: true,
+//  ));
 
   static const RoutePage register = const RoutePage.define(RouteInfo(
     id: RouteEnum.REGISTER,
@@ -47,9 +47,9 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage promo = const RoutePage.define(RouteInfo(
     id: RouteEnum.PROMO,
     route: Routes.promoRoute,
-    isFeature: true,
-    bottomNavIndex: 2,
-    hideAppbarActions: false,
+//    isFeature: true,
+//    bottomNavIndex: 2,
+//    hideAppbarActions: false,
   ));
 
   static const RoutePage service = const RoutePage.define(RouteInfo(
@@ -65,7 +65,7 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.MEMBER,
     route: Routes.memberRoute,
     isFeature: true,
-    bottomNavIndex: 4,
+    bottomNavIndex: 2,
   ));
 
   static const RoutePage depositFeature = const RoutePage.define(RouteInfo(
@@ -176,7 +176,7 @@ class RoutePage extends Vnum<RouteInfo> {
     id: RouteEnum.AGENT,
     route: Routes.agentFeatureRoute,
     parentRoute: Routes.homeRoute,
-    isFeature: true,
+//    isFeature: true,
     bottomNavIndex: 1,
     disableLanguageDropDown: true,
   ));
@@ -191,7 +191,7 @@ class RoutePage extends Vnum<RouteInfo> {
   static const RoutePage tutorial = const RoutePage.define(RouteInfo(
     id: RouteEnum.TUTORIAL,
     route: Routes.moreWebPage,
-    routeArg: WebRouteArguments(
+    routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
       hideBars: true,
     ),
@@ -265,13 +265,13 @@ class RoutePage extends Vnum<RouteInfo> {
     showDrawer: true,
     disableLanguageDropDown: true,
   ));
-
-  static const RoutePage roller = const RoutePage.define(RouteInfo(
-    id: RouteEnum.ROLLER,
-    route: Routes.rollerRoute,
-    showDrawer: true,
-    disableLanguageDropDown: true,
-  ));
+//
+//  static const RoutePage roller = const RoutePage.define(RouteInfo(
+//    id: RouteEnum.ROLLER,
+//    route: Routes.rollerRoute,
+//    showDrawer: true,
+//    disableLanguageDropDown: true,
+//  ));
 
   /// test route
 //  static const RoutePage template = const RoutePage.define(RouteInfo(
@@ -305,15 +305,10 @@ class RoutePage extends Vnum<RouteInfo> {
   //}
 
   String get page => value.route;
-
   String get pageTitle => value.id.title;
-
   String get pageRoot => value.parentRoute;
-
   bool get isFeature => value.isFeature;
-
   bool get hideBarAction => value.hideAppbarActions;
-
   int get navIndex => value.bottomNavIndex;
 }
 

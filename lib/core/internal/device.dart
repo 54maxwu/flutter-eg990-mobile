@@ -25,10 +25,8 @@ class Device {
 
   // screen width compare with test device
   double _screenWidthScale;
-
   // screen height compare with test device
   double _screenHeightScale;
-
   // computed button height
   double _screenButtonHeight;
 
@@ -74,9 +72,11 @@ class Device {
   }
 
   /// App Version
-  String get appVersion => '${packageInfo.version}+${packageInfo.buildNumber}';
+  String get appVersion => _version;
+  String get appVersionOrigin =>
+      'Version:${packageInfo.version} Build:${packageInfo.buildNumber}';
   String get appVersionSide =>
-      '${packageInfo.version}+${packageInfo.buildNumber}${(Global.addAnalytics) ? ' (GA)' : ''}';
+      '$_version${(Global.addAnalytics) ? ' (GA)' : ''}';
 
   /// device's current orientation
   Orientation get orientation => _mediaQueryData.orientation;
@@ -115,5 +115,5 @@ class Device {
   double get comfortButtonHeight => _screenButtonHeight;
 
   double get featureContentHeight =>
-      _screenHeight - Global.APP_TOOLS_HEIGHT - safeInset - safeVerticalPadding;
+      _screenHeight - Global.APP_BARS_HEIGHT - safeInset - safeVerticalPadding;
 }

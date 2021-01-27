@@ -10,11 +10,8 @@ class BalanceApi {
 
 abstract class BalanceRepository {
   Future<Either<Failure, List<String>>> getPromise();
-
   Future<Either<Failure, String>> getBalance(String platform);
-
   Future<Either<Failure, String>> getLimit();
-
   Future<Either<Failure, RequestStatusModel>> postTransfer(TransferForm form);
 }
 

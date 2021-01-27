@@ -19,6 +19,8 @@ class DepositDisplay extends StatefulWidget {
 }
 
 class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
+  final MemberGridItem pageItem = MemberGridItem.deposit;
+
   final GlobalKey<PaymentContentState> _contentKey = new GlobalKey();
 
   List<ReactionDisposer> _disposers;
@@ -89,7 +91,7 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Global.device.width - 16.0,
+      width: Global.device.width - 24.0,
       child: InkWell(
         // to dismiss the keyboard when the user tabs out of the TextField
         splashColor: Colors.transparent,
@@ -104,15 +106,47 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
           physics: BouncingScrollPhysics(),
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 6.0),
+              padding: const EdgeInsets.fromLTRB(4.0, 20.0, 4.0, 12.0),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Themes.iconBgColor,
+                      boxShadow: Themes.roundIconShadow,
+                    ),
+                    child: DecoratedBox(
+                      decoration: Themes.roundIconDecor,
+                      child: Icon(
+                        pageItem.value.iconData,
+                        size: 32 * Global.device.widthScale,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      pageItem.value.label,
+                      style: TextStyle(fontSize: FontSize.HEADER.value),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12.0, 16.0, 12.0, 0.0),
               child: TypesGridWidget<PaymentType>(
                 types: widget.store.paymentTypes,
+                itemSpace: 0.0,
+                tabsPerRow: 3,
+                expectTabHeight: 42.0,
                 titleKey: 'label',
                 onTypeGridTap: (_, type) => updateContent(type),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 8.0),
               child: PaymentContent(
                 key: _contentKey,
                 promos: widget.store.promoMap,

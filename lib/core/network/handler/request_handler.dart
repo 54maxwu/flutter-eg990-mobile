@@ -41,7 +41,7 @@ Future<dynamic> _exceptionHandler(Function func, String tag) async {
   } on Exception catch (e, s) {
     MyLogger.error(
         msg: 'Something went wrong!!', tag: tag, error: e, stackTrace: s);
-    throw Failure.internal(FailureCode());
+    throw Failure.internal(FailureCode(type: FailureType.TASK, code: 2));
   }
 }
 
@@ -59,9 +59,11 @@ Future _makeRequest({
     if (response == null ||
         response.statusCode == null ||
         response.statusCode != 200) throw ResponseException();
+    if ('${response.data}'.contains('Repeat token') ||
+        '${response.data}'.contains('route.query.forRefresh') ||
+        response.statusCode == 302) throw TokenException();
     if ('${response.data}'.startsWith('<!DOCTYPE html>'))
       throw RequestTypeErrorException();
-    if ('${response.data}'.contains('Repeat token')) throw TokenException();
     return response.data;
   }, tag);
   MyLogger.debug(
@@ -214,7 +216,7 @@ Future<Either<Failure, dynamic>> requestHeader({
           return Right(headerRequested ?? data[1]);
         }
         return Left(
-            Failure.internal(FailureCode(type: FailureType.TASK, code: 2)));
+            Failure.internal(FailureCode(type: FailureType.TASK, code: 3)));
       },
     );
   });

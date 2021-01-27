@@ -62,21 +62,16 @@ abstract class _AgentStore with Store {
     });
   }
 
-  Stream<AgentModel> get agentStream => _agentController.stream;
-
-  Stream<List<AgentCommissionModel>> get commissionStream =>
-      _commissionController.stream;
-
-  Stream<List<AgentChartModel>> get reportStream => _reportController.stream;
-
-  Stream<AgentLedgerModel> get ledgerStream => _ledgerController.stream;
-
-  Stream<List<AgentAdModel>> get adStream => _adController.stream;
-
-  Stream<List<AgentAdModel>> get mergeAdStream => _mergeAdController.stream;
-
   @observable
   ObservableFuture<Either<Failure, AgentModel>> _agentFuture;
+
+  Stream<AgentModel> get agentStream => _agentController.stream;
+  Stream<List<AgentCommissionModel>> get commissionStream =>
+      _commissionController.stream;
+  Stream<List<AgentChartModel>> get reportStream => _reportController.stream;
+  Stream<AgentLedgerModel> get ledgerStream => _ledgerController.stream;
+  Stream<List<AgentAdModel>> get adStream => _adController.stream;
+  Stream<List<AgentAdModel>> get mergeAdStream => _mergeAdController.stream;
 
   @observable
   bool waitForAgentResponse = false;
@@ -132,6 +127,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }
@@ -153,6 +149,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 2);
     }
   }
@@ -174,6 +171,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 3);
     }
   }
@@ -199,6 +197,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 4);
     }
   }
@@ -226,6 +225,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 5);
     }
   }
@@ -252,6 +252,7 @@ abstract class _AgentStore with Store {
       });
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 6);
     }
   }
@@ -273,6 +274,7 @@ abstract class _AgentStore with Store {
       }).whenComplete(() => waitForAgentResponse = false);
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 7);
     }
   }
@@ -302,6 +304,7 @@ abstract class _AgentStore with Store {
       });
     } on Exception {
       waitForAgentResponse = false;
+      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 8);
     }
   }

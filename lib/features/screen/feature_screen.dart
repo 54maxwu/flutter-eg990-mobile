@@ -91,10 +91,10 @@ class _FeatureScreenState extends State<FeatureScreen> {
     MyLogger.debug(msg: 'init feature screen', tag: tag);
     locale = Global.lang;
     super.initState();
-    if (_store != null) {
-      _store.getWebsiteList();
-      _store.getAds();
-    }
+//    if (_store != null) {
+//      _store.getWebsiteList();
+//      _store.getAds();
+//    }
     setNetworkListener();
   }
 

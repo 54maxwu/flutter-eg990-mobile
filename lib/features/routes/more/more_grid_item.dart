@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart' show IconData;
 import 'package:flutter_eg990_mobile/features/router/route_list_item.dart';
 import 'package:flutter_eg990_mobile/features/router/route_page.dart';
 import 'package:flutter_eg990_mobile/res.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:vnum/vnum.dart';
 
 export 'package:flutter_eg990_mobile/features/router/route_list_item.dart';
@@ -34,17 +33,17 @@ class MoreGridItem extends Vnum<RouteListItem> {
     id: RouteEnum.ROUTE_CHANGE,
     iconData: const IconData(0xf1eb, fontFamily: 'FontAwesome'),
   ));
-  static MoreGridItem store = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.STORE,
-    iconData: const IconData(0xf290, fontFamily: 'FontAwesome'),
-    isUserOnly: true,
-    route: RoutePage.pointStore,
-  ));
-  static MoreGridItem roller = MoreGridItem.define(RouteListItem(
-    id: RouteEnum.ROLLER,
-    imageName: 'images/moreShow_lucky.png',
-    route: RoutePage.roller,
-  ));
+//  static MoreGridItem store = MoreGridItem.define(RouteListItem(
+//    id: RouteEnum.STORE,
+//    iconData: const IconData(0xf290, fontFamily: 'FontAwesome'),
+//    isUserOnly: true,
+//    route: RoutePage.pointStore,
+//  ));
+//  static MoreGridItem roller = MoreGridItem.define(RouteListItem(
+//    id: RouteEnum.ROLLER,
+//    imageName: 'images/moreShow_lucky.png',
+//    route: RoutePage.roller,
+//  ));
   static MoreGridItem task = MoreGridItem.define(RouteListItem(
     id: RouteEnum.TASK,
     imageName: 'images/moreShow_mission.png',
@@ -72,7 +71,4 @@ class MoreGridItem extends Vnum<RouteListItem> {
   /// Used for loading enum using value
   factory MoreGridItem(RouteListItem value) =>
       Vnum.fromValue(value, MoreGridItem);
-
-  bool isLongText(int limit) =>
-      (value.title ?? value.route.pageTitle ?? '?').countLength > limit;
 }

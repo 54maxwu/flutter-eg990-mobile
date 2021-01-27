@@ -97,7 +97,7 @@ class CustomizeFieldWidget extends StatefulWidget {
     this.titleWidthFactor = Themes.prefixTextWidthFactor,
     this.iconWidthFactor = Themes.prefixIconWidthFactor,
     this.suffixLetterWidth = 2.4,
-    this.roundCorner = true,
+    this.roundCorner = false,
     this.onInputChanged,
     this.requiredInput = false,
     this.debug = false,
@@ -154,7 +154,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     _fieldTextStyle = TextStyle(
       fontSize: (widget.fieldTextSize != null)
           ? widget.fieldTextSize
-          : FontSize.NORMAL.value,
+          : (widget.readOnly) ? FontSize.NORMAL.value : FontSize.SUBTITLE.value,
       color: textColor,
       decorationColor: textColor,
     );
@@ -189,16 +189,23 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     _smallWidgetHeight =
         ((Global.device.isIos) ? Themes.fieldHeight + 8 : Themes.fieldHeight) -
             widget.minusHeight;
+    if (widget.fieldTextSize != null)
+      _smallWidgetHeight += widget.fieldTextSize - FontSize.NORMAL.value;
     if (widget.prefixIconData != null) _smallWidgetHeight += 8.0;
 
-    double fieldInsetHeight =
-        (widget.persistHint) ? 4 : (_smallWidgetHeight - 21.6) / 2;
+    double fieldInsetHeight = (widget.centerFieldText)
+        ? 0
+        : (widget.persistHint) ? 4 : (_smallWidgetHeight - 21.6) / 3;
 
     _fieldInset = (widget.centerFieldText)
         ? EdgeInsets.only(left: 2.0)
         : EdgeInsets.symmetric(horizontal: 8.0, vertical: fieldInsetHeight);
 
-    _updateFieldStyle();
+    double minFieldHeight =
+        widget.fieldTextSize * 1.5 + fieldInsetHeight * 2 + 8.0;
+    if (_smallWidgetHeight < minFieldHeight) {
+      _smallWidgetHeight = minFieldHeight;
+    }
 
     if (widget.debug) {
       debugPrint('screen width: ${Global.device.width}');
@@ -306,7 +313,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               hintText: (widget.persistHint) ? null : widget.hint,
               hintStyle: (widget.coloredHint)
                   ? TextStyle(color: Themes.hintHighlight)
-                  : TextStyle(color: Themes.fieldInputHintColor),
+                  : null,
               fillColor: _fieldColor,
               isDense: true,
               contentPadding: _fieldInset,
@@ -361,7 +368,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               hintText: (widget.persistHint) ? null : widget.hint,
               hintStyle: (widget.coloredHint)
                   ? TextStyle(color: Themes.hintHighlight)
-                  : TextStyle(color: Themes.fieldInputHintColor),
+                  : null,
               isDense: true,
               fillColor: _fieldColor,
               contentPadding: _fieldInset,
@@ -436,7 +443,9 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       );
     } else if (widget.prefixText != null) {
       _prefixWidget = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: (_currentPrefixMaxLines > 1)
+            ? EdgeInsets.only(left: 4.0, right: 4.0)
+            : EdgeInsets.only(right: 4.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(

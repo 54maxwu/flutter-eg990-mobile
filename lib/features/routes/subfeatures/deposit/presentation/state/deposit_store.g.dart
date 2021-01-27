@@ -32,6 +32,21 @@ mixin _$DepositStore on _DepositStore, Store {
     });
   }
 
+  final _$hasCardAtom = Atom(name: '_DepositStore.hasCard');
+
+  @override
+  bool get hasCard {
+    _$hasCardAtom.reportRead();
+    return super.hasCard;
+  }
+
+  @override
+  set hasCard(bool value) {
+    _$hasCardAtom.reportWrite(value, super.hasCard, () {
+      super.hasCard = value;
+    });
+  }
+
   final _$infoListAtom = Atom(name: '_DepositStore.infoList');
 
   @override
@@ -102,6 +117,13 @@ mixin _$DepositStore on _DepositStore, Store {
     return _$getInitializeDataAsyncAction.run(() => super.getInitializeData());
   }
 
+  final _$checkBankcardAsyncAction = AsyncAction('_DepositStore.checkBankcard');
+
+  @override
+  Future<void> checkBankcard() {
+    return _$checkBankcardAsyncAction.run(() => super.checkBankcard());
+  }
+
   final _$getPaymentTypesAsyncAction =
       AsyncAction('_DepositStore.getPaymentTypes');
 
@@ -152,6 +174,7 @@ mixin _$DepositStore on _DepositStore, Store {
   @override
   String toString() {
     return '''
+hasCard: ${hasCard},
 infoList: ${infoList},
 waitForDepositResult: ${waitForDepositResult},
 depositResult: ${depositResult},

@@ -75,9 +75,7 @@ abstract class _CenterStore with Store {
   List<String> cpwUrl;
 
   Stream<CenterAccountEntity> get accountStream => _accountController.stream;
-
   Stream<List<int>> get lottoStream => _lottoController.stream;
-
   Stream<CenterVipEntity> get vipStream => _vipController.stream;
 
   CenterStoreAction currentRequest;
@@ -91,9 +89,9 @@ abstract class _CenterStore with Store {
   @observable
   String errorMessage;
 
-  String _lastError;
-
   bool _errorState = false;
+
+  String _lastError;
 
   void setErrorMsg({String msg, bool showOnce, FailureType type, int code}) {
     if (showOnce && _lastError != null && msg == _lastError) return;
@@ -138,8 +136,8 @@ abstract class _CenterStore with Store {
             _errorState = true;
           },
           (model) {
-            if (model.cgpWallet.isEmpty && cgpUrl == null) getCgpUrl();
-            if (model.cpwWallet.isEmpty && cpwUrl == null) getCpwUrl();
+//            if (model.cgpWallet.isEmpty && cgpUrl == null) getCgpUrl();
+//            if (model.cpwWallet.isEmpty && cpwUrl == null) getCpwUrl();
             _accountController.sink.add(model.wrapAccountData);
 //            _lottoController.sink.add(model.getLottoList);
             _vipController.sink.add(model.wrapVipData);
@@ -387,9 +385,7 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER, code: 6),
-      ).message;
+      setErrorMsg(code: 6);
     }
   }
 

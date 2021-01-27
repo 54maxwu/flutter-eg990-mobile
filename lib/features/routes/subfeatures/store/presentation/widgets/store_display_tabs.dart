@@ -2,6 +2,8 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/data/entity/store_tabs.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/store/presentation/widgets/point_widget.dart';
 
 import '../state/point_store.dart';
 import 'point_store_inherit_widget.dart';
@@ -28,10 +30,10 @@ class StoreDisplayTabs extends StatefulWidget {
 class _StoreDisplayTabsState extends State<StoreDisplayTabs>
     with SingleTickerProviderStateMixin, AfterLayoutMixin {
   final GlobalKey routeKey = new GlobalKey();
-  final List<String> _tabs = [
-    localeStr.storeTextTitleProduct,
-    localeStr.storeTextTitleRule,
-    localeStr.storeTextTitleRecord,
+  final List<StoreTabsEnum> _tabs = [
+    StoreTabsEnum.product,
+    StoreTabsEnum.rules,
+    StoreTabsEnum.records,
   ];
 
   TabController _tabController;
@@ -50,9 +52,8 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
 
   @override
   void initState() {
-    _tabSize =
-        Size(Global.device.width / 3, Global.device.comfortButtonHeight * 1.15);
-    debugPrint('store tab size: $_tabSize');
+    _tabSize = Size(Global.device.width / 3, Global.device.comfortButtonHeight);
+    print('store tab size: $_tabSize');
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
     _pageController = PageController();
@@ -78,28 +79,38 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
         TabBar(
           unselectedLabelColor: Themes.secondaryTextColor1,
           labelColor: Themes.buttonTextPrimaryColor,
-          labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
+          labelStyle: TextStyle(fontSize: FontSize.SUBTITLE.value),
           labelPadding: EdgeInsets.zero,
-          indicatorColor: Themes.defaultAccentColor,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorWeight: 2.0,
-          indicatorPadding: const EdgeInsets.only(bottom: 1.0),
+          indicatorColor: Colors.transparent,
+//          indicatorSize: TabBarIndicatorSize.label,
+//          indicatorWeight: 2.0,
+//          indicatorPadding: const EdgeInsets.only(bottom: 1.0),
           controller: _tabController,
           /* Category Tabs */
           tabs: List.generate(_tabs.length, (index) {
             return Container(
               constraints: BoxConstraints.tight(_tabSize),
-              color: (index == _tabIndex)
-                  ? Themes.defaultAccentColor
-                  : Colors.black87,
+              decoration: BoxDecoration(
+                color: (index == _tabIndex)
+                    ? Themes.defaultTabSelectedColor
+                    : Themes.defaultTabUnselectedColor,
+                border: Border.all(color: Themes.defaultBorderColor),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Colors.black26,
+                    spreadRadius: 1.15,
+                    blurRadius: 1.0, // changes position of shadow
+                  ),
+                ],
+              ),
               alignment: Alignment.center,
               child: Text(
-                _tabs[index],
+                _tabs[index].label,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
                   color: (index == _tabIndex)
-                      ? Themes.buttonTextPrimaryColor
-                      : Themes.buttonTextSubColor,
+                      ? Themes.defaultTabSelectedTextColor
+                      : Themes.defaultTextColor,
+                  fontSize: FontSize.MESSAGE.value,
                 ),
               ),
             );
@@ -128,12 +139,11 @@ class _StoreDisplayTabsState extends State<StoreDisplayTabs>
   Widget _buildContentView() {
     _contentMaxHeight = widget.parentHeight - _tabSize.height - 8;
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: _contentMaxHeight,
-      ),
+      constraints: BoxConstraints(maxHeight: _contentMaxHeight),
       child: PointStoreInheritedWidget(
         key: routeKey,
         store: widget.store,
+        pointWidget: PointWidget(widget.store),
         child: new TabsPageControlWidget(
           pageController: _pageController,
           tabController: _tabController,

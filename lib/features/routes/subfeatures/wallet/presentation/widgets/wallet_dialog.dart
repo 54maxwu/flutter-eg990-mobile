@@ -79,7 +79,10 @@ class _WalletDialogState extends State<WalletDialog> {
                     padding: const EdgeInsets.all(24.0),
                     child: Text(
                       '${widget.store.transferProgress}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: FontSize.SUBTITLE.value,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -177,7 +180,10 @@ class _WalletDialogState extends State<WalletDialog> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(24.0),
-                          child: Text('${widget.store.transferErrorList}'),
+                          child: Text(
+                            '${widget.store.transferErrorList}',
+                            style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                          ),
                         ),
                       ],
                     ),

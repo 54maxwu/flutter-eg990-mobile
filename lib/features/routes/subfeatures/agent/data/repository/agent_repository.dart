@@ -23,26 +23,19 @@ class AgentApi {
 
 abstract class AgentRepository {
   Future<Either<Failure, AgentModel>> getAgentDetail();
-
   Future<Either<Failure, AgentModel>> postAgentStatus();
-
   Future<Either<Failure, List<AgentChartModel>>> getReport({
     @required AgentChartTime time,
     @required AgentChartType type,
   });
-
   Future<Either<Failure, List<AgentCommissionModel>>> getCommission();
-
   Future<Either<Failure, AgentLedgerModel>> getLedger({
     @required String agent,
     @required int page,
     @required TransactionDateSelected dateSelected,
   });
-
   Future<Either<Failure, List<AgentAdModel>>> getAds();
-
   Future<Either<Failure, List<AgentAdModel>>> getMergeAds();
-
   Future<Either<Failure, RequestCodeModel>> postAgentAd(int id);
 }
 
@@ -154,6 +147,7 @@ class AgentRepositoryImpl implements AgentRepository {
         break;
       case TransactionDateSelected.yesterday:
         startDate = now.subtract(Duration(days: 1)).toDateString;
+        endDate = now.subtract(Duration(days: 1)).toDateEndString;
         break;
       case TransactionDateSelected.month:
         var lastMonth = now.subtract(Duration(days: 30));

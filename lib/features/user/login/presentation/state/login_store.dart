@@ -115,14 +115,11 @@ abstract class _LoginStore with Store {
             (failure) {
               waitForLogin = false;
               if (failure.message == 'accountError')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorAccount);
+                errorMessage = localeStr.messageErrorAccount;
               else if (failure.message == 'pwdError')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorPassword);
+                errorMessage = localeStr.messageErrorPassword;
               else if (failure.message == 'pwdErrorFive')
-                errorMessage =
-                    localeStr.messageError(localeStr.messageErrorPasswordHint);
+                errorMessage = localeStr.messageErrorPasswordHint;
               else
                 setErrorMsg(msg: failure.message, showOnce: true);
             },
@@ -146,9 +143,8 @@ abstract class _LoginStore with Store {
           ));
     } on Exception catch (e) {
       waitForLogin = false;
-      //errorMessage = "Couldn't fetch description. Is the device online?";
-      setErrorMsg(code: 1);
       MyLogger.error(msg: '$tag has exception: $e');
+      setErrorMsg(code: 1);
     }
   }
 

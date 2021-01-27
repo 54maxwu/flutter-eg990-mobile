@@ -117,12 +117,20 @@ class BetRecordDisplayList extends StatelessWidget {
             flex: 2,
             child: Text(
               (isSum) ? localeStr.betsHeaderSum : '$title',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Expanded(
             flex: 5,
-            child: Text('$content'),
+            child: Text(
+              '$content',
+              style: TextStyle(
+                fontSize: FontSize.SUBTITLE.value,
+              ),
+            ),
           ),
         ],
       ),

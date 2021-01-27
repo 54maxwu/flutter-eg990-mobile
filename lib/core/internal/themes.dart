@@ -8,202 +8,219 @@ export 'hex_color.dart';
 final appTheme = Themes();
 
 class Themes {
-  static const isDarkTheme = true;
-  static const defaultBackgroundColor = Color(0xff313131);
-  static const defaultLayerBackgroundColor = Color(0xff313131);
-  static const defaultPrimaryColor = Color(0xff38394b);
-  static const defaultAccentColor = Color(0xffe7c080);
-  static const defaultAppbarColor = Color(0xff222222);
-  static const defaultMarqueeBarColor = Color(0xA0000000);
-  static const defaultMarqueeTextColor = Color(0xfff0f0f0);
-  static const defaultWidgetColor = Color(0xfff5f5f5);
-  static const defaultSelectableWidgetColor = Color(0xffc7c7c7);
-  static const defaultWidgetBgColor = Color(0xff383838);
-  static const defaultDisabledColor = Color(0xff575757);
+  static const isDarkTheme = false;
+  static const defaultBackgroundColor = Color(0xffffffff);
+  static const defaultLayerBackgroundColor = Color(0xffffffff);
+  static const defaultPrimaryColor = Color(0xff8a755a);
+  static const defaultAccentColor = Color(0xffc0a280);
+  static const defaultAppbarColor = Color(0xff8a755a);
+  static const defaultMarqueeBarColor = Colors.white70;
+  static const defaultMarqueeTextColor = Color(0xff2a2a2a);
+  static const defaultWidgetColor = Color(0xffe7c080);
+  static const defaultSelectableWidgetColor = Color(0xffc0a280);
+  static const defaultWidgetBgColor = Color(0xffdcc4ac);
+  static const defaultDisabledColor = Color(0xff989898);
   static const defaultErrorColor = Color(0xffe53935);
-  static const defaultBorderColor = Color(0xff6a6a6a);
-  static const defaultIndicatorColor = Color(0xffe7c080);
-  static const defaultDividerColor = Color(0xffa8a8a8);
-  static const defaultGridColor = Colors.black45;
-  static const defaultGridTextColor = Color(0xfff0f0f0);
-  static const defaultCardColor = Color(0xff606060);
-  static const defaultCardTitleColor = Color(0xff2a60ba);
+  static const defaultBorderColor = Color(0xffc1a180);
+  static const defaultIndicatorColor = Color(0xff8a7363);
+  static const defaultDividerColor = Color(0xffc2a280);
+  static const defaultGridColor = Color(0xffd8c3af);
+  static const defaultGridTextColor = Color(0xff333333);
+  static const defaultCardColor = Colors.white60;
+  static const defaultCardTitleColor = Color(0xfff0f0f0);
+  static const defaultChipColor = Color(0xffedd1a2);
 
-  static const defaultTextColor = Color(0xffb5b5b5);
-  static const secondaryTextColor1 = Color(0xff222222);
-  static const secondaryTextColor2 = Color(0xffececec);
-  static const defaultSubtitleColor = Color(0xffeea942);
-  static const defaultHintColor = Color(0xffdadada);
-  static const defaultHintSubColor = Color(0xffa4a4a4);
-  static const defaultMessageColor = Color(0xffbcbcbc);
-  static const defaultTabUnselectedColor = Color(0xffb5b5b5);
+  static const defaultTextColor = Color(0xff383838);
+  static const secondaryTextColor1 = Color(0xffffffff);
+  static const secondaryTextColor2 = Color(0xff303030);
+  static const defaultSubtitleColor = Color(0xff7f4f00);
+  static const defaultHintColor = Color(0xff545454);
+  static const defaultHintSubColor = Color(0xff808080);
+  static const defaultMessageColor = Color(0xff333333);
+  static const defaultTabUnselectedColor = Color.fromARGB(196, 253, 237, 221);
+  static const defaultTabSelectedColor = Color(0xd8ffffff);
+  static const defaultTabSelectedTextColor = Color(0xff8e755f);
 
-  static const drawerIconColor = Color(0xffe7c080);
+  static const drawerIconColor = Color(0xffffffff);
   static const drawerIconSubColor = Color(0xffffffff);
-  static const sideMenuPrimaryColor = Color(0xff222222);
-  static const sideMenuSecondaryColor = Color(0xff313131);
-  static const sideMenuButtonColor = Color(0xfff4daa3);
-  static const sideMenuButtonTextColor = Color(0xff000000);
+  static const sideMenuPrimaryColor = Color(0xffffffff);
+  static const sideMenuSecondaryColor = Color(0xffffffff);
+  static const sideMenuButtonColor = Color(0xffffffff);
+  static const sideMenuButtonTextColor = Color(0xff383838);
   static const sideMenuHeaderTextColor = Color(0xffffffff);
   static const sideMenuIconColor = Color(0xffffffff);
-  static const sideMenuIconBgColor = Color(0xffffffff);
-  static const sideMenuIconTextColor = Color(0xffffffff);
+  static const sideMenuIconBgColor = Color(0xffc2a280);
+  static const sideMenuIconTextColor = Color(0xff383838);
 
-  static const dialogBgColor = Color(0xff424242);
-  static const dialogBgColor0 = Color(0xff606266);
+  static const dialogBgColor = Color(0xffeaeaea);
+  static const dialogBgColor0 = Color(0xff565656);
   static const dialogBgColor1 = Color(0xff2a2a2a);
-  static const dialogBgTransparent = Color(0xD0383838);
-  static const dialogTextColor = Color(0xffe6e6e6);
-  static const dialogTitleColor = Color(0xffe7c080);
-  static const dialogTitleBgColor = Color(0xff5b5b5b);
-  static const dialogCloseIconColor = Color(0xffe6e6e6);
+  static const dialogBgTransparent = Color(0x66bcbcbc);
+  static const dialogTextColor = Color(0xff383838);
+  static const dialogTitleColor = Color(0xff8a755a);
+  static const dialogTitleBgColor = Color(0xffffffff);
+  static const dialogCloseIconColor = Color(0xff303030);
 
   static const iconColor = Color(0xffffffff);
-  static const iconSubColor1 = Color(0xffa4a4a4);
+  static const iconBgColor = Color(0xffc1a180);
+  static const iconSubColor1 = Color(0xffffffff);
   static const iconSubColor2 = Color(0xff606060);
   static const iconSubColor3 = Color(0xff3a3a3a);
   static const iconColorGreen = Color(0xff40b92c);
   static const iconColorYellow = Color(0xffffdd3a);
   static const iconBgColorTrans = Color(0x40a4a4a4);
-  static const iconTextColor = Color(0xffe7c080);
+  static const iconTextColor = Color(0xff3a3a3a);
 
   // default color or selected
-  static const buttonPrimaryColor = Color(0xffe7c080);
-  static const buttonTextPrimaryColor = Color(0xff000000);
-
+  static const buttonPrimaryColor = Color(0xffdcc4ac);
+  static const buttonTextPrimaryColor = Color(0xff202020);
   // unselected button
-  static const buttonSecondaryColor = Color(0xff3b3b3b);
-
+  static const buttonSecondaryColor = Color(0xffc1a180);
   // sub color button (ex. readme)
-  static const buttonSubColor = Color(0xff3b3b3b);
-  static const buttonTextSubColor = Color(0xffe6e6e6);
-  static const buttonDisabledColor = Color(0xffa9a9a9);
-  static const buttonDisabledColorDark = Color(0xc03a3a3a);
-  static const buttonDisabledTextColor = Color(0xff575757);
-  static const buttonBorderColor = Color(0xff383838);
-  static const pagerButtonColor = Color(0xff4e4e4e);
+  static const buttonSubColor = Color(0xff969696);
+  static const buttonTextSubColor = Color(0xffc8c8c8);
+  static const buttonDisabledColor = Color(0xff606060);
+  static const buttonDisabledColorDark = Color(0xff888888);
+  static const buttonDisabledTextColor = Color(0xffa0a0a0);
+  static const buttonBorderColor = Color(0xffffffff);
+  static const buttonLinearLightColor1 = Color(0xfffdeddd);
+  static const buttonLinearLightColor2 = Color(0xffdcc4ac);
+  static const buttonLinearColor1 = Color(0xfffceee3);
+  static const buttonLinearColor2 = Color(0xffc1a180);
+
+  static const pagerButtonColor = Color(0xff828282);
   static const pagerButtonSelectedColor = Color(0xff3b3b3b);
 
-  static const fieldInputColor = Color(0xffffffff);
-  static const fieldInputBgColor = Color(0xff4e4e4e);
-  static const fieldReadOnlyBgColor = Color(0xff404040);
-  static const fieldInputHintColor = Color(0xffa4a4a4);
-  static const fieldPrefixBgColor = Color(0xff383838);
-  static const fieldPrefixColor = Color(0xffd9d9d9);
+  static const fieldInputColor = Color(0xff303030);
+  static const fieldInputBgColor = Color(0xffe1e1e1);
+  static const fieldReadOnlyBgColor = Color(0xffd3d3d3);
+  static const fieldInputHintColor = Color(0xff969696);
+  static const fieldPrefixBgColor = Color(0xffffffff);
+  static const fieldPrefixColor = Color(0xff383838);
   static const fieldPrefixSubColor = Color(0xffffffff);
-  static const fieldSuffixColor = Color(0xffe7c080);
+  static const fieldSuffixColor = Color(0xffc1a180);
   static const fieldSuffixSubColor = Color(0xffffffff);
 
-  static const fieldInputSubBgColor = Color(0xffffffff);
-  static const fieldReadOnlySubBgColor = Color(0xffd3d3d3);
-  static const fieldInputSubColor = Color(0xff000000);
-  static const fieldInputHintSubColor = Color(0xff383838);
-  static const fieldCursorSubColor = Color(0xff000000);
+  static const fieldInputSubBgColor = Color(0xffeee5dc);
+  static const fieldReadOnlySubBgColor = Color(0xff3f3f3f);
+  static const fieldInputSubColor = Color(0xffeaeaea);
+  static const fieldInputHintSubColor = Color(0xffb0b0b0);
+  static const fieldCursorSubColor = Color(0xfff8dfb2);
 
   static const double fieldHeight = 53.6;
   static const double fieldIconSize = 24.0;
-  static const double prefixTextWidthFactor = 0.35;
-  static const double prefixTextSpacing = 5.0;
+  static const double prefixTextWidthFactor = 0.3;
+  static const double prefixTextSpacing = 0.0;
   static const double prefixIconWidthFactor = 0.166;
   static const double suffixWidthFactor = 0.314;
   static const double horizontalInset = 32.0;
   static const double minusSize = 8.0;
 
-  static const hintHighlight = Color(0xffff7eb8);
+  static const hintHighlight = Color(0xffff6975);
   static const hintHighlightDarkRed = Color(0xffe63f3f);
   static const hintHighlightRed = Color(0xffff0000);
   static const hintHighlightYellow = Color(0xffffdd3a);
   static const hintHighlightLightYellow = Color(0xffffe6b1);
   static const hintHighlightOrange = Color(0xffde9c57);
   static const hintHighlightOrangeStrong = Color(0xffff9e4c);
-  static const hintHyperLink = Color(0xff82f8ff);
+  static const hintHyperLink = Color(0xff23538d);
   static const hintDarkRed = Color(0xff752121);
-  static const hintHighlightNotice = Color(0xffffffff);
 
-  static const chartBorderColor = Color(0xff6a6a6a);
-  static const chartPrimaryHeaderColor = Color(0xff2a8fbd);
+  static const chartBorderColor = Color(0xffc1a180);
+  static const chartPrimaryHeaderColor = Color(0xffedd1a2);
   static const chartPrimaryHeaderTextColor = Color(0xffffffff);
-  static const chartSecondaryHeaderColor = Color(0xff222222);
-  static const chartBgColor = Color(0xff3a3a3a);
+  static const chartSecondaryHeaderColor = Color(0xffa0a0a0);
+  static const chartBgColor = Color(0xffeaeaea);
+  static const chartHeaderBgColor = Color(0xff484848);
 
-  static const navigationColor = Color(0xffb5b5b5);
-  static const navigationColorFocus = Color(0xffe7c080);
+  static const navigationColor = Color(0x80f0f0f0);
+  static const navigationColorFocus = Color(0xffffffff);
 
   static const homeFavoriteColor = Color(0xffffffff);
-  static const homeTabBgColor = Colors.black54;
-  static const homeTabDividerColor = Color(0xffe7c080);
-  static const homeTabIconColor = Color(0xffb5b5b5);
-  static const homeTabIconBgColor = Color(0xffe7c080);
-  static const homeTabTextColor = Color(0xffe7c080);
+  static const homeTabBgColor = Color(0xfffdeddd);
+  static const homeTabDividerColor = Color(0xffab988a);
+  static const homeTabIconColor = Color(0xfff0f0f0);
+  static const homeTabIconBgColor = Color(0xff8a7363);
+  static const homeTabTextColor = Color(0xff000000);
   static const homeTabSelectedTextColor = Color(0xffffffff);
-  static const homeBoxBgColor = Color(0xff222222);
-  static const homeBoxHintBgColor = Color(0xffe7c080);
-  static const homeBoxHintTextColor = Color(0xff000000);
-  static const homeBoxInfoTextColor = Color(0xffe7c080);
-  static const homeBoxDividerColor = Color(0xffe7c080);
-  static const homeBoxIconColor = Color(0xffe7c080);
-  static const homeBoxIconTextColor = Color(0xffe7c080);
-  static const homeBoxButtonTextColor = Color(0xff000000);
+  static const homeBoxBgColor = Colors.white70;
+  static const homeBoxHintBgColor = Color(0xffdcc4ac);
+  static const homeBoxHintTextColor = Color(0xff202020);
+  static const homeBoxInfoTextColor = Color(0xff202020);
+  static const homeBoxDividerColor = Color(0xff545048);
+  static const homeBoxIconColor = Color(0xffffffff);
+  static const homeBoxIconBgColor = Color(0xffe7c080);
+  static const homeBoxIconTextColor = Color(0xff202020);
+  static const homeBoxButtonTextColor = Color(0xff383838);
 
-  static const promoTabBgColor = Color(0xff222222);
-  static const promoTabIconColor = Color(0xffe7c080);
+  static const promoTabBgColor = Color(0xffffffff);
+  static const promoTabIconColor = Color(0xffb5b5b5);
   static const promoTabTextColor = Color(0xffb5b5b5);
-  static const promoTabSelectedBgColor = Color(0xffe7c080);
-  static const promoTabSelectedIconColor = Color(0xff3a3a3a);
-  static const promoTabSelectedTextColor = Color(0xff000000);
+  static const promoTabSelectedBgColor = Color(0xffdcc4ac);
+  static const promoTabSelectedIconColor = Color(0xffffffff);
+  static const promoTabSelectedTextColor = Color(0xffffffff);
 
-  static const memberIconColor = Color(0xffe7c080);
-  static const memberLinearColor1 = Color(0xffbb904d);
-  static const memberLinearColor2 = Color(0xffe3b977);
-  static const memberLinearColor3 = Color(0xffca9a51);
+  static const memberIconColor = Color(0xffc1a180);
+  static const memberLinearColor1 = Color(0xa0feeede);
+  static const memberLinearColor2 = Color(0xffd7c3b3);
+  static const memberLinearColor3 = Color(0xc4feeede);
 
-  static const moreDialogColor = Color(0xff2a2a2a);
-  static const moreGridColor = Color(0xff424242);
+  static const moreDialogColor = Color(0xffc5c5c5);
+  static const moreGridColor = Color(0xfff0f0f0);
 
-  static const balanceCardBackground = Color(0xff424242);
-  static const balanceCardTitleColor = Color(0xffde9c57);
-  static const balanceCardTextColor = Color(0xfff0f0f0);
-  static const balanceActionTextColor = Color(0xffffe6b1);
-  static const balanceAction2TextColor = Color(0xffffe6b1);
-  static const balanceActionDisableTextColor = Color(0xff575757);
-  static const balanceRefreshColor = Color(0xffffe6b1);
+  static const noticeTitleColor = Color(0xffedd1a2);
+  static const noticeTextColor = Color(0xffffffff);
+  static const noticeBgColor = Color(0xff565656);
 
-  static const walletCardBackground = Color(0xff3a3a3a);
-  static const walletCardIconBackground = Color(0xff575757);
-  static const walletBoxBackgroundColor = Color(0xff272727);
-  static const walletBoxBackground = Color(0xff272727);
-  static const walletBoxBorderColor = Color(0xff575757);
-  static const walletBoxButtonColor = Color(0xffffe6b1);
-  static const walletRadioColor = Color(0xff575757);
-  static const walletCreditTitleColor = Color(0xffde9c57);
+  static const balanceCardBackground = Color.fromRGBO(241, 218, 168, 0.8);
+  static const balanceCardTitleColor = Color(0xff464242);
+  static const balanceCardTextColor = Color(0xff7f4f00);
+  static const balanceActionTextColor = Color(0xff000000);
+  static const balanceAction2TextColor = Color(0xff000000);
+  static const balanceActionDisableTextColor = Color(0xff808080);
+  static const balanceRefreshColor = Color(0xff624200);
 
-  static const vipCardBackgroundColor = Color(0xff424242);
-  static const vipTitleBackgroundColor = Color(0xff3a3a3a);
-  static const vipTitleBackgroundSubColor = Color(0xff4e4e4e);
-  static const vipIconBackgroundColor = Color(0xffa4a4a4);
-  static const vipIconColor = Color(0xffe7c080);
-  static const vipIconTextColor = Color(0xfff0f0f0);
-  static const vipTitleColor = Color(0xffe7c080);
-  static const vipTextColor = Color(0xfff0f0f0);
-  static const vipLinearBgColor1 = Color(0xff585656);
-  static const vipLinearBgColor2 = Color(0xcc3f3a39);
+  static const walletCardBgColor = Color(0xffffffff);
+  static const walletCardIconBgColor = Color(0xffeeeeee);
+  static const walletBoxBackgroundColor = Color(0xfff0f0f0);
+  static const walletBoxBorderColor = Color(0xffd0d0d0);
+  static const walletBoxButtonColor = Color.fromRGBO(193, 161, 128, 1.0);
+  static const walletRadioColor = Color(0xff303030);
+  static const walletCreditTitleColor = Color(0xff202020);
+  static const walletCreditColor = Color(0xff202020);
+
+  static const vipCardBackgroundColor = Color(0xffd2d2d2);
+  static const vipTitleBackgroundColor = Color(0xff7f4f00);
+  static const vipTitleBackgroundSubColor = Color(0xfff5f5f5);
+  static const vipIconBackgroundColor = Color(0xffffffff);
+  static const vipIconColor = Color(0xff7f4f00);
+  static const vipIconTextColor = Color(0xffffffff);
+  static const vipIconTextSubColor = Color(0xff000000);
+  static const vipTitleColor = Color(0xff383838);
+  static const vipDescColor = Color(0xff8d8d8d);
+  static const vipTextColor = Color(0xff383838);
+  static const vipLinearBgColor1 = Color(0xfffeeede);
+  static const vipLinearBgColor2 = Color(0xffffffff);
+  static const vipLevelTextColor = Color(0xffa28c6c);
   static const vipProgressColor = Color(0xffa9a9a9);
-  static const vipProgressCircleColor = Color(0xffe7c080);
-  static const vipProgressBorderColor = Color(0xffe7c080);
+  static const vipProgressCircleColor = Color(0xffa9a9a9);
+  static const vipProgressBorderColor = Color(0xffffd59f);
 
-  static const storeDialogBackground = Color(0xff606266);
-  static const storeDialogSpanText = Color(0xffb5b5b5);
-  static const storeHighlightTextColor = Color(0xffff9e4c);
+  static const storeDialogBackground = Color(0xfff5f5f5);
+  static const storeDialogSpanText = Color(0xff333333);
+  static const storeProductBgColor = Color(0xffc4c4c4);
+  static const storeButtonColor = Color(0xffcfa972);
+  static const storeHighlightTextColor = Color(0xffe6304a);
 
   static const layerShadowDecorRound = BoxDecoration(
     color: defaultLayerBackgroundColor,
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    borderRadius: BorderRadius.all(Radius.circular(4.0)),
     boxShadow: <BoxShadow>[
       BoxShadow(
-        color: Colors.black12,
+        color: Colors.black38,
         spreadRadius: 2.15,
         blurRadius: 3.0,
-        offset: Offset(3, 3), // changes position of shadow
+        offset: Offset(3, 2), // changes position of shadow
       ),
     ],
   );
@@ -213,7 +230,7 @@ class Themes {
     borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
     boxShadow: <BoxShadow>[
       BoxShadow(
-        color: Colors.black12,
+        color: Colors.black26,
         spreadRadius: 2.15,
         blurRadius: 3.0,
         offset: Offset(3, 3), // changes position of shadow
@@ -226,7 +243,7 @@ class Themes {
     borderRadius: BorderRadius.vertical(bottom: Radius.circular(8.0)),
     boxShadow: <BoxShadow>[
       BoxShadow(
-        color: Colors.black12,
+        color: Colors.black26,
         spreadRadius: 2.15,
         blurRadius: 3.0,
         offset: Offset(3, 3), // changes position of shadow
@@ -252,9 +269,31 @@ class Themes {
       color: Colors.black26,
       spreadRadius: 1.15,
       blurRadius: 2.0,
-      offset: Offset(2, 2), // changes position of shadow
+      offset: Offset(1, 2), // changes position of shadow
     ),
   ];
+
+  static const roundIconDecor = BoxDecoration(
+    shape: BoxShape.circle,
+    boxShadow: [
+      BoxShadow(
+          color: Colors.black45,
+          spreadRadius: 2.25,
+          blurRadius: 7.0,
+          offset: Offset(2, 6)),
+    ],
+  );
+
+  static const roundIconDecorLight = BoxDecoration(
+    shape: BoxShape.circle,
+    boxShadow: [
+      BoxShadow(
+          color: Colors.black26,
+          spreadRadius: 1.15,
+          blurRadius: 5.0,
+          offset: Offset(2, 5)),
+    ],
+  );
 
   final defaultTheme = ThemeData.dark().copyWith(
     primaryColor: defaultPrimaryColor,
@@ -301,7 +340,7 @@ class Themes {
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(4.0),
       ),
-      padding: EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 8.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 8.0),
       // set button minimum width, default is 88
       minWidth: 60,
       textTheme: ButtonTextTheme.primary,
@@ -312,8 +351,8 @@ class Themes {
     hintColor: defaultHintColor,
     disabledColor: defaultDisabledColor,
     textTheme: TextTheme(
-      headline5:
-          TextStyle(color: defaultTextColor, fontSize: FontSize.TITLE.value),
+      headline1:
+          TextStyle(color: defaultTextColor, fontSize: FontSize.HEADER.value),
       headline6:
           TextStyle(color: defaultTextColor, fontSize: FontSize.TITLE.value),
       // input text color
@@ -343,11 +382,10 @@ class Themes {
       focusedErrorBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
-      // filled the field with color
-      filled: true,
+      filled: true, // filled the field with color
       fillColor: fieldInputBgColor,
-      // used less vertical space
-      isDense: true,
+      isDense: true, // used less vertical space
+      contentPadding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       labelStyle: TextStyle(
         color: fieldInputHintColor,
         fontSize: FontSize.NORMAL.value,
@@ -367,14 +405,14 @@ class Themes {
     ),
     /* Chip Theme */
     chipTheme: ChipThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       backgroundColor: Colors.transparent,
       deleteIconColor: iconColor,
       disabledColor: defaultDisabledColor,
       labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
       labelStyle: TextStyle(
-        color: defaultHintColor,
-        fontSize: FontSize.NORMAL.value,
+        color: defaultTextColor,
+        fontSize: FontSize.SUBTITLE.value,
       ),
       padding: EdgeInsets.all(4.0),
       secondaryLabelStyle: TextStyle(
@@ -394,23 +432,23 @@ class Themes {
     /* Slider Theme */
     sliderTheme: SliderThemeData(
       trackHeight: 3.0,
-      activeTrackColor: Colors.white,
-      inactiveTrackColor: Colors.white38,
-      disabledActiveTrackColor: Color(0xff888888),
-      disabledInactiveTrackColor: Color(0x1f000000),
-      activeTickMarkColor: Color(0x8a9e9e9e),
-      inactiveTickMarkColor: Color(0x8a212121),
-      disabledActiveTickMarkColor: Color(0x1f9e9e9e),
-      disabledInactiveTickMarkColor: Color(0x1f000000),
-      thumbColor: Colors.white,
-      disabledThumbColor: Color(0xff888888),
-      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
-      overlayColor: Color(0x29212121),
-      valueIndicatorColor: Color(0xff575757),
+      activeTrackColor: Color(0xff1976e0),
+      inactiveTrackColor: Color(0x3d1976e0),
+      disabledActiveTrackColor: Color(0x520f498a),
+      disabledInactiveTrackColor: Color(0x1f0f498a),
+      activeTickMarkColor: Color(0x8ad1e4fa),
+      inactiveTickMarkColor: Color(0x8a1976e0),
+      disabledActiveTickMarkColor: Color(0x1fd1e4fa),
+      disabledInactiveTickMarkColor: Color(0x1f0f498a),
+      thumbColor: Color(0xff1976e0),
+      disabledThumbColor: Color(0x520f498a),
+      thumbShape: RoundSliderThumbShape(),
+      overlayColor: Color(0x291976e0),
+      valueIndicatorColor: Color(0xff1976e0),
       valueIndicatorShape: PaddleSliderValueIndicatorShape(),
       showValueIndicator: ShowValueIndicator.onlyForDiscrete,
       valueIndicatorTextStyle: TextStyle(
-        color: Color(0xdd000000),
+        color: Color(0xffffffff),
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,

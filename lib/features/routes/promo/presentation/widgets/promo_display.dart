@@ -92,7 +92,7 @@ class _PromoDisplayState extends State<PromoDisplay>
           child: TabBar(
             unselectedLabelColor: Themes.promoTabTextColor,
             labelColor: Themes.promoTabSelectedTextColor,
-            labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
+            labelStyle: TextStyle(fontSize: FontSize.SUBTITLE.value),
             labelPadding: const EdgeInsets.only(top: 4.0),
             indicatorColor: Colors.transparent,
 //            indicatorWeight: 3.0,
@@ -143,7 +143,7 @@ class _PromoDisplayState extends State<PromoDisplay>
                           child: Padding(
                             padding: const EdgeInsets.only(top: 3.0),
                             child: Text(
-                              c.value.label,
+                              c.label,
                               style: TextStyle(fontSize: FontSize.NORMAL.value),
                             ),
                           ),
@@ -184,7 +184,7 @@ class _PromoDisplayState extends State<PromoDisplay>
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    print('open promo id: ${widget.showPromoId}');
+    debugPrint('open promo id: ${widget.showPromoId}');
     if (contentWidget == null) {
       contentWidget = new TabsPageControlWidget(
         pageController: _pageController,
@@ -210,7 +210,7 @@ class _PromoDisplayState extends State<PromoDisplay>
       Future.delayed(Duration(milliseconds: 500), () {
         var promo = widget.promos
             .firstWhere((element) => element.id == widget.showPromoId);
-        print('debug show promo on home image click: $promo');
+        debugPrint('debug show promo on home image click: $promo');
         if (promo != null) {
           showDialog(
               context: context,

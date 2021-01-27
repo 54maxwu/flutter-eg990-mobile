@@ -141,7 +141,7 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.LOGIN:
         return localeStr.pageTitleLogin;
       case RouteEnum.REGISTER:
-        return localeStr.pageTitleRegister;
+        return localeStr.pageTitleRegisterMember;
       case RouteEnum.LOGOUT:
         return localeStr.memberGridTitleLogout;
 
