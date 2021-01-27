@@ -10,11 +10,15 @@ class Global {
 
   /// APP Language
   static bool initLocale = false;
+
   // zh, th, en, vi
   static String _language = 'zh';
+
   // content_cn, content_th, content_us, content_vn
   static String _jsonContentKey = 'content_cn';
+
   static String get lang => _language;
+
   static String get jsonContentKey => _jsonContentKey;
 
   static set setLanguage(String langCode) {
@@ -34,8 +38,8 @@ class Global {
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = EG_BASE_URL;
-  static String currentService = EG_SERVICE_URL;
+  static const String CURRENT_BASE = GS_OFFICIAL_URL;
+  static String currentService = GS_SERVICE_URL;
 
   static const String EG_BASE_URL = "https://www.eg990.com/";
   static const String EG_SERVICE_URL = "http://vip66741.com/";
@@ -47,7 +51,7 @@ class Global {
       "https://vm.providesupport.com/095ecqycnij4h0q56020owowxq";
 
   static const String GS_BASE_URL = "http://10.20.12.23/";
-  static const String GS_OFFICIAL_URL = "https://vip66660.com";
+  static const String GS_OFFICIAL_URL = "https://vip66660.com/";
   static const String GS_SERVICE_URL = "";
 
   /// HIVE table name

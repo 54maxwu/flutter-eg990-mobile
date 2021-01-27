@@ -58,14 +58,19 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //            ),
 //            SizedBox(width: 4.0),
             RaisedButton(
+              visualDensity: VisualDensity(horizontal: 3.0),
+              color: Themes.homeTabBgColor,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Themes.specialButtonBgLinearColor1),
+                borderRadius: BorderRadius.circular(2.0),
+              ),
               child: new Text(
-                localeStr.pageTitleRegister,
+                localeStr.btnRegister,
                 style: TextStyle(
                   fontSize: FontSize.NORMAL.value + 1,
-                  color: Themes.buttonTextPrimaryColor,
+                  color: Themes.specialButtonTextColor,
                 ),
               ),
-              visualDensity: VisualDensity(horizontal: -3.0),
               onPressed: () {
                 RouterNavigate.navigateToPage(RoutePage.register);
               },

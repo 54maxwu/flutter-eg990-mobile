@@ -10,11 +10,11 @@ class ScreenDrawer extends StatelessWidget {
   static final List<ScreenDrawerItem> _menuItems = [
     ScreenDrawerItem.promo,
     ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
+//    ScreenDrawerItem.download,
     ScreenDrawerItem.vip,
     ScreenDrawerItem.agentAbout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
+//    ScreenDrawerItem.testUI,
+//    ScreenDrawerItem.test,
   ];
 
   static final List<ScreenDrawerItem> _userMenuItems = [
@@ -23,18 +23,18 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.promo,
     ScreenDrawerItem.message,
     ScreenDrawerItem.notice,
-    ScreenDrawerItem.store,
-    ScreenDrawerItem.roller,
-    ScreenDrawerItem.task,
-    ScreenDrawerItem.collect,
-    ScreenDrawerItem.sign,
+//    ScreenDrawerItem.store,
+//    ScreenDrawerItem.roller,
+//    ScreenDrawerItem.task,
+//    ScreenDrawerItem.collect,
+//    ScreenDrawerItem.sign,
     ScreenDrawerItem.service,
-    ScreenDrawerItem.download,
+//    ScreenDrawerItem.download,
     ScreenDrawerItem.vip,
     ScreenDrawerItem.agentAbout,
     ScreenDrawerItem.logout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
+//    ScreenDrawerItem.testUI,
+//    ScreenDrawerItem.test,
   ];
 
   bool _itemTapped(ScreenDrawerItem item, {FeatureScreenStore store}) {

@@ -102,9 +102,13 @@ extension GamePlatformModelExtension on GamePlatformModel {
 
 extension GamePlatformEntityExtension on GamePlatformEntity {
   bool get isGameHall => ['casino', 'sport', 'lottery'].contains(category);
+
   String get iconUrl => '/images/index/logo/${site.toUpperCase()}.png';
+
   String get imageUrl => '/images/index/nav_${site}_$category.png';
+
   String get gameUrl => '$site/$category/0';
+
   String get label {
     switch (category) {
       case 'casino':

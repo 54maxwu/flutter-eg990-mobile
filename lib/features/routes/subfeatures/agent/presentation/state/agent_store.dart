@@ -66,11 +66,16 @@ abstract class _AgentStore with Store {
   ObservableFuture<Either<Failure, AgentModel>> _agentFuture;
 
   Stream<AgentModel> get agentStream => _agentController.stream;
+
   Stream<List<AgentCommissionModel>> get commissionStream =>
       _commissionController.stream;
+
   Stream<List<AgentChartModel>> get reportStream => _reportController.stream;
+
   Stream<AgentLedgerModel> get ledgerStream => _ledgerController.stream;
+
   Stream<List<AgentAdModel>> get adStream => _adController.stream;
+
   Stream<List<AgentAdModel>> get mergeAdStream => _mergeAdController.stream;
 
   @observable
@@ -117,7 +122,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 1))
+              .message;
     }
   }
 
@@ -140,7 +146,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 2))
+              .message;
     }
   }
 
@@ -163,7 +170,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 3))
+              .message;
     }
   }
 
@@ -190,7 +198,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 4))
+              .message;
     }
   }
 
@@ -219,7 +228,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 5))
+              .message;
     }
   }
 
@@ -247,7 +257,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 6))
+              .message;
     }
   }
 
@@ -270,7 +281,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 7))
+              .message;
     }
   }
 
@@ -301,7 +313,8 @@ abstract class _AgentStore with Store {
       waitForAgentResponse = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.AGENT)).message;
+          Failure.internal(FailureCode(type: FailureType.AGENT, code: 8))
+              .message;
     }
   }
 

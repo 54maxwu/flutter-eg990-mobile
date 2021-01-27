@@ -224,7 +224,7 @@
   "@btnLogin": {
     "type": "text"
   },
-  "btnRegister": "注册",
+  "btnRegister": "免费开户",
   "@btnRegister": {
     "type": "text"
   },
@@ -369,7 +369,7 @@
       }
     }
   },
-  "messageWelcome": "欢迎光临",
+  "messageWelcome": "您好 ! 请先登录/注册",
   "@messageWelcome": {
     "type": "text"
   },
@@ -749,7 +749,6 @@
   "@homeHintMemberCreditLeft": {
     "type": "text"
   },
-
   "homeHintDefaultMarquee": "尊敬的会员您好！如果您有任何使用上的问题，请使用在线客服系统。",
   "@homeHintDefaultMarquee": {
     "type": "text"

@@ -42,6 +42,7 @@ abstract class _HomeStore with Store {
 
   final StreamController<String> _searchPlatformController =
       StreamController<String>.broadcast();
+
 //  final StreamController<String> _searchGameController =
 //      StreamController<String>.broadcast();
 
@@ -209,7 +210,8 @@ abstract class _HomeStore with Store {
       waitForInitializeData = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.HOME)).message;
+          Failure.internal(FailureCode(type: FailureType.HOME, code: 1))
+              .message;
     }
   }
 
@@ -329,7 +331,8 @@ abstract class _HomeStore with Store {
       waitForGameTypes = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+          Failure.internal(FailureCode(type: FailureType.GAMES, code: 1))
+              .message;
     }
   }
 
@@ -435,7 +438,8 @@ abstract class _HomeStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+          Failure.internal(FailureCode(type: FailureType.GAMES, code: 2))
+              .message;
     }
   }
 
@@ -467,7 +471,8 @@ abstract class _HomeStore with Store {
       waitForRecommend = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.RECOMMENDS)).message;
+          Failure.internal(FailureCode(type: FailureType.RECOMMENDS, code: 1))
+              .message;
     }
   }
 
@@ -499,7 +504,8 @@ abstract class _HomeStore with Store {
       waitForFavorite = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.FAVORITE)).message;
+          Failure.internal(FailureCode(type: FailureType.FAVORITE, code: 1))
+              .message;
     }
   }
 
@@ -541,7 +547,8 @@ abstract class _HomeStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.FAVORITE)).message;
+          Failure.internal(FailureCode(type: FailureType.FAVORITE, code: 2))
+              .message;
     }
   }
 
@@ -661,7 +668,8 @@ abstract class _HomeStore with Store {
       waitForGameUrl = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.GAMES)).message;
+          Failure.internal(FailureCode(type: FailureType.GAMES, code: 3))
+              .message;
     }
   }
 

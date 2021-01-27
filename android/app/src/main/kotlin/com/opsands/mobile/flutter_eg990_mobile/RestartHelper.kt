@@ -1,4 +1,4 @@
-package com.eg990.mobile
+package com.opsands.mobile
 
 import android.content.Context
 import android.content.Intent

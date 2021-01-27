@@ -42,7 +42,9 @@ abstract class _RollerStore with Store {
   ObservableFuture<Either<Failure, RollerDataEntity>> _dataFuture;
 
   Stream<List<RollerOrderModel>> get orderStream => _orderController.stream;
+
   Stream<List<RollerRecordModel>> get recordStream => _recordController.stream;
+
   Stream<RollerRequirementModel> get requirementStream =>
       _requirementController.stream;
 
@@ -106,7 +108,8 @@ abstract class _RollerStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 3))
+              .message;
     }
   }
 
@@ -141,7 +144,8 @@ abstract class _RollerStore with Store {
     } on Exception {
       waitForOrder = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 4))
+              .message;
     }
   }
 
@@ -176,7 +180,8 @@ abstract class _RollerStore with Store {
     } on Exception {
       waitForRecord = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 5))
+              .message;
     }
   }
 
@@ -210,7 +215,8 @@ abstract class _RollerStore with Store {
     } on Exception {
       waitForRequirement = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 6))
+              .message;
     }
   }
 
@@ -228,7 +234,8 @@ abstract class _RollerStore with Store {
           );
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 7))
+              .message;
     }
   }
 
@@ -256,7 +263,8 @@ abstract class _RollerStore with Store {
           );
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 8))
+              .message;
       return false;
     }
   }
@@ -284,7 +292,8 @@ abstract class _RollerStore with Store {
     } on Exception {
       waitForPrize = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.ROLLER)).message;
+          Failure.internal(FailureCode(type: FailureType.ROLLER, code: 9))
+              .message;
     }
   }
 

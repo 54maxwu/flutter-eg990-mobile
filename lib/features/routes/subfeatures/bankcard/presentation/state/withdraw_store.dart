@@ -32,6 +32,7 @@ abstract class _WithdrawStore with Store {
 
   String cgpUrl = '';
   String cpwUrl = '';
+
   // TODO need rollback data to adjust data flow
   String rollback = '';
 

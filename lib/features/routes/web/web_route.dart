@@ -16,7 +16,7 @@ class WebRoute extends StatefulWidget {
 
 class _WebRouteState extends State<WebRoute> {
   WebRouteStore _store;
-//  MemberJwtInterface _jwtInterface;
+//  JwtInterface _jwtInterface;
   List<ReactionDisposer> _disposers;
 
   WebViewController _controller;
@@ -25,7 +25,7 @@ class _WebRouteState extends State<WebRoute> {
   @override
   void initState() {
     _store ??= WebRouteStore();
-//    _jwtInterface = sl.get<MemberJwtInterface>();
+//    _jwtInterface = sl.get<JwtInterface>();
     super.initState();
     debugPrint('opening url: ${widget.startUrl}');
   }

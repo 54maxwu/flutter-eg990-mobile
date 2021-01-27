@@ -44,9 +44,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
           .onChangedStream
           .listen((ConnectivityResult result) {
         debugPrint('connectivity result: $result');
-        _currentNetworkType ??= result;
-        if (_currentNetworkType != result && mounted && !isShowingDialog) {
-          _currentNetworkType = result;
+        if (_currentNetworkType != null && mounted && !isShowingDialog) {
           try {
             showDialog(
               context: context,
@@ -60,6 +58,8 @@ class _FeatureScreenState extends State<FeatureScreen> {
           } catch (e) {
             MyLogger.error(msg: 'connectivity dialog has error: $e');
           }
+        } else {
+          _currentNetworkType = result;
         }
       });
     } catch (e) {
@@ -69,12 +69,17 @@ class _FeatureScreenState extends State<FeatureScreen> {
   }
 
   void updateScreen() {
+    debugPrint('reassembling feature screen...');
     try {
       sl?.get<HomeStore>()?.getInitializeData(force: true);
-      // refresh widget under scaffold (ex. menu bar, nav bar...)
-      _scaffoldKey?.currentState?.setState(() {});
-      // refresh current route widget
-      RouterNavigate.navigator.reassemble();
+      Future.delayed(
+          Duration(milliseconds: (RouterNavigate.current == '/') ? 2000 : 100),
+          () {
+        // refresh widget under scaffold (ex. menu bar, nav bar...)
+        _scaffoldKey?.currentState?.setState(() {});
+        // refresh current route widget
+        RouterNavigate.navigator.reassemble();
+      });
     } catch (e) {
       MyLogger.error(msg: 'update feature screen has error: $e');
       PlatformUtil.restart();

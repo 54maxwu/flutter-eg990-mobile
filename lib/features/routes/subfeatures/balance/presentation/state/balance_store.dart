@@ -84,7 +84,8 @@ abstract class _BalanceStore with Store {
       );
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+          Failure.internal(FailureCode(type: FailureType.BALANCE, code: 1))
+              .message;
     }
   }
 
@@ -120,7 +121,8 @@ abstract class _BalanceStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+          Failure.internal(FailureCode(type: FailureType.BALANCE, code: 2))
+              .message;
     }
   }
 
@@ -146,7 +148,8 @@ abstract class _BalanceStore with Store {
       );
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+          Failure.internal(FailureCode(type: FailureType.BALANCE, code: 3))
+              .message;
     }
   }
 
@@ -166,7 +169,8 @@ abstract class _BalanceStore with Store {
       ).whenComplete(() => debugPrint('credit limit: $creditLimit'));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BALANCE)).message;
+          Failure.internal(FailureCode(type: FailureType.BALANCE, code: 4))
+              .message;
     }
   }
 
@@ -200,7 +204,8 @@ abstract class _BalanceStore with Store {
     } on Exception {
       waitForTransferResult = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSFER)).message;
+          Failure.internal(FailureCode(type: FailureType.BALANCE, code: 5))
+              .message;
     }
   }
 

@@ -1,4 +1,4 @@
-package com.eg990.mobile
+package com.opsands.mobile
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -116,7 +116,7 @@ class SensorListener(private val sensorManager: SensorManager) :
     }
 
     companion object {
-        internal const val CHANNEL_NAME = "com.eg990.mobile/sensor"
+        internal const val CHANNEL_NAME = "com.opsands.mobile/sensor"
         private const val DATA_X = 0
         private const val DATA_Y = 1
         private const val DATA_Z = 2

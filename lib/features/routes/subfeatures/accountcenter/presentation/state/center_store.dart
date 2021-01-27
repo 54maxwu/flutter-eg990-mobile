@@ -73,7 +73,9 @@ abstract class _CenterStore with Store {
   List<String> cpwUrl;
 
   Stream<CenterAccountEntity> get accountStream => _accountController.stream;
+
   Stream<List<int>> get lottoStream => _lottoController.stream;
+
   Stream<CenterVipEntity> get vipStream => _vipController.stream;
 
   CenterStoreAction currentRequest;
@@ -127,7 +129,8 @@ abstract class _CenterStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.CENTER)).message;
+          Failure.internal(FailureCode(type: FailureType.CENTER, code: 1))
+              .message;
     }
   }
 
@@ -226,9 +229,9 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.CENTER, code: 2))
+              .message;
     }
   }
 
@@ -288,9 +291,9 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.CENTER, code: 3))
+              .message;
     }
   }
 
@@ -319,9 +322,9 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.CENTER, code: 4))
+              .message;
     }
   }
 
@@ -344,9 +347,9 @@ abstract class _CenterStore with Store {
       }).whenComplete(() => waitForResponse = false);
     } on Exception {
       waitForResponse = false;
-      errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
-      ).message;
+      errorMessage =
+          Failure.internal(FailureCode(type: FailureType.CENTER, code: 5))
+              .message;
     }
   }
 
@@ -374,7 +377,7 @@ abstract class _CenterStore with Store {
     } on Exception {
       waitForResponse = false;
       errorMessage = Failure.internal(
-        FailureCode(type: FailureType.CENTER),
+        FailureCode(type: FailureType.CENTER, code: 6),
       ).message;
     }
   }

@@ -5,13 +5,17 @@ import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart'
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart'
     show UserApi;
 
-abstract class MemberJwtInterface {
+class JwtApi {
+  static const String JWT_CHECK = "api/checkJwt";
+}
+
+abstract class JwtInterface {
   String account;
   String accountId;
   String token;
 
   /// Calls the service [UserApi.JWT_CHECK] endpoint to verify [token].
-  Future<RequestStatusModel> checkJwt(
+  Future<Either<Failure, RequestStatusModel>> checkJwt(
     String href, {
     String loginAccount,
     String loginToken,
@@ -20,11 +24,11 @@ abstract class MemberJwtInterface {
   Future<void> clearToken();
 }
 
-class MemberJwtInterfaceImpl implements MemberJwtInterface {
+class JwtInterfaceImpl implements JwtInterface {
   final DioApiService dioApiService;
-  final tag = 'MemberJwtInterface';
+  final tag = 'JwtInterface';
 
-  MemberJwtInterfaceImpl({@required this.dioApiService});
+  JwtInterfaceImpl({@required this.dioApiService});
 
   ///
   /// Check token to confirm user action is valid
@@ -39,13 +43,13 @@ class MemberJwtInterfaceImpl implements MemberJwtInterface {
       account = currentAccount;
       token = await Future.value(UserTokenStorage.load(account))
           .then((value) => value.cookie.value);
-      debugPrint('member jwt token: $token');
+      debugPrint('jwt token: $token');
     }
     return true;
   }
 
   @override
-  Future<RequestStatusModel> checkJwt(
+  Future<Either<Failure, RequestStatusModel>> checkJwt(
     String href, {
     String loginAccount,
     String loginToken,
@@ -54,32 +58,31 @@ class MemberJwtInterfaceImpl implements MemberJwtInterface {
       account = loginAccount;
       token = loginToken;
       return await requestModel<RequestStatusModel>(
-        request: dioApiService.post(UserApi.JWT_CHECK,
+        request: dioApiService.post(JwtApi.JWT_CHECK,
             userToken: loginToken, data: {"href": href}),
         jsonToModel: RequestStatusModel.jsonToStatusModel,
         tag: 'remote-JWT',
-      ).then(
-        (result) => result.fold(
-          (failure) => RequestStatusModel(status: 'failed', msg: 'no user'),
-          (status) => status,
-        ),
-      );
+      ).then((result) => result.fold(
+            (failure) => Left(failure),
+            (status) => Right(status),
+          ));
     } else {
       return await _readToken().then((canContinue) async {
-        if (canContinue)
+        if (canContinue) {
           return await requestModel<RequestStatusModel>(
-            request: dioApiService.post(UserApi.JWT_CHECK,
-                userToken: token, data: {"href": href}),
+            request: dioApiService
+                .post(JwtApi.JWT_CHECK, userToken: token, data: {"href": href}),
             jsonToModel: RequestStatusModel.jsonToStatusModel,
             tag: 'remote-JWT',
           ).then(
             (result) => result.fold(
-              (failure) => RequestStatusModel(status: 'failed', msg: 'no user'),
-              (status) => status,
+              (failure) => Left(failure),
+              (status) => Right(status),
             ),
           );
-        else
-          return RequestStatusModel(status: 'failed', msg: 'no user');
+        } else {
+          return Left(Failure.token(FailureType.TOKEN));
+        }
       });
     }
   }
@@ -88,7 +91,7 @@ class MemberJwtInterfaceImpl implements MemberJwtInterface {
   Future<void> clearToken() => Future.sync(() {
         token = '';
         accountId = '';
-        MyLogger.info(msg: 'jwt token cleared', tag: 'MemberJwtInterface');
+        MyLogger.info(msg: 'jwt token cleared', tag: 'JwtInterface');
       });
 
   @override

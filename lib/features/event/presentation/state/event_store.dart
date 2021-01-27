@@ -75,11 +75,13 @@ abstract class _EventStore with Store {
 
   bool _showingAds = false;
 
-  bool get canShowAds => !_showingAds;
-
   bool get checkSkip => _skipAds;
 
+  bool get canShowAds => !_showingAds;
+
   bool get autoShowAds => !_showingAds && _showOnStartup && !_skipAds;
+
+  set setAutoShowAds(bool auto) => _showOnStartup = auto;
 
   @observable
   String errorMessage;
@@ -114,7 +116,8 @@ abstract class _EventStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.EVENT)).message;
+          Failure.internal(FailureCode(type: FailureType.EVENT, code: 1))
+              .message;
     }
   }
 
@@ -204,7 +207,8 @@ abstract class _EventStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.EVENT)).message;
+          Failure.internal(FailureCode(type: FailureType.EVENT, code: 2))
+              .message;
     }
   }
 

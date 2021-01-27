@@ -8,10 +8,10 @@ void main() {
   var statusStr = '{"status":"failed", "msg":"wrong password"}';
 
   test('test json to status class', () {
-    var modelInt = RequestStatusModel.fromJson(json.decode(statusNum));
+    var modelInt = RequestStatusModel.jsonToStatusModel(json.decode(statusNum));
     expect(modelInt.msg, '1234');
     expect(modelInt.msg, isA<String>());
-    var modelStr = RequestStatusModel.fromJson(json.decode(statusStr));
+    var modelStr = RequestStatusModel.jsonToStatusModel(json.decode(statusStr));
     expect(modelStr, isA<RequestStatusModel>());
   });
 }

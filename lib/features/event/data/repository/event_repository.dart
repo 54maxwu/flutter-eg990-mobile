@@ -1,7 +1,7 @@
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/event/data/models/ad_model.dart';
 
+import '../models/ad_model.dart';
 import '../models/event_model.dart';
 
 class EventApi {
@@ -15,22 +15,24 @@ class EventApi {
 
 abstract class EventRepository {
   Future<Either<Failure, bool>> getWebsiteList();
+
   Future<Either<Failure, List<AdModel>>> getAds();
+
   Future<Either<Failure, bool>> checkNewMessage();
+
   Future<Either<Failure, EventModel>> getEvent();
+
   Future<Either<Failure, RequestCodeModel>> signEvent(int eventId, int prize);
 }
 
 class EventRepositoryImpl implements EventRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'EventRepository';
-  bool jwtChecked = false;
 
   EventRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override

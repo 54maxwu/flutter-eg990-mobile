@@ -63,7 +63,8 @@ abstract class _PromoStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.PROMO)).message;
+          Failure.internal(FailureCode(type: FailureType.PROMO, code: 1))
+              .message;
     }
   }
 }

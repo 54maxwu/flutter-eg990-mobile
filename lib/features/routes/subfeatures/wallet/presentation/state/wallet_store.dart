@@ -78,7 +78,8 @@ abstract class _WalletStore with Store {
           ));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+          Failure.internal(FailureCode(type: FailureType.WALLET, code: 1))
+              .message;
     }
   }
 
@@ -105,7 +106,8 @@ abstract class _WalletStore with Store {
     } on Exception {
       waitForUpdate = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+          Failure.internal(FailureCode(type: FailureType.WALLET, code: 2))
+              .message;
     }
   }
 
@@ -134,7 +136,8 @@ abstract class _WalletStore with Store {
     } on Exception {
       waitForTypeChange = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+          Failure.internal(FailureCode(type: FailureType.WALLET, code: 3))
+              .message;
     }
   }
 
@@ -190,7 +193,8 @@ abstract class _WalletStore with Store {
     } on Exception {
       waitForTypeChange = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.WALLET)).message;
+          Failure.internal(FailureCode(type: FailureType.WALLET, code: 4))
+              .message;
     }
   }
 

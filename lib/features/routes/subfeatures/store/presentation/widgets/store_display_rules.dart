@@ -81,7 +81,7 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.STORE)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }

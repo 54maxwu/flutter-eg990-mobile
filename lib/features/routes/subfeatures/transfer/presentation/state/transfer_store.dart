@@ -31,6 +31,7 @@ abstract class _TransferStore with Store {
       new StreamController<String>.broadcast();
 
   Stream<String> get site1ValueStream => _site1ValueController.stream;
+
   Stream<String> get site2ValueStream => _site2ValueController.stream;
 
   @observable

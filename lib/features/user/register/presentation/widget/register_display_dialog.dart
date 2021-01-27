@@ -6,6 +6,7 @@ import 'register_form_widget.dart';
 
 class RegisterDisplayDialog extends StatelessWidget {
   final MemberGridItem pageItem = MemberGridItem.register;
+
   @override
   Widget build(BuildContext context) {
     return ListView(

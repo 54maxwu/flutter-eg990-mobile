@@ -40,7 +40,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
     MemberGridItemV2.betRecord,
     MemberGridItemV2.dealRecord,
     MemberGridItemV2.flowRecord,
-    MemberGridItemV2.agent,
+//    MemberGridItemV2.agent,
     MemberGridItemV2.logout,
   ];
 

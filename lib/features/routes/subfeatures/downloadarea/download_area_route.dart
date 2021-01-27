@@ -39,9 +39,9 @@ class DownloadAreaRoute extends StatelessWidget {
       child: Scaffold(
         body: (appLinks.length != appImages.length)
             ? WarningDisplay(
-                message:
-                    Failure.internal(FailureCode(type: FailureType.SIDE_MENU))
-                        .message,
+                message: Failure.internal(
+                        FailureCode(type: FailureType.DOWNLOAD_AREA))
+                    .message,
               )
             : Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),

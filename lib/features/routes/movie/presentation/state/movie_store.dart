@@ -71,8 +71,10 @@ abstract class _MovieStore with Store {
   MoviePostData moviePost;
 
   Stream<MoviePostData> get moviePostStream => _moviePostController.stream;
+
   Stream<List<MovieHotModel>> get hotMoviesStream =>
       _hotMoviesController.stream;
+
   Stream<String> get movieUrlStream => _movieStreamController.stream;
 
   /// Movie Tab Page
@@ -122,7 +124,8 @@ abstract class _MovieStore with Store {
       waitForTabInitializeData = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB, code: 1))
+              .message;
     }
   }
 
@@ -172,7 +175,8 @@ abstract class _MovieStore with Store {
     } on Exception {
       waitForMovieData = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE_TAB, code: 2))
+              .message;
       if (_currentMoviePage <= 1 || movies == null) movies = [];
       return -1;
     }
@@ -223,7 +227,8 @@ abstract class _MovieStore with Store {
       waitForRouteInitializeData = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 1))
+              .message;
     }
   }
 
@@ -270,7 +275,8 @@ abstract class _MovieStore with Store {
     } on Exception {
       waitForMoviePost = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 2))
+              .message;
     }
   }
 
@@ -318,7 +324,8 @@ abstract class _MovieStore with Store {
     } on Exception {
       waitForHotMovies = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 3))
+              .message;
     }
   }
 
@@ -343,7 +350,8 @@ abstract class _MovieStore with Store {
               ));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 4))
+              .message;
       return false;
     }
   }
@@ -369,7 +377,8 @@ abstract class _MovieStore with Store {
               ));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 5))
+              .message;
       return false;
     }
   }
@@ -403,7 +412,8 @@ abstract class _MovieStore with Store {
               ));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 6))
+              .message;
       return null;
     }
   }
@@ -437,7 +447,8 @@ abstract class _MovieStore with Store {
               ));
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 7))
+              .message;
       return null;
     }
   }
@@ -464,7 +475,8 @@ abstract class _MovieStore with Store {
     } on Exception {
       waitForVerify = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 8))
+              .message;
       return '';
     }
   }
@@ -494,7 +506,8 @@ abstract class _MovieStore with Store {
     } on Exception {
       waitForVerify = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.MOVIE)).message;
+          Failure.internal(FailureCode(type: FailureType.MOVIE, code: 9))
+              .message;
       return false;
     }
   }

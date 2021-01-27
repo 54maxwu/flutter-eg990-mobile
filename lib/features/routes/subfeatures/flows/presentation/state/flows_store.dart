@@ -46,7 +46,7 @@ abstract class _FlowsStore with Store {
           .whenComplete(() => waitForPageData = false);
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.TRANSACTIONS)).message;
+          Failure.internal(FailureCode(type: FailureType.FLOWS)).message;
     }
   }
 }

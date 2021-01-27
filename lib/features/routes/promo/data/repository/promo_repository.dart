@@ -10,6 +10,7 @@ class PromoApi {
 
 abstract class PromoRepository {
   Future<Either<Failure, List<PromoEntity>>> getPromos();
+
   Future<Either<Failure, List<PromoEntity>>> getCachedPromos();
 }
 
@@ -36,24 +37,23 @@ class PromoRepositoryImpl implements PromoRepository {
   @override
   Future<Either<Failure, List<PromoEntity>>> getPromos() async {
     final connected = await networkInfo.isConnected;
-    if (connected) {
-      final result = await requestModelList<PromoModel>(
-        request: dioApiService.get(PromoApi.GET_PROMO),
-        jsonToModel: PromoModel.jsonToPromoModel,
-        tag: 'remote-PROMO',
-      );
+    if (!connected) return getCachedPromos();
+
+    final result = await requestModelList<PromoModel>(
+      request: dioApiService.get(PromoApi.GET_PROMO),
+      jsonToModel: PromoModel.jsonToPromoModel,
+      tag: 'remote-PROMO',
+    );
 //      print('test response type: ${result.runtimeType}, data: $result');
-      return result.fold(
-        (failure) {
-          if (failure.typeIndex == 0)
-            return getCachedPromos();
-          else
-            return Left(failure);
-        },
-        (models) => Right(_transformPromoModels(models)),
-      );
-    }
-    return getCachedPromos();
+    return result.fold(
+      (failure) {
+        if (failure.typeIndex == 0)
+          return getCachedPromos();
+        else
+          return Left(failure);
+      },
+      (models) => Right(_transformPromoModels(models)),
+    );
   }
 
   @override

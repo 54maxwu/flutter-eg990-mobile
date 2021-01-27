@@ -13,21 +13,22 @@ class WithdrawApi {
 
 abstract class WithdrawRepository {
   Future<Either<Failure, String>> getCgpWallet();
+
   Future<Either<Failure, String>> getCpwWallet();
+
   Future<Either<Failure, String>> getRollback();
+
   Future<Either<Failure, WithdrawModel>> postWithdraw(WithdrawForm form);
 }
 
 class WithdrawRepositoryImpl implements WithdrawRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'WithdrawRepository';
-  bool jwtChecked = false;
 
   WithdrawRepositoryImpl(
       {@required this.dioApiService, @required this.jwtInterface}) {
-    Future.value(jwtInterface.checkJwt('/'))
-        .then((value) => jwtChecked = value.isSuccess);
+    Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
   @override

@@ -36,6 +36,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       new GlobalKey(debugLabel: 'mail');
   final GlobalKey<CustomizeFieldWidgetState> _wechatFieldKey =
       new GlobalKey(debugLabel: 'wechat');
+
 //  final GlobalKey<CustomizeFieldWidgetState> _cgpFieldKey =
 //      new GlobalKey(debugLabel: 'cgp');
   final GlobalKey<CustomizeFieldWidgetState> _cpwFieldKey =
@@ -82,7 +83,7 @@ class _CenterDisplayAccountState extends State<CenterDisplayAccount>
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.CENTER)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }

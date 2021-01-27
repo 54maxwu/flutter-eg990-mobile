@@ -31,6 +31,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
       new GlobalKey(debugLabel: 'account');
   final GlobalKey<CustomizeFieldWidgetState> _branchFieldKey =
       new GlobalKey(debugLabel: 'branch');
+
   // Dropdowns
   final GlobalKey<CustomizeDropdownWidgetState> _cityKey =
       new GlobalKey(debugLabel: 'city');

@@ -131,7 +131,8 @@ abstract class _PointStore with Store {
       waitForInitializeData = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 1))
+              .message;
     }
   }
 
@@ -154,7 +155,8 @@ abstract class _PointStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 2))
+              .message;
     }
   }
 
@@ -180,7 +182,8 @@ abstract class _PointStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 3))
+              .message;
     }
   }
 
@@ -201,7 +204,8 @@ abstract class _PointStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 4))
+              .message;
     }
   }
 
@@ -235,7 +239,8 @@ abstract class _PointStore with Store {
     } on Exception {
       waitForExchange = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 5))
+              .message;
     }
   }
 
@@ -253,7 +258,8 @@ abstract class _PointStore with Store {
           );
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 6))
+              .message;
     }
   }
 
@@ -276,7 +282,8 @@ abstract class _PointStore with Store {
     } on Exception {
       waitForRecord = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.STORE)).message;
+          Failure.internal(FailureCode(type: FailureType.STORE, code: 7))
+              .message;
     }
   }
 

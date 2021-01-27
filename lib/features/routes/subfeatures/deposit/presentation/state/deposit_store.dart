@@ -75,7 +75,8 @@ abstract class _DepositStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.HOME)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 1))
+              .message;
     }
   }
 
@@ -95,7 +96,8 @@ abstract class _DepositStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 2))
+              .message;
     }
   }
 
@@ -124,7 +126,8 @@ abstract class _DepositStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 3))
+              .message;
     }
   }
 
@@ -159,7 +162,8 @@ abstract class _DepositStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 4))
+              .message;
     }
   }
 
@@ -179,7 +183,8 @@ abstract class _DepositStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 5))
+              .message;
     }
   }
 
@@ -199,7 +204,8 @@ abstract class _DepositStore with Store {
       });
     } on Exception {
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 6))
+              .message;
     }
   }
 
@@ -226,7 +232,8 @@ abstract class _DepositStore with Store {
     } on Exception {
       waitForDepositResult = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.DEPOSIT)).message;
+          Failure.internal(FailureCode(type: FailureType.DEPOSIT, code: 7))
+              .message;
     }
   }
 }

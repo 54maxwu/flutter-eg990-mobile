@@ -16,7 +16,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
   EventStore _eventStore;
 
   bool _hideActions = false;
-  bool _hideLangOption = false;
+  bool _hideLangOption = true;
 
   void initDisposers() {
     _disposers = [
@@ -26,15 +26,15 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
           (_) => _viewState.store.pageInfo.disableLanguageDropDown,
           // Run some logic with the content of the observed field
           (bool disable) {
-        if (disable != _hideLangOption) {
-          if (mounted) {
-            setState(() {
-              _hideLangOption = disable;
-            });
-          } else {
-            _hideLangOption = disable;
-          }
-        }
+//        if (disable != _hideLangOption) {
+//          if (mounted) {
+//            setState(() {
+//              _hideLangOption = disable;
+//            });
+//          } else {
+//            _hideLangOption = disable;
+//          }
+//        }
       }),
       reaction(
           // Observe in page
@@ -128,40 +128,40 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       ),
       /* App bar Right Actions */
       actions: <Widget>[
-        if (_eventStore != null)
-          Container(
-//            padding: const EdgeInsets.only(right: 12.0),
-            decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Transform.scale(
-              scale: 0.5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(36.0),
-                child: GestureDetector(
-                  onTap: () {
-                    if (_eventStore.canShowAds) {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new AdDialog(
-                          ads: _eventStore.ads,
-                          initCheck: _eventStore.checkSkip,
-                          onClose: (skipNextTime) {
-                            debugPrint('ads dialog close, skip=$skipNextTime');
-                            _eventStore.setSkipAd(skipNextTime);
-                            _eventStore.adsDialogClose();
-                          },
-                        ),
-                      );
-                    }
-                  },
-                  child: networkImageBuilder(
-                    'images/AD_ICON2.png',
-                    imgScale: 3.0,
-                  ),
-                ),
-              ),
-            ),
-          ),
+//        if (_eventStore != null)
+//          Container(
+////            padding: const EdgeInsets.only(right: 12.0),
+//            decoration: BoxDecoration(shape: BoxShape.circle),
+//            child: Transform.scale(
+//              scale: 0.5,
+//              child: ClipRRect(
+//                borderRadius: BorderRadius.circular(36.0),
+//                child: GestureDetector(
+//                  onTap: () {
+//                    if (_eventStore.canShowAds) {
+//                      showDialog(
+//                        context: context,
+//                        barrierDismissible: false,
+//                        builder: (context) => new AdDialog(
+//                          ads: _eventStore.ads,
+//                          initCheck: _eventStore.checkSkip,
+//                          onClose: (skipNextTime) {
+//                            debugPrint('ads dialog close, skip=$skipNextTime');
+//                            _eventStore.setSkipAd(skipNextTime);
+//                            _eventStore.adsDialogClose();
+//                          },
+//                        ),
+//                      );
+//                    }
+//                  },
+//                  child: networkImageBuilder(
+//                    'images/AD_ICON2.png',
+//                    imgScale: 3.0,
+//                  ),
+//                ),
+//              ),
+//            ),
+//          ),
         Visibility(
           visible: !_hideLangOption,
           maintainState: true,

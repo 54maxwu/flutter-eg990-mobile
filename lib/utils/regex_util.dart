@@ -38,21 +38,33 @@ final _chineseInvalidRegex =
 extension RegexExtension on String {
   /// String Regex
   bool get isUrl => Uri.parse(this).isAbsolute || _urlRegex.hasMatch(this);
+
   bool get isEmail => EmailValidator.validate(this);
+
   bool get isHtmlFormat =>
       _htmlRegex.hasMatch("""$this""".replaceAll('\n', ''));
+
   bool get isValidDate => _dateRegex.hasMatch(this);
+
   bool get hasChinese => _chineseRegex.hasMatch(this);
+
   bool get hasInvalidChinese => _chineseInvalidRegex.hasMatch(this);
 
   /// URL's Regex
   bool get testTyRouteUrl => _routeTestRegex.hasMatch(this);
+
   bool get isRouteUrl => _routeRegex.hasMatch(this);
+
   bool get isLoginUrl => _loginRegex.hasMatch(this);
+
   bool get isGameAutoUrl => _gameAutoRegex.hasMatch(this);
+
   bool get isGameUrl => _gameRegex.hasMatch(this);
+
   bool get isImageUrl => _imageRegex.hasMatch(this);
+
   bool get isPtLoginUrl => _ptLoginRegex.hasMatch(this);
+
   bool get isWebResource => _webResRegex.hasMatch(this);
 
   int get countLength {

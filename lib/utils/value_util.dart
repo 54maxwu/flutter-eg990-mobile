@@ -101,6 +101,8 @@ String formatValue(
 
 extension ValueUtilExtension on String {
   int get strToInt => stringToInt(this);
+
   double get strToDouble => stringToDouble(this);
+
   String get basicFormat => formatValue(this);
 }

@@ -31,12 +31,12 @@ class RoutePage extends Vnum<RouteInfo> {
 //    route: Routes.movieRoute,
 //    disableLanguageDropDown: true,
 //  ));
-//
-//  static const RoutePage movieNew = const RoutePage.define(RouteInfo(
-//    id: RouteEnum.MOVIE_NEW,
-//    route: Routes.movieRoute,
-//    disableLanguageDropDown: true,
-//  ));
+
+  static const RoutePage movieNew = const RoutePage.define(RouteInfo(
+    id: RouteEnum.MOVIE_NEW,
+    route: Routes.movieRoute,
+    disableLanguageDropDown: true,
+  ));
 
   static const RoutePage register = const RoutePage.define(RouteInfo(
     id: RouteEnum.REGISTER,
@@ -305,10 +305,15 @@ class RoutePage extends Vnum<RouteInfo> {
   //}
 
   String get page => value.route;
+
   String get pageTitle => value.id.title;
+
   String get pageRoot => value.parentRoute;
+
   bool get isFeature => value.isFeature;
+
   bool get hideBarAction => value.hideAppbarActions;
+
   int get navIndex => value.bottomNavIndex;
 }
 

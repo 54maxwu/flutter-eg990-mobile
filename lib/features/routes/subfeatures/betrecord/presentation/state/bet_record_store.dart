@@ -67,7 +67,8 @@ abstract class _BetRecordStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BETS)).message;
+          Failure.internal(FailureCode(type: FailureType.BETS, code: 2))
+              .message;
     }
   }
 
@@ -110,7 +111,8 @@ abstract class _BetRecordStore with Store {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       waitForRecordResponse = false;
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.BETS)).message;
+          Failure.internal(FailureCode(type: FailureType.BETS, code: 3))
+              .message;
     }
   }
 

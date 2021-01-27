@@ -62,7 +62,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.eg990.mobile"
+        applicationId "com.opsands.mobile"
         minSdkVersion 25
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
@@ -87,48 +87,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            resValue "string", "app_name", "EG990"
-            versionNameSuffix "R"
+            resValue "string", "app_name", "Sands Mobile"
+            versionNameSuffix ""
         }
         debug {
             debuggable true
             minifyEnabled true
             useProguard true // set to true for VLC player
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "EG990 Test"
+            resValue "string", "app_name", "Sands Test"
             versionNameSuffix "T"
             applicationIdSuffix ".debug"
         }
     }
-
-//    flavorDimensions "appType"
-//
-//    productFlavors {
-//        dev {
-//            dimension "appType"
-//            resValue "string", "app_name", "EG990 V2 Test"
-//            versionNameSuffix "T"
-//            applicationIdSuffix ".debug"
-//        }
-//        prod {
-//            dimension "appType"
-//            versionNameSuffix "R"
-//            resValue "string", "app_name", "EG990 V2"
-//        }
-//    }
 }
-
-//android.applicationVariants.all { variants ->
-//    // Change Application Name by BuildType
-//    switch (variants.getBuildType().name) {
-//        case 'debug':
-//            resValue "string", "app_name", "TYMobile2 Test"
-//            break
-//        default:
-//            resValue "string", "app_name", "添运国际"
-//            break
-//    }
-//}
 
 def readKeystoreProperties() {
     def propsFile = rootProject.file('keystore.properties')

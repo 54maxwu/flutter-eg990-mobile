@@ -1,7 +1,4 @@
-import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
-import 'package:meta/meta.dart' show required;
 
 import '../models/flow_model.dart';
 
@@ -15,7 +12,7 @@ abstract class FlowsRepository {
 
 class FlowsRepositoryImpl implements FlowsRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'FlowRepository';
 
   FlowsRepositoryImpl(

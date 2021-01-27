@@ -4,19 +4,18 @@ import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
 import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart';
 
-import '../../data/form/register_form.dart';
-import '../../data/repository/register_repository.dart';
+import '../../../data/form/register_form.dart';
+import '../../../data/repository/user_repository.dart';
 
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
 
 abstract class _RegisterStore with Store {
-  final RegisterRepository _repository;
-  final UserRepository _userRepository;
+  final UserRepository _repository;
   final StreamController _loginController = StreamController.broadcast();
 
-  _RegisterStore(this._repository, this._userRepository);
+  _RegisterStore(this._repository);
 
   Stream get loginStream => _loginController.stream;
 
@@ -61,7 +60,8 @@ abstract class _RegisterStore with Store {
       waitForRegister = false;
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.REGISTER)).message;
+          Failure.internal(FailureCode(type: FailureType.REGISTER, code: 1))
+              .message;
     }
   }
 
@@ -71,7 +71,7 @@ abstract class _RegisterStore with Store {
       // Reset the possible previous error message.
       errorMessage = null;
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _userRepository.login(form).then(
+      await _repository.login(form).then(
             (result) => result.fold(
               (failure) {
                 print('auto login failed: $failure');
@@ -86,7 +86,8 @@ abstract class _RegisterStore with Store {
     } on Exception {
       //errorMessage = "Couldn't fetch description. Is the device online?";
       errorMessage =
-          Failure.internal(FailureCode(type: FailureType.REGISTER)).message;
+          Failure.internal(FailureCode(type: FailureType.REGISTER, code: 2))
+              .message;
     }
   }
 

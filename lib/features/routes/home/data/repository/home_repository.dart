@@ -3,7 +3,6 @@ import 'dart:io' show Cookie;
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_platform.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 
 import '../entity/banner_entity.dart';
@@ -12,6 +11,7 @@ import '../entity/marquee_entity.dart';
 import '../form/platform_game_form.dart';
 import '../models/banner_model.dart';
 import '../models/game_model.dart';
+import '../models/game_platform.dart';
 import '../models/game_types.dart';
 import '../models/marquee_model.dart';
 import '../models/marquee_model_list.dart';
@@ -38,17 +38,27 @@ abstract class HomeRepository {
   Future<Either<Failure, String>> updateCredit(String account);
 
   Future<Either<Failure, List<BannerEntity>>> getBanners();
+
   Future<Either<Failure, List<BannerEntity>>> getCachedBanners();
+
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees();
+
   Future<Either<Failure, List<MarqueeEntity>>> getCachedMarquees();
+
   Future<Either<Failure, GameTypes>> getGameTypes();
+
   Future<Either<Failure, GameTypes>> getCachedGameTypes();
 
   Future<Either<Failure, List<GameEntity>>> getGames(PlatformGameForm form);
+
   Future<Either<Failure, List>> getRecommend();
+
   Future<Either<Failure, List>> getFavorites();
+
   Future<Either<Failure, bool>> postFavoritePlatform(int id, bool favorite);
+
   Future<Either<Failure, bool>> postFavoriteGame(int id, bool favorite);
+
   Future<Either<Failure, String>> getGameUrl(String requestUrl);
 }
 
@@ -56,7 +66,7 @@ class HomeRepositoryImpl implements HomeRepository {
   final NetworkInfo networkInfo;
   final DioApiService dioApiService;
   final HomeLocalStorage localStorage;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'HomeRepository';
 
   HomeRepositoryImpl({
@@ -91,7 +101,7 @@ class HomeRepositoryImpl implements HomeRepository {
           if (map.containsKey('creditlimit')) {
             return Right(map['creditlimit']);
           } else {
-            return Left(Failure.token());
+            return Left(Failure.token(FailureType.CREDIT));
           }
         } catch (e) {
           debugPrint('credit limit error: $e');
@@ -150,9 +160,8 @@ class HomeRepositoryImpl implements HomeRepository {
 
   @override
   Future<Either<Failure, List<MarqueeEntity>>> getMarquees() async {
-    final connected = await networkInfo.isConnected;
-    if (!connected) return Left(Failure.network());
-//      return getCachedMarquees();
+//    final connected = await networkInfo.isConnected;
+//    if (!connected) return getCachedMarquees();
 
     final result = await requestModel<MarqueeModelList>(
       request: dioApiService.get(HomeApi.MARQUEE),
@@ -242,9 +251,6 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, List<GameEntity>>> getGames(
     PlatformGameForm form,
   ) async {
-    final connected = await networkInfo.isConnected;
-    if (!connected) return Left(Failure.network());
-
     final result = await requestModelList<GameModel>(
       request: dioApiService.postForm(HomeApi.GAME_INDEX, form.toJson()),
       jsonToModel: GameModel.jsonToGameModel,
@@ -304,9 +310,6 @@ class HomeRepositoryImpl implements HomeRepository {
 
   @override
   Future<Either<Failure, List>> getRecommend() async {
-    final connected = await networkInfo.isConnected;
-    if (!connected) return Left(Failure.network());
-
     final result = await requestData(
       request: dioApiService.post(
         HomeApi.GAME_RECOMMEND,
@@ -396,9 +399,6 @@ class HomeRepositoryImpl implements HomeRepository {
     int id,
     bool favorite,
   ) async {
-    final connected = await networkInfo.isConnected;
-    if (!connected) return Left(Failure.network());
-
     final result = await requestData(
       request: dioApiService.post(
         HomeApi.POST_FAVORITE_PLATFORM,

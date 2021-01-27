@@ -67,7 +67,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.CENTER)).message,
+              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
         ),
       );
     }

@@ -1,8 +1,4 @@
-import 'package:flutter_eg990_mobile/core/network/dio_api_service.dart';
-import 'package:flutter_eg990_mobile/core/network/handler/request_code_model.dart';
 import 'package:flutter_eg990_mobile/core/repository_export.dart';
-import 'package:flutter_eg990_mobile/features/routes/member/data/repository/member_jwt_interface.dart';
-import 'package:meta/meta.dart' show required;
 
 import '../models/message_model.dart';
 
@@ -13,12 +9,13 @@ class MessageApi {
 
 abstract class MessageRepository {
   Future<Either<Failure, List<MessageModel>>> getMessageList();
+
   Future<Either<Failure, RequestCodeModel>> updateMessageStatus(int id);
 }
 
 class MessageRepositoryImpl implements MessageRepository {
   final DioApiService dioApiService;
-  final MemberJwtInterface jwtInterface;
+  final JwtInterface jwtInterface;
   final tag = 'MessageRepository';
 
   MessageRepositoryImpl(

@@ -70,8 +70,10 @@ class Themes {
   // default color or selected
   static const buttonPrimaryColor = Color(0xffe7c080);
   static const buttonTextPrimaryColor = Color(0xff000000);
+
   // unselected button
   static const buttonSecondaryColor = Color(0xff3b3b3b);
+
   // sub color button (ex. readme)
   static const buttonSubColor = Color(0xff3b3b3b);
   static const buttonTextSubColor = Color(0xffe6e6e6);
@@ -81,6 +83,11 @@ class Themes {
   static const buttonBorderColor = Color(0xff383838);
   static const pagerButtonColor = Color(0xff4e4e4e);
   static const pagerButtonSelectedColor = Color(0xff3b3b3b);
+
+  static const specialButtonFillColor = Colors.black54;
+  static const specialButtonTextColor = Color(0xffffd89c);
+  static const specialButtonBgLinearColor1 = Color(0xffffd89c);
+  static const specialButtonBgLinearColor2 = Color(0xffe7c080);
 
   static const fieldInputColor = Color(0xffffffff);
   static const fieldInputBgColor = Color(0xff4e4e4e);
@@ -341,9 +348,11 @@ class Themes {
       focusedErrorBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
-      filled: true, // filled the field with color
+      // filled the field with color
+      filled: true,
       fillColor: fieldInputBgColor,
-      isDense: true, // used less vertical space
+      // used less vertical space
+      isDense: true,
       labelStyle: TextStyle(
         color: fieldInputHintColor,
         fontSize: FontSize.NORMAL.value,

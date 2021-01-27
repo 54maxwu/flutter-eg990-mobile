@@ -60,5 +60,6 @@ abstract class _NoticeStore with Store {
   }
 
   List<NoticeData> get getMaintenanceList => dataModel.data.maintenanceList;
+
   List<NoticeData> get getMarqueeList => dataModel.data.marqueeList;
 }

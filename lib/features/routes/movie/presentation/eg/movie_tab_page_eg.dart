@@ -30,7 +30,7 @@ class _MovieTabPageEgState extends State<MovieTabPageEg> {
       return Center(
         child: WarningDisplay(
           message:
-              Failure.internal(FailureCode(type: FailureType.INHERIT)).message,
+              Failure.internal(FailureCode(type: FailureType.MOVIE)).message,
         ),
       );
     }

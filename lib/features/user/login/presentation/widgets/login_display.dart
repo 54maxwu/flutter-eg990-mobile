@@ -45,6 +45,7 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
 
   Timer _routeTimer;
   bool _loginSuccess = false;
+  bool _waiting = false;
   Widget formWidget;
 
   void _validateForm() {
@@ -57,10 +58,14 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
         password: _pwdFieldKey.currentState.getInput,
         fastLogin: _fastKey.currentState.boxChecked,
       );
-      if (_hiveForm.isValid)
+      if (_hiveForm.isValid) {
         widget.store.login(_hiveForm.simple, _hiveForm.fastLogin);
-      else
+      } else {
+        _waiting = false;
         callToast(localeStr.messageActionFillForm);
+      }
+    } else {
+      _waiting = false;
     }
   }
 
@@ -131,8 +136,11 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
                 setState(() {
                   _loginSuccess = true;
                 });
+                _waiting = false;
               }
             });
+          } else {
+            _waiting = false;
           }
         },
       ),
@@ -211,6 +219,8 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
                         borderRadius: BorderRadius.circular(4.0),
                       ),
                       onPressed: () {
+                        if (_waiting) return;
+                        _waiting = true;
                         // clear text field focus
                         FocusScope.of(context).unfocus();
                         _validateForm();
@@ -278,7 +288,7 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
               hint: localeStr.hintPasswordInput,
               prefixIconData: const IconData(0xf13e, fontFamily: 'FontAwesome'),
               maxInputLength: InputLimit.PASSWORD_MAX,
-              errorMsg: localeStr.messageInvalidPasswordNew,
+              errorMsg: localeStr.messageInvalidPassword,
               validCondition: (value) => rangeCheck(
                   value: value.length,
                   min: InputLimit.PASSWORD_MIN_OLD,

@@ -26,6 +26,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _amountFieldKey =
       new GlobalKey(debugLabel: 'amount');
+
   // Dropdowns
   final GlobalKey<CustomizeDropdownWidgetState> _site1Key =
       new GlobalKey(debugLabel: 'site1');
