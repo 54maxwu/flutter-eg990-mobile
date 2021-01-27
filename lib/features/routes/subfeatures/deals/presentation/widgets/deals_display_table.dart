@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
+import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/models/deals_model.dart';
 
@@ -166,7 +166,16 @@ class DealsDisplayTableState extends State<DealsDisplayTable> {
   String getTypeLocale(String type) {
     switch (type) {
       case 'webBank':
+      case 'webbank':
         return localeStr.memberGridTitleTransfer;
+      case 'deposit':
+        return localeStr.rollbackIndexDeposit;
+      case 'promo':
+        return localeStr.rollbackIndexPromo;
+      case 'adjustDeposit':
+        return localeStr.dealsDetailTypeAdjustDeposit;
+      case 'adjustWithdraw':
+        return localeStr.dealsDetailTypeAdjustWithdraw;
       default:
         return type;
     }

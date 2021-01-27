@@ -10,19 +10,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 
-import '../../temp/test_nested_nav_screen.dart';
-import '../../temp/test_screen.dart';
-import '../../template/mobx/presentation/template_route.dart';
 import '../main_startup.dart';
 import '../routes/home/presentation/home_route.dart';
 import '../routes/member/presentation/member_route.dart';
-import '../routes/more/more_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/center_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/state/center_store.dart';
 import '../routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
-import '../routes/subfeatures/agent/presentation/agent_login_route.dart';
-import '../routes/subfeatures/agent/presentation/agent_register_route.dart';
-import '../routes/subfeatures/agent/presentation/agent_route.dart';
 import '../routes/subfeatures/balance/presentation/balance_route.dart';
 import '../routes/subfeatures/bankcard/presentation/bankcard_route.dart';
 import '../routes/subfeatures/betrecord/presentation/bet_record_route.dart';
@@ -42,7 +35,6 @@ import '../routes/subfeatures/wallet/presentation/wallet_route.dart';
 import '../routes/web/web_route.dart';
 import '../screen/feature_screen.dart';
 import '../screen/web_game_screen.dart';
-import '../test_area_route.dart';
 import '../user/login/presentation/login_route.dart';
 import '../user/register/presentation/register_route.dart';
 
@@ -87,13 +79,9 @@ extension AutoRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 class MainStartupRoutes {
   static const String featureScreen = '/';
   static const String webGameScreen = '/game-web';
-  static const String testScreen = '/test';
-  static const String testNestedNavScreen = '/test-nested';
   static const all = <String>{
     featureScreen,
     webGameScreen,
-    testScreen,
-    testNestedNavScreen,
   };
 }
 
@@ -107,8 +95,6 @@ class MainStartupRouter extends RouterBase {
       generator: FeatureScreenRouter(),
     ),
     RouteDef(MainStartupRoutes.webGameScreen, page: WebGameScreen),
-    RouteDef(MainStartupRoutes.testScreen, page: TestScreen),
-    RouteDef(MainStartupRoutes.testNestedNavScreen, page: TestNestedNavScreen),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -126,18 +112,6 @@ class MainStartupRouter extends RouterBase {
       );
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => WebGameScreen(startUrl: args.startUrl),
-        settings: data,
-      );
-    },
-    TestScreen: (data) {
-      return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => TestScreen(),
-        settings: data,
-      );
-    },
-    TestNestedNavScreen: (data) {
-      return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => TestNestedNavScreen(),
         settings: data,
       );
     },
@@ -159,12 +133,6 @@ extension MainStartupRouterExtendedNavigatorStateX on ExtendedNavigatorState {
         MainStartupRoutes.webGameScreen,
         arguments: WebGameScreenArguments(startUrl: startUrl),
       );
-
-  Future<dynamic> pushTestScreen() =>
-      push<dynamic>(MainStartupRoutes.testScreen);
-
-  Future<dynamic> pushTestNestedNavScreen() =>
-      push<dynamic>(MainStartupRoutes.testNestedNavScreen);
 }
 
 class FeatureScreenRoutes {
@@ -192,16 +160,11 @@ class FeatureScreenRoutes {
   static const String dealsRoute = '/deals';
   static const String rollbackRoute = '/rollback';
   static const String promoRoute = '/promo';
-  static const String moreRoute = '/more';
-  static const String agentNewRoute = '/agent';
-  static const String agentLoginRoute = '/agent-login-route';
-  static const String agentRegisterRoute = '/agent-register-route';
   static const String downloadAreaRoute = '/download';
+  static const String tutorialWebRoute = '/tutorial-web';
   static const String noticeRoute = '/notice';
   static const String storeRoute = '/store';
   static const String vipLevelRoute = '/level';
-  static const String testAreaRoute = '/test-area';
-  static const String templateRoute = '/template';
   static const all = <String>{
     homeRoute,
     loginRoute,
@@ -227,16 +190,11 @@ class FeatureScreenRoutes {
     dealsRoute,
     rollbackRoute,
     promoRoute,
-    moreRoute,
-    agentNewRoute,
-    agentLoginRoute,
-    agentRegisterRoute,
     downloadAreaRoute,
+    tutorialWebRoute,
     noticeRoute,
     storeRoute,
     vipLevelRoute,
-    testAreaRoute,
-    templateRoute,
   };
 }
 
@@ -269,16 +227,11 @@ class FeatureScreenRouter extends RouterBase {
     RouteDef(FeatureScreenRoutes.dealsRoute, page: DealsRoute),
     RouteDef(FeatureScreenRoutes.rollbackRoute, page: RollbackRoute),
     RouteDef(FeatureScreenRoutes.promoRoute, page: PromoRoute),
-    RouteDef(FeatureScreenRoutes.moreRoute, page: MoreRoute),
-    RouteDef(FeatureScreenRoutes.agentNewRoute, page: AgentRoute),
-    RouteDef(FeatureScreenRoutes.agentLoginRoute, page: AgentLoginRoute),
-    RouteDef(FeatureScreenRoutes.agentRegisterRoute, page: AgentRegisterRoute),
     RouteDef(FeatureScreenRoutes.downloadAreaRoute, page: DownloadAreaRoute),
+    RouteDef(FeatureScreenRoutes.tutorialWebRoute, page: WebRoute),
     RouteDef(FeatureScreenRoutes.noticeRoute, page: NoticeRoute),
     RouteDef(FeatureScreenRoutes.storeRoute, page: StoreRoute),
     RouteDef(FeatureScreenRoutes.vipLevelRoute, page: VipLevelRoute),
-    RouteDef(FeatureScreenRoutes.testAreaRoute, page: TestAreaRoute),
-    RouteDef(FeatureScreenRoutes.templateRoute, page: TemplateRoute),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -424,32 +377,6 @@ class FeatureScreenRouter extends RouterBase {
         settings: data,
       );
     },
-    MoreRoute: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => MoreRoute(),
-        settings: data,
-      );
-    },
-    AgentRoute: (data) {
-      return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) => AgentRoute(),
-        settings: data,
-      );
-    },
-    AgentLoginRoute: (data) {
-      return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            AgentLoginRoute(),
-        settings: data,
-      );
-    },
-    AgentRegisterRoute: (data) {
-      return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            AgentRegisterRoute(),
-        settings: data,
-      );
-    },
     DownloadAreaRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => DownloadAreaRoute(),
@@ -463,26 +390,17 @@ class FeatureScreenRouter extends RouterBase {
       );
     },
     StoreRoute: (data) {
+      final args = data.getArgs<StoreRouteArguments>(
+        orElse: () => StoreRouteArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => StoreRoute(),
+        builder: (context) => StoreRoute(showProductId: args.showProductId),
         settings: data,
       );
     },
     VipLevelRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => VipLevelRoute(),
-        settings: data,
-      );
-    },
-    TestAreaRoute: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => TestAreaRoute(),
-        settings: data,
-      );
-    },
-    TemplateRoute: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => TemplateRoute(),
         settings: data,
       );
     },
@@ -635,35 +553,33 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
         arguments: PromoRouteArguments(openPromoId: openPromoId),
       );
 
-  Future<dynamic> pushMoreRoute() =>
-      push<dynamic>(FeatureScreenRoutes.moreRoute);
-
-  Future<dynamic> pushAgentNewRoute() =>
-      push<dynamic>(FeatureScreenRoutes.agentNewRoute);
-
-  Future<dynamic> pushAgentLoginRoute() =>
-      push<dynamic>(FeatureScreenRoutes.agentLoginRoute);
-
-  Future<dynamic> pushAgentRegisterRoute() =>
-      push<dynamic>(FeatureScreenRoutes.agentRegisterRoute);
-
   Future<dynamic> pushDownloadAreaRoute() =>
       push<dynamic>(FeatureScreenRoutes.downloadAreaRoute);
+
+  Future<dynamic> pushTutorialWebRoute({
+    @required String startUrl,
+    bool showUrl = false,
+    bool hideHtmlBars = false,
+  }) =>
+      push<dynamic>(
+        FeatureScreenRoutes.tutorialWebRoute,
+        arguments: WebRouteArguments(
+            startUrl: startUrl, showUrl: showUrl, hideHtmlBars: hideHtmlBars),
+      );
 
   Future<dynamic> pushNoticeRoute() =>
       push<dynamic>(FeatureScreenRoutes.noticeRoute);
 
-  Future<dynamic> pushStoreRoute() =>
-      push<dynamic>(FeatureScreenRoutes.storeRoute);
+  Future<dynamic> pushStoreRoute({
+    int showProductId,
+  }) =>
+      push<dynamic>(
+        FeatureScreenRoutes.storeRoute,
+        arguments: StoreRouteArguments(showProductId: showProductId),
+      );
 
   Future<dynamic> pushVipLevelRoute() =>
       push<dynamic>(FeatureScreenRoutes.vipLevelRoute);
-
-  Future<dynamic> pushTestAreaRoute() =>
-      push<dynamic>(FeatureScreenRoutes.testAreaRoute);
-
-  Future<dynamic> pushTemplateRoute() =>
-      push<dynamic>(FeatureScreenRoutes.templateRoute);
 }
 
 /// ************************************************************************
@@ -723,4 +639,10 @@ class CenterDisplayAccountPasswordArguments {
 class PromoRouteArguments {
   final int openPromoId;
   PromoRouteArguments({this.openPromoId = -1});
+}
+
+/// StoreRoute arguments holder class
+class StoreRouteArguments {
+  final int showProductId;
+  StoreRouteArguments({this.showProductId});
 }

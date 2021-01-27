@@ -5,7 +5,6 @@ import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';
@@ -321,7 +320,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.depositFeature,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconDeposit,
+                imageUrl: "/images/index/idxusico_dsp.png",
               ),
             ),
             Expanded(
@@ -329,7 +328,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.withdraw,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconWithdraw,
+                imageUrl: "/images/index/idxusico_cash.png",
               ),
             ),
             Expanded(
@@ -337,14 +336,14 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.transfer,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconTransfer,
+                imageUrl: "/images/index/idxusico_tsf.png",
               ),
             ),
             Expanded(
               flex: 1,
               child: _createIconButton(
                 page: RoutePage.sideVipLevel,
-                imageUrl: Res.homeMemberAreaIconVip,
+                imageUrl: "/images/index/idxusico_vip.png",
                 isLast: true,
               ),
             ),

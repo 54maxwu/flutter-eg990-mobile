@@ -62,7 +62,7 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
     double gridItemWidth =
         ((Global.device.width - 16) - _itemSpace * (_itemPerRow + 2)) /
             _itemPerRow;
-    _gridRatio = (Global.lang != 'zh' && Global.lang != 'en')
+    _gridRatio = (Global.localeCode != 'zh' && Global.localeCode != 'en')
         ? gridItemWidth / 156
         : gridItemWidth / 128;
     debugPrint('grid item width: $gridItemWidth, gridRatio: $_gridRatio');
@@ -101,99 +101,96 @@ class _BalanceDisplayState extends State<BalanceDisplay> {
         },
       );
     }).toList();
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: SingleChildScrollView(
-        primary: true,
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
-              child: StreamBuilder<String>(
-                stream: widget.store.loadingStream,
-                builder: (context, snapshot) {
-                  if (snapshot != null &&
-                      snapshot.data != null &&
-                      snapshot.data.isNotEmpty) {
+    return SingleChildScrollView(
+      primary: true,
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0, top: 4.0),
+            child: StreamBuilder<String>(
+              stream: widget.store.loadingStream,
+              builder: (context, snapshot) {
+                if (snapshot != null &&
+                    snapshot.data != null &&
+                    snapshot.data.isNotEmpty) {
 //                        debugPrint('balance progress: ${snapshot.data}');
-                    return Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 14.0,
-                          height: 14.0,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 3.0,
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 14.0,
+                        height: 14.0,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3.0,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          snapshot.data,
+                          key: progressTextKey,
+                          style: TextStyle(
+                            fontSize: FontSize.SUBTITLE.value,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            snapshot.data,
-                            key: progressTextKey,
-                            style: TextStyle(
-                              fontSize: FontSize.SUBTITLE.value,
-                            ),
+                      ),
+                    ],
+                  );
+                } else
+                  return SizedBox.shrink();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            child: GridView.count(
+              physics: ClampingScrollPhysics(),
+              crossAxisCount: _itemPerRow,
+              mainAxisSpacing: _itemSpace,
+              crossAxisSpacing: _itemSpace,
+              childAspectRatio: _gridRatio,
+              shrinkWrap: true,
+              primary: false,
+              children: gridItems,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 12.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(color: themeColor.defaultTextColor),
+                      children: [
+                        TextSpan(
+                          text: '${localeStr.balanceHintTextTitle}\n',
+                          style: TextStyle(
+                            color: themeColor.defaultSubtitleColor,
+                            fontWeight: FontWeight.bold,
+                            height: 3,
                           ),
+                        ),
+                        TextSpan(
+                          text: '${localeStr.balanceHintText1}'
+                              '\n${localeStr.balanceHintText2}'
+                              '\n${localeStr.balanceHintText3}'
+                              '\n${localeStr.balanceHintText4}',
+                          style: TextStyle(height: 1.5),
                         ),
                       ],
-                    );
-                  } else
-                    return SizedBox.shrink();
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GridView.count(
-                physics: ClampingScrollPhysics(),
-                crossAxisCount: _itemPerRow,
-                mainAxisSpacing: _itemSpace,
-                crossAxisSpacing: _itemSpace,
-                childAspectRatio: _gridRatio,
-                shrinkWrap: true,
-                primary: false,
-                children: gridItems,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: RichText(
-                      text: TextSpan(
-                        style: TextStyle(color: themeColor.defaultTextColor),
-                        children: [
-                          TextSpan(
-                            text: '${localeStr.balanceHintTextTitle}\n',
-                            style: TextStyle(
-                              color: themeColor.defaultSubtitleColor,
-                              fontWeight: FontWeight.bold,
-                              height: 3,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '${localeStr.balanceHintText1}'
-                                '\n${localeStr.balanceHintText2}'
-                                '\n${localeStr.balanceHintText3}'
-                                '\n${localeStr.balanceHintText4}',
-                            style: TextStyle(height: 1.5),
-                          ),
-                        ],
-                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -39,7 +39,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem line = ScreenDrawerItem.define(RouteListItem(
     routeId: RouteEnum.LINE_QR,
-    imageName: Res.iconLine,
+    imageName: Res.icon_line,
   ));
   static ScreenDrawerItem webHome = ScreenDrawerItem.define(RouteListItem(
     routeId: RouteEnum.WEBSITE,
@@ -47,15 +47,15 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
 
   /// Agent
-  static ScreenDrawerItem agent = ScreenDrawerItem.define(RouteListItem(
-    // imageName: 'images/aside/85.png',
-    iconData: IconCode.gridAgent,
-    route: RoutePage.agent,
-  ));
-  static ScreenDrawerItem agentAbout = ScreenDrawerItem.define(RouteListItem(
-    imageName: 'images/aside/65.png',
-    route: RoutePage.moreAgentAbout,
-  ));
+  // static ScreenDrawerItem agent = ScreenDrawerItem.define(RouteListItem(
+  //   // imageName: 'images/aside/85.png',
+  //   iconData: IconCode.gridAgent,
+  //   route: RoutePage.agentOld,
+  // ));
+  // static ScreenDrawerItem agentAbout = ScreenDrawerItem.define(RouteListItem(
+  //   imageName: 'images/aside/65.png',
+  //   route: RoutePage.moreAgentAbout,
+  // ));
 
   /// USER
   static ScreenDrawerItem member = ScreenDrawerItem.define(RouteListItem(
@@ -89,21 +89,6 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
     iconData: IconCode.gridVip,
     route: RoutePage.sideVipLevel,
   ));
-  // static ScreenDrawerItem sign = ScreenDrawerItem.define(RouteListItem(
-  //   routeId: RouteEnum.SIGN,
-  //   iconData: IconCode.drawerEvent,
-  //   userOnly: true,
-  // ));
-  // static ScreenDrawerItem task = ScreenDrawerItem.define(RouteListItem(
-  //   routeId: RouteEnum.TASK,
-  //   imageName: 'images/aside/53.png',
-  //   userOnly: true,
-  // ));
-  // static ScreenDrawerItem collect = ScreenDrawerItem.define(RouteListItem(
-  //   routeId: RouteEnum.COLLECT,
-  //   imageName: 'images/aside/55.png',
-  //   userOnly: true,
-  // ));
 
   /// Redirect
   static ScreenDrawerItem website = ScreenDrawerItem.define(RouteListItem(
@@ -117,14 +102,14 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
 
   /// TEST
-  static ScreenDrawerItem testUI = ScreenDrawerItem.define(RouteListItem(
-    iconData: IconCode.drawerTest,
-    route: RoutePage.testArea,
-  ));
-  static ScreenDrawerItem test = ScreenDrawerItem.define(RouteListItem(
-    routeId: RouteEnum.TEST,
-    iconData: IconCode.drawerTest,
-  ));
+  // static ScreenDrawerItem testUI = ScreenDrawerItem.define(RouteListItem(
+  //   iconData: IconCode.drawerTest,
+  //   route: RoutePage.testArea,
+  // ));
+  // static ScreenDrawerItem test = ScreenDrawerItem.define(RouteListItem(
+  //   routeId: RouteEnum.TEST,
+  //   iconData: IconCode.drawerTest,
+  // ));
 
   /// for web game screen drawer
   static ScreenDrawerItem backHome = ScreenDrawerItem.define(RouteListItem(

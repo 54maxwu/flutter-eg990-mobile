@@ -74,41 +74,62 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, List<PaymentType>>> getPayment() async {
-    final result = await requestData(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
         DepositApi.GET_PAYMENT,
         userToken: jwtInterface.token,
       ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (data) => Right(decodePaymentTypes(data)),
-    );
+    return result.fold((failure) => Left(failure), (data) {
+      if (data.isSuccess) {
+        MyLogger.print(msg: 'payment map: ${data.data}', tag: tag);
+        if (data.data is Map)
+          return Right(decodePaymentTypes(data.data));
+        else if (data.data is String)
+          return Right(decodePaymentTypes(jsonDecode(data.data)));
+        else if (data.data is List && (data.data as List).isEmpty)
+          return Right([]);
+        else
+          return Left(Failure.dataType());
+      } else {
+        MyLogger.error(msg: 'payment data error: $data', tag: tag);
+        return Left(Failure.token(FailureType.DEPOSIT));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, PaymentPromoTypeJson>> getPaymentPromo() async {
-    final result = await requestData(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
         DepositApi.GET_PAYMENT_PROMO,
         userToken: jwtInterface.token,
       ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(
       (failure) => Left(failure),
       (data) {
-        if (data is Map)
-          return Right(PaymentPromo.jsonToPaymentPromo(data));
-        else if (data is String)
-          return Right(PaymentPromo.jsonToPaymentPromo(jsonDecode(data)));
-        else if (data is List && data.isEmpty)
-          return Right(PaymentPromoTypeJson(local: '', other: ''));
-        else
-          return Left(Failure.dataType());
+        if (data.isSuccess) {
+          MyLogger.print(msg: 'payment promo map: ${data.data}', tag: tag);
+          if (data.data is Map)
+            return Right(PaymentPromo.jsonToPaymentPromo(data.data));
+          else if (data.data is String)
+            return Right(
+                PaymentPromo.jsonToPaymentPromo(jsonDecode(data.data)));
+          else if (data.data is List && (data.data as List).isEmpty)
+            return Right(PaymentPromoTypeJson(local: '', other: ''));
+          else
+            return Left(Failure.dataType());
+        } else {
+          MyLogger.error(msg: 'payment promo data error: $data', tag: tag);
+          return Left(Failure.token(FailureType.DEPOSIT));
+        }
       },
     );
   }

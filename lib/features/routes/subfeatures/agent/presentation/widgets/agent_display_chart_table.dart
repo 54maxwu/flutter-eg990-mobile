@@ -35,7 +35,7 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
   ];
 
   List<String> rowHeaders = [
-    localeStr.flowHeaderTextTotal,
+    localeStr.rollbackHeaderTextTotal,
   ];
 
   AgentChartModel tableData;
@@ -53,9 +53,9 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
 
       if (widget.showAll)
         rowHeaders = tableData.dataList.map((e) => e.key).toList()
-          ..add(localeStr.flowHeaderTextTotal);
+          ..add(localeStr.rollbackHeaderTextTotal);
       else
-        rowHeaders = [localeStr.flowHeaderTextTotal];
+        rowHeaders = [localeStr.rollbackHeaderTextTotal];
 
       sumRow = tableData.sumEachColumn;
       setState(() {});

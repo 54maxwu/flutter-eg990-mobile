@@ -41,6 +41,10 @@ class AppNavigator {
 
   static Stream<RouteInfo> get routeStream => _routeInfo.stream;
 
+  static callCheckUser() => routerStreams.setCheck(true);
+
+  static resetCheckUser() => routerStreams.setCheck(false);
+
   static dispose() {
     MyLogger.warn(msg: 'disposing router stream!!', tag: _tag);
     _routeInfo.close();
@@ -62,14 +66,6 @@ class AppNavigator {
           screenNavigate.pushWebGameScreen(startUrl: webUrl);
           OrientationHelper.disabledSystemUIOverlays();
           screenIndex = 1;
-          break;
-        case Screens.Test:
-          screenNavigate.pushTestScreen();
-          screenIndex = 2;
-          break;
-        case Screens.TestNav:
-          screenNavigate.pushTestNestedNavScreen();
-          screenIndex = 2;
           break;
         default:
           if (screenIndex == 0 && screenNavigate.canPop()) {
@@ -143,16 +139,21 @@ class AppNavigator {
       final arguments = arg ?? page.value.routeArg;
       _isWeb = arguments != null && arguments is WebRouteArguments;
       if (_isWeb) {
-        debugPrint('web arg: $arguments');
-        featureNavigate.push(FeatureScreenRoutes.webRoute,
-            arguments: arguments);
+        debugPrint('navigating to in-app-web...');
+        featureNavigate.push(
+          FeatureScreenRoutes.webRoute,
+          arguments: arguments,
+        );
       } else {
-        featureNavigate.push(page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
-            arguments: arguments);
+        featureNavigate.push(
+          page.pageName.replaceAll(ROUTE_POSTFIX_SIDE, ''),
+          arguments: arguments,
+        );
       }
-
-      _setPath(page, parent: (_isWeb) ? page.pageRoot : _current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(page,
+          parent: (_isWeb && !_current.endsWith('-nav'))
+              ? page.pageRoot
+              : _current);
     } catch (e) {
       MyLogger.error(
           msg: 'navigate to ${page.pageName} has exception!! Error: $e',
@@ -204,12 +205,13 @@ class AppNavigator {
             arguments: arguments);
       }
 
-      _setPath(page,
-          parent:
-              (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
-                  ? page.pageRoot
-                  : current);
-      _streamRouteInfo(page.value);
+      updateNavigateRoute(
+        page,
+        parent:
+            (page.hasBottomNav || current != FeatureScreenRoutes.memberRoute)
+                ? page.pageRoot
+                : current,
+      );
     } catch (e) {
       MyLogger.error(
           msg: 'replace $current to ${page.pageId} has exception!! Error: $e',
@@ -244,8 +246,7 @@ class AppNavigator {
         if (dest != null) {
           debugPrint('popping route until: ${dest.pageName}');
           featureNavigate.popUntilPath(dest.pageName);
-          _setPath(dest);
-          _streamRouteInfo(dest.value);
+          updateNavigateRoute(dest);
         } else {
           MyLogger.warn(msg: 'destination error, returning home', tag: _tag);
           returnToHome();
@@ -278,13 +279,14 @@ class AppNavigator {
     _isWeb = false;
 
     final dest = RoutePage.home;
-    _setPath(dest);
-    _streamRouteInfo(dest.value);
+    updateNavigateRoute(dest);
   }
 
-  static callCheckUser() => routerStreams.setCheck(true);
-
-  static resetCheckUser() => routerStreams.setCheck(false);
+  static updateNavigateRoute(RoutePage page,
+      {String parent, bool updateParent = true}) {
+    _setPath(page, parent: (updateParent) ? parent : _previous);
+    _streamRouteInfo(page.value);
+  }
 
   static _streamRouteInfo(RouteInfo pageInfo) => _routeInfo.sink.add(pageInfo);
 
@@ -300,7 +302,6 @@ class AppNavigator {
 
   static testNavigateTo(RoutePage page) {
     debugPrint('test navigate...page: ${page.value}');
-    _setPath(page);
-    _streamRouteInfo(page.value);
+    updateNavigateRoute(page);
   }
 }

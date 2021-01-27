@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134378261975",
+    "project_id": "eg990-vwin",
+    "storage_bucket": "eg990-vwin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134378261975:android:12eec7692d9a6446488f92",
+        "android_client_info": {
+          "package_name": "com.opvw84.mobile.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134378261975-ut41tqdqroq25bu6fqotn44gcblt3jio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTuMkcw0IyXj9XvdRVudGwJ2E6jnSZo8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134378261975-ut41tqdqroq25bu6fqotn44gcblt3jio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

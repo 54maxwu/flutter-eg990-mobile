@@ -47,6 +47,8 @@ abstract class _PointStore with Store {
 
   num memberPoints = 0;
 
+  int navProductId;
+
   @observable
   Map<String, String> provinceMap;
 

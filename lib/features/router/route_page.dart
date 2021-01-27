@@ -41,6 +41,7 @@ class RoutePage extends Vnum<RouteInfo> {
     route: FeatureScreenRoutes.promoRoute,
     webPageName: ('/promo/0'),
     hideAppbarActions: false,
+    bottomNavIndex: 0,
   ));
 
   static const RoutePage service = const RoutePage.define(RouteInfo(
@@ -213,43 +214,27 @@ class RoutePage extends Vnum<RouteInfo> {
   ///
   /// agent route
   ///
-  // static const RoutePage agentFeatureOld = const RoutePage.define(RouteInfo(
-  //   id: RouteEnum.AGENT,
-  //   route: FeatureScreenRoutes.agentFeatureRoute,
-  //   bottomNavIndex: 1,
-  //   hideLanguageOption: true,
-  //   isUserOnly: true,
+  // static const RoutePage agentLogin = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT_LOGIN,
+  //   route: FeatureScreenRoutes.agentLoginRoute,
+  //   hideAppbarActions: true,
   // ));
   //
-  // static const RoutePage agentOld = const RoutePage.define(RouteInfo(
-  //   id: RouteEnum.AGENT,
-  //   route: FeatureScreenRoutes.agentRoute,
-  //   root: FeatureScreenRoutes.memberRoute,
-  //   hideLanguageOption: true,
-  //   isUserOnly: true,
+  // static const RoutePage agentRegister = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT_REGISTER,
+  //   route: FeatureScreenRoutes.agentRegisterRoute,
+  //   root: FeatureScreenRoutes.agentLoginRoute,
+  //   showDrawer: false,
+  //   hideAppbarActions: true,
   // ));
-
-  static const RoutePage agentLogin = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT_LOGIN,
-    route: FeatureScreenRoutes.agentLoginRoute,
-    hideAppbarActions: true,
-  ));
-
-  static const RoutePage agentRegister = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT_REGISTER,
-    route: FeatureScreenRoutes.agentRegisterRoute,
-    root: FeatureScreenRoutes.agentLoginRoute,
-    showDrawer: false,
-    hideAppbarActions: true,
-  ));
-
-  static const RoutePage agent = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT,
-    route: FeatureScreenRoutes.agentNewRoute,
-    showDrawer: false,
-    hideAppbarActions: true,
-    bottomNavIndex: 10,
-  ));
+  //
+  // static const RoutePage agent = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT,
+  //   route: FeatureScreenRoutes.agentNewRoute,
+  //   showDrawer: false,
+  //   hideAppbarActions: true,
+  //   bottomNavIndex: 10,
+  // ));
 
   ///
   /// side menu route
@@ -289,7 +274,7 @@ class RoutePage extends Vnum<RouteInfo> {
 
   static const RoutePage sideTutorial = const RoutePage.define(RouteInfo(
     id: RouteEnum.TUTORIAL,
-    route: '${FeatureScreenRoutes.moreRoute}$ROUTE_POSTFIX_SIDE-newbie',
+    route: '${FeatureScreenRoutes.tutorialWebRoute}$ROUTE_POSTFIX_SIDE',
     routeArg: const WebRouteArguments(
       startUrl: '${Global.CURRENT_BASE}newbie',
       hideHtmlBars: true,
@@ -310,6 +295,7 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.walletRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
     isUserOnly: true,
+    bottomNavIndex: 3,
   ));
 
   ///
@@ -317,25 +303,25 @@ class RoutePage extends Vnum<RouteInfo> {
   /// * important:
   /// change route name if duplicate
   ///
-  static const RoutePage moreAgentAbout = const RoutePage.define(RouteInfo(
-    id: RouteEnum.AGENT_ABOUT,
-    route: '${FeatureScreenRoutes.moreRoute}-agent0',
-    routeArg: const WebRouteArguments(
-      startUrl: '${Global.CURRENT_BASE}agentPage',
-      hideHtmlBars: true,
-    ),
-    hideLanguageOption: true,
-  ));
-
-  static const RoutePage moreTutorial = const RoutePage.define(RouteInfo(
-    id: RouteEnum.TUTORIAL,
-    route: '${FeatureScreenRoutes.moreRoute}-newbie',
-    routeArg: const WebRouteArguments(
-      startUrl: '${Global.CURRENT_BASE}newbie',
-      hideHtmlBars: true,
-    ),
-    hideLanguageOption: true,
-  ));
+  // static const RoutePage moreAgentAbout = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.AGENT_ABOUT,
+  //   route: '${FeatureScreenRoutes.moreRoute}-agent0',
+  //   routeArg: const WebRouteArguments(
+  //     startUrl: '${Global.CURRENT_BASE}agentPage',
+  //     hideHtmlBars: true,
+  //   ),
+  //   hideLanguageOption: true,
+  // ));
+  //
+  // static const RoutePage moreTutorial = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.TUTORIAL,
+  //   route: '${FeatureScreenRoutes.moreRoute}-newbie',
+  //   routeArg: const WebRouteArguments(
+  //     startUrl: '${Global.CURRENT_BASE}newbie',
+  //     hideHtmlBars: true,
+  //   ),
+  //   hideLanguageOption: true,
+  // ));
 
   ///
   /// test route
@@ -345,12 +331,12 @@ class RoutePage extends Vnum<RouteInfo> {
   //   route: FeatureScreenRoutes.templateRoute,
   //   hideLanguageOption: true,
   // ));
-
-  static const RoutePage testArea = const RoutePage.define(RouteInfo(
-    id: RouteEnum.TEST_UI,
-    route: FeatureScreenRoutes.testAreaRoute,
-    hideLanguageOption: true,
-  ));
+  //
+  // static const RoutePage testArea = const RoutePage.define(RouteInfo(
+  //   id: RouteEnum.TEST_UI,
+  //   route: FeatureScreenRoutes.testAreaRoute,
+  //   hideLanguageOption: true,
+  // ));
 
   /// Used for defining cases
   const RoutePage.define(RouteInfo fromValue) : super.define(fromValue);

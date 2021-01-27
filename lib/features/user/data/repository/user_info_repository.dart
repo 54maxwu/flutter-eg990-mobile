@@ -25,8 +25,10 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
   Future<Either<Failure, String>> updateCredit() async {
     ///TODO need to fix multiple calls in a short time
     final result = await requestModel<UserModel>(
-      request: dioApiService.get(UserInfoApi.GET_ACCOUNT_LIMIT,
-          userToken: jwtInterface.token),
+      request: dioApiService.get(
+        UserInfoApi.GET_ACCOUNT_LIMIT,
+        userToken: jwtInterface.token,
+      ),
       jsonToModel: UserModel.jsonToUserModel,
       tag: 'remote-USER_INFO',
     );

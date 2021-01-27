@@ -1,17 +1,10 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:flutter_eg990_mobile/features/main_startup.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_login_route.dart';
-import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_register_route.dart';
-import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen.dart';
-import 'package:flutter_eg990_mobile/temp/test_screen.dart';
-import 'package:flutter_eg990_mobile/template/mobx/presentation/template_route.dart';
 
 import '../routes/home/presentation/home_route.dart';
 import '../routes/member/presentation/member_route.dart';
-import '../routes/more/more_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/center_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
-import '../routes/subfeatures/agent/presentation/agent_route.dart';
 import '../routes/subfeatures/balance/presentation/balance_route.dart';
 import '../routes/subfeatures/bankcard/presentation/bankcard_route.dart';
 import '../routes/subfeatures/betrecord/presentation/bet_record_route.dart';
@@ -31,7 +24,6 @@ import '../routes/subfeatures/wallet/presentation/wallet_route.dart';
 import '../routes/web/web_route.dart';
 import '../screen/feature_screen.dart';
 import '../screen/web_game_screen.dart';
-import '../test_area_route.dart';
 import '../user/login/presentation/login_route.dart';
 import '../user/register/presentation/register_route.dart';
 
@@ -90,28 +82,21 @@ import '../user/register/presentation/register_route.dart';
               MaterialRoute(page: DealsRoute, path: '/deals'),
               MaterialRoute(page: RollbackRoute, path: '/rollback'),
               MaterialRoute(page: PromoRoute, path: '/promo'),
-              MaterialRoute(page: MoreRoute, path: '/more'),
-              // MaterialRoute(page: AgentRoute, path: '/agent'),
-              // MaterialRoute(
-              //     page: AgentRoute,
-              //     name: 'agentFeatureRoute',
-              //     path: '/agent-nav'),
-              CustomRoute(
-                  page: AgentRoute, name: 'agentNewRoute', path: '/agent'),
-              CustomRoute(page: AgentLoginRoute),
-              CustomRoute(page: AgentRegisterRoute),
-              // CustomRoute(page: AboutRoute),
+              // CustomRoute(
+              //     page: AgentRoute, name: 'agentNewRoute', path: '/agent'),
+              // CustomRoute(page: AgentLoginRoute),
+              // CustomRoute(page: AgentRegisterRoute),
               MaterialRoute(page: DownloadAreaRoute, path: '/download'),
+              MaterialRoute(
+                  page: WebRoute,
+                  name: 'tutorialWebRoute',
+                  path: '/tutorial-web'),
               MaterialRoute(page: NoticeRoute, path: '/notice'),
               MaterialRoute(page: StoreRoute, path: '/store'),
               MaterialRoute(page: VipLevelRoute, path: '/level'),
-              MaterialRoute(page: TestAreaRoute, path: '/test-area'),
-              MaterialRoute(page: TemplateRoute, path: '/template'),
             ],
           ),
           AdaptiveRoute(page: WebGameScreen, path: '/game-web'),
-          AdaptiveRoute(page: TestScreen, path: '/test'),
-          AdaptiveRoute(page: TestNestedNavScreen, path: '/test-nested'),
         ]),
   ],
 )

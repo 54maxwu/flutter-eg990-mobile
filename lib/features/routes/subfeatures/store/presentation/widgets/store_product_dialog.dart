@@ -181,7 +181,7 @@ class _StoreProductDialogState extends State<StoreProductDialog> {
                             ),
                             alignment: Alignment.topLeft,
                             child: Image.asset(
-                              Res.storeProductNewIcon,
+                              Res.new_product,
                               alignment: Alignment.topLeft,
                               fit: BoxFit.none,
                             ),

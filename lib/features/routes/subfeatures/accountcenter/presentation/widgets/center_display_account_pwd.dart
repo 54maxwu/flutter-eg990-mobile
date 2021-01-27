@@ -73,11 +73,15 @@ class _CenterDisplayAccountPasswordState
                     prefixText: localeStr.userPwdFieldTitleOld,
                     titleLetterSpacing: 8,
                     maxInputLength: InputLimit.PASSWORD_MAX,
-                    errorMsg: localeStr.messageInvalidPassword,
+                    errorMsg: localeStr.messageInvalidPassword(
+                      InputLimit.PASSWORD_MIN_OLD,
+                      InputLimit.PASSWORD_MAX,
+                    ),
                     validCondition: (value) => rangeCheck(
-                        value: value.length,
-                        min: InputLimit.PASSWORD_MIN_OLD,
-                        max: InputLimit.PASSWORD_MAX),
+                      value: value.length,
+                      min: InputLimit.PASSWORD_MIN_OLD,
+                      max: InputLimit.PASSWORD_MAX,
+                    ),
                   ),
                   new CustomizeFieldWidget(
                     key: _newPwdFieldKey,
@@ -86,11 +90,15 @@ class _CenterDisplayAccountPasswordState
                     prefixText: localeStr.userPwdFieldTitleNew,
                     titleLetterSpacing: 8,
                     maxInputLength: InputLimit.PASSWORD_MAX,
-                    errorMsg: localeStr.messageInvalidPasswordNew,
+                    errorMsg: localeStr.messageInvalidPassword(
+                      InputLimit.PASSWORD_MIN,
+                      InputLimit.PASSWORD_MAX,
+                    ),
                     validCondition: (value) => rangeCheck(
-                        value: value.length,
-                        min: InputLimit.PASSWORD_MIN,
-                        max: InputLimit.PASSWORD_MAX),
+                      value: value.length,
+                      min: InputLimit.PASSWORD_MIN,
+                      max: InputLimit.PASSWORD_MAX,
+                    ),
                   ),
                   new CustomizeFieldWidget(
                     key: _conPwdFieldKey,

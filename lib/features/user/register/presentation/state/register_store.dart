@@ -4,6 +4,7 @@ import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart';
 import 'package:flutter_eg990_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter_eg990_mobile/features/user/data/repository/user_repository.dart';
+import 'package:flutter_eg990_mobile/ga_interface.dart';
 
 import '../../../data/form/register_form.dart';
 import '../../../data/repository/user_repository.dart';
@@ -55,6 +56,7 @@ abstract class _RegisterStore with Store {
 //                debugPrint('register result: $model');
                 registerResult = model;
                 if (model.isSuccess) {
+                  GaInterface.log?.logSignUp(signUpMethod: 'App');
                   Future.delayed(Duration(milliseconds: 500), () {
                     postLogin(LoginForm(
                       account: form.username,

@@ -97,7 +97,7 @@ class _BalanceRouteState extends State<BalanceRoute> {
       child: Scaffold(
         body: Container(
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 12.0, 8.0, 4.0),
           child: Observer(
             // Observe using specific widget
             builder: (_) {

@@ -9,7 +9,7 @@ abstract class StoreProductModel with _$StoreProductModel {
     @JsonKey(name: 'productname', defaultValue: '?') String productName,
     num point,
     @JsonKey(name: 'sequence') int remain,
-    int pic,
+    String pic,
     @JsonKey(name: 'new') String isNew,
   }) = _StoreProductModel;
 
@@ -20,11 +20,15 @@ abstract class StoreProductModel with _$StoreProductModel {
         productName: jsonMap['productname'] as String ?? '?',
         point: jsonMap['point'] as num,
         remain: jsonMap['sequence'] as int,
-        pic: jsonMap['pic'] as int,
+        pic: '${jsonMap['pic']}',
         isNew: jsonMap['new'] as String,
       );
 }
 
 extension StoreProductModelExtension on StoreProductModel {
   bool get isNewProduct => isNew == '1';
+  String get picUrl =>
+      (_picRegex.hasMatch(pic)) ? pic : 'images/mall_product/$pic.jpg';
 }
+
+final RegExp _picRegex = RegExp("^(?:images/.*(jpg|png))");

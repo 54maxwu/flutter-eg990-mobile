@@ -1,13 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'feature_screen_inherited_widget.dart';
-import 'feature_screen_store.dart';
 import 'screen_drawer_item.dart';
 
 ///
@@ -41,8 +39,7 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.logout,
   ];
 
-  bool _itemTapped(ScreenDrawerItem item,
-      {FeatureScreenStore store, EventStore eventStore, BuildContext context}) {
+  bool _itemTapped(ScreenDrawerItem item, {BuildContext context}) {
     debugPrint('tap drawer item ${item.value.id}');
     switch (item.value.id) {
       case RouteEnum.LOGOUT:
@@ -54,13 +51,28 @@ class ScreenDrawer extends StatelessWidget {
       case RouteEnum.WEBSITE:
         launch(Global.CURRENT_BASE);
         return true;
-      case RouteEnum.SIGN:
-        if (eventStore == null) return false;
-        if (store.hasUser == false) {
-          callToastError(localeStr.messageErrorNotLogin);
-        } else {
-          eventStore?.setForceShowEvent = true;
-        }
+      case RouteEnum.LINE_QR:
+        if (context == null) throw Exception();
+        //   showDialog(
+        //     context: context,
+        //     barrierDismissible: false,
+        //     builder: (context) => DialogWidget(
+        //       constraints: BoxConstraints.tight(Size(160, 180)),
+        //       children: [
+        //         Column(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           mainAxisSize: MainAxisSize.max,
+        //           crossAxisAlignment: CrossAxisAlignment.center,
+        //           children: [
+        //             Padding(
+        //               padding: const EdgeInsets.only(top: 16.0, left: 30.0),
+        //               child: networkImageBuilder('images/aside/116.png'),
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //   );
         return true;
       default:
         var route = item.value.route;
@@ -86,7 +98,7 @@ class ScreenDrawer extends StatelessWidget {
 
     double gridItemWidth = drawerWidth / 2;
     double gridRatio =
-        (Global.lang == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
+        (Global.localeCode == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
 
     return Container(
       width: drawerWidth,
@@ -246,7 +258,7 @@ class ScreenDrawer extends StatelessWidget {
                         ? localeStr.pageTitleCenter
                         : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: (Global.lang == 'zh')
+                      fontSize: (Global.localeCode == 'zh')
                           ? FontSize.SUBTITLE.value
                           : FontSize.NORMAL.value,
                       color: themeColor.sideMenuIconTextColor,

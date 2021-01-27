@@ -94,7 +94,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
   void _generateBankDataList() {
     debugPrint('bank map: ${widget.bankMap}');
     _bankNames = widget.bankMap.values.toList()..sort();
-    debugPrint('bank names sorted: $_bankNames\n\n');
+    // debugPrint('bank names sorted: $_bankNames\n');
     _bankIds = _bankNames
         .map((value) =>
             widget.bankMap.entries
@@ -104,7 +104,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             -1)
         .toList()
           ..removeWhere((element) => element == -1);
-    debugPrint('bank ids sorted: $_bankIds\n\n');
+    // debugPrint('bank ids sorted: $_bankIds\n');
   }
 
   @override

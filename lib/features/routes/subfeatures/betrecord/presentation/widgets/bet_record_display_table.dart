@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
@@ -90,7 +90,7 @@ class BetRecordDisplayTable extends StatelessWidget {
       if (data is BetRecordDataAllPlatform) {
         if (data.isSumData()) sumRowIndex = index;
         dataTexts = [
-          (data.isSumData()) ? localeStr.flowHeaderTextTotal : data.key,
+          (data.isSumData()) ? localeStr.rollbackHeaderTextTotal : data.key,
           formatNum(data.bet),
           formatNum(data.payout),
         ];
@@ -98,7 +98,7 @@ class BetRecordDisplayTable extends StatelessWidget {
         if (data.isSumData()) {
           sumRowIndex = index;
           dataTexts = [
-            localeStr.flowHeaderTextTotal,
+            localeStr.rollbackHeaderTextTotal,
             '',
             '',
             '',

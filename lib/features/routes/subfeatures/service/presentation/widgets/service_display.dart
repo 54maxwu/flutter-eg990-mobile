@@ -26,9 +26,6 @@ class ServiceDisplay extends StatelessWidget {
         maxHeight: Global.device.featureContentHeight,
         maxWidth: Global.device.width,
       ),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(Res.wallpaper), fit: BoxFit.fill)),
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
       child: ListView(
@@ -79,14 +76,14 @@ class ServiceDisplay extends StatelessWidget {
                 buttonType: _ButtonType.OPEN),
           if (data.line.isNotEmpty)
             _buildBox(
-                imgUrl: Res.iconLine,
+                imgUrl: Res.icon_line,
                 title: localeStr.serviceTitleLine,
                 content: data.line,
                 data: data.line,
                 buttonType: _ButtonType.COPY),
           if (data.skype.isNotEmpty)
             _buildBox(
-                iconData: const IconData(0xf0c0, fontFamily: 'FontAwesome'),
+                iconData: IconCode.csSkype,
                 title: localeStr.serviceTitleSkype,
                 content: data.skype,
                 data: data.skype,
@@ -100,7 +97,7 @@ class ServiceDisplay extends StatelessWidget {
                 buttonType: _ButtonType.COPY),
           if (data.qq.isNotEmpty)
             _buildBox(
-                iconData: const IconData(0xe970, fontFamily: 'IconMoon'),
+                iconData: IconCode.csQQ,
                 title: 'QQ',
                 content: data.qq,
                 data: data.qq,

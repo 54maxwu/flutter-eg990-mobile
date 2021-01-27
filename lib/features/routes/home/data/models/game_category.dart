@@ -29,8 +29,8 @@ class HomeCategoryInfo {
   ///
   const HomeCategoryInfo({
     @required this.id,
-    this.imageUrl,
-    this.assetPath,
+    this.imageUrl = '',
+    this.assetPath = '',
     this.pageType = GamePageType.Games,
   });
 }
@@ -41,27 +41,33 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
   static const GameCategory casino = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CASINO,
     imageUrl: 'images/index/tbico_casino.png',
+    // assetPath: Res.phone_nav_casino_Color1,
   ));
   static const GameCategory slot = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SLOT,
     imageUrl: 'images/index/tbico_slot.png',
+    // assetPath: Res.phone_nav_slot_Color1,
   ));
   static const GameCategory sport = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SPORT,
     imageUrl: 'images/index/tbico_sport.png',
+    // assetPath: Res.phone_nav_sport_Color1,
   ));
   static const GameCategory fish = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.FISH,
     imageUrl: 'images/index/tbico_fish.png',
+    // assetPath: Res.phone_nav_fish_Color1,
   ));
   static const GameCategory lottery =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.LOTTERY,
     imageUrl: 'images/index/tbico_lottery.png',
+    // assetPath: Res.phone_nav_lottery_Color1,
   ));
   static const GameCategory card = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CARD,
     imageUrl: 'images/index/tbico_card.png',
+    // assetPath: Res.phone_nav_card_Color1,
   ));
   static const GameCategory gift = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.GIFT,
@@ -71,19 +77,20 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.COCKFIGHTING,
     imageUrl: 'images/phone_nav_cockfighting_Color1.png',
+    // assetPath: Res.phone_nav_cockfighting_Color1,
   ));
 
   /// USER
   static const GameCategory recommend =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.RECOMMEND,
-    imageUrl: 'images/index/tbico_recommend.png',
+    assetPath: Res.tbico_recommend,
     pageType: GamePageType.Recommend,
   ));
   static const GameCategory favorite =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.FAVORITE,
-    imageUrl: 'images/index/tbico_love.png',
+    assetPath: Res.tbico_fav,
     pageType: GamePageType.Favorite,
   ));
 

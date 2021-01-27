@@ -46,7 +46,7 @@ class BetRecordDisplayList extends StatelessWidget {
         if (data is BetRecordDataAllPlatform) {
           isSumData = data.isSumData();
           dataTexts = [
-            (isSumData) ? localeStr.flowHeaderTextTotal : data.key,
+            (isSumData) ? localeStr.rollbackHeaderTextTotal : data.key,
             formatNum(data.bet),
             formatNum(data.valid),
             formatNum(data.payout),
@@ -55,7 +55,7 @@ class BetRecordDisplayList extends StatelessWidget {
           if (data.isSumData()) {
             isSumData = data.isSumData();
             dataTexts = [
-              localeStr.flowHeaderTextTotal,
+              localeStr.rollbackHeaderTextTotal,
               '',
               '',
               '',

@@ -79,8 +79,9 @@ class GridViewGames extends StatelessWidget {
       @required imgSize,
       @required textHeight,
       @required twoLines}) {
-    String label =
-        (Global.lang != 'zh' && game.ename != '??') ? game.ename : game.cname;
+    String label = (Global.localeCode != 'zh' && game.ename != '??')
+        ? game.ename
+        : game.cname;
     return GestureDetector(
       onTap: () => onTap(game),
       child: GridViewItem.game(

@@ -20,8 +20,7 @@ class BankcardDisplay extends StatefulWidget {
 class _BankcardDisplayState extends State<BankcardDisplay> {
   final String tag = 'BankcardDisplay';
 
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
 
   // Fields
   final GlobalKey<CustomizeFieldWidgetState> _nameFieldKey =

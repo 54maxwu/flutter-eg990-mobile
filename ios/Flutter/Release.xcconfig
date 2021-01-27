@@ -1,7 +1,10 @@
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
 #include "Generated.xcconfig"
 
-FLUTTER_TARGET=lib/main_dev.dart
+FLUTTER_TARGET=lib/main_release.dart
 
 APP_DISPLAY_NAME = VietWin Mobile
 
-CONFIG_FLAG = RELEASE
+CONFIG_FLAG = 1
+
+FLUTTER_BUILD_MODE=release

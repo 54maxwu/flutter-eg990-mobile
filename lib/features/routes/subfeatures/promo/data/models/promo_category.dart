@@ -1,5 +1,6 @@
 import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
+import 'package:meta/meta.dart';
 import 'package:vnum/vnum.dart';
 
 class PromoCategory {
@@ -7,26 +8,55 @@ class PromoCategory {
   final String category;
   final String iconUrl;
 
-  const PromoCategory(this.id, this.category, this.iconUrl);
+  const PromoCategory(
+      {@required this.id, @required this.category, @required this.iconUrl});
 }
 
 @VnumDefinition
 class PromoCategoryEnum extends Vnum<PromoCategory> implements DataOperator {
   /// Case Definition
-  static const PromoCategoryEnum all = const PromoCategoryEnum.define(
-      PromoCategory(0, 'All', 'images/index/all.png'));
-  static const PromoCategoryEnum fish = const PromoCategoryEnum.define(
-      PromoCategory(1, 'fish', 'images/index/fish.png'));
-  static const PromoCategoryEnum slot = const PromoCategoryEnum.define(
-      PromoCategory(2, 'slot', 'images/index/slot.png'));
-  static const PromoCategoryEnum live = const PromoCategoryEnum.define(
-      PromoCategory(3, 'live', 'images/index/casino.png'));
-  static const PromoCategoryEnum sport = const PromoCategoryEnum.define(
-      PromoCategory(4, 'sports', 'images/index/sport.png'));
-  static const PromoCategoryEnum lottery = const PromoCategoryEnum.define(
-      PromoCategory(5, 'lotto', 'images/index/lottery.png'));
-  static const PromoCategoryEnum other = const PromoCategoryEnum.define(
-      PromoCategory(6, 'other', 'images/index/icon-other.png'));
+  static const PromoCategoryEnum all =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 0,
+    category: 'All',
+    iconUrl: 'images/index/all.png',
+  ));
+  static const PromoCategoryEnum fish =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 1,
+    category: 'fish',
+    iconUrl: 'images/index/fish.png',
+  ));
+  static const PromoCategoryEnum slot =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 2,
+    category: 'slot',
+    iconUrl: 'images/index/slot.png',
+  ));
+  static const PromoCategoryEnum live =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 3,
+    category: 'live',
+    iconUrl: 'images/index/casino.png',
+  ));
+  static const PromoCategoryEnum sport =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 4,
+    category: 'sports',
+    iconUrl: 'images/index/sport.png',
+  ));
+  static const PromoCategoryEnum lottery =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 5,
+    category: 'lotto',
+    iconUrl: 'images/index/lottery.png',
+  ));
+  static const PromoCategoryEnum other =
+      const PromoCategoryEnum.define(PromoCategory(
+    id: 6,
+    category: 'other',
+    iconUrl: 'images/index/icon-other.png',
+  ));
 
   /// Used for defining cases
   const PromoCategoryEnum.define(PromoCategory fromValue)

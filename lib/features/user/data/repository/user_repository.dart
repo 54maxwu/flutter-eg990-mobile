@@ -104,7 +104,10 @@ class UserRepositoryImpl implements UserRepository {
   ///
   Future<Either<Failure, UserModel>> getAccount(String token) async {
     final result = await requestModel<UserModel>(
-      request: dioApiService.get(UserApi.GET_ACCOUNT, userToken: token),
+      request: dioApiService.get(
+        UserApi.GET_ACCOUNT,
+        userToken: token,
+      ),
       jsonToModel: UserModel.jsonToUserModel,
       tag: 'remote-USER',
     );

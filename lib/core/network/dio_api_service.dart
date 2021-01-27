@@ -166,13 +166,11 @@ class DioApiService {
     StreamController<String> stream,
   }) async {
     try {
-      for (int i = 0; i < keyList.length; i++) {
-        debugPrint('$i: ${keyList[i]}');
-      }
+      // debugPrint('post request list keys: $keyList');
       Map<String, dynamic> resultMap = new Map();
       int index = 0;
-      debugPrint(
-          'start posting ${dataList.length} request. length match: ${dataList.length == keyList.length}');
+      debugPrint('start posting ${dataList.length} request. '
+          'length match: ${dataList.length == keyList.length}');
       await Future.forEach(dataList, (data) async {
         // update progress
         if (stream != null && stream.isClosed == false) {

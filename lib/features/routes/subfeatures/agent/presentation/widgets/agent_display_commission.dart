@@ -55,7 +55,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission> {
 
   TableRow updateTotalRow() {
     _totalRowTexts = [
-      localeStr.flowHeaderTextTotal,
+      localeStr.rollbackHeaderTextTotal,
       formatValue(totalDirectFee),
       formatValue(totalFee),
       formatValue(totalPlatformFee),
@@ -100,7 +100,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission> {
     _tableWidget = null;
     super.didUpdateWidget(oldWidget);
     if (_totalRowTexts != null) {
-      _totalRowTexts.replaceRange(0, 1, [localeStr.flowHeaderTextTotal]);
+      _totalRowTexts.replaceRange(0, 1, [localeStr.rollbackHeaderTextTotal]);
     }
   }
 

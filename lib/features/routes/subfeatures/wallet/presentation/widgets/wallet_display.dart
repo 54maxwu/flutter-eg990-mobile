@@ -71,7 +71,8 @@ class _WalletDisplayState extends State<WalletDisplay> {
               (widget.store.wallet.auto == WalletType.SINGLE.value)
                   ? WalletType.SINGLE
                   : WalletType.MULTI;
-          debugPrint('new wallet type: $newWalletType, current: $_walletType');
+          debugPrint(
+              'wallet type changed: ${_walletType.value} -> ${newWalletType.value}');
           if (newWalletType != _walletType)
             _optionListKey.currentState.setState(() {
               _walletType = newWalletType;
@@ -101,7 +102,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
     if (_bgHeight < 442) _bgHeight = 442;
     _bgMarginBottom = Global.device.featureContentHeight - 20 - _bgHeight;
 
-    _higherBox = Global.lang != 'zh';
+    _higherBox = Global.localeCode != 'zh';
     _innerBoxMaxHeight = (_higherBox) ? _bgHeight * 0.35 : _bgHeight * 0.325;
     _innerBoxMinHeight = _innerBoxMaxHeight - 24.0;
 
@@ -172,7 +173,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                       ),
                     ),
                     child: Image.asset(
-                      Res.walletBgIcon,
+                      Res.wlpop_titico,
                       alignment: Alignment.topLeft,
                       fit: BoxFit.none,
                       color: themeColor.walletCardIconBgColor,
@@ -203,7 +204,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset(
-                              Res.walletBgIconSmall,
+                              Res.wlpop_titico_small,
                               color: themeColor.iconColor,
                             ),
                             Padding(
@@ -270,7 +271,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
               children: <InlineSpan>[
                 WidgetSpan(
                   child: Padding(
-                    padding: (Global.lang != 'zh')
+                    padding: (Global.localeCode != 'zh')
                         ? EdgeInsets.only(bottom: 4.0)
                         : EdgeInsets.only(bottom: 8.0),
                     child: Text(
@@ -280,7 +281,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.lang != 'zh') TextSpan(text: '\n'),
+                if (Global.localeCode != 'zh') TextSpan(text: '\n'),
                 WidgetSpan(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 3.0),
@@ -316,7 +317,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.lang != 'zh')
+                if (Global.localeCode != 'zh')
                   WidgetSpan(child: SizedBox(height: 4.0)),
               ],
             ),
@@ -368,7 +369,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
 
           /// Transfer Button
           SizedBox(
-            width: _bgWidth / 3,
+            width: _bgWidth / 2,
             height: Global.device.comfortButtonHeight,
             child: RaisedButton(
               visualDensity: VisualDensity.adaptivePlatformDensity,

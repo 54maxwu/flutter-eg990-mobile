@@ -18,7 +18,7 @@ class HomeDisplayMarquee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (marquees == null || marquees.isEmpty) return SizedBox.shrink();
+    if (marquees == null || marquees.isEmpty) return SizedBox.shrink();
     return Container(
       constraints: BoxConstraints.tight(Size(Global.device.width, 30.0)),
       color: themeColor.defaultMarqueeBarColor,
@@ -57,7 +57,7 @@ class HomeDisplayMarquee extends StatelessWidget {
                       String url = marquees[index].url;
                       debugPrint('clicked marquee $index, url: $url');
                       if (url.isUrl == false) return;
-                      if (url.contains(Global.DOMAIN_NAME)) {
+                      if (url.contains(Global.DOMAIN_NAME) || !url.isUrl) {
                         if (onMarqueeClicked != null) {
                           onMarqueeClicked(url);
                         }

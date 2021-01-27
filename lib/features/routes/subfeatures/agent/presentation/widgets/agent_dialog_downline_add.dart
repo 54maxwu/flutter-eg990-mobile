@@ -155,7 +155,10 @@ class _AgentDialogDownlineAddState extends State<AgentDialogDownlineAdd> {
                               child: Visibility(
                                 visible: _showAccountError,
                                 child: Text(
-                                  localeStr.messageInvalidAccount,
+                                  localeStr.messageInvalidAccount(
+                                    InputLimit.AGENT_ACCOUNT_MIN,
+                                    InputLimit.AGENT_ACCOUNT_MAX,
+                                  ),
                                   style: TextStyle(
                                       color: themeColor.defaultErrorColor),
                                 ),
@@ -202,7 +205,10 @@ class _AgentDialogDownlineAddState extends State<AgentDialogDownlineAdd> {
                               child: Visibility(
                                 visible: _showPasswordError,
                                 child: Text(
-                                  localeStr.messageInvalidPasswordNew,
+                                  localeStr.messageInvalidPassword(
+                                    InputLimit.PASSWORD_MIN,
+                                    InputLimit.PASSWORD_MAX,
+                                  ),
                                   style: TextStyle(
                                       color: themeColor.defaultErrorColor),
                                 ),

@@ -52,6 +52,7 @@ class HomeTabItemState extends State<HomeTabItem> {
   Decoration _boxSelectedDecor;
 
   bool _isImage;
+  bool _isAsset;
   Widget _corner;
   Widget _divider;
   Widget _imageWidget;
@@ -160,6 +161,7 @@ class HomeTabItemState extends State<HomeTabItem> {
     }
 
     _isImage ??= widget.category.iconUrl.isNotEmpty;
+    _isAsset ??= widget.category.info.value.assetPath.isNotEmpty;
     _imageWidget ??= _buildImage();
 
     return Stack(
@@ -207,12 +209,19 @@ class HomeTabItemState extends State<HomeTabItem> {
                 ? themeColor.defaultAccentColor
                 : themeColor.defaultTabUnselectedColor,
           )
-        : Icon(
-            (widget.category.iconCode != null)
-                ? widget.category.iconCode
-                : Icons.add,
-            size: _iconSize.width - 6.0,
-          );
+        : (_isAsset)
+            ? Image.asset(
+                widget.category.info.value.assetPath,
+                color: (_isSelected)
+                    ? themeColor.defaultAccentColor
+                    : themeColor.defaultTabUnselectedColor,
+              )
+            : Icon(
+                (widget.category.iconCode != null)
+                    ? widget.category.iconCode
+                    : Icons.add,
+                size: _iconSize.width - 6.0,
+              );
   }
 
   Widget _buildCornerClipperWidget() {

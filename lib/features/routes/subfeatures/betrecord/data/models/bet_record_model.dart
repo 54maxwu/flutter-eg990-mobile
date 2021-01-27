@@ -64,19 +64,18 @@ abstract class BetRecordData with _$BetRecordData {
     dynamic key,
   }) = _BetRecordData;
 
-  static BetRecordData jsonToBetRecordData(Map<String, dynamic> jsonMap) {
-    return _$_BetRecordData(
-      activeBet: jsonMap['activebet'] as String,
-      validBet: jsonMap['validbet'] as String,
-      bet: jsonMap['bet'] as String,
-      betNo: jsonMap['betno'] as String,
-      payout: jsonMap['payout'] as String,
-      site: jsonMap['site'] as String,
-      startTime: jsonMap['starttime'] as String,
-      type: jsonMap['type'] as String,
-      key: jsonMap['key'],
-    );
-  }
+  static BetRecordData jsonToBetRecordData(Map<String, dynamic> jsonMap) =>
+      _$_BetRecordData(
+        activeBet: '${jsonMap['activebet']}',
+        validBet: '${jsonMap['validbet']}',
+        bet: '${jsonMap['bet']}',
+        betNo: '${jsonMap['betno']}',
+        payout: '${jsonMap['payout']}',
+        site: jsonMap['site'] as String,
+        startTime: jsonMap['starttime'] as String,
+        type: jsonMap['type'] as String,
+        key: jsonMap['key'],
+      );
 }
 
 extension BetRecordDataExtension on BetRecordData {
@@ -93,14 +92,13 @@ abstract class BetRecordDataAllPlatform with _$BetRecordDataAllPlatform {
   }) = _BetRecordDataAllPlatform;
 
   static BetRecordDataAllPlatform jsonToBetRecordDataAllPlatform(
-      Map<String, dynamic> jsonMap) {
-    return _$_BetRecordDataAllPlatform(
-      bet: '${jsonMap['bet']}'.strToDouble,
-      valid: '${jsonMap['validbet']}'.strToDouble,
-      payout: '${jsonMap['payout']}'.strToDouble,
-      key: jsonMap['key'],
-    );
-  }
+          Map<String, dynamic> jsonMap) =>
+      _$_BetRecordDataAllPlatform(
+        bet: '${jsonMap['bet']}'.strToDouble,
+        valid: '${jsonMap['validbet']}'.strToDouble,
+        payout: '${jsonMap['payout']}'.strToDouble,
+        key: jsonMap['key'],
+      );
 }
 
 extension BetRecordDataAllPlatformExtension on BetRecordDataAllPlatform {

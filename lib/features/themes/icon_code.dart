@@ -81,10 +81,10 @@ class IconCode {
   static const gridBankcard = const IconData(0xf09d, fontFamily: 'FontAwesome');
   // static const gridBankcard = const IconData(0xe940, fontFamily: 'IconMoon');
 
-  static const gridWithdraw = const IconData(0xf155, fontFamily: 'FontAwesome');
+  static const gridWithdraw = const IconData(0xf0d6, fontFamily: 'FontAwesome');
   // static const gridWithdraw = const IconData(0xe951, fontFamily: 'IconMoon');
 
-  static const gridBalance = const IconData(0xf03a, fontFamily: 'FontAwesome');
+  static const gridBalance = const IconData(0xf009, fontFamily: 'FontAwesome');
   // static const gridBalance = const IconData(0xe94a, fontFamily: 'IconMoon');
 
   static const gridWallet = const IconData(0xf155, fontFamily: 'FontAwesome');
@@ -106,8 +106,8 @@ class IconCode {
   static const gridDeals = const IconData(0xf0cb, fontFamily: 'FontAwesome');
   // static const gridDeals = const IconData(0xe94d, fontFamily: 'IconMoon');
 
-  static const gridFlows = const IconData(0xf06d, fontFamily: 'FontAwesome');
-  // static const gridFlows = const IconData(0xe942, fontFamily: 'IconMoon');
+  static const gridRollback = const IconData(0xf06d, fontFamily: 'FontAwesome');
+  // static const gridRollback = const IconData(0xe942, fontFamily: 'IconMoon');
 
   static const gridAgent = const IconData(0xf2ba, fontFamily: 'FontAwesome');
   // static const gridAgent = const IconData(0xe947, fontFamily: 'IconMoon');
@@ -148,4 +148,6 @@ class IconCode {
   static const csFacebook = const IconData(0xf09a, fontFamily: 'FontAwesome');
 
   static const csQQ = const IconData(0xe970, fontFamily: 'IconMoon');
+
+  static const csSkype = const IconData(0xf0c0, fontFamily: 'FontAwesome');
 }

@@ -1,5 +1,4 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
@@ -86,6 +85,7 @@ class _PromoDisplayState extends State<PromoDisplay>
     tabItemWidth ??=
         (Global.device.width - 8 * categories.length - 11 - 32) / 5;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         /* Category Tab Bar */
         Container(
@@ -96,75 +96,43 @@ class _PromoDisplayState extends State<PromoDisplay>
             labelStyle: TextStyle(fontSize: FontSize.NORMAL.value),
             labelPadding: const EdgeInsets.only(top: 4.0),
             indicatorColor: Colors.transparent,
-//            indicatorWeight: 3.0,
-//            indicatorSize: TabBarIndicatorSize.label,
-//            indicatorPadding: const EdgeInsets.symmetric(horizontal: 4.0),
             controller: _tabController,
             isScrollable: true,
             /* Category Tabs */
             tabs: categories.map((c) {
               return Container(
                 width: tabItemWidth,
-                height: (tabItemWidth < 72) ? tabItemWidth * 1.14 : 72,
+                height: (Global.device.widthScale < 1.2)
+                    ? tabItemWidth * 1.4 * Global.device.widthScaleHalf
+                    : tabItemWidth * Global.device.widthScale,
                 decoration: BoxDecoration(
                   color: c == _current
                       ? themeColor.promoTabSelectedBgColor
                       : themeColor.promoTabBgColor,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Stack(
-                  alignment: AlignmentDirectional.topCenter,
-                  children: <Widget>[
-                    FittedBox(
-                      child: Center(
-                        child: Tab(
-                          icon: Padding(
-                            padding: (c.value.id == 0 || c.value.id == 6)
-                                ? const EdgeInsets.all(2.5)
-                                : const EdgeInsets.all(2.0),
-                            child: ExtendedImage.network(
-                              '${Global.CURRENT_BASE}${c.value.iconUrl}',
-                              scale: (c.value.id == 0 || c.value.id == 6)
-                                  ? 5.0
-                                  : 2.25,
-                              color: c == _current
-                                  ? themeColor.promoTabSelectedIconColor
-                                  : themeColor.promoTabIconColor,
-                              loadStateChanged: (ExtendedImageState state) {
-                                switch (state.extendedImageLoadState) {
-                                  case LoadState.completed:
-                                    return state.completedWidget;
-                                  case LoadState.failed:
-                                    return Icon(
-                                      Icons.broken_image,
-                                      color: themeColor.promoTabIconColor,
-                                    );
-                                  default:
-                                    return null;
-                                }
-                              },
-                            ),
-                          ),
-                          iconMargin: EdgeInsets.only(top: 2.0, bottom: 2.0),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 3.0),
-                            child: Text(
-                              c.label.trim().toUpperCase(),
-                              style: TextStyle(fontSize: FontSize.NORMAL.value),
-                              maxLines: 1,
-                            ),
-                          ),
-                        ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 2.0),
+                        child: networkImageBuilder(c.value.iconUrl),
                       ),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: SizedBox(
-                        height: 2,
-                        width: tabItemWidth,
-                        child: ColoredBox(
-                          color: themeColor.defaultAccentColor,
-                        ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
+                      height: FontSize.NORMAL.value * 2.0,
+                      child: Text(
+                        c.label.trim().toUpperCase(),
+                        style: TextStyle(fontSize: FontSize.NORMAL.value),
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2,
+                      width: tabItemWidth,
+                      child: ColoredBox(
+                        color: themeColor.defaultAccentColor,
                       ),
                     ),
                   ],
