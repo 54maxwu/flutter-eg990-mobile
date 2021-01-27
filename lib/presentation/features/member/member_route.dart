@@ -82,7 +82,10 @@ class _MemberRouteState extends State<MemberRoute> {
                   MemberShortcuts(hasUser: _store.hasUser),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: MemberShortcutsList(hasUser: _store.hasUser),
+                    child: MemberShortcutsList(
+                      hasUser: _store.hasUser,
+                      logout: () => _store.logout(),
+                    ),
                   ),
                 ],
               ),

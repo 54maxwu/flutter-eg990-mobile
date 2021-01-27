@@ -249,7 +249,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color buttonPrimaryColor = Color(0xffd2b79c);
 
   @override
-  Color buttonTextPrimaryColor = Color(0xff000000);
+  Color buttonTextPrimaryColor = Color(0xfff0f0f0);
 
   @override
   Color buttonSecondaryColor = Color(0xfff5f5f5);
@@ -258,7 +258,7 @@ class ThemeDefault implements ThemeColorInterface {
   Color buttonSubColor = Color(0xff969696);
 
   @override
-  Color buttonTextSubColor = Color(0xffc8c8c8);
+  Color buttonTextSubColor = Color(0xff222222);
 
   @override
   Color buttonDisabledColor = Color(0xff606060);
@@ -279,10 +279,10 @@ class ThemeDefault implements ThemeColorInterface {
   Color buttonLinearLightColor2 = Color(0xffffffff);
 
   @override
-  Color buttonLinearColor1 = Color(0xff515175);
+  Color buttonLinearColor1 = Color(0xffe6d5c4);
 
   @override
-  Color buttonLinearColor2 = Color(0xffc4c4c4);
+  Color buttonLinearColor2 = Color(0xffd2b79c);
 
   @override
   Color pagerButtonColor = Color(0xff828282);

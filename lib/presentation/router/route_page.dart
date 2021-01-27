@@ -111,6 +111,19 @@ class RoutePage extends Vnum<RouteInfo> {
     appBarType: MainScreenAppBarTypes.BACK_TITLE_TUTORIAL,
     navBarType: MainScreenNavBarTypes.HIDE,
   ));
+  static const RoutePage bankcard = const RoutePage.define(RouteInfo(
+    id: RouteEnum.BANKCARD,
+    route: MainScreenRoutes.bankcardRoute,
+    appBarType: MainScreenAppBarTypes.BACK_TITLE_TUTORIAL,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
+  static const RoutePage bankcardNew = const RoutePage.define(RouteInfo(
+    id: RouteEnum.BANKCARD_NEW,
+    route: MainScreenRoutes.bankcardRouteNew,
+    root: '-1',
+    appBarType: MainScreenAppBarTypes.BACK_AND_TITLE,
+    navBarType: MainScreenNavBarTypes.HIDE,
+  ));
 
   static const RoutePage bet_record = const RoutePage.define(RouteInfo(
     id: RouteEnum.BET_RECORD,

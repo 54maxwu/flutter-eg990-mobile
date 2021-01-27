@@ -41,6 +41,7 @@ mixin _$TransferResult {
   @JsonKey(fromJson: JsonUtil.getRawJson, required: false, defaultValue: '')
   String get msg;
 
+  @JsonKey(ignore: true)
   $TransferResultCopyWith<TransferResult> get copyWith;
 }
 
@@ -183,6 +184,7 @@ class _$_TransferResult implements _TransferResult {
       const DeepCollectionEquality().hash(data) ^
       const DeepCollectionEquality().hash(msg);
 
+  @JsonKey(ignore: true)
   @override
   _$TransferResultCopyWith<_TransferResult> get copyWith =>
       __$TransferResultCopyWithImpl<_TransferResult>(this, _$identity);
@@ -206,5 +208,6 @@ abstract class _TransferResult implements TransferResult {
   @JsonKey(fromJson: JsonUtil.getRawJson, required: false, defaultValue: '')
   String get msg;
   @override
+  @JsonKey(ignore: true)
   _$TransferResultCopyWith<_TransferResult> get copyWith;
 }

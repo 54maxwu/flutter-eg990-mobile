@@ -91,7 +91,6 @@ abstract class _DepositStore with Store {
       // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
       await _initFuture;
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 1);
     }
   }

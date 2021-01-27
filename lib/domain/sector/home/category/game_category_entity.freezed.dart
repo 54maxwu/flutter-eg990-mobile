@@ -33,6 +33,7 @@ mixin _$GameCategoryEntity {
   String get type;
   GameCategory get info;
 
+  @JsonKey(ignore: true)
   $GameCategoryEntityCopyWith<GameCategoryEntity> get copyWith;
 }
 
@@ -133,6 +134,7 @@ class _$_GameCategoryEntity extends _GameCategoryEntity {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(info);
 
+  @JsonKey(ignore: true)
   @override
   _$GameCategoryEntityCopyWith<_GameCategoryEntity> get copyWith =>
       __$GameCategoryEntityCopyWithImpl<_GameCategoryEntity>(this, _$identity);
@@ -150,5 +152,6 @@ abstract class _GameCategoryEntity extends GameCategoryEntity {
   @override
   GameCategory get info;
   @override
+  @JsonKey(ignore: true)
   _$GameCategoryEntityCopyWith<_GameCategoryEntity> get copyWith;
 }

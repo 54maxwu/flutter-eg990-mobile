@@ -22,7 +22,9 @@ class Global {
 
   static bool get isChineseLocale => _locale == LanguageCode.zh;
 
-  static set setLocale(String localeCode) =>
+  static set setLocale(LanguageCode lang) => _locale = lang;
+
+  static set setLocaleByCode(String localeCode) =>
       _locale = LanguageCode.getByCode(localeCode);
 
   /// Web Service
@@ -38,10 +40,7 @@ class Global {
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';
   static const String CACHE_LOGIN_FORM = 'CACHE_LOGIN_FORM';
-  static const String CACHE_APP_DATA = 'CACHE_APP_DATA';
-
-  static const String CACHE_APP_DATA_KEY_LANG = 'lang';
-  static const String CACHE_APP_DATA_KEY_THEME = 'theme';
+  static const String CACHED_TIME_DATA = 'CACHED_TIME_DATA';
 
   /// Other static value
   static const double APP_MENU_HEIGHT = kToolbarHeight - 8.0;

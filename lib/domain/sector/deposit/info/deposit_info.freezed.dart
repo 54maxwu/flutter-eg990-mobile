@@ -47,6 +47,7 @@ mixin _$DepositInfo {
   @JsonKey(name: 'bankcode')
   String get bankCode;
 
+  @JsonKey(ignore: true)
   $DepositInfoCopyWith<DepositInfo> get copyWith;
 }
 
@@ -206,6 +207,7 @@ class _$_DepositInfo implements _DepositInfo {
       const DeepCollectionEquality().hash(bankAccountNo) ^
       const DeepCollectionEquality().hash(bankCode);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositInfoCopyWith<_DepositInfo> get copyWith =>
       __$DepositInfoCopyWithImpl<_DepositInfo>(this, _$identity);
@@ -235,5 +237,6 @@ abstract class _DepositInfo implements DepositInfo {
   @JsonKey(name: 'bankcode')
   String get bankCode;
   @override
+  @JsonKey(ignore: true)
   _$DepositInfoCopyWith<_DepositInfo> get copyWith;
 }

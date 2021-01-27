@@ -167,6 +167,7 @@ mixin _$MemberDetailModel {
   @JsonKey(name: 'vip_setting')
   dynamic get vipSetting;
 
+  @JsonKey(ignore: true)
   $MemberDetailModelCopyWith<MemberDetailModel> get copyWith;
 }
 
@@ -785,6 +786,7 @@ class _$_MemberDetailModel implements _MemberDetailModel {
       const DeepCollectionEquality().hash(vipOption) ^
       const DeepCollectionEquality().hash(vipSetting);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberDetailModelCopyWith<_MemberDetailModel> get copyWith =>
       __$MemberDetailModelCopyWithImpl<_MemberDetailModel>(this, _$identity);
@@ -934,5 +936,6 @@ abstract class _MemberDetailModel implements MemberDetailModel {
   @JsonKey(name: 'vip_setting')
   dynamic get vipSetting;
   @override
+  @JsonKey(ignore: true)
   _$MemberDetailModelCopyWith<_MemberDetailModel> get copyWith;
 }

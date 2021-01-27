@@ -60,6 +60,7 @@ mixin _$BetRecordModel {
   @JsonKey(fromJson: decodeBetRecordData)
   List<BetRecordData> get data;
 
+  @JsonKey(ignore: true)
   $BetRecordModelCopyWith<BetRecordModel> get copyWith;
 }
 
@@ -262,6 +263,7 @@ class _$_BetRecordModel implements _BetRecordModel {
       const DeepCollectionEquality().hash(prevPageUrl) ^
       const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$BetRecordModelCopyWith<_BetRecordModel> get copyWith =>
       __$BetRecordModelCopyWithImpl<_BetRecordModel>(this, _$identity);
@@ -305,5 +307,6 @@ abstract class _BetRecordModel implements BetRecordModel {
   @JsonKey(fromJson: decodeBetRecordData)
   List<BetRecordData> get data;
   @override
+  @JsonKey(ignore: true)
   _$BetRecordModelCopyWith<_BetRecordModel> get copyWith;
 }

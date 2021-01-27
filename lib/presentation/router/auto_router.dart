@@ -11,6 +11,7 @@ import '../features/member_features/deposit/deposit_route.dart';
 import '../features/member_features/member_center/member_center_route.dart';
 import '../features/member_features/transfer/transfer_route.dart';
 import '../features/member_features/withdraw/withdraw_route.dart';
+import '../features/member_features/bankcard/bankcard_route.dart';
 import '../features/notice_board/notice_route.dart';
 import '../features/promo/promo_route.dart';
 import '../features/promo/widgets/promo_detail_page.dart';
@@ -45,6 +46,12 @@ import '../screens/main_screen.dart';
               MaterialRoute(page: DepositRoute),
               MaterialRoute(page: TransferRoute),
               MaterialRoute(page: WithdrawRoute),
+              MaterialRoute(page: BankcardRoute),
+              MaterialRoute(
+                page: BankcardRoute,
+                path: '/bankcard-route-new',
+                name: 'bankcardRouteNew',
+              ),
               MaterialRoute(page: BetRecordRoute),
               MaterialRoute(page: AboutRoute),
             ],

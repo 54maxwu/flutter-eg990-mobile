@@ -32,7 +32,7 @@ class BankcardForm with FormzMixin {
           this.cardInfo.error ?? this.bankAddress.error ?? this.mobile.error);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'bankname': this.cardInfo.value.cardOwner,
+        'bankname': this.cardInfo.value.cardholder,
         'bankindex': this.cardInfo.value.bankId,
         'bankaccno': this.cardInfo.value.cardNumber,
         'bankaddress': this.bankAddress.value.branch,

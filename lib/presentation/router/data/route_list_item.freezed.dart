@@ -42,6 +42,7 @@ mixin _$RouteListItem {
   String get imageSubName;
   RoutePage get route;
 
+  @JsonKey(ignore: true)
   $RouteListItemCopyWith<RouteListItem> get copyWith;
 }
 
@@ -199,6 +200,7 @@ class _$_RouteListItem with DiagnosticableTreeMixin implements _RouteListItem {
       const DeepCollectionEquality().hash(imageSubName) ^
       const DeepCollectionEquality().hash(route);
 
+  @JsonKey(ignore: true)
   @override
   _$RouteListItemCopyWith<_RouteListItem> get copyWith =>
       __$RouteListItemCopyWithImpl<_RouteListItem>(this, _$identity);
@@ -223,5 +225,6 @@ abstract class _RouteListItem implements RouteListItem {
   @override
   RoutePage get route;
   @override
+  @JsonKey(ignore: true)
   _$RouteListItemCopyWith<_RouteListItem> get copyWith;
 }

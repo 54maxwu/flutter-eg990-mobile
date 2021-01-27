@@ -37,6 +37,7 @@ mixin _$DepositPromoData {
   @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
   String get promoDesc;
 
+  @JsonKey(ignore: true)
   $DepositPromoDataCopyWith<DepositPromoData> get copyWith;
 }
 
@@ -148,6 +149,7 @@ class _$_DepositPromoData implements _DepositPromoData {
       const DeepCollectionEquality().hash(promoId) ^
       const DeepCollectionEquality().hash(promoDesc);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositPromoDataCopyWith<_DepositPromoData> get copyWith =>
       __$DepositPromoDataCopyWithImpl<_DepositPromoData>(this, _$identity);
@@ -167,5 +169,6 @@ abstract class _DepositPromoData implements DepositPromoData {
   @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
   String get promoDesc;
   @override
+  @JsonKey(ignore: true)
   _$DepositPromoDataCopyWith<_DepositPromoData> get copyWith;
 }

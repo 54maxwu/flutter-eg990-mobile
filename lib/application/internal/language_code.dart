@@ -63,4 +63,29 @@ class LanguageData {
     @required this.contentKey,
     @required this.imageUrl,
   });
+
+//<editor-fold desc="Data Methods" defaultstate="collapsed">
+  @override
+  String toString() {
+    return 'LanguageData{code: $code, optionString: $optionString, contentKey: $contentKey, imageUrl: $imageUrl}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LanguageData &&
+          runtimeType == other.runtimeType &&
+          code == other.code &&
+          optionString == other.optionString &&
+          contentKey == other.contentKey &&
+          imageUrl == other.imageUrl);
+
+  @override
+  int get hashCode =>
+      code.hashCode ^
+      optionString.hashCode ^
+      contentKey.hashCode ^
+      imageUrl.hashCode;
+
+//</editor-fold>
 }

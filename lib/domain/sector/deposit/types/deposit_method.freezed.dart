@@ -186,6 +186,7 @@ mixin _$DepositMethod {
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $DepositMethodCopyWith<DepositMethod> get copyWith;
 }
 
@@ -291,6 +292,7 @@ class _$DepositMethodOnline implements DepositMethodOnline {
       const DeepCollectionEquality().hash(options) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   $DepositMethodOnlineCopyWith<DepositMethodOnline> get copyWith =>
       _$DepositMethodOnlineCopyWithImpl<DepositMethodOnline>(this, _$identity);
@@ -418,6 +420,7 @@ abstract class DepositMethodOnline implements DepositMethod {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   $DepositMethodOnlineCopyWith<DepositMethodOnline> get copyWith;
 }
 
@@ -599,6 +602,7 @@ class _$DepositMethodVirtualData implements DepositMethodVirtualData {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   $DepositMethodVirtualDataCopyWith<DepositMethodVirtualData> get copyWith =>
       _$DepositMethodVirtualDataCopyWithImpl<DepositMethodVirtualData>(
@@ -754,6 +758,7 @@ abstract class DepositMethodVirtualData implements DepositMethod {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   $DepositMethodVirtualDataCopyWith<DepositMethodVirtualData> get copyWith;
 }
 
@@ -831,6 +836,7 @@ class _$DepositMethodLocal implements DepositMethodLocal {
       const DeepCollectionEquality().hash(banks) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   $DepositMethodLocalCopyWith<DepositMethodLocal> get copyWith =>
       _$DepositMethodLocalCopyWithImpl<DepositMethodLocal>(this, _$identity);
@@ -957,6 +963,7 @@ abstract class DepositMethodLocal implements DepositMethod {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   $DepositMethodLocalCopyWith<DepositMethodLocal> get copyWith;
 }
 
@@ -1099,6 +1106,7 @@ class _$DepositMethodBankData implements DepositMethodBankData {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   $DepositMethodBankDataCopyWith<DepositMethodBankData> get copyWith =>
       _$DepositMethodBankDataCopyWithImpl<DepositMethodBankData>(
@@ -1246,5 +1254,6 @@ abstract class DepositMethodBankData implements DepositMethod {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   $DepositMethodBankDataCopyWith<DepositMethodBankData> get copyWith;
 }

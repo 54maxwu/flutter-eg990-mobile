@@ -7,16 +7,15 @@ import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'application/data/app_cache.dart';
 import 'application/device/orientation_helper.dart';
-import 'application/internal/language_code.dart';
 import 'application/global.dart';
-import 'application/themes/theme_color_enum.dart';
+import 'application/internal/language_code.dart';
 import 'application/themes/theme_interface.dart';
 import 'domain/auth/hive_cookie.dart';
 import 'domain/domain_hive_adapters_export.dart';
 import 'env/config_reader.dart';
 import 'env/environment.dart';
-import 'infrastructure/hive/hive_actions.dart';
 import 'injection_container.dart' as di;
 import 'mylogger.dart';
 import 'presentation/core/main_app.dart';
@@ -49,56 +48,11 @@ Future<void> mainCommon(Environment env) async {
   // setup injector
   await di.init();
 
-  // init hive database
-  final docDir = await getApplicationDocumentsDirectory();
-  Hive.init(docDir.path);
-  debugPrint('Hive initialized, location: $docDir');
-  try {
-    Hive.registerAdapter(CookieAdapter());
-    Hive.registerAdapter(HiveCookieEntityAdapter());
-    Hive.registerAdapter(BannerEntityAdapter());
-    Hive.registerAdapter(MarqueeEntityAdapter());
-    Hive.registerAdapter(GameCategoryEntityAdapter());
-    Hive.registerAdapter(GamePlatformEntityAdapter());
-    Hive.registerAdapter(GameEntityAdapter());
-    Hive.registerAdapter(LoginFormHiveAdapter());
-    Hive.registerAdapter(PromoEntityAdapter());
-  } catch (e) {
-    debugPrint('register hive adapter has error!! $e');
-  }
+  // initialize hive database
+  await _initHive();
 
-  try {
-    Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-    // check app language setting
-    if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      if (Global.lockLanguage == false) {
-        // set language as user preference
-        Global.setLocale = box.get(
-          Global.CACHE_APP_DATA_KEY_LANG,
-          defaultValue: defaultLocale.value.code,
-        );
-      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.localeCode) {
-        // override language if language is locked and different as default
-        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
-      }
-    } else {
-      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
-    }
-    // check app theme setting
-    if (box.containsKey(Global.CACHE_APP_DATA_KEY_THEME)) {
-      String themeValue = box.get(Global.CACHE_APP_DATA_KEY_THEME,
-          defaultValue: ThemeColorEnum.DEFAULT.value);
-      ThemeInterface.theme
-          .setTheme(ThemeColorEnum.getByValue(themeValue), notify: false);
-    } else {
-      box.put(Global.CACHE_APP_DATA_KEY_THEME, ThemeColorEnum.DEFAULT.value);
-    }
-  } catch (e) {
-    debugPrint('read app language setting has error!! $e');
-  } finally {
-    debugPrint('app language: ${Global.localeCode}');
-    debugPrint('app theme: ${ThemeInterface.theme.colorEnum.value}');
-  }
+  // initialize app settings
+  await _readAppSettings();
 
   // hide keyboard and wait for 500ms to get the correct viewInset
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -106,13 +60,6 @@ Future<void> mainCommon(Environment env) async {
 
   // run application
   runApp(new MainApp());
-}
-
-void _setupLogging() {
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((rec) {
-    debugPrint('${rec.loggerName}: [${rec.level.name}] ${rec.message}');
-  });
 }
 
 Future<void> _initPermissionList(List<Permission> permissions) async {
@@ -127,5 +74,60 @@ Future<void> _initPermissionList(List<Permission> permissions) async {
     });
   } catch (e) {
     debugPrint('permission request has exception: $e');
+  }
+}
+
+void _setupLogging() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    debugPrint('${rec.loggerName}: [${rec.level.name}] ${rec.message}');
+  });
+}
+
+Future<void> _initHive() async {
+  final docDir = await getApplicationDocumentsDirectory();
+  Hive.init(docDir.path);
+  debugPrint('Hive initialized, location: $docDir');
+  try {
+    Hive.registerAdapter(CookieAdapter());
+    Hive.registerAdapter(HiveCookieEntityAdapter());
+    Hive.registerAdapter(HiveJsonCacheAdapter());
+    Hive.registerAdapter(BannerEntityAdapter());
+    Hive.registerAdapter(MarqueeEntityAdapter());
+    Hive.registerAdapter(GameCategoryEntityAdapter());
+    Hive.registerAdapter(GamePlatformEntityAdapter());
+    Hive.registerAdapter(GameEntityAdapter());
+    Hive.registerAdapter(LoginFormHiveAdapter());
+    Hive.registerAdapter(PromoEntityAdapter());
+  } catch (e) {
+    debugPrint('register hive adapter has error!! $e');
+  }
+}
+
+Future<void> _readAppSettings() async {
+  try {
+    // debugPrint('test app hive ${AppCache.testHive()}');
+    // debugPrint('test app cache language: ${AppCache.getAppLanguage()}');
+    // debugPrint('test app cache theme: ${AppCache.getAppTheme()}');
+    /// check app locale setting
+    if (!Global.lockLanguage) {
+      // set language as user preference
+      final lang = await AppCache.getAppLanguage();
+      debugPrint('last app language: ${lang.value}');
+      Global.setLocale = lang;
+    } else {
+      // override language if language is locked and different as default
+      AppCache.resetToDefaultLocale();
+      Global.setLocale = defaultLocale;
+    }
+
+    /// check app theme setting
+    ThemeInterface.theme
+        .setTheme(ThemeInterface.theme.colorEnum, notify: false);
+    // final theme = await AppCache.getAppTheme();
+    // debugPrint('last app theme: $theme');
+    // ThemeInterface.theme.setTheme(theme, notify: false);
+  } catch (e) {
+    debugPrint('read app cache has error!! $e');
   }
 }

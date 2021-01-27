@@ -57,6 +57,7 @@ mixin _$MemberDetail {
   String get firstName;
   String get autoTransfer;
 
+  @JsonKey(ignore: true)
   $MemberDetailCopyWith<MemberDetail> get copyWith;
 }
 
@@ -263,6 +264,7 @@ class _$_MemberDetail implements _MemberDetail {
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(autoTransfer);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberDetailCopyWith<_MemberDetail> get copyWith =>
       __$MemberDetailCopyWithImpl<_MemberDetail>(this, _$identity);
@@ -302,5 +304,6 @@ abstract class _MemberDetail implements MemberDetail {
   @override
   String get autoTransfer;
   @override
+  @JsonKey(ignore: true)
   _$MemberDetailCopyWith<_MemberDetail> get copyWith;
 }

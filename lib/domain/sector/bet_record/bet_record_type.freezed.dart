@@ -47,6 +47,7 @@ mixin _$BetRecordType {
   String get categoryType;
   Map<String, dynamic> get platformMap;
 
+  @JsonKey(ignore: true)
   $BetRecordTypeCopyWith<BetRecordType> get copyWith;
 }
 
@@ -205,6 +206,7 @@ class _$_BetRecordType extends _BetRecordType {
       const DeepCollectionEquality().hash(categoryType) ^
       const DeepCollectionEquality().hash(platformMap);
 
+  @JsonKey(ignore: true)
   @override
   _$BetRecordTypeCopyWith<_BetRecordType> get copyWith =>
       __$BetRecordTypeCopyWithImpl<_BetRecordType>(this, _$identity);
@@ -235,5 +237,6 @@ abstract class _BetRecordType extends BetRecordType {
   @override
   Map<String, dynamic> get platformMap;
   @override
+  @JsonKey(ignore: true)
   _$BetRecordTypeCopyWith<_BetRecordType> get copyWith;
 }

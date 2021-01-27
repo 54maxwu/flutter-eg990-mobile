@@ -12,6 +12,8 @@ abstract class RouteInfo with _$RouteInfo {
     @required RouteEnum id,
     @required String route,
     Object routeArg,
+
+    /// set root to -1 to go back to last page instead of home page
     @Default(MainScreenRoutes.homeRoute) String root,
 
     /// if true, shows the widget on the right side (logout, register...etc)

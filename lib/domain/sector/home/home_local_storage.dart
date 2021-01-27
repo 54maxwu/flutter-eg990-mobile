@@ -57,11 +57,11 @@ abstract class HomeLocalStorage {
   Future<void> cacheGames(List<GameEntity> gamesToCache, String classname);
 }
 
-const CACHED_HOME_BANNER = 'CACHED_BANNER';
-const CACHED_HOME_MARQUEE = 'CACHED_MARQUEE';
-const CACHED_HOME_GAME_CATEGORY = 'CACHED_CATEGORY';
-const CACHED_HOME_GAME_PLATFORM = 'CACHED_PLATFORM';
-const CACHED_HOME_GAME_GAMES = 'CACHED_GAMES';
+const _CACHED_HOME_BANNER = 'CACHED_BANNER';
+const _CACHED_HOME_MARQUEE = 'CACHED_MARQUEE';
+const _CACHED_HOME_GAME_CATEGORY = 'CACHED_CATEGORY';
+const _CACHED_HOME_GAME_PLATFORM = 'CACHED_PLATFORM';
+const _CACHED_HOME_GAME_GAMES = 'CACHED_GAMES';
 
 enum HomeBox { Banner, Marquee, Category, Platform, Games, Time }
 
@@ -75,22 +75,22 @@ class HomeLocalStorageImpl implements HomeLocalStorage {
     String boxName;
     switch (homeBox) {
       case HomeBox.Banner:
-        boxName = CACHED_HOME_BANNER;
+        boxName = _CACHED_HOME_BANNER;
         break;
       case HomeBox.Marquee:
-        boxName = CACHED_HOME_MARQUEE;
+        boxName = _CACHED_HOME_MARQUEE;
         break;
       case HomeBox.Category:
-        boxName = CACHED_HOME_GAME_CATEGORY;
+        boxName = _CACHED_HOME_GAME_CATEGORY;
         break;
       case HomeBox.Platform:
-        boxName = CACHED_HOME_GAME_PLATFORM;
+        boxName = _CACHED_HOME_GAME_PLATFORM;
         break;
       case HomeBox.Games:
-        boxName = CACHED_HOME_GAME_GAMES + classname;
+        boxName = _CACHED_HOME_GAME_GAMES + classname;
         break;
       case HomeBox.Time:
-        boxName = Global.CACHE_APP_DATA;
+        boxName = Global.CACHED_TIME_DATA;
         break;
     }
     return boxName;

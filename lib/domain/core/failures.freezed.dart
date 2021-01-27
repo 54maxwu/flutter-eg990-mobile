@@ -225,6 +225,7 @@ class _$ServerError implements ServerError {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(msg);
 
+  @JsonKey(ignore: true)
   @override
   $ServerErrorCopyWith<ServerError> get copyWith =>
       _$ServerErrorCopyWithImpl<ServerError>(this, _$identity);
@@ -286,6 +287,7 @@ abstract class ServerError implements HttpFailure {
 
   String get code;
   String get msg;
+  @JsonKey(ignore: true)
   $ServerErrorCopyWith<ServerError> get copyWith;
 }
 
@@ -344,6 +346,7 @@ mixin _$DataFailure<T> {
     @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $DataFailureCopyWith<T, DataFailure<T>> get copyWith;
 }
 
@@ -441,6 +444,7 @@ class _$DataDecodeError<T> implements DataDecodeError<T> {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   $DataDecodeErrorCopyWith<T, DataDecodeError<T>> get copyWith =>
       _$DataDecodeErrorCopyWithImpl<T, DataDecodeError<T>>(this, _$identity);
@@ -505,6 +509,7 @@ abstract class DataDecodeError<T> implements DataFailure<T> {
   @override
   dynamic get data;
   @override
+  @JsonKey(ignore: true)
   $DataDecodeErrorCopyWith<T, DataDecodeError<T>> get copyWith;
 }
 
@@ -573,6 +578,7 @@ class _$InvalidResponse<T> implements InvalidResponse<T> {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   $InvalidResponseCopyWith<T, InvalidResponse<T>> get copyWith =>
       _$InvalidResponseCopyWithImpl<T, InvalidResponse<T>>(this, _$identity);
@@ -637,6 +643,7 @@ abstract class InvalidResponse<T> implements DataFailure<T> {
   @override
   dynamic get data;
   @override
+  @JsonKey(ignore: true)
   $InvalidResponseCopyWith<T, InvalidResponse<T>> get copyWith;
 }
 
@@ -679,6 +686,7 @@ mixin _$ValueFailure<T> {
     @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith;
 }
 
@@ -764,6 +772,7 @@ class _$InvalidUserId<T> implements InvalidUserId<T> {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   $InvalidUserIdCopyWith<T, InvalidUserId<T>> get copyWith =>
       _$InvalidUserIdCopyWithImpl<T, InvalidUserId<T>>(this, _$identity);
@@ -819,5 +828,6 @@ abstract class InvalidUserId<T> implements ValueFailure<T> {
   @override
   T get data;
   @override
+  @JsonKey(ignore: true)
   $InvalidUserIdCopyWith<T, InvalidUserId<T>> get copyWith;
 }

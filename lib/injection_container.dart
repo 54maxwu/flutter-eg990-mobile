@@ -16,6 +16,7 @@ import 'domain/sector/promo/promo_local_storage.dart';
 import 'domain/sector/promo/promo_repository.dart';
 import 'domain/sector/service/service_repository.dart';
 import 'domain/sector/transfer/transfer_repository.dart';
+import 'domain/sector/bankcard/bankcard_repository.dart';
 import 'domain/sector/update_repository.dart';
 import 'domain/sector/withdraw/withdraw_repository.dart';
 import 'domain/user/login/login_repository.dart';
@@ -30,6 +31,7 @@ import 'presentation/features/member_features/deposit/state/deposit_store.dart';
 import 'presentation/features/member_features/member_center/state/member_center_store.dart';
 import 'presentation/features/member_features/transfer/state/transfer_store.dart';
 import 'presentation/features/member_features/withdraw/state/withdraw_store.dart';
+import 'presentation/features/member_features/bankcard/state/bankcard_store.dart';
 import 'presentation/features/notice_board/state/notice_store.dart';
 import 'presentation/features/promo/state/promo_store.dart';
 import 'presentation/features/service/state/service_store.dart';
@@ -144,6 +146,13 @@ Future<void> init() async {
   sl.registerFactory<WithdrawRepository>(
       () => WithdrawRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
   sl.registerFactory(() => WithdrawStore(sl<WithdrawRepository>()));
+
+  ///
+  /// BANKCARD
+  ///
+  sl.registerFactory<BankcardRepository>(
+      () => BankcardRepositoryImpl(dioApiService: sl(), jwtInterface: sl()));
+  sl.registerFactory(() => BankcardStore(sl<BankcardRepository>()));
 
   ///
   /// BALANCE

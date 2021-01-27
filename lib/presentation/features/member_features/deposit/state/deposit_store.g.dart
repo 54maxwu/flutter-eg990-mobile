@@ -138,11 +138,11 @@ mixin _$DepositStore on _DepositStore, Store {
     return _$getRuleMapAsyncAction.run(() => super.getRuleMap());
   }
 
-  final _$sendRequestAsyncAction = AsyncAction('_DepositStore.sendRequest');
+  final _$postDepositAsyncAction = AsyncAction('_DepositStore.postDeposit');
 
   @override
   Future<void> postDeposit(DepositForm form) {
-    return _$sendRequestAsyncAction.run(() => super.postDeposit(form));
+    return _$postDepositAsyncAction.run(() => super.postDeposit(form));
   }
 
   @override

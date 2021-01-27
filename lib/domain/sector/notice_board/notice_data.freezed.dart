@@ -52,6 +52,7 @@ mixin _$NoticeData {
   int get sort;
   int get typeId;
 
+  @JsonKey(ignore: true)
   $NoticeDataCopyWith<NoticeData> get copyWith;
 }
 
@@ -218,6 +219,7 @@ class _$_NoticeData implements _NoticeData {
       const DeepCollectionEquality().hash(sort) ^
       const DeepCollectionEquality().hash(typeId);
 
+  @JsonKey(ignore: true)
   @override
   _$NoticeDataCopyWith<_NoticeData> get copyWith =>
       __$NoticeDataCopyWithImpl<_NoticeData>(this, _$identity);
@@ -252,5 +254,6 @@ abstract class _NoticeData implements NoticeData {
   @override
   int get typeId;
   @override
+  @JsonKey(ignore: true)
   _$NoticeDataCopyWith<_NoticeData> get copyWith;
 }

@@ -37,6 +37,7 @@ extension BankcardModelExtension on BankcardModel {
           bankName: bankName,
           bankAccount: bankAccountNo,
           accountName: firstName,
+          bankAddress: '$bankProvince - $bankAddress',
         )
       : Bankcard.empty();
 }

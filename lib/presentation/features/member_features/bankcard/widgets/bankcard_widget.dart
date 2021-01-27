@@ -22,13 +22,25 @@ class BankcardWidget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text(
-                bankcard.bankName,
-                style: TextStyle(
-                  color: themeColor.defaultCardTitleColor,
-                  fontSize: FontSize.TITLE.value,
-                  fontWeight: FontWeight.w600,
-                ),
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: bankcard.bankName,
+                    style: TextStyle(
+                      color: themeColor.defaultCardTitleColor,
+                      fontSize: FontSize.TITLE.value,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '\n${bankcard.bankAddress}',
+                    style: TextStyle(
+                      color: themeColor.defaultTextColor,
+                      fontSize: FontSize.MESSAGE.value,
+                    ),
+                  ),
+                ]),
               ),
             ),
             Center(

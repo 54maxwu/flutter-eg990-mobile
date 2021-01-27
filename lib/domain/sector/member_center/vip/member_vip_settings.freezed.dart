@@ -55,6 +55,7 @@ mixin _$MemberVipSettings {
   @JsonKey(name: 'cardgame', defaultValue: '')
   String get cardGame;
 
+  @JsonKey(ignore: true)
   $MemberVipSettingsCopyWith<MemberVipSettings> get copyWith;
 }
 
@@ -234,6 +235,7 @@ class _$_MemberVipSettings implements _MemberVipSettings {
       const DeepCollectionEquality().hash(lotteryGame) ^
       const DeepCollectionEquality().hash(cardGame);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberVipSettingsCopyWith<_MemberVipSettings> get copyWith =>
       __$MemberVipSettingsCopyWithImpl<_MemberVipSettings>(this, _$identity);
@@ -272,5 +274,6 @@ abstract class _MemberVipSettings implements MemberVipSettings {
   @JsonKey(name: 'cardgame', defaultValue: '')
   String get cardGame;
   @override
+  @JsonKey(ignore: true)
   _$MemberVipSettingsCopyWith<_MemberVipSettings> get copyWith;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_eg990_mobile/domain/sector/bankcard/bankcard_form_data.dart';
 import 'package:flutter_eg990_mobile/infrastructure/repository_export.dart';
 
 import 'bankcard_form.dart';
@@ -25,10 +26,11 @@ abstract class BankcardRepository {
 
   Future<Either<Failure, Map<String, String>>> getMapByCode(String code);
 
-  Future<Either<Failure, RequestCodeModel>> postMobileVerifyRequest(
-      BankcardForm form);
+  Future<Either<Failure, RequestCodeModel>> requestMobileVerify(
+      BankcardNewMobile form);
 
-  Future<Either<Failure, RequestCodeModel>> postMobileVerify(BankcardForm form);
+  Future<Either<Failure, RequestCodeModel>> postMobileVerifyCode(
+      BankcardNewMobile form);
 }
 
 class BankcardRepositoryImpl implements BankcardRepository {
@@ -190,13 +192,13 @@ class BankcardRepositoryImpl implements BankcardRepository {
   }
 
   @override
-  Future<Either<Failure, RequestCodeModel>> postMobileVerifyRequest(
-    BankcardForm form,
+  Future<Either<Failure, RequestCodeModel>> requestMobileVerify(
+    BankcardNewMobile form,
   ) async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
         BankcardApi.POST_MOBILE_VERIFY_REQUEST,
-        data: form.mobileToJson(),
+        data: form.codeRequestJson(),
         userToken: jwtInterface.token,
       ),
       parseJson: RequestCodeModel.parseJson,
@@ -210,13 +212,13 @@ class BankcardRepositoryImpl implements BankcardRepository {
   }
 
   @override
-  Future<Either<Failure, RequestCodeModel>> postMobileVerify(
-    BankcardForm form,
+  Future<Either<Failure, RequestCodeModel>> postMobileVerifyCode(
+    BankcardNewMobile form,
   ) async {
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.post(
         BankcardApi.POST_MOBILE_VERIFY,
-        data: form.verifyToJson(),
+        data: form.verifyRequestJson(),
         userToken: jwtInterface.token,
       ),
       parseJson: RequestCodeModel.parseJson,

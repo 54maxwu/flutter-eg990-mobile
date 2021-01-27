@@ -54,6 +54,7 @@ mixin _$DepositResult {
   int get ledger;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $DepositResultCopyWith<DepositResult> get copyWith;
 }
 
@@ -201,6 +202,7 @@ class _$_DepositResult implements _DepositResult {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(ledger);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositResultCopyWith<_DepositResult> get copyWith =>
       __$DepositResultCopyWithImpl<_DepositResult>(this, _$identity);
@@ -237,5 +239,6 @@ abstract class _DepositResult implements DepositResult {
   @JsonKey(name: 'ledgerindex', defaultValue: -1)
   int get ledger;
   @override
+  @JsonKey(ignore: true)
   _$DepositResultCopyWith<_DepositResult> get copyWith;
 }

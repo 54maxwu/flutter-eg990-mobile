@@ -45,6 +45,7 @@ mixin _$ShortcutData {
   RoutePage get route;
   bool get isUserOnly;
 
+  @JsonKey(ignore: true)
   $ShortcutDataCopyWith<ShortcutData> get copyWith;
 }
 
@@ -214,6 +215,7 @@ class _$_ShortcutData with DiagnosticableTreeMixin implements _ShortcutData {
       const DeepCollectionEquality().hash(route) ^
       const DeepCollectionEquality().hash(isUserOnly);
 
+  @JsonKey(ignore: true)
   @override
   _$ShortcutDataCopyWith<_ShortcutData> get copyWith =>
       __$ShortcutDataCopyWithImpl<_ShortcutData>(this, _$identity);
@@ -241,5 +243,6 @@ abstract class _ShortcutData implements ShortcutData {
   @override
   bool get isUserOnly;
   @override
+  @JsonKey(ignore: true)
   _$ShortcutDataCopyWith<_ShortcutData> get copyWith;
 }

@@ -243,7 +243,7 @@ class AppNavigator {
       } else if (_previous == homeName) {
         returnToHome();
       } else if (mainNavigate.canPop()) {
-        final dest = (usePreviousAsRoot)
+        final dest = (usePreviousAsRoot || from.pageRoot == '-1')
             ? _previous.toRoutePage
             : from.pageRoot.toRoutePage;
         if (dest != null) {
@@ -252,6 +252,13 @@ class AppNavigator {
           updateNavigateRoute(dest);
         } else {
           MyLogger.warn(msg: 'destination error, returning home', tag: _tag);
+          // debugPrint('debug route from root: ${from.pageRoot}');
+          // if (usePreviousAsRoot || from.pageRoot == '-1') {
+          //   debugPrint('debug route previous: ${_previous}');
+          //   debugPrint('debug route previous route: ${_previous.toRoutePage}');
+          // } else {
+          //   debugPrint('debug root page: ${from.pageRoot.toRoutePage}');
+          // }
           returnToHome();
         }
         _isWeb = false;

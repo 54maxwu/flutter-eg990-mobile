@@ -37,7 +37,7 @@ class PromoLocalStorageImpl implements PromoLocalStorage {
   Future<bool> usePromoCache() async {
     try {
       if (_cacheBox == null) {
-        _cacheBox = await getHiveBox(Global.CACHE_APP_DATA);
+        _cacheBox = await getHiveBox(Global.CACHED_TIME_DATA);
       }
       final String lastCacheTime =
           _cacheBox?.get('promos-cache', defaultValue: '') ?? '';

@@ -471,10 +471,10 @@ class S {
     );
   }
 
-  /// `For your privacy, the information cannot be modified after confirmation\nIf you need assistance, please contact customer service`
+  /// `For your privacy safety, the information cannot be modified after confirmation. `
   String get centerHintPrivacyEdit {
     return Intl.message(
-      'For your privacy, the information cannot be modified after confirmation\nIf you need assistance, please contact customer service',
+      'For your privacy safety, the information cannot be modified after confirmation. ',
       name: 'centerHintPrivacyEdit',
       desc: '',
       args: [],
@@ -576,6 +576,16 @@ class S {
     return Intl.message(
       'Adjust withdrawal',
       name: 'dealsDetailTypeAdjustWithdraw',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For immediate arrival, please be sure to enter the correct name`
+  String get depositHintAccountName {
+    return Intl.message(
+      'For immediate arrival, please be sure to enter the correct name',
+      name: 'depositHintAccountName',
       desc: '',
       args: [],
     );
@@ -1172,10 +1182,10 @@ class S {
   }
 
   /// `Incorrect account name`
-  String get fieldErrorCardAccountName {
+  String get fieldErrorAccountName {
     return Intl.message(
       'Incorrect account name',
-      name: 'fieldErrorCardAccountName',
+      name: 'fieldErrorAccountName',
       desc: '',
       args: [],
     );
@@ -1228,6 +1238,16 @@ class S {
       name: 'fieldErrorInvalidAccount',
       desc: '',
       args: [min, max],
+    );
+  }
+
+  /// `Invalid name format`
+  String get fieldErrorInvalidCardholder {
+    return Intl.message(
+      'Invalid name format',
+      name: 'fieldErrorInvalidCardholder',
+      desc: '',
+      args: [],
     );
   }
 
@@ -1391,11 +1411,61 @@ class S {
     );
   }
 
+  /// `Please enter your bank account or card number`
+  String get fieldHintBankAccount {
+    return Intl.message(
+      'Please enter your bank account or card number',
+      name: 'fieldHintBankAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the bank's location/area (optional)`
+  String get fieldHintBankArea {
+    return Intl.message(
+      'Please enter the bank\'s location/area (optional)',
+      name: 'fieldHintBankArea',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the bank's branch name`
+  String get fieldHintBankBranch {
+    return Intl.message(
+      'Please enter the bank\'s branch name',
+      name: 'fieldHintBankBranch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the bank address province`
+  String get fieldHintBankProvince {
+    return Intl.message(
+      'Please enter the bank address province',
+      name: 'fieldHintBankProvince',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Fill in the birthday date to ensure that you are of legal age`
   String get fieldHintBirthday {
     return Intl.message(
       'Fill in the birthday date to ensure that you are of legal age',
       name: 'fieldHintBirthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the cardholder's name`
+  String get fieldHintCardholder {
+    return Intl.message(
+      'Please enter the cardholder\'s name',
+      name: 'fieldHintCardholder',
       desc: '',
       args: [],
     );
@@ -1591,11 +1661,41 @@ class S {
     );
   }
 
+  /// `{value} digits`
+  String fieldHintPhoneArg(Object value) {
+    return Intl.message(
+      '$value digits',
+      name: 'fieldHintPhoneArg',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `{min}~{max} digits`
+  String fieldHintPhoneArg2(Object min, Object max) {
+    return Intl.message(
+      '$min~$max digits',
+      name: 'fieldHintPhoneArg2',
+      desc: '',
+      args: [min, max],
+    );
+  }
+
   /// `please enter a name`
   String get fieldHintSearchGame {
     return Intl.message(
       'please enter a name',
       name: 'fieldHintSearchGame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select payment bank`
+  String get fieldHintSelectPaymentBank {
+    return Intl.message(
+      'Please select payment bank',
+      name: 'fieldHintSelectPaymentBank',
       desc: '',
       args: [],
     );
@@ -1944,10 +2044,10 @@ class S {
     );
   }
 
-  /// `Account (card) number`
+  /// `Bank Account`
   String get fieldTitleBankAccount {
     return Intl.message(
-      'Account (card) number',
+      'Bank Account',
       name: 'fieldTitleBankAccount',
       desc: '',
       args: [],
@@ -1999,6 +2099,16 @@ class S {
     return Intl.message(
       'Birthday',
       name: 'fieldTitleBirthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cardholder`
+  String get fieldTitleCardHolder {
+    return Intl.message(
+      'Cardholder',
+      name: 'fieldTitleCardHolder',
       desc: '',
       args: [],
     );
@@ -2894,6 +3004,46 @@ class S {
     );
   }
 
+  /// `In order for your funds to arrive quickly, please make sure that the name you fill in is consistent with the name of your bank account`
+  String get newBankcardCardholderHint {
+    return Intl.message(
+      'In order for your funds to arrive quickly, please make sure that the name you fill in is consistent with the name of your bank account',
+      name: 'newBankcardCardholderHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please make sure that the address you fill in is consistent with the bank where you open your account.`
+  String get newBankcardCardAddressHint {
+    return Intl.message(
+      'Please make sure that the address you fill in is consistent with the bank where you open your account.',
+      name: 'newBankcardCardAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The mobile phone number will help you recover your account, and it is also important for customer service to confirm your identity`
+  String get newBankcardCardMobileHint {
+    return Intl.message(
+      'The mobile phone number will help you recover your account, and it is also important for customer service to confirm your identity',
+      name: 'newBankcardCardMobileHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check the bank card number carefully. If the card number is wrong, the funds will not be received.`
+  String get newBankcardCardNumberHint {
+    return Intl.message(
+      'Please check the bank card number carefully. If the card number is wrong, the funds will not be received.',
+      name: 'newBankcardCardNumberHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `General`
   String get noticeTabGeneral {
     return Intl.message(
@@ -2924,11 +3074,21 @@ class S {
     );
   }
 
-  /// `Contact Customer Service`
+  /// `Customer Service`
   String get pageBtnContactCs {
     return Intl.message(
-      'Contact Customer Service',
+      'Customer Service',
       name: 'pageBtnContactCs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you need help, please contact `
+  String get pageBtnContactCsPrefix {
+    return Intl.message(
+      'If you need help, please contact ',
+      name: 'pageBtnContactCsPrefix',
       desc: '',
       args: [],
     );

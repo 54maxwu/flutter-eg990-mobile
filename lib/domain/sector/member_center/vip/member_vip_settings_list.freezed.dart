@@ -35,6 +35,7 @@ mixin _$MemberVipSettingsList {
   MemberVipSettings get item;
   String get title;
 
+  @JsonKey(ignore: true)
   $MemberVipSettingsListCopyWith<MemberVipSettingsList> get copyWith;
 }
 
@@ -155,6 +156,7 @@ class _$_MemberVipSettingsList implements _MemberVipSettingsList {
       const DeepCollectionEquality().hash(item) ^
       const DeepCollectionEquality().hash(title);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberVipSettingsListCopyWith<_MemberVipSettingsList> get copyWith =>
       __$MemberVipSettingsListCopyWithImpl<_MemberVipSettingsList>(
@@ -173,5 +175,6 @@ abstract class _MemberVipSettingsList implements MemberVipSettingsList {
   @override
   String get title;
   @override
+  @JsonKey(ignore: true)
   _$MemberVipSettingsListCopyWith<_MemberVipSettingsList> get copyWith;
 }

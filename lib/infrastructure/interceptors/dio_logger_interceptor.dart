@@ -8,7 +8,7 @@ class DioLoggerInterceptor extends PrettyDioLogger {
   bool get requestHeader => false;
 
   @override
-  bool get requestBody => false;
+  bool get requestBody => true;
 
   @override
   bool get responseHeader => false;

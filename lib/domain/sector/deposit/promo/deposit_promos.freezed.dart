@@ -37,6 +37,7 @@ mixin _$DepositPromos {
   @JsonKey(name: '2', fromJson: decodeDepositPromos)
   List<DepositPromoData> get other;
 
+  @JsonKey(ignore: true)
   $DepositPromosCopyWith<DepositPromos> get copyWith;
 }
 
@@ -145,6 +146,7 @@ class _$_DepositPromos implements _DepositPromos {
       const DeepCollectionEquality().hash(local) ^
       const DeepCollectionEquality().hash(other);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositPromosCopyWith<_DepositPromos> get copyWith =>
       __$DepositPromosCopyWithImpl<_DepositPromos>(this, _$identity);
@@ -164,5 +166,6 @@ abstract class _DepositPromos implements DepositPromos {
   @JsonKey(name: '2', fromJson: decodeDepositPromos)
   List<DepositPromoData> get other;
   @override
+  @JsonKey(ignore: true)
   _$DepositPromosCopyWith<_DepositPromos> get copyWith;
 }

@@ -55,29 +55,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m17(step) => "金额为${step}的倍数";
 
-  static m18(sex) => "${Intl.gender(sex, female: '女', male: '男', other: '其他')}";
+  static m18(value) => "${value}位手机号码";
 
-  static m19(name) => "${name}您好！";
+  static m19(min, max) => "${min}~${max}位手机号码";
 
-  static m20(wallet) => "无法取得${wallet}钱包綁定網址";
+  static m20(sex) => "${Intl.gender(sex, female: '女', male: '男', other: '其他')}";
 
-  static m21(task, Task) => "已取消${task}";
+  static m21(name) => "${name}您好！";
 
-  static m22(task) => "${task}成功";
+  static m22(wallet) => "无法取得${wallet}钱包綁定網址";
 
-  static m23(from, to) => "${from} 到 ${to}";
+  static m23(task, Task) => "已取消${task}";
 
-  static m24(url) => "無法開啟網頁連結：${url}";
+  static m24(task) => "${task}成功";
 
-  static m25(name) => "${name}，请重新登入";
+  static m25(from, to) => "${from} 到 ${to}";
 
-  static m26(name) => "欢迎，${name}";
+  static m26(url) => "無法開啟網頁連結：${url}";
 
-  static m27(site) => "点我开启${site}网页版";
+  static m27(name) => "${name}，请重新登入";
 
-  static m28(value) => "总计: ${value}";
+  static m28(name) => "欢迎，${name}";
 
-  static m29(value, version) => "发现新版本，请点击“更新”按钮前往下载安装。\n当前版本号：${version}\n新版本号：${value}";
+  static m29(site) => "点我开启${site}网页版";
+
+  static m30(value) => "总计: ${value}";
+
+  static m31(value, version) => "发现新版本，请点击“更新”按钮前往下载安装。\n当前版本号：${version}\n新版本号：${value}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -124,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerHintEMail" : MessageLookupByLibrary.simpleMessage("绑定电子邮箱保护帐号安全"),
     "centerHintMemberName" : MessageLookupByLibrary.simpleMessage("姓名需与银行卡持卡人姓名一致，否则无法提款"),
     "centerHintNoName" : MessageLookupByLibrary.simpleMessage("请至绑订银行卡做相关设定"),
-    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("为了您的隐私安全，信息在确认後将无法修改\n如需帮助，请联系客服"),
+    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("为了您的隐私安全，信息在确认後将无法修改"),
     "centerTabMemberData" : MessageLookupByLibrary.simpleMessage("个人资料"),
     "centerTabVipRank" : MessageLookupByLibrary.simpleMessage("Vip阶层"),
     "centerTextHeadPhoto" : MessageLookupByLibrary.simpleMessage("个人头像"),
@@ -135,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "certificateTitlePGC" : MessageLookupByLibrary.simpleMessage("菲律宾（PAGCOR）监督博彩牌"),
     "dealsDetailTypeAdjustDeposit" : MessageLookupByLibrary.simpleMessage("调整存款"),
     "dealsDetailTypeAdjustWithdraw" : MessageLookupByLibrary.simpleMessage("调整取款"),
+    "depositHintAccountName" : MessageLookupByLibrary.simpleMessage("为即时到帐，请务必输入正确的汇款人姓名"),
     "depositHintGetInfoFromCs" : MessageLookupByLibrary.simpleMessage("充值帐号资讯请联络客服"),
     "depositHintNoBankcard" : MessageLookupByLibrary.simpleMessage("充值请先填写银行卡资讯"),
     "depositHintOrderMaxAmount" : m3,
@@ -194,12 +199,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldCheckBoxStopShowing" : MessageLookupByLibrary.simpleMessage("不再显示"),
     "fieldCheckBoxTerms" : MessageLookupByLibrary.simpleMessage("已阅读并同意《条款与细则》的投注规则"),
     "fieldChipAmountAll" : MessageLookupByLibrary.simpleMessage("全部额度"),
-    "fieldErrorCardAccountName" : MessageLookupByLibrary.simpleMessage("帐号名称错误"),
+    "fieldErrorAccountName" : MessageLookupByLibrary.simpleMessage("帐号名称错误"),
     "fieldErrorCardNumber" : m8,
     "fieldErrorCardNumberFixed" : m9,
     "fieldErrorCardOwner" : MessageLookupByLibrary.simpleMessage("持卡人名称错误"),
     "fieldErrorConfirmPassword" : MessageLookupByLibrary.simpleMessage("密码不符合"),
     "fieldErrorInvalidAccount" : m10,
+    "fieldErrorInvalidCardholder" : MessageLookupByLibrary.simpleMessage("持卡人姓名格式错误"),
     "fieldErrorInvalidCreditAmount" : MessageLookupByLibrary.simpleMessage("金额输入错误"),
     "fieldErrorInvalidCreditMax" : m11,
     "fieldErrorInvalidCreditMin" : m12,
@@ -216,7 +222,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldErrorInvalidWechat" : MessageLookupByLibrary.simpleMessage("微信号格式错误"),
     "fieldErrorInvalidZalo" : MessageLookupByLibrary.simpleMessage("Zalo格式错误"),
     "fieldHintAmount" : MessageLookupByLibrary.simpleMessage("建議您存入特殊金額，以便存款快速匹配到帳(例如：105, 503等)"),
+    "fieldHintBankAccount" : MessageLookupByLibrary.simpleMessage("请输入银行帐号/卡号"),
+    "fieldHintBankArea" : MessageLookupByLibrary.simpleMessage("请输入开户银行所在地区(选填)"),
+    "fieldHintBankBranch" : MessageLookupByLibrary.simpleMessage("请输入开户银行支行名称(必填)"),
+    "fieldHintBankProvince" : MessageLookupByLibrary.simpleMessage("请输入开户银行网点(必填)"),
     "fieldHintBirthday" : MessageLookupByLibrary.simpleMessage("填写生日日期，确保您已符合法定年龄"),
+    "fieldHintCardholder" : MessageLookupByLibrary.simpleMessage("请输入持卡人的姓名"),
     "fieldHintDateFormat" : MessageLookupByLibrary.simpleMessage("格式为：0000–00–00"),
     "fieldHintDepositAmountRange" : m16,
     "fieldHintDepositAmountStep" : m17,
@@ -236,7 +247,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldHintPasswordNewConfirm" : MessageLookupByLibrary.simpleMessage("再次输入新密码"),
     "fieldHintPasswordOld" : MessageLookupByLibrary.simpleMessage("输入旧密码"),
     "fieldHintPhone" : MessageLookupByLibrary.simpleMessage("绑定手机号码保护帐号安全"),
+    "fieldHintPhoneArg" : m18,
+    "fieldHintPhoneArg2" : m19,
     "fieldHintSearchGame" : MessageLookupByLibrary.simpleMessage("请输入游戏名称"),
+    "fieldHintSelectPaymentBank" : MessageLookupByLibrary.simpleMessage("请选择支付银行"),
     "fieldHintVerifyCode" : MessageLookupByLibrary.simpleMessage("请输入验证码"),
     "fieldHintVerifyCodeFetch" : MessageLookupByLibrary.simpleMessage("24小时内只能获取一组验证码"),
     "fieldOptionDateAll" : MessageLookupByLibrary.simpleMessage("全部时间"),
@@ -246,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldOptionDateYesterday" : MessageLookupByLibrary.simpleMessage("昨天"),
     "fieldOptionDepositTypeAtm" : MessageLookupByLibrary.simpleMessage("ATM充值"),
     "fieldOptionDepositTypeTransfer" : MessageLookupByLibrary.simpleMessage("转帐充值"),
-    "fieldOptionGender" : m18,
+    "fieldOptionGender" : m20,
     "fieldOptionPlatformAll" : MessageLookupByLibrary.simpleMessage("全部平台"),
     "fieldOptionPromoNone" : MessageLookupByLibrary.simpleMessage("放弃申请优惠"),
     "fieldOptionStatus1" : MessageLookupByLibrary.simpleMessage("成功"),
@@ -270,13 +284,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldTitleAccount" : MessageLookupByLibrary.simpleMessage("帐号"),
     "fieldTitleAccountHolder" : MessageLookupByLibrary.simpleMessage("账户持有人"),
     "fieldTitleAccountName" : MessageLookupByLibrary.simpleMessage("帐户姓名"),
-    "fieldTitleBank" : MessageLookupByLibrary.simpleMessage("银行"),
-    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("账(卡)号"),
-    "fieldTitleBankArea" : MessageLookupByLibrary.simpleMessage("地区"),
+    "fieldTitleBank" : MessageLookupByLibrary.simpleMessage("所属银行"),
+    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("银行卡号"),
+    "fieldTitleBankArea" : MessageLookupByLibrary.simpleMessage("所在地区"),
     "fieldTitleBankBranch" : MessageLookupByLibrary.simpleMessage("银行支行"),
     "fieldTitleBankName" : MessageLookupByLibrary.simpleMessage("银行名称"),
     "fieldTitleBankProvince" : MessageLookupByLibrary.simpleMessage("开户网点"),
     "fieldTitleBirthday" : MessageLookupByLibrary.simpleMessage("生日"),
+    "fieldTitleCardHolder" : MessageLookupByLibrary.simpleMessage("持卡人姓名"),
     "fieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("确认密码"),
     "fieldTitleCreditAmount" : MessageLookupByLibrary.simpleMessage("金额"),
     "fieldTitleDateEnd" : MessageLookupByLibrary.simpleMessage("結束时间"),
@@ -332,7 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintTips" : MessageLookupByLibrary.simpleMessage("温馨提示"),
     "hintWalletRemain" : MessageLookupByLibrary.simpleMessage("钱包余额"),
     "hintWelcome" : MessageLookupByLibrary.simpleMessage("欢迎光临"),
-    "hintWelcomeMember" : m19,
+    "hintWelcomeMember" : m21,
     "msgActionCheckTerms" : MessageLookupByLibrary.simpleMessage("请阅读并勾选同意投注規则"),
     "msgAutoLoginError" : MessageLookupByLibrary.simpleMessage("数据错误，请手动登入"),
     "msgBalanceToMainPartFailed" : MessageLookupByLibrary.simpleMessage("部分平台转帐失败"),
@@ -349,27 +364,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "msgNetworkUsingCellular" : MessageLookupByLibrary.simpleMessage("您正在使用移动网络，依您的使用费率可能产生网络费用"),
     "msgNoEvent" : MessageLookupByLibrary.simpleMessage("当前没有活动"),
     "msgNoStoragePermission" : MessageLookupByLibrary.simpleMessage("请开启“保存”权限"),
-    "msgNoWalletBindUrl" : m20,
+    "msgNoWalletBindUrl" : m22,
     "msgNotEnoughCredit" : MessageLookupByLibrary.simpleMessage("余额不足"),
     "msgPleaseBindBankcard" : MessageLookupByLibrary.simpleMessage("请先绑定银行卡！"),
     "msgPleaseWait" : MessageLookupByLibrary.simpleMessage("请稍候…"),
     "msgProcessing" : MessageLookupByLibrary.simpleMessage("处理请求中，请稍候…"),
     "msgSuccess" : MessageLookupByLibrary.simpleMessage("操作成功"),
-    "msgTaskCanceled" : m21,
-    "msgTaskSuccess" : m22,
-    "msgTransferFromTo" : m23,
-    "msgUrlLaunchError" : m24,
+    "msgTaskCanceled" : m23,
+    "msgTaskSuccess" : m24,
+    "msgTransferFromTo" : m25,
+    "msgUrlLaunchError" : m26,
     "msgUrlNavNotSupported" : MessageLookupByLibrary.simpleMessage("无法跳转至目的地网址"),
-    "msgUserLogout" : m25,
+    "msgUserLogout" : m27,
     "msgVerifySuccess" : MessageLookupByLibrary.simpleMessage("验证成功"),
     "msgWaitLogin" : MessageLookupByLibrary.simpleMessage("登入中，请稍候..."),
     "msgWaitProcessComplete" : MessageLookupByLibrary.simpleMessage("处理请求中，请勿退出"),
-    "msgWelcomeUser" : m26,
+    "msgWelcomeUser" : m28,
     "msgWorkInProgress" : MessageLookupByLibrary.simpleMessage("功能即将上线!"),
+    "newBankcardCardAddressHint" : MessageLookupByLibrary.simpleMessage("请认真校准开户行及开户行地址，如有错误请手动修改"),
+    "newBankcardCardMobileHint" : MessageLookupByLibrary.simpleMessage("手机号码将有助于您找回帐号，同时也是客服人员确认您身分的重要依据"),
+    "newBankcardCardNumberHint" : MessageLookupByLibrary.simpleMessage("请认真校对银行卡号，卡号错误资金将无法到帐"),
+    "newBankcardCardholderHint" : MessageLookupByLibrary.simpleMessage("为了您的资金能够迅速到帐，请确保填写的姓名与银行卡的开户姓名一致"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("一般讯息"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("维护通知"),
     "pageBtnChangePassword" : MessageLookupByLibrary.simpleMessage("更改密码"),
     "pageBtnContactCs" : MessageLookupByLibrary.simpleMessage("联系客服"),
+    "pageBtnContactCsPrefix" : MessageLookupByLibrary.simpleMessage("如需帮助，请 "),
     "pageBtnHelp" : MessageLookupByLibrary.simpleMessage("教程"),
     "pageBtnLogin" : MessageLookupByLibrary.simpleMessage("登入"),
     "pageBtnLogout" : MessageLookupByLibrary.simpleMessage("登出"),
@@ -481,16 +501,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "textCategorySport" : MessageLookupByLibrary.simpleMessage("体育"),
     "textCategorySportFull" : MessageLookupByLibrary.simpleMessage("体育竞技"),
     "textCategoryWeb" : MessageLookupByLibrary.simpleMessage("网页版"),
-    "textCategoryWebHint" : m27,
+    "textCategoryWebHint" : m29,
     "textDefaultMarquee" : MessageLookupByLibrary.simpleMessage("尊敬的会员您好！如果您有任何使用上的问题，请使用在线客服系统。"),
     "textLanguage" : MessageLookupByLibrary.simpleMessage("語言"),
-    "textTotalCredit" : m28,
+    "textTotalCredit" : m30,
     "textTransferHint1" : MessageLookupByLibrary.simpleMessage("1.转账前请退出游戏或游戏投注界面。"),
     "textTransferHint2" : MessageLookupByLibrary.simpleMessage("2.不参与活动时，户内转账金额不能少于1元，户内转账不收取任何手续费。"),
     "textTransferHint3" : MessageLookupByLibrary.simpleMessage("3.如遇网速较慢时，请耐心等侯片刻，不要多次重复提交。"),
     "textTransferHint4" : MessageLookupByLibrary.simpleMessage("4.转帐成功後若平台金额未改变，请手动刷新平台或联系客服"),
     "textUpdateErrorUrl" : MessageLookupByLibrary.simpleMessage("无法取得下载网址，请联系客服!!"),
-    "textUpdateMessage" : m29,
+    "textUpdateMessage" : m31,
     "walletBtnHintOneClickTransfer" : MessageLookupByLibrary.simpleMessage("所有平台额度转入主钱包"),
     "walletBtnOneClickTransfer" : MessageLookupByLibrary.simpleMessage("一键归户"),
     "walletHintWalletMulti" : MessageLookupByLibrary.simpleMessage("*需手动转移额度到该游戏平台"),

@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/internal/input_limit.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/form/deposit_form.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/form/deposit_form_data.dart';
 import 'package:flutter_eg990_mobile/domain/sector/deposit/types/deposit_method.dart';
@@ -122,7 +121,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
                   child: Text(
-                    '請選擇支付銀行',
+                    localeStr.fieldHintSelectPaymentBank,
                     style: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultHintColor,
@@ -166,14 +165,14 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                     onChanged: (value) => _inputName = value,
                     validator: (_) => _inputName.isNotEmpty
                         ? null
-                        : localeStr.fieldErrorCardAccountName,
+                        : localeStr.fieldErrorAccountName,
                   ),
                 ),
                 Divider(thickness: 0.2),
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
                   child: Text(
-                    '為即時到帳，請務必輸入正確的匯款人姓名',
+                    localeStr.depositHintAccountName,
                     style: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultHintColor,
@@ -283,7 +282,7 @@ class DepositLocalFormWidgetState extends State<DepositLocalFormWidget>
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
                   child: Text(
-                    '建議您存入特殊金額，以便存款快速匹配到帳(例如：105, 503等)',
+                    localeStr.fieldHintAmount,
                     style: TextStyle(
                       fontSize: FontSize.MESSAGE.value,
                       color: themeColor.defaultHintColor,

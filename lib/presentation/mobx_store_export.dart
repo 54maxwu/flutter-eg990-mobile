@@ -49,7 +49,7 @@ String getErrorMsg({
   }
 
   _errorFrom = from;
-  if (msg.isNotEmpty) {
+  if (msg != null && msg.isNotEmpty) {
     _lastError = msg;
   }
   return msg ??

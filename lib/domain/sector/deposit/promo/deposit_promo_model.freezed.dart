@@ -78,6 +78,7 @@ mixin _$DepositPromoModel {
   String get featureIndex;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $DepositPromoModelCopyWith<DepositPromoModel> get copyWith;
 }
 
@@ -318,6 +319,7 @@ class _$_DepositPromoModel implements _DepositPromoModel {
       const DeepCollectionEquality().hash(sequence) ^
       const DeepCollectionEquality().hash(featureIndex);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositPromoModelCopyWith<_DepositPromoModel> get copyWith =>
       __$DepositPromoModelCopyWithImpl<_DepositPromoModel>(this, _$identity);
@@ -377,5 +379,6 @@ abstract class _DepositPromoModel implements DepositPromoModel {
   @JsonKey(name: 'featureindex')
   String get featureIndex;
   @override
+  @JsonKey(ignore: true)
   _$DepositPromoModelCopyWith<_DepositPromoModel> get copyWith;
 }

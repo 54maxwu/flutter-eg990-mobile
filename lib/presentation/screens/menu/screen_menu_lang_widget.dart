@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/application/data/app_cache.dart';
 import 'package:flutter_eg990_mobile/application/internal/language_code.dart';
 import 'package:flutter_eg990_mobile/application/internal/local_strings.dart';
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/presentation/common/images/network_image.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/streams/app_preference_streams.dart';
@@ -75,19 +75,12 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
           String newLang = value;
           try {
             sl.get<LocalStrings>()?.setLanguage(newLang);
-            Future.microtask(() async {
-              Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-              if (box != null) {
-                await box.put(Global.CACHE_APP_DATA_KEY_LANG, newLang);
-                debugPrint(
-                    'box lang: ${box.get(Global.CACHE_APP_DATA_KEY_LANG)}');
-              }
-            });
+            AppCache.saveAppLocale(LanguageCode.getByCode(newLang));
           } catch (e) {
             MyLogger.error(
                 msg: 'Localize File not initialized', tag: 'LocalStrings');
           } finally {
-            Global.setLocale = newLang;
+            Global.setLocaleByCode = newLang;
             if (mounted) {
               _currentLang = newLang;
             }

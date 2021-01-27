@@ -10,11 +10,11 @@ export 'package:hive/hive.dart' show Box;
 
 const String HIVE_ACTION_TAG = 'HIVE action';
 
-Future<Box> getHiveBox(String boxName) async {
-  if (!Hive.isBoxOpen(boxName))
-    return await Hive.openBox(boxName);
+Future<Box<T>> getHiveBox<T>(String boxName) async {
+  if (Hive.isBoxOpen(boxName) == false)
+    return await Hive.openBox<T>(boxName);
   else
-    return Hive.box(boxName);
+    return Hive.box<T>(boxName);
 }
 
 void closeHiveBox(String boxName) {

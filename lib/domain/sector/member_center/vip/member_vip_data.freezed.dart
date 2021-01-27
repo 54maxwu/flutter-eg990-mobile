@@ -96,6 +96,7 @@ mixin _$MemberVipData {
   int get sportGameLevel;
   int get sportGameValue;
 
+  @JsonKey(ignore: true)
   $MemberVipDataCopyWith<MemberVipData> get copyWith;
 }
 
@@ -556,6 +557,7 @@ class _$_MemberVipData extends _MemberVipData with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(sportGameLevel) ^
       const DeepCollectionEquality().hash(sportGameValue);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberVipDataCopyWith<_MemberVipData> get copyWith =>
       __$MemberVipDataCopyWithImpl<_MemberVipData>(this, _$identity);
@@ -635,5 +637,6 @@ abstract class _MemberVipData extends MemberVipData {
   @override
   int get sportGameValue;
   @override
+  @JsonKey(ignore: true)
   _$MemberVipDataCopyWith<_MemberVipData> get copyWith;
 }

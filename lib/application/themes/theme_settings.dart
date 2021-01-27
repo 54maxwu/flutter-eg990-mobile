@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart' show ThemeData;
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
-import 'package:flutter_eg990_mobile/application/global.dart';
+import 'package:flutter_eg990_mobile/application/data/app_cache.dart';
 import 'package:flutter_eg990_mobile/presentation/screens/streams/app_preference_streams.dart';
 
 import 'theme_color_enum.dart';
@@ -43,14 +42,7 @@ class ThemeSettings implements ThemeInterface {
     } finally {
       if (notify) {
         appPreference.notifyThemeChange(_themeEnum);
-        Future.microtask(() async {
-          Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-          if (box != null) {
-            await box.put(Global.CACHE_APP_DATA_KEY_THEME, themeEnum.value);
-            debugPrint(
-                'box theme: ${box.get(Global.CACHE_APP_DATA_KEY_THEME)}');
-          }
-        });
+        AppCache.saveAppTheme(themeEnum);
       }
     }
   }

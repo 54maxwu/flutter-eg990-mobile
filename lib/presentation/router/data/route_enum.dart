@@ -17,6 +17,7 @@ enum RouteEnum {
   DEPOSIT,
   TRANSFER,
   BANKCARD,
+  BANKCARD_NEW,
   WITHDRAW,
   BALANCE,
   WALLET,
@@ -93,6 +94,10 @@ extension RouteEnumExtension on RouteEnum {
       /// Member
       case RouteEnum.MEMBER_CENTER:
         return localeStr.pageTitleMemberCenter;
+      case RouteEnum.BANKCARD:
+        return localeStr.pageTitleMemberCard;
+      case RouteEnum.BANKCARD_NEW:
+        return localeStr.hintAddBankcard;
       case RouteEnum.WALLET:
         return localeStr.pageTitleMemberWallet;
       case RouteEnum.BET_RECORD:
@@ -166,6 +171,8 @@ extension RouteEnumExtension on RouteEnum {
       case RouteEnum.BANKCARD:
       case RouteEnum.WITHDRAW:
       case RouteEnum.MEMBER_CENTER:
+      case RouteEnum.BANKCARD:
+      case RouteEnum.BANKCARD_NEW:
       case RouteEnum.BALANCE:
       case RouteEnum.WALLET:
       case RouteEnum.TRANSFER_RECORD:

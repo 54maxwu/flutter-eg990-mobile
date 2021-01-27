@@ -79,6 +79,7 @@ mixin _$PromoEntity {
   @HiveField(12)
   String get activeDate;
 
+  @JsonKey(ignore: true)
   $PromoEntityCopyWith<PromoEntity> get copyWith;
 }
 
@@ -370,6 +371,7 @@ class _$_PromoEntity implements _PromoEntity {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(activeDate);
 
+  @JsonKey(ignore: true)
   @override
   _$PromoEntityCopyWith<_PromoEntity> get copyWith =>
       __$PromoEntityCopyWithImpl<_PromoEntity>(this, _$identity);
@@ -431,5 +433,6 @@ abstract class _PromoEntity implements PromoEntity {
   @HiveField(12)
   String get activeDate;
   @override
+  @JsonKey(ignore: true)
   _$PromoEntityCopyWith<_PromoEntity> get copyWith;
 }

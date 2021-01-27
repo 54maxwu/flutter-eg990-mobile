@@ -65,6 +65,7 @@ mixin _$GamePlatformModel {
   String get status;
   String get favorite;
 
+  @JsonKey(ignore: true)
   $GamePlatformModelCopyWith<GamePlatformModel> get copyWith;
 }
 
@@ -279,6 +280,7 @@ class _$_GamePlatformModel extends _GamePlatformModel {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(favorite);
 
+  @JsonKey(ignore: true)
   @override
   _$GamePlatformModelCopyWith<_GamePlatformModel> get copyWith =>
       __$GamePlatformModelCopyWithImpl<_GamePlatformModel>(this, _$identity);
@@ -327,5 +329,6 @@ abstract class _GamePlatformModel extends GamePlatformModel {
   @override
   String get favorite;
   @override
+  @JsonKey(ignore: true)
   _$GamePlatformModelCopyWith<_GamePlatformModel> get copyWith;
 }

@@ -55,29 +55,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m17(step) => "Số tiền là bội số của ${step}";
 
-  static m18(sex) => "${Intl.gender(sex, female: 'Nữ', male: 'Nam', other: 'Khác')}";
+  static m18(value) => "số điện thoại ${value}";
 
-  static m19(name) => "Xin chào ${name}!";
+  static m19(min, max) => "Số điện thoại ${min} ~ ${max}";
 
-  static m20(wallet) => "Không thể nhận URL liên kết ví ${wallet}";
+  static m20(sex) => "${Intl.gender(sex, female: 'Nữ', male: 'Nam', other: 'Khác')}";
 
-  static m21(task, Task) => "Đã hủy ${task}";
+  static m21(name) => "Xin chào ${name}!";
 
-  static m22(task) => "${task} đã thành công";
+  static m22(wallet) => "Không thể nhận URL liên kết ví ${wallet}";
 
-  static m23(from, to) => "${from} to ${to}";
+  static m23(task, Task) => "Đã hủy ${task}";
 
-  static m24(url) => "Không thể mở liên kết web: ${url}";
+  static m24(task) => "${task} đã thành công";
 
-  static m25(name) => "${name}, vui lòng đăng nhập lại";
+  static m25(from, to) => "${from} to ${to}";
 
-  static m26(name) => "Chào mừng, ${name}";
+  static m26(url) => "Không thể mở liên kết web: ${url}";
 
-  static m27(site) => "Nhấp vào tôi để mở phiên bản web ${site}";
+  static m27(name) => "${name}, vui lòng đăng nhập lại";
 
-  static m28(value) => "Tổng giá trị}";
+  static m28(name) => "Chào mừng, ${name}";
 
-  static m29(value, version) => "Nếu tìm thấy phiên bản mới, vui lòng nhấp vào nút \"Cập nhật\" để tải xuống và cài đặt.\nSố phiên bản hiện tại: ${version}\nSố phiên bản mới: ${value}";
+  static m29(site) => "Nhấp vào tôi để mở phiên bản web ${site}";
+
+  static m30(value) => "Tổng giá trị}";
+
+  static m31(value, version) => "Nếu tìm thấy phiên bản mới, vui lòng nhấp vào nút \"Cập nhật\" để tải xuống và cài đặt.\nSố phiên bản hiện tại: ${version}\nSố phiên bản mới: ${value}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -124,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerHintEMail" : MessageLookupByLibrary.simpleMessage("Liên kết email để bảo vệ bảo mật tài khoản"),
     "centerHintMemberName" : MessageLookupByLibrary.simpleMessage("Tên phải trùng với tên của chủ thẻ ngân hàng, nếu không sẽ không rút được tiền"),
     "centerHintNoName" : MessageLookupByLibrary.simpleMessage("Vui lòng đi đến liên kết thẻ ngân hàng để thực hiện các cài đặt liên quan"),
-    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("Vì quyền riêng tư của bạn, không thể sửa đổi thông tin sau khi xác nhận\nNếu bạn cần hỗ trợ, vui lòng liên hệ với bộ phận chăm sóc khách hàng"),
+    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("Vì quyền riêng tư của bạn, không thể sửa đổi thông tin sau khi xác nhận. "),
     "centerTabMemberData" : MessageLookupByLibrary.simpleMessage("thông tin cá nhân"),
     "centerTabVipRank" : MessageLookupByLibrary.simpleMessage("Hạng VIP"),
     "centerTextHeadPhoto" : MessageLookupByLibrary.simpleMessage("Ảnh đại diện"),
@@ -135,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "certificateTitlePGC" : MessageLookupByLibrary.simpleMessage("Philippines (PAGCOR) Giám sát thẻ chơi game"),
     "dealsDetailTypeAdjustDeposit" : MessageLookupByLibrary.simpleMessage("Tiền gửi điều chỉnh"),
     "dealsDetailTypeAdjustWithdraw" : MessageLookupByLibrary.simpleMessage("Điều chỉnh việc rút tiền"),
+    "depositHintAccountName" : MessageLookupByLibrary.simpleMessage("Để đến ngay, vui lòng nhập đúng tên người gửi"),
     "depositHintGetInfoFromCs" : MessageLookupByLibrary.simpleMessage("Vui lòng liên hệ bộ phận chăm sóc khách hàng để biết thông tin tài khoản nạp tiền"),
     "depositHintNoBankcard" : MessageLookupByLibrary.simpleMessage("Vui lòng điền thông tin thẻ ngân hàng trước"),
     "depositHintOrderMaxAmount" : m3,
@@ -194,12 +199,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldCheckBoxStopShowing" : MessageLookupByLibrary.simpleMessage("không hiển thị trở lại"),
     "fieldCheckBoxTerms" : MessageLookupByLibrary.simpleMessage("Đã đọc và đồng ý với các quy tắc cá cược của \"Điều khoản và Điều kiện\""),
     "fieldChipAmountAll" : MessageLookupByLibrary.simpleMessage("Hạn ngạch đầy đủ"),
-    "fieldErrorCardAccountName" : MessageLookupByLibrary.simpleMessage("Tên tài khoản không chính xác"),
+    "fieldErrorAccountName" : MessageLookupByLibrary.simpleMessage("Tên tài khoản không chính xác"),
     "fieldErrorCardNumber" : m8,
     "fieldErrorCardNumberFixed" : m9,
     "fieldErrorCardOwner" : MessageLookupByLibrary.simpleMessage("Tên chủ thẻ sai"),
     "fieldErrorConfirmPassword" : MessageLookupByLibrary.simpleMessage("Mật khẩu không hợp lệ"),
     "fieldErrorInvalidAccount" : m10,
+    "fieldErrorInvalidCardholder" : MessageLookupByLibrary.simpleMessage("Tên của chủ thẻ được định dạng không chính xác"),
     "fieldErrorInvalidCreditAmount" : MessageLookupByLibrary.simpleMessage("Số tiền nhập không chính xác"),
     "fieldErrorInvalidCreditMax" : m11,
     "fieldErrorInvalidCreditMin" : m12,
@@ -216,7 +222,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldErrorInvalidWechat" : MessageLookupByLibrary.simpleMessage("Lỗi định dạng wechat"),
     "fieldErrorInvalidZalo" : MessageLookupByLibrary.simpleMessage("Zalo lỗi định dạng"),
     "fieldHintAmount" : MessageLookupByLibrary.simpleMessage("Bạn nên gửi một số tiền đặc biệt để khoản tiền gửi có thể được khớp nhanh chóng (ví dụ: 105, 503, v.v.)"),
+    "fieldHintBankAccount" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập tài khoản ngân hàng / số thẻ"),
+    "fieldHintBankArea" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập địa điểm / khu vực của ngân hàng (Không bắt buộc)"),
+    "fieldHintBankBranch" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập chi nhánh ngân hàng"),
+    "fieldHintBankProvince" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập tỉnh ngân hàng"),
     "fieldHintBirthday" : MessageLookupByLibrary.simpleMessage("Điền vào ngày sinh nhật để đảm bảo rằng bạn đủ tuổi hợp pháp"),
+    "fieldHintCardholder" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập tên chủ thẻ"),
     "fieldHintDateFormat" : MessageLookupByLibrary.simpleMessage("Định dạng là: 0000–00–00"),
     "fieldHintDepositAmountRange" : m16,
     "fieldHintDepositAmountStep" : m17,
@@ -236,7 +247,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldHintPasswordNewConfirm" : MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu mới"),
     "fieldHintPasswordOld" : MessageLookupByLibrary.simpleMessage("Nhập mật khẩu cũ"),
     "fieldHintPhone" : MessageLookupByLibrary.simpleMessage("Liên kết số điện thoại di động để bảo vệ bảo mật tài khoản"),
+    "fieldHintPhoneArg" : m18,
+    "fieldHintPhoneArg2" : m19,
     "fieldHintSearchGame" : MessageLookupByLibrary.simpleMessage("Vui lòng nhập tên trò chơi"),
+    "fieldHintSelectPaymentBank" : MessageLookupByLibrary.simpleMessage("Vui lòng chọn ngân hàng thanh toán"),
     "fieldHintVerifyCode" : MessageLookupByLibrary.simpleMessage("vui lòng nhập mã xác nhận"),
     "fieldHintVerifyCodeFetch" : MessageLookupByLibrary.simpleMessage("Chỉ có thể nhận được một bộ mã xác minh trong vòng 24 giờ"),
     "fieldOptionDateAll" : MessageLookupByLibrary.simpleMessage("Mọi lúc"),
@@ -246,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldOptionDateYesterday" : MessageLookupByLibrary.simpleMessage("hôm qua"),
     "fieldOptionDepositTypeAtm" : MessageLookupByLibrary.simpleMessage("Nạp tiền ATM"),
     "fieldOptionDepositTypeTransfer" : MessageLookupByLibrary.simpleMessage("Chuyển quĩ"),
-    "fieldOptionGender" : m18,
+    "fieldOptionGender" : m20,
     "fieldOptionPlatformAll" : MessageLookupByLibrary.simpleMessage("Tất cả các nền tảng"),
     "fieldOptionPromoNone" : MessageLookupByLibrary.simpleMessage("Từ bỏ đề nghị"),
     "fieldOptionStatus1" : MessageLookupByLibrary.simpleMessage("sự thành công"),
@@ -270,13 +284,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldTitleAccount" : MessageLookupByLibrary.simpleMessage("số tài khoản"),
     "fieldTitleAccountHolder" : MessageLookupByLibrary.simpleMessage("Chủ tài khoản"),
     "fieldTitleAccountName" : MessageLookupByLibrary.simpleMessage("Tên tài khoản"),
-    "fieldTitleBank" : MessageLookupByLibrary.simpleMessage("ngân hàng"),
-    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("Số tài khoản (thẻ)"),
-    "fieldTitleBankArea" : MessageLookupByLibrary.simpleMessage("khu vực"),
+    "fieldTitleBank" : MessageLookupByLibrary.simpleMessage("Ngân hàng"),
+    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("Số thẻ ngân hàng"),
+    "fieldTitleBankArea" : MessageLookupByLibrary.simpleMessage("Khu vực"),
     "fieldTitleBankBranch" : MessageLookupByLibrary.simpleMessage("Chi nhánh ngân hàng"),
-    "fieldTitleBankName" : MessageLookupByLibrary.simpleMessage("tên ngân hàng"),
+    "fieldTitleBankName" : MessageLookupByLibrary.simpleMessage("Tên ngân hàng"),
     "fieldTitleBankProvince" : MessageLookupByLibrary.simpleMessage("Mở tài khoản"),
-    "fieldTitleBirthday" : MessageLookupByLibrary.simpleMessage("sinh nhật"),
+    "fieldTitleBirthday" : MessageLookupByLibrary.simpleMessage("Sinh nhật"),
+    "fieldTitleCardHolder" : MessageLookupByLibrary.simpleMessage("Tên chủ thẻ"),
     "fieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
     "fieldTitleCreditAmount" : MessageLookupByLibrary.simpleMessage("Số tiền"),
     "fieldTitleDateEnd" : MessageLookupByLibrary.simpleMessage("Thời gian kết thúc"),
@@ -332,7 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintTips" : MessageLookupByLibrary.simpleMessage("Lời khuyên"),
     "hintWalletRemain" : MessageLookupByLibrary.simpleMessage("Số dư trên ví"),
     "hintWelcome" : MessageLookupByLibrary.simpleMessage("chào mừng"),
-    "hintWelcomeMember" : m19,
+    "hintWelcomeMember" : m21,
     "msgActionCheckTerms" : MessageLookupByLibrary.simpleMessage("Vui lòng đọc và đánh dấu để đồng ý với các quy tắc cá cược"),
     "msgAutoLoginError" : MessageLookupByLibrary.simpleMessage("Lỗi dữ liệu, vui lòng đăng nhập thủ công"),
     "msgBalanceToMainPartFailed" : MessageLookupByLibrary.simpleMessage("Một số nền tảng chuyển không thành công"),
@@ -349,27 +364,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "msgNetworkUsingCellular" : MessageLookupByLibrary.simpleMessage("Bạn đang sử dụng mạng di động và phí mạng có thể phát sinh theo mức sử dụng của bạn"),
     "msgNoEvent" : MessageLookupByLibrary.simpleMessage("Hiện tại không có hoạt động nào"),
     "msgNoStoragePermission" : MessageLookupByLibrary.simpleMessage("Vui lòng bật quyền \"Lưu\""),
-    "msgNoWalletBindUrl" : m20,
+    "msgNoWalletBindUrl" : m22,
     "msgNotEnoughCredit" : MessageLookupByLibrary.simpleMessage("Thiếu cân bằng"),
     "msgPleaseBindBankcard" : MessageLookupByLibrary.simpleMessage("Vui lòng ràng buộc thẻ ngân hàng trước!"),
     "msgPleaseWait" : MessageLookupByLibrary.simpleMessage("Vui lòng đợi…"),
     "msgProcessing" : MessageLookupByLibrary.simpleMessage("Đang xử lý yêu cầu, vui lòng đợi ..."),
     "msgSuccess" : MessageLookupByLibrary.simpleMessage("Hoạt động thành công"),
-    "msgTaskCanceled" : m21,
-    "msgTaskSuccess" : m22,
-    "msgTransferFromTo" : m23,
-    "msgUrlLaunchError" : m24,
+    "msgTaskCanceled" : m23,
+    "msgTaskSuccess" : m24,
+    "msgTransferFromTo" : m25,
+    "msgUrlLaunchError" : m26,
     "msgUrlNavNotSupported" : MessageLookupByLibrary.simpleMessage("Không thể chuyển đến URL đích"),
-    "msgUserLogout" : m25,
+    "msgUserLogout" : m27,
     "msgVerifySuccess" : MessageLookupByLibrary.simpleMessage("Đã xác minh thành công"),
     "msgWaitLogin" : MessageLookupByLibrary.simpleMessage("Đang đăng nhập, vui lòng đợi ..."),
     "msgWaitProcessComplete" : MessageLookupByLibrary.simpleMessage("Vui lòng không đăng xuất trong khi xử lý yêu cầu"),
-    "msgWelcomeUser" : m26,
+    "msgWelcomeUser" : m28,
     "msgWorkInProgress" : MessageLookupByLibrary.simpleMessage("Các tính năng sẽ sớm được trực tuyến!"),
+    "newBankcardCardAddressHint" : MessageLookupByLibrary.simpleMessage("Vui lòng đảm bảo rằng địa chỉ bạn điền vào phù hợp với ngân hàng nơi bạn mở tài khoản."),
+    "newBankcardCardMobileHint" : MessageLookupByLibrary.simpleMessage("Số điện thoại di động sẽ giúp bạn lấy lại tài khoản, đồng thời cũng là cơ sở quan trọng để nhân viên chăm sóc khách hàng xác nhận danh tính của bạn"),
+    "newBankcardCardNumberHint" : MessageLookupByLibrary.simpleMessage("Vui lòng kiểm tra kỹ số thẻ ngân hàng, nếu sai số thẻ sẽ không nhận được tiền."),
+    "newBankcardCardholderHint" : MessageLookupByLibrary.simpleMessage("Để tiền của bạn đến nhanh chóng, vui lòng đảm bảo rằng tên bạn điền phù hợp với tên tài khoản thẻ ngân hàng"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("Thông tin chung"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("Thông báo bảo trì"),
     "pageBtnChangePassword" : MessageLookupByLibrary.simpleMessage("thay đổi mật khẩu"),
-    "pageBtnContactCs" : MessageLookupByLibrary.simpleMessage("liên hệ với dịch vụ khách hàng"),
+    "pageBtnContactCs" : MessageLookupByLibrary.simpleMessage("Dịch vụ khách hàng"),
+    "pageBtnContactCsPrefix" : MessageLookupByLibrary.simpleMessage("Để được trợ giúp, vui lòng liên hệ "),
     "pageBtnHelp" : MessageLookupByLibrary.simpleMessage("Hướng dẫn"),
     "pageBtnLogin" : MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "pageBtnLogout" : MessageLookupByLibrary.simpleMessage("Đăng xuất"),
@@ -481,16 +501,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "textCategorySport" : MessageLookupByLibrary.simpleMessage("giáo dục thể chất"),
     "textCategorySportFull" : MessageLookupByLibrary.simpleMessage("Thi đấu thể thao"),
     "textCategoryWeb" : MessageLookupByLibrary.simpleMessage("Phiên bản web"),
-    "textCategoryWebHint" : m27,
+    "textCategoryWebHint" : m29,
     "textDefaultMarquee" : MessageLookupByLibrary.simpleMessage("Xin chào, thành viên thân mến! Nếu bạn có bất kỳ câu hỏi nào về việc sử dụng, vui lòng sử dụng hệ thống dịch vụ khách hàng trực tuyến."),
     "textLanguage" : MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
-    "textTotalCredit" : m28,
+    "textTotalCredit" : m30,
     "textTransferHint1" : MessageLookupByLibrary.simpleMessage("1. Vui lòng thoát trò chơi hoặc giao diện trò chơi cá cược trước khi chuyển."),
     "textTransferHint2" : MessageLookupByLibrary.simpleMessage("2. Khi không tham gia hoạt động, số tiền chuyển khoản không được ít hơn 1 tệ, và không tính phí xử lý chuyển khoản."),
     "textTransferHint3" : MessageLookupByLibrary.simpleMessage("3. Trong trường hợp tốc độ internet chậm, vui lòng kiên nhẫn chờ một lúc thay vì gửi nhiều lần."),
     "textTransferHint4" : MessageLookupByLibrary.simpleMessage("4. Nếu số tiền nền tảng không thay đổi sau khi chuyển thành công, vui lòng làm mới nền tảng theo cách thủ công hoặc liên hệ với dịch vụ khách hàng"),
     "textUpdateErrorUrl" : MessageLookupByLibrary.simpleMessage("Không thể lấy URL tải xuống, vui lòng liên hệ với dịch vụ khách hàng !!"),
-    "textUpdateMessage" : m29,
+    "textUpdateMessage" : m31,
     "walletBtnHintOneClickTransfer" : MessageLookupByLibrary.simpleMessage("Tất cả các khoản tín dụng của nền tảng được chuyển vào ví chính"),
     "walletBtnOneClickTransfer" : MessageLookupByLibrary.simpleMessage("Trang chủ một cú nhấp chuột"),
     "walletHintWalletMulti" : MessageLookupByLibrary.simpleMessage("* Cần chuyển hạn ngạch theo cách thủ công sang nền tảng trò chơi"),

@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_eg990_mobile/application/global.dart';
+import 'package:flutter_eg990_mobile/application/data/app_cache.dart';
 import 'package:flutter_eg990_mobile/domain/sector/ads/ad_model.dart';
 import 'package:flutter_eg990_mobile/domain/sector/ads/ads_repository.dart';
-import 'package:flutter_eg990_mobile/infrastructure/hive/hive_actions.dart';
 import 'package:flutter_eg990_mobile/presentation/mobx_store_export.dart';
 
 part 'ads_store.g.dart';
@@ -58,10 +57,7 @@ abstract class _AdStore with Store {
       // Reset the possible previous error message.
       errorMessage = null;
       // Read setting
-      Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-      if (box != null && box.isNotEmpty) {
-        _skipAds = (box.containsKey(skipAdsKey)) ? box.get(skipAdsKey) : false;
-      }
+      _skipAds = await AppCache.getSkipAd();
       // Fetch from the repository and wrap the regular Future into an observable.
       await _repository.getAds().then(
             (result) => result.fold(
@@ -70,7 +66,6 @@ abstract class _AdStore with Store {
             ),
           );
     } on Exception {
-      //errorMessage = "Couldn't fetch description. Is the device online?";
       setErrorMsg(code: 2);
     }
   }
@@ -78,16 +73,8 @@ abstract class _AdStore with Store {
   void setSkipAd(bool value) {
     if (_skipAds == value) return;
     _skipAds = value;
-    Future.microtask(() async {
-      bool saveValue = _skipAds;
-      if (saveValue) {
-        Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
-        if (box != null) {
-          await box.putAll({skipAdsKey: saveValue});
-          debugPrint('box ads: ${box.get(skipAdsKey)}');
-        }
-      }
-      debugPrint('box saved: $skipAdsKey - $saveValue');
+    Future.delayed(Duration(milliseconds: 500), () {
+      if (_skipAds == value) AppCache.saveSkipAd(value);
     });
   }
 }

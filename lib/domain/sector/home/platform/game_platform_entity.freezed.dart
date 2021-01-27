@@ -63,6 +63,7 @@ mixin _$GamePlatformEntity {
   String get category;
   String get favorite;
 
+  @JsonKey(ignore: true)
   $GamePlatformEntityCopyWith<GamePlatformEntity> get copyWith;
 }
 
@@ -256,6 +257,7 @@ class _$_GamePlatformEntity extends _GamePlatformEntity {
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(favorite);
 
+  @JsonKey(ignore: true)
   @override
   _$GamePlatformEntityCopyWith<_GamePlatformEntity> get copyWith =>
       __$GamePlatformEntityCopyWithImpl<_GamePlatformEntity>(this, _$identity);
@@ -302,5 +304,6 @@ abstract class _GamePlatformEntity extends GamePlatformEntity {
   @override
   String get favorite;
   @override
+  @JsonKey(ignore: true)
   _$GamePlatformEntityCopyWith<_GamePlatformEntity> get copyWith;
 }

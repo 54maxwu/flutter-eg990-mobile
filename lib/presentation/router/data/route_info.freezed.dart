@@ -47,6 +47,8 @@ mixin _$RouteInfo {
   RouteEnum get id;
   String get route;
   Object get routeArg;
+
+  /// set root to -1 to go back to last page instead of home page
   String get root;
 
   /// if true, shows the widget on the right side (logout, register...etc)
@@ -66,6 +68,7 @@ mixin _$RouteInfo {
   /// override page title
   String get title;
 
+  @JsonKey(ignore: true)
   $RouteInfoCopyWith<RouteInfo> get copyWith;
 }
 
@@ -214,6 +217,8 @@ class _$_RouteInfo implements _RouteInfo {
   final Object routeArg;
   @JsonKey(defaultValue: MainScreenRoutes.homeRoute)
   @override
+
+  /// set root to -1 to go back to last page instead of home page
   final String root;
   @JsonKey(defaultValue: MainScreenAppBarTypes.BACK_AND_TITLE)
   @override
@@ -289,6 +294,7 @@ class _$_RouteInfo implements _RouteInfo {
       const DeepCollectionEquality().hash(webPageName) ^
       const DeepCollectionEquality().hash(title);
 
+  @JsonKey(ignore: true)
   @override
   _$RouteInfoCopyWith<_RouteInfo> get copyWith =>
       __$RouteInfoCopyWithImpl<_RouteInfo>(this, _$identity);
@@ -313,6 +319,8 @@ abstract class _RouteInfo implements RouteInfo {
   @override
   Object get routeArg;
   @override
+
+  /// set root to -1 to go back to last page instead of home page
   String get root;
   @override
 
@@ -337,5 +345,6 @@ abstract class _RouteInfo implements RouteInfo {
   /// override page title
   String get title;
   @override
+  @JsonKey(ignore: true)
   _$RouteInfoCopyWith<_RouteInfo> get copyWith;
 }

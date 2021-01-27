@@ -3,6 +3,7 @@ import 'package:flutter_eg990_mobile/domain/sector/bankcard/bankcard.dart';
 import 'package:flutter_eg990_mobile/domain/sector/bankcard/bankcard_model.dart';
 import 'package:flutter_eg990_mobile/presentation/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/presentation/features/member_features/bankcard/widgets/bankcard_widget.dart';
+import 'package:flutter_eg990_mobile/presentation/router/navigate.dart';
 
 import '../state/withdraw_store.dart';
 
@@ -32,25 +33,31 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
         Container(
           color: themeColor.defaultCardColor,
           child: (!bankcard.hasCard)
-              ? Container(
-                  height: 60.0,
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.add,
-                        color: themeColor.defaultHintSubColor,
-                      ),
-                      Text(
-                        localeStr.hintAddBankcard,
-                        style: TextStyle(
-                          color: themeColor.dialogTitleColor,
-                          fontSize: FontSize.MESSAGE.value,
-                          fontWeight: FontWeight.w500,
+              ? GestureDetector(
+                  onTap: () => AppNavigator.navigateTo(
+                    RoutePage.bankcardNew,
+                    arg: BankcardRouteArguments(bindNewCard: true),
+                  ),
+                  child: Container(
+                    height: 60.0,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.add,
+                          color: themeColor.defaultHintSubColor,
                         ),
-                      ),
-                    ],
+                        Text(
+                          localeStr.hintAddBankcard,
+                          style: TextStyle(
+                            color: themeColor.dialogTitleColor,
+                            fontSize: FontSize.MESSAGE.value,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               : Container(

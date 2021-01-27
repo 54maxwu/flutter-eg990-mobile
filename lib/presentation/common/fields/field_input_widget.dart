@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
 import 'package:flutter/services.dart';
 
+export 'package:flutter_eg990_mobile/application/internal/input_limit.dart';
+
 part 'input_field_type.dart';
 
 enum FieldInputCornerType { NONE, ROUND_RIGHT, ROUND }
@@ -126,7 +128,7 @@ class FieldInputWidgetState extends State<FieldInputWidget> {
     return Container(
       constraints: BoxConstraints.loose(Size(
         double.infinity,
-        ThemeInterface.fieldHeight * 2.5,
+        ThemeInterface.fieldHeight * 1.5,
       )),
       decoration: BoxDecoration(
         borderRadius: _borderRadius,
@@ -138,11 +140,12 @@ class FieldInputWidgetState extends State<FieldInputWidget> {
         decoration: widget.inputDecoration.copyWith(
           fillColor: themeColor.fieldFillColor,
         ),
-        style: widget.inputStyle ??
-            TextStyle(
-              fontSize: FontSize.MESSAGE.value,
-              color: themeColor.fieldInputTextColor,
-            ),
+        style: (widget.inputStyle != null)
+            ? widget.inputStyle
+            : TextStyle(
+                fontSize: FontSize.MESSAGE.value,
+                color: themeColor.fieldInputTextColor,
+              ),
         autocorrect: false,
         keyboardType: _keyboardType,
         inputFormatters: _formatterList,

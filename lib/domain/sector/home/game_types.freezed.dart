@@ -38,6 +38,7 @@ mixin _$GameTypes {
   @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: const [])
   List<GamePlatformEntity> get platforms;
 
+  @JsonKey(ignore: true)
   $GameTypesCopyWith<GameTypes> get copyWith;
 }
 
@@ -153,6 +154,7 @@ class _$_GameTypes implements _GameTypes {
       const DeepCollectionEquality().hash(categories) ^
       const DeepCollectionEquality().hash(platforms);
 
+  @JsonKey(ignore: true)
   @override
   _$GameTypesCopyWith<_GameTypes> get copyWith =>
       __$GameTypesCopyWithImpl<_GameTypes>(this, _$identity);
@@ -173,5 +175,6 @@ abstract class _GameTypes implements GameTypes {
   @JsonKey(name: 'list', fromJson: _decodeGamePlatforms, defaultValue: const [])
   List<GamePlatformEntity> get platforms;
   @override
+  @JsonKey(ignore: true)
   _$GameTypesCopyWith<_GameTypes> get copyWith;
 }

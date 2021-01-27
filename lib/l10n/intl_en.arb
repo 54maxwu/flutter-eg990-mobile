@@ -227,7 +227,7 @@
     "description": "",
     "type": "text"
   },
-  "centerHintPrivacyEdit": "For your privacy, the information cannot be modified after confirmation\nIf you need assistance, please contact customer service",
+  "centerHintPrivacyEdit": "For your privacy safety, the information cannot be modified after confirmation. ",
   "@centerHintPrivacyEdit": {
     "description": "",
     "type": "text"
@@ -279,6 +279,11 @@
   },
   "dealsDetailTypeAdjustWithdraw": "Adjust withdrawal",
   "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "depositHintAccountName": "For immediate arrival, please be sure to enter the correct name",
+  "@depositHintAccountName": {
     "description": "",
     "type": "text"
   },
@@ -608,8 +613,8 @@
     "description": "",
     "type": "text"
   },
-  "fieldErrorCardAccountName": "Incorrect account name",
-  "@fieldErrorCardAccountName": {
+  "fieldErrorAccountName": "Incorrect account name",
+  "@fieldErrorAccountName": {
     "description": "",
     "type": "text"
   },
@@ -664,6 +669,11 @@
         "example": "12"
       }
     }
+  },
+  "fieldErrorInvalidCardholder": "Invalid name format",
+  "@fieldErrorInvalidCardholder": {
+    "description": "",
+    "type": "text"
   },
   "fieldErrorInvalidCreditAmount": "Amount entered incorrectly",
   "@fieldErrorInvalidCreditAmount": {
@@ -776,8 +786,33 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintBankAccount": "Please enter your bank account or card number",
+  "@fieldHintBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankArea": "Please enter the bank's location/area (optional)",
+  "@fieldHintBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankBranch": "Please enter the bank's branch name",
+  "@fieldHintBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankProvince": "Please enter the bank address province",
+  "@fieldHintBankProvince": {
+    "description": "",
+    "type": "text"
+  },
   "fieldHintBirthday": "Fill in the birthday date to ensure that you are of legal age",
   "@fieldHintBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintCardholder": "Please enter the cardholder's name",
+  "@fieldHintCardholder": {
     "description": "",
     "type": "text"
   },
@@ -889,8 +924,30 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintPhoneArg": "{value} digits",
+  "@fieldHintPhoneArg": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "fieldHintPhoneArg2": "{min}~{max} digits",
+  "@fieldHintPhoneArg2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
   "fieldHintSearchGame": "please enter a name",
   "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSelectPaymentBank": "Please select payment bank",
+  "@fieldHintSelectPaymentBank": {
     "description": "",
     "type": "text"
   },
@@ -1066,7 +1123,7 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankAccount": "Account (card) number",
+  "fieldTitleBankAccount": "Bank Account",
   "@fieldTitleBankAccount": {
     "description": "",
     "type": "text"
@@ -1093,6 +1150,11 @@
   },
   "fieldTitleBirthday": "Birthday",
   "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCardHolder": "Cardholder",
+  "@fieldTitleCardHolder": {
     "description": "",
     "type": "text"
   },
@@ -1579,6 +1641,26 @@
     "description": "",
     "type": "text"
   },
+  "newBankcardCardholderHint": "In order for your funds to arrive quickly, please make sure that the name you fill in is consistent with the name of your bank account",
+  "@newBankcardCardholderHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardAddressHint": "Please make sure that the address you fill in is consistent with the bank where you open your account.",
+  "@newBankcardCardAddressHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardMobileHint": "The mobile phone number will help you recover your account, and it is also important for customer service to confirm your identity",
+  "@newBankcardCardMobileHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardNumberHint": "Please check the bank card number carefully. If the card number is wrong, the funds will not be received.",
+  "@newBankcardCardNumberHint": {
+    "description": "",
+    "type": "text"
+  },
   "noticeTabGeneral": "General",
   "@noticeTabGeneral": {
     "description": "",
@@ -1594,8 +1676,13 @@
     "description": "",
     "type": "text"
   },
-  "pageBtnContactCs": "Contact Customer Service",
+  "pageBtnContactCs": "Customer Service",
   "@pageBtnContactCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnContactCsPrefix": "If you need help, please contact ",
+  "@pageBtnContactCsPrefix": {
     "description": "",
     "type": "text"
   },

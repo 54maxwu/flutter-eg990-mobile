@@ -97,6 +97,7 @@ mixin _$PromoModel {
   String get categoryStr;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $PromoModelCopyWith<PromoModel> get copyWith;
 }
 
@@ -430,6 +431,7 @@ class _$_PromoModel implements _PromoModel {
       const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(categoryStr);
 
+  @JsonKey(ignore: true)
   @override
   _$PromoModelCopyWith<_PromoModel> get copyWith =>
       __$PromoModelCopyWithImpl<_PromoModel>(this, _$identity);
@@ -508,5 +510,6 @@ abstract class _PromoModel implements PromoModel {
   @override
   String get categoryStr;
   @override
+  @JsonKey(ignore: true)
   _$PromoModelCopyWith<_PromoModel> get copyWith;
 }

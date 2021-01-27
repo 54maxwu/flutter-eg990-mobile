@@ -59,6 +59,7 @@ mixin _$BankcardModel {
   @JsonKey(name: 'bankname', defaultValue: '')
   String get bankName;
 
+  @JsonKey(ignore: true)
   $BankcardModelCopyWith<BankcardModel> get copyWith;
 }
 
@@ -258,6 +259,7 @@ class _$_BankcardModel implements _BankcardModel {
       const DeepCollectionEquality().hash(bankArea) ^
       const DeepCollectionEquality().hash(bankName);
 
+  @JsonKey(ignore: true)
   @override
   _$BankcardModelCopyWith<_BankcardModel> get copyWith =>
       __$BankcardModelCopyWithImpl<_BankcardModel>(this, _$identity);
@@ -307,5 +309,6 @@ abstract class _BankcardModel implements BankcardModel {
   @JsonKey(name: 'bankname', defaultValue: '')
   String get bankName;
   @override
+  @JsonKey(ignore: true)
   _$BankcardModelCopyWith<_BankcardModel> get copyWith;
 }

@@ -1,3 +1,4 @@
+export '../infrastructure/hive/hive_json_cache.dart' show HiveJsonCacheAdapter;
 export 'sector/home/banner/banner_entity.dart' show BannerEntityAdapter;
 export 'sector/home/category/game_category_entity.dart'
     show GameCategoryEntityAdapter;

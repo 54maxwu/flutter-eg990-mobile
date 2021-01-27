@@ -55,29 +55,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m17(step) => "จำนวนเงินเป็นผลคูณของ ${step}";
 
-  static m18(sex) => "${Intl.gender(sex, female: 'Female', male: 'Male', other: 'Other')}";
+  static m18(value) => "หมายเลขโทรศัพท์ ${value}";
 
-  static m19(name) => "สวัสดี ${name}!";
+  static m19(min, max) => "${min} ~ ${max} หมายเลขโทรศัพท์";
 
-  static m20(wallet) => "ไม่สามารถรับ URL ผูกกระเป๋าเงิน ${wallet}";
+  static m20(sex) => "${Intl.gender(sex, female: 'Female', male: 'Male', other: 'Other')}";
 
-  static m21(task, Task) => "${task} ถูกยกเลิก";
+  static m21(name) => "สวัสดี ${name}!";
 
-  static m22(task) => "${task} Success";
+  static m22(wallet) => "ไม่สามารถรับ URL ผูกกระเป๋าเงิน ${wallet}";
 
-  static m23(from, to) => "${from} ถึง ${to}";
+  static m23(task, Task) => "${task} ถูกยกเลิก";
 
-  static m24(url) => "ไม่สามารถเปิดลิงก์ของเว็บ: ${url}";
+  static m24(task) => "${task} Success";
 
-  static m25(name) => "${name} โปรดเข้าสู่ระบบอีกครั้ง";
+  static m25(from, to) => "${from} ถึง ${to}";
 
-  static m26(name) => "ยินดีต้อนรับ ${name}";
+  static m26(url) => "ไม่สามารถเปิดลิงก์ของเว็บ: ${url}";
 
-  static m27(site) => "คลิกฉันเพื่อเปิดเวอร์ชันเว็บ ${site}";
+  static m27(name) => "${name} โปรดเข้าสู่ระบบอีกครั้ง";
 
-  static m28(value) => "ทั้งหมด: ${value}";
+  static m28(name) => "ยินดีต้อนรับ ${name}";
 
-  static m29(value, version) => "หากพบเวอร์ชันใหม่โปรดคลิกปุ่ม “อัปเดต” เพื่อดาวน์โหลดและติดตั้ง.\nหมายเลขเวอร์ชันปัจจุบัน: ${version}\nหมายเลขเวอร์ชันใหม่: ${value}";
+  static m29(site) => "คลิกฉันเพื่อเปิดเวอร์ชันเว็บ ${site}";
+
+  static m30(value) => "ทั้งหมด: ${value}";
+
+  static m31(value, version) => "หากพบเวอร์ชันใหม่โปรดคลิกปุ่ม “อัปเดต” เพื่อดาวน์โหลดและติดตั้ง.\nหมายเลขเวอร์ชันปัจจุบัน: ${version}\nหมายเลขเวอร์ชันใหม่: ${value}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -124,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerHintEMail" : MessageLookupByLibrary.simpleMessage("ผูกอีเมลเพื่อป้องกันความปลอดภัยของบัญชี"),
     "centerHintMemberName" : MessageLookupByLibrary.simpleMessage("ชื่อต้องตรงกับชื่อของผู้ถือบัตรธนาคารมิฉะนั้นจะถอนเงินไม่ได้"),
     "centerHintNoName" : MessageLookupByLibrary.simpleMessage("โปรดไปผูกบัตรธนาคารเพื่อทำการตั้งค่าที่เกี่ยวข้อง"),
-    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("เพื่อความเป็นส่วนตัวของคุณข้อมูลจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว\nหากคุณต้องการความช่วยเหลือโปรดติดต่อฝ่ายบริการลูกค้า"),
+    "centerHintPrivacyEdit" : MessageLookupByLibrary.simpleMessage("เพื่อความเป็นส่วนตัวของคุณข้อมูลจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว. "),
     "centerTabMemberData" : MessageLookupByLibrary.simpleMessage("ข้อมูลส่วนบุคคล"),
     "centerTabVipRank" : MessageLookupByLibrary.simpleMessage("อันดับ Vip"),
     "centerTextHeadPhoto" : MessageLookupByLibrary.simpleMessage("รูปถ่ายส่วนตัว"),
@@ -135,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "certificateTitlePGC" : MessageLookupByLibrary.simpleMessage("ฟิลิปปินส์ (PAGCOR) การ์ดเกมภายใต้การดูแล"),
     "dealsDetailTypeAdjustDeposit" : MessageLookupByLibrary.simpleMessage("ปรับเงินฝาก"),
     "dealsDetailTypeAdjustWithdraw" : MessageLookupByLibrary.simpleMessage("ปรับการถอน"),
+    "depositHintAccountName" : MessageLookupByLibrary.simpleMessage("สำหรับการมาถึงในทันทีโปรดป้อนชื่อที่ถูกต้องของผู้ส่ง"),
     "depositHintGetInfoFromCs" : MessageLookupByLibrary.simpleMessage("โปรดติดต่อฝ่ายบริการลูกค้าสำหรับข้อมูลบัญชีเติมเงิน"),
     "depositHintNoBankcard" : MessageLookupByLibrary.simpleMessage("โปรดเพิ่มบัตรธนาคารก่อน"),
     "depositHintOrderMaxAmount" : m3,
@@ -194,12 +199,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldCheckBoxStopShowing" : MessageLookupByLibrary.simpleMessage("ไม่ต้องแสดงอีก"),
     "fieldCheckBoxTerms" : MessageLookupByLibrary.simpleMessage("ได้อ่านและยอมรับกฎการเดิมพันของ"),
     "fieldChipAmountAll" : MessageLookupByLibrary.simpleMessage("เต็มจำนวน"),
-    "fieldErrorCardAccountName" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดของชื่อบัญชี"),
+    "fieldErrorAccountName" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดของชื่อบัญชี"),
     "fieldErrorCardNumber" : m8,
     "fieldErrorCardNumberFixed" : m9,
     "fieldErrorCardOwner" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ถือบัตรไม่ถูกต้อง"),
     "fieldErrorConfirmPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ตรงกัน"),
     "fieldErrorInvalidAccount" : m10,
+    "fieldErrorInvalidCardholder" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ถือบัตรมีรูปแบบไม่ถูกต้อง"),
     "fieldErrorInvalidCreditAmount" : MessageLookupByLibrary.simpleMessage("จำนวนเงินที่ป้อนไม่ถูกต้อง"),
     "fieldErrorInvalidCreditMax" : m11,
     "fieldErrorInvalidCreditMin" : m12,
@@ -216,7 +222,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldErrorInvalidWechat" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดรูปแบบ Wechat"),
     "fieldErrorInvalidZalo" : MessageLookupByLibrary.simpleMessage("ข้อผิดพลาดรูปแบบ Zalo"),
     "fieldHintAmount" : MessageLookupByLibrary.simpleMessage("ขอแนะนำให้คุณฝากเงินจำนวนพิเศษเพื่อให้เงินฝากเข้าบัญชีได้อย่างรวดเร็ว (เช่น 105, 503 เป็นต้น)"),
+    "fieldHintBankAccount" : MessageLookupByLibrary.simpleMessage("กรุณากรอกหมายเลขบัญชีธนาคาร / บัตร"),
+    "fieldHintBankArea" : MessageLookupByLibrary.simpleMessage("กรุณากรอกที่ตั้ง / พื้นที่ของธนาคาร (ไม่จำเป็น)"),
+    "fieldHintBankBranch" : MessageLookupByLibrary.simpleMessage("กรุณากรอกสาขาธนาคาร"),
+    "fieldHintBankProvince" : MessageLookupByLibrary.simpleMessage("กรุณากรอกจังหวัดของธนาคาร"),
     "fieldHintBirthday" : MessageLookupByLibrary.simpleMessage("กรอกวันเกิดให้แน่ใจว่าคุณมีอายุตามกฎหมาย"),
+    "fieldHintCardholder" : MessageLookupByLibrary.simpleMessage("โปรดป้อนชื่อเจ้าของบัตร"),
     "fieldHintDateFormat" : MessageLookupByLibrary.simpleMessage("รูปแบบคือ: 0000–00–00"),
     "fieldHintDepositAmountRange" : m16,
     "fieldHintDepositAmountStep" : m17,
@@ -236,7 +247,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldHintPasswordNewConfirm" : MessageLookupByLibrary.simpleMessage("ป้อนรหัสผ่านใหม่อีกครั้ง"),
     "fieldHintPasswordOld" : MessageLookupByLibrary.simpleMessage("ป้อนรหัสผ่านเก่า"),
     "fieldHintPhone" : MessageLookupByLibrary.simpleMessage("ผูกหมายเลขโทรศัพท์มือถือเพื่อป้องกันความปลอดภัยของบัญชี"),
+    "fieldHintPhoneArg" : m18,
+    "fieldHintPhoneArg2" : m19,
     "fieldHintSearchGame" : MessageLookupByLibrary.simpleMessage("โปรดป้อนชื่อเกม"),
+    "fieldHintSelectPaymentBank" : MessageLookupByLibrary.simpleMessage("กรุณาเลือกธนาคารที่ชำระเงิน"),
     "fieldHintVerifyCode" : MessageLookupByLibrary.simpleMessage("โปรดป้อนรหัสยืนยัน"),
     "fieldHintVerifyCodeFetch" : MessageLookupByLibrary.simpleMessage("สามารถรับรหัสยืนยันได้เพียงชุดเดียวภายใน 24 ชั่วโมง"),
     "fieldOptionDateAll" : MessageLookupByLibrary.simpleMessage("ตลอดเวลา"),
@@ -246,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldOptionDateYesterday" : MessageLookupByLibrary.simpleMessage("เมื่อวาน"),
     "fieldOptionDepositTypeAtm" : MessageLookupByLibrary.simpleMessage("เงินฝาก ATM"),
     "fieldOptionDepositTypeTransfer" : MessageLookupByLibrary.simpleMessage("โอนและเติมเงิน"),
-    "fieldOptionGender" : m18,
+    "fieldOptionGender" : m20,
     "fieldOptionPlatformAll" : MessageLookupByLibrary.simpleMessage("ทุกแพลตฟอร์ม"),
     "fieldOptionPromoNone" : MessageLookupByLibrary.simpleMessage("ละทิ้งข้อเสนอของแอปพลิเคชัน"),
     "fieldOptionStatus1" : MessageLookupByLibrary.simpleMessage("ความสำเร็จ"),
@@ -271,12 +285,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldTitleAccountHolder" : MessageLookupByLibrary.simpleMessage("เจ้าของบัญชี"),
     "fieldTitleAccountName" : MessageLookupByLibrary.simpleMessage("ชื่อบัญชี"),
     "fieldTitleBank" : MessageLookupByLibrary.simpleMessage("ธนาคาร"),
-    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("หมายเลขบัญชี (บัตร)"),
+    "fieldTitleBankAccount" : MessageLookupByLibrary.simpleMessage("หมายเลขบัตรธนาคาร"),
     "fieldTitleBankArea" : MessageLookupByLibrary.simpleMessage("พื้นที่"),
     "fieldTitleBankBranch" : MessageLookupByLibrary.simpleMessage("สาขาธนาคาร"),
     "fieldTitleBankName" : MessageLookupByLibrary.simpleMessage("ชื่อธนาคาร"),
     "fieldTitleBankProvince" : MessageLookupByLibrary.simpleMessage("สาขาที่เปิดบัญชี"),
     "fieldTitleBirthday" : MessageLookupByLibrary.simpleMessage("วันเกิด"),
+    "fieldTitleCardHolder" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ถือบัตร"),
     "fieldTitleConfirm" : MessageLookupByLibrary.simpleMessage("ยืนยันรหัสผ่าน"),
     "fieldTitleCreditAmount" : MessageLookupByLibrary.simpleMessage("จำนวนเงิน"),
     "fieldTitleDateEnd" : MessageLookupByLibrary.simpleMessage("เวลาสิ้นสุด"),
@@ -332,7 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintTips" : MessageLookupByLibrary.simpleMessage("เคล็ดลับที่อบอุ่น"),
     "hintWalletRemain" : MessageLookupByLibrary.simpleMessage("ยอดคงเหลือใน Wallet"),
     "hintWelcome" : MessageLookupByLibrary.simpleMessage("ยินดีต้อนรับ"),
-    "hintWelcomeMember" : m19,
+    "hintWelcomeMember" : m21,
     "msgActionCheckTerms" : MessageLookupByLibrary.simpleMessage("โปรดอ่านและทำเครื่องหมายเพื่อยอมรับกฎการเดิมพัน"),
     "msgAutoLoginError" : MessageLookupByLibrary.simpleMessage("ข้อมูลผิดพลาดโปรดเข้าสู่ระบบด้วยตนเอง"),
     "msgBalanceToMainPartFailed" : MessageLookupByLibrary.simpleMessage("บางส่วนของการถ่ายโอนแพลตฟอร์มล้มเหลว"),
@@ -349,27 +364,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "msgNetworkUsingCellular" : MessageLookupByLibrary.simpleMessage("คุณกำลังใช้เครือข่ายมือถือและค่าบริการเครือข่ายอาจเกิดขึ้นตามอัตราการใช้งานของคุณ"),
     "msgNoEvent" : MessageLookupByLibrary.simpleMessage("ขณะนี้ไม่มีเหตุการณ์"),
     "msgNoStoragePermission" : MessageLookupByLibrary.simpleMessage("โปรดเปิด“ันทึก”สิทธิ์"),
-    "msgNoWalletBindUrl" : m20,
+    "msgNoWalletBindUrl" : m22,
     "msgNotEnoughCredit" : MessageLookupByLibrary.simpleMessage("ยอดเงินไม่เพียงพอ"),
     "msgPleaseBindBankcard" : MessageLookupByLibrary.simpleMessage("กรุณาผูกบัตรธนาคารก่อน!"),
     "msgPleaseWait" : MessageLookupByLibrary.simpleMessage("โปรดรอสักครู่ ... "),
     "msgProcessing" : MessageLookupByLibrary.simpleMessage("กำลังดำเนินการตามคำขอโปรดรอสักครู่ ... "),
     "msgSuccess" : MessageLookupByLibrary.simpleMessage("ดำเนินการสำเร็จ"),
-    "msgTaskCanceled" : m21,
-    "msgTaskSuccess" : m22,
-    "msgTransferFromTo" : m23,
-    "msgUrlLaunchError" : m24,
+    "msgTaskCanceled" : m23,
+    "msgTaskSuccess" : m24,
+    "msgTransferFromTo" : m25,
+    "msgUrlLaunchError" : m26,
     "msgUrlNavNotSupported" : MessageLookupByLibrary.simpleMessage("ไม่สามารถข้ามไปยัง URL ปลายทางได้"),
-    "msgUserLogout" : m25,
+    "msgUserLogout" : m27,
     "msgVerifySuccess" : MessageLookupByLibrary.simpleMessage("การยืนยันสำเร็จ"),
     "msgWaitLogin" : MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบโปรดรอ ... "),
     "msgWaitProcessComplete" : MessageLookupByLibrary.simpleMessage("ห้ามออกขณะดำเนินการตามคำขอ"),
-    "msgWelcomeUser" : m26,
+    "msgWelcomeUser" : m28,
     "msgWorkInProgress" : MessageLookupByLibrary.simpleMessage("ฟีเจอร์จะเปิดตัวเร็ว ๆ นี้!"),
+    "newBankcardCardAddressHint" : MessageLookupByLibrary.simpleMessage("โปรดตรวจสอบให้แน่ใจว่าที่อยู่ที่คุณกรอกนั้นตรงกับธนาคารที่คุณเปิดบัญชีของคุณ"),
+    "newBankcardCardMobileHint" : MessageLookupByLibrary.simpleMessage("หมายเลขโทรศัพท์มือถือจะช่วยให้คุณได้รับบัญชีของคุณและยังเป็นพื้นฐานสำคัญสำหรับเจ้าหน้าที่บริการลูกค้าในการยืนยันตัวตนของคุณ"),
+    "newBankcardCardNumberHint" : MessageLookupByLibrary.simpleMessage("โปรดตรวจสอบหมายเลขบัตรธนาคารอย่างละเอียดหากหมายเลขบัตรไม่ถูกต้องจะไม่ได้รับเงิน"),
+    "newBankcardCardholderHint" : MessageLookupByLibrary.simpleMessage("เพื่อให้เงินของคุณมาถึงอย่างรวดเร็วโปรดตรวจสอบให้แน่ใจว่าชื่อที่คุณกรอกนั้นตรงกับชื่อบัญชีบัตรธนาคาร"),
     "noticeTabGeneral" : MessageLookupByLibrary.simpleMessage("ข้อความทั่วไป"),
     "noticeTabMaintenance" : MessageLookupByLibrary.simpleMessage("ประกาศเกี่ยวกับการบำรุงรักษา"),
     "pageBtnChangePassword" : MessageLookupByLibrary.simpleMessage("เปลี่ยนรหัสผ่าน"),
-    "pageBtnContactCs" : MessageLookupByLibrary.simpleMessage("ติดต่อฝ่ายบริการลูกค้า"),
+    "pageBtnContactCs" : MessageLookupByLibrary.simpleMessage("บริการลูกค้า"),
+    "pageBtnContactCsPrefix" : MessageLookupByLibrary.simpleMessage("หากต้องการความช่วยเหลือโปรดติดต่อ "),
     "pageBtnHelp" : MessageLookupByLibrary.simpleMessage("บทช่วยสอน"),
     "pageBtnLogin" : MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบ"),
     "pageBtnLogout" : MessageLookupByLibrary.simpleMessage("ออกจากระบบ"),
@@ -481,16 +501,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "textCategorySport" : MessageLookupByLibrary.simpleMessage("กีฬา"),
     "textCategorySportFull" : MessageLookupByLibrary.simpleMessage("กีฬากีฬา"),
     "textCategoryWeb" : MessageLookupByLibrary.simpleMessage("เวอร์ชันเว็บ"),
-    "textCategoryWebHint" : m27,
+    "textCategoryWebHint" : m29,
     "textDefaultMarquee" : MessageLookupByLibrary.simpleMessage("สวัสดีสมาชิกที่รัก! หากคุณมีคำถามใด ๆ เกี่ยวกับการใช้งานโปรดใช้ระบบบริการลูกค้าออนไลน์"),
     "textLanguage" : MessageLookupByLibrary.simpleMessage("ภาษา"),
-    "textTotalCredit" : m28,
+    "textTotalCredit" : m30,
     "textTransferHint1" : MessageLookupByLibrary.simpleMessage("1. กรุณาออกจากอินเทอร์เฟซการเดิมพันของเกมหรือเกมก่อนโอนเงิน"),
     "textTransferHint2" : MessageLookupByLibrary.simpleMessage("2. เมื่อคุณไม่ได้เข้าร่วมกิจกรรมจำนวนเงินในการรับส่งภายในอาคารต้องไม่ต่ำกว่า 1 หยวนและไม่มีค่าธรรมเนียมการจัดการสำหรับการโอนในร่ม"),
     "textTransferHint3" : MessageLookupByLibrary.simpleMessage("3. หากความเร็วอินเทอร์เน็ตช้าโปรดรอสักครู่และอย่าส่งซ้ำหลายครั้ง"),
     "textTransferHint4" : MessageLookupByLibrary.simpleMessage("4. หากจำนวนแพลตฟอร์มไม่เปลี่ยนแปลงหลังจากการโอนสำเร็จโปรดรีเฟรชแพลตฟอร์มด้วยตนเองหรือติดต่อฝ่ายบริการลูกค้า"),
     "textUpdateErrorUrl" : MessageLookupByLibrary.simpleMessage("ไม่สามารถรับ URL ดาวน์โหลดได้โปรดติดต่อฝ่ายบริการลูกค้า !!"),
-    "textUpdateMessage" : m29,
+    "textUpdateMessage" : m31,
     "walletBtnHintOneClickTransfer" : MessageLookupByLibrary.simpleMessage("โควต้าของแพลตฟอร์มทั้งหมดจะถูกโอนไปยังกระเป๋าเงินหลัก"),
     "walletBtnOneClickTransfer" : MessageLookupByLibrary.simpleMessage("คลิกเดียวสู่บัญชี"),
     "walletHintWalletMulti" : MessageLookupByLibrary.simpleMessage("* คุณต้องโอนเงินไปยังแพลตฟอร์มเกมด้วยตนเอง"),

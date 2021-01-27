@@ -58,6 +58,7 @@ mixin _$BetRecordData {
   String get type;
   dynamic get key;
 
+  @JsonKey(ignore: true)
   $BetRecordDataCopyWith<BetRecordData> get copyWith;
 }
 
@@ -250,6 +251,7 @@ class _$_BetRecordData implements _BetRecordData {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   _$BetRecordDataCopyWith<_BetRecordData> get copyWith =>
       __$BetRecordDataCopyWithImpl<_BetRecordData>(this, _$identity);
@@ -290,5 +292,6 @@ abstract class _BetRecordData implements BetRecordData {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   _$BetRecordDataCopyWith<_BetRecordData> get copyWith;
 }

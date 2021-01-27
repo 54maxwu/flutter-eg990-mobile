@@ -35,6 +35,7 @@ mixin _$BetRecordPlatformData {
   num get payout;
   dynamic get key;
 
+  @JsonKey(ignore: true)
   $BetRecordPlatformDataCopyWith<BetRecordPlatformData> get copyWith;
 }
 
@@ -148,6 +149,7 @@ class _$_BetRecordPlatformData implements _BetRecordPlatformData {
       const DeepCollectionEquality().hash(payout) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   _$BetRecordPlatformDataCopyWith<_BetRecordPlatformData> get copyWith =>
       __$BetRecordPlatformDataCopyWithImpl<_BetRecordPlatformData>(
@@ -167,5 +169,6 @@ abstract class _BetRecordPlatformData implements BetRecordPlatformData {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   _$BetRecordPlatformDataCopyWith<_BetRecordPlatformData> get copyWith;
 }

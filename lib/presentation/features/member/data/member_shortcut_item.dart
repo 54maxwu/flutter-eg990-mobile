@@ -103,6 +103,13 @@ class MemberShortcutItem extends Vnum<MemberShortcutData> {
     sType: MemberShortcutType.LIST,
     section: 3,
   ));
+  static const MemberShortcutItem logout =
+      const MemberShortcutItem.define(MemberShortcutData(
+    id: RouteEnum.LOGOUT,
+    assetPath: Res.icon_exit,
+    sType: MemberShortcutType.LIST,
+    section: 3,
+  ));
 
   /// Used for defining cases
   const MemberShortcutItem.define(MemberShortcutData fromValue)

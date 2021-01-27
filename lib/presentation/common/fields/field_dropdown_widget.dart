@@ -91,8 +91,7 @@ class FieldDropdownWidgetState extends State<FieldDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     boxDecor ??= dropdownDecor;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    return DecoratedBox(
       decoration: boxDecor,
       child: DropdownButtonHideUnderline(
         child: DropdownButton(

@@ -45,6 +45,7 @@ mixin _$MemberShortcutData {
   String get hintText;
   int get section;
 
+  @JsonKey(ignore: true)
   $MemberShortcutDataCopyWith<MemberShortcutData> get copyWith;
 }
 
@@ -199,6 +200,7 @@ class _$_MemberShortcutData implements _MemberShortcutData {
       const DeepCollectionEquality().hash(hintText) ^
       const DeepCollectionEquality().hash(section);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberShortcutDataCopyWith<_MemberShortcutData> get copyWith =>
       __$MemberShortcutDataCopyWithImpl<_MemberShortcutData>(this, _$identity);
@@ -226,5 +228,6 @@ abstract class _MemberShortcutData implements MemberShortcutData {
   @override
   int get section;
   @override
+  @JsonKey(ignore: true)
   _$MemberShortcutDataCopyWith<_MemberShortcutData> get copyWith;
 }

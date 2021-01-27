@@ -31,6 +31,7 @@ mixin _$DepositType {
   int get key;
   List<DepositMethod> get dataList;
 
+  @JsonKey(ignore: true)
   $DepositTypeCopyWith<DepositType> get copyWith;
 }
 
@@ -131,6 +132,7 @@ class _$_DepositType extends _DepositType {
       const DeepCollectionEquality().hash(key) ^
       const DeepCollectionEquality().hash(dataList);
 
+  @JsonKey(ignore: true)
   @override
   _$DepositTypeCopyWith<_DepositType> get copyWith =>
       __$DepositTypeCopyWithImpl<_DepositType>(this, _$identity);
@@ -146,5 +148,6 @@ abstract class _DepositType extends DepositType {
   @override
   List<DepositMethod> get dataList;
   @override
+  @JsonKey(ignore: true)
   _$DepositTypeCopyWith<_DepositType> get copyWith;
 }

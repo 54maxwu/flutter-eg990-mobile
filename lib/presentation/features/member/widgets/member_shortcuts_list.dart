@@ -8,8 +8,9 @@ import '../data/member_shortcut_item.dart';
 
 class MemberShortcutsList extends StatelessWidget {
   final bool hasUser;
+  final Function logout;
 
-  const MemberShortcutsList({@required this.hasUser});
+  const MemberShortcutsList({@required this.hasUser, @required this.logout});
 
   Function onClickShortcut(MemberShortcutItem shortcut) => () {
         if (shortcut.value.route != null) {
@@ -18,6 +19,8 @@ class MemberShortcutsList extends StatelessWidget {
           } else {
             AppNavigator.navigateTo(shortcut.value.route);
           }
+        } else if (shortcut.value.id == RouteEnum.LOGOUT) {
+          logout();
         } else {
           callToastInfo(localeStr.msgWorkInProgress);
         }
@@ -35,8 +38,13 @@ class MemberShortcutsList extends StatelessWidget {
       sectionPadding: EdgeInsets.symmetric(vertical: 4.0),
       addBottomDivider: false,
       sections: List<SettingsSection>.generate(totalSection, (index) {
-        final List<MemberShortcutItem> sectionItems =
-            shortcuts.where((item) => item.value.section == index).toList();
+        final List<MemberShortcutItem> sectionItems = (hasUser)
+            ? shortcuts.where((item) => item.value.section == index).toList()
+            : shortcuts
+                .where((item) =>
+                    item.value.section == index &&
+                    item.value.isUserOnly == false)
+                .toList();
         return SettingsSection(
           addTileDivider: false,
           tiles: List<SettingsTile>.generate(

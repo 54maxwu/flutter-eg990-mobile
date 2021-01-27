@@ -1,7 +1,6 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/internal/input_limit.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_form.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_form_data.dart';
 import 'package:flutter_eg990_mobile/domain/user/login/login_form_hive.dart';

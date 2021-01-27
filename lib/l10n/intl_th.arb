@@ -227,7 +227,7 @@
     "description": "",
     "type": "text"
   },
-  "centerHintPrivacyEdit": "เพื่อความเป็นส่วนตัวของคุณข้อมูลจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว\nหากคุณต้องการความช่วยเหลือโปรดติดต่อฝ่ายบริการลูกค้า",
+  "centerHintPrivacyEdit": "เพื่อความเป็นส่วนตัวของคุณข้อมูลจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว. ",
   "@centerHintPrivacyEdit": {
     "description": "",
     "type": "text"
@@ -279,6 +279,11 @@
   },
   "dealsDetailTypeAdjustWithdraw": "ปรับการถอน",
   "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "depositHintAccountName": "สำหรับการมาถึงในทันทีโปรดป้อนชื่อที่ถูกต้องของผู้ส่ง",
+  "@depositHintAccountName": {
     "description": "",
     "type": "text"
   },
@@ -608,8 +613,8 @@
     "description": "",
     "type": "text"
   },
-  "fieldErrorCardAccountName": "ข้อผิดพลาดของชื่อบัญชี",
-  "@fieldErrorCardAccountName": {
+  "fieldErrorAccountName": "ข้อผิดพลาดของชื่อบัญชี",
+  "@fieldErrorAccountName": {
     "description": "",
     "type": "text"
   },
@@ -664,6 +669,11 @@
         "example": "12"
       }
     }
+  },
+  "fieldErrorInvalidCardholder": "ชื่อผู้ถือบัตรมีรูปแบบไม่ถูกต้อง",
+  "@fieldErrorInvalidCardholder": {
+    "description": "",
+    "type": "text"
   },
   "fieldErrorInvalidCreditAmount": "จำนวนเงินที่ป้อนไม่ถูกต้อง",
   "@fieldErrorInvalidCreditAmount": {
@@ -776,8 +786,33 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintBankAccount": "กรุณากรอกหมายเลขบัญชีธนาคาร / บัตร",
+  "@fieldHintBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankArea": "กรุณากรอกที่ตั้ง / พื้นที่ของธนาคาร (ไม่จำเป็น)",
+  "@fieldHintBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankBranch": "กรุณากรอกสาขาธนาคาร",
+  "@fieldHintBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankProvince": "กรุณากรอกจังหวัดของธนาคาร",
+  "@fieldHintBankProvince": {
+    "description": "",
+    "type": "text"
+  },
   "fieldHintBirthday": "กรอกวันเกิดให้แน่ใจว่าคุณมีอายุตามกฎหมาย",
   "@fieldHintBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintCardholder": "โปรดป้อนชื่อเจ้าของบัตร",
+  "@fieldHintCardholder": {
     "description": "",
     "type": "text"
   },
@@ -889,8 +924,30 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintPhoneArg": "หมายเลขโทรศัพท์ {value}",
+  "@fieldHintPhoneArg": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "fieldHintPhoneArg2": "{min} ~ {max} หมายเลขโทรศัพท์",
+  "@fieldHintPhoneArg2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
   "fieldHintSearchGame": "โปรดป้อนชื่อเกม",
   "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSelectPaymentBank": "กรุณาเลือกธนาคารที่ชำระเงิน",
+  "@fieldHintSelectPaymentBank": {
     "description": "",
     "type": "text"
   },
@@ -1066,7 +1123,7 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankAccount": "หมายเลขบัญชี (บัตร)",
+  "fieldTitleBankAccount": "หมายเลขบัตรธนาคาร",
   "@fieldTitleBankAccount": {
     "description": "",
     "type": "text"
@@ -1093,6 +1150,11 @@
   },
   "fieldTitleBirthday": "วันเกิด",
   "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCardHolder": "ชื่อผู้ถือบัตร",
+  "@fieldTitleCardHolder": {
     "description": "",
     "type": "text"
   },
@@ -1579,6 +1641,26 @@
     "description": "",
     "type": "text"
   },
+  "newBankcardCardholderHint": "เพื่อให้เงินของคุณมาถึงอย่างรวดเร็วโปรดตรวจสอบให้แน่ใจว่าชื่อที่คุณกรอกนั้นตรงกับชื่อบัญชีบัตรธนาคาร",
+  "@newBankcardCardholderHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardAddressHint": "โปรดตรวจสอบให้แน่ใจว่าที่อยู่ที่คุณกรอกนั้นตรงกับธนาคารที่คุณเปิดบัญชีของคุณ",
+  "@newBankcardCardAddressHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardMobileHint": "หมายเลขโทรศัพท์มือถือจะช่วยให้คุณได้รับบัญชีของคุณและยังเป็นพื้นฐานสำคัญสำหรับเจ้าหน้าที่บริการลูกค้าในการยืนยันตัวตนของคุณ",
+  "@newBankcardCardMobileHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardNumberHint": "โปรดตรวจสอบหมายเลขบัตรธนาคารอย่างละเอียดหากหมายเลขบัตรไม่ถูกต้องจะไม่ได้รับเงิน",
+  "@newBankcardCardNumberHint": {
+    "description": "",
+    "type": "text"
+  },
   "noticeTabGeneral": "ข้อความทั่วไป",
   "@noticeTabGeneral": {
     "description": "",
@@ -1594,8 +1676,13 @@
     "description": "",
     "type": "text"
   },
-  "pageBtnContactCs": "ติดต่อฝ่ายบริการลูกค้า",
+  "pageBtnContactCs": "บริการลูกค้า",
   "@pageBtnContactCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnContactCsPrefix": "หากต้องการความช่วยเหลือโปรดติดต่อ ",
+  "@pageBtnContactCsPrefix": {
     "description": "",
     "type": "text"
   },

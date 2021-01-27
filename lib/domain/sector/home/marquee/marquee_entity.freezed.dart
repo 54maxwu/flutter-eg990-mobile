@@ -39,6 +39,7 @@ mixin _$MarqueeEntity {
   @HiveField(2)
   String get url;
 
+  @JsonKey(ignore: true)
   $MarqueeEntityCopyWith<MarqueeEntity> get copyWith;
 }
 
@@ -162,6 +163,7 @@ class _$_MarqueeEntity extends _MarqueeEntity {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(url);
 
+  @JsonKey(ignore: true)
   @override
   _$MarqueeEntityCopyWith<_MarqueeEntity> get copyWith =>
       __$MarqueeEntityCopyWithImpl<_MarqueeEntity>(this, _$identity);
@@ -184,5 +186,6 @@ abstract class _MarqueeEntity extends MarqueeEntity {
   @HiveField(2)
   String get url;
   @override
+  @JsonKey(ignore: true)
   _$MarqueeEntityCopyWith<_MarqueeEntity> get copyWith;
 }

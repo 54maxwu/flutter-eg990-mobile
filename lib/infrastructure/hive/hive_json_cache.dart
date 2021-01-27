@@ -21,10 +21,7 @@ class HiveJsonCache extends HiveObject {
     this.cacheMap,
     this.cacheList,
     this.hasData = true,
-  }) : assert(
-            (cacheMap == null || cacheMap.isEmpty) &&
-                (cacheList == null || cacheList.isEmpty) &&
-                hasData,
+  }) : assert((hasData && (cacheMap != null || cacheList != null)) || !hasData,
             'No data to cache!!');
 
   @override

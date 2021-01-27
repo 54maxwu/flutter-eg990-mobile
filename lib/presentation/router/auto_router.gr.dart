@@ -18,6 +18,7 @@ import '../features/home/state/home_store.dart';
 import '../features/home/widgets/pageview/games_page.dart';
 import '../features/login/login_route.dart';
 import '../features/member/member_route.dart';
+import '../features/member_features/bankcard/bankcard_route.dart';
 import '../features/member_features/bet_record/bet_record_route.dart';
 import '../features/member_features/deposit/deposit_route.dart';
 import '../features/member_features/member_center/member_center_route.dart';
@@ -121,6 +122,8 @@ class MainScreenRoutes {
   static const String depositRoute = '/deposit-route';
   static const String transferRoute = '/transfer-route';
   static const String withdrawRoute = '/withdraw-route';
+  static const String bankcardRoute = '/bankcard-route';
+  static const String bankcardRouteNew = '/bankcard-route-new';
   static const String betRecordRoute = '/bet-record-route';
   static const String aboutRoute = '/about-route';
   static const all = <String>{
@@ -137,6 +140,8 @@ class MainScreenRoutes {
     depositRoute,
     transferRoute,
     withdrawRoute,
+    bankcardRoute,
+    bankcardRouteNew,
     betRecordRoute,
     aboutRoute,
   };
@@ -159,6 +164,8 @@ class MainScreenRouter extends RouterBase {
     RouteDef(MainScreenRoutes.depositRoute, page: DepositRoute),
     RouteDef(MainScreenRoutes.transferRoute, page: TransferRoute),
     RouteDef(MainScreenRoutes.withdrawRoute, page: WithdrawRoute),
+    RouteDef(MainScreenRoutes.bankcardRoute, page: BankcardRoute),
+    RouteDef(MainScreenRoutes.bankcardRouteNew, page: BankcardRoute),
     RouteDef(MainScreenRoutes.betRecordRoute, page: BetRecordRoute),
     RouteDef(MainScreenRoutes.aboutRoute, page: AboutRoute),
   ];
@@ -250,6 +257,15 @@ class MainScreenRouter extends RouterBase {
         settings: data,
       );
     },
+    BankcardRoute: (data) {
+      final args = data.getArgs<BankcardRouteArguments>(
+        orElse: () => BankcardRouteArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => BankcardRoute(bindNewCard: args.bindNewCard),
+        settings: data,
+      );
+    },
     BetRecordRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => BetRecordRoute(),
@@ -321,6 +337,22 @@ extension MainScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushWithdrawRoute() =>
       push<dynamic>(MainScreenRoutes.withdrawRoute);
 
+  Future<dynamic> pushBankcardRoute({
+    bool bindNewCard = false,
+  }) =>
+      push<dynamic>(
+        MainScreenRoutes.bankcardRoute,
+        arguments: BankcardRouteArguments(bindNewCard: bindNewCard),
+      );
+
+  Future<dynamic> pushBankcardRouteNew({
+    bool bindNewCard = false,
+  }) =>
+      push<dynamic>(
+        MainScreenRoutes.bankcardRouteNew,
+        arguments: BankcardRouteArguments(bindNewCard: bindNewCard),
+      );
+
   Future<dynamic> pushBetRecordRoute() =>
       push<dynamic>(MainScreenRoutes.betRecordRoute);
 
@@ -344,4 +376,10 @@ class GamesPageArguments {
 class PromoDetailPageArguments {
   final PromoEntity promo;
   PromoDetailPageArguments({@required this.promo});
+}
+
+/// BankcardRoute arguments holder class
+class BankcardRouteArguments {
+  final bool bindNewCard;
+  BankcardRouteArguments({this.bindNewCard = false});
 }

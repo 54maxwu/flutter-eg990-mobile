@@ -31,6 +31,7 @@ mixin _$LoginStatus {
   bool get loggedIn;
   User get user;
 
+  @JsonKey(ignore: true)
   $LoginStatusCopyWith<LoginStatus> get copyWith;
 }
 
@@ -126,6 +127,7 @@ class _$_LoginStatus implements _LoginStatus {
       const DeepCollectionEquality().hash(loggedIn) ^
       const DeepCollectionEquality().hash(user);
 
+  @JsonKey(ignore: true)
   @override
   _$LoginStatusCopyWith<_LoginStatus> get copyWith =>
       __$LoginStatusCopyWithImpl<_LoginStatus>(this, _$identity);
@@ -140,5 +142,6 @@ abstract class _LoginStatus implements LoginStatus {
   @override
   User get user;
   @override
+  @JsonKey(ignore: true)
   _$LoginStatusCopyWith<_LoginStatus> get copyWith;
 }

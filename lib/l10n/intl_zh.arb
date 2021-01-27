@@ -227,7 +227,7 @@
     "description": "",
     "type": "text"
   },
-  "centerHintPrivacyEdit": "为了您的隐私安全，信息在确认後将无法修改\n如需帮助，请联系客服",
+  "centerHintPrivacyEdit": "为了您的隐私安全，信息在确认後将无法修改",
   "@centerHintPrivacyEdit": {
     "description": "",
     "type": "text"
@@ -279,6 +279,11 @@
   },
   "dealsDetailTypeAdjustWithdraw": "调整取款",
   "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "depositHintAccountName": "为即时到帐，请务必输入正确的汇款人姓名",
+  "@depositHintAccountName": {
     "description": "",
     "type": "text"
   },
@@ -608,8 +613,8 @@
     "description": "",
     "type": "text"
   },
-  "fieldErrorCardAccountName": "帐号名称错误",
-  "@fieldErrorCardAccountName": {
+  "fieldErrorAccountName": "帐号名称错误",
+  "@fieldErrorAccountName": {
     "description": "",
     "type": "text"
   },
@@ -664,6 +669,11 @@
         "example": "12"
       }
     }
+  },
+  "fieldErrorInvalidCardholder": "持卡人姓名格式错误",
+  "@fieldErrorInvalidCardholder": {
+    "description": "",
+    "type": "text"
   },
   "fieldErrorInvalidCreditAmount": "金额输入错误",
   "@fieldErrorInvalidCreditAmount": {
@@ -776,8 +786,33 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintBankAccount": "请输入银行帐号/卡号",
+  "@fieldHintBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankArea": "请输入开户银行所在地区(选填)",
+  "@fieldHintBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankBranch": "请输入开户银行支行名称(必填)",
+  "@fieldHintBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankProvince": "请输入开户银行网点(必填)",
+  "@fieldHintBankProvince": {
+    "description": "",
+    "type": "text"
+  },
   "fieldHintBirthday": "填写生日日期，确保您已符合法定年龄",
   "@fieldHintBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintCardholder": "请输入持卡人的姓名",
+  "@fieldHintCardholder": {
     "description": "",
     "type": "text"
   },
@@ -889,8 +924,30 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintPhoneArg": "{value}位手机号码",
+  "@fieldHintPhoneArg": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "fieldHintPhoneArg2": "{min}~{max}位手机号码",
+  "@fieldHintPhoneArg2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
   "fieldHintSearchGame": "请输入游戏名称",
   "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSelectPaymentBank": "请选择支付银行",
+  "@fieldHintSelectPaymentBank": {
     "description": "",
     "type": "text"
   },
@@ -1061,17 +1118,17 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBank": "银行",
+  "fieldTitleBank": "所属银行",
   "@fieldTitleBank": {
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankAccount": "账(卡)号",
+  "fieldTitleBankAccount": "银行卡号",
   "@fieldTitleBankAccount": {
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankArea": "地区",
+  "fieldTitleBankArea": "所在地区",
   "@fieldTitleBankArea": {
     "description": "",
     "type": "text"
@@ -1093,6 +1150,11 @@
   },
   "fieldTitleBirthday": "生日",
   "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCardHolder": "持卡人姓名",
+  "@fieldTitleCardHolder": {
     "description": "",
     "type": "text"
   },
@@ -1579,6 +1641,26 @@
     "description": "",
     "type": "text"
   },
+  "newBankcardCardholderHint": "为了您的资金能够迅速到帐，请确保填写的姓名与银行卡的开户姓名一致",
+  "@newBankcardCardholderHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardAddressHint": "请认真校准开户行及开户行地址，如有错误请手动修改",
+  "@newBankcardCardAddressHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardMobileHint": "手机号码将有助于您找回帐号，同时也是客服人员确认您身分的重要依据",
+  "@newBankcardCardMobileHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardNumberHint": "请认真校对银行卡号，卡号错误资金将无法到帐",
+  "@newBankcardCardNumberHint": {
+    "description": "",
+    "type": "text"
+  },
   "noticeTabGeneral": "一般讯息",
   "@noticeTabGeneral": {
     "description": "",
@@ -1596,6 +1678,11 @@
   },
   "pageBtnContactCs": "联系客服",
   "@pageBtnContactCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnContactCsPrefix": "如需帮助，请 ",
+  "@pageBtnContactCsPrefix": {
     "description": "",
     "type": "text"
   },

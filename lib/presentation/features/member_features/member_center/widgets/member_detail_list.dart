@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_eg990_mobile/application/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/domain/core/failure_type.dart';
 import 'package:flutter_eg990_mobile/domain/core/failures.dart';
 import 'package:flutter_eg990_mobile/presentation/app_theme_export.dart';
@@ -216,7 +215,8 @@ class MemberDetailList extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             TextSpan(
-              text: '${localeStr.centerHintPrivacyEdit}\t',
+              text:
+                  '${localeStr.centerHintPrivacyEdit}${localeStr.pageBtnContactCsPrefix}',
               style: TextStyle(
                 fontSize: FontSize.MESSAGE.value,
                 color: themeColor.defaultHintColor,
@@ -224,18 +224,18 @@ class MemberDetailList extends StatelessWidget {
             ),
             WidgetSpan(
               alignment: PlaceholderAlignment.middle,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: IconButton(
-                  visualDensity: VisualDensity.compact,
-                  icon: Icon(
-                    IconCode.csService,
+              child: FlatButton(
+                visualDensity: VisualDensity.compact,
+                child: Text(
+                  localeStr.pageBtnContactCs,
+                  style: TextStyle(
+                    fontSize: FontSize.MESSAGE.value,
                     color: themeColor.hintHyperLink,
                   ),
-                  onPressed: () => AppNavigator.navigateTo(RoutePage.service),
                 ),
+                onPressed: () => AppNavigator.navigateTo(RoutePage.service),
               ),
-            )
+            ),
           ]),
         ),
       ),

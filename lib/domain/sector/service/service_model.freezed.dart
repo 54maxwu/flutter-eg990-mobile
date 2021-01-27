@@ -67,6 +67,7 @@ mixin _$ServiceModel {
   @JsonKey(name: 'line_pic', defaultValue: '')
   String get linePic;
 
+  @JsonKey(ignore: true)
   $ServiceModelCopyWith<ServiceModel> get copyWith;
 }
 
@@ -307,6 +308,7 @@ class _$_ServiceModel implements _ServiceModel {
       const DeepCollectionEquality().hash(line) ^
       const DeepCollectionEquality().hash(linePic);
 
+  @JsonKey(ignore: true)
   @override
   _$ServiceModelCopyWith<_ServiceModel> get copyWith =>
       __$ServiceModelCopyWithImpl<_ServiceModel>(this, _$identity);
@@ -357,5 +359,6 @@ abstract class _ServiceModel implements ServiceModel {
   @JsonKey(name: 'line_pic', defaultValue: '')
   String get linePic;
   @override
+  @JsonKey(ignore: true)
   _$ServiceModelCopyWith<_ServiceModel> get copyWith;
 }

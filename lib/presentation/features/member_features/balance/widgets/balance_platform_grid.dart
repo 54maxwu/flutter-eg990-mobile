@@ -81,7 +81,7 @@ class _BalancePlatformGridState extends State<BalancePlatformGrid> {
     _sliver ??= SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: _gridAxisCount,
-        mainAxisSpacing: 0.0,
+        mainAxisSpacing: 0,
         childAspectRatio: 1.35,
       ),
       delegate: SliverChildBuilderDelegate(

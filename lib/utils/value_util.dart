@@ -21,7 +21,7 @@ class ValueRangeData {
       {@required this.value, @required this.min, @required this.max});
 
   bool get isInRange {
-    debugPrint('$min >= $value <= $max');
+    // debugPrint('$min >= $value <= $max');
     if (max != 0) {
       return value >= min && value <= max;
     } else {

@@ -227,7 +227,7 @@
     "description": "",
     "type": "text"
   },
-  "centerHintPrivacyEdit": "Vì quyền riêng tư của bạn, không thể sửa đổi thông tin sau khi xác nhận\nNếu bạn cần hỗ trợ, vui lòng liên hệ với bộ phận chăm sóc khách hàng",
+  "centerHintPrivacyEdit": "Vì quyền riêng tư của bạn, không thể sửa đổi thông tin sau khi xác nhận. ",
   "@centerHintPrivacyEdit": {
     "description": "",
     "type": "text"
@@ -279,6 +279,11 @@
   },
   "dealsDetailTypeAdjustWithdraw": "Điều chỉnh việc rút tiền",
   "@dealsDetailTypeAdjustWithdraw": {
+    "description": "",
+    "type": "text"
+  },
+  "depositHintAccountName": "Để đến ngay, vui lòng nhập đúng tên người gửi",
+  "@depositHintAccountName": {
     "description": "",
     "type": "text"
   },
@@ -608,8 +613,8 @@
     "description": "",
     "type": "text"
   },
-  "fieldErrorCardAccountName": "Tên tài khoản không chính xác",
-  "@fieldErrorCardAccountName": {
+  "fieldErrorAccountName": "Tên tài khoản không chính xác",
+  "@fieldErrorAccountName": {
     "description": "",
     "type": "text"
   },
@@ -664,6 +669,11 @@
         "example": "12"
       }
     }
+  },
+  "fieldErrorInvalidCardholder": "Tên của chủ thẻ được định dạng không chính xác",
+  "@fieldErrorInvalidCardholder": {
+    "description": "",
+    "type": "text"
   },
   "fieldErrorInvalidCreditAmount": "Số tiền nhập không chính xác",
   "@fieldErrorInvalidCreditAmount": {
@@ -776,8 +786,33 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintBankAccount": "Vui lòng nhập tài khoản ngân hàng / số thẻ",
+  "@fieldHintBankAccount": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankArea": "Vui lòng nhập địa điểm / khu vực của ngân hàng (Không bắt buộc)",
+  "@fieldHintBankArea": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankBranch": "Vui lòng nhập chi nhánh ngân hàng",
+  "@fieldHintBankBranch": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintBankProvince": "Vui lòng nhập tỉnh ngân hàng",
+  "@fieldHintBankProvince": {
+    "description": "",
+    "type": "text"
+  },
   "fieldHintBirthday": "Điền vào ngày sinh nhật để đảm bảo rằng bạn đủ tuổi hợp pháp",
   "@fieldHintBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintCardholder": "Vui lòng nhập tên chủ thẻ",
+  "@fieldHintCardholder": {
     "description": "",
     "type": "text"
   },
@@ -889,8 +924,30 @@
     "description": "",
     "type": "text"
   },
+  "fieldHintPhoneArg": "số điện thoại {value}",
+  "@fieldHintPhoneArg": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "fieldHintPhoneArg2": "Số điện thoại {min} ~ {max}",
+  "@fieldHintPhoneArg2": {
+    "description": "",
+    "type": "text",
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
   "fieldHintSearchGame": "Vui lòng nhập tên trò chơi",
   "@fieldHintSearchGame": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldHintSelectPaymentBank": "Vui lòng chọn ngân hàng thanh toán",
+  "@fieldHintSelectPaymentBank": {
     "description": "",
     "type": "text"
   },
@@ -1061,17 +1118,17 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBank": "ngân hàng",
+  "fieldTitleBank": "Ngân hàng",
   "@fieldTitleBank": {
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankAccount": "Số tài khoản (thẻ)",
+  "fieldTitleBankAccount": "Số thẻ ngân hàng",
   "@fieldTitleBankAccount": {
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankArea": "khu vực",
+  "fieldTitleBankArea": "Khu vực",
   "@fieldTitleBankArea": {
     "description": "",
     "type": "text"
@@ -1081,7 +1138,7 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBankName": "tên ngân hàng",
+  "fieldTitleBankName": "Tên ngân hàng",
   "@fieldTitleBankName": {
     "description": "",
     "type": "text"
@@ -1091,8 +1148,13 @@
     "description": "",
     "type": "text"
   },
-  "fieldTitleBirthday": "sinh nhật",
+  "fieldTitleBirthday": "Sinh nhật",
   "@fieldTitleBirthday": {
+    "description": "",
+    "type": "text"
+  },
+  "fieldTitleCardHolder": "Tên chủ thẻ",
+  "@fieldTitleCardHolder": {
     "description": "",
     "type": "text"
   },
@@ -1579,6 +1641,26 @@
     "description": "",
     "type": "text"
   },
+  "newBankcardCardholderHint": "Để tiền của bạn đến nhanh chóng, vui lòng đảm bảo rằng tên bạn điền phù hợp với tên tài khoản thẻ ngân hàng",
+  "@newBankcardCardholderHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardAddressHint": "Vui lòng đảm bảo rằng địa chỉ bạn điền vào phù hợp với ngân hàng nơi bạn mở tài khoản.",
+  "@newBankcardCardAddressHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardMobileHint": "Số điện thoại di động sẽ giúp bạn lấy lại tài khoản, đồng thời cũng là cơ sở quan trọng để nhân viên chăm sóc khách hàng xác nhận danh tính của bạn",
+  "@newBankcardCardMobileHint": {
+    "description": "",
+    "type": "text"
+  },
+  "newBankcardCardNumberHint": "Vui lòng kiểm tra kỹ số thẻ ngân hàng, nếu sai số thẻ sẽ không nhận được tiền.",
+  "@newBankcardCardNumberHint": {
+    "description": "",
+    "type": "text"
+  },
   "noticeTabGeneral": "Thông tin chung",
   "@noticeTabGeneral": {
     "description": "",
@@ -1594,8 +1676,13 @@
     "description": "",
     "type": "text"
   },
-  "pageBtnContactCs": "liên hệ với dịch vụ khách hàng",
+  "pageBtnContactCs": "Dịch vụ khách hàng",
   "@pageBtnContactCs": {
+    "description": "",
+    "type": "text"
+  },
+  "pageBtnContactCsPrefix": "Để được trợ giúp, vui lòng liên hệ ",
+  "@pageBtnContactCsPrefix": {
     "description": "",
     "type": "text"
   },
