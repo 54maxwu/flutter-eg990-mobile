@@ -1311,7 +1311,7 @@
   "@transferViewTitleOption": {
     "type": "text"
   },
-  "transferViewTextOptionAll": "All credits",
+  "transferViewTextOptionAll": "All",
   "@transferViewTextOptionAll": {
     "type": "text"
   },
@@ -1371,15 +1371,15 @@
   "@bankcardViewTitleBankName": {
     "type": "text"
   },
-  "bankcardViewTitleCardNumber": "Account (Card) Number",
+  "bankcardViewTitleCardNumber": "Bank Account",
   "@bankcardViewTitleCardNumber": {
     "type": "text"
   },
-  "bankcardViewTitleBankBranch": "Bank Branch",
+  "bankcardViewTitleBankBranch": "Branch",
   "@bankcardViewTitleBankBranch": {
     "type": "text"
   },
-  "bankcardViewTitleBankProvince": "Open an Account",
+  "bankcardViewTitleBankProvince": "Province",
   "@bankcardViewTitleBankProvince": {
     "type": "text"
   },
@@ -1728,19 +1728,19 @@
   "@ dealsViewSpinnerStatus4": {
     "type": "text"
   },
-  "dealsHeaderSerial": "Single Number",
+  "dealsHeaderSerial": "No.",
   "@dealsHeaderSerial": {
     "type": "text"
   },
-  "dealsHeaderType": "items",
+  "dealsHeaderType": "Type",
   "@dealsHeaderType": {
     "type": "text"
   },
-  "dealsHeaderDetail": "Details",
+  "dealsHeaderDetail": "Detail",
   "@dealsHeaderDetail": {
     "type": "text"
   },
-  "dealsHeaderStatus": "Order Status",
+  "dealsHeaderStatus": "Status",
   "@dealsHeaderStatus": {
     "type": "text"
   },
@@ -1750,6 +1750,10 @@
   },
   "dealsHeaderAmount": "Amount",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustCash": "Adjust Cash",
+  "@dealsDetailTypeAdjustCash": {
     "type": "text"
   },
   "dealsDetailTypeAdjustDeposit": "Adjust Deposit",

@@ -204,6 +204,9 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
     if (widget.suffixInitText == null && widget.suffixTextStream == null) {
       _suffixWidget = null;
     }
+    if (oldWidget.suffixInitText != widget.suffixInitText) {
+      _suffixWidget = null;
+    }
 
     updateVariables();
     super.didUpdateWidget(oldWidget);

@@ -65,10 +65,10 @@ class PaymentContentState extends State<PaymentContent> {
         : new PaymentContentOnline(
             dataList:
                 type.data.where((t) => t is PaymentTypeOnlineData).toList(),
-            promoList: (type.key == 2 && widget.promos.containsKey(type.key))
+            promoList: (widget.promos.containsKey(type.key))
                 ? widget.promos[type.key]
-                : (type.key > 2 && widget.promos.containsKey(3))
-                    ? widget.promos[3]
+                : (widget.promos.containsKey(2))
+                    ? widget.promos[2]
                     : [],
             depositFuncCall: widget.depositCall,
           );

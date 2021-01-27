@@ -148,6 +148,8 @@ class RollbackDisplayList extends StatelessWidget {
         return localeStr.dealsDetailTypeAdjustDeposit;
       case 'adjustwithdraw':
         return localeStr.dealsDetailTypeAdjustWithdraw;
+      case 'cashAdjustment':
+        return localeStr.dealsDetailTypeAdjustCash;
       case '退水':
       case 'rollback':
         return localeStr.rollbackIndexRollback;

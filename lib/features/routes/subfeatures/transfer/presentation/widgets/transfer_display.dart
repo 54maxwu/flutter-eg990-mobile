@@ -32,14 +32,6 @@ class _TransferDisplayState extends State<TransferDisplay> {
   final GlobalKey<CustomizeDropdownWidgetState> _site2Key =
       new GlobalKey(debugLabel: 'site2');
 
-  final List<String> chipLabels = [
-    '100',
-    '500',
-    '1000',
-    '2000',
-    '5000',
-    localeStr.transferViewTextOptionAll,
-  ];
   final List<String> chipValues = [
     '100',
     '500',
@@ -48,10 +40,31 @@ class _TransferDisplayState extends State<TransferDisplay> {
     '5000',
     'all',
   ];
+  List<String> _chipLabels;
   List<TransferPlatformModel> _site2List = [];
+  List<String> _site1Labels;
+  List<String> _site2Labels;
 
   String _site1Selected;
   String _site2Selected;
+
+  void _updateChipLabels() {
+    _chipLabels = [
+      '100',
+      '500',
+      '1000',
+      '2000',
+      '5000',
+      localeStr.transferViewTextOptionAll,
+    ];
+  }
+
+  List<String> _updateDropdownLabels(List<TransferPlatformModel> list) {
+    return list
+        .map((e) =>
+            e.name == 'center wallet' ? localeStr.walletViewTitle : e.name)
+        .toList();
+  }
 
   void _validateForm() {
     if (widget.store.isPlatformValid == false) {
@@ -82,7 +95,22 @@ class _TransferDisplayState extends State<TransferDisplay> {
   }
 
   @override
+  void didUpdateWidget(covariant TransferDisplay oldWidget) {
+    _site1Labels = null;
+    _site2Labels = null;
+    _updateChipLabels();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_chipLabels == null) _updateChipLabels();
+    if (_site1Labels == null) {
+      _site1Labels = _updateDropdownLabels(widget.store.platforms);
+    }
+    if (_site2Labels == null && _site2List != null) {
+      _site2Labels = _updateDropdownLabels(_site2List);
+    }
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -113,8 +141,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       titleWidthFactor: 0.3,
                       optionValues:
                           widget.store.platforms.map((e) => e.site).toList(),
-                      optionStrings:
-                          widget.store.platforms.map((e) => e.name).toList(),
+                      optionStrings: _site1Labels,
                       suffixInitText: localeStr.transferViewSiteHint,
                       suffixTextStream: widget.store.site1ValueStream,
                       clearValueOnMenuChanged: true,
@@ -124,6 +151,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                         // platform credit can only transfer to member wallet
                         if (data != '0') {
                           _site2List = [widget.store.platforms.first];
+                          _site2Labels = _updateDropdownLabels(_site2List);
                           _site2Selected = '0';
                           _site2Key.currentState.setSelected = '0';
                           widget.store.setSite2Value('');
@@ -133,6 +161,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                           // restore site2 dropdown to normal
                           _site2List = List.from(widget.store.platforms)
                             ..removeAt(0);
+                          _site2Labels = _updateDropdownLabels(_site2List);
                           _site2Selected = null;
                           _site2Key.currentState.setSelected = null;
                           widget.store.setSite2Value('');
@@ -141,6 +170,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                           // when site2 dropdown not initialized
                           _site2List = List.from(widget.store.platforms)
                             ..removeAt(0);
+                          _site2Labels = _updateDropdownLabels(_site2List);
                           setState(() {});
                         }
                         // set site1 selected
@@ -156,7 +186,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       prefixText: localeStr.transferViewTitleIn,
                       titleWidthFactor: 0.3,
                       optionValues: _site2List.map((e) => e.site).toList(),
-                      optionStrings: _site2List.map((e) => e.name).toList(),
+                      optionStrings: _site2Labels,
                       suffixInitText: localeStr.transferViewSiteHint,
                       suffixTextStream: widget.store.site2ValueStream,
                       clearValueOnMenuChanged: true,
@@ -184,7 +214,7 @@ class _TransferDisplayState extends State<TransferDisplay> {
                       prefixTextMaxLines: (Global.localeCode == 'zh') ? 1 : 2,
                       titleWidthFactor: 0.3,
                       titleLetterSpacing: 0,
-                      labels: chipLabels,
+                      labels: _chipLabels,
                       values: chipValues,
                       heightFactor: 1.75,
                       chipTapCall: (value) {

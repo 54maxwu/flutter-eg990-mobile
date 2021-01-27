@@ -1732,7 +1732,7 @@
   "@dealsHeaderSerial": {
     "type": "text"
   },
-  "dealsHeaderType": "items",
+  "dealsHeaderType": "โครงการ",
   "@dealsHeaderType": {
     "type": "text"
   },
@@ -1750,6 +1750,10 @@
   },
   "dealsHeaderAmount": "จำนวนเงิน",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustCash": "จำนวนเงินที่ปรับแล้ว",
+  "@dealsDetailTypeAdjustCash": {
     "type": "text"
   },
   "dealsDetailTypeAdjustDeposit": "จำนวนเงินที่ปรับแล้ว",

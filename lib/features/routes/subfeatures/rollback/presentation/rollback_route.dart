@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 
@@ -9,7 +10,7 @@ class RollbackRoute extends StatefulWidget {
   _RollbackRouteState createState() => _RollbackRouteState();
 }
 
-class _RollbackRouteState extends State<RollbackRoute> {
+class _RollbackRouteState extends State<RollbackRoute> with AfterLayoutMixin {
   RollbackStore _store;
   List<ReactionDisposer> _disposers;
   CancelFunc toastDismiss;
@@ -97,5 +98,10 @@ class _RollbackRouteState extends State<RollbackRoute> {
         ),
       ),
     );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    getPageData(0);
   }
 }

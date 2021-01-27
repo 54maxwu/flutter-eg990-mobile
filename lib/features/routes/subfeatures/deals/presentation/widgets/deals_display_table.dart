@@ -71,6 +71,7 @@ class DealsDisplayTableState extends State<DealsDisplayTable> {
 
   @override
   void didUpdateWidget(DealsDisplayTable oldWidget) {
+    _headerRow = null;
     _updateHeaders();
     super.didUpdateWidget(oldWidget);
   }
@@ -118,7 +119,7 @@ class DealsDisplayTableState extends State<DealsDisplayTable> {
                       getActionLocale(data.action),
                       getTypeLocale(data.type),
                       getStatusLocale(data.status),
-                      formatValue(data.amount),
+                      formatValue(data.amount, creditSign: true, floor: true),
                     ];
                     /* generate cell text */
                     return TableRow(

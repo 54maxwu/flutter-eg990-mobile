@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/device.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
+import 'package:flutter_eg990_mobile/features/update/presentation/update_dialog.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
+import 'package:flutter_eg990_mobile/utils/regex_util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'router/app_navigator_export.dart';
 import 'screen/web_game_screen_store.dart';
@@ -105,30 +108,30 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   @override
   void afterFirstLayout(BuildContext context) {
     if (updateStore != null) {
-      updateStore.dialogClosed();
-//      updateFuture ??=
-//          Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
-//      updateFuture.then((hasUpdate) {
-//        if (hasUpdate) {
-//          showDialog(
-//            context: context,
-//            barrierDismissible: false,
-//            builder: (context) => UpdateDialog(
-//              newVersion: updateStore.serverAppVersion,
-//              onUpdateClick: () {
-//                String url = updateStore.serverAppUrl;
-//                if (url == null || url.isEmpty || url.isUrl == false)
-//                  callToastError(localeStr.updateDialogErrorUrl);
-//                else
-//                  launch(updateStore.serverAppUrl);
-//              },
-//              onDialogClose: () => updateStore.dialogClosed(),
-//            ),
-//          );
-//        } else {
-//          updateStore.dialogClosed();
-//        }
-//      });
+      // updateStore.dialogClosed();
+      updateFuture ??=
+          Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
+      updateFuture.then((hasUpdate) {
+        if (hasUpdate) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => UpdateDialog(
+              newVersion: updateStore.serverAppVersion,
+              onUpdateClick: () {
+                String url = updateStore.serverAppUrl;
+                if (url == null || url.isEmpty || url.isUrl == false)
+                  callToastError(localeStr.updateDialogErrorUrl);
+                else
+                  launch(updateStore.serverAppUrl);
+              },
+              onDialogClose: () => updateStore.dialogClosed(),
+            ),
+          );
+        } else {
+          updateStore.dialogClosed();
+        }
+      });
     }
   }
 }

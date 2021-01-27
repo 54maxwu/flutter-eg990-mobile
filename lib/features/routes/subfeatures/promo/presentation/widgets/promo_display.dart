@@ -1,4 +1,5 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/tabs_page_control_widget.dart';
@@ -44,8 +45,9 @@ class _PromoDisplayState extends State<PromoDisplay>
   /// Set [_current] to change tab bar item color
   void _setActiveTabIndex() {
     // set state to change tab's image color
-    _current = categories[_tabController.index];
-    setState(() {});
+    setState(() {
+      _current = categories[_tabController.index];
+    });
   }
 
   @override
@@ -126,11 +128,14 @@ class _PromoDisplayState extends State<PromoDisplay>
                     ),
                     Container(
                       padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
-                      height: FontSize.NORMAL.value * 2.0,
-                      child: Text(
+                      height: FontSize.NORMAL.value * 2.5,
+                      alignment: Alignment.center,
+                      child: AutoSizeText(
                         c.label.trim().toUpperCase(),
-                        style: TextStyle(fontSize: FontSize.NORMAL.value),
-                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        minFontSize: FontSize.SMALL.value,
+                        maxFontSize: FontSize.NORMAL.value,
                       ),
                     ),
                     SizedBox(

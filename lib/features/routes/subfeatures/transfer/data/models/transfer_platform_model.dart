@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transfer_platform_model.freezed.dart';
-part 'transfer_platform_model.g.dart';
 
 @freezed
 abstract class TransferPlatformModel with _$TransferPlatformModel {
@@ -10,12 +9,12 @@ abstract class TransferPlatformModel with _$TransferPlatformModel {
     @JsonKey(name: 'site_name') String name,
   }) = _TransferPlatformModel;
 
-  factory TransferPlatformModel.fromJson(Map<String, dynamic> json) =>
-      _$TransferPlatformModelFromJson(json);
-
   static TransferPlatformModel jsonToTransferPlatformModel(
           Map<String, dynamic> jsonMap) =>
-      TransferPlatformModel.fromJson(jsonMap);
+      _$_TransferPlatformModel(
+        site: jsonMap['site'] as String,
+        name: jsonMap['site_name'] as String,
+      );
 }
 
 @freezed

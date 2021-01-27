@@ -1299,7 +1299,7 @@
   "@transferViewTitleIn": {
     "type": "text"
   },
-  "transferViewSiteHint": "Vui lòng chọn một nền tảng",
+  "transferViewSiteHint": "xin vui lòng chọn",
   "@transferViewSiteHint": {
     "type": "text"
   },
@@ -1311,7 +1311,7 @@
   "@transferViewTitleOption": {
     "type": "text"
   },
-  "transferViewTextOptionAll": "Tất cả ra ngoài",
+  "transferViewTextOptionAll": "Tất cả",
   "@transferViewTextOptionAll": {
     "type": "text"
   },
@@ -1732,7 +1732,7 @@
   "@dealsHeaderSerial": {
     "type": "text"
   },
-  "dealsHeaderType": "Mục,tiêu đề",
+  "dealsHeaderType": "Dự án",
   "@dealsHeaderType": {
     "type": "text"
   },
@@ -1740,7 +1740,7 @@
   "@dealsHeaderDetail": {
     "type": "text"
   },
-  "dealsHeaderStatus": "Trạng thái đơn đặt",
+  "dealsHeaderStatus": "Trạng thái",
   "@dealsHeaderStatus": {
     "type": "text"
   },
@@ -1750,6 +1750,10 @@
   },
   "dealsHeaderAmount": "Số tiền",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustCash": "Số tiền điều chỉnh",
+  "@dealsDetailTypeAdjustCash": {
     "type": "text"
   },
   "dealsDetailTypeAdjustDeposit": "Số tiền điều chỉnh",

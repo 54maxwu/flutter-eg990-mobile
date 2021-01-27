@@ -175,6 +175,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
                 child: CustomizeDropdownWidget(
                   key: _bankOptionKey,
                   prefixText: localeStr.depositPaymentSpinnerTitleBank,
+                  prefixTextMaxLines: 2,
                   horizontalInset: _fieldInset,
                   optionValues:
                       widget.dataList.map((item) => item.key).toList(),
@@ -209,6 +210,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
                   padding: const EdgeInsets.only(top: 16.0),
                   child: CustomizeDropdownWidget(
                     prefixText: localeStr.depositPaymentSpinnerTitlePromo,
+                    prefixTextMaxLines: 2,
                     horizontalInset: _fieldInset,
                     optionValues: promos.map((item) => item.promoId).toList(),
                     optionStrings:
@@ -237,6 +239,7 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
                   ),
                   persistHint: false,
                   prefixText: localeStr.depositPaymentEditTitleAmount,
+                  prefixTextMaxLines: 2,
                   horizontalInset: _fieldInset,
                   maxInputLength: _onlineData.max.toString().length,
                   errorMsg: localeStr.messageInvalidDepositAmount,

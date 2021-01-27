@@ -100,6 +100,7 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
   void didUpdateWidget(RollbackDisplayTable oldWidget) {
     _headerRow = null;
     _headerRowTexts = null;
+    _totalRow = null;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -130,7 +131,7 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
     return Container(
       constraints: BoxConstraints(
         maxWidth: (isEmptyTable) ? _availableWidth : _availableWidth * 2,
-        maxHeight: _tableHeight,
+        maxHeight: Global.device.featureContentHeight - 16,
       ),
       child: (isEmptyTable) ? _buildEmptyTable() : _buildTable(),
     );
@@ -208,6 +209,8 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
         return localeStr.dealsDetailTypeAdjustDeposit;
       case 'adjustwithdraw':
         return localeStr.dealsDetailTypeAdjustWithdraw;
+      case 'cashadjustment':
+        return localeStr.dealsDetailTypeAdjustCash;
       case '退水':
       case 'rollback':
         return localeStr.rollbackIndexRollback;

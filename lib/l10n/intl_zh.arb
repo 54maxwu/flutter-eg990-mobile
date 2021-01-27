@@ -1752,6 +1752,10 @@
   "@dealsHeaderAmount": {
     "type": "text"
   },
+  "dealsDetailTypeAdjustCash": "调整金额",
+  "@dealsDetailTypeAdjustCash": {
+    "type": "text"
+  },
   "dealsDetailTypeAdjustDeposit": "调整存款",
   "@dealsDetailTypeAdjustDeposit": {
     "type": "text"

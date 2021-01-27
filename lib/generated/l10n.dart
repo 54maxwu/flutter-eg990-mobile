@@ -2965,10 +2965,10 @@ class S {
     );
   }
 
-  /// `All credits`
+  /// `All`
   String get transferViewTextOptionAll {
     return Intl.message(
-      'All credits',
+      'All',
       name: 'transferViewTextOptionAll',
       desc: '',
       args: [],
@@ -3095,30 +3095,30 @@ class S {
     );
   }
 
-  /// `Account (Card) Number`
+  /// `Bank Account`
   String get bankcardViewTitleCardNumber {
     return Intl.message(
-      'Account (Card) Number',
+      'Bank Account',
       name: 'bankcardViewTitleCardNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Bank Branch`
+  /// `Branch`
   String get bankcardViewTitleBankBranch {
     return Intl.message(
-      'Bank Branch',
+      'Branch',
       name: 'bankcardViewTitleBankBranch',
       desc: '',
       args: [],
     );
   }
 
-  /// `Open an Account`
+  /// `Province`
   String get bankcardViewTitleBankProvince {
     return Intl.message(
-      'Open an Account',
+      'Province',
       name: 'bankcardViewTitleBankProvince',
       desc: '',
       args: [],
@@ -3975,40 +3975,40 @@ class S {
     );
   }
 
-  /// `Single Number`
+  /// `No.`
   String get dealsHeaderSerial {
     return Intl.message(
-      'Single Number',
+      'No.',
       name: 'dealsHeaderSerial',
       desc: '',
       args: [],
     );
   }
 
-  /// `items`
+  /// `Type`
   String get dealsHeaderType {
     return Intl.message(
-      'items',
+      'Type',
       name: 'dealsHeaderType',
       desc: '',
       args: [],
     );
   }
 
-  /// `Details`
+  /// `Detail`
   String get dealsHeaderDetail {
     return Intl.message(
-      'Details',
+      'Detail',
       name: 'dealsHeaderDetail',
       desc: '',
       args: [],
     );
   }
 
-  /// `Order Status`
+  /// `Status`
   String get dealsHeaderStatus {
     return Intl.message(
-      'Order Status',
+      'Status',
       name: 'dealsHeaderStatus',
       desc: '',
       args: [],
@@ -4030,6 +4030,16 @@ class S {
     return Intl.message(
       'Amount',
       name: 'dealsHeaderAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adjust Cash`
+  String get dealsDetailTypeAdjustCash {
+    return Intl.message(
+      'Adjust Cash',
+      name: 'dealsDetailTypeAdjustCash',
       desc: '',
       args: [],
     );

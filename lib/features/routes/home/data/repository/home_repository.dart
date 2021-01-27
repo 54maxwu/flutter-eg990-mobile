@@ -265,8 +265,9 @@ class HomeRepositoryImpl implements HomeRepository {
 
     return result.fold(
       (failure) => Left(failure),
-      (data) =>
-          (data.isUrl) ? Right(data) : Left(Failure.errorMessage(msg: data)),
+      (data) => (data.isUrl || (data.isHtmlFormat && data.contains('</form>')))
+          ? Right(data)
+          : Left(Failure.errorMessage(msg: data)),
     );
   }
 

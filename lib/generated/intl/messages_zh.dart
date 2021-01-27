@@ -312,6 +312,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "centerViewTitleData" : MessageLookupByLibrary.simpleMessage("个人资料"),
     "centerViewTitleLotto" : MessageLookupByLibrary.simpleMessage("六合幸运码"),
     "centerViewTitleVipRank" : MessageLookupByLibrary.simpleMessage("Vip阶层"),
+    "dealsDetailTypeAdjustCash" : MessageLookupByLibrary.simpleMessage("调整金额"),
     "dealsDetailTypeAdjustDeposit" : MessageLookupByLibrary.simpleMessage("调整存款"),
     "dealsDetailTypeAdjustWithdraw" : MessageLookupByLibrary.simpleMessage("调整取款"),
     "dealsHeaderAmount" : MessageLookupByLibrary.simpleMessage("金额"),
