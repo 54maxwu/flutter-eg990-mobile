@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-09-25T10:54:50+0800",
   "@@locale": "th",
-  "title": "BKK365 Mobile",
+  "title": "VietWin Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "VietWin Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "￥ {value}",
+  "toolBarMemberCredit": "฿ {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "บัญชี Zalo ไม่ถูกต้อง",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "โปรดป้อนรหัสยืนยัน",
   "@messageInvalidVerify": {
     "type": "text"
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "หมายเลขบัตรคือ 16~19 อักขระ",
+  "messageInvalidCardNumber": "หมายเลขบัตรคือ 6~19 อักขระ",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -918,7 +922,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ BKK365",
+  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ VietWin",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -1668,7 +1672,7 @@
   "@depositPaymentEditTitleAmount": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintVnd": "ความเป็นจริง: ￥ {value}",
+  "depositPaymentEditTitleAmountHintVnd": "ความเป็นจริง: ฿ {value}",
   "@depositPaymentEditTitleAmountHintVND": {
     "type": "text",
     "placeholders": {
@@ -1736,7 +1740,7 @@
   "@depositHintTextAccount": {
     "type": "text"
   },
-  "depositHintTextAmount": "ขีดจำกัดการฝากเงินครั้งเดียว: ￥ {value}",
+  "depositHintTextAmount": "ขีดจำกัดการฝากเงินครั้งเดียว: ฿ {value}",
   "@depositHintTextAmount": {
     "type": "text",
     "placeholders": {

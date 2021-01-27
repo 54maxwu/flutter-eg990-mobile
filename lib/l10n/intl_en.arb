@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "en",
-  "title": "BKK365 Mobile",
+  "title": "VietWin Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "VietWin Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "￥ {value}",
+  "toolBarMemberCredit": "฿ {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Invalid Zalo account",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "Please enter a verification code",
   "@messageInvalidVerify": {
     "type": "text"
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "The card number is 16 ~ 19 characters",
+  "messageInvalidCardNumber": "The card number is 6~19 characters",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -918,7 +922,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "Click me to open BKK365 website",
+  "gameCategoryWebHint": "Click me to open VietWin website",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -1491,7 +1495,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Total: ￥ {value}",
+  "betsTextTotal": "Total: ฿ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {
@@ -1736,7 +1740,7 @@
   "@depositHintTextAccount": {
     "type": "text"
   },
-  "depositHintTextAmount": "Single Deposit Limit: ￥ {value}",
+  "depositHintTextAmount": "Single Deposit Limit: ฿ {value}",
   "@depositHintTextAmount": {
     "type": "text",
     "placeholders": {

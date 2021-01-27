@@ -58,8 +58,8 @@ class _MemberGridItemWidgetV2BadgeState
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              constraints:
-                  BoxConstraints.tight(Size(widget.iconSize, widget.iconSize)),
+              constraints: BoxConstraints.tight(
+                  Size(widget.iconSize + 12, widget.iconSize + 10)),
               child: Observer(
                 builder: (_) => Badge(
                   showBadge: widget.store.hasNewMessage,
@@ -73,10 +73,14 @@ class _MemberGridItemWidgetV2BadgeState
                     ),
                   ),
                   padding: EdgeInsets.zero,
-                  position: BadgePosition.topEnd(top: -2, end: -6),
-                  child: networkImageBuilder(
-                    itemData.imageName,
-                    imgColor: themeColor.memberIconColor,
+                  position: BadgePosition.topEnd(top: 2, end: 0),
+                  child: Container(
+                    constraints: BoxConstraints.tight(
+                        Size(widget.iconSize, widget.iconSize)),
+                    child: networkImageBuilder(
+                      itemData.imageName,
+                      imgColor: themeColor.memberIconColor,
+                    ),
                   ),
                 ),
               ),

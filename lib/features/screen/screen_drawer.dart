@@ -20,9 +20,7 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
     ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
+    // ScreenDrawerItem.agent,
   ];
 
   static final List<ScreenDrawerItem> _userMenuItems = [
@@ -32,17 +30,11 @@ class ScreenDrawer extends StatelessWidget {
     ScreenDrawerItem.message,
     ScreenDrawerItem.notice,
     ScreenDrawerItem.store,
-    ScreenDrawerItem.roller,
-    ScreenDrawerItem.task,
-    ScreenDrawerItem.collect,
-    ScreenDrawerItem.sign,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
     ScreenDrawerItem.vip,
-    ScreenDrawerItem.agentAbout,
+    // ScreenDrawerItem.agent,
     ScreenDrawerItem.logout,
-    ScreenDrawerItem.testUI,
-    ScreenDrawerItem.test,
   ];
 
   bool _itemTapped(ScreenDrawerItem item,
@@ -58,13 +50,6 @@ class ScreenDrawer extends StatelessWidget {
       case RouteEnum.WEBSITE:
         launch(Global.CURRENT_BASE);
         return true;
-      case RouteEnum.SERVICE:
-        AppNavigator.replaceWith(
-          item.value.route,
-          arg: WebRouteArguments(
-              startUrl: Global.currentService, hideBars: true),
-        );
-        return true;
       case RouteEnum.SIGN:
         if (eventStore == null) return false;
         if (store.hasUser == false) {
@@ -72,29 +57,6 @@ class ScreenDrawer extends StatelessWidget {
         } else {
           eventStore?.setForceShowEvent = true;
         }
-        return true;
-      case RouteEnum.LINE_QR:
-        if (context == null) throw Exception();
-        //   showDialog(
-        //     context: context,
-        //     barrierDismissible: false,
-        //     builder: (context) => DialogWidget(
-        //       constraints: BoxConstraints.tight(Size(160, 180)),
-        //       children: [
-        //         Column(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           mainAxisSize: MainAxisSize.max,
-        //           crossAxisAlignment: CrossAxisAlignment.center,
-        //           children: [
-        //             Padding(
-        //               padding: const EdgeInsets.only(top: 16.0, left: 30.0),
-        //               child: networkImageBuilder('images/aside/116.png'),
-        //             ),
-        //           ],
-        //         ),
-        //       ],
-        //     ),
-        //   );
         return true;
       default:
         var route = item.value.route;
@@ -156,9 +118,9 @@ class ScreenDrawer extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(localeStr.messageWelcomeHint,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: themeColor.sideMenuHeaderTextColor,
-                            )),
+                                color: themeColor.sideMenuHeaderTextColor)),
                         SizedBox(height: 12.0),
                         RaisedButton(
                           visualDensity: VisualDensity(horizontal: 3.0),
@@ -199,15 +161,11 @@ class ScreenDrawer extends StatelessWidget {
                         : _menuItems[index];
                     return GestureDetector(
                       onTap: () {
-                        if ((item == ScreenDrawerItem.sign)
-                            ? _itemTapped(item,
-                                store: viewState.store,
-                                eventStore: viewState.eventStore)
-                            : _itemTapped(item, context: context)) {
-                          // if (_itemTapped(item, context: context)) {
+                        if (_itemTapped(item, context: context)) {
                           // close the drawer
-                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
+                          if (viewState.scaffoldKey.currentState.isDrawerOpen) {
                             Navigator.of(context).pop();
+                          }
                         }
                       },
                       child: _buildListItem(item.value),

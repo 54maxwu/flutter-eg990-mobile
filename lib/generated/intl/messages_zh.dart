@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m4(value) => "余额不足: ${value}";
 
-  static m5(value) => "总计: ￥ ${value}";
+  static m5(value) => "总计: ฿ ${value}";
 
   static m6(no) => "${no}限用借记卡与支付宝余额支付！\n";
 
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value}积分";
 
-  static m46(value) => "￥ ${value}";
+  static m46(value) => "฿ ${value}";
 
   static m47(from, to) => "${from} 到 ${to}";
 
@@ -413,7 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategorySport" : MessageLookupByLibrary.simpleMessage("体育"),
     "gameCategorySportFull" : MessageLookupByLibrary.simpleMessage("体育竞技"),
     "gameCategoryWeb" : MessageLookupByLibrary.simpleMessage("网页版"),
-    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("点我开启BKK365网页版"),
+    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("点我开启VietWin网页版"),
     "gameToolHintRestore" : MessageLookupByLibrary.simpleMessage("双击可恢复显示"),
     "gameToolHintUsage" : MessageLookupByLibrary.simpleMessage("单击显示，长按隐藏 ↗"),
     "hintAccount" : MessageLookupByLibrary.simpleMessage("您的会员帐号"),
@@ -491,7 +491,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageFailed" : MessageLookupByLibrary.simpleMessage("更改失败，请稍候再重试"),
     "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("帐号为6~12个字"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("名称需大于3个字"),
-    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("卡号为16~19个字"),
+    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("卡号为6~19个字"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("持卡人名称错误"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("密码不符合"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("金额输入错误"),
@@ -510,6 +510,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("微信号格式错误"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("超过帐户余额"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("密码不符合(默认值为登录密码)"),
+    "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("Zalo格式错误"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("请稍候…"),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("登入失败"),
     "messageLoginHint" : MessageLookupByLibrary.simpleMessage("请先登入/注册"),
@@ -692,7 +693,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeColorDefault" : MessageLookupByLibrary.simpleMessage("预设"),
     "themeColorHintSelect" : MessageLookupByLibrary.simpleMessage("选择主题颜色"),
     "themeColorLight" : MessageLookupByLibrary.simpleMessage("浅色"),
-    "title" : MessageLookupByLibrary.simpleMessage("BKK365 Mobile"),
+    "title" : MessageLookupByLibrary.simpleMessage("VietWin Mobile"),
     "toolBarMemberCredit" : m46,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("金额"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("日期"),

@@ -2,14 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/ad_dialog.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/res.dart';
 
 import 'feature_screen_inherited_widget.dart';
 import 'screen_menu_bar_action.dart';
-import 'screen_menu_lang_widget.dart';
 
 ///@author H.C.CHIANG
 ///@version 2020/2/26
@@ -92,7 +89,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
     return AppBar(
       /* App bar Icon */
       title: Container(
-          width: Global.device.width * 0.225,
+          width: Global.device.width * 0.25,
           height: Global.APP_MENU_HEIGHT,
           child: Image.asset(Res.iconBarLogo, scale: 2.5)),
       titleSpacing: 0,
@@ -101,7 +98,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: SizedBox(
-          width: Global.device.width * 0.275,
+          width: Global.device.width * 0.25,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -153,48 +150,48 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       ),
       /* App bar Right Actions */
       actions: <Widget>[
-        if (_eventStore != null)
-          Container(
-//            padding: const EdgeInsets.only(right: 12.0),
-            decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Transform.scale(
-              scale: 0.5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(36.0),
-                child: GestureDetector(
-                  onTap: () {
-                    if (_eventStore.canShowAds) {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => new AdDialog(
-                          ads: _eventStore.ads,
-                          initCheck: _eventStore.checkSkip,
-                          onClose: (skipNextTime) {
-                            debugPrint('ads dialog close, skip=$skipNextTime');
-                            _eventStore.setSkipAd(skipNextTime);
-                            _eventStore.adsDialogClose();
-                          },
-                        ),
-                      );
-                    }
-                  },
-                  child: networkImageBuilder(
-                    'images/AD_ICON2.png',
-                    imgScale: 3.0,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        Visibility(
-          visible: !_hideLangOption,
-          maintainState: true,
-          child: Align(
-            alignment: Alignment.center,
-            child: ScreenMenuLangWidget(),
-          ),
-        ),
+//         if (_eventStore != null)
+//           Container(
+// //            padding: const EdgeInsets.only(right: 12.0),
+//             decoration: BoxDecoration(shape: BoxShape.circle),
+//             child: Transform.scale(
+//               scale: 0.5,
+//               child: ClipRRect(
+//                 borderRadius: BorderRadius.circular(36.0),
+//                 child: GestureDetector(
+//                   onTap: () {
+//                     if (_eventStore.canShowAds) {
+//                       showDialog(
+//                         context: context,
+//                         barrierDismissible: false,
+//                         builder: (context) => new AdDialog(
+//                           ads: _eventStore.ads,
+//                           initCheck: _eventStore.checkSkip,
+//                           onClose: (skipNextTime) {
+//                             debugPrint('ads dialog close, skip=$skipNextTime');
+//                             _eventStore.setSkipAd(skipNextTime);
+//                             _eventStore.adsDialogClose();
+//                           },
+//                         ),
+//                       );
+//                     }
+//                   },
+//                   child: networkImageBuilder(
+//                     'images/AD_ICON2.png',
+//                     imgScale: 3.0,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+        // Visibility(
+        //   visible: !_hideLangOption,
+        //   maintainState: true,
+        //   child: Align(
+        //     alignment: Alignment.center,
+        //     child: ScreenMenuLangWidget(),
+        //   ),
+        // ),
         Visibility(
           visible: !_hideActions,
           maintainState: true,

@@ -111,7 +111,9 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
     // update text max lines
     _currentPrefixMaxLines = (widget.prefixTextMaxLines != null)
         ? widget.prefixTextMaxLines
-        : (Global.lang == 'zh') ? 1 : 2;
+        : (Global.lang == 'zh')
+            ? 1
+            : 2;
 
     if (widget.debug) {
       debugPrint('screen width: ${Global.device.width}');
@@ -218,16 +220,16 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                     color: _prefixColor,
                   ),
                   children: [
+                    TextSpan(text: widget.prefixText),
                     if (widget.requiredInput)
                       TextSpan(
-                        text: ' *',
+                        text: '*',
                         style: TextStyle(
                           fontSize:
                               widget.prefixTextSize ?? FontSize.NORMAL.value,
                           color: themeColor.hintHighlightRed,
                         ),
                       ),
-                    TextSpan(text: widget.prefixText),
                   ],
                 ),
               ),
@@ -252,15 +254,15 @@ class _CustomizeTitledContainerState extends State<CustomizeTitledContainer> {
                 color: _prefixColor,
               ),
               children: [
+                TextSpan(text: widget.prefixText),
                 if (widget.requiredInput)
                   TextSpan(
-                    text: ' *',
+                    text: '*',
                     style: TextStyle(
                       fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                       color: themeColor.hintHighlightRed,
                     ),
                   ),
-                TextSpan(text: widget.prefixText),
               ],
             ),
           ),

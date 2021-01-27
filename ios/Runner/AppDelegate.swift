@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import Firebase
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -9,10 +8,10 @@ import Firebase
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     // flutter channel
-    // static const _rotationChannel = const MethodChannel('com.eg990.mobile/orientation');
+    // static const _rotationChannel = const MethodChannel('com.opvw84.mobile/orientation');
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
     let rotationChannel = FlutterMethodChannel(
-        name: "com.eg990.mobile/orientation",
+        name: "com.opvw84.mobile/orientation",
         binaryMessenger: controller.binaryMessenger)
 
     // flutter call (call SystemChrome.setPreferredOrientation before invoke)
@@ -38,7 +37,6 @@ import Firebase
       }
     })
 
-    FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

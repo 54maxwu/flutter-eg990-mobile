@@ -16,7 +16,6 @@ class StoreDisplayProducts extends StatefulWidget {
 class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
   PointStore _store;
   List<StoreProductModel> products;
-  int memberPoints;
   int rowItemCount;
   Widget _pointWidget;
 
@@ -152,7 +151,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                                   builder: (context) => new StoreProductDialog(
                                     store: _store,
                                     product: product,
-                                    memberPoints: memberPoints,
+                                    memberPoints: _store.memberPoints,
                                   ),
                                 ),
                                 child: Text(localeStr.storeTextItemButton),

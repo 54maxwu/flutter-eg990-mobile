@@ -20,7 +20,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem service = ScreenDrawerItem.define(RouteListItem(
     imageName: 'images/aside/59.png',
-    iconData: IconCode.navService,
+    iconData: IconCode.drawerService,
     route: RoutePage.service,
   ));
   static ScreenDrawerItem notice = ScreenDrawerItem.define(RouteListItem(
@@ -50,7 +50,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   static ScreenDrawerItem agent = ScreenDrawerItem.define(RouteListItem(
     // imageName: 'images/aside/85.png',
     iconData: IconCode.gridAgent,
-    route: RoutePage.agentOld,
+    route: RoutePage.agent,
   ));
   static ScreenDrawerItem agentAbout = ScreenDrawerItem.define(RouteListItem(
     imageName: 'images/aside/65.png',
@@ -80,30 +80,30 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
     iconData: IconCode.drawerStore,
     route: RoutePage.sideStore,
   ));
-  static ScreenDrawerItem roller = ScreenDrawerItem.define(RouteListItem(
-    iconData: IconCode.drawerRoller,
-    route: RoutePage.sideRoller,
-  ));
+  // static ScreenDrawerItem roller = ScreenDrawerItem.define(RouteListItem(
+  //   iconData: IconCode.drawerRoller,
+  //   route: RoutePage.sideRoller,
+  // ));
   static ScreenDrawerItem vip = ScreenDrawerItem.define(RouteListItem(
     imageName: 'images/aside/63.png',
     iconData: IconCode.gridVip,
     route: RoutePage.sideVipLevel,
   ));
-  static ScreenDrawerItem sign = ScreenDrawerItem.define(RouteListItem(
-    routeId: RouteEnum.SIGN,
-    iconData: IconCode.drawerEvent,
-    userOnly: true,
-  ));
-  static ScreenDrawerItem task = ScreenDrawerItem.define(RouteListItem(
-    routeId: RouteEnum.TASK,
-    imageName: 'images/aside/53.png',
-    userOnly: true,
-  ));
-  static ScreenDrawerItem collect = ScreenDrawerItem.define(RouteListItem(
-    routeId: RouteEnum.COLLECT,
-    imageName: 'images/aside/55.png',
-    userOnly: true,
-  ));
+  // static ScreenDrawerItem sign = ScreenDrawerItem.define(RouteListItem(
+  //   routeId: RouteEnum.SIGN,
+  //   iconData: IconCode.drawerEvent,
+  //   userOnly: true,
+  // ));
+  // static ScreenDrawerItem task = ScreenDrawerItem.define(RouteListItem(
+  //   routeId: RouteEnum.TASK,
+  //   imageName: 'images/aside/53.png',
+  //   userOnly: true,
+  // ));
+  // static ScreenDrawerItem collect = ScreenDrawerItem.define(RouteListItem(
+  //   routeId: RouteEnum.COLLECT,
+  //   imageName: 'images/aside/55.png',
+  //   userOnly: true,
+  // ));
 
   /// Redirect
   static ScreenDrawerItem website = ScreenDrawerItem.define(RouteListItem(

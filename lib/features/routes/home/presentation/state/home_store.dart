@@ -266,13 +266,6 @@ abstract class _HomeStore with Store {
                   } else {
                     _marqueeController.sink.add(List.from(list));
                   }
-                } else {
-                  _marqueeController.sink.add([
-                    MarqueeEntity(
-                        id: 0,
-                        content: localeStr.homeHintDefaultMarquee,
-                        url: '')
-                  ]);
                 }
               },
             ),
@@ -635,7 +628,7 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) => setErrorMsg(msg: failure.message),
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;

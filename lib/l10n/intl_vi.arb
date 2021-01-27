@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "vi",
-  "title": "BKK365 Mobile",
+  "title": "VietWin Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "VietWin Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -55,7 +55,7 @@
   "@pageTitleCollect": {
     "type": "text"
   },
-  "pageTitleDeposit": "NẠP TIỀN",
+  "pageTitleDeposit": "Nạp Tiền",
   "@pageTitleDeposit": {
     "type": "text"
   },
@@ -63,7 +63,7 @@
   "@pageTitlePromo": {
     "type": "text"
   },
-  "pageTitleService": "DỊCH VỤ",
+  "pageTitleService": "Dịch Vụ",
   "@pageTitleService": {
     "type": "text"
   },
@@ -95,7 +95,7 @@
   "@pageTitleRegisterMember": {
     "type": "text"
   },
-  "pageTitleMemberTransfer": "Chuyển khoản nhanh",
+  "pageTitleMemberTransfer": "Chuyển khoản",
   "@pageTitleMemberTransfer": {
     "type": "text"
   },
@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "￥ {value}",
+  "toolBarMemberCredit": "฿ {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Lỗi định dạng zalo",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "vui lòng nhập mã xác nhận",
   "@messageInvalidVerify": {
     "type": "text"
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "Số thẻ là 16 ~ 19 ký tự",
+  "messageInvalidCardNumber": "Số thẻ là 6~19 ký tự",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -842,7 +846,7 @@
   "@homeUserTabCategoryNewMovie": {
     "type": "text"
   },
-  "homeUserTabCategoryRecommend": "giới thiệu",
+  "homeUserTabCategoryRecommend": "GIỚI THIỆU",
   "@homeUserTabCategoryRecommend": {
     "type": "text"
   },
@@ -1083,11 +1087,11 @@
   "@promoDetailRules": {
     "type": "text"
   },
-  "memberGridTitleDeposit": "NẠP TIỀN",
+  "memberGridTitleDeposit": "Nạp Tiền",
   "@memberGridTitleDeposit": {
     "type": "text"
   },
-  "memberGridTitleTransfer": "Chuyển khoản nhanh",
+  "memberGridTitleTransfer": "Chuyển khoản",
   "@memberGridTitleTransfer": {
     "type": "text"
   },
@@ -1491,7 +1495,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "Tổng cộng: ￥ {value}",
+  "betsTextTotal": "Tổng cộng: ฿ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {

@@ -94,20 +94,6 @@ mixin _$WithdrawStore on _WithdrawStore, Store {
     });
   }
 
-  final _$getCgpWalletAsyncAction = AsyncAction('_WithdrawStore.getCgpWallet');
-
-  @override
-  Future<void> getCgpWallet() {
-    return _$getCgpWalletAsyncAction.run(() => super.getCgpWallet());
-  }
-
-  final _$getCpwWalletAsyncAction = AsyncAction('_WithdrawStore.getCpwWallet');
-
-  @override
-  Future<void> getCpwWallet() {
-    return _$getCpwWalletAsyncAction.run(() => super.getCpwWallet());
-  }
-
   final _$getRollbackAsyncAction = AsyncAction('_WithdrawStore.getRollback');
 
   @override

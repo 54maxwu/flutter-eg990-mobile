@@ -17,6 +17,68 @@ mixin _$AgentStore on _AgentStore, Store {
               name: '_AgentStore.state'))
           .value;
 
+  final _$waitForAgentLoginAtom = Atom(name: '_AgentStore.waitForAgentLogin');
+
+  @override
+  bool get waitForAgentLogin {
+    _$waitForAgentLoginAtom.reportRead();
+    return super.waitForAgentLogin;
+  }
+
+  @override
+  set waitForAgentLogin(bool value) {
+    _$waitForAgentLoginAtom.reportWrite(value, super.waitForAgentLogin, () {
+      super.waitForAgentLogin = value;
+    });
+  }
+
+  final _$agentAtom = Atom(name: '_AgentStore.agent');
+
+  @override
+  AgentEntity get agent {
+    _$agentAtom.reportRead();
+    return super.agent;
+  }
+
+  @override
+  set agent(AgentEntity value) {
+    _$agentAtom.reportWrite(value, super.agent, () {
+      super.agent = value;
+    });
+  }
+
+  final _$waitForAgentRegisterAtom =
+      Atom(name: '_AgentStore.waitForAgentRegister');
+
+  @override
+  bool get waitForAgentRegister {
+    _$waitForAgentRegisterAtom.reportRead();
+    return super.waitForAgentRegister;
+  }
+
+  @override
+  set waitForAgentRegister(bool value) {
+    _$waitForAgentRegisterAtom.reportWrite(value, super.waitForAgentRegister,
+        () {
+      super.waitForAgentRegister = value;
+    });
+  }
+
+  final _$registerResultAtom = Atom(name: '_AgentStore.registerResult');
+
+  @override
+  RequestCodeModel get registerResult {
+    _$registerResultAtom.reportRead();
+    return super.registerResult;
+  }
+
+  @override
+  set registerResult(RequestCodeModel value) {
+    _$registerResultAtom.reportWrite(value, super.registerResult, () {
+      super.registerResult = value;
+    });
+  }
+
   final _$_agentFutureAtom = Atom(name: '_AgentStore._agentFuture');
 
   @override
@@ -49,18 +111,80 @@ mixin _$AgentStore on _AgentStore, Store {
     });
   }
 
-  final _$mergeAdResultAtom = Atom(name: '_AgentStore.mergeAdResult');
+  final _$_bankcardFutureAtom = Atom(name: '_AgentStore._bankcardFuture');
 
   @override
-  dynamic get mergeAdResult {
-    _$mergeAdResultAtom.reportRead();
-    return super.mergeAdResult;
+  ObservableFuture<Either<Failure, BankcardModel>> get _bankcardFuture {
+    _$_bankcardFutureAtom.reportRead();
+    return super._bankcardFuture;
   }
 
   @override
-  set mergeAdResult(dynamic value) {
-    _$mergeAdResultAtom.reportWrite(value, super.mergeAdResult, () {
-      super.mergeAdResult = value;
+  set _bankcardFuture(ObservableFuture<Either<Failure, BankcardModel>> value) {
+    _$_bankcardFutureAtom.reportWrite(value, super._bankcardFuture, () {
+      super._bankcardFuture = value;
+    });
+  }
+
+  final _$bankcardAtom = Atom(name: '_AgentStore.bankcard');
+
+  @override
+  BankcardModel get bankcard {
+    _$bankcardAtom.reportRead();
+    return super.bankcard;
+  }
+
+  @override
+  set bankcard(BankcardModel value) {
+    _$bankcardAtom.reportWrite(value, super.bankcard, () {
+      super.bankcard = value;
+    });
+  }
+
+  final _$banksMapAtom = Atom(name: '_AgentStore.banksMap');
+
+  @override
+  Map<String, String> get banksMap {
+    _$banksMapAtom.reportRead();
+    return super.banksMap;
+  }
+
+  @override
+  set banksMap(Map<String, String> value) {
+    _$banksMapAtom.reportWrite(value, super.banksMap, () {
+      super.banksMap = value;
+    });
+  }
+
+  final _$waitForNewCardResultAtom =
+      Atom(name: '_AgentStore.waitForNewCardResult');
+
+  @override
+  bool get waitForNewCardResult {
+    _$waitForNewCardResultAtom.reportRead();
+    return super.waitForNewCardResult;
+  }
+
+  @override
+  set waitForNewCardResult(bool value) {
+    _$waitForNewCardResultAtom.reportWrite(value, super.waitForNewCardResult,
+        () {
+      super.waitForNewCardResult = value;
+    });
+  }
+
+  final _$newCardResultAtom = Atom(name: '_AgentStore.newCardResult');
+
+  @override
+  RequestCodeModel get newCardResult {
+    _$newCardResultAtom.reportRead();
+    return super.newCardResult;
+  }
+
+  @override
+  set newCardResult(RequestCodeModel value) {
+    _$newCardResultAtom.reportWrite(value, super.newCardResult, () {
+      super.newCardResult = value;
     });
   }
 
@@ -79,6 +203,27 @@ mixin _$AgentStore on _AgentStore, Store {
     });
   }
 
+  final _$loginAgentAsyncAction = AsyncAction('_AgentStore.loginAgent');
+
+  @override
+  Future<void> loginAgent(LoginForm form) {
+    return _$loginAgentAsyncAction.run(() => super.loginAgent(form));
+  }
+
+  final _$logoutAgentAsyncAction = AsyncAction('_AgentStore.logoutAgent');
+
+  @override
+  Future<void> logoutAgent() {
+    return _$logoutAgentAsyncAction.run(() => super.logoutAgent());
+  }
+
+  final _$registerAgentAsyncAction = AsyncAction('_AgentStore.registerAgent');
+
+  @override
+  Future<void> registerAgent(AgentRegisterForm form) {
+    return _$registerAgentAsyncAction.run(() => super.registerAgent(form));
+  }
+
   final _$getAgentDataAsyncAction = AsyncAction('_AgentStore.getAgentData');
 
   @override
@@ -86,11 +231,25 @@ mixin _$AgentStore on _AgentStore, Store {
     return _$getAgentDataAsyncAction.run(() => super.getAgentData());
   }
 
-  final _$getAgentQrAsyncAction = AsyncAction('_AgentStore.getAgentQr');
+  final _$getBankcardAsyncAction = AsyncAction('_AgentStore.getBankcard');
 
   @override
-  Future<void> getAgentQr() {
-    return _$getAgentQrAsyncAction.run(() => super.getAgentQr());
+  Future<void> getBankcard() {
+    return _$getBankcardAsyncAction.run(() => super.getBankcard());
+  }
+
+  final _$getReportAsyncAction = AsyncAction('_AgentStore.getReport');
+
+  @override
+  Future<void> getReport(AgentReportForm form) {
+    return _$getReportAsyncAction.run(() => super.getReport(form));
+  }
+
+  final _$getLedgerAsyncAction = AsyncAction('_AgentStore.getLedger');
+
+  @override
+  Future<void> getLedger(AgentLedgerForm form) {
+    return _$getLedgerAsyncAction.run(() => super.getLedger(form));
   }
 
   final _$getCommissionAsyncAction = AsyncAction('_AgentStore.getCommission');
@@ -100,54 +259,53 @@ mixin _$AgentStore on _AgentStore, Store {
     return _$getCommissionAsyncAction.run(() => super.getCommission());
   }
 
-  final _$getReportAsyncAction = AsyncAction('_AgentStore.getReport');
+  final _$getDownlinesAsyncAction = AsyncAction('_AgentStore.getDownlines');
 
   @override
-  Future<void> getReport(
-      {@required AgentChartTime time, @required AgentChartType type}) {
-    return _$getReportAsyncAction
-        .run(() => super.getReport(time: time, type: type));
+  Future<void> getDownlines() {
+    return _$getDownlinesAsyncAction.run(() => super.getDownlines());
   }
 
-  final _$getLedgerAsyncAction = AsyncAction('_AgentStore.getLedger');
+  final _$postDownlineAsyncAction = AsyncAction('_AgentStore.postDownline');
 
   @override
-  Future<void> getLedger(
-      {@required String agent,
-      @required TransactionDateSelected dateSelected,
-      int page = 1}) {
-    return _$getLedgerAsyncAction.run(() =>
-        super.getLedger(agent: agent, dateSelected: dateSelected, page: page));
+  Future<bool> postDownline(AgentDownlineForm form) {
+    return _$postDownlineAsyncAction.run(() => super.postDownline(form));
   }
 
-  final _$getAdsAsyncAction = AsyncAction('_AgentStore.getAds');
+  final _$editProportionAsyncAction = AsyncAction('_AgentStore.editProportion');
 
   @override
-  Future<void> getAds({bool alsoRequestMergedAds = false}) {
-    return _$getAdsAsyncAction
-        .run(() => super.getAds(alsoRequestMergedAds: alsoRequestMergedAds));
+  Future<bool> editProportion(AgentProportionForm form) {
+    return _$editProportionAsyncAction.run(() => super.editProportion(form));
   }
 
-  final _$getMergedAdsAsyncAction = AsyncAction('_AgentStore.getMergedAds');
+  final _$getBanksAsyncAction = AsyncAction('_AgentStore.getBanks');
 
   @override
-  Future<void> getMergedAds({bool force = false}) {
-    return _$getMergedAdsAsyncAction
-        .run(() => super.getMergedAds(force: force));
+  Future<void> getBanks() {
+    return _$getBanksAsyncAction.run(() => super.getBanks());
   }
 
-  final _$postAdAsyncAction = AsyncAction('_AgentStore.postAd');
+  final _$addBankcardAsyncAction = AsyncAction('_AgentStore.addBankcard');
 
   @override
-  Future<void> postAd(int id) {
-    return _$postAdAsyncAction.run(() => super.postAd(id));
+  Future<void> addBankcard(BankcardForm form) {
+    return _$addBankcardAsyncAction.run(() => super.addBankcard(form));
   }
 
   @override
   String toString() {
     return '''
+waitForAgentLogin: ${waitForAgentLogin},
+agent: ${agent},
+waitForAgentRegister: ${waitForAgentRegister},
+registerResult: ${registerResult},
 waitForAgentResponse: ${waitForAgentResponse},
-mergeAdResult: ${mergeAdResult},
+bankcard: ${bankcard},
+banksMap: ${banksMap},
+waitForNewCardResult: ${waitForNewCardResult},
+newCardResult: ${newCardResult},
 errorMessage: ${errorMessage},
 state: ${state}
     ''';

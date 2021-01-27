@@ -68,6 +68,7 @@ class _CenterRouteState extends State<CenterRoute> {
               case CenterStoreAction.birth:
               case CenterStoreAction.email:
               case CenterStoreAction.wechat:
+              case CenterStoreAction.zalo:
               case CenterStoreAction.lucky:
                 callToastInfo(
                   localeStr.messageTaskSuccess(localeStr.centerTextButtonBind),
@@ -91,6 +92,7 @@ class _CenterRouteState extends State<CenterRoute> {
               case CenterStoreAction.birth:
               case CenterStoreAction.email:
               case CenterStoreAction.wechat:
+              case CenterStoreAction.zalo:
               case CenterStoreAction.lucky:
                 callToastError(
                     '${localeStr.messageTaskFailed(localeStr.centerTextButtonBind)}: ${response.msg}');

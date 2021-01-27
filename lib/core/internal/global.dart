@@ -14,11 +14,13 @@ class Global {
   /// APP Language
   static bool initLocale = false;
 
+  static bool lockLanguage = true;
+
   // zh, en, vi, th
-  static String _language = 'zh';
+  static String _language = 'vi';
 
   // content_cn, content_us, content_vn, content_th
-  static String _jsonContentKey = 'content_cn';
+  static String _jsonContentKey = 'content_vn';
 
   static String get lang => _language;
 
@@ -44,11 +46,13 @@ class Global {
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
-  static const String CURRENT_BASE = EG_BASE_URL;
-  static String currentService = EG_SERVICE_URL;
+  static const String CURRENT_BASE = VW_OFFICIAL_URL;
+  static String currentService = VW_SERVICE_URL;
 
-  static const String EG_BASE_URL = "https://www.eg990.com/";
-  static const String EG_SERVICE_URL = "http://vip66741.com/";
+  static const String VW_OFFICIAL_URL = "https://vwin84.com/";
+  static const String VW_BASE_URL = "http://10.20.14.11/";
+  static const String VW_TEST_URL = "http://192.168.2.87:1411/";
+  static const String VW_SERVICE_URL = "http://vip66747.com/";
 
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';

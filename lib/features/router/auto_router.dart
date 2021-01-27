@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:flutter_eg990_mobile/features/main_startup.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_login_route.dart';
+import 'package:flutter_eg990_mobile/features/routes/subfeatures/agent/presentation/agent_register_route.dart';
 import 'package:flutter_eg990_mobile/temp/test_nested_nav_screen.dart';
 import 'package:flutter_eg990_mobile/temp/test_screen.dart';
 import 'package:flutter_eg990_mobile/template/mobx/presentation/template_route.dart';
@@ -20,7 +22,6 @@ import '../routes/subfeatures/message/presentation/message_route.dart';
 import '../routes/subfeatures/notice/presentation/notice_route.dart';
 import '../routes/subfeatures/promo/presentation/promo_route.dart';
 import '../routes/subfeatures/rollback/presentation/rollback_route.dart';
-import '../routes/subfeatures/roller/presentation/roller_route.dart';
 import '../routes/subfeatures/service/presentation/service_route.dart';
 import '../routes/subfeatures/store/presentation/store_route.dart';
 import '../routes/subfeatures/transactions/presentation/transaction_route.dart';
@@ -60,6 +61,10 @@ import '../user/register/presentation/register_route.dart';
                   page: MemberRoute, path: '/member', maintainState: true),
               MaterialRoute(page: DepositRoute, path: '/deposit'),
               MaterialRoute(
+                  page: DepositRoute,
+                  name: 'depositFeatureRoute',
+                  path: '/deposit-nav'),
+              MaterialRoute(
                   page: WebRoute,
                   name: 'depositWebRoute',
                   path: '/deposit-web'),
@@ -83,25 +88,21 @@ import '../user/register/presentation/register_route.dart';
               MaterialRoute(page: BetRecordRoute, path: '/bets'),
               MaterialRoute(page: DealsRoute, path: '/deals'),
               MaterialRoute(page: RollbackRoute, path: '/rollback'),
-              MaterialRoute(page: AgentRoute, path: '/agent'),
               MaterialRoute(page: PromoRoute, path: '/promo'),
               MaterialRoute(page: MoreRoute, path: '/more'),
-              MaterialRoute(
-                  page: DepositRoute,
-                  name: 'depositFeatureRoute',
-                  path: '/deposit-nav'),
-              MaterialRoute(
-                  page: AgentRoute,
-                  name: 'agentFeatureRoute',
-                  path: '/agent-nav'),
-              // CustomRoute(page: AgentRoute, name:'agentNewRoute'),
-              // CustomRoute(page: AgentLoginRoute),
-              // CustomRoute(page: AgentRegisterRoute),
+              // MaterialRoute(page: AgentRoute, path: '/agent'),
+              // MaterialRoute(
+              //     page: AgentRoute,
+              //     name: 'agentFeatureRoute',
+              //     path: '/agent-nav'),
+              CustomRoute(
+                  page: AgentRoute, name: 'agentNewRoute', path: '/agent'),
+              CustomRoute(page: AgentLoginRoute),
+              CustomRoute(page: AgentRegisterRoute),
               // CustomRoute(page: AboutRoute),
               MaterialRoute(page: DownloadAreaRoute, path: '/download'),
               MaterialRoute(page: NoticeRoute, path: '/notice'),
               MaterialRoute(page: StoreRoute, path: '/store'),
-              MaterialRoute(page: RollerRoute, path: '/roller'),
               MaterialRoute(page: VipLevelRoute, path: '/level'),
               MaterialRoute(page: TestAreaRoute, path: '/test-area'),
               MaterialRoute(page: TemplateRoute, path: '/template'),

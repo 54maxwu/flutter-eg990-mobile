@@ -59,9 +59,10 @@ class HomeDisplayBanner extends StatelessWidget {
       autoplayDuration: Duration(seconds: 10),
       jumpOnEndPage: true,
       onImageTap: (index) {
-        var url = bannerUrls[index];
-        debugPrint('clicked image $index, url: $url');
+        // debugPrint('tapped banner index: $index, data: ${bannerUrls[index]}');
         if (onBannerClicked != null) {
+          String url = bannerUrls[index];
+          debugPrint('clicked banner $index, url: $url');
           onBannerClicked(
               url.contains('/api/open/'),
               url

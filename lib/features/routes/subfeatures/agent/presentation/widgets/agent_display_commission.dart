@@ -1,11 +1,10 @@
-import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
-import 'package:flutter_eg990_mobile/features/general/ext//table/table_cell_text_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/ext/table/table_cell_text_widget.dart';
 
 import '../../data/models/agent_commission_model.dart';
 import '../state/agent_store.dart';
-import 'agent_inherit_widget.dart';
+import 'agent_store_inherit_widget.dart';
 
 class AgentDisplayCommission extends StatefulWidget {
   final double availableHeight;
@@ -16,8 +15,7 @@ class AgentDisplayCommission extends StatefulWidget {
   _AgentDisplayCommissionState createState() => _AgentDisplayCommissionState();
 }
 
-class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
-    with AfterLayoutMixin {
+class _AgentDisplayCommissionState extends State<AgentDisplayCommission> {
   static final Key _streamKey = new Key('commstream');
 
   double _availableWidth;
@@ -26,7 +24,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
 
   AgentStore _store;
   List<AgentCommissionModel> _dataList;
-  Widget tableWidget;
+  Widget _tableWidget;
   bool tableHasNoData = true;
 
   List<String> _headerRowTexts;
@@ -35,21 +33,18 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
   TableRow _totalRow;
 
   double totalDirectFee = 0;
-  double totalTeamFee = 0;
   double totalFee = 0;
   double totalPlatformFee = 0;
   double totalSummary = 0;
 
   void countTotal() {
     totalDirectFee = 0;
-    totalTeamFee = 0;
     totalFee = 0;
     totalPlatformFee = 0;
     totalSummary = 0;
     if (_dataList != null && _dataList.isNotEmpty) {
       _dataList.forEach((data) {
         totalDirectFee += data.direct.strToDouble;
-        totalTeamFee += data.team.strToDouble;
         totalFee += data.fee.strToDouble;
         totalPlatformFee += data.platformFee.strToDouble;
         totalSummary += data.summary.strToDouble;
@@ -62,7 +57,6 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
     _totalRowTexts = [
       localeStr.flowHeaderTextTotal,
       formatValue(totalDirectFee),
-      formatValue(totalTeamFee),
       formatValue(totalFee),
       formatValue(totalPlatformFee),
       formatValue(totalSummary),
@@ -71,9 +65,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
       children: List.generate(
         _totalRowTexts.length,
         (index) => TableCellTextWidget(
-          text: _totalRowTexts[index],
-          shrinkInset: false,
-        ),
+            text: _totalRowTexts[index], shrinkInset: false),
       ),
     );
   }
@@ -91,14 +83,25 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
     _availableWidth = Global.device.width - 16;
     _tableWidthMap = {
       //指定索引及固定列宽
-      0: FixedColumnWidth(_availableWidth * 0.15),
-      1: FixedColumnWidth(_availableWidth * 0.175),
-      2: FixedColumnWidth(_availableWidth * 0.175),
-      3: FixedColumnWidth(_availableWidth * 0.175),
-      4: FixedColumnWidth(_availableWidth * 0.15),
-      5: FixedColumnWidth(_availableWidth * 0.175),
+      0: FixedColumnWidth(_availableWidth * 0.25),
+      1: FixedColumnWidth(_availableWidth * 0.1875),
+      2: FixedColumnWidth(_availableWidth * 0.1875),
+      3: FixedColumnWidth(_availableWidth * 0.1875),
+      4: FixedColumnWidth(_availableWidth * 0.1875),
     };
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AgentDisplayCommission oldWidget) {
+    _headerRowTexts = null;
+    _headerRow = null;
+    _totalRow = null;
+    _tableWidget = null;
+    super.didUpdateWidget(oldWidget);
+    if (_totalRowTexts != null) {
+      _totalRowTexts.replaceRange(0, 1, [localeStr.flowHeaderTextTotal]);
+    }
   }
 
   @override
@@ -113,10 +116,13 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
       );
     }
 
+    if (_dataList == null && _store != null) {
+      _store.getCommission();
+    }
+
     _headerRowTexts ??= [
-      localeStr.agentCommissionHeaderMonth,
+      localeStr.agentLedgerHeaderNo,
       localeStr.agentCommissionHeaderLowLine,
-      localeStr.agentCommissionHeaderGroup,
       localeStr.agentCommissionHeaderAdmin,
       localeStr.agentCommissionHeaderPlatform,
       localeStr.agentCommissionHeaderReceive,
@@ -125,9 +131,7 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
       children: List.generate(
         _headerRowTexts.length,
         (index) => TableCellTextWidget(
-          text: _headerRowTexts[index],
-          shrinkInset: false,
-        ),
+            text: _headerRowTexts[index], shrinkInset: false),
       ),
     );
 
@@ -150,11 +154,11 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
               // skip rebuild
             } else {
               countTotal();
-              tableWidget = _buildTable();
+              _tableWidget = _buildTable();
             }
           }
-          tableWidget ??= _buildTable();
-          return tableWidget;
+          _tableWidget ??= _buildTable();
+          return _tableWidget;
         },
       ),
     );
@@ -200,7 +204,6 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
                   List<dynamic> dataTexts = [
                     '${data.key}',
                     formatValue(data.direct),
-                    formatValue(data.team),
                     formatValue(data.fee),
                     formatValue(data.platformFee),
                     formatValue(data.summary),
@@ -221,10 +224,5 @@ class _AgentDisplayCommissionState extends State<AgentDisplayCommission>
         ),
       );
     }
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) {
-    if (_store != null) _store.getCommission();
   }
 }

@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m6(no) => "${no} บัตรเดบิตที่ถูก จำกัด และการชำระยอดคงเหลือ Alipay! \n";
 
-  static m7(value) => "ขีดจำกัดการฝากเงินครั้งเดียว: ￥ ${value}";
+  static m7(value) => "ขีดจำกัดการฝากเงินครั้งเดียว: ฿ ${value}";
 
   static m8(no) => "${no} [คำเตือนสำคัญ] อย่าเก็บบัญชีธนาคารของคุณไว้โปรดรับบัญชีเรียกเก็บเงินล่าสุดอีกครั้งก่อนการเติมเงินแต่ละครั้งหากคุณฝากเงินไปยังบัญชีรับเงินที่ปิดใช้งาน บริษัท จะไม่สามารถตรวจสอบการเรียกเก็บเงินและจะไม่ รับผิดชอบ! \n ";
 
@@ -109,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value} คะแนน";
 
-  static m46(value) => "￥ ${value}";
+  static m46(value) => "฿ ${value}";
 
   static m47(from, to) => "${from} ถึง ${to}";
 
@@ -410,7 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategorySport" : MessageLookupByLibrary.simpleMessage("กีฬา"),
     "gameCategorySportFull" : MessageLookupByLibrary.simpleMessage("กีฬา"),
     "gameCategoryWeb" : MessageLookupByLibrary.simpleMessage("เว็บไซต์"),
-    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("คลิกฉันเพื่อเปิดเว็บไซต์ BKK365"),
+    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("คลิกฉันเพื่อเปิดเว็บไซต์ VietWin"),
     "gameToolHintRestore" : MessageLookupByLibrary.simpleMessage("ดับเบิลคลิกเพื่อคืนค่าการแสดงผล"),
     "gameToolHintUsage" : MessageLookupByLibrary.simpleMessage("คลิกเพื่อแสดงกดแบบยาวเพื่อซ่อน ↗"),
     "hintAccount" : MessageLookupByLibrary.simpleMessage("UserName"),
@@ -488,7 +488,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageFailed" : MessageLookupByLibrary.simpleMessage("การเปลี่ยนแปลงล้มเหลวโปรดลองอีกครั้งในภายหลัง"),
     "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ใช้ควรมีความยาว 6~12 คำ"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("ชื่อต้องมีความยาวมากกว่า 3 อักขระ"),
-    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("หมายเลขบัตรคือ 16~19 อักขระ"),
+    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("หมายเลขบัตรคือ 6~19 อักขระ"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("ชื่อผู้ถือบัตรไม่ถูกต้อง"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ตรงกัน"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("จำนวนเงินผิดพลาด"),
@@ -507,6 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("บัญชี WeChat ไม่ถูกต้อง"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("เครดิตไม่เพียงพอ"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("รหัสผ่านผิดพลาด! (ค่าเริ่มต้นคือรหัสผ่านเข้าสู่ระบบ)"),
+    "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("บัญชี Zalo ไม่ถูกต้อง"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("กำลังโหลด ... "),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบล้มเหลว"),
     "messageLoginHint" : MessageLookupByLibrary.simpleMessage("กรุณาเข้าสู่ระบบ / ลงทะเบียน"),
@@ -689,7 +690,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeColorDefault" : MessageLookupByLibrary.simpleMessage("ค่าเริ่มต้น"),
     "themeColorHintSelect" : MessageLookupByLibrary.simpleMessage("เลือกสีของธีม"),
     "themeColorLight" : MessageLookupByLibrary.simpleMessage("แสง"),
-    "title" : MessageLookupByLibrary.simpleMessage("BKK365 Mobile"),
+    "title" : MessageLookupByLibrary.simpleMessage("VietWin Mobile"),
     "toolBarMemberCredit" : m46,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("ยอดเงิน"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("วันที่"),

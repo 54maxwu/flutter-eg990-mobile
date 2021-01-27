@@ -20,6 +20,8 @@ import '../routes/more/more_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/center_route.dart';
 import '../routes/subfeatures/accountcenter/presentation/state/center_store.dart';
 import '../routes/subfeatures/accountcenter/presentation/widgets/center_display_account_pwd.dart';
+import '../routes/subfeatures/agent/presentation/agent_login_route.dart';
+import '../routes/subfeatures/agent/presentation/agent_register_route.dart';
 import '../routes/subfeatures/agent/presentation/agent_route.dart';
 import '../routes/subfeatures/balance/presentation/balance_route.dart';
 import '../routes/subfeatures/bankcard/presentation/bankcard_route.dart';
@@ -31,7 +33,6 @@ import '../routes/subfeatures/message/presentation/message_route.dart';
 import '../routes/subfeatures/notice/presentation/notice_route.dart';
 import '../routes/subfeatures/promo/presentation/promo_route.dart';
 import '../routes/subfeatures/rollback/presentation/rollback_route.dart';
-import '../routes/subfeatures/roller/presentation/roller_route.dart';
 import '../routes/subfeatures/service/presentation/service_route.dart';
 import '../routes/subfeatures/store/presentation/store_route.dart';
 import '../routes/subfeatures/transactions/presentation/transaction_route.dart';
@@ -148,11 +149,8 @@ class MainStartupRouter extends RouterBase {
 /// *************************************************************************
 
 extension MainStartupRouterExtendedNavigatorStateX on ExtendedNavigatorState {
-  Future<dynamic> pushFeatureScreen() => pushAndRemoveUntil<dynamic>(
-        MainStartupRoutes.featureScreen,
-        // true => same as push, false => push and clear stack
-        (route) => false,
-      );
+  Future<dynamic> pushFeatureScreen() =>
+      push<dynamic>(MainStartupRoutes.featureScreen);
 
   Future<dynamic> pushWebGameScreen({
     String startUrl = Global.CURRENT_BASE,
@@ -178,6 +176,7 @@ class FeatureScreenRoutes {
   static const String serviceWebRoute = '/service-web';
   static const String memberRoute = '/member';
   static const String depositRoute = '/deposit';
+  static const String depositFeatureRoute = '/deposit-nav';
   static const String depositWebRoute = '/deposit-web';
   static const String transferRoute = '/transfer';
   static const String bankcardRoute = '/bankcard';
@@ -192,15 +191,14 @@ class FeatureScreenRoutes {
   static const String betRecordRoute = '/bets';
   static const String dealsRoute = '/deals';
   static const String rollbackRoute = '/rollback';
-  static const String agentRoute = '/agent';
   static const String promoRoute = '/promo';
   static const String moreRoute = '/more';
-  static const String depositFeatureRoute = '/deposit-nav';
-  static const String agentFeatureRoute = '/agent-nav';
+  static const String agentNewRoute = '/agent';
+  static const String agentLoginRoute = '/agent-login-route';
+  static const String agentRegisterRoute = '/agent-register-route';
   static const String downloadAreaRoute = '/download';
   static const String noticeRoute = '/notice';
   static const String storeRoute = '/store';
-  static const String rollerRoute = '/roller';
   static const String vipLevelRoute = '/level';
   static const String testAreaRoute = '/test-area';
   static const String templateRoute = '/template';
@@ -213,6 +211,7 @@ class FeatureScreenRoutes {
     serviceWebRoute,
     memberRoute,
     depositRoute,
+    depositFeatureRoute,
     depositWebRoute,
     transferRoute,
     bankcardRoute,
@@ -227,15 +226,14 @@ class FeatureScreenRoutes {
     betRecordRoute,
     dealsRoute,
     rollbackRoute,
-    agentRoute,
     promoRoute,
     moreRoute,
-    depositFeatureRoute,
-    agentFeatureRoute,
+    agentNewRoute,
+    agentLoginRoute,
+    agentRegisterRoute,
     downloadAreaRoute,
     noticeRoute,
     storeRoute,
-    rollerRoute,
     vipLevelRoute,
     testAreaRoute,
     templateRoute,
@@ -254,6 +252,7 @@ class FeatureScreenRouter extends RouterBase {
     RouteDef(FeatureScreenRoutes.serviceWebRoute, page: WebRoute),
     RouteDef(FeatureScreenRoutes.memberRoute, page: MemberRoute),
     RouteDef(FeatureScreenRoutes.depositRoute, page: DepositRoute),
+    RouteDef(FeatureScreenRoutes.depositFeatureRoute, page: DepositRoute),
     RouteDef(FeatureScreenRoutes.depositWebRoute, page: WebRoute),
     RouteDef(FeatureScreenRoutes.transferRoute, page: TransferRoute),
     RouteDef(FeatureScreenRoutes.bankcardRoute, page: BankcardRoute),
@@ -269,15 +268,14 @@ class FeatureScreenRouter extends RouterBase {
     RouteDef(FeatureScreenRoutes.betRecordRoute, page: BetRecordRoute),
     RouteDef(FeatureScreenRoutes.dealsRoute, page: DealsRoute),
     RouteDef(FeatureScreenRoutes.rollbackRoute, page: RollbackRoute),
-    RouteDef(FeatureScreenRoutes.agentRoute, page: AgentRoute),
     RouteDef(FeatureScreenRoutes.promoRoute, page: PromoRoute),
     RouteDef(FeatureScreenRoutes.moreRoute, page: MoreRoute),
-    RouteDef(FeatureScreenRoutes.depositFeatureRoute, page: DepositRoute),
-    RouteDef(FeatureScreenRoutes.agentFeatureRoute, page: AgentRoute),
+    RouteDef(FeatureScreenRoutes.agentNewRoute, page: AgentRoute),
+    RouteDef(FeatureScreenRoutes.agentLoginRoute, page: AgentLoginRoute),
+    RouteDef(FeatureScreenRoutes.agentRegisterRoute, page: AgentRegisterRoute),
     RouteDef(FeatureScreenRoutes.downloadAreaRoute, page: DownloadAreaRoute),
     RouteDef(FeatureScreenRoutes.noticeRoute, page: NoticeRoute),
     RouteDef(FeatureScreenRoutes.storeRoute, page: StoreRoute),
-    RouteDef(FeatureScreenRoutes.rollerRoute, page: RollerRoute),
     RouteDef(FeatureScreenRoutes.vipLevelRoute, page: VipLevelRoute),
     RouteDef(FeatureScreenRoutes.testAreaRoute, page: TestAreaRoute),
     RouteDef(FeatureScreenRoutes.templateRoute, page: TemplateRoute),
@@ -415,12 +413,6 @@ class FeatureScreenRouter extends RouterBase {
         settings: data,
       );
     },
-    AgentRoute: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => AgentRoute(),
-        settings: data,
-      );
-    },
     PromoRoute: (data) {
       final args = data.getArgs<PromoRouteArguments>(
         orElse: () => PromoRouteArguments(),
@@ -433,6 +425,26 @@ class FeatureScreenRouter extends RouterBase {
     MoreRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => MoreRoute(),
+        settings: data,
+      );
+    },
+    AgentRoute: (data) {
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => AgentRoute(),
+        settings: data,
+      );
+    },
+    AgentLoginRoute: (data) {
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            AgentLoginRoute(),
+        settings: data,
+      );
+    },
+    AgentRegisterRoute: (data) {
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            AgentRegisterRoute(),
         settings: data,
       );
     },
@@ -451,12 +463,6 @@ class FeatureScreenRouter extends RouterBase {
     StoreRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => StoreRoute(),
-        settings: data,
-      );
-    },
-    RollerRoute: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => RollerRoute(),
         settings: data,
       );
     },
@@ -486,11 +492,8 @@ class FeatureScreenRouter extends RouterBase {
 /// *************************************************************************
 
 extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
-  Future<dynamic> pushHomeRoute() => pushAndRemoveUntil<dynamic>(
-        FeatureScreenRoutes.homeRoute,
-        // true => same as push, false => push and clear stack
-        (route) => false,
-      );
+  Future<dynamic> pushHomeRoute() =>
+      push<dynamic>(FeatureScreenRoutes.homeRoute);
 
   Future<dynamic> pushLoginRoute({
     bool returnHomeAfterLogin = false,
@@ -541,6 +544,9 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushDepositRoute() =>
       push<dynamic>(FeatureScreenRoutes.depositRoute);
+
+  Future<dynamic> pushDepositFeatureRoute() =>
+      push<dynamic>(FeatureScreenRoutes.depositFeatureRoute);
 
   Future<dynamic> pushDepositWebRoute({
     @required String startUrl,
@@ -611,9 +617,6 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushRollbackRoute() =>
       push<dynamic>(FeatureScreenRoutes.rollbackRoute);
 
-  Future<dynamic> pushAgentRoute() =>
-      push<dynamic>(FeatureScreenRoutes.agentRoute);
-
   Future<dynamic> pushPromoRoute({
     int openPromoId = -1,
   }) =>
@@ -625,11 +628,14 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushMoreRoute() =>
       push<dynamic>(FeatureScreenRoutes.moreRoute);
 
-  Future<dynamic> pushDepositFeatureRoute() =>
-      push<dynamic>(FeatureScreenRoutes.depositFeatureRoute);
+  Future<dynamic> pushAgentNewRoute() =>
+      push<dynamic>(FeatureScreenRoutes.agentNewRoute);
 
-  Future<dynamic> pushAgentFeatureRoute() =>
-      push<dynamic>(FeatureScreenRoutes.agentFeatureRoute);
+  Future<dynamic> pushAgentLoginRoute() =>
+      push<dynamic>(FeatureScreenRoutes.agentLoginRoute);
+
+  Future<dynamic> pushAgentRegisterRoute() =>
+      push<dynamic>(FeatureScreenRoutes.agentRegisterRoute);
 
   Future<dynamic> pushDownloadAreaRoute() =>
       push<dynamic>(FeatureScreenRoutes.downloadAreaRoute);
@@ -639,9 +645,6 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushStoreRoute() =>
       push<dynamic>(FeatureScreenRoutes.storeRoute);
-
-  Future<dynamic> pushRollerRoute() =>
-      push<dynamic>(FeatureScreenRoutes.rollerRoute);
 
   Future<dynamic> pushVipLevelRoute() =>
       push<dynamic>(FeatureScreenRoutes.vipLevelRoute);

@@ -21,8 +21,9 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.download,
     MoreGridItem.tutorial,
     MoreGridItem.service,
-    MoreGridItem.agentAbout,
     MoreGridItem.vip,
+    MoreGridItem.store,
+    MoreGridItem.agentAbout,
   ];
 
   static final List<MoreGridItem> userGridItems = [
@@ -30,14 +31,9 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.download,
     MoreGridItem.tutorial,
     MoreGridItem.service,
-    MoreGridItem.routeChange,
-    MoreGridItem.store,
-    MoreGridItem.roller,
-    MoreGridItem.task,
-    MoreGridItem.collect,
-    MoreGridItem.sign,
-    MoreGridItem.agentAbout,
     MoreGridItem.vip,
+    MoreGridItem.store,
+    MoreGridItem.agentAbout,
   ];
 
   final double _titleHeight = 54.0;

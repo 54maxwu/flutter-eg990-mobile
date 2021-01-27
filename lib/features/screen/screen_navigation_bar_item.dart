@@ -40,7 +40,7 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
   static ScreenNavigationBarItem agent =
       ScreenNavigationBarItem.define(RouteListItem(
     iconData: IconCode.navAgent,
-    route: RoutePage.agentOld,
+    route: RoutePage.agent,
   ));
 
   /// Used for defining cases

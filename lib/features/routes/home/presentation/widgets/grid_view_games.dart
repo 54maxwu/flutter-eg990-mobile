@@ -4,7 +4,7 @@ import 'package:flutter_eg990_mobile/core/internal/global.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/data/entity/game_entity.dart';
 import 'package:flutter_eg990_mobile/features/themes/font_size.dart';
 
-import 'grid_item_game.dart';
+import 'grid_view_item.dart';
 
 typedef OnGameItemTap = void Function(GameEntity);
 typedef OnGameItemTapFavor = void Function(GameEntity, bool);
@@ -45,7 +45,7 @@ class GridViewGames extends StatelessWidget {
     double perItemWidth = pageMaxWidth / (_itemPerRow + plusPerRow);
 
     double fontSize = (isIos) ? _basicFontSize.value + 2 : _basicFontSize.value;
-    int _availableChars = (perItemWidth * labelWidthFactor / fontSize).floor();
+    double _availableChars = perItemWidth * labelWidthFactor / fontSize;
     bool _twoLines =
         games.any((element) => element.isLongText(_availableChars));
     debugPrint('game chars available: $_availableChars, two line: $_twoLines');
@@ -81,30 +81,24 @@ class GridViewGames extends StatelessWidget {
       @required twoLines}) {
     String label =
         (Global.lang != 'zh' && game.ename != '??') ? game.ename : game.cname;
-    return Container(
-      constraints: BoxConstraints.tight(Size(
-        imgSize,
-        imgSize + textHeight,
-      )),
-      child: GestureDetector(
-        onTap: () => onTap(game),
-        child: GridItemGames2(
-          imgUrl: game.imageUrl,
-          label: label,
-          imageSize: imgSize,
-          fontSize: _basicFontSize,
-          twoLine: twoLines,
-          labelHeight: textHeight,
-          labelMaxWidthFactor: labelWidthFactor - 0.1,
-          verticalSpaceAroundLabel: _verticalEmptySpace,
-          isFavorite: game.favorite == 1,
-          pluginTapAction: (addPlugin &&
-                  onFavorTap != null &&
-                  game.imageUrl != null &&
-                  label != null)
-              ? (isFavorite) => onFavorTap(game, isFavorite)
-              : null,
-        ),
+    return GestureDetector(
+      onTap: () => onTap(game),
+      child: GridViewItem.game(
+        imgUrl: game.imageUrl,
+        label: label,
+        imageSize: imgSize,
+        fontSize: _basicFontSize,
+        twoLine: twoLines,
+        labelHeight: textHeight,
+        labelMaxWidthFactor: labelWidthFactor - 0.1,
+        verticalSpaceAroundLabel: _verticalEmptySpace,
+        isFavorite: game.favorite == 1,
+        pluginTapAction: (addPlugin &&
+                onFavorTap != null &&
+                game.imageUrl != null &&
+                label != null)
+            ? (isFavorite) => onFavorTap(game, isFavorite)
+            : null,
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
 import 'package:flutter_eg990_mobile/res.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../data/model/service_model.dart';
 
@@ -46,57 +47,75 @@ class ServiceDisplay extends StatelessWidget {
                       color: themeColor.defaultTextColor)),
             ],
           ),
+          _buildBox(
+              iconData: const IconData(0xf086, fontFamily: 'FontAwesome'),
+              title: localeStr.serviceTitleCustomerService,
+              content: localeStr.serviceDescCustomerService,
+              data: data.cs,
+              buttonType: _ButtonType.OPEN),
+          _buildBox(
+              iconData: const IconData(0xf003, fontFamily: 'FontAwesome'),
+              title: localeStr.serviceTitleEmail,
+              content: data.mail,
+              data: data.mail,
+              buttonType: _ButtonType.COPY),
           // _buildBox(
-          //     iconData: const IconData(0xf086, fontFamily: 'FontAwesome'),
-          //     title: localeStr.serviceTitleCustomerService,
-          //     content: localeStr.serviceDescCustomerService,
-          //     data: data.cs,
-          //     buttonType: _ButtonType.OPEN),
+          //     iconData: const IconData(0xf095, fontFamily: 'FontAwesome'),
+          //     title: localeStr.serviceTitlePhone,
+          //     content: data.phone,
+          //     data: data.phone,
+          //     buttonType: _ButtonType.COPY),
           // _buildBox(
-          //     iconData: const IconData(0xf003, fontFamily: 'FontAwesome'),
-          //     title: localeStr.serviceTitleEmail,
-          //     content: data.mail,
-          //     data: data.mail,
+          //     imgUrl: Res.iconLine,
+          //     title: localeStr.serviceTitleLine,
+          //     content: data.line,
+          //     data: data.line,
+          //     buttonType: _ButtonType.COPY),
+          // _buildBox(
+          //     iconData: const IconData(0xe970, fontFamily: 'IconMoon'),
+          //     title: 'QQ',
+          //     content: data.qq,
+          //     data: data.qq,
           //     buttonType: _ButtonType.COPY),
           _buildBox(
-              imgUrl: 'images/line.png',
-              title: localeStr.serviceTitleLine,
-              content: data.line,
-              data: data.line,
-              buttonType: _ButtonType.COPY),
-          _buildBox(
-              iconData: const IconData(0xf095, fontFamily: 'FontAwesome'),
-              title: localeStr.serviceTitlePhone,
-              content: data.phone,
-              data: data.phone,
+              iconData: const IconData(0xe970, fontFamily: 'IconMoon'),
+              title: localeStr.serviceTitleZalo,
+              content: data.zalo,
+              data: data.zalo,
               buttonType: _ButtonType.COPY),
           // _buildBox(
-          //     iconData: const IconData(0xf09a, fontFamily: 'FontAwesome'),
-          //     title: localeStr.serviceTitleFacebook,
-          //     content: data.fb,
-          //     data: data.fb,
-          //     buttonType: _ButtonType.OPEN),
+          //     iconData: const IconData(0xf0c0, fontFamily: 'FontAwesome'),
+          //     title: localeStr.serviceTitleSkype,
+          //     content: data.skype,
+          //     data: data.skype,
+          //     buttonType: _ButtonType.COPY),
+          _buildBox(
+              iconData: const IconData(0xf09a, fontFamily: 'FontAwesome'),
+              title: localeStr.serviceTitleFacebook,
+              content: data.fb,
+              data: data.fb,
+              buttonType: _ButtonType.OPEN),
           _buildBox(
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Line QRCODE',
-                        style: TextStyle(
-                            fontSize: FontSize.MESSAGE.value,
-                            color: themeColor.defaultTextColor)),
-                    Container(
-                        padding: const EdgeInsets.symmetric(vertical: 6.0),
-                        constraints: BoxConstraints.tight(
-                            Size(200, 200) * Global.device.widthScale),
-                        child: networkImageBuilder(data.linePic)),
-                  ],
-                ),
-                SizedBox(height: 16.0),
+                // Column(
+                //   mainAxisSize: MainAxisSize.min,
+                //   children: [
+                //     Text('Line QRCODE',
+                //         style: TextStyle(
+                //             fontSize: FontSize.MESSAGE.value,
+                //             color: themeColor.defaultTextColor)),
+                //     Container(
+                //         padding: const EdgeInsets.symmetric(vertical: 6.0),
+                //         constraints: BoxConstraints.tight(
+                //             Size(200, 200) * Global.device.widthScale),
+                //         child: networkImageBuilder(data.linePic)),
+                //   ],
+                // ),
+                // SizedBox(height: 16.0),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -104,11 +123,21 @@ class ServiceDisplay extends StatelessWidget {
                         style: TextStyle(
                             fontSize: FontSize.MESSAGE.value,
                             color: themeColor.defaultTextColor)),
+                    // Container(
+                    //     padding: const EdgeInsets.symmetric(vertical: 6.0),
+                    //     constraints: BoxConstraints.tight(
+                    //         Size(200, 200) * Global.device.widthScale),
+                    //     alignment: Alignment.center,
+                    //     child: networkImageBuilder(data.appPic)),
                     Container(
                         padding: const EdgeInsets.symmetric(vertical: 6.0),
                         constraints: BoxConstraints.tight(
                             Size(200, 200) * Global.device.widthScale),
-                        child: networkImageBuilder(data.appPic)),
+                        color: Colors.white,
+                        margin: const EdgeInsets.symmetric(vertical: 6.0),
+                        alignment: Alignment.center,
+                        child:
+                            QrImage(data: 'https://down.mitui88.com/yKlx.app')),
                   ],
                 ),
               ],
@@ -120,7 +149,7 @@ class ServiceDisplay extends StatelessWidget {
           //     child: Text(localeStr.serviceButtonContact,
           //         style: TextStyle(fontSize: FontSize.SUBTITLE.value)),
           //     onPressed: () {
-          //       AppNavigator.navigateToPage(RoutePage.serviceWeb,
+          //       AppNavigator.navigateTo(RoutePage.serviceWeb,
           //           arg: WebRouteArguments(startUrl: data.cs, hideBars: true));
           //     },
           //   ),
@@ -155,7 +184,9 @@ class ServiceDisplay extends StatelessWidget {
                   SizedBox(
                       width: 30.0,
                       height: 30.0,
-                      child: networkImageBuilder(imgUrl)),
+                      child: (imgUrl.startsWith('assets/'))
+                          ? Image.asset(imgUrl)
+                          : networkImageBuilder(imgUrl)),
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Container(

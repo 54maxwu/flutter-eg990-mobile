@@ -1,4 +1,4 @@
-import 'package:flutter_eg990_mobile/core/gen/dataclass.dart';
+import 'package:flutter_eg990_mobile/builders/dataclass/dataclass.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/deposit/data/entity/payment_enum_data.dart';
 import 'package:meta/meta.dart' show required;

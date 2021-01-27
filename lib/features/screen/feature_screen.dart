@@ -5,7 +5,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/network/util/network_info.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
 
 import '../routes/home/presentation/state/home_store.dart';
@@ -103,7 +102,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
     locale = Global.lang;
     super.initState();
     if (_store != null) {
-//      _store.getWebsiteList();
+      _store.getWebsiteList();
       _store.getAds();
     }
     setNetworkListener();
@@ -147,10 +146,8 @@ class _FeatureScreenState extends State<FeatureScreen> {
                 bottomNavigationBar: ScreenNavigationBar(),
                 /* Feature Route Navigator */
                 body: ExtendedNavigator(
-                  key: featureNavKey,
                   initialRoute: FeatureScreenRoutes.homeRoute,
                   router: FeatureScreenRouter(),
-                  name: FEATURE_NAV_NAME,
                 ),
               ),
             );

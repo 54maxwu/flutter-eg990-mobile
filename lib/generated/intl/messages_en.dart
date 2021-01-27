@@ -29,11 +29,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m4(value) => "Not enough credit: ${value}";
 
-  static m5(value) => "Total: ￥ ${value}";
+  static m5(value) => "Total: ฿ ${value}";
 
   static m6(no) => "${no} Restricted Debit Card and Alipay Balance Payment!\n";
 
-  static m7(value) => "Single Deposit Limit: ￥ ${value}";
+  static m7(value) => "Single Deposit Limit: ฿ ${value}";
 
   static m8(no) => "${no} [Important reminder] Do not keep your bank account, please re-acquire the latest collection account before each recharge. If you deposit to a disabled collection account, the company cannot check the collection and will not be responsible!\n";
 
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m45(value) => "${value} points";
 
-  static m46(value) => "￥ ${value}";
+  static m46(value) => "฿ ${value}";
 
   static m47(from, to) => "${from} to ${to}";
 
@@ -413,7 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gameCategorySport" : MessageLookupByLibrary.simpleMessage("Sport"),
     "gameCategorySportFull" : MessageLookupByLibrary.simpleMessage("Sport"),
     "gameCategoryWeb" : MessageLookupByLibrary.simpleMessage("Website"),
-    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("Click me to open BKK365 website"),
+    "gameCategoryWebHint" : MessageLookupByLibrary.simpleMessage("Click me to open VietWin website"),
     "gameToolHintRestore" : MessageLookupByLibrary.simpleMessage("Double-Tap to restore"),
     "gameToolHintUsage" : MessageLookupByLibrary.simpleMessage("Tap to show，Long-Press to hide ↗"),
     "hintAccount" : MessageLookupByLibrary.simpleMessage("UserName"),
@@ -491,7 +491,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageFailed" : MessageLookupByLibrary.simpleMessage("Change failed, please try again later"),
     "messageInvalidAccount" : MessageLookupByLibrary.simpleMessage("Username should be 6 ~ 12 words"),
     "messageInvalidCardBankPoint" : MessageLookupByLibrary.simpleMessage("The name must be greater than 3 characters"),
-    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 16 ~ 19 characters"),
+    "messageInvalidCardNumber" : MessageLookupByLibrary.simpleMessage("The card number is 6~19 characters"),
     "messageInvalidCardOwner" : MessageLookupByLibrary.simpleMessage("Wrong cardholder name"),
     "messageInvalidConfirmPassword" : MessageLookupByLibrary.simpleMessage("Password does not match"),
     "messageInvalidDepositAmount" : MessageLookupByLibrary.simpleMessage("Amount Error"),
@@ -510,6 +510,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageInvalidWechat" : MessageLookupByLibrary.simpleMessage("Invalid WeChat account"),
     "messageInvalidWithdrawAmount" : MessageLookupByLibrary.simpleMessage("Not enough credit"),
     "messageInvalidWithdrawPassword" : MessageLookupByLibrary.simpleMessage("Password Error!(default is login password)"),
+    "messageInvalidZalo" : MessageLookupByLibrary.simpleMessage("Invalid Zalo account"),
     "messageLoading" : MessageLookupByLibrary.simpleMessage("Loading..."),
     "messageLoginFailed" : MessageLookupByLibrary.simpleMessage("Login Failed"),
     "messageLoginHint" : MessageLookupByLibrary.simpleMessage("Please login / register"),
@@ -692,7 +693,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeColorDefault" : MessageLookupByLibrary.simpleMessage("Default"),
     "themeColorHintSelect" : MessageLookupByLibrary.simpleMessage("Select Theme Color"),
     "themeColorLight" : MessageLookupByLibrary.simpleMessage("Light"),
-    "title" : MessageLookupByLibrary.simpleMessage("BKK365 Mobile"),
+    "title" : MessageLookupByLibrary.simpleMessage("VietWin Mobile"),
     "toolBarMemberCredit" : m46,
     "transactionHeaderAmount" : MessageLookupByLibrary.simpleMessage("Value"),
     "transactionHeaderDate" : MessageLookupByLibrary.simpleMessage("Date"),

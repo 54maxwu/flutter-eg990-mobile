@@ -9,7 +9,7 @@ class EventApi {
   static const String AD = "api/getAd";
   static const String GET_EVENT = "api/showActive";
   static const String POST_SIGN = "api/memSign";
-  
+
   static const String GET_NEW_MESSAGE_COUNT = 'api/stationCount';
 }
 
@@ -17,7 +17,7 @@ abstract class EventRepository {
   Future<Either<Failure, ServiceModel>> getWebsiteList();
 
   Future<Either<Failure, List<AdModel>>> getAds();
-  
+
   Future<Either<Failure, bool>> checkNewMessage();
 
   Future<Either<Failure, EventModel>> getEvent();
@@ -35,7 +35,6 @@ class EventRepositoryImpl implements EventRepository {
     Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
-  
   @override
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(

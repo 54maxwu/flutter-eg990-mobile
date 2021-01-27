@@ -27,8 +27,8 @@ abstract class _WithdrawStore with Store {
   @observable
   WithdrawModel withdrawResult;
 
-  String cgpUrl = '';
-  String cpwUrl = '';
+  // String cgpUrl = '';
+  // String cpwUrl = '';
   String rollback = '';
 
   @observable
@@ -45,58 +45,59 @@ abstract class _WithdrawStore with Store {
 
   @computed
   WithdrawStoreState get state {
-    // If the user has not yet triggered a action or there has been an error
-    if ((_cgpFuture == null || _cgpFuture.status == FutureStatus.rejected) &&
-        (_cpwFuture == null || _cpwFuture.status == FutureStatus.rejected)) {
-      return WithdrawStoreState.initial;
-    }
-    // Pending Future means "loading"
-    // Fulfilled Future means "loaded"
-    return _cgpFuture.status == FutureStatus.pending &&
-            _cpwFuture.status == FutureStatus.pending
-        ? WithdrawStoreState.loading
-        : WithdrawStoreState.loaded;
+    // // If the user has not yet triggered a action or there has been an error
+    // if ((_cgpFuture == null || _cgpFuture.status == FutureStatus.rejected) &&
+    //     (_cpwFuture == null || _cpwFuture.status == FutureStatus.rejected)) {
+    //   return WithdrawStoreState.initial;
+    // }
+    // // Pending Future means "loading"
+    // // Fulfilled Future means "loaded"
+    // return _cgpFuture.status == FutureStatus.pending &&
+    //         _cpwFuture.status == FutureStatus.pending
+    //     ? WithdrawStoreState.loading
+    //     : WithdrawStoreState.loaded;
+    return WithdrawStoreState.loaded;
   }
 
-  @action
-  Future<void> getCgpWallet() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // Fetch from the repository and wrap the regular Future into an observable.
-      _cgpFuture = ObservableFuture(_repository.getCgpWallet());
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _cgpFuture.then((result) {
-        debugPrint('cgp result: $result');
-        result.fold(
-          (failure) => errorMessage = 'CGP ${failure.message}',
-          (data) => cgpUrl = data,
-        );
-      });
-    } on Exception {
-      setErrorMsg(code: 2);
-    }
-  }
-
-  @action
-  Future<void> getCpwWallet() async {
-    try {
-      // Reset the possible previous error message.
-      errorMessage = null;
-      // Fetch from the repository and wrap the regular Future into an observable.
-      _cpwFuture = ObservableFuture(_repository.getCpwWallet());
-      // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
-      await _cpwFuture.then((result) {
-        debugPrint('cpw result: $result');
-        result.fold(
-          (failure) => errorMessage = 'CPW ${failure.message}',
-          (data) => cpwUrl = data,
-        );
-      });
-    } on Exception {
-      setErrorMsg(code: 3);
-    }
-  }
+  // @action
+  // Future<void> getCgpWallet() async {
+  //   try {
+  //     // Reset the possible previous error message.
+  //     errorMessage = null;
+  //     // Fetch from the repository and wrap the regular Future into an observable.
+  //     _cgpFuture = ObservableFuture(_repository.getCgpWallet());
+  //     // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+  //     await _cgpFuture.then((result) {
+  //       debugPrint('cgp result: $result');
+  //       result.fold(
+  //         (failure) => errorMessage = 'CGP ${failure.message}',
+  //         (data) => cgpUrl = data,
+  //       );
+  //     });
+  //   } on Exception {
+  //     setErrorMsg(code: 2);
+  //   }
+  // }
+  //
+  // @action
+  // Future<void> getCpwWallet() async {
+  //   try {
+  //     // Reset the possible previous error message.
+  //     errorMessage = null;
+  //     // Fetch from the repository and wrap the regular Future into an observable.
+  //     _cpwFuture = ObservableFuture(_repository.getCpwWallet());
+  //     // ObservableFuture extends Future - it can be awaited and exceptions will propagate as usual.
+  //     await _cpwFuture.then((result) {
+  //       debugPrint('cpw result: $result');
+  //       result.fold(
+  //         (failure) => errorMessage = 'CPW ${failure.message}',
+  //         (data) => cpwUrl = data,
+  //       );
+  //     });
+  //   } on Exception {
+  //     setErrorMsg(code: 3);
+  //   }
+  // }
 
   @action
   Future<void> getRollback() async {

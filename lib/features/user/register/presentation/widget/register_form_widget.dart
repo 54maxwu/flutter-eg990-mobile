@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/data/error/error_message_map.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/checkbox_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
@@ -31,18 +33,18 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       new GlobalKey(debugLabel: 'pwd');
   final GlobalKey<CustomizeFieldWidgetState> _confirmFieldKey =
       new GlobalKey(debugLabel: 'confirm');
-//  final GlobalKey<CustomizeFieldWidgetState> _phoneFieldKey =
-//      new GlobalKey(debugLabel: 'phone');
+  final GlobalKey<CustomizeFieldWidgetState> _phoneFieldKey =
+      new GlobalKey(debugLabel: 'phone');
   final GlobalKey<CustomizeFieldWidgetState> _introFieldKey =
       new GlobalKey(debugLabel: 'intro');
-//
-//  final GlobalKey<CheckboxWidgetState> _newsCheckKey =
-//      new GlobalKey(debugLabel: 'news');
-//  final GlobalKey<CheckboxWidgetState> _termsCheckKey =
-//      new GlobalKey(debugLabel: 'terms');
+
+  final GlobalKey<CheckboxWidgetState> _newsCheckKey =
+      new GlobalKey(debugLabel: 'news');
+  final GlobalKey<CheckboxWidgetState> _termsCheckKey =
+      new GlobalKey(debugLabel: 'terms');
 
   double _fieldInset;
-//  double _phoneCodeContainerHeight;
+  double _phoneCodeContainerHeight;
   double _errorTextPadding;
   Color _fieldPrefixBg;
 
@@ -53,7 +55,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   bool _showAccountError = false;
   bool _showPasswordError = false;
   bool _showConfirmError = false;
-//  bool _showPhoneError = false;
+  bool _showPhoneError = false;
 
   void _validateForm() {
     if (_store == null || _store.waitForRegister) return;
@@ -65,14 +67,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         username: _accountFieldKey.currentState.getInput,
         password: _pwdFieldKey.currentState.getInput,
         confirmPassword: _confirmFieldKey.currentState.getInput,
-//        mobileno: _phoneFieldKey.currentState.getInput,
+        mobileno: _phoneFieldKey.currentState.getInput,
         intro: _introFieldKey.currentState.getInput,
       );
-//      if (regForm.isValid && _termsCheckKey.currentState.boxChecked)
-      if (regForm.isValid)
+      if (regForm.isValid && _termsCheckKey.currentState.boxChecked) {
         _store.postRegister(regForm);
-      else
+      } else {
         callToast(localeStr.messageActionFillForm);
+      }
     }
   }
 
@@ -82,9 +84,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
     _fieldPrefixBg = (widget.transparent)
         ? Colors.transparent
         : themeColor.fieldPrefixBgColor;
-//    _phoneCodeContainerHeight =
-//        ((Global.device.isIos) ? ThemeInterface.fieldHeight + 8 : ThemeInterface.fieldHeight) -
-//            ThemeInterface.minusSize;
+    _phoneCodeContainerHeight = ((Global.device.isIos)
+            ? ThemeInterface.fieldHeight + 8
+            : ThemeInterface.fieldHeight) -
+        ThemeInterface.minusSize;
     _errorTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
             ThemeInterface.prefixTextWidthFactor -
         ThemeInterface.minusSize +
@@ -123,12 +126,11 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
           if (result == null) return;
           if (result.isSuccess) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.REGISTER),
                 icon: Icons.check_circle_outline);
           } else {
-            callToastError(result.msg);
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.REGISTER));
           }
         },
       ),
@@ -310,69 +312,69 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               ///
               /// Phone Field
               ///
-//                Padding(
-//                  padding: const EdgeInsets.only(top: 8.0),
-//                  child: new CustomizeTitledContainer(
-//                    prefixText: localeStr.registerFieldTitlePhone,
-//                    prefixTextSize: FontSize.SUBTITLE.value,
-//                    prefixBgColor: _fieldPrefixBg,
-//                    backgroundColor: Colors.transparent,
-//                    horizontalInset: _fieldInset,
-//                    requiredInput: true,
-//                    child: Row(
-//                      mainAxisSize: MainAxisSize.max,
-//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                      crossAxisAlignment: CrossAxisAlignment.stretch,
-//                      children: [
-//                        Container(
-//                          width: 64.0,
-//                          height: _phoneCodeContainerHeight,
-//                          color: themeColor.fieldInputBgColor,
-//                          alignment: Alignment.center,
-//                          child: Text(
-//                            '+84',
-//                            style: TextStyle(fontSize: FontSize.SUBTITLE.value),
-//                          ),
-//                        ),
-//                        SizedBox(width: 8.0),
-//                        Expanded(
-//                          child: new CustomizeFieldWidget(
-//                            key: _phoneFieldKey,
-//                            fieldType: FieldType.Numbers,
-//                            hint: localeStr.hintPhoneInput,
-//                            persistHint: false,
-//                            padding: const EdgeInsets.symmetric(vertical: 0.0),
-//                            maxInputLength: InputLimit.PHONE_MAX,
-//                            onInputChanged: (input) {
-//                              setState(() {
-//                                _showPhoneError = !rangeCheck(
-//                                  value: input.length,
-//                                  min: InputLimit.PHONE_MIN,
-//                                  max: InputLimit.PHONE_MAX,
-//                                );
-//                              });
-//                            },
-//                          ),
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                ),
-//                Row(
-//                  mainAxisSize: MainAxisSize.max,
-//                  children: [
-//                    Padding(
-//                      padding: EdgeInsets.only(left: _valueTextPadding),
-//                      child: Visibility(
-//                        visible: _showPhoneError,
-//                        child: Text(
-//                          localeStr.messageInvalidPhone,
-//                          style: TextStyle(color: themeColor.defaultErrorColor),
-//                        ),
-//                      ),
-//                    ),
-//                  ],
-//                ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: new CustomizeTitledContainer(
+                  prefixText: localeStr.registerFieldTitlePhone,
+                  prefixTextSize: FontSize.SUBTITLE.value,
+                  prefixBgColor: _fieldPrefixBg,
+                  backgroundColor: Colors.transparent,
+                  horizontalInset: _fieldInset,
+                  requiredInput: true,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        width: 64.0,
+                        height: _phoneCodeContainerHeight,
+                        color: themeColor.fieldInputBgColor,
+                        alignment: Alignment.center,
+                        child: Text(
+                          '+84',
+                          style: TextStyle(fontSize: FontSize.SUBTITLE.value),
+                        ),
+                      ),
+                      SizedBox(width: 8.0),
+                      Expanded(
+                        child: new CustomizeFieldWidget(
+                          key: _phoneFieldKey,
+                          fieldType: FieldType.Numbers,
+                          hint: localeStr.hintPhoneInput,
+                          persistHint: false,
+                          padding: const EdgeInsets.symmetric(vertical: 0.0),
+                          maxInputLength: InputLimit.PHONE_MAX,
+                          onInputChanged: (input) {
+                            setState(() {
+                              _showPhoneError = !rangeCheck(
+                                value: input.length,
+                                min: InputLimit.PHONE_MIN,
+                                max: InputLimit.PHONE_MAX,
+                              );
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: _errorTextPadding),
+                    child: Visibility(
+                      visible: _showPhoneError,
+                      child: Text(
+                        localeStr.messageInvalidPhone(InputLimit.PHONE_MAX),
+                        style: TextStyle(color: themeColor.defaultErrorColor),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
 
               ///
               /// Referral Code Field
@@ -399,43 +401,43 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
           ),
         ),
 
-//        Padding(
-//          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 0.0),
-//          child: Divider(height: 16.0),
-//        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 0.0),
+          child: Divider(height: 16.0),
+        ),
 
         ///
         /// Promo News Check Box
         ///
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-//          child: CheckboxWidget(
-//            key: _newsCheckKey,
-//            widgetPadding: EdgeInsets.zero,
-//            textPadding: const EdgeInsets.only(left: 8.0),
-//            label: localeStr.registerCheckButtonNews,
-//            boxBackgroundColor: themeColor.fieldInputBgColor,
-//            textSize: FontSize.SUBTITLE.value,
-//            scale: 1.75,
-//          ),
-//        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          child: CheckboxWidget(
+            key: _newsCheckKey,
+            widgetPadding: EdgeInsets.zero,
+            textPadding: const EdgeInsets.only(left: 8.0),
+            label: localeStr.registerCheckButtonNews,
+            boxBackgroundColor: themeColor.fieldInputBgColor,
+            textSize: FontSize.SUBTITLE.value,
+            scale: 1.25,
+          ),
+        ),
 
         ///
         /// Terms Check Box
         ///
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-//          child: CheckboxWidget(
-//            key: _termsCheckKey,
-//            widgetPadding: EdgeInsets.zero,
-//            textPadding: const EdgeInsets.only(left: 8.0),
-//            label: localeStr.registerCheckButtonTerms,
-//            boxBackgroundColor: themeColor.fieldInputBgColor,
-//            textSize: FontSize.SUBTITLE.value,
-//            maxLines: 2,
-//            scale: 1.75,
-//          ),
-//        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          child: CheckboxWidget(
+            key: _termsCheckKey,
+            widgetPadding: EdgeInsets.zero,
+            textPadding: const EdgeInsets.only(left: 8.0),
+            label: localeStr.registerCheckButtonTerms,
+            boxBackgroundColor: themeColor.fieldInputBgColor,
+            textSize: FontSize.SUBTITLE.value,
+            maxLines: 2,
+            scale: 1.25,
+          ),
+        ),
 
         ///
         /// Confirm Button

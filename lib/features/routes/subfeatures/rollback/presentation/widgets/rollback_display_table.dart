@@ -117,7 +117,7 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
       localeStr.flowHeaderTextNeed,
     ];
     _headerRow ??= TableRow(
-      decoration: BoxDecoration(color: themeColor.chartHeaderBgColor),
+      decoration: BoxDecoration(color: themeColor.chartPrimaryHeaderColor),
       children: List.generate(
         _headerRowTexts.length,
         (index) =>

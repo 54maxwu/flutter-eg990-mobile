@@ -48,31 +48,6 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
             ),
         child: Row(
           children: <Widget>[
-//            RaisedButton(
-//              child: new Text(
-//                localeStr.pageTitleLogin,
-//                style: TextStyle(
-//                  fontSize: FontSize.NORMAL.value + 1,
-//                  color: themeColor.buttonTextPrimaryColor,
-//                ),
-//              ),
-//              visualDensity: VisualDensity(horizontal: -3.0),
-//              onPressed: () => AppNavigator.navigateToPage(RoutePage.login),
-//            ),
-//            SizedBox(width: 4.0),
-//            RaisedButton(
-//              child: new Text(
-//                localeStr.pageTitleLogin,
-//                style: TextStyle(
-//                  fontSize: FontSize.NORMAL.value + 1,
-//                  color: themeColor.buttonTextPrimaryColor,
-//                ),
-//              ),
-//              visualDensity: VisualDensity(horizontal: -3.0),
-//              onPressed: () => AppNavigator.navigateToPage(RoutePage.login,
-//                  arg: LoginRouteArguments(returnHomeAfterLogin: true)),
-//            ),
-//            SizedBox(width: 4.0),
             RaisedButton(
               child: new AutoSizeText(
                 localeStr.pageTitleRegister,

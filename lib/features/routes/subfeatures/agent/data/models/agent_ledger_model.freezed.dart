@@ -325,16 +325,24 @@ class _$AgentLedgerDataTearOff {
 // ignore: unused_element
   _AgentLedgerData call(
       {@JsonKey(name: 'Deposit') num deposit,
-      @JsonKey(name: 'Preferential') num preferential,
-      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'DepositCount') num depositCnt,
       @JsonKey(name: 'Withdraw') num withdraw,
-      @JsonKey(name: 'accountcode') String account}) {
+      @JsonKey(name: 'WithdrawCount') num withdrawCnt,
+      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'Preferential') num preferential,
+      @JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'cdate') String regDate,
+      @JsonKey(name: 'lastlogin') String lastLogin}) {
     return _AgentLedgerData(
       deposit: deposit,
-      preferential: preferential,
-      rolling: rolling,
+      depositCnt: depositCnt,
       withdraw: withdraw,
+      withdrawCnt: withdrawCnt,
+      rolling: rolling,
+      preferential: preferential,
       account: account,
+      regDate: regDate,
+      lastLogin: lastLogin,
     );
   }
 }
@@ -347,14 +355,22 @@ const $AgentLedgerData = _$AgentLedgerDataTearOff();
 mixin _$AgentLedgerData {
   @JsonKey(name: 'Deposit')
   num get deposit;
-  @JsonKey(name: 'Preferential')
-  num get preferential;
-  @JsonKey(name: 'Rolling')
-  num get rolling;
+  @JsonKey(name: 'DepositCount')
+  num get depositCnt;
   @JsonKey(name: 'Withdraw')
   num get withdraw;
+  @JsonKey(name: 'WithdrawCount')
+  num get withdrawCnt;
+  @JsonKey(name: 'Rolling')
+  num get rolling;
+  @JsonKey(name: 'Preferential')
+  num get preferential;
   @JsonKey(name: 'accountcode')
   String get account;
+  @JsonKey(name: 'cdate')
+  String get regDate;
+  @JsonKey(name: 'lastlogin')
+  String get lastLogin;
 
   $AgentLedgerDataCopyWith<AgentLedgerData> get copyWith;
 }
@@ -366,10 +382,14 @@ abstract class $AgentLedgerDataCopyWith<$Res> {
       _$AgentLedgerDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'Deposit') num deposit,
-      @JsonKey(name: 'Preferential') num preferential,
-      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'DepositCount') num depositCnt,
       @JsonKey(name: 'Withdraw') num withdraw,
-      @JsonKey(name: 'accountcode') String account});
+      @JsonKey(name: 'WithdrawCount') num withdrawCnt,
+      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'Preferential') num preferential,
+      @JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'cdate') String regDate,
+      @JsonKey(name: 'lastlogin') String lastLogin});
 }
 
 /// @nodoc
@@ -384,18 +404,27 @@ class _$AgentLedgerDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object deposit = freezed,
-    Object preferential = freezed,
-    Object rolling = freezed,
+    Object depositCnt = freezed,
     Object withdraw = freezed,
+    Object withdrawCnt = freezed,
+    Object rolling = freezed,
+    Object preferential = freezed,
     Object account = freezed,
+    Object regDate = freezed,
+    Object lastLogin = freezed,
   }) {
     return _then(_value.copyWith(
       deposit: deposit == freezed ? _value.deposit : deposit as num,
+      depositCnt: depositCnt == freezed ? _value.depositCnt : depositCnt as num,
+      withdraw: withdraw == freezed ? _value.withdraw : withdraw as num,
+      withdrawCnt:
+          withdrawCnt == freezed ? _value.withdrawCnt : withdrawCnt as num,
+      rolling: rolling == freezed ? _value.rolling : rolling as num,
       preferential:
           preferential == freezed ? _value.preferential : preferential as num,
-      rolling: rolling == freezed ? _value.rolling : rolling as num,
-      withdraw: withdraw == freezed ? _value.withdraw : withdraw as num,
       account: account == freezed ? _value.account : account as String,
+      regDate: regDate == freezed ? _value.regDate : regDate as String,
+      lastLogin: lastLogin == freezed ? _value.lastLogin : lastLogin as String,
     ));
   }
 }
@@ -409,10 +438,14 @@ abstract class _$AgentLedgerDataCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'Deposit') num deposit,
-      @JsonKey(name: 'Preferential') num preferential,
-      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'DepositCount') num depositCnt,
       @JsonKey(name: 'Withdraw') num withdraw,
-      @JsonKey(name: 'accountcode') String account});
+      @JsonKey(name: 'WithdrawCount') num withdrawCnt,
+      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'Preferential') num preferential,
+      @JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'cdate') String regDate,
+      @JsonKey(name: 'lastlogin') String lastLogin});
 }
 
 /// @nodoc
@@ -429,18 +462,27 @@ class __$AgentLedgerDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object deposit = freezed,
-    Object preferential = freezed,
-    Object rolling = freezed,
+    Object depositCnt = freezed,
     Object withdraw = freezed,
+    Object withdrawCnt = freezed,
+    Object rolling = freezed,
+    Object preferential = freezed,
     Object account = freezed,
+    Object regDate = freezed,
+    Object lastLogin = freezed,
   }) {
     return _then(_AgentLedgerData(
       deposit: deposit == freezed ? _value.deposit : deposit as num,
+      depositCnt: depositCnt == freezed ? _value.depositCnt : depositCnt as num,
+      withdraw: withdraw == freezed ? _value.withdraw : withdraw as num,
+      withdrawCnt:
+          withdrawCnt == freezed ? _value.withdrawCnt : withdrawCnt as num,
+      rolling: rolling == freezed ? _value.rolling : rolling as num,
       preferential:
           preferential == freezed ? _value.preferential : preferential as num,
-      rolling: rolling == freezed ? _value.rolling : rolling as num,
-      withdraw: withdraw == freezed ? _value.withdraw : withdraw as num,
       account: account == freezed ? _value.account : account as String,
+      regDate: regDate == freezed ? _value.regDate : regDate as String,
+      lastLogin: lastLogin == freezed ? _value.lastLogin : lastLogin as String,
     ));
   }
 }
@@ -449,30 +491,46 @@ class __$AgentLedgerDataCopyWithImpl<$Res>
 class _$_AgentLedgerData implements _AgentLedgerData {
   const _$_AgentLedgerData(
       {@JsonKey(name: 'Deposit') this.deposit,
-      @JsonKey(name: 'Preferential') this.preferential,
-      @JsonKey(name: 'Rolling') this.rolling,
+      @JsonKey(name: 'DepositCount') this.depositCnt,
       @JsonKey(name: 'Withdraw') this.withdraw,
-      @JsonKey(name: 'accountcode') this.account});
+      @JsonKey(name: 'WithdrawCount') this.withdrawCnt,
+      @JsonKey(name: 'Rolling') this.rolling,
+      @JsonKey(name: 'Preferential') this.preferential,
+      @JsonKey(name: 'accountcode') this.account,
+      @JsonKey(name: 'cdate') this.regDate,
+      @JsonKey(name: 'lastlogin') this.lastLogin});
 
   @override
   @JsonKey(name: 'Deposit')
   final num deposit;
   @override
-  @JsonKey(name: 'Preferential')
-  final num preferential;
-  @override
-  @JsonKey(name: 'Rolling')
-  final num rolling;
+  @JsonKey(name: 'DepositCount')
+  final num depositCnt;
   @override
   @JsonKey(name: 'Withdraw')
   final num withdraw;
   @override
+  @JsonKey(name: 'WithdrawCount')
+  final num withdrawCnt;
+  @override
+  @JsonKey(name: 'Rolling')
+  final num rolling;
+  @override
+  @JsonKey(name: 'Preferential')
+  final num preferential;
+  @override
   @JsonKey(name: 'accountcode')
   final String account;
+  @override
+  @JsonKey(name: 'cdate')
+  final String regDate;
+  @override
+  @JsonKey(name: 'lastlogin')
+  final String lastLogin;
 
   @override
   String toString() {
-    return 'AgentLedgerData(deposit: $deposit, preferential: $preferential, rolling: $rolling, withdraw: $withdraw, account: $account)';
+    return 'AgentLedgerData(deposit: $deposit, depositCnt: $depositCnt, withdraw: $withdraw, withdrawCnt: $withdrawCnt, rolling: $rolling, preferential: $preferential, account: $account, regDate: $regDate, lastLogin: $lastLogin)';
   }
 
   @override
@@ -482,27 +540,44 @@ class _$_AgentLedgerData implements _AgentLedgerData {
             (identical(other.deposit, deposit) ||
                 const DeepCollectionEquality()
                     .equals(other.deposit, deposit)) &&
-            (identical(other.preferential, preferential) ||
+            (identical(other.depositCnt, depositCnt) ||
                 const DeepCollectionEquality()
-                    .equals(other.preferential, preferential)) &&
-            (identical(other.rolling, rolling) ||
-                const DeepCollectionEquality()
-                    .equals(other.rolling, rolling)) &&
+                    .equals(other.depositCnt, depositCnt)) &&
             (identical(other.withdraw, withdraw) ||
                 const DeepCollectionEquality()
                     .equals(other.withdraw, withdraw)) &&
+            (identical(other.withdrawCnt, withdrawCnt) ||
+                const DeepCollectionEquality()
+                    .equals(other.withdrawCnt, withdrawCnt)) &&
+            (identical(other.rolling, rolling) ||
+                const DeepCollectionEquality()
+                    .equals(other.rolling, rolling)) &&
+            (identical(other.preferential, preferential) ||
+                const DeepCollectionEquality()
+                    .equals(other.preferential, preferential)) &&
             (identical(other.account, account) ||
-                const DeepCollectionEquality().equals(other.account, account)));
+                const DeepCollectionEquality()
+                    .equals(other.account, account)) &&
+            (identical(other.regDate, regDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.regDate, regDate)) &&
+            (identical(other.lastLogin, lastLogin) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastLogin, lastLogin)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(deposit) ^
-      const DeepCollectionEquality().hash(preferential) ^
-      const DeepCollectionEquality().hash(rolling) ^
+      const DeepCollectionEquality().hash(depositCnt) ^
       const DeepCollectionEquality().hash(withdraw) ^
-      const DeepCollectionEquality().hash(account);
+      const DeepCollectionEquality().hash(withdrawCnt) ^
+      const DeepCollectionEquality().hash(rolling) ^
+      const DeepCollectionEquality().hash(preferential) ^
+      const DeepCollectionEquality().hash(account) ^
+      const DeepCollectionEquality().hash(regDate) ^
+      const DeepCollectionEquality().hash(lastLogin);
 
   @override
   _$AgentLedgerDataCopyWith<_AgentLedgerData> get copyWith =>
@@ -528,26 +603,42 @@ class _$_AgentLedgerData implements _AgentLedgerData {
 abstract class _AgentLedgerData implements AgentLedgerData {
   const factory _AgentLedgerData(
       {@JsonKey(name: 'Deposit') num deposit,
-      @JsonKey(name: 'Preferential') num preferential,
-      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'DepositCount') num depositCnt,
       @JsonKey(name: 'Withdraw') num withdraw,
-      @JsonKey(name: 'accountcode') String account}) = _$_AgentLedgerData;
+      @JsonKey(name: 'WithdrawCount') num withdrawCnt,
+      @JsonKey(name: 'Rolling') num rolling,
+      @JsonKey(name: 'Preferential') num preferential,
+      @JsonKey(name: 'accountcode') String account,
+      @JsonKey(name: 'cdate') String regDate,
+      @JsonKey(name: 'lastlogin') String lastLogin}) = _$_AgentLedgerData;
 
   @override
   @JsonKey(name: 'Deposit')
   num get deposit;
   @override
-  @JsonKey(name: 'Preferential')
-  num get preferential;
-  @override
-  @JsonKey(name: 'Rolling')
-  num get rolling;
+  @JsonKey(name: 'DepositCount')
+  num get depositCnt;
   @override
   @JsonKey(name: 'Withdraw')
   num get withdraw;
   @override
+  @JsonKey(name: 'WithdrawCount')
+  num get withdrawCnt;
+  @override
+  @JsonKey(name: 'Rolling')
+  num get rolling;
+  @override
+  @JsonKey(name: 'Preferential')
+  num get preferential;
+  @override
   @JsonKey(name: 'accountcode')
   String get account;
+  @override
+  @JsonKey(name: 'cdate')
+  String get regDate;
+  @override
+  @JsonKey(name: 'lastlogin')
+  String get lastLogin;
   @override
   _$AgentLedgerDataCopyWith<_AgentLedgerData> get copyWith;
 }

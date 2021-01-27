@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigator_names.dart';
 import 'package:flutter_eg990_mobile/features/router/route_enum.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/platform_util.dart';
@@ -47,13 +46,13 @@ class AppNavigator {
   }
 
   static ExtendedNavigatorState get screenNavigate =>
-      ExtendedNavigator.named(SCREEN_NAV_NAME);
+      ExtendedNavigator.named('MainStartupRouter');
 
   static ExtendedNavigatorState get featureNavigate =>
-      ExtendedNavigator.named(FEATURE_NAV_NAME);
+      ExtendedNavigator.named('FeatureScreenRouter');
 
   static ExtendedNavigatorState get testNavigate =>
-      ExtendedNavigator.named(TEST_NAV_NAME);
+      ExtendedNavigator.named('TestRouter');
 
   static switchScreen(Screens screen, {Object webUrl}) {
     try {
@@ -72,15 +71,11 @@ class AppNavigator {
           screenIndex = 2;
           break;
         default:
-          if (screenIndex == 0) {
-            if (screenNavigate.canPop()) {
-              screenNavigate.popUntil((route) {
-                debugPrint('popping to feature screen: $route');
-                return false;
-              });
-            } else {
-              featureNavigate.pushFeatureScreen();
-            }
+          if (screenIndex == 0 && screenNavigate.canPop()) {
+            screenNavigate.popUntil((route) {
+              debugPrint('popping to feature screen: $route');
+              return false;
+            });
           } else {
             screenNavigate.replace(MainStartupRoutes.featureScreen);
             screenIndex = 0;
@@ -145,7 +140,9 @@ class AppNavigator {
 
       // retry navigate
       returnToHome(force: true);
-      navigateTo(page, arg: arg ?? page.value.routeArg);
+      if (featureNavigate != null) {
+        navigateTo(page, arg: arg ?? page.value.routeArg);
+      }
     }
   }
 
@@ -193,7 +190,9 @@ class AppNavigator {
 
       // retry navigate
       returnToHome(force: true);
-      navigateTo(page, arg: arg ?? page.value.routeArg);
+      if (featureNavigate != null) {
+        navigateTo(page, arg: arg ?? page.value.routeArg);
+      }
     }
   }
 
@@ -237,9 +236,9 @@ class AppNavigator {
     debugPrint('returning to home, from: $_current');
     try {
       if (force && _current == homeName) {
-        screenNavigate.pushFeatureScreen();
-      } else if (_current != homeName) {
-        featureNavigate.pushHomeRoute();
+        switchScreen(Screens.Feature);
+      } else {
+        featureNavigate.popUntilPath(homeName);
       }
       callCheckUser();
     } catch (e) {
@@ -264,7 +263,8 @@ class AppNavigator {
     }
     _previous = parent ?? route.pageRoot;
     _current = route.pageName;
-    debugPrint('update navigate path, current:$_current, previous: $_previous');
+    debugPrint(
+        'update navigate path, current: $_current, previous: $_previous');
   }
 
   static testNavigateTo(RoutePage page) {

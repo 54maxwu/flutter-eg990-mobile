@@ -107,7 +107,6 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
 
   @override
   void didChangeDependencies() {
-    debugPrint('didChangeDependencies');
     super.didChangeDependencies();
     _disposers ??= [
       reaction(
@@ -229,9 +228,11 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
           ),
         ),
         if (_loginSuccess)
+          // add callback to prevent navigator triggered rebuild and navigate again
           LoginNavigate(
             returnHomePage: widget.returnHome,
             closeDialog: widget.isDialog,
+            callback: () => _loginSuccess = false,
           ),
       ],
     );

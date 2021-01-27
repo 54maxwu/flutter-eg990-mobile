@@ -1,3 +1,5 @@
+import 'dart:async' show Timer;
+
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,8 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
   bool _isGameGrid = false;
   GamePlatformEntity _currentPlatform;
 
+  Timer _coolDownTimer;
+  bool _coolingDown = false;
   String _searched;
   GamePlatformEntity _searchPlatform;
 
@@ -76,8 +80,11 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
       debugPrint(
           'clicked platform: ${itemData.category}, from search: $fromSearch');
       if (fromSearch) {
-        // open requested platform's game view
-        _setGridContent(_buildGamesView(itemData));
+        if (itemData.isGameHall == false) {
+          _setGridContent(_buildGamesView(itemData));
+        } else {
+          _openGame(itemData.gameUrl);
+        }
       } else if (_isGameGrid) {
         // if current is showing games grid, change to platforms grid
         _setGridContent(_createPlatformGrid());
@@ -109,9 +116,12 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
   }
 
   void _openGame(String url) {
-    if (_store.hasUser == false)
+    debugPrint('try opening url, has user: ${_store.hasUser}');
+    if (_store.hasUser == false) {
       callToastInfo(localeStr.messageErrorNotLogin);
-    else if (_store != null) _store.getGameUrl(url);
+    } else if (_store != null) {
+      _store.getGameUrl(url);
+    }
   }
 
   void _setFavorite(dynamic entity, bool favor) {
@@ -280,8 +290,15 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
         _searched = _store.searchPlatform;
         if (_searched != null) findPlatform();
       }
+
+      /// TODO need to fix multi listener issue
       _store.showPlatformStream.listen((event) {
         if (event.contains(widget.category) == false) return;
+        if (_coolingDown && _searched == event) return;
+        _coolingDown = true;
+        _coolDownTimer?.cancel();
+        _coolDownTimer =
+            new Timer(Duration(seconds: 2), () => _coolingDown = false);
         debugPrint('page ${widget.category} received search $event');
         _searched = event;
         findPlatform();

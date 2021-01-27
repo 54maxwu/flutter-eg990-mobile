@@ -57,7 +57,7 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
         (index) => TableCellTextWidget(text: _headerRowTexts[index]),
       ),
     );
-    _htmlContent = _buildHtmlText();
+    _htmlContent = (_store.rulesModel.rules.isNotEmpty) ? _buildHtmlText() : '';
   }
 
   @override

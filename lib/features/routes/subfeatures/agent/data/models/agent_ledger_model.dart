@@ -61,19 +61,27 @@ List<AgentLedgerData> decodeAgentLedgerData(dynamic str) =>
 abstract class AgentLedgerData with _$AgentLedgerData implements TableOperator {
   const factory AgentLedgerData({
     @JsonKey(name: 'Deposit') num deposit,
-    @JsonKey(name: 'Preferential') num preferential,
-    @JsonKey(name: 'Rolling') num rolling,
+    @JsonKey(name: 'DepositCount') num depositCnt,
     @JsonKey(name: 'Withdraw') num withdraw,
+    @JsonKey(name: 'WithdrawCount') num withdrawCnt,
+    @JsonKey(name: 'Rolling') num rolling,
+    @JsonKey(name: 'Preferential') num preferential,
     @JsonKey(name: 'accountcode') String account,
+    @JsonKey(name: 'cdate') String regDate,
+    @JsonKey(name: 'lastlogin') String lastLogin,
   }) = _AgentLedgerData;
 
   static AgentLedgerData jsonToAgentLedgerData(Map<String, dynamic> jsonMap) {
     return _$_AgentLedgerData(
       deposit: jsonMap['Deposit'] as num,
-      preferential: jsonMap['Preferential'] as num,
-      rolling: jsonMap['Rolling'] as num,
+      depositCnt: jsonMap['DepositCount'] as num,
       withdraw: jsonMap['Withdraw'] as num,
+      withdrawCnt: jsonMap['WithdrawCount'] as num,
+      rolling: jsonMap['Rolling'] as num,
+      preferential: jsonMap['Preferential'] as num,
       account: jsonMap['accountcode'] as String,
+      regDate: jsonMap['cdate'] as String,
+      lastLogin: jsonMap['lastlogin'] as String,
     );
   }
 }

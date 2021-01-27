@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/global.dart';
@@ -78,6 +80,8 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
         Future.delayed(Duration(seconds: (showToolHint) ? 5 : 2), () => true);
 
     super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -86,6 +90,9 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
     try {
       _store.stopSensor();
       OrientationHelper.restoreUI();
+      Future.sync(() => _controller
+          .loadUrl('about:blank')
+          .whenComplete(() => _controller.clearCache()));
     } catch (e) {}
     // edit the source code in FlutterWebView
     // (under external lib -> webview_flutter -> android
@@ -113,94 +120,88 @@ class _WebGameScreenState extends State<WebGameScreen> with AfterLayoutMixin {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        key: _scaffoldKey,
+    return Scaffold(
+      key: _scaffoldKey,
 //          drawer: WebGameScreenDrawer(
 //            scaffoldKey: _scaffoldKey,
 //            store: _store,
 //          ),
-        floatingActionButton: FutureBuilder(
-          future: _floatFuture,
-          builder: (_, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (showToolHint) {
-                showToolHint = false;
-                Future.delayed(Duration(milliseconds: 1500), () {
-                  callToast(localeStr.gameToolHintUsage);
-                });
+      floatingActionButton: FutureBuilder(
+        future: _floatFuture,
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (showToolHint) {
+              showToolHint = false;
+              Future.delayed(Duration(milliseconds: 1500), () {
+                callToast(localeStr.gameToolHintUsage);
+              });
+            }
+            return GestureDetector(
+              onLongPress: () {
+                if (showVisibleHint) {
+                  showVisibleHint = false;
+                  Future.delayed(Duration(milliseconds: 300), () {
+                    callToast(localeStr.gameToolHintRestore);
+                  });
+                }
+                _toolKey.currentState?.hideTool();
+              },
+              child: WebGameScreenFloatButton(
+                key: _toolKey,
+                scaffoldKey: _scaffoldKey,
+                store: _store,
+                onReturnHome: () => _returnHome(),
+              ),
+            );
+          } else {
+            return SizedBox.shrink();
+          }
+        },
+      ),
+      body: GestureDetector(
+//            onDoubleTap: () => _scaffoldKey.currentState.openDrawer(),
+        onDoubleTap: () => _toolKey.currentState?.showTool(),
+        child: WebView(
+          initialUrl: widget.startUrl,
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController controller) async {
+            _controller = controller;
+            if (isForm) {
+              _controller.loadUrl(Uri.dataFromString(
+                parsedHtml,
+                mimeType: Global.WEB_MIMETYPE,
+                encoding: Global.webEncoding,
+              ).toString());
+            } else if (widget.startUrl.isUrl == false) {
+              _controller.loadUrl(Uri.dataFromString(
+                widget.startUrl,
+                mimeType: Global.WEB_MIMETYPE,
+                encoding: Global.webEncoding,
+              ).toString());
+            }
+          },
+          onPageFinished: (String url) async {
+            debugPrint('web page loaded: $url');
+            if (url.isUrl == false) return;
+            if (isForm) isForm = false;
+
+            String pageTitle = await _controller.getTitle();
+            debugPrint('web page title: $pageTitle');
+            //TODO check the normal page title or 404
+            // Error 500 Title: 500 Internal Server Error
+            if (pageTitle.contains('Error') ||
+                pageTitle.contains('Exception')) {
+              if (pageTitle.startsWith('500')) {
+                _controller.loadUrl(Uri.dataFromString(
+                  pageTitle,
+                  mimeType: Global.WEB_MIMETYPE,
+                  encoding: Global.webEncoding,
+                ).toString());
               }
-              return GestureDetector(
-                onLongPress: () {
-                  if (showVisibleHint) {
-                    showVisibleHint = false;
-                    Future.delayed(Duration(milliseconds: 300), () {
-                      callToast(localeStr.gameToolHintRestore);
-                    });
-                  }
-                  _toolKey.currentState?.hideTool();
-                },
-                child: WebGameScreenFloatButton(
-                  key: _toolKey,
-                  scaffoldKey: _scaffoldKey,
-                  store: _store,
-                  onReturnHome: () => _returnHome(),
-                ),
-              );
-            } else {
-              return SizedBox.shrink();
             }
           },
         ),
-        body: GestureDetector(
-//            onDoubleTap: () => _scaffoldKey.currentState.openDrawer(),
-          onDoubleTap: () => _toolKey.currentState?.showTool(),
-          child: WebView(
-            initialUrl: widget.startUrl,
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController controller) async {
-              _controller = controller;
-              if (isForm) {
-                _controller.loadUrl(Uri.dataFromString(
-                  parsedHtml,
-                  mimeType: Global.WEB_MIMETYPE,
-                  encoding: Global.webEncoding,
-                ).toString());
-              } else if (widget.startUrl.isUrl == false) {
-                _controller.loadUrl(Uri.dataFromString(
-                  widget.startUrl,
-                  mimeType: Global.WEB_MIMETYPE,
-                  encoding: Global.webEncoding,
-                ).toString());
-              }
-            },
-            onPageFinished: (String url) async {
-              debugPrint('web page loaded: $url');
-              if (url.isUrl == false) return;
-              if (isForm) isForm = false;
-
-              String pageTitle = await _controller.getTitle();
-              debugPrint('web page title: $pageTitle');
-              //TODO check the normal page title or 404
-              // Error 500 Title: 500 Internal Server Error
-              if (pageTitle.contains('Error') ||
-                  pageTitle.contains('Exception')) {
-                if (pageTitle.startsWith('500')) {
-                  _controller.loadUrl(Uri.dataFromString(
-                    pageTitle,
-                    mimeType: Global.WEB_MIMETYPE,
-                    encoding: Global.webEncoding,
-                  ).toString());
-                }
-              }
-            },
-          ),
-        ),
       ),
-      onWillPop: () async {
-        MyLogger.debug(msg: 'pop web game screen', tag: 'WebGameScreen');
-        return Future(() => true);
-      },
     );
   }
 

@@ -72,11 +72,11 @@ class _HomeDisplayState extends State<HomeDisplay> {
     }
   }
 
-  void _onBannerClicked(bool openGame, String url) {
-    debugPrint('onBannerClicked isGame:$openGame, url:$url');
+  void _widgetUrlNavigate(bool openGame, String url) {
+    debugPrint('home widget url:$url, isGame:$openGame');
     if (openGame) {
       final gameUrl = url.substring(url.indexOf('.com/') + 4);
-      debugPrint('opening banner game: $gameUrl');
+      debugPrint('opening game: $gameUrl');
       if (_store.hasUser) {
         _store.getGameUrl(gameUrl);
       } else {
@@ -84,23 +84,24 @@ class _HomeDisplayState extends State<HomeDisplay> {
       }
     } else if (url.startsWith('/gamelist/')) {
       String className = url.replaceAll('/gamelist/', '').replaceAll('/', '-');
-      debugPrint('banner platform name: $className');
+      debugPrint('searching platform name: $className');
       _tabsWidgetKey.currentState?.findPage(className.split('-')[1]);
       _store.showSearchPlatform(className);
     } else if (url.startsWith('/promo/')) {
-      int promoId = url.substring(url.indexOf('/') + 1, url.length).strToInt;
-      debugPrint('banner promo id: $promoId');
-      AppNavigator.navigateTo(RoutePage.promo,
-          arg: PromoRouteArguments(openPromoId: promoId));
+      int promoId =
+          url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      debugPrint('url promo id: $promoId');
+      AppNavigator.navigateTo(
+        RoutePage.promo,
+        arg: (promoId > 0) ? PromoRouteArguments(openPromoId: promoId) : null,
+      );
     } else {
       RoutePage newRoute = url.urlToRoutePage;
-      debugPrint('checking banner route: $newRoute');
+      debugPrint('checking url to app route: $newRoute');
       if (newRoute != null) {
         AppNavigator.navigateTo(newRoute);
       }
     }
-
-    /// TODO need to write a function to map weburl and route
   }
 
   @override
@@ -147,7 +148,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
                     _bannerWidget = HomeDisplayBanner(
                       banners: banners,
                       onBannerClicked: (openGame, url) =>
-                          _onBannerClicked(openGame, url),
+                          _widgetUrlNavigate(openGame, url),
                     );
                   }
                   _bannerWidget ??=
@@ -162,7 +163,11 @@ class _HomeDisplayState extends State<HomeDisplay> {
                   builder: (ctx, _) {
                     if (marquees != _store.marquees) {
                       marquees = _store.marquees;
-                      _marqueeWidget = HomeDisplayMarquee(marquees: marquees);
+                      _marqueeWidget = HomeDisplayMarquee(
+                        marquees: marquees,
+                        onMarqueeClicked: (url) =>
+                            _widgetUrlNavigate(false, url),
+                      );
                     }
                     _marqueeWidget ??= HomeDisplayMarquee();
                     return _marqueeWidget;
@@ -200,7 +205,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
                         } else if (snapshot.data) {
                           _shortcutWidgetKey.currentState.updateUser();
                           _store.checkHomeTabs();
-                          _eventStore.getUserCredit();
                           AppNavigator.resetCheckUser();
                         }
                         return _shortcutWidget;

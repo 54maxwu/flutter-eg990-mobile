@@ -11,6 +11,7 @@ class CenterApi {
   static const String POST_BIRTH = "api/edit_dob";
   static const String POST_EMAIL = "api/edit_email";
   static const String POST_WECHAT = "api/edit_wechat";
+  static const String POST_ZALO = "api/edit_zalo";
   static const String POST_LUCKY = "api/edit_lucky";
   static const String POST_VERIFY_REQUEST = "api/sendMessage";
   static const String POST_VERIFY = "api/checkVerifyCode";
@@ -20,10 +21,6 @@ class CenterApi {
 abstract class CenterRepository {
   Future<Either<Failure, CenterModel>> getAccount();
 
-  Future<Either<Failure, List<String>>> getCgpBindUrl();
-
-  Future<Either<Failure, List<String>>> getCpwBindUrl();
-
   Future<Either<Failure, RequestStatusModel>> postPassword(
       CenterPasswordForm form);
 
@@ -32,6 +29,8 @@ abstract class CenterRepository {
   Future<Either<Failure, RequestStatusModel>> postEmail(String email);
 
   Future<Either<Failure, RequestStatusModel>> postWechat(String wechatId);
+
+  Future<Either<Failure, RequestStatusModel>> postZalo(String zaloId);
 
   Future<Either<Failure, RequestStatusModel>> postLucky(List<int> numbers);
 
@@ -68,53 +67,6 @@ class CenterRepositoryImpl implements CenterRepository {
           ? Right(model)
           : Left(Failure.token(FailureType.CENTER)),
     );
-  }
-
-  @override
-  Future<Either<Failure, List<String>>> getCgpBindUrl() async {
-    final result = await requestDataString(
-      request: dioApiService.get(
-        CenterApi.GET_CGP_URL,
-        userToken: jwtInterface.token,
-      ),
-      allowJsonString: true,
-      tag: 'remote-CGP_URL',
-    );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (data) => Right(_parseWalletUrl(data)),
-    );
-  }
-
-  @override
-  Future<Either<Failure, List<String>>> getCpwBindUrl() async {
-    final result = await requestDataString(
-      request: dioApiService.get(
-        CenterApi.GET_CPW_URL,
-        userToken: jwtInterface.token,
-      ),
-      allowJsonString: true,
-      tag: 'remote-CGP_URL',
-    );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (data) => Right(_parseWalletUrl(data)),
-    );
-  }
-
-  List<String> _parseWalletUrl(String jsonStr) {
-    if (jsonStr.startsWith('{')) {
-//      debugPrint('encode: ${jsonEncode(jsonStr)}');
-//      debugPrint('decode: ${jsonDecode(jsonStr)}');
-      Map map = jsonDecode(jsonStr);
-      var url = (map.containsKey('url')) ? '${map['url']}' : '';
-      var qrcode = (map.containsKey('qrcode')) ? '${map['qrcode']}' : '';
-      return [url, qrcode];
-    } else {
-      return [];
-    }
   }
 
   @override
@@ -187,6 +139,26 @@ class CenterRepositoryImpl implements CenterRepository {
       ),
       jsonToModel: RequestStatusModel.jsonToStatusModel,
       tag: 'remote-CENTER_WECHAT',
+    );
+//    debugPrint('test response type: ${result.runtimeType}, data: $result');
+    return result.fold(
+      (failure) => Left(failure),
+      (model) => Right(model),
+    );
+  }
+
+  @override
+  Future<Either<Failure, RequestStatusModel>> postZalo(
+    String zaloId,
+  ) async {
+    final result = await requestModel<RequestStatusModel>(
+      request: dioApiService.post(
+        CenterApi.POST_ZALO,
+        data: {'zalo': zaloId},
+        userToken: jwtInterface.token,
+      ),
+      jsonToModel: RequestStatusModel.jsonToStatusModel,
+      tag: 'remote-CENTER_ZALO',
     );
 //    debugPrint('test response type: ${result.runtimeType}, data: $result');
     return result.fold(

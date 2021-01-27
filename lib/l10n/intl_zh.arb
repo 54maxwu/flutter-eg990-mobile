@@ -1,9 +1,9 @@
 {
   "@@last_modified": "2020-08-06T17:12:17+0800",
   "@@locale": "zh",
-  "title": "BKK365 Mobile",
+  "title": "VietWin Mobile",
   "@title": {
-    "description": "BKK365 Demo",
+    "description": "VietWin Demo",
     "type": "text",
     "placeholders": {}
   },
@@ -171,7 +171,7 @@
   "@pageTitleMore": {
     "type": "text"
   },
-  "toolBarMemberCredit": "￥ {value}",
+  "toolBarMemberCredit": "฿ {value}",
   "@toolBarMemberCredit": {
     "type": "text",
     "placeholders": {
@@ -573,6 +573,10 @@
   "@messageInvalidWechat": {
     "type": "text"
   },
+  "messageInvalidZalo": "Zalo格式错误",
+  "@messageInvalidZalo": {
+    "type": "text"
+  },
   "messageInvalidVerify": "请输入验证码",
   "@messageInvalidVerify": {
     "type": "text"
@@ -623,7 +627,7 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "卡号为16~19个字",
+  "messageInvalidCardNumber": "卡号为6~19个字",
   "@messageInvalidCardNumber": {
     "type": "text"
   },
@@ -918,7 +922,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "点我开启BKK365网页版",
+  "gameCategoryWebHint": "点我开启VietWin网页版",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -1491,7 +1495,7 @@
   "@betsFieldDateError": {
     "type": "text"
   },
-  "betsTextTotal": "总计: ￥ {value}",
+  "betsTextTotal": "总计: ฿ {value}",
   "@betsTextTotal": {
     "type": "text",
     "placeholders": {

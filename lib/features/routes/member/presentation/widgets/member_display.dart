@@ -52,7 +52,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   void _itemTapped(MemberGridItemV2 item) {
     debugPrint('item tapped: $item');
     if (item == MemberGridItemV2.logout) {
-      getAppGlobalStreams.logout();
+      getAppGlobalStreams.logout(navToLogin: true);
     } else if (item.value.route != null) {
       AppNavigator.navigateTo(item.value.route);
     } else {

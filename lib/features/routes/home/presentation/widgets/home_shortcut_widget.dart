@@ -343,7 +343,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             Expanded(
               flex: 1,
               child: _createIconButton(
-                page: RoutePage.vipLevel,
+                page: RoutePage.sideVipLevel,
                 imageUrl: Res.homeMemberAreaIconVip,
                 isLast: true,
               ),

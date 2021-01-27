@@ -35,12 +35,12 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `BKK365 Mobile`
+  /// `VietWin Mobile`
   String get title {
     return Intl.message(
-      'BKK365 Mobile',
+      'VietWin Mobile',
       name: 'title',
-      desc: 'BKK365 Demo',
+      desc: 'VietWin Demo',
       args: [],
     );
   }
@@ -455,10 +455,10 @@ class S {
     );
   }
 
-  /// `￥ {value}`
+  /// `฿ {value}`
   String toolBarMemberCredit(Object value) {
     return Intl.message(
-      '￥ $value',
+      '฿ $value',
       name: 'toolBarMemberCredit',
       desc: '',
       args: [value],
@@ -1315,6 +1315,16 @@ class S {
     );
   }
 
+  /// `Invalid Zalo account`
+  String get messageInvalidZalo {
+    return Intl.message(
+      'Invalid Zalo account',
+      name: 'messageInvalidZalo',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter a verification code`
   String get messageInvalidVerify {
     return Intl.message(
@@ -1415,10 +1425,10 @@ class S {
     );
   }
 
-  /// `The card number is 16 ~ 19 characters`
+  /// `The card number is 6~19 characters`
   String get messageInvalidCardNumber {
     return Intl.message(
-      'The card number is 16 ~ 19 characters',
+      'The card number is 6~19 characters',
       name: 'messageInvalidCardNumber',
       desc: '',
       args: [],
@@ -2115,10 +2125,10 @@ class S {
     );
   }
 
-  /// `Click me to open BKK365 website`
+  /// `Click me to open VietWin website`
   String get gameCategoryWebHint {
     return Intl.message(
-      'Click me to open BKK365 website',
+      'Click me to open VietWin website',
       name: 'gameCategoryWebHint',
       desc: '',
       args: [],
@@ -3515,10 +3525,10 @@ class S {
     );
   }
 
-  /// `Total: ￥ {value}`
+  /// `Total: ฿ {value}`
   String betsTextTotal(Object value) {
     return Intl.message(
-      'Total: ￥ $value',
+      'Total: ฿ $value',
       name: 'betsTextTotal',
       desc: '',
       args: [value],
@@ -4055,10 +4065,10 @@ class S {
     );
   }
 
-  /// `Single Deposit Limit: ￥ {value}`
+  /// `Single Deposit Limit: ฿ {value}`
   String depositHintTextAmount(Object value) {
     return Intl.message(
-      'Single Deposit Limit: ￥ $value',
+      'Single Deposit Limit: ฿ $value',
       name: 'depositHintTextAmount',
       desc: '',
       args: [value],

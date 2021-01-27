@@ -168,7 +168,7 @@ class HomeRepositoryImpl implements HomeRepository {
     if (!connected) return getCachedGameTypes();
 
     final result = await requestModel<GameTypes>(
-      request: dioApiService.post(
+      request: dioApiService.get(
         HomeApi.GAME_ALL,
         data: {
           "accountid": jwtInterface.accountId,

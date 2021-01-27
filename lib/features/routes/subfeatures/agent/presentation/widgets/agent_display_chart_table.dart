@@ -28,10 +28,10 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
     localeStr.agentChartHeaderBet,
     localeStr.agentChartHeaderValid,
     localeStr.agentChartHeaderPayout,
-    localeStr.agentChartHeaderTotalWager,
-    localeStr.agentChartHeaderTotalBet,
-    localeStr.agentChartHeaderTotalValid,
-    localeStr.agentChartHeaderTotalPayout,
+    // localeStr.agentChartHeaderTotalWager,
+    // localeStr.agentChartHeaderTotalBet,
+    // localeStr.agentChartHeaderTotalValid,
+    // localeStr.agentChartHeaderTotalPayout,
   ];
 
   List<String> rowHeaders = [
@@ -77,16 +77,18 @@ class AgentDisplayChartTableState extends State<AgentDisplayChartTable> {
         rowHeaders[i],
         cellDimensions: cellDimensions,
       ),
-      contentCellBuilder: (i, j) {
+      contentCellBuilder: (dataValueIndex, chartDataIndex) {
 //        debugPrint('i:$i, j:$j');
-        if (j == rowHeaders.length - 1)
+        if (chartDataIndex == rowHeaders.length - 1)
           return TableFixedCellWidget.content(
-            formatNum(sumRow[i]),
+            formatNum(sumRow[dataValueIndex]),
             cellDimensions: cellDimensions,
           );
         else if (widget.showAll)
+          // get data value through [DataOperator]
+          // see [agent_chart_model.freezed.dart] operator [] overrides
           return TableFixedCellWidget.content(
-            formatNum(tableData[j][i]),
+            formatNum(tableData[chartDataIndex][dataValueIndex]),
             cellDimensions: cellDimensions,
           );
         else
