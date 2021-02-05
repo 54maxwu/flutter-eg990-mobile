@@ -9,6 +9,44 @@ part of 'withdraw_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$WithdrawStore on _WithdrawStore, Store {
+  Computed<WithdrawStoreState> _$stateComputed;
+
+  @override
+  WithdrawStoreState get state =>
+      (_$stateComputed ??= Computed<WithdrawStoreState>(() => super.state,
+              name: '_WithdrawStore.state'))
+          .value;
+
+  final _$_cgpFutureAtom = Atom(name: '_WithdrawStore._cgpFuture');
+
+  @override
+  ObservableFuture<Either<Failure, String>> get _cgpFuture {
+    _$_cgpFutureAtom.reportRead();
+    return super._cgpFuture;
+  }
+
+  @override
+  set _cgpFuture(ObservableFuture<Either<Failure, String>> value) {
+    _$_cgpFutureAtom.reportWrite(value, super._cgpFuture, () {
+      super._cgpFuture = value;
+    });
+  }
+
+  final _$_cpwFutureAtom = Atom(name: '_WithdrawStore._cpwFuture');
+
+  @override
+  ObservableFuture<Either<Failure, String>> get _cpwFuture {
+    _$_cpwFutureAtom.reportRead();
+    return super._cpwFuture;
+  }
+
+  @override
+  set _cpwFuture(ObservableFuture<Either<Failure, String>> value) {
+    _$_cpwFutureAtom.reportWrite(value, super._cpwFuture, () {
+      super._cpwFuture = value;
+    });
+  }
+
   final _$waitForWithdrawResultAtom =
       Atom(name: '_WithdrawStore.waitForWithdrawResult');
 
@@ -75,7 +113,8 @@ mixin _$WithdrawStore on _WithdrawStore, Store {
     return '''
 waitForWithdrawResult: ${waitForWithdrawResult},
 withdrawResult: ${withdrawResult},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+state: ${state}
     ''';
   }
 }

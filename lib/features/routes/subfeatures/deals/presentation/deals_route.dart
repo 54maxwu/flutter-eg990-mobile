@@ -149,7 +149,7 @@ class _DealsRouteState extends State<DealsRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop deals route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

@@ -14,7 +14,7 @@ class HomeDisplaySizeCalc {
   final double textWidthFactor = 0.85;
 
   double _bannerHeight;
-  double _expandedBannerHeight;
+  // double _expandedBannerHeight;
 
   double _shortcutMaxHeight;
   double _shortcutMinHeight;
@@ -35,6 +35,8 @@ class HomeDisplaySizeCalc {
     debugPrint('--------HomeDisplaySizeCalc--------');
     double availableWidth =
         Global.device.width - Global.device.safeHorizontalPadding;
+
+    /// Tab Bar
     _barMaxWidth = (availableWidth * 0.35).floorToDouble();
     _barMinWidth = _barMaxWidth - _barItemInset;
     if (_barMinWidth < 120) {
@@ -43,34 +45,34 @@ class HomeDisplaySizeCalc {
       _barMaxWidth += diff;
     }
     _tabWidthFactor = (Global.device.widthScale > 1.5) ? 1.5 : 1.0;
-    debugPrint('available width: $availableWidth');
-    debugPrint('tab bar width: $_barMinWidth~$_barMaxWidth');
+    // debugPrint('available width: $availableWidth');
+    // debugPrint('tab bar width: $_barMinWidth~$_barMaxWidth');
 
-    if (_barMaxWidth > 180) _barMaxWidth = 180;
+    if (Global.lang.isChinese && _barMaxWidth > 144) _barMaxWidth = 144;
+    if (!Global.lang.isChinese && _barMaxWidth > 168) _barMaxWidth = 168;
     if (_barMinWidth > _barMaxWidth) _barMinWidth = _barMaxWidth - 16;
-    debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
-    _barItemHeight = (barItemIconSize * 1.5 + 4.0) * Global.device.widthScale;
-    if (Global.lang != 'zh') _barItemHeight = _barItemHeight * 1.25;
+    // debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
+    _barItemHeight =
+        (barItemIconSize * 1.5 + 4.0) * Global.device.widthScaleHalf;
+    if (!Global.lang.isChinese) _barItemHeight = _barItemHeight * 1.25;
     _barItemWidth = _barMinWidth - _barItemInset;
 
+    /// Shortcut Box
     // _shortcutMinTextHeight = (Global.lang != 'zh' && Global.lang != 'th')
     //     ? FontSize.NORMAL.value * 2.75
     //     : FontSize.NORMAL.value * 1.75;
-    _shortcutMaxTextHeight = (Global.lang != 'zh' && Global.lang != 'th')
-        ? FontSize.NORMAL.value * 3.5
-        : FontSize.NORMAL.value * 2.75;
+    _shortcutMaxTextHeight =
+        (!Global.lang.isChinese && Global.lang.code != 'th')
+            ? FontSize.NORMAL.value * 3.5
+            : FontSize.NORMAL.value * 2.75;
     _shortcutMaxHeight = _shortcutMaxTextHeight +
         shortcutMaxIconSize +
         shortcutTitleHeight +
-//        10.0 +
         16.0;
     _shortcutMinHeight = _shortcutMaxHeight - 16.0;
-    debugPrint('shortcut box height: $_shortcutMinHeight~$_shortcutMaxHeight');
-    debugPrint('shortcut box title height: $shortcutTitleHeight');
-    debugPrint('----');
 
+    /// Banners
     _bannerHeight = _expectBannerHeight / _bannerImageScale;
-    debugPrint('banner height: $_bannerHeight');
     // double expandBannerHeight =
     //     _expectBannerHeight * 1.6 * Global.device.heightScale;
     // _expandedBannerHeight =
@@ -78,20 +80,20 @@ class HomeDisplaySizeCalc {
     // if (_expandedBannerHeight > 400) {
     //   _expandedBannerHeight = 400;
     // }
+    // debugPrint('----');
     // debugPrint(
     //     'banner height: $_bannerHeight, expanded: $_expandedBannerHeight');
-    debugPrint('----');
+    // debugPrint('shortcut box height: $_shortcutMinHeight~$_shortcutMaxHeight');
+    // debugPrint('shortcut box title height: $shortcutTitleHeight');
 
-    double availableHeight = Global.device.featureContentHeight -
-        _bannerHeight -
-        marqueeHeight -
-        _shortcutMaxHeight;
+    /// Tab Page
+    double availableHeight =
+        Global.device.featureContentHeight - _bannerHeight - _shortcutMaxHeight;
 //    double availableHeight =
 //        Global.device.featureContentHeight - _expandedBannerHeight;
-    // debugPrint('content available height: $availableHeight');
-
+//     debugPrint('----');
     _tabPageMaxHeight = availableHeight;
-    debugPrint('tab page height: $_barMinWidth~$_barMaxWidth');
+    debugPrint('tab page height: $_tabPageMaxHeight');
 
     _tabPageMinWidth = Global.device.width * 0.5;
     _tabPageMaxWidth = availableWidth - _barMaxWidth - 24;
@@ -102,19 +104,19 @@ class HomeDisplaySizeCalc {
     debugPrint('-----------------------------------');
   }
 
-  void updatePageHeight(bool expandBanner) {
-    double availableHeight = (expandBanner)
-        ? Global.device.featureContentHeight - _expandedBannerHeight
-        : Global.device.featureContentHeight - _bannerHeight;
-    debugPrint('----');
-    debugPrint('content available height: $availableHeight');
-
-    _tabPageMaxHeight = availableHeight;
-    debugPrint('tab page height: $_barMinWidth~$_barMaxWidth');
-  }
+  // void updatePageHeight(bool expandBanner) {
+  //   double availableHeight = (expandBanner)
+  //       ? Global.device.featureContentHeight - _expandedBannerHeight
+  //       : Global.device.featureContentHeight - _bannerHeight;
+  //   // debugPrint('----');
+  //   // debugPrint('content available height: $availableHeight');
+  //
+  //   _tabPageMaxHeight = availableHeight;
+  //   // debugPrint('update tab page height: $_tabPageMaxHeight');
+  // }
 
   double get bannerHeight => _bannerHeight;
-  double get expandedBannerHeight => _expandedBannerHeight;
+  // double get expandedBannerHeight => _expandedBannerHeight;
 
   double get shortcutMaxHeight => _shortcutMaxHeight;
   double get shortcutMaxHeightUser => _shortcutMaxHeight - shortcutTitleHeight;
@@ -130,8 +132,7 @@ class HomeDisplaySizeCalc {
   double get pageMinWidth => _tabPageMinWidth;
   double get pageMaxHeight => _tabPageMaxHeight;
 
-  double get userBarMaxHeight => _tabPageMaxHeight + shortcutTitleHeight;
-  double get userPageMaxHeight => _tabPageMaxHeight + shortcutTitleHeight + 6.0;
+  double get userPageMaxHeight => _tabPageMaxHeight + shortcutTitleHeight;
 
   double get widthFactor => _tabWidthFactor;
 }

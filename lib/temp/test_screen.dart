@@ -7,7 +7,7 @@ import 'package:flutter_eg990_mobile/features/general/bloc_widget_export.dart';
 import 'package:flutter_eg990_mobile/features/general/toast_widget_export.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/themes/theme_interface.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 
@@ -50,12 +50,11 @@ class _TestScreenState extends State<TestScreen> {
                     child: Text('Size'),
                   ),
                   RaisedButton(
-                    onPressed: () =>
-                        ScreenNavigate.switchScreen(screen: ScreenEnum.TestNav),
-                    child: Text('More'),
+                    onPressed: () => AppNavigator.switchScreen(Screens.TestNav),
+                    child: Text('More Test'),
                   ),
                   RaisedButton(
-                    onPressed: () => ScreenNavigate.switchScreen(),
+                    onPressed: () => AppNavigator.switchScreen(Screens.Feature),
                     child: Text('Return Home'),
                   ),
                 ],

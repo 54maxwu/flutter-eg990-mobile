@@ -59,7 +59,7 @@ class GridViewMixed extends StatelessWidget {
     debugPrint('mixed chars available: $_availableChars, two line: $_twoLines');
 
     double textHeight =
-        ((!_twoLines) ? fontSize * 1.75 : fontSize * 3) + _verticalEmptySpace;
+        ((!_twoLines) ? fontSize * 1.75 : fontSize * 3.0) + _verticalEmptySpace;
     double ratio = perItemWidth / (perItemWidth + textHeight);
     debugPrint(
         'mixed item size: $perItemWidth, perRow: ${_itemPerRow + plusPerRow}, ratio: $ratio');
@@ -92,7 +92,7 @@ class GridViewMixed extends StatelessWidget {
     bool favor = false;
 
     if (entity is GameEntity) {
-      label = (Global.lang != 'zh' && entity.ename != '??')
+      label = (!Global.lang.isChinese && entity.ename != '??')
           ? entity.ename
           : entity.cname;
       imageUrl = entity.imageUrl;
@@ -125,7 +125,7 @@ class GridViewMixed extends StatelessWidget {
         isFavorite: favor,
         pluginTapAction: (addPlugin &&
                 onFavorTap != null &&
-                entity.imageUrl != null &&
+                imageUrl != null &&
                 label != null)
             ? (isFavorite) => onFavorTap(entity, isFavorite)
             : null,

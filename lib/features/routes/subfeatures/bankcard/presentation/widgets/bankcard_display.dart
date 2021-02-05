@@ -105,6 +105,7 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
         padding: const EdgeInsets.symmetric(horizontal: 6.0),
         constraints: BoxConstraints(
           maxWidth: Global.device.width - 12,
+          maxHeight: Global.device.featureContentHeight,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -156,11 +157,15 @@ class _BankcardDisplayState extends State<BankcardDisplay> {
                       hint: '',
                       persistHint: false,
                       prefixText: localeStr.bankcardViewTitleCardNumber,
-                      errorMsg: localeStr.messageInvalidCardNumber,
+                      errorMsg: localeStr.messageInvalidCardNumber(
+                        InputLimit.CARD_MIN,
+                        InputLimit.CARD_MAX,
+                      ),
                       validCondition: (value) => rangeCheck(
-                          value: value.length,
-                          min: InputLimit.CARD_MIN,
-                          max: InputLimit.CARD_MAX),
+                        value: value.length,
+                        min: InputLimit.CARD_MIN,
+                        max: InputLimit.CARD_MAX,
+                      ),
                       titleLetterSpacing: 4,
                       maxInputLength: InputLimit.CARD_MAX,
                     ),

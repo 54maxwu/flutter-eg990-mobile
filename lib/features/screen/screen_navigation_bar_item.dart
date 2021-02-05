@@ -17,16 +17,14 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
     iconData: IconCode.navDeposit,
     route: RoutePage.depositFeature,
   ));
-  static ScreenNavigationBarItem promo =
-      ScreenNavigationBarItem.define(RouteListItem(
-    iconData: IconCode.navPromo,
-    route: RoutePage.promo,
-  ));
+  // static ScreenNavigationBarItem promo =
+  //     ScreenNavigationBarItem.define(RouteListItem(
+  //   iconData: IconCode.navPromo,
+  //   route: RoutePage.promo,
+  // ));
   static ScreenNavigationBarItem service =
       ScreenNavigationBarItem.define(RouteListItem(
-    routeId: RouteEnum.LINE,
     iconData: IconCode.navService,
-    imageName: 'images/line.png',
     route: RoutePage.service,
   ));
   static ScreenNavigationBarItem member =
@@ -36,13 +34,13 @@ class ScreenNavigationBarItem extends Vnum<RouteListItem> {
   ));
   // static ScreenNavigationBarItem more =
   //     ScreenNavigationBarItem.define(RouteListItem(
-  //   id: RouteEnum.MORE,
+  //   routeId: RouteEnum.MORE,
   //   iconData: IconCode.navMore,
   // ));
   // static ScreenNavigationBarItem agent =
   //     ScreenNavigationBarItem.define(RouteListItem(
   //   iconData: IconCode.navAgent,
-  //   route: RoutePage.agentLogin,
+  //   route: RoutePage.agent,
   // ));
 
   /// Used for defining cases

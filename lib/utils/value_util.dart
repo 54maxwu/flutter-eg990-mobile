@@ -10,8 +10,8 @@ bool rangeCheck({@required num value, @required num min, num max = 0}) {
     return value >= min;
 }
 
-final String creditSymbol = '฿ ';
-final NumberFormat numFormat = new NumberFormat("#,##0.00", "en_US");
+final String creditSymbol = '฿';
+final NumberFormat numFormat = new NumberFormat("###0.00", "en_US");
 final NumberFormat creditFormat =
     new NumberFormat("$creditSymbol#,##0.00", "en_US");
 final RegExp replaceRegex = RegExp('$creditSymbol|,');
@@ -57,7 +57,7 @@ String doubleToStr(double value,
     formatValue(value,
         floor: floor, floorIfInt: floorIfInt, creditSign: creditSign);
 
-int stringToInt(String str, {bool printStack}) {
+int stringToInt(String str, {bool printErrorStack = true}) {
   try {
     if (str == null || str.isEmpty) return -1;
     if (str.contains('.'))
@@ -65,15 +65,11 @@ int stringToInt(String str, {bool printStack}) {
     else
       return int.parse(str.replaceAll(replaceRegex, '').trim());
   } catch (e, s) {
-    if (printStack) {
-      MyLogger.warn(
-          msg: 'parse value has exception, str: $str\nstack:\n$s',
-          tag: 'strToInt');
-    } else {
-      MyLogger.debug(
-          msg: 'parse value has exception, str: $str, error:$e',
-          tag: 'strToInt');
-    }
+    MyLogger.warn(
+        msg: (printErrorStack)
+            ? 'parse value has exception, str: $str\nstack:\n$s'
+            : 'parse value has exception, str: $str',
+        tag: 'strToInt');
     return -1;
   }
 }
@@ -126,7 +122,7 @@ String formatValue(
 extension ValueUtilExtension on String {
   int get strToInt => stringToInt(this);
 
-  int get strToIntSilent => stringToInt(this, printStack: false);
+  int get strToIntNoErrorStack => stringToInt(this, printErrorStack: false);
 
   double get strToDouble => stringToDouble(this);
 

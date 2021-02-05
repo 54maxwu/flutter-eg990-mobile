@@ -72,16 +72,12 @@ class _BankcardRouteState extends State<BankcardRoute> {
           if (result == null) return;
           if (result.isSuccess) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.BANKCARD),
                 icon: Icons.check_circle_outline);
             _store.getBankcard();
           } else {
-            callToastError((result.msg.isNotEmpty && result.msg.hasChinese)
-                ? result.msg
-                : localeStr
-                    .messageTaskFailed(localeStr.messageErrorBindBankcard));
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.BANKCARD));
           }
         },
       ),
@@ -103,7 +99,7 @@ class _BankcardRouteState extends State<BankcardRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop bankcard route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(
@@ -120,6 +116,10 @@ class _BankcardRouteState extends State<BankcardRoute> {
                       _store.bankcard != null && _store.bankcard.hasCard;
                   if (!validCard && widget.withdraw) {
                     Future.delayed(Duration(milliseconds: 300), () {
+                      AppNavigator.updateNavigateRoute(
+                        RoutePage.bankcard,
+                        updateParent: false,
+                      );
                       callToast(localeStr.messageErrorBindBankcard);
                     });
                   }

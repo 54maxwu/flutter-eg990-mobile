@@ -124,6 +124,13 @@ mixin _$CenterStore on _CenterStore, Store {
         .run(() => super._postStringData(data, action, task, callback));
   }
 
+  final _$postLuckyAsyncAction = AsyncAction('_CenterStore.postLucky');
+
+  @override
+  Future<void> postLucky(List<int> numbers) {
+    return _$postLuckyAsyncAction.run(() => super.postLucky(numbers));
+  }
+
   final _$postVerifyRequestAsyncAction =
       AsyncAction('_CenterStore.postVerifyRequest');
 

@@ -9,7 +9,7 @@ abstract class RouteInfo with _$RouteInfo {
     @required RouteEnum id,
     @required String route,
     Object routeArg,
-    @Default(Routes.homeRoute) String root,
+    @Default(FeatureScreenRoutes.homeRoute) String root,
 
     /// 1. effect the navigation action
     /// 2. if true, shows the side menu action bar

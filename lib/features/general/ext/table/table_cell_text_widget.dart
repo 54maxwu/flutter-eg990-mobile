@@ -32,26 +32,31 @@ class TableCellTextWidget extends StatelessWidget {
       textWidget = Text(text,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: (isHeader)
-                  ? themeColor.chartPrimaryHeaderTextColor
-                  : themeColor.defaultTextColor));
+            color: (isHeader)
+                ? themeColor.chartPrimaryHeaderTextColor
+                : themeColor.defaultTextColor,
+          ));
 
     if (shrinkInset) {
       return Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 2.0),
-        color: bgColor ?? (isHeader)
-            ? themeColor.chartPrimaryHeaderColor
-            : themeColor.chartBgColor,
+        color: (bgColor != null)
+            ? bgColor
+            : (isHeader)
+                ? themeColor.chartPrimaryHeaderColor
+                : themeColor.chartBgColor,
         child: textWidget,
       );
     } else {
       return Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 1.0),
-        color: bgColor ?? (isHeader)
-            ? themeColor.chartPrimaryHeaderColor
-            : themeColor.chartBgColor,
+        color: (bgColor != null)
+            ? bgColor
+            : (isHeader)
+                ? themeColor.chartPrimaryHeaderColor
+                : themeColor.chartBgColor,
         child: textWidget,
       );
     }

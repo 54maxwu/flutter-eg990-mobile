@@ -42,6 +42,7 @@ mixin _$FreezedForm {
   String get password;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $FreezedFormCopyWith<FreezedForm> get copyWith;
 }
 
@@ -146,6 +147,7 @@ class _$_FreezedForm implements _FreezedForm {
       const DeepCollectionEquality().hash(account) ^
       const DeepCollectionEquality().hash(password);
 
+  @JsonKey(ignore: true)
   @override
   _$FreezedFormCopyWith<_FreezedForm> get copyWith =>
       __$FreezedFormCopyWithImpl<_FreezedForm>(this, _$identity);
@@ -170,6 +172,7 @@ abstract class _FreezedForm implements FreezedForm {
   @override
   String get password;
   @override
+  @JsonKey(ignore: true)
   _$FreezedFormCopyWith<_FreezedForm> get copyWith;
 }
 
@@ -201,28 +204,29 @@ mixin _$FreezedNested {
   int get status;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int status),
-    @required Result subtract(int status),
+  TResult when<TResult extends Object>({
+    @required TResult add(int status),
+    @required TResult subtract(int status),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int status),
-    Result subtract(int status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int status),
+    TResult subtract(int status),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(_Add value),
-    @required Result subtract(_Subtract value),
+  TResult map<TResult extends Object>({
+    @required TResult add(_Add value),
+    @required TResult subtract(_Subtract value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(_Add value),
-    Result subtract(_Subtract value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(_Add value),
+    TResult subtract(_Subtract value),
+    @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $FreezedNestedCopyWith<FreezedNested> get copyWith;
 }
 
@@ -304,15 +308,16 @@ class _$_Add implements _Add {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$AddCopyWith<_Add> get copyWith =>
       __$AddCopyWithImpl<_Add>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int status),
-    @required Result subtract(int status),
+  TResult when<TResult extends Object>({
+    @required TResult add(int status),
+    @required TResult subtract(int status),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -321,10 +326,10 @@ class _$_Add implements _Add {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int status),
-    Result subtract(int status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int status),
+    TResult subtract(int status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (add != null) {
@@ -335,9 +340,9 @@ class _$_Add implements _Add {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(_Add value),
-    @required Result subtract(_Subtract value),
+  TResult map<TResult extends Object>({
+    @required TResult add(_Add value),
+    @required TResult subtract(_Subtract value),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -346,10 +351,10 @@ class _$_Add implements _Add {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(_Add value),
-    Result subtract(_Subtract value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(_Add value),
+    TResult subtract(_Subtract value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (add != null) {
@@ -365,6 +370,7 @@ abstract class _Add implements FreezedNested {
   @override
   int get status;
   @override
+  @JsonKey(ignore: true)
   _$AddCopyWith<_Add> get copyWith;
 }
 
@@ -420,15 +426,16 @@ class _$_Subtract implements _Subtract {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$SubtractCopyWith<_Subtract> get copyWith =>
       __$SubtractCopyWithImpl<_Subtract>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int status),
-    @required Result subtract(int status),
+  TResult when<TResult extends Object>({
+    @required TResult add(int status),
+    @required TResult subtract(int status),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -437,10 +444,10 @@ class _$_Subtract implements _Subtract {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int status),
-    Result subtract(int status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int status),
+    TResult subtract(int status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subtract != null) {
@@ -451,9 +458,9 @@ class _$_Subtract implements _Subtract {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(_Add value),
-    @required Result subtract(_Subtract value),
+  TResult map<TResult extends Object>({
+    @required TResult add(_Add value),
+    @required TResult subtract(_Subtract value),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -462,10 +469,10 @@ class _$_Subtract implements _Subtract {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(_Add value),
-    Result subtract(_Subtract value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(_Add value),
+    TResult subtract(_Subtract value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subtract != null) {
@@ -481,6 +488,7 @@ abstract class _Subtract implements FreezedNested {
   @override
   int get status;
   @override
+  @JsonKey(ignore: true)
   _$SubtractCopyWith<_Subtract> get copyWith;
 }
 
@@ -517,30 +525,30 @@ const $FreezedOperation = _$FreezedOperationTearOff();
 /// @nodoc
 mixin _$FreezedOperation {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int value),
-    @required Result subtract(int value),
-    @required Result error(String msg),
+  TResult when<TResult extends Object>({
+    @required TResult add(int value),
+    @required TResult subtract(int value),
+    @required TResult error(String msg),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int value),
-    Result subtract(int value),
-    Result error(String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int value),
+    TResult subtract(int value),
+    TResult error(String msg),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(Add value),
-    @required Result subtract(Subtract value),
-    @required Result error(Error value),
+  TResult map<TResult extends Object>({
+    @required TResult add(Add value),
+    @required TResult subtract(Subtract value),
+    @required TResult error(Error value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(Add value),
-    Result subtract(Subtract value),
-    Result error(Error value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(Add value),
+    TResult subtract(Subtract value),
+    TResult error(Error value),
+    @required TResult orElse(),
   });
 }
 
@@ -611,15 +619,16 @@ class _$Add implements Add {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
 
+  @JsonKey(ignore: true)
   @override
   $AddCopyWith<Add> get copyWith => _$AddCopyWithImpl<Add>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int value),
-    @required Result subtract(int value),
-    @required Result error(String msg),
+  TResult when<TResult extends Object>({
+    @required TResult add(int value),
+    @required TResult subtract(int value),
+    @required TResult error(String msg),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -629,11 +638,11 @@ class _$Add implements Add {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int value),
-    Result subtract(int value),
-    Result error(String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int value),
+    TResult subtract(int value),
+    TResult error(String msg),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (add != null) {
@@ -644,10 +653,10 @@ class _$Add implements Add {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(Add value),
-    @required Result subtract(Subtract value),
-    @required Result error(Error value),
+  TResult map<TResult extends Object>({
+    @required TResult add(Add value),
+    @required TResult subtract(Subtract value),
+    @required TResult error(Error value),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -657,11 +666,11 @@ class _$Add implements Add {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(Add value),
-    Result subtract(Subtract value),
-    Result error(Error value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(Add value),
+    TResult subtract(Subtract value),
+    TResult error(Error value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (add != null) {
@@ -675,6 +684,7 @@ abstract class Add implements FreezedOperation {
   const factory Add(int value) = _$Add;
 
   int get value;
+  @JsonKey(ignore: true)
   $AddCopyWith<Add> get copyWith;
 }
 
@@ -728,16 +738,17 @@ class _$Subtract implements Subtract {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
 
+  @JsonKey(ignore: true)
   @override
   $SubtractCopyWith<Subtract> get copyWith =>
       _$SubtractCopyWithImpl<Subtract>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int value),
-    @required Result subtract(int value),
-    @required Result error(String msg),
+  TResult when<TResult extends Object>({
+    @required TResult add(int value),
+    @required TResult subtract(int value),
+    @required TResult error(String msg),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -747,11 +758,11 @@ class _$Subtract implements Subtract {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int value),
-    Result subtract(int value),
-    Result error(String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int value),
+    TResult subtract(int value),
+    TResult error(String msg),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subtract != null) {
@@ -762,10 +773,10 @@ class _$Subtract implements Subtract {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(Add value),
-    @required Result subtract(Subtract value),
-    @required Result error(Error value),
+  TResult map<TResult extends Object>({
+    @required TResult add(Add value),
+    @required TResult subtract(Subtract value),
+    @required TResult error(Error value),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -775,11 +786,11 @@ class _$Subtract implements Subtract {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(Add value),
-    Result subtract(Subtract value),
-    Result error(Error value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(Add value),
+    TResult subtract(Subtract value),
+    TResult error(Error value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subtract != null) {
@@ -793,6 +804,7 @@ abstract class Subtract implements FreezedOperation {
   const factory Subtract(int value) = _$Subtract;
 
   int get value;
+  @JsonKey(ignore: true)
   $SubtractCopyWith<Subtract> get copyWith;
 }
 
@@ -846,16 +858,17 @@ class _$Error implements Error {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(msg);
 
+  @JsonKey(ignore: true)
   @override
   $ErrorCopyWith<Error> get copyWith =>
       _$ErrorCopyWithImpl<Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result add(int value),
-    @required Result subtract(int value),
-    @required Result error(String msg),
+  TResult when<TResult extends Object>({
+    @required TResult add(int value),
+    @required TResult subtract(int value),
+    @required TResult error(String msg),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -865,11 +878,11 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result add(int value),
-    Result subtract(int value),
-    Result error(String msg),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult add(int value),
+    TResult subtract(int value),
+    TResult error(String msg),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (error != null) {
@@ -880,10 +893,10 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result add(Add value),
-    @required Result subtract(Subtract value),
-    @required Result error(Error value),
+  TResult map<TResult extends Object>({
+    @required TResult add(Add value),
+    @required TResult subtract(Subtract value),
+    @required TResult error(Error value),
   }) {
     assert(add != null);
     assert(subtract != null);
@@ -893,11 +906,11 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result add(Add value),
-    Result subtract(Subtract value),
-    Result error(Error value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult add(Add value),
+    TResult subtract(Subtract value),
+    TResult error(Error value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (error != null) {
@@ -911,5 +924,6 @@ abstract class Error implements FreezedOperation {
   const factory Error([String msg]) = _$Error;
 
   String get msg;
+  @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith;
 }

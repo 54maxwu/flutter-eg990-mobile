@@ -2,14 +2,12 @@ import 'package:flutter_eg990_mobile/core/repository_export.dart';
 import 'package:flutter_eg990_mobile/features/routes/subfeatures/service/data/model/service_model.dart';
 
 import '../models/ad_model.dart';
-import '../models/event_model.dart';
 
 class EventApi {
   static const String GET_WEB_LIST = "api/websiteList";
   static const String AD = "api/getAd";
-  static const String GET_EVENT = "api/showActive";
   static const String POST_SIGN = "api/memSign";
-  
+
   static const String GET_NEW_MESSAGE_COUNT = 'api/stationCount';
 }
 
@@ -17,12 +15,8 @@ abstract class EventRepository {
   Future<Either<Failure, ServiceModel>> getWebsiteList();
 
   Future<Either<Failure, List<AdModel>>> getAds();
-  
+
   Future<Either<Failure, bool>> checkNewMessage();
-
-  Future<Either<Failure, EventModel>> getEvent();
-
-  Future<Either<Failure, RequestCodeModel>> signEvent(int eventId, int prize);
 }
 
 class EventRepositoryImpl implements EventRepository {
@@ -35,7 +29,6 @@ class EventRepositoryImpl implements EventRepository {
     Future.sync(() => jwtInterface.checkJwt('/'));
   }
 
-  
   @override
   Future<Either<Failure, bool>> checkNewMessage() async {
     final result = await requestModel<RequestCodeModel>(
@@ -68,44 +61,6 @@ class EventRepositoryImpl implements EventRepository {
     return result.fold(
       (failure) => Left(failure),
       (models) => Right(models),
-    );
-  }
-
-  @override
-  Future<Either<Failure, EventModel>> getEvent() async {
-    final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.post(EventApi.GET_EVENT),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EVENT',
-    );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (model) {
-        if (model.isSuccess == false) return Left(Failure.event());
-        if (model.data != null)
-          return Right(EventModel.jsonToEventModel(model.data));
-        else
-          return Right(EventModel(hasData: false));
-      },
-    );
-  }
-
-  @override
-  Future<Either<Failure, RequestCodeModel>> signEvent(
-      int eventId, int prize) async {
-    final result = await requestModel<RequestCodeModel>(
-      request: dioApiService.post(
-        EventApi.POST_SIGN,
-        data: {'aid': eventId, 'prize': prize},
-      ),
-      jsonToModel: RequestCodeModel.jsonToCodeModel,
-      tag: 'remote-EVENT',
-    );
-//    debugPrint('test response type: ${result.runtimeType}, data: $result');
-    return result.fold(
-      (failure) => Left(failure),
-      (model) => Right(model),
     );
   }
 

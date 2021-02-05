@@ -153,7 +153,9 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
     // update text max lines
     _currentPrefixMaxLines = (widget.prefixTextMaxLines != null)
         ? widget.prefixTextMaxLines
-        : (Global.lang == 'zh') ? 1 : 2;
+        : (Global.lang.isChinese)
+            ? 1
+            : 2;
 
     if (widget.debug) {
       debugPrint(
@@ -200,6 +202,9 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
 
     // update suffix widget
     if (widget.suffixInitText == null && widget.suffixTextStream == null) {
+      _suffixWidget = null;
+    }
+    if (oldWidget.suffixInitText != widget.suffixInitText) {
       _suffixWidget = null;
     }
 
@@ -402,7 +407,7 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing,
                     letterSpacing:
-                        (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
+                        (Global.lang.isChinese) ? widget.titleLetterSpacing : 0,
                     color: _prefixColor,
                   ),
                   children: [
@@ -436,7 +441,7 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
                 letterSpacing:
-                    (Global.lang == 'zh') ? widget.titleLetterSpacing : 0,
+                    (Global.lang.isChinese) ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [
@@ -488,8 +493,8 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
               text,
               style: TextStyle(
                 color: (reset)
-                    ? themeColor.defaultHintSubColor
-                    : themeColor.fieldSuffixColor,
+                    ? themeColor.hintHighlightYellow
+                    : themeColor.hintHighlightYellow,
               ),
             );
           }),

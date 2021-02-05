@@ -22,7 +22,7 @@ extension RegisterFormExtension on RegisterForm {
       'password': this.password,
       'confirmPassword': this.confirmPassword,
       'intro': this.intro ?? '',
-//      'mobileno': this.mobileno ?? '',
+      'mobileno': this.mobileno ?? '',
       'code': this.code ?? '',
     };
   }
@@ -31,6 +31,6 @@ extension RegisterFormExtension on RegisterForm {
       username.isNotEmpty &&
       password.isNotEmpty &&
       confirmPassword.isNotEmpty &&
-      password == confirmPassword;
-//          && mobileno.isNotEmpty;
+      password == confirmPassword &&
+      mobileno.isNotEmpty;
 }

@@ -39,6 +39,7 @@ mixin _$PaymentTutorialItem {
   String get link;
   TutorialItemType get type;
 
+  @JsonKey(ignore: true)
   $PaymentTutorialItemCopyWith<PaymentTutorialItem> get copyWith;
 }
 
@@ -159,6 +160,7 @@ class _$_PaymentTutorialItem implements _PaymentTutorialItem {
       const DeepCollectionEquality().hash(link) ^
       const DeepCollectionEquality().hash(type);
 
+  @JsonKey(ignore: true)
   @override
   _$PaymentTutorialItemCopyWith<_PaymentTutorialItem> get copyWith =>
       __$PaymentTutorialItemCopyWithImpl<_PaymentTutorialItem>(
@@ -181,5 +183,6 @@ abstract class _PaymentTutorialItem implements PaymentTutorialItem {
   @override
   TutorialItemType get type;
   @override
+  @JsonKey(ignore: true)
   _$PaymentTutorialItemCopyWith<_PaymentTutorialItem> get copyWith;
 }

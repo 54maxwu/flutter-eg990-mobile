@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/marquee_span_widget.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/utils/regex_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,32 +37,51 @@ class HomeDisplayMarquee extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: MarqueeSpan(
-              texts: marquees
-                  .map((e) => e.content.replaceAll('\n', '\t'))
-                  .toList(),
-              spaceBetweenTexts:
-                  (marquees.length == 2 && marquees[0].id == marquees[1].id)
-                      ? Global.device.width
-                      : 60,
-              style: TextStyle(
-                fontSize: FontSize.NORMAL.value,
-                color: themeColor.defaultMarqueeTextColor,
+            child: (marquees == null || marquees.isEmpty)
+                ? SizedBox.shrink()
+                : MarqueeSpan(
+                    texts: marquees
+                        .map((e) => e.content.replaceAll('\n', '\t'))
+                        .toList(),
+                    spaceBetweenTexts: (marquees.length == 2 &&
+                            marquees[0].id == marquees[1].id)
+                        ? Global.device.width
+                        : 60,
+                    style: TextStyle(
+                      fontSize: FontSize.NORMAL.value,
+                      color: themeColor.defaultMarqueeTextColor,
+                    ),
+                    startAfter: Duration(milliseconds: 1500),
+                    callback: (index) {
+                      // debugPrint('tapped marquee index: $index, data: ${marquees[index]}');
+                      String url = marquees[index].url;
+                      debugPrint('clicked marquee $index, url: $url');
+                      if (url.isUrl == false) return;
+                      if (url.contains(Global.DOMAIN_NAME) || !url.isUrl) {
+                        if (onMarqueeClicked != null) {
+                          onMarqueeClicked(url);
+                        }
+                      } else if (url.isUrl) {
+                        launch(url);
+                      }
+                    },
+                  ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 2.0, 8.0, 2.0),
+            child: RaisedButton(
+              visualDensity: VisualDensity.compact,
+              onPressed: () =>
+                  AppNavigator.navigateTo(RoutePage.sideNoticeBoard),
+              child: AutoSizeText(
+                localeStr.pageTitleNotice,
+                style: TextStyle(fontSize: FontSize.NORMAL.value),
+                maxLines: 1,
+                minFontSize: FontSize.SMALL.value - 4,
+                maxFontSize: FontSize.NORMAL.value,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
               ),
-              startAfter: Duration(milliseconds: 1500),
-              callback: (index) {
-                // debugPrint('tapped marquee index: $index, data: ${marquees[index]}');
-                String url = marquees[index].url;
-                debugPrint('clicked marquee $index, url: $url');
-                if (url.isUrl == false) return;
-                if (url.contains(Global.DOMAIN_NAME)) {
-                  if (onMarqueeClicked != null) {
-                    onMarqueeClicked(url);
-                  }
-                } else if (url.isUrl) {
-                  launch(url);
-                }
-              },
             ),
           ),
         ],

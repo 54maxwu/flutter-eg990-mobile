@@ -25,9 +25,9 @@ class _TestHomeSizeCalcState extends State<TestHomeSizeCalc>
 //  bool showVisibleHint = true;
 
 //  void _returnHome() {
-//    ScreenNavigate.switchScreen(
+//    AppNavigator.switchScreen(
 //      force: true,
-//      screen: ScreenEnum.Feature,
+//      screen: Screens.Feature,
 //    );
 //    _store.stopSensor();
 //  }

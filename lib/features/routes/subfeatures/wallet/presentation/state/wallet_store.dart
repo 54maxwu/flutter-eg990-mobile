@@ -192,8 +192,11 @@ abstract class _WalletStore with Store {
     } on Exception {
       waitForTypeChange = false;
       setErrorMsg(code: 4);
+      _progressController.close();
     }
   }
+
+  void cancelTransferAll() => _repository.cancelTransferAll();
 
   Future<void> closeStream() async {
     try {

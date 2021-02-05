@@ -8,7 +8,7 @@ import 'widgets/home_display.dart';
 import 'widgets/home_store_inherit_widget.dart';
 
 ///
-/// Main View of [FeatureRouter.homeRoute]
+/// Main View of [AutoRouter.homeRoute]
 /// @author H.C.CHIANG
 /// @version 2020/6/18
 ///
@@ -39,7 +39,15 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
         // Run some logic with the content of the observed field
         (String message) {
           if (message != null && message.isNotEmpty) {
-            callToastError(message, delayedMilli: 200);
+            if (message.contains('code')) {
+              callToastError(message, delayedMilli: 200);
+            } else {
+              callToastError(
+                message,
+                delayedMilli: 200,
+                duration: ToastDuration.LONG,
+              );
+            }
           }
         },
       ),
@@ -70,10 +78,7 @@ class _HomeRouteState extends State<HomeRoute> with AfterLayoutMixin {
             MyLogger.info(msg: 'opening game: $url', tag: 'HomeRoute');
             Future.delayed(Duration(milliseconds: 300), () {
               _store.clearGameUrl();
-              ScreenNavigate.switchScreen(
-                screen: ScreenEnum.Game,
-                webUrl: '$url',
-              );
+              AppNavigator.switchScreen(Screens.Game, webUrl: '$url');
             });
           }
         },

@@ -69,14 +69,14 @@ const $CenterVipSettingModel = _$CenterVipSettingModelTearOff();
 /// @nodoc
 mixin _$CenterVipSettingModel {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
                 CenterVipSettingItem item,
             String title),
     @required
-        Result content(
+        TResult content(
             String allgame,
             String slotgame,
             String casinogame,
@@ -86,25 +86,25 @@ mixin _$CenterVipSettingModel {
             String cardgame),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
             CenterVipSettingItem item,
         String title),
-    Result content(String allgame, String slotgame, String casinogame,
+    TResult content(String allgame, String slotgame, String casinogame,
         String sportgame, String fishgame, String lotterygame, String cardgame),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(CenterVipSetting value),
-    @required Result content(CenterVipSettingItem value),
+  TResult map<TResult extends Object>({
+    @required TResult model(CenterVipSetting value),
+    @required TResult content(CenterVipSettingItem value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(CenterVipSetting value),
-    Result content(CenterVipSettingItem value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(CenterVipSetting value),
+    TResult content(CenterVipSettingItem value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
 }
@@ -201,20 +201,21 @@ class _$CenterVipSetting implements CenterVipSetting {
       const DeepCollectionEquality().hash(item) ^
       const DeepCollectionEquality().hash(title);
 
+  @JsonKey(ignore: true)
   @override
   $CenterVipSettingCopyWith<CenterVipSetting> get copyWith =>
       _$CenterVipSettingCopyWithImpl<CenterVipSetting>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
                 CenterVipSettingItem item,
             String title),
     @required
-        Result content(
+        TResult content(
             String allgame,
             String slotgame,
             String casinogame,
@@ -230,14 +231,14 @@ class _$CenterVipSetting implements CenterVipSetting {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
             CenterVipSettingItem item,
         String title),
-    Result content(String allgame, String slotgame, String casinogame,
+    TResult content(String allgame, String slotgame, String casinogame,
         String sportgame, String fishgame, String lotterygame, String cardgame),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (model != null) {
@@ -248,9 +249,9 @@ class _$CenterVipSetting implements CenterVipSetting {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(CenterVipSetting value),
-    @required Result content(CenterVipSettingItem value),
+  TResult map<TResult extends Object>({
+    @required TResult model(CenterVipSetting value),
+    @required TResult content(CenterVipSettingItem value),
   }) {
     assert(model != null);
     assert(content != null);
@@ -259,10 +260,10 @@ class _$CenterVipSetting implements CenterVipSetting {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(CenterVipSetting value),
-    Result content(CenterVipSettingItem value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(CenterVipSetting value),
+    TResult content(CenterVipSettingItem value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (model != null) {
@@ -291,6 +292,7 @@ abstract class CenterVipSetting implements CenterVipSettingModel {
       fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
   CenterVipSettingItem get item;
   String get title;
+  @JsonKey(ignore: true)
   $CenterVipSettingCopyWith<CenterVipSetting> get copyWith;
 }
 
@@ -418,6 +420,7 @@ class _$CenterVipSettingItem implements CenterVipSettingItem {
       const DeepCollectionEquality().hash(lotterygame) ^
       const DeepCollectionEquality().hash(cardgame);
 
+  @JsonKey(ignore: true)
   @override
   $CenterVipSettingItemCopyWith<CenterVipSettingItem> get copyWith =>
       _$CenterVipSettingItemCopyWithImpl<CenterVipSettingItem>(
@@ -425,14 +428,14 @@ class _$CenterVipSettingItem implements CenterVipSettingItem {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
                 CenterVipSettingItem item,
             String title),
     @required
-        Result content(
+        TResult content(
             String allgame,
             String slotgame,
             String casinogame,
@@ -449,14 +452,14 @@ class _$CenterVipSettingItem implements CenterVipSettingItem {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         @JsonKey(name: 'setting', fromJson: CenterVipSettingModel.jsonToCenterVipSettingItem)
             CenterVipSettingItem item,
         String title),
-    Result content(String allgame, String slotgame, String casinogame,
+    TResult content(String allgame, String slotgame, String casinogame,
         String sportgame, String fishgame, String lotterygame, String cardgame),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (content != null) {
@@ -468,9 +471,9 @@ class _$CenterVipSettingItem implements CenterVipSettingItem {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(CenterVipSetting value),
-    @required Result content(CenterVipSettingItem value),
+  TResult map<TResult extends Object>({
+    @required TResult model(CenterVipSetting value),
+    @required TResult content(CenterVipSettingItem value),
   }) {
     assert(model != null);
     assert(content != null);
@@ -479,10 +482,10 @@ class _$CenterVipSettingItem implements CenterVipSettingItem {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(CenterVipSetting value),
-    Result content(CenterVipSettingItem value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(CenterVipSetting value),
+    TResult content(CenterVipSettingItem value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (content != null) {
@@ -517,5 +520,6 @@ abstract class CenterVipSettingItem implements CenterVipSettingModel {
   String get fishgame;
   String get lotterygame;
   String get cardgame;
+  @JsonKey(ignore: true)
   $CenterVipSettingItemCopyWith<CenterVipSettingItem> get copyWith;
 }

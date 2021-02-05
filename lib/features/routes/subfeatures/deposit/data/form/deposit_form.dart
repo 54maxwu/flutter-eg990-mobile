@@ -23,7 +23,7 @@ extension DepositDataFormExtension on DepositDataForm {
   /// This method is not reversible
   Map<String, dynamic> toJson() {
     String amt = this.amount;
-    if (Global.lang == 'zh' && !amt.contains('.')) amt += ".00";
+    if (Global.lang.isChinese && !amt.contains('.')) amt += ".00";
     return <String, dynamic>{
       'account_name': (this.name != null) ? this.name : '',
       'amount': amt,
@@ -31,10 +31,10 @@ extension DepositDataFormExtension on DepositDataForm {
       'bankindex': this.bankIndex.toString(),
       'deposit_method': this.methodId.toString(),
       'promo': (this.promoId != -1) ? promoId : '',
-//      'localbank': this.localBank ?? -1,
-//      'localbankno': this.localBankCard ?? '',
-//      'gateway': this.gateway ?? '1',
-//      'remark': this.remark ?? '',
+      'localbank': this.localBank ?? -1,
+      'localbankno': this.localBankCard ?? '',
+      'gateway': this.gateway ?? '1',
+      // 'remark': this.remark ?? '',
     };
   }
 

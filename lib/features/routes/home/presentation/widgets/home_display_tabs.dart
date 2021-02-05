@@ -178,7 +178,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
         children: <Widget>[
           /// category tab bar
           Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 4.0, 10.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(0.0, 8.0, 10.0, 12.0),
             child: Material(
               color: themeColor.homeTabBgColor,
               borderRadius: BorderRadius.circular(6.0),
@@ -189,7 +189,7 @@ class HomeDisplayTabsState extends State<HomeDisplayTabs>
                   minWidth: widget.sizeCalc.barMinWidth,
                   maxWidth: widget.sizeCalc.barMaxWidth,
                 ),
-                margin: const EdgeInsets.only(bottom: 4.0),
+                margin: const EdgeInsets.only(bottom: 8.0),
                 /* Rotate to vertical */
                 child: RotatedBox(
                   quarterTurns: 1,

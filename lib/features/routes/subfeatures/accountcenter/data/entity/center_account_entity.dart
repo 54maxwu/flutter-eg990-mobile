@@ -12,10 +12,9 @@ abstract class CenterAccountEntity with _$CenterAccountEntity {
     String gender,
     String email,
     String wechat,
+    String zalo,
     String firstName,
     String autoTransfer,
-    String cgpWallet,
-    String cpwWallet,
   }) = _CenterAccountEntity;
 }
 
@@ -30,9 +29,7 @@ extension CenterAccountEntityExtension on CenterAccountEntity {
 
   bool get canBindWechat => wechat.isEmpty;
 
-  bool get canBindCgp => cgpWallet.isEmpty || cgpWallet != '-1';
-
-  bool get canBindCpw => cpwWallet.isEmpty || cpwWallet != '-1';
+  bool get canBindZalo => zalo.isEmpty;
 
   List<String> get getInitInput => [
         accountCode,
@@ -41,7 +38,6 @@ extension CenterAccountEntityExtension on CenterAccountEntity {
         phone,
         email,
         wechat,
-        cgpWallet,
-        cpwWallet,
+        zalo,
       ];
 }

@@ -7,16 +7,17 @@
     "type": "text",
     "placeholders": {}
   },
+  "appVersion": "เวอร์ชัน {value}",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {
+      "value": {
+        "example": "1.0.0"
+      }
+    }
+  },
   "pageTitleHome": "หน้าแรก",
   "@pageTitleHome": {
-    "type": "text"
-  },
-  "pageTitleMovieEG": "ภาพยนตร์ EG",
-  "@pageTitleMovieEG": {
-    "type": "text"
-  },
-  "pageTitleMovie": "หนังใหม่",
-  "@pageTitleMovie": {
     "type": "text"
   },
   "pageTitleDownload": "ดาวน์โหลด APP",
@@ -163,8 +164,8 @@
   "@pageTitleMemberAgentAbout": {
     "type": "text"
   },
-  "pageTitleTask": "งาน",
-  "@pageTitleTask": {
+  "pageTitleMission": "งาน",
+  "@pageTitleMission": {
     "type": "text"
   },
   "pageTitleMore": "เพิ่มเติม",
@@ -196,6 +197,10 @@
   "@themeColorLight": {
     "type": "text"
   },
+  "urlActionNotSupported": "ไม่สามารถข้ามไปยัง URL ปลายทางได้",
+  "@urlActionNotSupported": {
+    "type": "text"
+  },
   "workInProgress": "ฟีเจอร์เร็วๆนี้!",
   "@workInProgress": {
     "type": "text"
@@ -214,6 +219,26 @@
   },
   "gameToolHintRestore": "ดับเบิลคลิกเพื่อคืนค่าการแสดงผล",
   "@gameToolHintRestore": {
+    "type": "text"
+  },
+  "actionNotify": "แจ้งเตือน",
+  "@actionNotify": {
+    "type": "text"
+  },
+  "actionSetting": "การตั้งค่า",
+  "@actionSetting": {
+    "type": "text"
+  },
+  "actionSearch": "ค้นหา",
+  "@actionSearch": {
+    "type": "text"
+  },
+  "actionHelp": "บทช่วยสอน",
+  "@actionHelp": {
+    "type": "text"
+  },
+  "actionBack": "ย้อนกลับ",
+  "@actionBack": {
     "type": "text"
   },
   "btnMenu": "เมนู",
@@ -258,6 +283,10 @@
   },
   "btnConfirmSend": "ยืนยันและส่ง",
   "@btnConfirmSend": {
+    "type": "text"
+  },
+  "btnOpenGame": "เปิด",
+  "@btnOpenGame": {
     "type": "text"
   },
   "btnLogin": "เข้าสู่ระบบ",
@@ -320,6 +349,14 @@
   "@btnCopy": {
     "type": "text"
   },
+  "btnNextStep": "ขั้นตอนต่อไป",
+  "@btnNextStep": {
+    "type": "text"
+  },
+  "btnPreStep": "ก่อนหน้า",
+  "@btnPreStep": {
+    "type": "text"
+  },
   "sideBtnBackHome": "ย้อนกลับ",
   "@sideBtnBackHome": {
     "type": "text"
@@ -354,6 +391,10 @@
   },
   "hintActionSelect": "กรุณาเลือก",
   "@hintActionSelect": {
+    "type": "text"
+  },
+  "hintActionSearchGame": "กรุณากรอกชื่อเกม",
+  "@hintActionSearchGame": {
     "type": "text"
   },
   "hintActionLogin": "กรุณาเข้าสู่ระบบก่อน",
@@ -445,7 +486,7 @@
   "@messageActionFailed": {
     "type": "text"
   },
-  "messageActionFillForm": "กรุณากรอกแบบฟอร์ม",
+  "messageActionFillForm": "โปรดยืนยันข้อมูลฟิลด์และกรอกข้อมูลให้ครบถ้วน",
   "@messageActionFillForm": {
     "type": "text"
   },
@@ -548,12 +589,24 @@
   "@messageInvalidFormat": {
     "type": "text"
   },
+  "messageInvalidDate": "วันที่ไม่ถูกต้อง",
+  "@messageInvalidDate": {
+    "type": "text"
+  },
   "messageInvalidName": "ชื่อผิดรูปแบบ",
   "@messageInvalidName": {
     "type": "text"
   },
   "messageInvalidEmail": "กล่องจดหมายผิดรูปแบบ",
   "@messageInvalidEmail": {
+    "type": "text"
+  },
+  "messageInvalidBirthDate": "วันเกิดผิด",
+  "@messageInvalidBirthDate": {
+    "type": "text"
+  },
+  "messageRepeatPhone": "หมายเลขโทรศัพท์ซ้ำกัน",
+  "@messageRepeatPhone": {
     "type": "text"
   },
   "messageInvalidPhone": "หมายเลขโทรศัพท์ผิดพลาด ({num})",
@@ -565,12 +618,28 @@
       }
     }
   },
+  "messageInvalidPhone2": "หมายเลขโทรศัพท์ผิดพลาด ({min}~{max})",
+  "@messageInvalidPhone2": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "10"
+      },
+      "max": {
+        "example": "10"
+      }
+    }
+  },
   "messageInvalidPostCode": "รหัสโพสต์ผิดพลาด (5~8)",
   "@messageInvalidPostCode": {
     "type": "text"
   },
   "messageInvalidWechat": "บัญชี WeChat ไม่ถูกต้อง",
   "@messageInvalidWechat": {
+    "type": "text"
+  },
+  "messageInvalidZalo": "บัญชี Zalo ไม่ถูกต้อง",
+  "@messageInvalidZalo": {
     "type": "text"
   },
   "messageInvalidVerify": "โปรดป้อนรหัสยืนยัน",
@@ -586,20 +655,40 @@
       }
     }
   },
-  "messageInvalidAccount": "ชื่อผู้ใช้ควรมีความยาว 6~12 คำ",
+  "messageInvalidAccount": "ชหมายเลขบัญชีคือ {min}~{max} ตัวพิมพ์เล็กภาษาอังกฤษ / หลัก",
   "@messageInvalidAccount": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "6"
+      },
+      "max": {
+        "example": "12"
+      }
+    }
   },
-  "messageInvalidPassword": "รหัสผ่านควรมีความยาว 6~20 คำ",
+  "messageInvalidPassword": "รหัสผ่านควรมีความยาว {min}~{max} คำ",
   "@messageInvalidPassword": {
-    "type": "text"
-  },
-  "messageInvalidPasswordNew": "รหัสผ่านควรมีความยาว 8~20 คำ",
-  "@messageInvalidPasswordNew": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "8"
+      },
+      "max": {
+        "example": "20"
+      }
+    }
   },
   "messageInvalidConfirmPassword": "รหัสผ่านไม่ตรงกัน",
   "@messageInvalidConfirmPassword": {
+    "type": "text"
+  },
+  "messageInvalidPasswordFive": "รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อคเนื่องจากข้อผิดพลาดห้าประการ",
+  "@messageInvalidPasswordFive": {
+    "type": "text"
+  },
+  "messageInvalidPasswordLocked": "บัญชีถูกล็อคโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@messageInvalidPasswordLocked": {
     "type": "text"
   },
   "messageInvalidDepositAmount": "จำนวนเงินผิดพลาด",
@@ -615,6 +704,14 @@
       }
     }
   },
+  "messageInvalidDepositAmountMaxLimit": "จำนวนเงินที่เติมเกินขีด จำกัด ด้านบน",
+  "@messageInvalidDepositAmountMaxLimit": {
+    "type": "text"
+  },
+  "messageInvalidDepositAmountMinLimit": "จำนวนการเติมเงินต่ำกว่าขีด จำกัด ล่าง",
+  "@messageInvalidDepositAmountMinLimit": {
+    "type": "text"
+  },
   "messageInvalidDepositName": "ชื่อบัญชีไม่ถูกต้อง",
   "@messageInvalidDepositName": {
     "type": "text"
@@ -623,12 +720,43 @@
   "@messageInvalidCardOwner": {
     "type": "text"
   },
-  "messageInvalidCardNumber": "หมายเลขบัตรคือ 16~19 อักขระ",
+  "messageInvalidCardNumber": "หมายเลขการ์ดคือ {min}~{max} ตัวอักษร",
   "@messageInvalidCardNumber": {
-    "type": "text"
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      }
+    }
+  },
+  "messageInvalidCardNumberFixed": "หมายเลขการ์ดคือ {min}~{max} ตัวอักษร (ขึ้นต้นด้วย {fixed})",
+  "@messageInvalidCardNumberFixed": {
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "example": "16"
+      },
+      "max": {
+        "example": "19"
+      },
+      "fixed": {
+        "example": "9704"
+      }
+    }
   },
   "messageInvalidCardBankPoint": "ชื่อต้องมีความยาวมากกว่า 3 อักขระ",
   "@messageInvalidCardBankPoint": {
+    "type": "text"
+  },
+  "messageExceedRemainCredit": "เกินความสมดุล",
+  "@messageExceedRemainCredit": {
+    "type": "text"
+  },
+  "messagePlatformMaintenance": "แพลตฟอร์มอยู่ระหว่างการบำรุงรักษา",
+  "@messagePlatformMaintenance": {
     "type": "text"
   },
   "messageInvalidWithdrawPassword": "รหัสผ่านผิดพลาด! (ค่าเริ่มต้นคือรหัสผ่านเข้าสู่ระบบ)",
@@ -637,6 +765,14 @@
   },
   "messageInvalidWithdrawAmount": "เครดิตไม่เพียงพอ",
   "@messageInvalidWithdrawAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawUnderAmount": "ต่ำกว่าจำนวนเงินถอนขั้นต่ำ",
+  "@messageInvalidWithdrawUnderAmount": {
+    "type": "text"
+  },
+  "messageInvalidWithdrawExceedAmount": "เกินจำนวนการถอนสูงสุดของการทำธุรกรรมหนึ่งครั้ง (โปรดดูที่ระบบระดับสมาชิก)",
+  "@messageInvalidWithdrawExceedAmount": {
     "type": "text"
   },
   "messageWarnUsingCellular": "คุณกำลังใช้เครือข่ายมือถือ",
@@ -707,6 +843,10 @@
   "@messageErrorLoadingGame": {
     "type": "text"
   },
+  "messageErrorGamePermission": "คุณไม่ได้รับอนุญาตให้เล่นเกมแพลตฟอร์มนี้โปรดติดต่อฝ่ายบริการลูกค้า",
+  "@messageErrorGamePermission": {
+    "type": "text"
+  },
   "messageErrorLoadingPay": "ข้อผิดพลาดในการโหลดหน้าเว็บโปรดลองอีกครั้งในภายหลัง",
   "@messageErrorLoadingPay": {
     "type": "text"
@@ -753,8 +893,20 @@
   "@messageErrorAccount": {
     "type": "text"
   },
+  "messageErrorAccountIsLocked": "บัญชีถูกล็อคโปรดติดต่อฝ่ายบริการลูกค้า",
+  "@messageErrorAccountIsLocked": {
+    "type": "text"
+  },
   "messageRepeatAccount": "การลงทะเบียนบัญชีที่ซ้ำกัน",
   "@messageRepeatAccount": {
+    "type": "text"
+  },
+  "messageErrorMobile": "หมายเลขโทรศัพท์มือถือผิดพลาด",
+  "@messageErrorMobile": {
+    "type": "text"
+  },
+  "messageRepeatMobile": "การลงทะเบียนหมายเลขโทรศัพท์มือถือซ้ำ",
+  "@messageRepeatMobile": {
     "type": "text"
   },
   "messageErrorPassword": "รหัสผ่านผิดพลาด",
@@ -763,6 +915,10 @@
   },
   "messageErrorPasswordHint": "รหัสผ่านไม่ตรงกันบัญชีจะถูกล็อกหลังจากมีข้อผิดพลาด 5 ข้อ",
   "@messageErrorPasswordHint": {
+    "type": "text"
+  },
+  "messageErrorReferral": "รหัสอ้างอิงไม่ถูกต้อง",
+  "@messageErrorReferral": {
     "type": "text"
   },
   "messageErrorWithdraw": "การถอนล้มเหลว",
@@ -834,20 +990,16 @@
   "@homeUserTabCategoryMovie": {
     "type": "text"
   },
-  "homeUserTabCategoryEgMovie": "ภาพยนตร์ EG",
-  "@homeUserTabCategoryEgMovie": {
-    "type": "text"
-  },
-  "homeUserTabCategoryNewMovie": "ภาพยนตร์ใหม่",
-  "@homeUserTabCategoryNewMovie": {
-    "type": "text"
-  },
   "homeUserTabCategoryRecommend": "แนะนำ",
   "@homeUserTabCategoryRecommend": {
     "type": "text"
   },
   "homeUserTabCategoryFavorite": "รายการโปรด",
   "@homeUserTabCategoryFavorite": {
+    "type": "text"
+  },
+  "homeUserTabCategoryGames": "เกม",
+  "@homeUserTabCategoryGames": {
     "type": "text"
   },
   "gameCategoryCasino": "คาสิโน",
@@ -918,7 +1070,7 @@
   "@gameCategoryWeb": {
     "type": "text"
   },
-  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ BKK365",
+  "gameCategoryWebHint": "คลิกฉันเพื่อเปิดเว็บไซต์ VKing88",
   "@gameCategoryWebHint": {
     "type": "text"
   },
@@ -1195,6 +1347,14 @@
       }
     }
   },
+  "bankcardViewTitleNew": "เพิ่มบัตรธนาคาร",
+  "@bankcardViewTitleNew": {
+    "type": "text"
+  },
+  "bankcardViewHintNew": "กรุณาผูกบัตรธนาคารเพื่อรับการชำระเงิน",
+  "@bankcardViewHintNew": {
+    "type": "text"
+  },
   "bankcardViewTitleOwner": "ชื่อบัญชี",
   "@bankcardViewTitleOwner": {
     "type": "text"
@@ -1455,7 +1615,7 @@
   "@transactionHeaderDate": {
     "type": "text"
   },
-  "transactionHeaderType": "ประเภท",
+  "transactionHeaderType": "หมวดหมู่",
   "@transactionHeaderType": {
     "type": "text"
   },
@@ -1463,7 +1623,7 @@
   "@transactionHeaderDesc": {
     "type": "text"
   },
-  "transactionHeaderAmount": "ยอดเงิน",
+  "transactionHeaderAmount": "จำนวนเงิน",
   "@transactionHeaderAmount": {
     "type": "text"
   },
@@ -1516,7 +1676,7 @@
   "@betsHeaderGame": {
     "type": "text"
   },
-  "betsHeaderAmount": "การเดิมพันทั้งหมด",
+  "betsHeaderAmount": "จำนวนเงินเดิมพัน",
   "@betsHeaderAmount": {
     "type": "text"
   },
@@ -1572,7 +1732,7 @@
   "@dealsHeaderSerial": {
     "type": "text"
   },
-  "dealsHeaderType": "items",
+  "dealsHeaderType": "โครงการ",
   "@dealsHeaderType": {
     "type": "text"
   },
@@ -1590,6 +1750,18 @@
   },
   "dealsHeaderAmount": "จำนวนเงิน",
   "@dealsHeaderAmount": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustCash": "จำนวนเงินที่ปรับแล้ว",
+  "@dealsDetailTypeAdjustCash": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustDeposit": "จำนวนเงินที่ปรับแล้ว",
+  "@dealsDetailTypeAdjustDeposit": {
+    "type": "text"
+  },
+  "dealsDetailTypeAdjustWithdraw": "ปรับการถอน",
+  "@dealsDetailTypeAdjustWithdraw": {
     "type": "text"
   },
   "depositPaymentNoData": "ตรวจสอบว่าไม่มีวิธีการเติมเงิน",
@@ -1632,6 +1804,10 @@
   "@depositPaymentTitleAtm": {
     "type": "text"
   },
+  "depositPaymentTitleQr": "รหัสสแกน QR",
+  "@depositPaymentTitleQr": {
+    "type": "text"
+  },
   "depositPaymentSpinnerTitlePromo": "เลือกข้อเสนอ",
   "@depositPaymentSpinnerTitlePromo": {
     "type": "text"
@@ -1668,7 +1844,7 @@
   "@depositPaymentEditTitleAmount": {
     "type": "text"
   },
-  "depositPaymentEditTitleAmountHintVnd": "ความเป็นจริง: ฿ {value}",
+  "depositPaymentEditTitleAmountHintVND": "ความเป็นจริง: VND {value}",
   "@depositPaymentEditTitleAmountHintVND": {
     "type": "text",
     "placeholders": {
@@ -1676,10 +1852,6 @@
         "example": "100"
       }
     }
-  },
-  "depositPaymentEditTitleNote": "หมายเหตุ",
-  "@depositPaymentEditTitleNote": {
-    "type": "text"
   },
   "depositPaymentEditTitleAmountHintRange": "ช่วง: {num}~{num2}",
   "@depositPaymentEditTitleAmountHintRange": {
@@ -1707,6 +1879,18 @@
         "example": "50"
       }
     }
+  },
+  "depositPaymentEditTitleCode": "รหัสธุรกรรม",
+  "@depositPaymentEditTitleCode": {
+    "type": "text"
+  },
+  "depositPaymentEditHintCode": "กรุณากรอกรหัสธุรกรรม",
+  "@depositPaymentEditHintCode": {
+    "type": "text"
+  },
+  "depositPaymentEditTitleNote": "หมายเหตุ",
+  "@depositPaymentEditTitleNote": {
+    "type": "text"
   },
   "depositPaymentButtonTitleTutorial": "บทช่วยสอน",
   "@depositPaymentButtonTitleTutorial": {
@@ -1868,6 +2052,10 @@
   "@depositMessageFailed": {
     "type": "text"
   },
+  "depositMessageFormError": "ข้อมูลการเติมเงินไม่ถูกต้องโปรดเลือกวิธีการเติมเงินใหม่หรือติดต่อฝ่ายบริการลูกค้า",
+  "@depositMessageFormError": {
+    "type": "text"
+  },
   "depositMessageSuccessLocal": "ขอความสำเร็จหมายเลขคำสั่งซื้อ {value}",
   "@depositMessageSuccessLocal": {
     "type": "text",
@@ -2002,7 +2190,7 @@
         "example": "ช่อง"
       },
       "platform": {
-        "example": "ag"
+        "example": "AG"
       }
     }
   },
@@ -2026,44 +2214,56 @@
   "@balanceHintText4": {
     "type": "text"
   },
-  "flowHeaderTextTime": "ช่วงเวลา",
-  "@flowHeaderTextTime": {
+  "rollbackHeaderTextTime": "ช่วงเวลา",
+  "@rollbackHeaderTextTime": {
     "type": "text"
   },
-  "flowHeaderTextCode": "รหัสธุรกรรม",
-  "@flowHeaderTextCode": {
+  "rollbackHeaderTextCode": "รหัสธุรกรรม",
+  "@rollbackHeaderTextCode": {
     "type": "text"
   },
-  "flowHeaderTextType": "ประเภท",
-  "@flowHeaderTextType": {
+  "rollbackHeaderTextType": "ประเภท",
+  "@rollbackHeaderTextType": {
     "type": "text"
   },
-  "flowHeaderTextAmount": "ยอดเงิน",
-  "@flowHeaderTextAmount": {
+  "rollbackHeaderTextAmount": "จำนวนเงิน",
+  "@rollbackHeaderTextAmount": {
     "type": "text"
   },
-  "flowHeaderTextMultiple": "หลายอย่าง",
-  "@flowHeaderTextMultiple": {
+  "rollbackHeaderTextMultiple": "หลายรายการ",
+  "@rollbackHeaderTextMultiple": {
     "type": "text"
   },
-  "flowHeaderTextPromo": "โปรโมชั่น",
-  "@flowHeaderTextPromo": {
+  "rollbackHeaderTextPromo": "ข้อเสนอเงินสด",
+  "@rollbackHeaderTextPromo": {
     "type": "text"
   },
-  "flowHeaderTextRequire": "เงินเดิมพันที่ต้องการ",
-  "@flowHeaderTextRequire": {
+  "rollbackHeaderTextRequire": "ข้อกำหนดสำหรับจำนวนเงินเดิมพัน",
+  "@rollbackHeaderTextRequire": {
     "type": "text"
   },
-  "flowHeaderTextCurrent": "เงินเดิมพันปัจจุบัน",
-  "@flowHeaderTextCurrent": {
+  "rollbackHeaderTextCurrent": "เดิมพันปัจจุบัน",
+  "@rollbackHeaderTextCurrent": {
     "type": "text"
   },
-  "flowHeaderTextNeed": "ความต้องการส่วนเกิน",
-  "@flowHeaderTextNeed": {
+  "rollbackHeaderTextNeed": "ต้องใช้เงินทุนที่เหลืออยู่",
+  "@rollbackHeaderTextNeed": {
     "type": "text"
   },
-  "flowHeaderTextTotal": "รวม",
-  "@flowHeaderTextTotal": {
+  "rollbackHeaderTextTotal": "ทั้งหมด",
+  "@rollbackHeaderTextTotal": {
+    "type": "text"
+  },
+  "rollbackIndexPromo": "ส่วนลด",
+  "@rollbackIndexPromo": {
+    "type": "text"
+  },
+  "rollbackIndexDeposit": "เงินฝาก",
+  "@rollbackIndexDeposit": {
+    "type": "text"
+  },
+  "rollbackIndexRollback": "ล่าถอย",
+  "@rollbackIndexRollback": {
     "type": "text"
   },
   "agentActionLoginHint": "กรุณาเข้าสู่ระบบบัญชีตัวแทนของคุณก่อน",
@@ -2317,10 +2517,10 @@
     "type": "text",
     "placeholders": {
       "level": {
-        "example": "slot"
+        "example": "Slot"
       },
       "downline": {
-        "example": "ag"
+        "example": "AG"
       }
     }
   },
@@ -2836,179 +3036,7 @@
       }
     }
   },
-  "aboutCertTitle": "ใบอนุญาต",
-  "@aboutCertTitle": {
-    "type": "text"
-  },
-  "aboutCertTitleGC": "คณะกรรมการกำกับดูแล GC ของอังกฤษ",
-  "@aboutCertTitleGC": {
-    "type": "text"
-  },
-  "aboutCertTitleMGA": "Malta Gaming License (MGA) Certification",
-  "@aboutCertTitleMGA": {
-    "type": "text"
-  },
-  "aboutCertTitlePGC": "การ์ดเกมภายใต้การดูแลของฟิลิปปินส์ (PAGCOR)",
-  "@aboutCertTitlePGC": {
-    "type": "text"
-  },
-  "aboutCertTitleBVI": "การรับรองหมู่เกาะบริติชเวอร์จิน (BVI)",
-  "@aboutCertTitleBVI": {
-    "type": "text"
-  },
-  "aboutDataTitle1": "แนะนำตัวแทนจำหน่าย 85BET",
-  "@aboutDataTitle1": {
-    "type": "text"
-  },
-  "aboutDataDesc10": "85BET ได้รับใบอนุญาตจาก Isle of Man, Cagayan และ Freeport Economic Zone ซึ่งเป็น บริษัท ข้ามชาติที่ดำเนินงานในภูมิภาคเอเชียแปซิฟิก\n\n",
-  "@aboutDataDesc10": {
-    "type": "text"
-  },
-  "aboutDataDesc11": "85bet อาศัยประสบการณ์และชื่อเสียงอันยาวนานในการให้บริการแก่ผู้เล่นมากกว่าสิบล้านคนซึ่งแสดงให้เห็นถึงความชอบธรรมและความชอบธรรมในระยะยาวและมีความน่าเชื่อถืออย่างสมบูรณ์",
-  "@aboutDataDesc11": {
-    "type": "text"
-  },
-  "aboutDataDesc12": "เป็น บริษัท เกมภายใต้ MAN Entertainment Group ซึ่งมีสำนักงานใหญ่ในกรุงมะนิลาประเทศฟิลิปปินส์ซึ่งถือเป็น บริษัท ที่ใหญ่ที่สุดในตลาดการพนันออนไลน์ในเอเชียและมีพนักงานจำนวนมาก 85bet มีความเชื่อมั่นสูงเป็นที่ยอมรับและปัจจุบันได้กลายเป็นสมาคมเกมออนไลน์ระดับนานาชาติ เจ้ามือรับแทงที่ผ่านการตรวจสอบและได้รับใบอนุญาตอย่างสมบูรณ์ที่สุดแห่งหนึ่ง",
-  "@aboutDataDesc12": {
-    "type": "text"
-  },
-  "aboutDataTitle2": "ข้อมูล",
-  "@aboutDataTitle2": {
-    "type": "text"
-  },
-  "aboutDataSubtitle20": "ลงทะเบียน",
-  "@aboutDataSubtitle20": {
-    "type": "text"
-  },
-  "aboutDataDesc20": "เปิดบัญชี 85bet เวียดนามและเข้าร่วมเว็บไซต์ความบันเทิงคุณภาพสูงโปรโมชั่นการเดิมพันออนไลน์ทั้งหมดของเราในราคาที่ดีเราเชื่อว่าในคะแนนโบนัสลูกค้าจะมีโอกาสได้รับสิ่งที่มีค่าเมื่อเข้าร่วมกิจกรรมส่งเสริมการขาย ของขวัญและรางวัล ",
-  "@aboutDataDesc20": {
-    "type": "text"
-  },
-  "aboutDataSubtitle21": "องค์กร",
-  "@aboutDataSubtitle21": {
-    "type": "text"
-  },
-  "aboutDataDesc21": "เป็นพันธมิตรที่ดีที่สุดของเราและเพลิดเพลินไปกับค่าคอมมิชชั่นรายเดือนมากมายโดยแนะนำผู้เล่นให้เข้าสู่ 85bet",
-  "@aboutDataDesc21": {
-    "type": "text"
-  },
-  "aboutDataSubtitle22": "การเล่นเกมอย่างมีความรับผิดชอบ",
-  "@aboutDataSubtitle22": {
-    "type": "text"
-  },
-  "aboutDataDesc22": "85bet Odds Odds Football มุ่งมั่นที่จะมอบช่องทางความบันเทิงให้กับลูกค้าของเราในทางบวกเรามีการป้องกันเพื่อส่งเสริมและรับรองการพนันอย่างมีความรับผิดชอบ",
-  "@aboutDataDesc22": {
-    "type": "text"
-  },
-  "aboutDataSubtitle23": "ความปลอดภัย",
-  "@aboutDataSubtitle23": {
-    "type": "text"
-  },
-  "aboutDataDesc23": "ระบบการเดิมพันที่มั่นคงและปลอดภัยความเป็นส่วนตัวของคุณเป็นสิ่งสำคัญสูงสุดของเราดังนั้นเราจึงปฏิบัติตามนโยบายความเป็นส่วนตัวอย่างเคร่งครัดเสมอ",
-  "@aboutDataDesc23": {
-    "type": "text"
-  },
-  "aboutDataTitle3": "ผลิตภัณฑ์",
-  "@aboutDataTitle3": {
-    "type": "text"
-  },
-  "aboutDataSubtitle30": "การพนันกีฬาและอัตราเดิมพันฟุตบอลสด",
-  "@aboutDataSubtitle30": {
-    "type": "text"
-  },
-  "aboutDataDesc30": "ราคาต่อรองการพนันฟุตบอลเราจัดให้มีเหตุการณ์สำคัญดังต่อไปนี้: พรีเมียร์ลีก, แชมป์ลาลีกาสเปน, กัลโช่เซเรียอาอิตาลี, ยูฟ่าแชมเปี้ยนส์ลีก, แชมป์แห่งชาติฝรั่งเศส, เยอรมนี, NFL, NBA, ซีเอ, บาสเก็ตบอลหญิง, เทนนิส, แข่ง F1 เรารู้สึกเป็นเกียรติที่ได้นำเสนอเกมมากกว่า 4,000 เกมต่อเดือน ",
-  "@aboutDataDesc30": {
-    "type": "text"
-  },
-  "aboutDataSubtitle31": "เกมออนไลน์",
-  "@aboutDataSubtitle31": {
-    "type": "text"
-  },
-  "aboutDataDesc31": "เกมออนไลน์มีโอกาสมากมายที่จะชนะรางวัลใหญ่ในเกม: รูเล็ตแบล็คแจ็คโป๊กเกอร์สล็อตแมชชีนแจ็คพอตมากขึ้นและโอกาสในการชนะ 85bet สูงขึ้น",
-  "@aboutDataDesc31": {
-    "type": "text"
-  },
-  "aboutDataSubtitle32": "คาสิโนออนไลน์",
-  "@aboutDataSubtitle32": {
-    "type": "text"
-  },
-  "aboutDataDesc32": "นอกจากนี้เรายังให้บริการเกมออนไลน์ประเภทอื่น ๆ อีกมากมายโดยเฉพาะ: คาสิโนสดซึ่งมีให้บริการในผู้จำหน่ายเกมยอดนิยมเช่นบาคาร่า sic bo มังกร / เสือรูเล็ตและเครื่องสล็อตคาสิโนออนไลน์ เล่นง่ายมาก ",
-  "@aboutDataDesc32": {
-    "type": "text"
-  },
-  "aboutDataTitle4": "ศูนย์ข้อมูล",
-  "@aboutDataTitle4": {
-    "type": "text"
-  },
-  "aboutDataSubtitle40": "โปรโมชัน",
-  "@aboutDataSubtitle40": {
-    "type": "text"
-  },
-  "aboutDataDesc40": "โปรโมชั่นโบนัสสำหรับสมาชิกใหม่โบนัสสำหรับเงินที่ตามมาและการคืนเงินให้กับสมาชิกที่มีอยู่",
-  "@aboutDataDesc40": {
-    "type": "text"
-  },
-  "aboutDataSubtitle41": "ศูนย์สนับสนุน",
-  "@aboutDataSubtitle41": {
-    "type": "text"
-  },
-  "aboutDataDesc41": "โปรดดูคำถามที่พบบ่อยเกี่ยวกับกีฬาและเกมอื่น ๆ การลงทะเบียนบัญชีการโอนเงินการถอนเงินและข้อมูลทางเทคนิคอื่น ๆ ได้รับการสนับสนุน",
-  "@aboutDataDesc41": {
-    "type": "text"
-  },
-  "aboutDataSubtitle42": "วิธีการชำระเงิน",
-  "@aboutDataSubtitle42": {
-    "type": "text"
-  },
-  "aboutDataDesc42": "เราให้บริการลูกค้าด้วยตัวเลือกที่ยอดเยี่ยมสำหรับการเติมเงินและถอนเงินผ่าน NETELLER, Moneybookers, การโอนเงินผ่านธนาคารระหว่างประเทศ, Western Union เรามีทุกอย่างให้เราเริ่ม 85bet ทันที",
-  "@aboutDataDesc42": {
-    "type": "text"
-  },
-  "aboutDataSubtitle43": "ติดต่อ",
-  "@aboutDataSubtitle43": {
-    "type": "text"
-  },
-  "aboutDataDesc43": "หากคุณต้องการความช่วยเหลือหรือคำถามใด ๆ เกี่ยวกับอัตราต่อรองฟุตบอลหรือการเดิมพันออนไลน์ในคาสิโนออนไลน์เราจะให้การสนับสนุนตลอด 24 ชั่วโมงทุกวันทางแชทสดทางโทรศัพท์และอีเมล",
-  "@aboutDataDesc43": {
-    "type": "text"
-  },
-  "aboutDataTitle5": "ข้อมูลการเดิมพัน",
-  "@aboutDataTitle5": {
-    "type": "text"
-  },
-  "aboutDataSubtitle50": "ผลการแข่งขันกีฬา",
-  "@aboutDataSubtitle50": {
-    "type": "text"
-  },
-  "aboutDataDesc50": "ราคาบอลเวียดนามให้ผลลัพธ์ของเกมกีฬาและลีกที่ดีที่สุดทั้งหมดในเวียดนามในปัจจุบัน",
-  "@aboutDataDesc50": {
-    "type": "text"
-  },
-  "aboutDataSubtitle51": "สถิติการเดิมพัน",
-  "@aboutDataSubtitle51": {
-    "type": "text"
-  },
-  "aboutDataDesc51": "เกมที่แตกต่างกันมากกว่า 200 เกมซึ่งรวมถึงกีฬารูปแบบทีมและเกมเดี่ยวการแข่งขันผู้เล่นตัวจริงทีมงานล่วงเวลาและเกมที่เลื่อนออกไป",
-  "@aboutDataDesc51": {
-    "type": "text"
-  },
-  "aboutDataSubtitle52": "การพนันกีฬา",
-  "@aboutDataSubtitle52": {
-    "type": "text"
-  },
-  "aboutDataDesc52": "กฎกีฬาทั้งหมดของเราปฏิบัติตามกฎอย่างเป็นทางการของคณะกรรมการจัดการแข่งขันที่ดีที่สุดของเวียดนามในปัจจุบัน",
-  "@aboutDataDesc52": {
-    "type": "text"
-  },
-  "aboutDataSubtitle53": "การเล่นเกมคาสิโน",
-  "@aboutDataSubtitle53": {
-    "type": "text"
-  },
-  "aboutDataDesc53": "คาสิโนสดจะแสดงอย่างครบถ้วน: ขีด จำกัด การเดิมพันผลลัพธ์และรายละเอียดประวัติการเดิมพันข้อมูลการเดิมพันทั้งหมดของคุณรวมอยู่บนหน้าจอเพื่อความบันเทิงที่สะดวกสบายคุณสามารถดูข้อมูลการเดิมพันได้ตลอดเวลา",
-  "@aboutDataDesc53": {
-    "type": "text"
-  },
-  "serviceRouteHint": "ช่วยเหลือหรือติดต่อเรา",
+  "serviceRouteHint": "ต้องการความช่วยเหลือหรือติดต่อเรา",
   "@serviceRouteHint": {
     "type": "text"
   },
@@ -3071,5 +3099,53 @@
   "downloadHintPlatformIos": "(iOS เท่านั้น)",
   "@downloadHintPlatformIos": {
     "พิมพ์": "text"
+  },
+  "missionTabDaily": "รายวัน",
+  "@missionTabDaily": {
+    "type": "text"
+  },
+  "missionTabWeekly": "รายสัปดาห์",
+  "@missionTabWeekly": {
+    "type": "text"
+  },
+  "missionTabMonthly": "รายเดือน",
+  "@missionTabMonthly": {
+    "type": "text"
+  },
+  "missionTabOnce": "พิเศษ",
+  "@missionTabOnce": {
+    "type": "text"
+  },
+  "missionTabLimit": "ขีด จำกัด",
+  "@missionTabLimit": {
+    "type": "text"
+  },
+  "missionTextAutoClaim": "อัตโนมัติ",
+  "@missionTextAutoClaim": {
+    "type": "text"
+  },
+  "missionTextClaimed": "ได้รับ",
+  "@missionTextClaimed": {
+    "type": "text"
+  },
+  "missionTextDetail": "รายละเอียด",
+  "@missionTextDetail": {
+    "type": "text"
+  },
+  "missionTextRule": "คำอธิบายภารกิจ",
+  "@missionTextRule": {
+    "type": "text"
+  },
+  "missionTextPending": "การกระจาย",
+  "@missionTextPending": {
+    "type": "text"
+  },
+  "missionPrizeMoney": "แจ็คพอต",
+  "@missionPrizeMoney": {
+    "type": "text"
+  },
+  "missionBtnClaim": "อ้างสิทธิ์",
+  "@missionBtnClaim": {
+    "type": "text"
   }
 }

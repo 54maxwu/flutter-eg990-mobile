@@ -9,9 +9,6 @@ enum HomeCategoryEnum {
   CARD,
   GIFT,
   COCKFIGHTING,
-  MOVIE,
-  EG_MOVIE,
-  NEW_MOVIE,
   RECOMMEND,
   FAVORITE,
   PROMO,
@@ -32,8 +29,8 @@ class HomeCategoryInfo {
   ///
   const HomeCategoryInfo({
     @required this.id,
-    this.imageUrl,
-    this.assetPath,
+    this.imageUrl = '',
+    this.assetPath = '',
     this.pageType = GamePageType.Games,
   });
 }
@@ -43,28 +40,34 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
   /// GAMES
   static const GameCategory casino = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CASINO,
-    imageUrl: 'images/index/tbico_casino.png',
+    // imageUrl: 'images/index/tbico_casino.png',
+    // assetPath: Res.phone_nav_casino_Color1,
   ));
   static const GameCategory slot = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SLOT,
-    imageUrl: 'images/index/tbico_slot.png',
+    // imageUrl: 'images/index/tbico_slot.png',
+    // assetPath: Res.phone_nav_slot_Color1,
   ));
   static const GameCategory sport = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.SPORT,
-    imageUrl: 'images/index/tbico_sport.png',
+    // imageUrl: 'images/index/tbico_sport.png',
+    // assetPath: Res.phone_nav_sport_Color1,
   ));
   static const GameCategory fish = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.FISH,
-    imageUrl: 'images/index/tbico_fish.png',
+    // imageUrl: 'images/index/tbico_fish.png',
+    // assetPath: Res.phone_nav_fish_Color1,
   ));
   static const GameCategory lottery =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.LOTTERY,
-    imageUrl: 'images/index/tbico_lottery.png',
+    // imageUrl: 'images/index/tbico_lottery.png',
+    // assetPath: Res.phone_nav_lottery_Color1,
   ));
   static const GameCategory card = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.CARD,
-    imageUrl: 'images/index/tbico_card.png',
+    // imageUrl: 'images/index/tbico_card.png',
+    // assetPath: Res.phone_nav_card_Color1,
   ));
   static const GameCategory gift = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.GIFT,
@@ -73,59 +76,46 @@ class GameCategory extends Vnum<HomeCategoryInfo> {
   static const GameCategory cockfighting =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.COCKFIGHTING,
-    imageUrl: 'images/phone_nav_cockfighting_Color1.png',
-  ));
-
-  /// MOVIES
-  static const GameCategory egMovie =
-      const GameCategory.define(HomeCategoryInfo(
-    id: HomeCategoryEnum.EG_MOVIE,
-    imageUrl: 'images/index/tbico_movie.png',
-    pageType: GamePageType.MovieEg,
-  ));
-  static const GameCategory newMovie =
-      const GameCategory.define(HomeCategoryInfo(
-    id: HomeCategoryEnum.NEW_MOVIE,
-    imageUrl: 'images/index/tbico_movie.png',
-    pageType: GamePageType.MovieNew,
+    // imageUrl: 'images/phone_nav_cockfighting_Color1.png',
+    // assetPath: Res.phone_nav_cockfighting_Color1,
   ));
 
   /// USER
   static const GameCategory recommend =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.RECOMMEND,
-    imageUrl: 'images/index/tbico_recommend.png',
+    // assetPath: Res.tbico_recommend,
     pageType: GamePageType.Recommend,
   ));
   static const GameCategory favorite =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.FAVORITE,
-    imageUrl: 'images/index/tbico_love.png',
+    // assetPath: Res.tbico_fav,
     pageType: GamePageType.Favorite,
   ));
 
   /// OTHER
   static const GameCategory promo = const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.PROMO,
-    imageUrl: '',
+    // imageUrl: '',
     pageType: GamePageType.Promo,
   ));
   static const GameCategory movieWebsite =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.MOVIE_WEBSITE,
-    imageUrl: '',
+    // imageUrl: '',
     pageType: GamePageType.MovieWebsite,
   ));
   static const GameCategory website =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.WEBSITE,
-    imageUrl: '',
+    // imageUrl: '',
     pageType: GamePageType.Website,
   ));
   static const GameCategory undefined =
       const GameCategory.define(HomeCategoryInfo(
     id: HomeCategoryEnum.UNDEFINE,
-    imageUrl: '',
+    // imageUrl: '',
   ));
 
   /// Used for defining cases
@@ -170,10 +160,6 @@ extension HomeCategoryExtension on HomeCategoryInfo {
         return localeStr.gameCategoryGift;
       case HomeCategoryEnum.COCKFIGHTING:
         return localeStr.gameCategoryCockFighting;
-      case HomeCategoryEnum.EG_MOVIE:
-        return localeStr.homeUserTabCategoryEgMovie;
-      case HomeCategoryEnum.NEW_MOVIE:
-        return localeStr.homeUserTabCategoryNewMovie;
       case HomeCategoryEnum.RECOMMEND:
         return localeStr.homeUserTabCategoryRecommend;
       case HomeCategoryEnum.FAVORITE:
@@ -186,6 +172,39 @@ extension HomeCategoryExtension on HomeCategoryInfo {
         return localeStr.gameCategoryWeb;
       default:
         return '???';
+    }
+  }
+
+  IconData get iconData {
+    switch (id) {
+      case HomeCategoryEnum.CASINO:
+        return IconCode.tabGameCasino;
+      case HomeCategoryEnum.SLOT:
+        return IconCode.tabGameSlot;
+      case HomeCategoryEnum.SPORT:
+        return IconCode.tabGameSport;
+      case HomeCategoryEnum.FISH:
+        return IconCode.tabGameFish;
+      case HomeCategoryEnum.LOTTERY:
+        return IconCode.tabGameLottery;
+      case HomeCategoryEnum.CARD:
+        return IconCode.tabGameCard;
+      case HomeCategoryEnum.GIFT:
+        return IconCode.tabGameGift;
+      case HomeCategoryEnum.COCKFIGHTING:
+        return IconCode.tabGameCockFighting;
+      case HomeCategoryEnum.RECOMMEND:
+        return IconCode.tabGameRec;
+      case HomeCategoryEnum.FAVORITE:
+        return IconCode.tabGameFav;
+      case HomeCategoryEnum.PROMO:
+        return IconCode.navPromo;
+      case HomeCategoryEnum.MOVIE_WEBSITE:
+        return IconCode.tabMovieWebsite;
+      case HomeCategoryEnum.WEBSITE:
+        return IconCode.tabWebsite;
+      default:
+        return IconCode.tabUnknown;
     }
   }
 }

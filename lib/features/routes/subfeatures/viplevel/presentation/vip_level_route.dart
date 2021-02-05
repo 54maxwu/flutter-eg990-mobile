@@ -57,7 +57,7 @@ class _VipLevelRouteState extends State<VipLevelRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop vip route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

@@ -1,6 +1,7 @@
 import 'dart:collection' show HashMap;
 
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
 
 import '../../data/entity/banner_entity.dart';
@@ -39,8 +40,8 @@ abstract class _HomeStore with Store {
   final StreamController<String> _searchPlatformController =
       StreamController<String>.broadcast();
 
-//  final StreamController<String> _searchGameController =
-//      StreamController<String>.broadcast();
+  final StreamController<String> _searchGameController =
+      StreamController<String>.broadcast();
 
   _HomeStore(this._repository) {
     debugPrint('init home store');
@@ -94,7 +95,7 @@ abstract class _HomeStore with Store {
 
   Stream<String> get showPlatformStream => _searchPlatformController.stream;
 
-//  Stream<String> get searchGameStream => _searchGameController.stream;
+  Stream<String> get searchGameStream => _searchGameController.stream;
 
   @observable
   ObservableFuture<List> _initFuture;
@@ -119,6 +120,10 @@ abstract class _HomeStore with Store {
   bool hasPlatformGames(String key) =>
       _homeGamesMap != null && _homeGamesMap.containsKey(key);
 
+  bool hasGameInMap(String key, int gameId) =>
+      _homeGamesMap.containsKey(key) &&
+      _homeGamesMap[key].any((game) => game.gameUrl.endsWith('/$gameId'));
+
   List<GameEntity> getPlatformGames(String key) =>
       (_homeGamesMap.containsKey(key)) ? _homeGamesMap[key] : [];
 
@@ -128,13 +133,13 @@ abstract class _HomeStore with Store {
 
   void clearPlatformSearch() => searchPlatform = '';
 
-//  void searchGame({String searchKey, bool clear = false}) {
-//    if (clear) {
-//      _searchGameController.sink.add('');
-//    } else if (searchKey != null) {
-//      _searchGameController.sink.add(searchKey);
-//    }
-//  }
+  void searchGame({String searchKey, bool clear = false}) {
+    if (clear) {
+      _searchGameController.sink.add('');
+    } else if (searchKey != null) {
+      _searchGameController.sink.add(searchKey);
+    }
+  }
 
   /// Game Url
   @observable
@@ -266,13 +271,6 @@ abstract class _HomeStore with Store {
                   } else {
                     _marqueeController.sink.add(List.from(list));
                   }
-                } else {
-                  _marqueeController.sink.add([
-                    MarqueeEntity(
-                        id: 0,
-                        content: localeStr.homeHintDefaultMarquee,
-                        url: '')
-                  ]);
                 }
               },
             ),
@@ -327,7 +325,7 @@ abstract class _HomeStore with Store {
 
   @computed
   List<GameCategoryModel> get homeUserTabs =>
-      new List.from([recommendCategory, favoriteCategory] + homeTabs);
+      List.from(homeTabs)..insert(1, favoriteCategory);
 
   void _processHomeContent() {
     homeTabs = new List.from(_gameTypes.categories, growable: true);
@@ -355,12 +353,12 @@ abstract class _HomeStore with Store {
     if (remove.isNotEmpty)
       remove.forEach((element) => homeTabs.remove(element));
 
-//    customizePlatformMap();
-//    homeTabs.insert(0, recommendCategory);
-//    homeTabs.add(cockfightingCategory);
+    // customizePlatformMap();
+    homeTabs.insert(0, recommendCategory);
+    // homeTabs.add(cockfightingCategory);
 //    homeTabs.add(promoCategory);
 //    homeTabs.add(movieWebCategory);
-    homeTabs.add(websiteCategory);
+//     homeTabs.add(websiteCategory);
 
 //    homePlatformMap.keys.forEach((key) => MyLogger.print(
 //        msg: '$key: ${homePlatformMap[key]}\n', tag: 'HomePlatformMap'));
@@ -396,12 +394,12 @@ abstract class _HomeStore with Store {
 //      debugPrint('home store has user = $hasUser');
       getGameTypes();
     }
+    // _tabController.sink.add(homeTabs);
     if (hasUser) {
       _tabController.sink.add(homeUserTabs);
     } else {
       _tabController.sink.add(homeTabs);
     }
-    // _tabController.sink.add(homeTabs);
   }
 
   @action
@@ -635,7 +633,13 @@ abstract class _HomeStore with Store {
           .getGameUrl(param)
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message),
+              (failure) {
+                String msg = MessageMap.getErrorMessage(
+                  failure.message,
+                  RouteEnum.HOME,
+                );
+                return setErrorMsg(msg: msg, type: FailureType.GAMES);
+              },
               (data) {
                 debugPrint('home store game url: $data');
                 gameUrl = data;
@@ -661,7 +665,7 @@ abstract class _HomeStore with Store {
         _recommendController.close(),
         _favoriteController.close(),
         _searchPlatformController.close(),
-//        _searchGameController.close(),
+        _searchGameController.close(),
       ]);
     } catch (e) {
       MyLogger.warn(msg: 'close home stream error', error: e, tag: 'HomeStore');

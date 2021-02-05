@@ -73,14 +73,11 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
           if (result == null) return;
           if (result.code == 0) {
             callToastInfo(
-                (result.msg.isNotEmpty && result.msg.hasChinese)
-                    ? result.msg
-                    : localeStr.messageSuccess,
+                MessageMap.getSuccessMessage(result.msg, RouteEnum.WITHDRAW),
                 icon: Icons.check_circle_outline);
           } else {
-            callToastError((result.msg.isNotEmpty && result.msg.hasChinese)
-                ? result.msg
-                : localeStr.messageTaskFailed(localeStr.messageErrorWithdraw));
+            callToastError(
+                MessageMap.getErrorMessage(result.msg, RouteEnum.WITHDRAW));
           }
         },
       ),
@@ -100,22 +97,38 @@ class _WithdrawDisplayState extends State<WithdrawDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxWidth: Global.device.width - 12,
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            BankcardDisplayCard(
-              store: widget.store,
-              bankcard: widget.bankcard,
-              nested: true,
-            ),
-            WithdrawDisplayView(store: _store),
-          ],
-        ),
+      child: Observer(
+        // Observe using specific widget
+        builder: (_) {
+          switch (_store.state) {
+            case WithdrawStoreState.initial:
+              return SizedBox.shrink();
+            case WithdrawStoreState.loading:
+              return Center(child: LoadingWidget());
+            case WithdrawStoreState.loaded:
+              return Container(
+                constraints: BoxConstraints(
+                  maxWidth: Global.device.width - 12,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      BankcardDisplayCard(
+                        store: widget.store,
+                        bankcard: widget.bankcard,
+                        nested: true,
+                      ),
+                      WithdrawDisplayView(store: _store),
+                    ],
+                  ),
+                ),
+              );
+            default:
+              return SizedBox.shrink();
+          }
+        },
       ),
     );
   }

@@ -313,4 +313,23 @@ abstract class ThemeColorInterface {
   Color rollerTableHeaderColor;
   Color rollerTableTextColor;
   Color rollerTableDividerColor;
+
+  ///
+  /// Mission page color
+  ///
+  Color missionBackgroundLinear1;
+  Color missionBackgroundLinear2;
+  Color missionTabColor;
+  Color missionTabSelectedColor;
+  Color missionItemTitleTextColor;
+  Color missionItemSubtitleTextColor;
+  Color missionTextColor;
+  Color missionRefreshButtonColor;
+  Color missionRefreshButtonTextColor;
+  Color missionDialogBackgroundColor;
+  Color missionDialogTitleColor;
+  Color missionDialogDecorColor;
+  Color missionDialogTextColor;
+  Color missionRuleTextColor;
+  Color missionTextHighlightColor;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async'; //Timer
+import 'dart:async';
 import 'marquee_slide_item.dart';
 import 'marquee_slide_direction.dart';
 

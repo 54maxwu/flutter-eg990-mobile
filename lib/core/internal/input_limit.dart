@@ -3,7 +3,7 @@
 /// remember to check the locale strings
 ///
 class InputLimit {
-  static const int PASSWORD_MIN_OLD = 6;
+  static const int PASSWORD_MIN_OLD = 8;
   static const int PASSWORD_MIN = 8;
   static const int PASSWORD_MAX = 20;
 
@@ -24,9 +24,8 @@ class InputLimit {
   static const int ADDRESS_MAX = 100;
   static const int NOTE_MAX = 30;
 
-  // vn365, bkk:16~19   85bet:6~18
-  static const int CARD_MIN = 16;
-  static const int CARD_MAX = 19;
+  static const int CARD_MIN = 6;
+  static const int CARD_MAX = 19; // vn365, vw:6~19   85bet kk:6~18   bkk:16~19
 
   static const int RECOMMEND = 6;
   static const int VERIFY = 8;

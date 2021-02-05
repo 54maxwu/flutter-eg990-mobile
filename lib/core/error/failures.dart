@@ -73,8 +73,7 @@ extension FailureExtension on Failure {
       case _Failure.ErrorStatus:
         return '${(this.props.first as RequestStatusModel).msg}';
       case _Failure.ErrorCode:
-        RequestCodeModel data = this.props.first;
-        return '${data.msg}(code: ${data.code})';
+        return '${(this.props.first as RequestCodeModel).msg}(code: ${(this.props.first as RequestCodeModel).code})';
       case _Failure.DataType:
         return localeStr.messageErrorServerData;
       default:

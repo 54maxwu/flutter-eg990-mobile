@@ -52,8 +52,7 @@ class _ServiceRouteState extends State<ServiceRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop service route');
-        Future.delayed(
-            Duration(milliseconds: 100), () => RouterNavigate.navigateBack());
+        Future.delayed(Duration(milliseconds: 100), () => AppNavigator.back());
         return Future(() => true);
       },
       child: Scaffold(

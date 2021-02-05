@@ -17,7 +17,6 @@ abstract class _$PaymentTutorialData {
   bool operator ==(other) {
     if (identical(this, other)) return true;
     if (other is! PaymentTutorialData) return false;
-
     return true &&
         this.typeKey == other.typeKey &&
         this.key == other.key &&

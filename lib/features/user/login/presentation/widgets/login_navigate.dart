@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/features/router/app_global_streams.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/user_entity.dart';
 
@@ -37,18 +37,18 @@ class LoginNavigate extends StatelessWidget {
       Future.delayed(Duration(milliseconds: 1000)).whenComplete(() {
         try {
           dismiss();
-          if (ScreenNavigate.screenIndex == 2) {
-            ScreenNavigate.switchScreen();
+          if (AppNavigator.screenIndex == 2) {
+            AppNavigator.switchScreen(Screens.Feature);
           } else if (returnHomePage) {
             if (closeDialog) {
               Future.delayed(Duration(milliseconds: 100), () {
                 Navigator.of(context).pop();
-              }).whenComplete(() => RouterNavigate.navigateClean(force: true));
+              }).whenComplete(() => AppNavigator.returnToHome());
             } else {
-              RouterNavigate.navigateClean(force: true);
+              AppNavigator.returnToHome();
             }
           } else {
-            RouterNavigate.navigateToPage(RoutePage.member);
+            AppNavigator.navigateTo(RoutePage.member);
           }
           callback();
         } catch (e) {

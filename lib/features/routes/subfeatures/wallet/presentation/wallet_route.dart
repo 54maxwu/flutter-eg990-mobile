@@ -71,7 +71,7 @@ class _WalletRouteState extends State<WalletRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop wallet route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

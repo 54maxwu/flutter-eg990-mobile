@@ -21,7 +21,7 @@ abstract class ThemeInterface {
   static const double fieldHeight = 53.6;
   static const double fieldIconSize = 24.0;
   static const double prefixTextWidthFactor = 0.35;
-  static const double prefixTextSpacing = 0.0;
+  static const double prefixTextSpacing = 5.0;
   static const double prefixIconWidthFactor = 0.166;
   static const double suffixWidthFactor = 0.314;
   static const double horizontalInset = 32.0;
@@ -141,50 +141,4 @@ abstract class ThemeInterface {
     radius: 0.7,
     tileMode: TileMode.clamp,
   );
-  //
-  // static Gradient get navBarGradient => (themeColor.isDarkTheme)
-  //     ? LinearGradient(
-  //         begin: Alignment.bottomLeft,
-  //         end: Alignment.topRight,
-  //         colors: [
-  //           themeColor.barLinearColor1,
-  //           themeColor.barLinearColor2,
-  //           themeColor.barLinearColor3,
-  //         ],
-  //         stops: [0.1, 0.47, 1.0],
-  //         tileMode: TileMode.clamp,
-  //       )
-  //     : LinearGradient(
-  //         begin: Alignment.topLeft,
-  //         end: Alignment.bottomLeft,
-  //         colors: [
-  //           themeColor.barLinearColor1,
-  //           themeColor.barLinearColor2,
-  //         ],
-  //         stops: [0.1, 1.0],
-  //         tileMode: TileMode.clamp,
-  //       );
-  //
-  // static Gradient get menuBarGradient => (themeColor.isDarkTheme)
-  //     ? LinearGradient(
-  //         begin: Alignment.centerLeft,
-  //         end: Alignment.centerRight,
-  //         colors: [
-  //           themeColor.barLinearColor1,
-  //           themeColor.barLinearColor2,
-  //           themeColor.barLinearColor3,
-  //         ],
-  //         stops: [0.1, 0.2, 1.0],
-  //         tileMode: TileMode.clamp,
-  //       )
-  //     : LinearGradient(
-  //         begin: Alignment.topLeft,
-  //         end: Alignment.bottomLeft,
-  //         colors: [
-  //           themeColor.barLinearColor1,
-  //           themeColor.barLinearColor2,
-  //         ],
-  //         stops: [0.1, 1.0],
-  //         tileMode: TileMode.clamp,
-  //       );
 }

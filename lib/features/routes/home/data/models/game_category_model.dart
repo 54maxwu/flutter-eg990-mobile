@@ -43,8 +43,6 @@ enum GamePageType {
   Games,
   Recommend,
   Favorite,
-  MovieEg,
-  MovieNew,
   Promo,
   MovieWebsite,
   Website,
@@ -53,10 +51,6 @@ enum GamePageType {
 ///
 /// Define Category Type Key
 ///
-const GameCategoryModel movieEgCategory =
-    GameCategoryModel(type: 'eg_movie', ch: 'EG影城', info: GameCategory.egMovie);
-const GameCategoryModel movieNewCategory = GameCategoryModel(
-    type: 'new_movie', ch: '新影城', info: GameCategory.newMovie);
 const GameCategoryModel recommendCategory = GameCategoryModel(
     type: 'recommend', ch: '推荐', info: GameCategory.recommend);
 const GameCategoryModel favoriteCategory =
@@ -82,8 +76,6 @@ const Map<String, GameCategory> _categoryMap = {
   'card': GameCategory.card,
   'gift': GameCategory.gift,
   'cockfighting': GameCategory.cockfighting,
-  'eg_movie': GameCategory.egMovie,
-  'new_movie': GameCategory.newMovie,
   'recommend': GameCategory.recommend,
   'favorite': GameCategory.favorite,
   'promo': GameCategory.promo,
@@ -93,22 +85,8 @@ const Map<String, GameCategory> _categoryMap = {
 
 extension GameCategoryModelExtension on GameCategoryModel {
   String get label => info.value.label ?? '?';
-
   String get iconUrl => info.value.imageUrl ?? '';
-  String get assetPath => info.value.assetPath;
+  String get assetPath => info.value.assetPath ?? '';
+  IconData get iconData => info.value.iconData;
   GamePageType get pageType => info.value.pageType;
-
-  IconData get iconCode {
-//    debugPrint('looking for icon code: $type');
-    switch (type) {
-      case 'promo':
-        return IconCode.navPromo;
-      case 'movieweb':
-        return IconCode.tabMovieWebsite;
-      case 'website':
-        return IconCode.tabWebsite;
-      default:
-        return IconCode.tabUnknown;
-    }
-  }
 }

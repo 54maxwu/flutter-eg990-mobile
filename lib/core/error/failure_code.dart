@@ -31,7 +31,6 @@ class FailureType extends Vnum<int> {
   static const FailureType RECOMMENDS = const FailureType.define(1400);
   static const FailureType FAVORITE = const FailureType.define(1500);
   static const FailureType MOVIE_TAB = const FailureType.define(1600);
-  static const FailureType MOVIE = const FailureType.define(1700);
   static const FailureType PROMO = const FailureType.define(1800);
   static const FailureType MORE = const FailureType.define(1900);
 

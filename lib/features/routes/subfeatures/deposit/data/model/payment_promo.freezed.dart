@@ -59,37 +59,37 @@ const $PaymentPromo = _$PaymentPromoTearOff();
 /// @nodoc
 mixin _$PaymentPromo {
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult when<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
     @required
-        Result data(
+        TResult data(
             @JsonKey(name: 'promoid', required: true)
                 int promoId,
             @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
                 String promoDesc),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
-    Result data(
+    TResult data(
         @JsonKey(name: 'promoid', required: true)
             int promoId,
         @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
             String promoDesc),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    @required Result data(PaymentPromoData value),
+  TResult map<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    @required TResult data(PaymentPromoData value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    Result data(PaymentPromoData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    TResult data(PaymentPromoData value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
 }
@@ -183,6 +183,7 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
       const DeepCollectionEquality().hash(local) ^
       const DeepCollectionEquality().hash(other);
 
+  @JsonKey(ignore: true)
   @override
   $PaymentPromoTypeJsonCopyWith<PaymentPromoTypeJson> get copyWith =>
       _$PaymentPromoTypeJsonCopyWithImpl<PaymentPromoTypeJson>(
@@ -190,11 +191,11 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult when<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
     @required
-        Result data(
+        TResult data(
             @JsonKey(name: 'promoid', required: true)
                 int promoId,
             @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
@@ -207,15 +208,15 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
-    Result data(
+    TResult data(
         @JsonKey(name: 'promoid', required: true)
             int promoId,
         @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
             String promoDesc),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -226,9 +227,9 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    @required Result data(PaymentPromoData value),
+  TResult map<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    @required TResult data(PaymentPromoData value),
   }) {
     assert($default != null);
     assert(data != null);
@@ -237,10 +238,10 @@ class _$PaymentPromoTypeJson implements PaymentPromoTypeJson {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    Result data(PaymentPromoData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    TResult data(PaymentPromoData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -268,6 +269,7 @@ abstract class PaymentPromoTypeJson implements PaymentPromo {
   dynamic get local;
   @JsonKey(name: '2', defaultValue: '')
   dynamic get other;
+  @JsonKey(ignore: true)
   $PaymentPromoTypeJsonCopyWith<PaymentPromoTypeJson> get copyWith;
 }
 
@@ -349,17 +351,18 @@ class _$PaymentPromoData implements PaymentPromoData {
       const DeepCollectionEquality().hash(promoId) ^
       const DeepCollectionEquality().hash(promoDesc);
 
+  @JsonKey(ignore: true)
   @override
   $PaymentPromoDataCopyWith<PaymentPromoData> get copyWith =>
       _$PaymentPromoDataCopyWithImpl<PaymentPromoData>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult when<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
     @required
-        Result data(
+        TResult data(
             @JsonKey(name: 'promoid', required: true)
                 int promoId,
             @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
@@ -372,15 +375,15 @@ class _$PaymentPromoData implements PaymentPromoData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(@JsonKey(name: '1', defaultValue: '') dynamic local,
         @JsonKey(name: '2', defaultValue: '') dynamic other), {
-    Result data(
+    TResult data(
         @JsonKey(name: 'promoid', required: true)
             int promoId,
         @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
             String promoDesc),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (data != null) {
@@ -391,9 +394,9 @@ class _$PaymentPromoData implements PaymentPromoData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    @required Result data(PaymentPromoData value),
+  TResult map<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    @required TResult data(PaymentPromoData value),
   }) {
     assert($default != null);
     assert(data != null);
@@ -402,10 +405,10 @@ class _$PaymentPromoData implements PaymentPromoData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(PaymentPromoTypeJson value), {
-    Result data(PaymentPromoData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(PaymentPromoTypeJson value), {
+    TResult data(PaymentPromoData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (data != null) {
@@ -434,5 +437,6 @@ abstract class PaymentPromoData implements PaymentPromo {
   int get promoId;
   @JsonKey(name: 'promodesc', required: true, defaultValue: '?')
   String get promoDesc;
+  @JsonKey(ignore: true)
   $PaymentPromoDataCopyWith<PaymentPromoData> get copyWith;
 }

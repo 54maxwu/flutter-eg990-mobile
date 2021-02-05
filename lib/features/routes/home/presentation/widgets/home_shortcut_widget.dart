@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';
@@ -174,6 +174,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
 
   Widget _buildContent(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
           constraints: (isUserContent)
@@ -280,13 +281,14 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
 
   Widget _buildUserInfo() {
     return RichText(
+      maxLines: 1,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
             text: '${localeStr.homeHintMemberCreditLeft} ',
-            style: TextStyle(fontSize: _leftAreaTextSize),
+            style: TextStyle(fontSize: _leftAreaTextSize - 2.0),
           ),
           TextSpan(
             text: (_currentCredit.contains('-'))
@@ -314,37 +316,37 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: _createIconButton(
+              child: _createShortcutButton(
                 page: RoutePage.depositFeature,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconDeposit,
+                iconData: IconCode.navDeposit,
               ),
             ),
             Expanded(
               flex: 1,
-              child: _createIconButton(
+              child: _createShortcutButton(
                 page: RoutePage.withdraw,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconWithdraw,
+                iconData: IconCode.gridWithdraw,
               ),
             ),
             Expanded(
               flex: 1,
-              child: _createIconButton(
+              child: _createShortcutButton(
                 page: RoutePage.transfer,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconTransfer,
+                iconData: IconCode.gridTransfer,
               ),
             ),
             Expanded(
               flex: 1,
-              child: _createIconButton(
+              child: _createShortcutButton(
                 page: RoutePage.promo,
-                imageUrl: Res.homeMemberAreaIconOther,
+                iconData: IconCode.navPromo,
                 isLast: true,
               ),
             ),
@@ -354,7 +356,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     );
   }
 
-  Widget _createIconButton({
+  Widget _createShortcutButton({
     RoutePage page,
     bool isUserOnly = false,
     String replaceLabel,
@@ -362,64 +364,53 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
     IconData iconData,
     bool isLast = false,
   }) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 2.0, 2.0),
-      child: GestureDetector(
-        onTap: () {
-          if (isUserOnly && !isUserContent && page != null) {
-            toastLogin();
-          } else if (page != null) {
-            RouterNavigate.navigateToPage(page);
-          } else {
-            callToastInfo(localeStr.workInProgress);
-          }
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            (imageUrl != null)
-                ? Container(
-                    constraints: BoxConstraints.tight(_iconSize),
-                    child: (imageUrl.startsWith('assets')
-                        ? Image.asset(imageUrl)
-                        : networkImageBuilder(imageUrl)))
-                : Container(
-                    constraints: BoxConstraints.tight(_iconSize / 6 * 5),
-                    padding: const EdgeInsets.all(6.0),
-                    child: Transform.scale(
-                      scale: 0.75,
-                      child: (iconData != null)
-                          ? Icon(
-                              iconData,
-                              color: themeColor.homeBoxIconColor,
-                            )
-                          : Icon(
-                              Icons.broken_image,
-                              color: themeColor.homeBoxIconColor,
-                            ),
-                    ),
-                  ),
-            Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 0.0),
-                  child: AutoSizeText.rich(
-                    TextSpan(
-                      text: replaceLabel ?? page.pageTitle ?? '',
-                      style: TextStyle(
-                        fontSize: _smallerWidget
-                            ? FontSize.SMALLER.value
-                            : FontSize.NORMAL.value,
-                        color: themeColor.homeBoxIconTextColor,
-                      ),
-                    ),
-                    maxLines: 2,
-                    minFontSize: 10.0,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  )),
+    return GestureDetector(
+      onTap: () {
+        if (isUserOnly && !isUserContent && page != null) {
+          toastLogin();
+        } else if (page != null) {
+          AppNavigator.navigateTo(page);
+        } else {
+          callToastInfo(localeStr.workInProgress);
+        }
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+            child: Container(
+              constraints: BoxConstraints.tight(_iconSize),
+              child: (imageUrl != null)
+                  ? networkImageBuilder(imageUrl)
+                  : (iconData != null)
+                      ? Icon(
+                          iconData,
+                          color: themeColor.homeBoxIconColor,
+                        )
+                      : Icon(
+                          Icons.broken_image,
+                          color: themeColor.homeBoxIconColor,
+                        ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(top: 4.0),
+              alignment: Alignment.center,
+              child: AutoSizeText(
+                replaceLabel ?? page.pageTitle ?? '',
+                style: TextStyle(color: themeColor.homeBoxIconTextColor),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                minFontSize: FontSize.SMALLER.value,
+                maxFontSize: FontSize.NORMAL.value,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

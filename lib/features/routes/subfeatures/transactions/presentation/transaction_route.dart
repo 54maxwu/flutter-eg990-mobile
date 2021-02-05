@@ -129,7 +129,7 @@ class _TransactionRouteState extends State<TransactionRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop transaction route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

@@ -57,7 +57,7 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //                ),
 //              ),
 //              visualDensity: VisualDensity(horizontal: -3.0),
-//              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login),
+//              onPressed: () => AppNavigator.navigateToPage(RoutePage.login),
 //            ),
 //            SizedBox(width: 4.0),
 //            RaisedButton(
@@ -69,7 +69,7 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //                ),
 //              ),
 //              visualDensity: VisualDensity(horizontal: -3.0),
-//              onPressed: () => RouterNavigate.navigateToPage(RoutePage.login,
+//              onPressed: () => AppNavigator.navigateToPage(RoutePage.login,
 //                  arg: LoginRouteArguments(returnHomeAfterLogin: true)),
 //            ),
 //            SizedBox(width: 4.0),
@@ -85,7 +85,7 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
               ),
               visualDensity: VisualDensity(vertical: -1.0),
               onPressed: () {
-                RouterNavigate.navigateToPage(RoutePage.register);
+                AppNavigator.navigateTo(RoutePage.register);
               },
             ),
           ],

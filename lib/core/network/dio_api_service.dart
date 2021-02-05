@@ -68,9 +68,9 @@ class DioApiService {
         'content-type': 'application/json, text/plain, */*',
       },
       // 連線伺服器超時時間，單位是毫秒.
-      connectTimeout: 60000,
+      connectTimeout: 1000 * 60,
       // 響應流上前後兩次接受到數據的間隔，單位為毫秒。
-      receiveTimeout: 5000,
+      receiveTimeout: 1000 * 5,
       // 表示期望以那種格式(方式)接受響應數據。接受4種類型 `json`, `stream`, `plain`, `bytes`. 預設值是 `json`,
       responseType: ResponseType.json,
     );
@@ -113,7 +113,9 @@ class DioApiService {
               ? Options(headers: {'JWT-TOKEN': userToken})
               : (agentToken != null)
                   ? Options(headers: {'JWT-TOKEN-AGENT': agentToken})
-                  : (headers != null) ? Options(headers: headers) : options,
+                  : (headers != null)
+                      ? Options(headers: headers)
+                      : options,
           cancelToken: cancelToken);
     } on DioError catch (e) {
       throw getErrorType(e);
@@ -164,9 +166,9 @@ class DioApiService {
     StreamController<String> stream,
   }) async {
     try {
-      for (int i = 0; i < keyList.length; i++) {
-        debugPrint('$i: ${keyList[i]}');
-      }
+      // for (int i = 0; i < keyList.length; i++) {
+      //   debugPrint('$i: ${keyList[i]}');
+      // }
       Map<String, dynamic> resultMap = new Map();
       int index = 0;
       debugPrint(
@@ -180,9 +182,7 @@ class DioApiService {
             .post(url,
                 data: data,
                 options: (userToken != null)
-                    ? Options(headers: {
-                        'JWT-TOKEN': userToken,
-                      })
+                    ? Options(headers: {'JWT-TOKEN': userToken})
                     : options,
                 cancelToken: cancelToken)
             .catchError((error) {

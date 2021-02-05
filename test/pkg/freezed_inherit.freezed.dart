@@ -57,28 +57,29 @@ mixin _$FreezedParent {
   String get credit;
 
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $FreezedParentCopyWith<FreezedParent> get copyWith;
 }
 
@@ -180,15 +181,16 @@ class _$FreezedParentData implements FreezedParentData {
       const DeepCollectionEquality().hash(account) ^
       const DeepCollectionEquality().hash(credit);
 
+  @JsonKey(ignore: true)
   @override
   $FreezedParentDataCopyWith<FreezedParentData> get copyWith =>
       _$FreezedParentDataCopyWithImpl<FreezedParentData>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   }) {
     assert($default != null);
     assert(child != null);
@@ -197,10 +199,10 @@ class _$FreezedParentData implements FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -211,9 +213,9 @@ class _$FreezedParentData implements FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   }) {
     assert($default != null);
     assert(child != null);
@@ -222,10 +224,10 @@ class _$FreezedParentData implements FreezedParentData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -257,6 +259,7 @@ abstract class FreezedParentData implements FreezedParent {
   @override
   String get credit;
   @override
+  @JsonKey(ignore: true)
   $FreezedParentDataCopyWith<FreezedParentData> get copyWith;
 }
 
@@ -336,15 +339,16 @@ class _$FreezedChildData implements FreezedChildData {
       const DeepCollectionEquality().hash(credit) ^
       const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   $FreezedChildDataCopyWith<FreezedChildData> get copyWith =>
       _$FreezedChildDataCopyWithImpl<FreezedChildData>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String account, String credit), {
-    @required Result child(String account, String credit, String status),
+  TResult when<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    @required TResult child(String account, String credit, String status),
   }) {
     assert($default != null);
     assert(child != null);
@@ -353,10 +357,10 @@ class _$FreezedChildData implements FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String account, String credit), {
-    Result child(String account, String credit, String status),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String account, String credit), {
+    TResult child(String account, String credit, String status),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (child != null) {
@@ -367,9 +371,9 @@ class _$FreezedChildData implements FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    @required Result child(FreezedChildData value),
+  TResult map<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    @required TResult child(FreezedChildData value),
   }) {
     assert($default != null);
     assert(child != null);
@@ -378,10 +382,10 @@ class _$FreezedChildData implements FreezedChildData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(FreezedParentData value), {
-    Result child(FreezedChildData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(FreezedParentData value), {
+    TResult child(FreezedChildData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (child != null) {
@@ -414,5 +418,6 @@ abstract class FreezedChildData implements FreezedParent {
   String get credit;
   String get status;
   @override
+  @JsonKey(ignore: true)
   $FreezedChildDataCopyWith<FreezedChildData> get copyWith;
 }

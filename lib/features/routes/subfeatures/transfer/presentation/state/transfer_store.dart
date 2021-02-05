@@ -1,8 +1,8 @@
 import 'package:flutter_eg990_mobile/core/mobx_store_export.dart';
-import 'package:flutter_eg990_mobile/core/network/handler/request_status_model.dart';
 
 import '../../data/form/transfer_form.dart';
 import '../../data/models/transfer_platform_model.dart';
+import '../../data/models/transfer_result_model.dart';
 import '../../data/repository/transfer_repository.dart';
 
 part 'transfer_store.g.dart';
@@ -41,7 +41,7 @@ abstract class _TransferStore with Store {
   List<TransferPlatformModel> platforms;
 
   @observable
-  RequestStatusModel transferResult;
+  TransferResultModel transferResult;
 
   @observable
   bool waitForTransferResult = false;

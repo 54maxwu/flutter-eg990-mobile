@@ -19,6 +19,7 @@ abstract class CenterModel with _$CenterModel {
     @Default('') String gender,
     @Default('') String email,
     @Default('') String wechat,
+    @Default('') String zalo,
     @JsonKey(name: 'firstname', defaultValue: '') String firstName,
     @JsonKey(name: 'auto_transfer', defaultValue: '-1') String autoTransfer,
     @JsonKey(name: 'cGP_wallet', defaultValue: '') String cgpWallet,
@@ -58,6 +59,7 @@ abstract class CenterModel with _$CenterModel {
         gender: jsonMap['gender'] as String ?? '',
         email: jsonMap['email'] as String ?? '',
         wechat: jsonMap['wechat'] as String ?? '',
+        zalo: jsonMap['zalo'] as String ?? '',
         firstName: jsonMap['firstname'] as String ?? '',
         autoTransfer: jsonMap['auto_transfer'] as String ?? '-1',
         cgpWallet: jsonMap['cGP_wallet'] as String ?? '',
@@ -109,10 +111,9 @@ extension CenterModelExtension on CenterModel {
         gender: gender,
         email: email,
         wechat: wechat,
+        zalo: zalo,
         firstName: firstName,
         autoTransfer: autoTransfer,
-        cgpWallet: cgpWallet,
-        cpwWallet: cpwWallet,
       );
     } on Exception catch (e) {
       MyLogger.debug(msg: 'center account data error: $e');
@@ -148,7 +149,7 @@ extension CenterModelExtension on CenterModel {
         sportGameValue: sportGameValue,
       );
     } on Exception catch (e) {
-      print('center vip data error: $e');
+      debugPrint('center vip data error: $e');
       return null;
     }
   }

@@ -8,7 +8,7 @@ export 'package:flutter_eg990_mobile/features/routes/home/data/models/game_categ
     show GameCategoryModelAdapter;
 export 'package:flutter_eg990_mobile/features/routes/home/data/models/game_platform.dart'
     show GamePlatformEntityAdapter;
-export 'package:flutter_eg990_mobile/features/routes/promo/data/models/promo_freezed.dart'
+export 'package:flutter_eg990_mobile/features/routes/subfeatures/promo/data/models/promo_freezed.dart'
     show PromoEntityAdapter;
 export 'package:flutter_eg990_mobile/features/user/data/form/login_form.dart'
     show LoginHiveFormAdapter;

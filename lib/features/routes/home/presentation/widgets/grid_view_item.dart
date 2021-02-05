@@ -90,6 +90,8 @@ class GridViewItem extends StatelessWidget {
               if (!isPlatform)
                 Container(
                   constraints: BoxConstraints.tight(Size(imageSize, imageSize)),
+                  padding:
+                      (mixed) ? EdgeInsets.only(top: 6.0) : EdgeInsets.zero,
                   child: (imgUrl != null)
                       ? Transform.scale(
                           scale: (mixed) ? 0.8 : 0.85,
@@ -101,7 +103,9 @@ class GridViewItem extends StatelessWidget {
               Container(
                 constraints: BoxConstraints.tight(
                     Size(imageSize * labelMaxWidthFactor, labelHeight)),
-                padding: EdgeInsets.only(bottom: verticalSpaceAroundLabel),
+                padding: EdgeInsets.only(
+                    bottom: verticalSpaceAroundLabel,
+                    top: (mixed && !isPlatform && twoLine) ? 3.0 : 0),
                 child: AutoSizeText(
                   label ?? '?',
                   style: TextStyle(

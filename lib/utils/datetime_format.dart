@@ -9,6 +9,8 @@ final DateFormat _dateEndFormat = DateFormat("yyyy-MM-dd 23:59:59");
 /// Get [DateTime.now] as String
 String getDateTime() => DateTime.now().toDatetimeString;
 
+String getDate() => DateTime.now().toDateString;
+
 List<String> getDayRange({int beforeDays = 0}) {
   DateTime dayTime = DateTime.now().subtract(Duration(days: beforeDays));
   debugPrint('$beforeDays days before: $dayTime');

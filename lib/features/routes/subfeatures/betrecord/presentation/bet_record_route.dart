@@ -74,7 +74,7 @@ class _BetRecordRouteState extends State<BetRecordRoute> {
     return WillPopScope(
       onWillPop: () {
         debugPrint('pop bet-record route');
-        RouterNavigate.navigateBack();
+        AppNavigator.back();
         return Future(() => true);
       },
       child: Scaffold(

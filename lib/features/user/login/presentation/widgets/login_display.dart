@@ -28,8 +28,7 @@ class LoginDisplay extends StatefulWidget {
 }
 
 class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
-  static final GlobalKey<FormState> _formKey =
-      new GlobalKey(debugLabel: 'form');
+  final GlobalKey<FormState> _formKey = new GlobalKey(debugLabel: 'form');
   final GlobalKey<CustomizeFieldWidgetState> _accountFieldKey =
       new GlobalKey(debugLabel: 'name');
   final GlobalKey<CustomizeFieldWidgetState> _pwdFieldKey =
@@ -272,7 +271,10 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
               hint: localeStr.hintAccountInput,
               prefixIconData: const IconData(0xf2bd, fontFamily: 'FontAwesome'),
               maxInputLength: InputLimit.ACCOUNT_MAX,
-              errorMsg: localeStr.messageInvalidAccount,
+              errorMsg: localeStr.messageInvalidAccount(
+                InputLimit.ACCOUNT_MIN,
+                InputLimit.ACCOUNT_MAX,
+              ),
               validCondition: (value) => rangeCheck(
                   value: value.length,
                   min: InputLimit.ACCOUNT_MIN,
@@ -286,11 +288,15 @@ class _LoginDisplayState extends State<LoginDisplay> with AfterLayoutMixin {
               hint: localeStr.hintPasswordInput,
               prefixIconData: const IconData(0xf13e, fontFamily: 'FontAwesome'),
               maxInputLength: InputLimit.PASSWORD_MAX,
-              errorMsg: localeStr.messageInvalidPassword,
+              errorMsg: localeStr.messageInvalidPassword(
+                InputLimit.PASSWORD_MIN_OLD,
+                InputLimit.PASSWORD_MAX,
+              ),
               validCondition: (value) => rangeCheck(
-                  value: value.length,
-                  min: InputLimit.PASSWORD_MIN_OLD,
-                  max: InputLimit.PASSWORD_MAX),
+                value: value.length,
+                min: InputLimit.PASSWORD_MIN_OLD,
+                max: InputLimit.PASSWORD_MAX,
+              ),
             ),
             SizedBox(height: 8.0),
             /* Login CheckBox */

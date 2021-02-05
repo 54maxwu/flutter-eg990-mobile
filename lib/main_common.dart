@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_eg990_mobile/core/internal/language_code.dart';
 import 'package:flutter_eg990_mobile/core/internal/orientation_helper.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
@@ -11,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'core/data/hive_actions.dart';
 import 'core/data/hive_adapters_export.dart';
 import 'core/internal/global.dart';
+import 'core/internal/language.dart';
 import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
@@ -19,17 +21,15 @@ import 'injection_container.dart' as di;
 Future<void> mainCommon(Environment env) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
+
   // Load the JSON config into memory
   await ConfigReader.initialize();
-
   switch (env) {
-    case Environment.DEV:
-      debugPrint(
-          'DEV Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
-      break;
-    case Environment.RELEASE:
-      debugPrint(
-          'RELEASE Config Version: ${ConfigReader.getVersion()}, add analytics: ${Global.addAnalytics}');
+    // case Environment.FIREBASE:
+    //   GaInterface.setAnalytics = new FirebaseAnalytics();
+    //   break;
+    default:
+      // debugPrint('DEV Config Version: ${ConfigReader.getVersion()}');
       break;
   }
 
@@ -68,30 +68,39 @@ Future<void> mainCommon(Environment env) async {
 
   // check app language setting
   try {
+    Global.lang ??= Language();
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      if (Global.lockLanguage == false) {
+      if (!Global.lang.locked) {
         // set language as user preference
-        Global.setLanguage =
-            box.get(Global.CACHE_APP_DATA_KEY_LANG, defaultValue: 'zh');
-      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.lang) {
+        Global.lang.setLocale = box.get(
+          Global.CACHE_APP_DATA_KEY_LANG,
+          defaultValue: defaultLocale.value.code,
+        );
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.lang.code) {
         // override language if language is locked and different as default
-        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang.code);
       }
     } else {
-      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang.code);
     }
   } catch (e) {
     debugPrint('read app language setting has error!! $e');
   } finally {
-    debugPrint('app language: ${Global.lang}');
+    debugPrint('app language: ${Global.lang.code}');
   }
 
   // hide keyboard and wait for 500ms to get the correct viewInset
   await SystemChannels.textInput.invokeMethod('TextInput.hide');
   await Future.delayed(Duration(milliseconds: 500));
 
-  // run application
+  // if (env == Environment.FIREBASE) {
+  //   // run application with Firebase
+  //   runApp(new MainAppWithFirebase());
+  // } else {
+  //   // run application
+  //   runApp(new MainApp());
+  // }
   runApp(new MainApp());
 }
 

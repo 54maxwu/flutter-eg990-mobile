@@ -8,10 +8,6 @@ part of 'transfer_platform_model.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-TransferPlatformModel _$TransferPlatformModelFromJson(
-    Map<String, dynamic> json) {
-  return _TransferPlatformModel.fromJson(json);
-}
 
 /// @nodoc
 class _$TransferPlatformModelTearOff {
@@ -25,11 +21,6 @@ class _$TransferPlatformModelTearOff {
       name: name,
     );
   }
-
-// ignore: unused_element
-  TransferPlatformModel fromJson(Map<String, Object> json) {
-    return TransferPlatformModel.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -42,7 +33,7 @@ mixin _$TransferPlatformModel {
   @JsonKey(name: 'site_name')
   String get name;
 
-  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $TransferPlatformModelCopyWith<TransferPlatformModel> get copyWith;
 }
 
@@ -108,15 +99,10 @@ class __$TransferPlatformModelCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
 class _$_TransferPlatformModel implements _TransferPlatformModel {
   const _$_TransferPlatformModel(
       {this.site, @JsonKey(name: 'site_name') this.name});
-
-  factory _$_TransferPlatformModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_TransferPlatformModelFromJson(json);
 
   @override
   final String site;
@@ -145,15 +131,11 @@ class _$_TransferPlatformModel implements _TransferPlatformModel {
       const DeepCollectionEquality().hash(site) ^
       const DeepCollectionEquality().hash(name);
 
+  @JsonKey(ignore: true)
   @override
   _$TransferPlatformModelCopyWith<_TransferPlatformModel> get copyWith =>
       __$TransferPlatformModelCopyWithImpl<_TransferPlatformModel>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_TransferPlatformModelToJson(this);
-  }
 }
 
 abstract class _TransferPlatformModel implements TransferPlatformModel {
@@ -161,15 +143,13 @@ abstract class _TransferPlatformModel implements TransferPlatformModel {
       {String site,
       @JsonKey(name: 'site_name') String name}) = _$_TransferPlatformModel;
 
-  factory _TransferPlatformModel.fromJson(Map<String, dynamic> json) =
-      _$_TransferPlatformModel.fromJson;
-
   @override
   String get site;
   @override
   @JsonKey(name: 'site_name')
   String get name;
   @override
+  @JsonKey(ignore: true)
   _$TransferPlatformModelCopyWith<_TransferPlatformModel> get copyWith;
 }
 
@@ -193,6 +173,7 @@ const $TransferPlatformList = _$TransferPlatformListTearOff();
 mixin _$TransferPlatformList {
   List<TransferPlatformModel> get list;
 
+  @JsonKey(ignore: true)
   $TransferPlatformListCopyWith<TransferPlatformList> get copyWith;
 }
 
@@ -278,6 +259,7 @@ class _$_TransferPlatformList implements _TransferPlatformList {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
 
+  @JsonKey(ignore: true)
   @override
   _$TransferPlatformListCopyWith<_TransferPlatformList> get copyWith =>
       __$TransferPlatformListCopyWithImpl<_TransferPlatformList>(
@@ -291,5 +273,6 @@ abstract class _TransferPlatformList implements TransferPlatformList {
   @override
   List<TransferPlatformModel> get list;
   @override
+  @JsonKey(ignore: true)
   _$TransferPlatformListCopyWith<_TransferPlatformList> get copyWith;
 }

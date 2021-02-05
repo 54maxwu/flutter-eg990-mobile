@@ -18,7 +18,7 @@ class _$RouteInfoTearOff {
       {@required RouteEnum id,
       @required String route,
       Object routeArg,
-      String root = Routes.homeRoute,
+      String root = FeatureScreenRoutes.homeRoute,
       bool isFeature = false,
       bool isUserOnly = false,
       bool showDrawer = false,
@@ -77,6 +77,7 @@ mixin _$RouteInfo {
   /// for promo and banner to find nav destination
   String get webPageName;
 
+  @JsonKey(ignore: true)
   $RouteInfoCopyWith<RouteInfo> get copyWith;
 }
 
@@ -219,7 +220,7 @@ class _$_RouteInfo implements _RouteInfo {
       {@required this.id,
       @required this.route,
       this.routeArg,
-      this.root = Routes.homeRoute,
+      this.root = FeatureScreenRoutes.homeRoute,
       this.isFeature = false,
       this.isUserOnly = false,
       this.showDrawer = false,
@@ -243,7 +244,7 @@ class _$_RouteInfo implements _RouteInfo {
   final String route;
   @override
   final Object routeArg;
-  @JsonKey(defaultValue: Routes.homeRoute)
+  @JsonKey(defaultValue: FeatureScreenRoutes.homeRoute)
   @override
   final String root;
   @JsonKey(defaultValue: false)
@@ -340,6 +341,7 @@ class _$_RouteInfo implements _RouteInfo {
       const DeepCollectionEquality().hash(bottomNavIndex) ^
       const DeepCollectionEquality().hash(webPageName);
 
+  @JsonKey(ignore: true)
   @override
   _$RouteInfoCopyWith<_RouteInfo> get copyWith =>
       __$RouteInfoCopyWithImpl<_RouteInfo>(this, _$identity);
@@ -399,5 +401,6 @@ abstract class _RouteInfo implements RouteInfo {
   /// for promo and banner to find nav destination
   String get webPageName;
   @override
+  @JsonKey(ignore: true)
   _$RouteInfoCopyWith<_RouteInfo> get copyWith;
 }

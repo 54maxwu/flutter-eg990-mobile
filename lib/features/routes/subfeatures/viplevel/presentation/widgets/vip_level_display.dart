@@ -31,7 +31,7 @@ class VipLevelDisplay extends StatelessWidget {
 
   Widget _buildLevel(VipLevelName level) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 12.0),
+      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 12.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
@@ -67,9 +67,13 @@ class VipLevelDisplay extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  networkImageBuilder(
-                    'images/vip/${level.img}.png',
-                    imgScale: 1.75,
+                  Container(
+                    constraints: BoxConstraints(
+                      maxWidth: 36 * Global.device.widthScale,
+                    ),
+                    child: networkImageBuilder(
+                      'images/vip/${level.img}.png',
+                    ),
                   ),
                   Container(
                     constraints: BoxConstraints(
@@ -123,7 +127,7 @@ class VipLevelDisplay extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          flex: 7,
+                          flex: 5,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 4.0,
@@ -134,13 +138,13 @@ class VipLevelDisplay extends StatelessWidget {
                                 color: themeColor.vipTitleColor,
                                 fontSize: FontSize.SMALLER.value,
                               ),
-                              maxLines: 1,
+                              maxLines: 2,
                               overflow: TextOverflow.visible,
                             ),
                           ),
                         ),
                         Expanded(
-                          flex: 5,
+                          flex: 4,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 4.0,
@@ -153,7 +157,7 @@ class VipLevelDisplay extends StatelessWidget {
                                     : themeColor.vipLevelTextColor,
                                 fontSize: FontSize.SMALLER.value,
                               ),
-                              maxLines: 1,
+                              maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),

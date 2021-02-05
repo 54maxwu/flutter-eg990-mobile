@@ -23,6 +23,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
 
   @override
   Future<Either<Failure, String>> updateCredit() async {
+    ///TODO need to fix multiple calls in a short time
     final result = await requestModel<UserModel>(
       request: dioApiService.get(UserInfoApi.GET_ACCOUNT_LIMIT,
           userToken: jwtInterface.token),
@@ -38,6 +39,7 @@ class UserInfoRepositoryImpl implements UserInfoRepository {
 
   @override
   Future<Either<Failure, bool>> checkNewMessage() async {
+    ///TODO need to fix multiple calls in a short time
     final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(UserInfoApi.GET_NEW_MESSAGE_COUNT),
       jsonToModel: RequestCodeModel.jsonToCodeModel,

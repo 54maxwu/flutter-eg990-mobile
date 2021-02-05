@@ -33,6 +33,7 @@ mixin _$NoticeModel {
   NoticeDataModel get data;
   String get msg;
 
+  @JsonKey(ignore: true)
   $NoticeModelCopyWith<NoticeModel> get copyWith;
 }
 
@@ -150,6 +151,7 @@ class _$_NoticeModel implements _NoticeModel {
       const DeepCollectionEquality().hash(data) ^
       const DeepCollectionEquality().hash(msg);
 
+  @JsonKey(ignore: true)
   @override
   _$NoticeModelCopyWith<_NoticeModel> get copyWith =>
       __$NoticeModelCopyWithImpl<_NoticeModel>(this, _$identity);
@@ -166,6 +168,7 @@ abstract class _NoticeModel implements NoticeModel {
   @override
   String get msg;
   @override
+  @JsonKey(ignore: true)
   _$NoticeModelCopyWith<_NoticeModel> get copyWith;
 }
 
@@ -192,6 +195,7 @@ mixin _$NoticeDataModel {
   List<NoticeData> get maintenanceList;
   List<NoticeData> get marqueeList;
 
+  @JsonKey(ignore: true)
   $NoticeDataModelCopyWith<NoticeDataModel> get copyWith;
 }
 
@@ -297,6 +301,7 @@ class _$_NoticeDataModel implements _NoticeDataModel {
       const DeepCollectionEquality().hash(maintenanceList) ^
       const DeepCollectionEquality().hash(marqueeList);
 
+  @JsonKey(ignore: true)
   @override
   _$NoticeDataModelCopyWith<_NoticeDataModel> get copyWith =>
       __$NoticeDataModelCopyWithImpl<_NoticeDataModel>(this, _$identity);
@@ -312,6 +317,7 @@ abstract class _NoticeDataModel implements NoticeDataModel {
   @override
   List<NoticeData> get marqueeList;
   @override
+  @JsonKey(ignore: true)
   _$NoticeDataModelCopyWith<_NoticeDataModel> get copyWith;
 }
 
@@ -321,9 +327,17 @@ class _$NoticeDataTearOff {
 
 // ignore: unused_element
   _NoticeData call(
-      {@JsonKey(name: 'content_cn') String content, String date, int sort}) {
+      {@JsonKey(name: 'content_cn', defaultValue: '') String content,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String date,
+      int sort}) {
     return _NoticeData(
       content: content,
+      contentEN: contentEN,
+      contentVI: contentVI,
+      contentTH: contentTH,
       date: date,
       sort: sort,
     );
@@ -336,11 +350,18 @@ const $NoticeData = _$NoticeDataTearOff();
 
 /// @nodoc
 mixin _$NoticeData {
-  @JsonKey(name: 'content_cn')
+  @JsonKey(name: 'content_cn', defaultValue: '')
   String get content;
+  @JsonKey(name: 'content_us', defaultValue: '')
+  String get contentEN;
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  String get contentVI;
+  @JsonKey(name: 'content_th', defaultValue: '')
+  String get contentTH;
   String get date;
   int get sort;
 
+  @JsonKey(ignore: true)
   $NoticeDataCopyWith<NoticeData> get copyWith;
 }
 
@@ -350,7 +371,12 @@ abstract class $NoticeDataCopyWith<$Res> {
           NoticeData value, $Res Function(NoticeData) then) =
       _$NoticeDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'content_cn') String content, String date, int sort});
+      {@JsonKey(name: 'content_cn', defaultValue: '') String content,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String date,
+      int sort});
 }
 
 /// @nodoc
@@ -364,11 +390,17 @@ class _$NoticeDataCopyWithImpl<$Res> implements $NoticeDataCopyWith<$Res> {
   @override
   $Res call({
     Object content = freezed,
+    Object contentEN = freezed,
+    Object contentVI = freezed,
+    Object contentTH = freezed,
     Object date = freezed,
     Object sort = freezed,
   }) {
     return _then(_value.copyWith(
       content: content == freezed ? _value.content : content as String,
+      contentEN: contentEN == freezed ? _value.contentEN : contentEN as String,
+      contentVI: contentVI == freezed ? _value.contentVI : contentVI as String,
+      contentTH: contentTH == freezed ? _value.contentTH : contentTH as String,
       date: date == freezed ? _value.date : date as String,
       sort: sort == freezed ? _value.sort : sort as int,
     ));
@@ -382,7 +414,12 @@ abstract class _$NoticeDataCopyWith<$Res> implements $NoticeDataCopyWith<$Res> {
       __$NoticeDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'content_cn') String content, String date, int sort});
+      {@JsonKey(name: 'content_cn', defaultValue: '') String content,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String date,
+      int sort});
 }
 
 /// @nodoc
@@ -398,11 +435,17 @@ class __$NoticeDataCopyWithImpl<$Res> extends _$NoticeDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object content = freezed,
+    Object contentEN = freezed,
+    Object contentVI = freezed,
+    Object contentTH = freezed,
     Object date = freezed,
     Object sort = freezed,
   }) {
     return _then(_NoticeData(
       content: content == freezed ? _value.content : content as String,
+      contentEN: contentEN == freezed ? _value.contentEN : contentEN as String,
+      contentVI: contentVI == freezed ? _value.contentVI : contentVI as String,
+      contentTH: contentTH == freezed ? _value.contentTH : contentTH as String,
       date: date == freezed ? _value.date : date as String,
       sort: sort == freezed ? _value.sort : sort as int,
     ));
@@ -412,11 +455,25 @@ class __$NoticeDataCopyWithImpl<$Res> extends _$NoticeDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_NoticeData implements _NoticeData {
   const _$_NoticeData(
-      {@JsonKey(name: 'content_cn') this.content, this.date, this.sort});
+      {@JsonKey(name: 'content_cn', defaultValue: '') this.content,
+      @JsonKey(name: 'content_us', defaultValue: '') this.contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') this.contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') this.contentTH,
+      this.date,
+      this.sort});
 
   @override
-  @JsonKey(name: 'content_cn')
+  @JsonKey(name: 'content_cn', defaultValue: '')
   final String content;
+  @override
+  @JsonKey(name: 'content_us', defaultValue: '')
+  final String contentEN;
+  @override
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  final String contentVI;
+  @override
+  @JsonKey(name: 'content_th', defaultValue: '')
+  final String contentTH;
   @override
   final String date;
   @override
@@ -424,7 +481,7 @@ class _$_NoticeData implements _NoticeData {
 
   @override
   String toString() {
-    return 'NoticeData(content: $content, date: $date, sort: $sort)';
+    return 'NoticeData(content: $content, contentEN: $contentEN, contentVI: $contentVI, contentTH: $contentTH, date: $date, sort: $sort)';
   }
 
   @override
@@ -434,6 +491,15 @@ class _$_NoticeData implements _NoticeData {
             (identical(other.content, content) ||
                 const DeepCollectionEquality()
                     .equals(other.content, content)) &&
+            (identical(other.contentEN, contentEN) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentEN, contentEN)) &&
+            (identical(other.contentVI, contentVI) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentVI, contentVI)) &&
+            (identical(other.contentTH, contentTH) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentTH, contentTH)) &&
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.sort, sort) ||
@@ -444,9 +510,13 @@ class _$_NoticeData implements _NoticeData {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(content) ^
+      const DeepCollectionEquality().hash(contentEN) ^
+      const DeepCollectionEquality().hash(contentVI) ^
+      const DeepCollectionEquality().hash(contentTH) ^
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(sort);
 
+  @JsonKey(ignore: true)
   @override
   _$NoticeDataCopyWith<_NoticeData> get copyWith =>
       __$NoticeDataCopyWithImpl<_NoticeData>(this, _$identity);
@@ -454,17 +524,30 @@ class _$_NoticeData implements _NoticeData {
 
 abstract class _NoticeData implements NoticeData {
   const factory _NoticeData(
-      {@JsonKey(name: 'content_cn') String content,
+      {@JsonKey(name: 'content_cn', defaultValue: '') String content,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
       String date,
       int sort}) = _$_NoticeData;
 
   @override
-  @JsonKey(name: 'content_cn')
+  @JsonKey(name: 'content_cn', defaultValue: '')
   String get content;
+  @override
+  @JsonKey(name: 'content_us', defaultValue: '')
+  String get contentEN;
+  @override
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  String get contentVI;
+  @override
+  @JsonKey(name: 'content_th', defaultValue: '')
+  String get contentTH;
   @override
   String get date;
   @override
   int get sort;
   @override
+  @JsonKey(ignore: true)
   _$NoticeDataCopyWith<_NoticeData> get copyWith;
 }

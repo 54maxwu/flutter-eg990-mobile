@@ -1,19 +1,17 @@
 import 'dart:io' show Platform;
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/core/internal/device.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/export_internal_file.dart';
 import 'package:flutter_eg990_mobile/injection_container.dart';
-import 'package:flutter_eg990_mobile/utils/regex_util.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import 'router/app_navigate.dart';
+import 'router/app_navigator_export.dart';
 import 'screen/web_game_screen_store.dart';
 import 'update/presentation/state/update_store.dart';
-import 'update/presentation/update_dialog.dart';
 
 ///
 /// Build the main ui using [ScreenRouter] and
@@ -29,6 +27,9 @@ class MainStartup extends StatefulWidget {
 
 class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   final String keyId = 'Navi';
+  final GlobalKey<NavigatorState> screenNavKey =
+      new GlobalKey(debugLabel: 'screenNavKey');
+  final GlobalKey<NavigatorState> _navKey = new GlobalKey(debugLabel: 'navKey');
 
   Future<bool> updateFuture;
   UpdateStore updateStore;
@@ -40,8 +41,13 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
     } catch (e) {
       MyLogger.warn(msg: 'locale file has exception: $e');
     } finally {
-      Global.initLocale = true;
+      Global.lang.init = true;
     }
+//    debugPrint('test locale res:${localeStr.pageTitleHome}');
+//    sl.get<LocalStrings>().init().then((value) {
+//      debugPrint('test locale res1:${S.of(context).pageHomeRoute}');
+//      debugPrint('test locale res2:${sl.get<LocalStrings>().res.pageHomeRoute}');
+//    });
   }
 
   void getDeviceInfo(BuildContext context) {
@@ -58,31 +64,38 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   @override
   Widget build(BuildContext context) {
     if (Global.device == null) getDeviceInfo(context);
-    if (Global.initLocale == false) registerLocale(context);
+    if (!Global.lang.init) registerLocale(context);
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {
           MyLogger.debug(
-              msg: 'pop screen ${ScreenNavigate.screenIndex}'
-                  'current route: ${RouterNavigate.current}',
+              msg: 'pop screen ${AppNavigator.screenIndex}'
+                  ' route: ${AppNavigator.current}',
               tag: 'MainStartup');
-          if (ScreenNavigate.screenIndex == 1) {
+          if (AppNavigator.screenIndex != 0) {
             // Stop rotate sensor and clear web view cache
-            sl.get<WebGameScreenStore>()?.stopSensor();
-            ScreenNavigate.switchScreen(screen: ScreenEnum.Feature);
-          } else if (ScreenNavigate.screenIndex == 2) {
-            ScreenNavigate.switchScreen();
-          } else if (RouterNavigate.current == '/') {
+            if (AppNavigator.screenIndex == 1) {
+              sl.get<WebGameScreenStore>()?.stopSensor();
+            }
+            AppNavigator.switchScreen(Screens.Feature);
+          } else if (AppNavigator.isAtHome) {
             return Future(() => true);
           } else {
-            RouterNavigate.navigateBack();
+            AppNavigator.back();
           }
           return Future(() => false);
         },
         child: Scaffold(
-          body: ExtendedNavigator<ScreenRouter>(
-            initialRoute: ScreenRoutes.featureScreen,
-            router: ScreenRouter(),
+          // body: Navigator(
+          //   key: ScreenRouter.navigator.key,
+          //   onGenerateRoute: ScreenRouter.onGenerateRoute,
+          //   initialRoute: ScreenRouter.featureScreen,
+          // ),
+          body: ExtendedNavigator(
+            key: screenNavKey,
+            navigatorKey: _navKey,
+            initialRoute: MainStartupRoutes.featureScreen,
+            router: MainStartupRouter(),
           ),
         ),
       ),
@@ -92,30 +105,30 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   @override
   void afterFirstLayout(BuildContext context) {
     if (updateStore != null) {
-      // updateStore.dialogClosed();
-      updateFuture ??=
-          Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
-      updateFuture.then((hasUpdate) {
-        if (hasUpdate) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => UpdateDialog(
-              newVersion: updateStore.serverAppVersion,
-              onUpdateClick: () {
-                String url = updateStore.serverAppUrl;
-                if (url == null || url.isEmpty || url.isUrl == false)
-                  callToastError(localeStr.updateDialogErrorUrl);
-                else
-                  launch(updateStore.serverAppUrl);
-              },
-              onDialogClose: () => updateStore.dialogClosed(),
-            ),
-          );
-        } else {
-          updateStore.dialogClosed();
-        }
-      });
+      updateStore.dialogClosed();
+      // updateFuture ??=
+      //     Future.delayed(Duration(seconds: 5), () => updateStore.getVersion());
+      // updateFuture.then((hasUpdate) {
+      //   if (hasUpdate) {
+      //     showDialog(
+      //       context: context,
+      //       barrierDismissible: false,
+      //       builder: (context) => UpdateDialog(
+      //         newVersion: updateStore.serverAppVersion,
+      //         onUpdateClick: () {
+      //           String url = updateStore.serverAppUrl;
+      //           if (url == null || url.isEmpty || url.isUrl == false)
+      //             callToastError(localeStr.updateDialogErrorUrl);
+      //           else
+      //             launch(updateStore.serverAppUrl);
+      //         },
+      //         onDialogClose: () => updateStore.dialogClosed(),
+      //       ),
+      //     );
+      //   } else {
+      //     updateStore.dialogClosed();
+      //   }
+      // });
     }
   }
 }

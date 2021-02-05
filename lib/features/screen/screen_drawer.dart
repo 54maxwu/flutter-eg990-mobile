@@ -1,4 +1,12 @@
-part of 'feature_screen_view.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'feature_screen_inherited_widget.dart';
+import 'screen_drawer_item.dart';
 
 ///
 ///@author H.C.CHIANG
@@ -6,92 +14,53 @@ part of 'feature_screen_view.dart';
 ///
 class ScreenDrawer extends StatelessWidget {
   static final List<ScreenDrawerItem> _menuItems = [
-    ScreenDrawerItem.line,
     ScreenDrawerItem.promo,
-    // ScreenDrawerItem.service,
-    // ScreenDrawerItem.download,
-    // ScreenDrawerItem.vip,
-    ScreenDrawerItem.webHome,
+    ScreenDrawerItem.download,
+    ScreenDrawerItem.service,
     ScreenDrawerItem.tutorial,
-    // ScreenDrawerItem.agent,
-    // ScreenDrawerItem.testUI,
-//    ScreenDrawerItem.test,
+    ScreenDrawerItem.vip,
+    ScreenDrawerItem.webHome,
   ];
 
   static final List<ScreenDrawerItem> _userMenuItems = [
-    ScreenDrawerItem.line,
     ScreenDrawerItem.member,
     ScreenDrawerItem.deposit,
     ScreenDrawerItem.promo,
-    ScreenDrawerItem.webHome,
-    // ScreenDrawerItem.message,
-    // ScreenDrawerItem.notice,
-    // ScreenDrawerItem.service,
-    // ScreenDrawerItem.download,
-    // ScreenDrawerItem.vip,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.notice,
+    ScreenDrawerItem.store,
+    ScreenDrawerItem.download,
+    ScreenDrawerItem.vip,
+    ScreenDrawerItem.mission,
+    ScreenDrawerItem.service,
     ScreenDrawerItem.tutorial,
-    // ScreenDrawerItem.agent,
+    ScreenDrawerItem.webHome,
     ScreenDrawerItem.logout,
-//    ScreenDrawerItem.testUI,
-//    ScreenDrawerItem.test,
   ];
 
-  bool _itemTapped(ScreenDrawerItem item,
-      {FeatureScreenStore store, EventStore eventStore, BuildContext context}) {
-    if (item == ScreenDrawerItem.logout) {
-      getAppGlobalStreams.logout();
-      return true;
+  bool _itemTapped(ScreenDrawerItem item, {BuildContext context}) {
+    debugPrint('tap drawer item ${item.value.id}');
+    switch (item.value.id) {
+      case RouteEnum.LOGOUT:
+        getAppGlobalStreams.logout();
+        return true;
+      case RouteEnum.WEBSITE:
+        launch(Global.CURRENT_BASE);
+        return true;
+      default:
+        var route = item.value.route;
+        if (route == null) {
+          callToastInfo(localeStr.workInProgress);
+        } else if (route.value.routeArg is WebRouteArguments) {
+          // open web page
+          AppNavigator.replaceWith(route, arg: route.value.routeArg);
+          return true;
+        } else if (route.pageName != AppNavigator.current) {
+          AppNavigator.navigateTo(route);
+          return true;
+        }
+        return false;
     }
-
-    if (item.value.id == RouteEnum.WEBSITE) {
-      launch(Global.CURRENT_BASE);
-      return true;
-    }
-
-    if (item.value.id == RouteEnum.LINE_QR && context != null) {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => DialogWidget(
-          constraints: BoxConstraints.tight(Size(160, 180)),
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0, left: 30.0),
-                  child: networkImageBuilder('images/aside/116.png'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-      return true;
-    }
-
-    // if (item.value.id == RouteEnum.SIGN) {
-    //   if (store == null) return false;
-    //   if (store.hasUser == false)
-    //     callToastError(localeStr.messageErrorNotLogin);
-    //   else
-    //     eventStore?.setForceShowEvent = true;
-    // }
-
-    var route = item.value.route;
-    if (route == null) {
-      callToastInfo(localeStr.workInProgress);
-    } else if (route.value.routeArg is WebRouteArguments) {
-      // open web page
-      RouterNavigate.replacePage(route, arg: route.value.routeArg);
-      return true;
-    } else if (route.pageName != RouterNavigate.current) {
-      RouterNavigate.navigateToPage(route);
-      return true;
-    }
-    return false;
   }
 
   @override
@@ -102,7 +71,7 @@ class ScreenDrawer extends StatelessWidget {
 
     double gridItemWidth = drawerWidth / 2;
     double gridRatio =
-        (Global.lang == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
+        (Global.lang.isChinese) ? gridItemWidth / 48 : gridItemWidth / 56;
 
     return Container(
       width: drawerWidth,
@@ -138,9 +107,9 @@ class ScreenDrawer extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(localeStr.messageWelcomeHint,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: themeColor.sideMenuHeaderTextColor,
-                            )),
+                                color: themeColor.sideMenuHeaderTextColor)),
                         SizedBox(height: 12.0),
                         RaisedButton(
                           visualDensity: VisualDensity(horizontal: 3.0),
@@ -148,7 +117,7 @@ class ScreenDrawer extends StatelessWidget {
                           onPressed: () {
                             if (viewState.scaffoldKey.currentState.isDrawerOpen)
                               Navigator.of(context).pop();
-                            RouterNavigate.navigateToPage(
+                            AppNavigator.navigateTo(
                               RoutePage.login,
                               arg: LoginRouteArguments(
                                   returnHomeAfterLogin: true),
@@ -181,15 +150,11 @@ class ScreenDrawer extends StatelessWidget {
                         : _menuItems[index];
                     return GestureDetector(
                       onTap: () {
-                        // if ((item == ScreenDrawerItem.sign)
-                        //     ? _itemTapped(item,
-                        //         store: viewState.store,
-                        //         eventStore: viewState.eventStore)
-                        //     : _itemTapped(item))
                         if (_itemTapped(item, context: context)) {
                           // close the drawer
-                          if (viewState.scaffoldKey.currentState.isDrawerOpen)
+                          if (viewState.scaffoldKey.currentState.isDrawerOpen) {
                             Navigator.of(context).pop();
+                          }
                         }
                       },
                       child: _buildListItem(item.value),
@@ -266,7 +231,7 @@ class ScreenDrawer extends StatelessWidget {
                         ? localeStr.pageTitleCenter
                         : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: (Global.lang == 'zh')
+                      fontSize: (Global.lang.isChinese)
                           ? FontSize.SUBTITLE.value
                           : FontSize.NORMAL.value,
                       color: themeColor.sideMenuIconTextColor,

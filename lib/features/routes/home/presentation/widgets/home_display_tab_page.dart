@@ -11,6 +11,7 @@ import '../../data/models/game_platform.dart';
 import '../state/home_store.dart';
 import 'grid_view_games.dart';
 import 'grid_view_platforms.dart';
+import 'home_search_widget.dart';
 import 'home_store_inherit_widget.dart';
 
 ///
@@ -155,7 +156,7 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
   /// Main layer to show platforms under category
   Widget _createPlatformGrid() {
     _isGameGrid = false;
-    // if (widget.addSearchListener) _store.searchGame(clear: true);
+    if (widget.addSearchListener) _store.searchGame(clear: true);
     return GridViewPlatform(
         platforms: _platforms,
         onTap: (entity) => _onItemTap(entity),
@@ -185,7 +186,7 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
           alignment: Alignment.bottomRight,
           padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
           child: FloatingActionButton(
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.white24,
             mini: true,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             child: FittedBox(
@@ -229,50 +230,50 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
 
   Widget _createGamesGrid(List<GameEntity> list) {
     _games = List.from(list);
-    // if (widget.addSearchListener) {
-    //   return ListView(
-    //     primary: true,
-    //     shrinkWrap: true,
-    //     physics: BouncingScrollPhysics(),
-    //     children: [
-    //       HomeSearchWidget(onSearch: (input) {
-    //         _store.searchGame(searchKey: input);
-    //       }),
-    //       StreamBuilder<String>(
-    //           stream: _store.searchGameStream,
-    //           initialData: '',
-    //           builder: (context, snapshot) {
-    //             String searchKey = snapshot?.data ?? '';
-    //             return GridViewGames(
-    //               pageMaxWidth: widget.pageMaxWidth,
-    //               labelWidthFactor: widget.itemLabelWidthFactor,
-    //               isIos: _isIos,
-    //               games: (searchKey.isEmpty)
-    //                   ? _games
-    //                   : _games
-    //                       .where((entity) => entity.cname
-    //                           .toLowerCase()
-    //                           .contains(searchKey.toLowerCase()))
-    //                       .toList(),
-    //               onTap: (entity) => _onItemTap(entity),
-    //               addPlugin: widget.addPlugin,
-    //               onFavorTap: (entity, isFavorite) =>
-    //                   _setFavorite(entity, isFavorite),
-    //             );
-    //           }),
-    //     ],
-    //   );
-    // } else {
-    return GridViewGames(
-      pageMaxWidth: widget.pageMaxWidth,
-      labelWidthFactor: widget.itemLabelWidthFactor,
-      isIos: _isIos,
-      games: _games,
-      onTap: (entity) => _onItemTap(entity),
-      addPlugin: widget.addPlugin,
-      onFavorTap: (entity, isFavorite) => _setFavorite(entity, isFavorite),
-    );
-    // }
+    if (widget.addSearchListener) {
+      return ListView(
+        primary: true,
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        children: [
+          HomeSearchWidget(onSearch: (input) {
+            _store.searchGame(searchKey: input);
+          }),
+          StreamBuilder<String>(
+              stream: _store.searchGameStream,
+              initialData: '',
+              builder: (context, snapshot) {
+                String searchKey = snapshot?.data ?? '';
+                return GridViewGames(
+                  pageMaxWidth: widget.pageMaxWidth,
+                  labelWidthFactor: widget.itemLabelWidthFactor,
+                  isIos: _isIos,
+                  games: (searchKey.isEmpty)
+                      ? _games
+                      : _games
+                          .where((entity) => entity.cname
+                              .toLowerCase()
+                              .contains(searchKey.toLowerCase()))
+                          .toList(),
+                  onTap: (entity) => _onItemTap(entity),
+                  addPlugin: widget.addPlugin,
+                  onFavorTap: (entity, isFavorite) =>
+                      _setFavorite(entity, isFavorite),
+                );
+              }),
+        ],
+      );
+    } else {
+      return GridViewGames(
+        pageMaxWidth: widget.pageMaxWidth,
+        labelWidthFactor: widget.itemLabelWidthFactor,
+        isIos: _isIos,
+        games: _games,
+        onTap: (entity) => _onItemTap(entity),
+        addPlugin: widget.addPlugin,
+        onFavorTap: (entity, isFavorite) => _setFavorite(entity, isFavorite),
+      );
+    }
   }
 
   @override

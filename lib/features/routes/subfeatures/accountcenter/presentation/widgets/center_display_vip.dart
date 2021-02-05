@@ -33,12 +33,39 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
   double progressGroupMaxWidth;
   double progressGroupMaxHeight;
 
-  void updateData() {
-    titles = vipData.getBlockTitles;
-//    debugPrint('vip block title: $titles');
+  String _getTitleByKey(String key) {
+    switch (key) {
+      case 'allgame':
+        return localeStr.gameCategoryAll;
+      case 'casinogame':
+        return localeStr.gameCategoryCasino;
+      case 'slotgame':
+        return localeStr.gameCategorySlot;
+      case 'sportgame':
+        return localeStr.gameCategorySport;
+      case 'fishgame':
+        return localeStr.gameCategoryFish;
+      case 'cardgame':
+        return localeStr.gameCategoryCard;
+      case 'lotterygame':
+        return localeStr.gameCategoryLottery;
+      default:
+        return '??';
+    }
+  }
 
+  void updateData() {
     blockKeys = vipData.getBlockKeys;
-    // debugPrint('vip block keys: $blockKeys');
+    debugPrint('vip block keys: $blockKeys');
+
+    titles = vipData.getBlockTitles;
+    for (int ti = 0; ti < titles.length; ti++) {
+      debugPrint('title $ti check: ${titles[ti] == 'null'}');
+      if (titles[ti] == 'null') {
+        titles.replaceRange(ti, ti + 1, [_getTitleByKey(blockKeys[ti])]);
+      }
+    }
+    debugPrint('vip block title: $titles');
 
     blockValue = List.from(blockKeys.map((key) {
       debugPrint('data key: $key, data: ${vipData[key]}');
@@ -164,7 +191,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
               debugPrint('----------sorted: ${titles[index]}----------');
               debugPrint('sorted level labels: $blockLevelLabels');
               debugPrint('sorted level values: $blockLevelRequirements');
-              print('--------------------------------------\n\n\n');
+              debugPrint('--------------------------------------\n\n\n');
 
               /// generate block
               return _generateBlock(
@@ -182,7 +209,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
 
   Widget _generateBlock(String title, List<String> labelList,
       List<int> requiredList, int current) {
-    print('$title block: $labelList \<-\> $requiredList');
+    debugPrint('$title block: $labelList \<-\> $requiredList');
     if (labelList.length != requiredList.length)
       MyLogger.warn(msg: '$title block data length not match');
 
@@ -198,7 +225,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
         isLast: i == requiredList.length - 1,
         labelOnRight: i % 2 == 1,
       ));
-//      print('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
+//      debugPrint('inner widgets for $title, length: ${progressWidgets.length}, processed: $value');
     }
 
     return Padding(
@@ -267,7 +294,7 @@ class _CenterDisplayVipState extends State<CenterDisplayVip> {
     bool isLast = false,
     bool labelOnRight = false,
   }) {
-//    print('generating progress widget: $required, isFirst: $isFirst');
+//    debugPrint('generating progress widget: $required, isFirst: $isFirst');
     if (isLast) {
       progressGroupMaxHeight = circleSize.height;
     } else {

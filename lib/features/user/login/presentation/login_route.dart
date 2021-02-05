@@ -43,7 +43,10 @@ class _LoginRouteState extends State<LoginRoute> {
         (String message) {
           debugPrint('received login error message: $message');
           if (message != null && message.isNotEmpty)
-            callToastError(message, delayedMilli: 200);
+            callToastError(
+              MessageMap.getErrorMessage(message, RouteEnum.LOGIN),
+              delayedMilli: 200,
+            );
         },
       ),
     ];
@@ -87,7 +90,7 @@ class _LoginRouteState extends State<LoginRoute> {
         : WillPopScope(
             onWillPop: () {
               debugPrint('pop login route');
-              RouterNavigate.navigateBack();
+              AppNavigator.back();
               return Future(() => true);
             },
             child: Scaffold(

@@ -13,7 +13,7 @@ import 'package:flutter_eg990_mobile/injection_container.dart';
 import 'package:flutter_eg990_mobile/mylogger.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
-import 'app_navigate.dart' show RoutePage, RouterNavigate;
+import 'app_navigator_export.dart';
 
 AppGlobalStreams get getAppGlobalStreams => sl.get<AppGlobalStreams>();
 
@@ -158,8 +158,8 @@ class AppGlobalStreams {
     Future.delayed(
         Duration(milliseconds: 500),
         () => (navToLogin)
-            ? RouterNavigate.navigateToPage(RoutePage.login)
-            : RouterNavigate.navigateClean(force: true));
+            ? AppNavigator.navigateTo(RoutePage.login)
+            : AppNavigator.returnToHome());
 
     _userControl.sink.add(LoginStatus(loggedIn: false));
     _creditController.sink.add(creditResetStr);

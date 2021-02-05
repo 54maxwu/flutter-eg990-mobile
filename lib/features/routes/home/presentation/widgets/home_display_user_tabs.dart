@@ -24,14 +24,11 @@ import 'home_tab_item.dart';
 class HomeDisplayUserTabs extends StatefulWidget {
   final HomeDisplaySizeCalc sizeCalc;
   final List<GameCategoryModel> tabs;
-  final bool addFavoritePlugin;
 
   HomeDisplayUserTabs({
-    Key key,
     this.tabs,
     @required this.sizeCalc,
-    this.addFavoritePlugin = true,
-  }) : super(key: key);
+  });
 
   @override
   HomeDisplayUserTabsState createState() => HomeDisplayUserTabsState();
@@ -54,12 +51,6 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
   int _currentIndex;
   String _preType;
   String _currentType;
-
-  void findPage(String category) {
-    int index = widget.tabs.indexWhere((element) => element.type == category);
-    debugPrint('find category index: $index');
-    if (index != -1) _pageController.jumpToPage(index);
-  }
 
   void showPlatform(int index, String platformClassName) {
     debugPrint('jump to page $index and search $platformClassName');
@@ -171,18 +162,18 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
         children: <Widget>[
           /// category tab bar
           Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 4.0, 10.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(0.0, 2.0, 10.0, 12.0),
             child: Material(
               color: themeColor.homeTabBgColor,
               borderRadius: BorderRadius.circular(6.0),
               child: Container(
                 /* Tab bar constraints */
                 constraints: BoxConstraints(
-                  maxHeight: widget.sizeCalc.userBarMaxHeight,
+                  maxHeight: widget.sizeCalc.barMaxHeight,
                   minWidth: widget.sizeCalc.barMinWidth,
                   maxWidth: widget.sizeCalc.barMaxWidth,
                 ),
-                margin: const EdgeInsets.only(bottom: 4.0),
+                margin: const EdgeInsets.only(bottom: 8.0),
                 /* Rotate to vertical */
                 child: RotatedBox(
                   quarterTurns: 1,
@@ -231,7 +222,7 @@ class HomeDisplayUserTabsState extends State<HomeDisplayUserTabs>
                             itemLabelWidthFactor:
                                 widget.sizeCalc.textWidthFactor,
                             addSearchListener: true,
-                            addPlugin: widget.addFavoritePlugin,
+                            addPlugin: true,
                           );
                           break;
                         case GamePageType.Recommend:

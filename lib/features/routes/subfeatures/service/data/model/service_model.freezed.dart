@@ -23,6 +23,7 @@ class _$ServiceModelTearOff {
       String phone = '',
       String skype = '',
       String fb = '',
+      String qq = '',
       String zalo = '',
       @JsonKey(name: 'zalo_pic', defaultValue: '') String zaloPic,
       String line = '',
@@ -36,6 +37,7 @@ class _$ServiceModelTearOff {
       phone: phone,
       skype: skype,
       fb: fb,
+      qq: qq,
       zalo: zalo,
       zaloPic: zaloPic,
       line: line,
@@ -60,6 +62,7 @@ mixin _$ServiceModel {
   String get phone;
   String get skype;
   String get fb;
+  String get qq;
   String get zalo;
   @JsonKey(name: 'zalo_pic', defaultValue: '')
   String get zaloPic;
@@ -67,6 +70,7 @@ mixin _$ServiceModel {
   @JsonKey(name: 'line_pic', defaultValue: '')
   String get linePic;
 
+  @JsonKey(ignore: true)
   $ServiceModelCopyWith<ServiceModel> get copyWith;
 }
 
@@ -84,6 +88,7 @@ abstract class $ServiceModelCopyWith<$Res> {
       String phone,
       String skype,
       String fb,
+      String qq,
       String zalo,
       @JsonKey(name: 'zalo_pic', defaultValue: '') String zaloPic,
       String line,
@@ -108,6 +113,7 @@ class _$ServiceModelCopyWithImpl<$Res> implements $ServiceModelCopyWith<$Res> {
     Object phone = freezed,
     Object skype = freezed,
     Object fb = freezed,
+    Object qq = freezed,
     Object zalo = freezed,
     Object zaloPic = freezed,
     Object line = freezed,
@@ -122,6 +128,7 @@ class _$ServiceModelCopyWithImpl<$Res> implements $ServiceModelCopyWith<$Res> {
       phone: phone == freezed ? _value.phone : phone as String,
       skype: skype == freezed ? _value.skype : skype as String,
       fb: fb == freezed ? _value.fb : fb as String,
+      qq: qq == freezed ? _value.qq : qq as String,
       zalo: zalo == freezed ? _value.zalo : zalo as String,
       zaloPic: zaloPic == freezed ? _value.zaloPic : zaloPic as String,
       line: line == freezed ? _value.line : line as String,
@@ -146,6 +153,7 @@ abstract class _$ServiceModelCopyWith<$Res>
       String phone,
       String skype,
       String fb,
+      String qq,
       String zalo,
       @JsonKey(name: 'zalo_pic', defaultValue: '') String zaloPic,
       String line,
@@ -172,6 +180,7 @@ class __$ServiceModelCopyWithImpl<$Res> extends _$ServiceModelCopyWithImpl<$Res>
     Object phone = freezed,
     Object skype = freezed,
     Object fb = freezed,
+    Object qq = freezed,
     Object zalo = freezed,
     Object zaloPic = freezed,
     Object line = freezed,
@@ -186,6 +195,7 @@ class __$ServiceModelCopyWithImpl<$Res> extends _$ServiceModelCopyWithImpl<$Res>
       phone: phone == freezed ? _value.phone : phone as String,
       skype: skype == freezed ? _value.skype : skype as String,
       fb: fb == freezed ? _value.fb : fb as String,
+      qq: qq == freezed ? _value.qq : qq as String,
       zalo: zalo == freezed ? _value.zalo : zalo as String,
       zaloPic: zaloPic == freezed ? _value.zaloPic : zaloPic as String,
       line: line == freezed ? _value.line : line as String,
@@ -205,6 +215,7 @@ class _$_ServiceModel implements _ServiceModel {
       this.phone = '',
       this.skype = '',
       this.fb = '',
+      this.qq = '',
       this.zalo = '',
       @JsonKey(name: 'zalo_pic', defaultValue: '') this.zaloPic,
       this.line = '',
@@ -215,6 +226,7 @@ class _$_ServiceModel implements _ServiceModel {
         assert(phone != null),
         assert(skype != null),
         assert(fb != null),
+        assert(qq != null),
         assert(zalo != null),
         assert(line != null);
 
@@ -244,6 +256,9 @@ class _$_ServiceModel implements _ServiceModel {
   final String fb;
   @JsonKey(defaultValue: '')
   @override
+  final String qq;
+  @JsonKey(defaultValue: '')
+  @override
   final String zalo;
   @override
   @JsonKey(name: 'zalo_pic', defaultValue: '')
@@ -257,7 +272,7 @@ class _$_ServiceModel implements _ServiceModel {
 
   @override
   String toString() {
-    return 'ServiceModel(title: $title, appPic: $appPic, appUrl: $appUrl, cs: $cs, mail: $mail, phone: $phone, skype: $skype, fb: $fb, zalo: $zalo, zaloPic: $zaloPic, line: $line, linePic: $linePic)';
+    return 'ServiceModel(title: $title, appPic: $appPic, appUrl: $appUrl, cs: $cs, mail: $mail, phone: $phone, skype: $skype, fb: $fb, qq: $qq, zalo: $zalo, zaloPic: $zaloPic, line: $line, linePic: $linePic)';
   }
 
   @override
@@ -280,6 +295,8 @@ class _$_ServiceModel implements _ServiceModel {
                 const DeepCollectionEquality().equals(other.skype, skype)) &&
             (identical(other.fb, fb) ||
                 const DeepCollectionEquality().equals(other.fb, fb)) &&
+            (identical(other.qq, qq) ||
+                const DeepCollectionEquality().equals(other.qq, qq)) &&
             (identical(other.zalo, zalo) ||
                 const DeepCollectionEquality().equals(other.zalo, zalo)) &&
             (identical(other.zaloPic, zaloPic) ||
@@ -302,11 +319,13 @@ class _$_ServiceModel implements _ServiceModel {
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(skype) ^
       const DeepCollectionEquality().hash(fb) ^
+      const DeepCollectionEquality().hash(qq) ^
       const DeepCollectionEquality().hash(zalo) ^
       const DeepCollectionEquality().hash(zaloPic) ^
       const DeepCollectionEquality().hash(line) ^
       const DeepCollectionEquality().hash(linePic);
 
+  @JsonKey(ignore: true)
   @override
   _$ServiceModelCopyWith<_ServiceModel> get copyWith =>
       __$ServiceModelCopyWithImpl<_ServiceModel>(this, _$identity);
@@ -322,6 +341,7 @@ abstract class _ServiceModel implements ServiceModel {
           String phone,
           String skype,
           String fb,
+          String qq,
           String zalo,
           @JsonKey(name: 'zalo_pic', defaultValue: '') String zaloPic,
           String line,
@@ -347,6 +367,8 @@ abstract class _ServiceModel implements ServiceModel {
   @override
   String get fb;
   @override
+  String get qq;
+  @override
   String get zalo;
   @override
   @JsonKey(name: 'zalo_pic', defaultValue: '')
@@ -357,5 +379,6 @@ abstract class _ServiceModel implements ServiceModel {
   @JsonKey(name: 'line_pic', defaultValue: '')
   String get linePic;
   @override
+  @JsonKey(ignore: true)
   _$ServiceModelCopyWith<_ServiceModel> get copyWith;
 }

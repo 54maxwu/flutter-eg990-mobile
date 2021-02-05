@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/event_inject.dart';
-import 'package:flutter_eg990_mobile/features/event/presentation/widgets/ad_dialog.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/routes/home/data/models/game_category_model.dart';
-import 'package:flutter_eg990_mobile/features/update/presentation/state/update_store.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 
 import '../state/home_store.dart';
 import 'home_display_banner.dart';
@@ -25,11 +22,8 @@ class _HomeDisplayState extends State<HomeDisplay> {
       new GlobalKey<HomeShortcutWidgetState>();
   final GlobalKey<HomeDisplayTabsState> _tabsWidgetKey =
       new GlobalKey<HomeDisplayTabsState>();
-  final GlobalKey<HomeDisplayUserTabsState> _userTabsWidgetKey =
-      new GlobalKey<HomeDisplayUserTabsState>();
 
   EventStore _eventStore;
-  UpdateStore _updateStore;
   HomeStore _store;
   HomeShortcutWidget _shortcutWidget;
   HomeDisplayBanner _bannerWidget;
@@ -41,91 +35,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
   List marquees;
   List tabs;
   bool showingAds = false;
-  bool hasUser = false;
-
-  void showAdsDialog(List list) {
-    if (showingAds || RouterNavigate.current != '/') return;
-    if (_updateStore.showingUpdateDialog) {
-      Future.delayed(Duration(seconds: 2), () {
-        showAdsDialog(list);
-      });
-    } else {
-      Future.delayed(Duration(milliseconds: 500), () {
-        if (!mounted)
-          showAdsDialog(list);
-        else {
-          showingAds = true;
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => new AdDialog(
-              ads: new List.from(list),
-              initCheck: _eventStore.checkSkip,
-              onClose: (skipNextTime) {
-                debugPrint('ads dialog close, skip=$skipNextTime');
-                showingAds = false;
-                _eventStore.setAutoShowAds = false;
-                _eventStore.setSkipAd(skipNextTime);
-                _eventStore.adsDialogClose();
-              },
-            ),
-          );
-        }
-      });
-    }
-  }
-
-  void _widgetUrlCheck(String url) {
-    debugPrint('home widget url check: $url');
-    if (url == Global.CURRENT_BASE) return;
-    _widgetUrlNavigate(
-      url.contains('/api/open/'),
-      url
-          .substring(
-              url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length)
-          .replaceAll('/api/open/', ''),
-    );
-  }
-
-  void _widgetUrlNavigate(bool openGame, String url) {
-    debugPrint('home widget url: $url, isGame: $openGame');
-    if (openGame) {
-      final gameUrl = url.substring(url.indexOf('.com/') + 4);
-      debugPrint('opening game: $gameUrl');
-      if (_store.hasUser) {
-        _store.getGameUrl(gameUrl);
-      } else {
-        callToastInfo(localeStr.messageErrorNotLogin);
-      }
-    } else if (url.startsWith('/gamelist/')) {
-      String className = url.replaceAll('/gamelist/', '').replaceAll('/', '-');
-      debugPrint('searching platform name: $className');
-      if (hasUser) {
-        _userTabsWidgetKey.currentState?.findPage(className.split('-')[1]);
-      } else {
-        _tabsWidgetKey.currentState?.findPage(className.split('-')[1]);
-      }
-      _store.showSearchPlatform(className);
-    } else if (url.startsWith('/promo/')) {
-      int promoId =
-          url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
-      debugPrint('url promo id: $promoId');
-      RouterNavigate.navigateToPage(
-        RoutePage.promo,
-        arg: (promoId > 0) ? PromoRouteArguments(openPromoId: promoId) : null,
-      );
-    } else {
-      RoutePage newRoute = url.urlToRoutePage;
-      debugPrint('checking url to app route: $newRoute');
-      if (newRoute != null) {
-        if (newRoute.isUserOnly && _store.hasUser == false) {
-          callToastInfo(localeStr.messageErrorNotLogin);
-        } else {
-          RouterNavigate.navigateToPage(newRoute);
-        }
-      }
-    }
-  }
 
   @override
   void initState() {
@@ -137,7 +46,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
   Widget build(BuildContext context) {
     _store ??= HomeStoreInheritedWidget.of(context).store;
     _eventStore ??= sl.get<EventStore>();
-    _updateStore ??= sl.get<UpdateStore>();
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -149,20 +57,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
           ),
           child: Stack(
             children: [
-              StreamBuilder<List>(
-                stream: _eventStore.adsStream,
-                initialData: _eventStore.ads ?? [],
-                builder: (ctx, snapshot) {
-                  if (snapshot.data != null &&
-                      snapshot.data.isNotEmpty &&
-                      _eventStore.autoShowAds &&
-                      _eventStore.checkSkip == false) {
-                    debugPrint('stream home ads: ${snapshot.data.length}');
-                    showAdsDialog(new List.from(snapshot.data));
-                  }
-                  return SizedBox.shrink();
-                },
-              ),
               StreamBuilder(
                 stream: _store.bannerStream,
                 builder: (ctx, _) {
@@ -177,46 +71,40 @@ class _HomeDisplayState extends State<HomeDisplay> {
                   return _bannerWidget;
                 },
               ),
+              Positioned(
+                bottom: 0,
+                child: StreamBuilder(
+                  stream: _store.marqueeStream,
+                  builder: (ctx, _) {
+                    if (marquees != _store.marquees) {
+                      marquees = _store.marquees;
+                      _marqueeWidget = HomeDisplayMarquee(
+                        marquees: marquees,
+                        onMarqueeClicked: (url) => _widgetUrlCheck(url),
+                      );
+                    }
+                    _marqueeWidget ??= HomeDisplayMarquee();
+                    return _marqueeWidget;
+                  },
+                ),
+              ),
             ],
           ),
         ),
         Container(
           constraints: BoxConstraints.tight(
-              Size(Global.device.width, _sizeCalc.marqueeHeight)),
-          child: StreamBuilder(
-            stream: _store.marqueeStream,
-            builder: (ctx, _) {
-              if (marquees != _store.marquees) {
-                marquees = _store.marquees;
-                _marqueeWidget = HomeDisplayMarquee(
-                  marquees: marquees,
-                  onMarqueeClicked: (url) => _widgetUrlCheck(url),
-                );
-              }
-              _marqueeWidget ??= HomeDisplayMarquee();
-              return _marqueeWidget;
-            },
-          ),
-        ),
-        Container(
-          constraints: BoxConstraints.tight(
-            Size(
-                Global.device.width,
-                Global.device.featureContentHeight -
-                    _sizeCalc.bannerHeight -
-                    _sizeCalc.marqueeHeight),
+            Size(Global.device.width,
+                Global.device.featureContentHeight - _sizeCalc.bannerHeight),
           ),
           child: Stack(
             fit: StackFit.expand,
             children: [
-              if (Res.wallpaper.isNotEmpty)
-                Image.asset(Res.wallpaper, fit: BoxFit.fill),
               Column(
                 children: [
                   Container(
                     margin: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 6.0),
                     child: StreamBuilder<bool>(
-                      stream: RouterNavigate.routerStreams.recheckUserStream,
+                      stream: AppNavigator.routerStreams.recheckUserStream,
                       initialData: false,
                       builder: (context, snapshot) {
                         // debugPrint(
@@ -230,8 +118,7 @@ class _HomeDisplayState extends State<HomeDisplay> {
                         } else if (snapshot.data) {
                           _shortcutWidgetKey.currentState.updateUser();
                           _store.checkHomeTabs();
-                          _eventStore.getUserCredit();
-                          RouterNavigate.resetCheckUser();
+                          AppNavigator.resetCheckUser();
                         }
                         return _shortcutWidget;
                       },
@@ -245,19 +132,16 @@ class _HomeDisplayState extends State<HomeDisplay> {
                           : _store.homeTabs,
                       builder: (ctx, snapshot) {
                         if (tabs != snapshot.data) {
+//                debugPrint('update display tabs: ${snapshot.data}');
                           tabs =
                               new List<GameCategoryModel>.from(snapshot.data);
                           // use different widget to avoid tab controller's dispose error
                           if (tabs.contains(favoriteCategory)) {
-                            hasUser = true;
                             _contentWidget = new HomeDisplayUserTabs(
-                              key: _userTabsWidgetKey,
-                              tabs: _store.homeTabs,
+                              tabs: tabs,
                               sizeCalc: _sizeCalc,
-                              addFavoritePlugin: false,
                             );
-                          } else {
-                            hasUser = false;
+                          } else if (tabs != null) {
                             _contentWidget = new HomeDisplayTabs(
                               key: _tabsWidgetKey,
                               tabs: tabs,
@@ -267,7 +151,10 @@ class _HomeDisplayState extends State<HomeDisplay> {
                         }
                         _contentWidget ??= HomeDisplayTabs(
                             key: _tabsWidgetKey, sizeCalc: _sizeCalc);
-                        return _contentWidget;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 6.0),
+                          child: _contentWidget,
+                        );
                       },
                     ),
                   ),
@@ -278,5 +165,97 @@ class _HomeDisplayState extends State<HomeDisplay> {
         ),
       ],
     );
+  }
+
+  void _widgetUrlCheck(String url) {
+    debugPrint('home widget url check: $url');
+    String fixUrl;
+    if (url.contains(Global.DOMAIN_NAME)) {
+      fixUrl = url.substring(
+          url.indexOf(Global.DOMAIN_NAME) + Global.DOMAIN_NAME.length);
+    } else if (!url.startsWith('/')) {
+      fixUrl = '/$url';
+    } else {
+      fixUrl = url;
+    }
+    _widgetUrlNavigate(
+      url.contains('/api/open/'),
+      fixUrl.replaceAll('/api/open/', ''),
+    );
+  }
+
+  void _widgetUrlNavigate(bool openGame, String url) {
+    debugPrint('home widget url: $url, isGame: $openGame');
+    if (openGame) {
+      if (!getAppGlobalStreams.hasUser) {
+        callToastInfo(localeStr.messageErrorNotLogin);
+        return;
+      } else {
+        _openGame(url);
+      }
+
+      /// Show game category view
+    } else if (url.startsWith('/gamelist/')) {
+      callToast(localeStr.urlActionNotSupported);
+      MyLogger.debug(msg: 'Found unsupported Game URL: $url');
+
+      /// Jump to promo page with promo id if provided
+    } else if (url.startsWith('/promo/')) {
+      int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+      debugPrint('url promo id: $itemId');
+      AppNavigator.navigateTo(
+        RoutePage.promo,
+        arg: (itemId > 0) ? PromoRouteArguments(openPromoId: itemId) : null,
+      );
+
+      /// Jump to store page with product id if provided
+    } else if (url.startsWith('/mall/')) {
+      int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+
+      if (!getAppGlobalStreams.hasUser) {
+        callToastInfo(localeStr.messageErrorNotLogin);
+        return;
+      }
+      debugPrint('url mall id: $itemId');
+      AppNavigator.navigateTo(
+        RoutePage.sideStore,
+        arg: (itemId > 0) ? StoreRouteArguments(showProductId: itemId) : null,
+      );
+
+      /// Jump to route page if path name exist
+    } else {
+      RoutePage newRoute = url.urlToRoutePage;
+      debugPrint('checking url to app route: $newRoute');
+      if (newRoute != null) {
+        AppNavigator.navigateTo(newRoute);
+      } else {
+        callToast(localeStr.urlActionNotSupported);
+        MyLogger.debug(msg: 'Found unsupported Route URL: $url');
+      }
+    }
+  }
+
+  void _openGame(String url) {
+    final gameParam = url.split('/');
+    debugPrint('game url query: $gameParam');
+
+    /// Open game's web page if game can be found in stored map
+    if (gameParam.length == 3 &&
+        _store.hasGameInMap(
+          gameParam.take(2).join('/0'),
+          gameParam.last.strToInt,
+        )) {
+      final gameUrl = url.substring(url.indexOf('.com/') + 4);
+      debugPrint('opening game: $gameUrl');
+      _store.getGameUrl(gameUrl);
+      return;
+
+      /// Jump to game platform page
+    } else if (gameParam.length == 2) {
+      return;
+    }
+
+    callToast(localeStr.urlActionNotSupported);
+    MyLogger.debug(msg: 'Found unsupported Game URL: $url');
   }
 }

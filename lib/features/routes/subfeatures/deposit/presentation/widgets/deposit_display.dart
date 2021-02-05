@@ -1,8 +1,9 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/data/error/error_message_map.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/types_grid_widget.dart';
-import 'package:flutter_eg990_mobile/features/router/app_navigate.dart';
+import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 
 import '../../data/model/deposit_result.dart';
 import '../../data/model/payment_type.dart';
@@ -61,19 +62,22 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
         (DepositResult result) {
           debugPrint('deposit display result: $result');
           if (result == null) return;
-          if (result.code == 0 && result.ledger != null && result.ledger > 0) {
+          if (result.code == 0 && result.ledger >= 0) {
             callToastInfo(
               localeStr.depositMessageSuccessLocal(result.ledger),
               icon: Icons.check_circle_outline,
             );
           } else if (result.code == 0 && result.url != null) {
             debugPrint('deposit display url: ${result.url}');
-            RouterNavigate.navigateToPage(
+            AppNavigator.navigateTo(
               RoutePage.depositWeb,
               arg: WebRouteArguments(startUrl: result.url),
             );
           } else {
-            callToastError(localeStr.depositMessageFailed);
+            callToastError(MessageMap.getErrorMessage(
+              result.msg,
+              RouteEnum.DEPOSIT,
+            ));
           }
         },
       ),
@@ -123,6 +127,8 @@ class _DepositDisplayState extends State<DepositDisplay> with AfterLayoutMixin {
                       types: widget.store.paymentTypes,
                       tabsPerRow: 3,
                       expectTabHeight: 36.0,
+                      itemSpace: 6.0,
+                      itemSpaceHorFactor: 1.0,
                       titleKey: 'label',
                       onTypeGridTap: (_, type) => updateContent(type),
                     ),

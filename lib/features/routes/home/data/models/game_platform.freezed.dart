@@ -90,9 +90,9 @@ mixin _$GamePlatform {
   String get favorite;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             int id,
             @JsonKey(name: 'class', fromJson: decodePlatformClassName)
                 String className,
@@ -107,7 +107,7 @@ mixin _$GamePlatform {
             String status,
             String favorite),
     @required
-        Result entity(
+        TResult entity(
             @HiveField(0)
                 int id,
             @HiveField(1)
@@ -124,8 +124,8 @@ mixin _$GamePlatform {
             String favorite),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         int id,
         @JsonKey(name: 'class', fromJson: decodePlatformClassName)
             String className,
@@ -139,7 +139,7 @@ mixin _$GamePlatform {
         int sort,
         String status,
         String favorite),
-    Result entity(
+    TResult entity(
         @HiveField(0)
             int id,
         @HiveField(1)
@@ -154,20 +154,21 @@ mixin _$GamePlatform {
         @JsonKey(name: 'type', required: true)
             String category,
         String favorite),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(GamePlatformModel value),
-    @required Result entity(GamePlatformEntity value),
+  TResult map<TResult extends Object>({
+    @required TResult model(GamePlatformModel value),
+    @required TResult entity(GamePlatformEntity value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(GamePlatformModel value),
-    Result entity(GamePlatformEntity value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(GamePlatformModel value),
+    TResult entity(GamePlatformEntity value),
+    @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $GamePlatformCopyWith<GamePlatform> get copyWith;
 }
 
@@ -368,15 +369,16 @@ class _$GamePlatformModel implements GamePlatformModel {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(favorite);
 
+  @JsonKey(ignore: true)
   @override
   $GamePlatformModelCopyWith<GamePlatformModel> get copyWith =>
       _$GamePlatformModelCopyWithImpl<GamePlatformModel>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             int id,
             @JsonKey(name: 'class', fromJson: decodePlatformClassName)
                 String className,
@@ -391,7 +393,7 @@ class _$GamePlatformModel implements GamePlatformModel {
             String status,
             String favorite),
     @required
-        Result entity(
+        TResult entity(
             @HiveField(0)
                 int id,
             @HiveField(1)
@@ -415,8 +417,8 @@ class _$GamePlatformModel implements GamePlatformModel {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         int id,
         @JsonKey(name: 'class', fromJson: decodePlatformClassName)
             String className,
@@ -430,7 +432,7 @@ class _$GamePlatformModel implements GamePlatformModel {
         int sort,
         String status,
         String favorite),
-    Result entity(
+    TResult entity(
         @HiveField(0)
             int id,
         @HiveField(1)
@@ -445,7 +447,7 @@ class _$GamePlatformModel implements GamePlatformModel {
         @JsonKey(name: 'type', required: true)
             String category,
         String favorite),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (model != null) {
@@ -457,9 +459,9 @@ class _$GamePlatformModel implements GamePlatformModel {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(GamePlatformModel value),
-    @required Result entity(GamePlatformEntity value),
+  TResult map<TResult extends Object>({
+    @required TResult model(GamePlatformModel value),
+    @required TResult entity(GamePlatformEntity value),
   }) {
     assert(model != null);
     assert(entity != null);
@@ -468,10 +470,10 @@ class _$GamePlatformModel implements GamePlatformModel {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(GamePlatformModel value),
-    Result entity(GamePlatformEntity value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(GamePlatformModel value),
+    TResult entity(GamePlatformEntity value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (model != null) {
@@ -519,6 +521,7 @@ abstract class GamePlatformModel implements GamePlatform {
   @override
   String get favorite;
   @override
+  @JsonKey(ignore: true)
   $GamePlatformModelCopyWith<GamePlatformModel> get copyWith;
 }
 
@@ -661,15 +664,16 @@ class _$GamePlatformEntity implements GamePlatformEntity {
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(favorite);
 
+  @JsonKey(ignore: true)
   @override
   $GamePlatformEntityCopyWith<GamePlatformEntity> get copyWith =>
       _$GamePlatformEntityCopyWithImpl<GamePlatformEntity>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result model(
+        TResult model(
             int id,
             @JsonKey(name: 'class', fromJson: decodePlatformClassName)
                 String className,
@@ -684,7 +688,7 @@ class _$GamePlatformEntity implements GamePlatformEntity {
             String status,
             String favorite),
     @required
-        Result entity(
+        TResult entity(
             @HiveField(0)
                 int id,
             @HiveField(1)
@@ -707,8 +711,8 @@ class _$GamePlatformEntity implements GamePlatformEntity {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result model(
+  TResult maybeWhen<TResult extends Object>({
+    TResult model(
         int id,
         @JsonKey(name: 'class', fromJson: decodePlatformClassName)
             String className,
@@ -722,7 +726,7 @@ class _$GamePlatformEntity implements GamePlatformEntity {
         int sort,
         String status,
         String favorite),
-    Result entity(
+    TResult entity(
         @HiveField(0)
             int id,
         @HiveField(1)
@@ -737,7 +741,7 @@ class _$GamePlatformEntity implements GamePlatformEntity {
         @JsonKey(name: 'type', required: true)
             String category,
         String favorite),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (entity != null) {
@@ -748,9 +752,9 @@ class _$GamePlatformEntity implements GamePlatformEntity {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result model(GamePlatformModel value),
-    @required Result entity(GamePlatformEntity value),
+  TResult map<TResult extends Object>({
+    @required TResult model(GamePlatformModel value),
+    @required TResult entity(GamePlatformEntity value),
   }) {
     assert(model != null);
     assert(entity != null);
@@ -759,10 +763,10 @@ class _$GamePlatformEntity implements GamePlatformEntity {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result model(GamePlatformModel value),
-    Result entity(GamePlatformEntity value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult model(GamePlatformModel value),
+    TResult entity(GamePlatformEntity value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (entity != null) {
@@ -817,5 +821,6 @@ abstract class GamePlatformEntity implements GamePlatform, DataOperator {
   @override
   String get favorite;
   @override
+  @JsonKey(ignore: true)
   $GamePlatformEntityCopyWith<GamePlatformEntity> get copyWith;
 }
