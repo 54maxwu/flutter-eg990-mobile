@@ -37,14 +37,11 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Transform.scale(
-                  scale: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(36.0),
-                    child: networkImageBuilder(
-                      _langs[index].value.imageUrl,
-                      imgScale: (index == 3) ? 10.0 : 3.0,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(36.0),
+                  child: networkImageBuilder(
+                    _langs[index].value.imageUrl,
+                    imgScale: (index == 3) ? 10.0 : 1.0,
                   ),
                 ),
                 Padding(

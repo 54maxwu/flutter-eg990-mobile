@@ -26,28 +26,25 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
   double _tableCellWidth;
   double _tableHeight;
   BorderSide _tableBorder;
+
+  int _headersCnt = 0;
   List<String> _headerRowTexts;
   TableRow _headerRow;
   String _htmlContent;
 
   void updateContent() {
-    _tableCellWidth = (1.0 / _store.rulesModel.platformRules.length)
-        .toStringAsFixed(3)
-        .strToDouble;
+    _headersCnt = _store.rulesModel.platformRules.length;
+    _tableCellWidth = (1.0 / _headersCnt).toStringAsFixed(3).strToDouble;
     debugPrint('table cell width: $_tableCellWidth');
 
-    _tableWidthMap = {
-      //指定索引及固定列宽
-      0: FixedColumnWidth(_tableCellWidth),
-      1: FixedColumnWidth(_tableCellWidth),
-      2: FixedColumnWidth(_tableCellWidth),
-      3: FixedColumnWidth(_tableCellWidth),
-      4: FixedColumnWidth(_tableCellWidth),
-      5: FixedColumnWidth(_tableCellWidth),
-    };
+    _tableWidthMap = new Map();
+    //指定索引及固定列宽
+    for (int i = 0; i < _headersCnt; i++) {
+      _tableWidthMap.putIfAbsent(i, () => FixedColumnWidth(_tableCellWidth));
+    }
 
     _headerRowTexts = List.generate(
-      6,
+      _headersCnt,
       (index) =>
           '${_getCategoryLabel(_store.rulesModel.platformRules[index].platform)}',
     );
@@ -138,7 +135,7 @@ class _StoreDisplayRulesState extends State<StoreDisplayRules> {
                     _headerRow,
                     TableRow(
                       children: List.generate(
-                        6,
+                        _headersCnt,
                         (index) => TableCellTextWidget(
                             text:
                                 '${_store.rulesModel.platformRules[index].dollar}'),

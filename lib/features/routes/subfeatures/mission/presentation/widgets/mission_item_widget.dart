@@ -63,55 +63,72 @@ class MissionItemWidgetState extends State<MissionItemWidget> {
             color: themeColor.missionItemTitleTextColor,
           ),
         ),
-        subtitle: RichText(
-          text: TextSpan(
-            style: TextStyle(
-              color: themeColor.missionItemSubtitleTextColor,
-              fontSize: FontSize.SMALL.value,
-            ),
-            children: [
-              WidgetSpan(
-                alignment: PlaceholderAlignment.middle,
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 2),
-                  padding: const EdgeInsets.only(right: 4),
-                  child: Icon(
-                    Icons.info,
-                    size: FontSize.SUBTITLE.value,
+        subtitle: Wrap(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(
                     color: themeColor.missionItemSubtitleTextColor,
+                    fontSize: FontSize.SMALL.value,
                   ),
-                ),
-              ),
-              TextSpan(
-                text: localeStr.missionTextDetail,
-                style: TextStyle(color: themeColor.missionTextColor),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => showDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) => new MissionDetailDialog(
-                          detail: widget.mission.info,
+                  children: [
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 2),
+                        padding: const EdgeInsets.only(right: 4),
+                        child: Icon(
+                          Icons.info,
+                          size: FontSize.SUBTITLE.value,
+                          color: themeColor.missionItemSubtitleTextColor,
                         ),
                       ),
-              ),
-              WidgetSpan(
-                alignment: PlaceholderAlignment.middle,
-                child: Container(
-                  height: FontSize.TITLE.value,
-                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 2),
-                  child: Image.asset(Res.mission_awards_gift_bonus),
+                    ),
+                    TextSpan(
+                      text: localeStr.missionTextDetail,
+                      style: TextStyle(color: themeColor.missionTextColor),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) => new MissionDetailDialog(
+                                detail: widget.mission.info,
+                              ),
+                            ),
+                    ),
+                  ],
                 ),
               ),
-              TextSpan(
-                text: ' x ${widget.mission.prizeAmount} ',
+            ),
+            RichText(
+              text: TextSpan(
                 style: TextStyle(
                   color: themeColor.missionItemSubtitleTextColor,
-                  fontSize: FontSize.NORMAL.value,
+                  fontSize: FontSize.SMALL.value,
                 ),
+                children: [
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: Container(
+                      height: FontSize.TITLE.value,
+                      padding: const EdgeInsets.fromLTRB(0, 0, 4, 2),
+                      child: Image.asset(Res.mission_awards_gift_bonus),
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' x ${widget.mission.prizeAmount} ',
+                    style: TextStyle(
+                      color: themeColor.missionItemSubtitleTextColor,
+                      fontSize: FontSize.NORMAL.value,
+                    ),
+                  ),
+                  TextSpan(text: localeStr.missionPrizeMoney),
+                ],
               ),
-              TextSpan(text: localeStr.missionPrizeMoney),
-            ],
-          ),
+            ),
+          ],
         ),
         leading: Container(
           child: Image.asset(Res.mission_awards_money),
