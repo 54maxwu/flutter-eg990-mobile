@@ -1,9 +1,9 @@
-part of 'table_fixed_widget.dart';
+part of 'sticky_headers_table.dart';
 
 enum TableCellBgColor { PRIMARY, SECONDARY, CONTENT }
 
-class TableFixedCellWidget extends StatelessWidget {
-  TableFixedCellWidget.legend(
+class StickyTableCell extends StatelessWidget {
+  StickyTableCell.legend(
     this.text, {
     this.textStyle,
     this.cellDimensions = CellDimensions.base,
@@ -16,11 +16,11 @@ class TableFixedCellWidget extends StatelessWidget {
         thinTopBorder = false,
         _textAlign = TextAlign.start;
 
-  TableFixedCellWidget.columnHeader(
+  StickyTableCell.stickyRow(
     this.text, {
     this.textStyle,
     this.cellDimensions = CellDimensions.base,
-    this.colorBg = TableCellBgColor.SECONDARY,
+    this.colorBg = TableCellBgColor.PRIMARY,
     this.shrinkPadding = true,
     this.onTap,
   })  : cellWidth = cellDimensions.contentCellWidth,
@@ -29,30 +29,30 @@ class TableFixedCellWidget extends StatelessWidget {
         thinTopBorder = false,
         _textAlign = TextAlign.center;
 
-  TableFixedCellWidget.rowHeader(
+  StickyTableCell.stickyColumn(
     this.text, {
     this.textStyle,
     this.cellDimensions = CellDimensions.base,
-    this.colorBg = TableCellBgColor.PRIMARY,
+    this.colorBg = TableCellBgColor.SECONDARY,
     this.shrinkPadding = true,
     this.onTap,
   })  : cellWidth = cellDimensions.stickyLegendWidth,
         cellHeight = cellDimensions.contentCellHeight,
         thinBorder = false,
-        thinTopBorder = true,
+        thinTopBorder = false,
         _textAlign = TextAlign.start;
 
-  TableFixedCellWidget.content(
+  StickyTableCell.content(
     this.text, {
     this.textStyle,
     this.cellDimensions = CellDimensions.base,
     this.colorBg = TableCellBgColor.CONTENT,
-    this.shrinkPadding = true,
+    this.shrinkPadding = false,
     this.onTap,
   })  : cellWidth = cellDimensions.contentCellWidth,
         cellHeight = cellDimensions.contentCellHeight,
         thinBorder = true,
-        thinTopBorder = false,
+        thinTopBorder = true,
         _textAlign = TextAlign.center;
 
   final CellDimensions cellDimensions;
@@ -68,9 +68,9 @@ class TableFixedCellWidget extends StatelessWidget {
   final double borderWidth = 0.8;
 
   final TableCellBgColor colorBg;
-
   final TextAlign _textAlign;
   final bool shrinkPadding;
+
   final TextStyle textStyle;
 
   @override
@@ -137,6 +137,11 @@ class TableFixedCellWidget extends StatelessWidget {
                 ),
               ),
             ),
+            // Container(
+            //   width: double.infinity,
+            //   height: 1.1,
+            //   color: _colorVerticalBorder,
+            // ),
           ],
         ),
       ),

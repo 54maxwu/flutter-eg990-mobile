@@ -44,6 +44,7 @@ class CustomizeDropdownWidget extends StatefulWidget {
   final String suffixInitText;
   final Stream suffixTextStream;
   final double suffixWidthFactor;
+  final String hintText;
   final double minusHeight;
   final double minusPrefixWidth;
   final bool clearValueOnMenuChanged;
@@ -75,6 +76,7 @@ class CustomizeDropdownWidget extends StatefulWidget {
     this.suffixInitText,
     this.suffixTextStream,
     this.suffixWidthFactor = ThemeInterface.suffixWidthFactor,
+    this.hintText,
     this.minusHeight = ThemeInterface.minusSize,
     this.minusPrefixWidth = ThemeInterface.minusSize,
     this.clearValueOnMenuChanged = false,
@@ -264,10 +266,12 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
               constraints: _prefixConstraints,
               decoration: BoxDecoration(
                 color: _prefixBgColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(4.0),
-                  bottomLeft: Radius.circular(4.0),
-                ),
+                borderRadius: (widget.roundCorner)
+                    ? BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        bottomLeft: Radius.circular(4.0),
+                      )
+                    : null,
               ),
               child: _prefixWidget,
             ),
@@ -280,7 +284,9 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                   hint: FittedBox(
                     fit: (widget.scaleText) ? BoxFit.fitHeight : BoxFit.none,
                     child: Text(
-                      localeStr.hintActionSelect,
+                      (widget.hintText != null)
+                          ? widget.hintText
+                          : localeStr.hintActionSelect,
                       style: TextStyle(
                         color: (widget.subTheme)
                             ? themeColor.fieldInputHintSubColor
@@ -414,7 +420,7 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                     TextSpan(text: widget.prefixText),
                     if (widget.requiredInput)
                       TextSpan(
-                        text: ' *',
+                        text: '*',
                         style: TextStyle(
                           fontSize:
                               widget.prefixTextSize ?? FontSize.NORMAL.value,
@@ -448,7 +454,7 @@ class CustomizeDropdownWidgetState extends State<CustomizeDropdownWidget> {
                 TextSpan(text: widget.prefixText),
                 if (widget.requiredInput)
                   TextSpan(
-                    text: ' *',
+                    text: '*',
                     style: TextStyle(
                       fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                       color: themeColor.hintHighlightRed,

@@ -57,7 +57,7 @@ String doubleToStr(double value,
     formatValue(value,
         floor: floor, floorIfInt: floorIfInt, creditSign: creditSign);
 
-int stringToInt(String str, {bool printErrorStack = true}) {
+int stringToInt(String str, {bool printErrorStack = false}) {
   try {
     if (str == null || str.isEmpty) return -1;
     if (str.contains('.'))
@@ -122,7 +122,7 @@ String formatValue(
 extension ValueUtilExtension on String {
   int get strToInt => stringToInt(this);
 
-  int get strToIntNoErrorStack => stringToInt(this, printErrorStack: false);
+  int get strToIntErrorStack => stringToInt(this, printErrorStack: true);
 
   double get strToDouble => stringToDouble(this);
 

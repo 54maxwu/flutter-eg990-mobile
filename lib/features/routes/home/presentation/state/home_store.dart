@@ -442,7 +442,11 @@ abstract class _HomeStore with Store {
           .getRecommend()
           .then(
             (result) => result.fold(
-              (failure) => setErrorMsg(msg: failure.message, showOnce: true),
+              (failure) {
+                setErrorMsg(msg: failure.message, showOnce: true);
+                recommends = [];
+                _recommendController.sink.add([]);
+              },
               (list) {
 //                debugPrint('home store game recommend: $list');
                 // creates a new data instance then add to stream

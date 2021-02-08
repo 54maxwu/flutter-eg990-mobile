@@ -11,7 +11,7 @@ description: EG990 mobile app for multi platforms.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.0+1
+version: 1.1.0+2
 
 environment:
   sdk: ">=2.8.0 <3.0.0"
@@ -79,12 +79,12 @@ dependencies:
   # Super Enum (Enum with dynamic data) https://pub.dev/packages/super_enum
   super_enum: ^0.5.0
   # Value equality https://pub.dev/packages/equatable
-  equatable: ^1.2.5
+  equatable: ^1.2.6
   # Dart class to String https://pub.dev/packages/to_string
 #  to_string: ^1.2.1
   # Device Related
   # Handle device permission https://pub.dev/packages/permission_handler
-  permission_handler: ^5.0.1+1
+  permission_handler: ^5.1.0+2
   # Custom Permission Dialog https://pub.dev/packages/easy_permission_validator
   easy_permission_validator: ^2.0.1
   # Device Orientation https://pub.dev/packages/orientation
@@ -182,6 +182,7 @@ flutter:
     - assets/images/
     - assets/images/vip/
     - assets/images/index/
+    - assets/images/icon/
     - assets/images/mission/
     - config/app_config.json
   # An image asset can refer to one or more resolution-specific "variants", see

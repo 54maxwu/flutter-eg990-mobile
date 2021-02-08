@@ -14,7 +14,6 @@ class RollbackDisplayTable extends StatefulWidget {
 
 class RollbackDisplayTableState extends State<RollbackDisplayTable> {
   double _availableWidth;
-  double _tableHeight;
   Map<int, TableColumnWidth> _tableWidthMap;
 
   List<RollbackModel> _dataList;
@@ -73,25 +72,19 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
 
   @override
   void initState() {
-    int availableRows = ((Global.device.featureContentHeight - 16) /
-            (FontSize.NORMAL.value * 2.35))
-        .floor();
-    debugPrint('available rows: $availableRows');
-    // FontSize.NORMAL.value * 2 = font size * 2 line + space
-    _tableHeight = FontSize.NORMAL.value * 2.15 * availableRows;
-
     _availableWidth = Global.device.width - 16;
+    double remainWidth = _availableWidth * 1.5 - 96 - 48 - 64 - 36;
     _tableWidthMap = {
       //指定索引及固定列宽
-      0: FixedColumnWidth(_availableWidth * 0.175),
-      1: FixedColumnWidth(_availableWidth * 0.125),
-      2: FixedColumnWidth(_availableWidth * 0.075),
-      3: FixedColumnWidth(_availableWidth * 0.125),
-      4: FixedColumnWidth(_availableWidth * 0.075),
-      5: FixedColumnWidth(_availableWidth * 0.075),
-      6: FixedColumnWidth(_availableWidth * 0.1),
-      7: FixedColumnWidth(_availableWidth * 0.1),
-      8: FixedColumnWidth(_availableWidth * 0.15),
+      0: FixedColumnWidth(96),
+      1: FixedColumnWidth(48),
+      2: FixedColumnWidth(64),
+      3: FixedColumnWidth(remainWidth * 0.15),
+      4: FixedColumnWidth(36),
+      5: FixedColumnWidth(remainWidth * 0.25),
+      6: FixedColumnWidth(remainWidth * 0.2),
+      7: FixedColumnWidth(remainWidth * 0.2),
+      8: FixedColumnWidth(remainWidth * 0.2),
     };
     super.initState();
   }
@@ -139,18 +132,22 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
 
   Widget _buildEmptyTable() {
     return SingleChildScrollView(
-      child: ColoredBox(
-        color: themeColor.chartBgColor,
-        child: Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          columnWidths: _tableWidthMap,
-          border: TableBorder.all(
-            color: themeColor.chartBorderColor,
-            width: 2.0,
-            style: BorderStyle.solid,
+      scrollDirection: Axis.vertical,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: ColoredBox(
+          color: themeColor.chartBgColor,
+          child: Table(
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: _tableWidthMap,
+            border: TableBorder.all(
+              color: themeColor.chartBorderColor,
+              width: 2.0,
+              style: BorderStyle.solid,
+            ),
+            /* create table header and generate rows */
+            children: <TableRow>[_headerRow, _totalRow],
           ),
-          /* create table header and generate rows */
-          children: <TableRow>[_headerRow, _totalRow],
         ),
       ),
     );
@@ -158,40 +155,45 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
 
   Widget _buildTable() {
     return SingleChildScrollView(
-      child: ColoredBox(
-        color: themeColor.chartBgColor,
-        child: Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          columnWidths: _tableWidthMap,
-          border: TableBorder.all(
-            color: themeColor.chartBorderColor,
-            width: 2.0,
-            style: BorderStyle.solid,
+      scrollDirection: Axis.vertical,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: ColoredBox(
+          color: themeColor.chartBgColor,
+          child: Table(
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: _tableWidthMap,
+            border: TableBorder.all(
+              color: themeColor.chartBorderColor,
+              width: 2.0,
+              style: BorderStyle.solid,
+            ),
+            /* create table header and generate rows */
+            children: <TableRow>[_headerRow] +
+                List.generate(_dataList.length, (index) {
+                  RollbackModel data = _dataList[index];
+                  List<dynamic> dataTexts = [
+                    "${data.startTime} ~ ${data.endTime}",
+                    data.code ?? data.key,
+                    getStatusIndex(data.index),
+                    formatValue(data.amount, creditSign: true),
+                    '${data.multiply}',
+                    '${data.promoSimplified}',
+                    formatValue(data.turnOver, creditSign: true),
+                    formatValue(data.rollOver, creditSign: true),
+                    formatValue(data.betResult, creditSign: true),
+                  ];
+                  /* generate cell text */
+                  return TableRow(
+                    children: List.generate(
+                      dataTexts.length,
+                      (index) =>
+                          TableCellTextWidget(text: '${dataTexts[index]}'),
+                    ),
+                  );
+                }) +
+                <TableRow>[_totalRow],
           ),
-          /* create table header and generate rows */
-          children: <TableRow>[_headerRow] +
-              List.generate(_dataList.length, (index) {
-                RollbackModel data = _dataList[index];
-                List<dynamic> dataTexts = [
-                  "${data.startTime} ~ ${data.endTime}",
-                  data.code ?? data.key,
-                  getStatusIndex(data.index),
-                  formatValue(data.amount, creditSign: true),
-                  '${data.multiply}',
-                  '${data.promoSimplified}',
-                  formatValue(data.turnOver, creditSign: true),
-                  formatValue(data.rollOver, creditSign: true),
-                  formatValue(data.betResult, creditSign: true),
-                ];
-                /* generate cell text */
-                return TableRow(
-                  children: List.generate(
-                    dataTexts.length,
-                    (index) => TableCellTextWidget(text: '${dataTexts[index]}'),
-                  ),
-                );
-              }) +
-              <TableRow>[_totalRow],
         ),
       ),
     );
@@ -201,8 +203,10 @@ class RollbackDisplayTableState extends State<RollbackDisplayTable> {
     switch (state.toLowerCase()) {
       case 'webbank':
         return localeStr.memberGridTitleTransfer;
+      case '存款':
       case 'deposit':
         return localeStr.rollbackIndexDeposit;
+      case '优惠':
       case 'promo':
         return localeStr.rollbackIndexPromo;
       case 'adjustdeposit':

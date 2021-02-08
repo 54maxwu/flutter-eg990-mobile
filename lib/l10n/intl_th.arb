@@ -1179,6 +1179,38 @@
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
+  "registerFieldTitleChannel": "ช่อง",
+  "@registerFieldTitleChannel": {
+    "type": "text"
+  },
+  "registerChannelOptionHint": "โปรดเลือกช่อง",
+  "@registerChannelOptionHint": {
+    "type": "text"
+  },
+  "registerChannelOptionFb": "Facebook",
+  "@registerChannelOptionFb": {
+    "type": "text"
+  },
+  "registerChannelOptionGoogle": "Google",
+  "@registerChannelOptionGoogle": {
+    "type": "text"
+  },
+  "registerChannelOptionLine": "Line",
+  "@registerChannelOptionLine": {
+    "type": "text"
+  },
+  "registerChannelOptionAd": "โฆษณา",
+  "@registerChannelOptionAd": {
+    "type": "text"
+  },
+  "registerChannelOptionRef": "แนะนำโดยเพื่อน",
+  "@registerChannelOptionRef": {
+    "type": "text"
+  },
+  "registerChannelOptionOther": "อื่น ๆ",
+  "@registerChannelOptionOther": {
+    "type": "text"
+  },
   "registerButtonTitleRefresh": "รีเฟรช",
   "@registerButtonTitleRefresh": {
     "type": "text"

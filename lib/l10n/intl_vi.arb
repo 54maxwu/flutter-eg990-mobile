@@ -1179,6 +1179,38 @@
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
+  "registerFieldTitleChannel": "Kênh",
+  "@registerFieldTitleChannel": {
+    "type": "text"
+  },
+  "registerChannelOptionHint": "Vui lòng chọn một kênh",
+  "@registerChannelOptionHint": {
+    "type": "text"
+  },
+  "registerChannelOptionFb": "Facebook",
+  "@registerChannelOptionFb": {
+    "type": "text"
+  },
+  "registerChannelOptionGoogle": "Google",
+  "@registerChannelOptionGoogle": {
+    "type": "text"
+  },
+  "registerChannelOptionLine": "Dòng",
+  "@registerChannelOptionLine": {
+    "type": "text"
+  },
+  "registerChannelOptionAd": "Quảng cáo",
+  "@registerChannelOptionAd": {
+    "type": "text"
+  },
+  "registerChannelOptionRef": "Do bạn bè giới thiệu",
+  "@registerChannelOptionRef": {
+    "type": "text"
+  },
+  "registerChannelOptionOther": "Khác",
+  "@registerChannelOptionOther": {
+    "type": "text"
+  },
   "registerButtonTitleRefresh": "kích vào hình ảnh để làm mới  ",
   "@registerButtonTitleRefresh": {
     "type": "text"

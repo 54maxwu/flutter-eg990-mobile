@@ -277,9 +277,8 @@ class _PaymentContentOnlineState extends State<PaymentContentOnline>
               Padding(
                 padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
                 child: Text(
-                  localeStr.depositHintTextAmount(
-                      NumberFormat.simpleCurrency(decimalDigits: 0)
-                          .format(_onlineData.max)),
+                  localeStr.depositHintTextAmount(formatValue(_onlineData.max,
+                      floorIfInt: true, creditSign: true)),
                   style: TextStyle(color: themeColor.hintHighlight),
                 ),
               ),

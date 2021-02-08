@@ -11,6 +11,7 @@ abstract class RegisterForm with _$RegisterForm {
     String intro,
     String mobileno,
     String code,
+    String channel,
   }) = _RegisterForm;
 }
 
@@ -24,6 +25,7 @@ extension RegisterFormExtension on RegisterForm {
       'intro': this.intro ?? '',
       'mobileno': this.mobileno ?? '',
       'code': this.code ?? '',
+      'channel': this.channel ?? '',
     };
   }
 
@@ -32,5 +34,6 @@ extension RegisterFormExtension on RegisterForm {
       password.isNotEmpty &&
       confirmPassword.isNotEmpty &&
       password == confirmPassword &&
-      mobileno.isNotEmpty;
+      mobileno.isNotEmpty &&
+      channel != '-1';
 }

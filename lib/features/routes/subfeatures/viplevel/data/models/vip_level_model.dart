@@ -54,20 +54,31 @@ abstract class VipLevelOption with _$VipLevelOption {
   const factory VipLevelOption({
     String key,
     String name,
-    String ch,
+    String content,
+    @JsonKey(name: 'content_cn', defaultValue: '') String contentCN,
+    @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+    @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+    @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
     String type,
   }) = _VipLevelOption;
 
   static VipLevelOption jsonToVipLevelOption(Map<String, dynamic> jsonMap) {
-    String labelKey;
-    if (jsonMap.containsKey('ch'))
-      labelKey = 'ch';
-    else
-      labelKey = Global.lang.jsonKey;
     return _$_VipLevelOption(
       key: jsonMap['key'] as String,
       name: jsonMap['name'] as String,
-      ch: (jsonMap.containsKey(labelKey)) ? jsonMap[labelKey] as String : '',
+      content: (jsonMap.containsKey('ch')) ? jsonMap['ch'] as String : '',
+      contentCN: (jsonMap.containsKey('content_cn'))
+          ? jsonMap['content_cn'] as String
+          : '',
+      contentEN: (jsonMap.containsKey('content_us'))
+          ? jsonMap['content_us'] as String
+          : '',
+      contentVI: (jsonMap.containsKey('content_vn'))
+          ? jsonMap['content_vn'] as String
+          : '',
+      contentTH: (jsonMap.containsKey('content_th'))
+          ? jsonMap['content_th'] as String
+          : '',
       type: jsonMap['type'] as String,
     );
   }
@@ -79,3 +90,36 @@ List<VipLevelOption> decodeVipLevelOption(dynamic str) =>
       (jsonMap) => VipLevelOption.jsonToVipLevelOption(jsonMap),
       tag: 'VipLevelOption',
     );
+
+extension VipLevelOptionExtension on VipLevelOption {
+  String get getContent {
+    String str = this.content;
+    switch (Global.lang.code) {
+      case 'zh':
+        str = contentCN;
+        break;
+      case 'en':
+        str = contentEN;
+        break;
+      case 'th':
+        str = contentTH;
+        break;
+      case 'vi':
+        str = contentVI;
+        break;
+    }
+    // if content is empty
+    // use the one that's not empty by this order
+    // en -> cn -> vi -> th
+    if (str.isEmpty) {
+      str = (contentEN.isNotEmpty)
+          ? contentEN
+          : (contentCN.isNotEmpty)
+              ? contentCN
+              : (contentVI.isNotEmpty)
+                  ? contentVI
+                  : contentTH;
+    }
+    return str;
+  }
+}

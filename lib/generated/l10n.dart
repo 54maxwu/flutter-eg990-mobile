@@ -2635,6 +2635,86 @@ class S {
     );
   }
 
+  /// `Channel`
+  String get registerFieldTitleChannel {
+    return Intl.message(
+      'Channel',
+      name: 'registerFieldTitleChannel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select how you find us`
+  String get registerChannelOptionHint {
+    return Intl.message(
+      'Please select how you find us',
+      name: 'registerChannelOptionHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Facebook`
+  String get registerChannelOptionFb {
+    return Intl.message(
+      'Facebook',
+      name: 'registerChannelOptionFb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google`
+  String get registerChannelOptionGoogle {
+    return Intl.message(
+      'Google',
+      name: 'registerChannelOptionGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Line`
+  String get registerChannelOptionLine {
+    return Intl.message(
+      'Line',
+      name: 'registerChannelOptionLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Advertising`
+  String get registerChannelOptionAd {
+    return Intl.message(
+      'Advertising',
+      name: 'registerChannelOptionAd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended by a friend`
+  String get registerChannelOptionRef {
+    return Intl.message(
+      'Recommended by a friend',
+      name: 'registerChannelOptionRef',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get registerChannelOptionOther {
+    return Intl.message(
+      'Other',
+      name: 'registerChannelOptionOther',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Refresh`
   String get registerButtonTitleRefresh {
     return Intl.message(

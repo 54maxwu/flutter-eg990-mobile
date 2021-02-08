@@ -350,11 +350,23 @@ class _$VipLevelOptionTearOff {
   const _$VipLevelOptionTearOff();
 
 // ignore: unused_element
-  _VipLevelOption call({String key, String name, String ch, String type}) {
+  _VipLevelOption call(
+      {String key,
+      String name,
+      String content,
+      @JsonKey(name: 'content_cn', defaultValue: '') String contentCN,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String type}) {
     return _VipLevelOption(
       key: key,
       name: name,
-      ch: ch,
+      content: content,
+      contentCN: contentCN,
+      contentEN: contentEN,
+      contentVI: contentVI,
+      contentTH: contentTH,
       type: type,
     );
   }
@@ -368,7 +380,15 @@ const $VipLevelOption = _$VipLevelOptionTearOff();
 mixin _$VipLevelOption {
   String get key;
   String get name;
-  String get ch;
+  String get content;
+  @JsonKey(name: 'content_cn', defaultValue: '')
+  String get contentCN;
+  @JsonKey(name: 'content_us', defaultValue: '')
+  String get contentEN;
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  String get contentVI;
+  @JsonKey(name: 'content_th', defaultValue: '')
+  String get contentTH;
   String get type;
 
   @JsonKey(ignore: true)
@@ -380,7 +400,15 @@ abstract class $VipLevelOptionCopyWith<$Res> {
   factory $VipLevelOptionCopyWith(
           VipLevelOption value, $Res Function(VipLevelOption) then) =
       _$VipLevelOptionCopyWithImpl<$Res>;
-  $Res call({String key, String name, String ch, String type});
+  $Res call(
+      {String key,
+      String name,
+      String content,
+      @JsonKey(name: 'content_cn', defaultValue: '') String contentCN,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String type});
 }
 
 /// @nodoc
@@ -396,13 +424,21 @@ class _$VipLevelOptionCopyWithImpl<$Res>
   $Res call({
     Object key = freezed,
     Object name = freezed,
-    Object ch = freezed,
+    Object content = freezed,
+    Object contentCN = freezed,
+    Object contentEN = freezed,
+    Object contentVI = freezed,
+    Object contentTH = freezed,
     Object type = freezed,
   }) {
     return _then(_value.copyWith(
       key: key == freezed ? _value.key : key as String,
       name: name == freezed ? _value.name : name as String,
-      ch: ch == freezed ? _value.ch : ch as String,
+      content: content == freezed ? _value.content : content as String,
+      contentCN: contentCN == freezed ? _value.contentCN : contentCN as String,
+      contentEN: contentEN == freezed ? _value.contentEN : contentEN as String,
+      contentVI: contentVI == freezed ? _value.contentVI : contentVI as String,
+      contentTH: contentTH == freezed ? _value.contentTH : contentTH as String,
       type: type == freezed ? _value.type : type as String,
     ));
   }
@@ -415,7 +451,15 @@ abstract class _$VipLevelOptionCopyWith<$Res>
           _VipLevelOption value, $Res Function(_VipLevelOption) then) =
       __$VipLevelOptionCopyWithImpl<$Res>;
   @override
-  $Res call({String key, String name, String ch, String type});
+  $Res call(
+      {String key,
+      String name,
+      String content,
+      @JsonKey(name: 'content_cn', defaultValue: '') String contentCN,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String type});
 }
 
 /// @nodoc
@@ -433,13 +477,21 @@ class __$VipLevelOptionCopyWithImpl<$Res>
   $Res call({
     Object key = freezed,
     Object name = freezed,
-    Object ch = freezed,
+    Object content = freezed,
+    Object contentCN = freezed,
+    Object contentEN = freezed,
+    Object contentVI = freezed,
+    Object contentTH = freezed,
     Object type = freezed,
   }) {
     return _then(_VipLevelOption(
       key: key == freezed ? _value.key : key as String,
       name: name == freezed ? _value.name : name as String,
-      ch: ch == freezed ? _value.ch : ch as String,
+      content: content == freezed ? _value.content : content as String,
+      contentCN: contentCN == freezed ? _value.contentCN : contentCN as String,
+      contentEN: contentEN == freezed ? _value.contentEN : contentEN as String,
+      contentVI: contentVI == freezed ? _value.contentVI : contentVI as String,
+      contentTH: contentTH == freezed ? _value.contentTH : contentTH as String,
       type: type == freezed ? _value.type : type as String,
     ));
   }
@@ -447,20 +499,40 @@ class __$VipLevelOptionCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_VipLevelOption implements _VipLevelOption {
-  const _$_VipLevelOption({this.key, this.name, this.ch, this.type});
+  const _$_VipLevelOption(
+      {this.key,
+      this.name,
+      this.content,
+      @JsonKey(name: 'content_cn', defaultValue: '') this.contentCN,
+      @JsonKey(name: 'content_us', defaultValue: '') this.contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') this.contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') this.contentTH,
+      this.type});
 
   @override
   final String key;
   @override
   final String name;
   @override
-  final String ch;
+  final String content;
+  @override
+  @JsonKey(name: 'content_cn', defaultValue: '')
+  final String contentCN;
+  @override
+  @JsonKey(name: 'content_us', defaultValue: '')
+  final String contentEN;
+  @override
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  final String contentVI;
+  @override
+  @JsonKey(name: 'content_th', defaultValue: '')
+  final String contentTH;
   @override
   final String type;
 
   @override
   String toString() {
-    return 'VipLevelOption(key: $key, name: $name, ch: $ch, type: $type)';
+    return 'VipLevelOption(key: $key, name: $name, content: $content, contentCN: $contentCN, contentEN: $contentEN, contentVI: $contentVI, contentTH: $contentTH, type: $type)';
   }
 
   @override
@@ -471,8 +543,21 @@ class _$_VipLevelOption implements _VipLevelOption {
                 const DeepCollectionEquality().equals(other.key, key)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.ch, ch) ||
-                const DeepCollectionEquality().equals(other.ch, ch)) &&
+            (identical(other.content, content) ||
+                const DeepCollectionEquality()
+                    .equals(other.content, content)) &&
+            (identical(other.contentCN, contentCN) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentCN, contentCN)) &&
+            (identical(other.contentEN, contentEN) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentEN, contentEN)) &&
+            (identical(other.contentVI, contentVI) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentVI, contentVI)) &&
+            (identical(other.contentTH, contentTH) ||
+                const DeepCollectionEquality()
+                    .equals(other.contentTH, contentTH)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)));
   }
@@ -482,7 +567,11 @@ class _$_VipLevelOption implements _VipLevelOption {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(key) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(ch) ^
+      const DeepCollectionEquality().hash(content) ^
+      const DeepCollectionEquality().hash(contentCN) ^
+      const DeepCollectionEquality().hash(contentEN) ^
+      const DeepCollectionEquality().hash(contentVI) ^
+      const DeepCollectionEquality().hash(contentTH) ^
       const DeepCollectionEquality().hash(type);
 
   @JsonKey(ignore: true)
@@ -493,14 +582,33 @@ class _$_VipLevelOption implements _VipLevelOption {
 
 abstract class _VipLevelOption implements VipLevelOption {
   const factory _VipLevelOption(
-      {String key, String name, String ch, String type}) = _$_VipLevelOption;
+      {String key,
+      String name,
+      String content,
+      @JsonKey(name: 'content_cn', defaultValue: '') String contentCN,
+      @JsonKey(name: 'content_us', defaultValue: '') String contentEN,
+      @JsonKey(name: 'content_vn', defaultValue: '') String contentVI,
+      @JsonKey(name: 'content_th', defaultValue: '') String contentTH,
+      String type}) = _$_VipLevelOption;
 
   @override
   String get key;
   @override
   String get name;
   @override
-  String get ch;
+  String get content;
+  @override
+  @JsonKey(name: 'content_cn', defaultValue: '')
+  String get contentCN;
+  @override
+  @JsonKey(name: 'content_us', defaultValue: '')
+  String get contentEN;
+  @override
+  @JsonKey(name: 'content_vn', defaultValue: '')
+  String get contentVI;
+  @override
+  @JsonKey(name: 'content_th', defaultValue: '')
+  String get contentTH;
   @override
   String get type;
   @override

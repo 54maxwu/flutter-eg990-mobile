@@ -1179,6 +1179,38 @@
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
+  "registerFieldTitleChannel": "渠道",
+  "@registerFieldTitleChannel": {
+    "type": "text"
+  },
+  "registerChannelOptionHint": "請選擇一個渠道",
+  "@registerChannelOptionHint": {
+    "type": "text"
+  },
+  "registerChannelOptionFb": "Facebook",
+  "@registerChannelOptionFb": {
+    "type": "text"
+  },
+  "registerChannelOptionGoogle": "Google",
+  "@registerChannelOptionGoogle": {
+    "type": "text"
+  },
+  "registerChannelOptionLine": "Line",
+  "@registerChannelOptionLine": {
+    "type": "text"
+  },
+  "registerChannelOptionAd": "廣告",
+  "@registerChannelOptionAd": {
+    "type": "text"
+  },
+  "registerChannelOptionRef": "由朋友推薦",
+  "@registerChannelOptionRef": {
+    "type": "text"
+  },
+  "registerChannelOptionOther": "其他",
+  "@registerChannelOptionOther": {
+    "type": "text"
+  },
   "registerButtonTitleRefresh": "点图刷新",
   "@registerButtonTitleRefresh": {
     "type": "text"

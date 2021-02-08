@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/checkbox_widget.dart';
+import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_titled_container.dart';
 import 'package:flutter_eg990_mobile/features/router/app_navigator_export.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/user_entity.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/widgets/login_navigate.dart';
+import 'package:flutter_eg990_mobile/features/user/register/presentation/enum/register_channel_enum.dart';
 
 import '../../../data/form/register_form.dart';
 import '../state/register_store.dart';
@@ -35,10 +38,12 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       new GlobalKey(debugLabel: 'phone');
   final GlobalKey<CustomizeFieldWidgetState> _introFieldKey =
       new GlobalKey(debugLabel: 'intro');
+  final GlobalKey<CustomizeDropdownWidgetState> _channelOptionKey =
+      new GlobalKey(debugLabel: 'channel');
   // final GlobalKey<CheckboxWidgetState> _newsCheckKey =
   //     new GlobalKey(debugLabel: 'news');
-  // final GlobalKey<CheckboxWidgetState> _termsCheckKey =
-  //     new GlobalKey(debugLabel: 'terms');
+  final GlobalKey<CheckboxWidgetState> _termsCheckKey =
+      new GlobalKey(debugLabel: 'terms');
 
   double _fieldInset;
   // double _phoneCodeContainerHeight;
@@ -46,6 +51,8 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   Color _fieldPrefixBg;
 
   RegisterStore _store;
+  List<RegisterChannelEnum> _channels;
+  RegisterChannelEnum _selectedChannel;
 
   bool _showAccountError = false;
   bool _showPasswordError = false;
@@ -54,6 +61,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   void _validateForm() {
     if (_store == null || _store.waitForRegister) return;
+    if (_termsCheckKey.currentState?.boxChecked != true) {
+      callToast(localeStr.messageActionCheckTerms);
+      return;
+    }
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -64,8 +75,8 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         confirmPassword: _confirmFieldKey.currentState.getInput,
         mobileno: _phoneFieldKey.currentState.getInput,
         intro: _introFieldKey.currentState.getInput,
+        channel: '${_selectedChannel?.value ?? -1}',
       );
-      // if (regForm.isValid && _termsCheckKey.currentState.boxChecked) {
       if (regForm.isValid) {
         _store.postRegister(regForm);
       } else {
@@ -102,6 +113,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         ),
       );
     }
+    _channels ??= RegisterChannelEnum.mapAll;
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -114,7 +126,6 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
             children: <Widget>[
               ///
               /// Account Field
-              ///
               ///
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
@@ -264,7 +275,6 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: new CustomizeTitledContainer(
                   prefixText: localeStr.registerFieldTitlePhone,
-                  prefixTextSize: FontSize.SUBTITLE.value,
                   prefixBgColor: _fieldPrefixBg,
                   backgroundColor: Colors.transparent,
                   horizontalInset: _fieldInset,
@@ -365,6 +375,31 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                   ),
                 ),
               ),
+
+              ///
+              /// Channel Option
+              ///
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: CustomizeDropdownWidget(
+                  key: _channelOptionKey,
+                  prefixText: localeStr.registerFieldTitleChannel,
+                  hintText: localeStr.registerChannelOptionHint,
+                  titleLetterSpacing: 4,
+                  roundCorner: false,
+                  requiredInput: true,
+                  clearValueOnMenuChanged: true,
+                  optionValues: _channels,
+                  optionStrings:
+                      _channels.map((e) => e.label).toList(growable: false),
+                  changeNotify: (data) {
+                    // clear text field focus
+                    FocusScope.of(context).unfocus();
+                    // set selected data
+                    _selectedChannel = data;
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -389,29 +424,29 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         //     scale: 1.25,
         //   ),
         // ),
-        //
-        // ///
-        // /// Terms Check Box
-        // ///
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-        //   child: CheckboxWidget(
-        //     key: _termsCheckKey,
-        //     widgetPadding: EdgeInsets.zero,
-        //     textPadding: const EdgeInsets.only(left: 8.0),
-        //     label: localeStr.registerCheckButtonTerms,
-        //     boxBackgroundColor: themeColor.fieldInputBgColor,
-        //     textSize: FontSize.SUBTITLE.value,
-        //     maxLines: 2,
-        //     scale: 1.25,
-        //   ),
-        // ),
+
+        ///
+        /// Terms Check Box
+        ///
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 16, 8, 12),
+          child: CheckboxWidget(
+            key: _termsCheckKey,
+            widgetPadding: EdgeInsets.zero,
+            textPadding: const EdgeInsets.only(left: 8.0),
+            label: localeStr.registerCheckButtonTerms,
+            boxBackgroundColor: themeColor.fieldInputBgColor,
+            textSize: FontSize.SUBTITLE.value,
+            maxLines: 2,
+            scale: 1.25,
+          ),
+        ),
 
         ///
         /// Confirm Button
         ///
         Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 24.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 12.0, 8.0, 24.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,

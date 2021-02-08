@@ -236,9 +236,9 @@ class HomeDisplayTabPageState extends State<HomeDisplayTabPage>
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         children: [
-          HomeSearchWidget(onSearch: (input) {
-            _store.searchGame(searchKey: input);
-          }),
+          // HomeSearchWidget(onSearch: (input) {
+          //   _store.searchGame(searchKey: input);
+          // }),
           StreamBuilder<String>(
               stream: _store.searchGameStream,
               initialData: '',

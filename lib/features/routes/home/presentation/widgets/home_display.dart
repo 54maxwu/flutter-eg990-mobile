@@ -196,8 +196,17 @@ class _HomeDisplayState extends State<HomeDisplay> {
 
       /// Show game category view
     } else if (url.startsWith('/gamelist/')) {
-      callToast(localeStr.urlActionNotSupported);
-      MyLogger.debug(msg: 'Found unsupported Game URL: $url');
+      List<String> plats = url.split('/');
+      debugPrint('platforms: $plats');
+      if (plats.length == 3) {
+        callToast(localeStr.urlActionNotSupported);
+        MyLogger.debug(msg: 'Found unsupported Game URL: $url');
+      } else if (plats.length == 4) {
+        _tabsWidgetKey.currentState?.findPage(plats[3]);
+        Future.delayed(Duration(milliseconds: 1500), () {
+          _store.showSearchPlatform('${plats[2]}-${plats[3]}');
+        });
+      }
 
       /// Jump to promo page with promo id if provided
     } else if (url.startsWith('/promo/')) {

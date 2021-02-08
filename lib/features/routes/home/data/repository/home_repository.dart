@@ -341,23 +341,27 @@ class HomeRepositoryImpl implements HomeRepository {
       (data) {
         debugPrint('check favorite data type: ${data.runtimeType}');
         Map map = new Map();
-        if (data is Map)
+        if (data is Map) {
           map = data;
-        else if (data is String)
+        } else if (data is String) {
           map = jsonDecode(data);
-        else
+        } else {
           return Left(Failure.jsonFormat());
+        }
 
         List dataList = new List();
         map.forEach((key, value) {
 //            debugPrint('$key data is List: ${value is List}');
-          if (value is List)
+          if (value is List) {
             dataList.addAll(value);
-          else
+          } else if (value is Map) {
+            dataList.addAll(value.values);
+          } else {
             MyLogger.warn(
               msg: 'data type error, $key data is ${value.runtimeType}',
               tag: tag,
             );
+          }
         });
         return Right(_decodeMixedData(dataList));
       },

@@ -142,21 +142,32 @@ class DepositRepositoryImpl implements DepositRepository {
 
   @override
   Future<Either<Failure, Map<int, String>>> getDepositRule() async {
-    final result = await requestData(
+    final result = await requestModel<RequestCodeModel>(
       request: dioApiService.get(
         DepositApi.GET_DEPOSIT_RULE,
         userToken: jwtInterface.token,
       ),
+      jsonToModel: RequestCodeModel.jsonToCodeModel,
       tag: 'remote-DEPOSIT',
     );
     return result.fold(
       (failure) => Left(failure),
-      (data) => (data != null && data.toString().isNotEmpty && data is Map)
-          ? Right(data.map<int, String>((key, value) {
+      (model) {
+        if (model.isSuccess) {
+          if (model.data != null &&
+              model.data.toString().isNotEmpty &&
+              model.data is Map) {
+            return Right(model.data.map<int, String>((key, value) {
               debugPrint('rule key: $key, data: $value');
               return MapEntry<int, String>('$key'.strToInt, """$value""");
-            }))
-          : Right({}),
+            }));
+          } else {
+            return Right({});
+          }
+        } else {
+          return Left(Failure.errorMessage(msg: model.msg));
+        }
+      },
     );
   }
 

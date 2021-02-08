@@ -44,6 +44,7 @@ class BalanceGridItemState extends State<BalanceGridItem>
     _credit = credit;
     isMaintaining = credit == '$creditSymbol-1.00' ||
         credit == 'maintenance' ||
+        credit == 'maintaining' ||
         credit == 'InMaintenance';
     if (isMaintaining || _credit == '---') {
       canTransferIn = false;

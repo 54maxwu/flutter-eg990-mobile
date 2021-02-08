@@ -133,7 +133,7 @@ class VipLevelDisplay extends StatelessWidget {
                               horizontal: 4.0,
                             ),
                             child: Text(
-                              option.ch,
+                              option.getContent,
                               style: TextStyle(
                                 color: themeColor.vipTitleColor,
                                 fontSize: FontSize.SMALLER.value,

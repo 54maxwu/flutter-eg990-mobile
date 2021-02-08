@@ -1179,6 +1179,38 @@
   "@registerFieldTitleRecommend": {
     "type": "text"
   },
+  "registerFieldTitleChannel": "Channel",
+  "@registerFieldTitleChannel": {
+    "type": "text"
+  },
+  "registerChannelOptionHint": "Please select how you find us",
+  "@registerChannelOptionHint": {
+    "type": "text"
+  },
+  "registerChannelOptionFb": "Facebook",
+  "@registerChannelOptionFb": {
+    "type": "text"
+  },
+  "registerChannelOptionGoogle": "Google",
+  "@registerChannelOptionGoogle": {
+    "type": "text"
+  },
+  "registerChannelOptionLine": "Line",
+  "@registerChannelOptionLine": {
+    "type": "text"
+  },
+  "registerChannelOptionAd": "Advertising",
+  "@registerChannelOptionAd": {
+    "type": "text"
+  },
+  "registerChannelOptionRef": "Recommended by a friend",
+  "@registerChannelOptionRef": {
+    "type": "text"
+  },
+  "registerChannelOptionOther": "Other",
+  "@registerChannelOptionOther": {
+    "type": "text"
+  },
   "registerButtonTitleRefresh": "Refresh",
   "@registerButtonTitleRefresh": {
     "type": "text"

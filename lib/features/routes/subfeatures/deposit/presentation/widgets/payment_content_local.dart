@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_display_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_dropdown_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/customize_field_widget.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import '../../data/form/deposit_form.dart';
 import '../../data/model/deposit_info.dart';
@@ -458,9 +458,8 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             Padding(
               padding: const EdgeInsets.fromLTRB(4.0, 6.0, 4.0, 6.0),
               child: Text(
-                localeStr.depositHintTextAmount(
-                    NumberFormat.simpleCurrency(decimalDigits: 0)
-                        .format(_localData.max.strToInt)),
+                localeStr.depositHintTextAmount(formatValue(_localData.max,
+                    floorIfInt: true, creditSign: true)),
                 style: TextStyle(color: themeColor.hintHighlight),
               ),
             ),

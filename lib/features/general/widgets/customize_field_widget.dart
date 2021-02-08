@@ -111,7 +111,9 @@ class CustomizeFieldWidget extends StatefulWidget {
 class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
   final TextEditingController _controller = new TextEditingController();
   final GlobalKey<FormFieldState> _fieldKey = new GlobalKey();
+  final FocusNode _focusNode = new FocusNode();
 
+  bool _focusListener = false;
   double _viewWidth;
   EdgeInsetsGeometry _fieldInset;
   TextStyle _fieldTextStyle;
@@ -137,7 +139,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     _controller.text = text;
     if (text.isNotEmpty) {
       // Android on change resets cursor position(cursor goes to 0)
-      // so you have to check if it reset, then put in the end(just on android)
+      // so you have to check if it had been reset, then put in the end(just on android)
       // as IOS bugs if you simply put it in the end
       _controller.selection =
           new TextSelection.fromPosition(new TextPosition(offset: text.length));
@@ -169,23 +171,25 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     }
 
     // fix cursor position
+    _setCursorPosition(value);
+
+    setState(() {
+      _isValid = widget.validCondition(value) ?? true;
+    });
+
+    if (widget.onInputChanged != null && widget.debug) {
+      debugPrint(
+          '${widget.hint} input: $value, code: ${value.codeUnits}, valid: $_isValid');
+    }
+  }
+
+  void _setCursorPosition(String value) {
     if (_controller.selection.baseOffset ==
             _controller.selection.extentOffset &&
         _controller.selection.baseOffset != _controller.text.length) {
       _controller.selection = new TextSelection.fromPosition(
           new TextPosition(offset: value.length));
       debugPrint('fixed controller selection: ${_controller.selection}');
-    }
-
-    setState(() {
-      _isValid = widget.validCondition(value) ?? true;
-    });
-
-    if (widget.onInputChanged != null) {
-      if (widget.debug) {
-        debugPrint(
-            '${widget.hint} input: $value, code: ${value.codeUnits}, valid: $_isValid');
-      }
     }
   }
 
@@ -203,7 +207,9 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     _fieldTextStyle = TextStyle(
       fontSize: (widget.fieldTextSize != null)
           ? widget.fieldTextSize
-          : FontSize.NORMAL.value,
+          : (widget.readOnly)
+              ? FontSize.NORMAL.value
+              : FontSize.SUBTITLE.value,
       color: textColor,
       decorationColor: textColor,
     );
@@ -244,13 +250,12 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
         widget.minusHeight;
     if (widget.prefixIconData != null) _smallWidgetHeight += 8.0;
 
-    double fieldInsetHeight =
-        (widget.persistHint) ? 4 : (_smallWidgetHeight - 21.6) / 2;
+    // double fieldInsetHeight =
+    //     (widget.persistHint) ? 4 : (_smallWidgetHeight - 21.6) / 2;
 
     _fieldInset = (widget.centerFieldText)
         ? EdgeInsets.only(left: 2.0)
-        : EdgeInsets.fromLTRB(8.0, fieldInsetHeight, 8.0,
-            (Global.lang.isChinese) ? fieldInsetHeight - 2 : fieldInsetHeight);
+        : EdgeInsets.symmetric(horizontal: 8.0);
 
     _updateFieldStyle();
 
@@ -263,6 +268,13 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
     super.initState();
     _prefixColor = widget.prefixItemColor ?? themeColor.fieldPrefixColor;
     _prefixBgColor = widget.prefixBgColor ?? themeColor.fieldPrefixBgColor;
+    if (!_focusListener) {
+      _focusNode.addListener(() {
+        // debugPrint('field ${widget.key} has focus ${_focusNode.hasFocus}');
+        _setCursorPosition(_controller.text);
+      });
+      _focusListener = true;
+    }
     if (widget.onInputChanged != null) {
       _controller.addListener(() {
         widget.onInputChanged(_controller.text);
@@ -344,6 +356,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           child: new TextFormField(
             key: _fieldKey,
             controller: _controller,
+            focusNode: _focusNode,
             enableInteractiveSelection: false,
             keyboardType: _keyboardType(),
             inputFormatters: _formatterList(),
@@ -388,6 +401,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           child: new TextFormField(
             key: _fieldKey,
             controller: _controller,
+            focusNode: _focusNode,
             enableInteractiveSelection: false,
             keyboardType: _keyboardType(),
             inputFormatters: _formatterList(),
@@ -458,9 +472,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing / 2,
-                    letterSpacing: (Global.lang.isChinese)
-                        ? widget.titleLetterSpacing / 4
-                        : 0 / 4,
+                    letterSpacing: widget.titleLetterSpacing / 4,
                     color: _prefixColor,
                   ),
                   children: [
@@ -483,7 +495,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       );
     } else if (widget.prefixText != null) {
       _prefixWidget = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: RichText(
@@ -493,8 +505,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
               style: TextStyle(
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
-                letterSpacing:
-                    (Global.lang.isChinese) ? widget.titleLetterSpacing : 0,
+                letterSpacing: widget.titleLetterSpacing,
                 color: _prefixColor,
               ),
               children: [
@@ -619,21 +630,6 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
 
   List<TextInputFormatter> _formatterList() {
     switch (widget.fieldType) {
-      case FieldType.ChineseOnly:
-        return [
-          _chineseInputFormatter,
-          LengthLimitingTextInputFormatter(widget.maxInputLength ~/ 2),
-        ];
-      case FieldType.NoEnglish:
-        return [
-          _withoutEngInputFormatter,
-          LengthLimitingTextInputFormatter(widget.maxInputLength ~/ 2),
-        ];
-      case FieldType.TextOnly:
-        return [
-          _textOnlyInputFormatter,
-          LengthLimitingTextInputFormatter(widget.maxInputLength),
-        ];
       case FieldType.Numbers:
         return [
           _numbersInputFormatter,
@@ -654,7 +650,6 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
           _accountInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
-      case FieldType.NoChinese:
       case FieldType.Password:
         return [
           _withoutChineseInputFormatter,
@@ -662,7 +657,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
         ];
       default:
         return [
-          _normalInputFormatter,
+//          _normalInputFormatter,
           LengthLimitingTextInputFormatter(widget.maxInputLength),
         ];
     }
