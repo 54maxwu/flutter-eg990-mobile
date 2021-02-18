@@ -87,7 +87,7 @@ class BackgroundVideoPlayerWidgetState
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(
-      Res.bg_movie,
+      Res.bg_reg,
       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
     );
     // _controller.addListener(() {

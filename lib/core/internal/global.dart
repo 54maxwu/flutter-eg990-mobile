@@ -47,7 +47,7 @@ class Global {
   static const String CURRENT_BASE = EG_BASE_URL;
   static String currentService = EG_SERVICE_URL;
 
-  static const String EG_BASE_URL = "https://www.eg990.com/";
+  static const String EG_BASE_URL = "https://www.eg996.com/";
   static const String EG_SERVICE_URL = "http://vip66741.com/";
 
   /// HIVE table name

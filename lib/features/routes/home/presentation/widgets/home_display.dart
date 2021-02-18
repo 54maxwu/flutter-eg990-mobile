@@ -180,8 +180,6 @@ class _HomeDisplayState extends State<HomeDisplay> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              if (Res.wallpaper.isNotEmpty)
-                Image.asset(Res.wallpaper, fit: BoxFit.fill),
               Column(
                 children: [
                   Container(

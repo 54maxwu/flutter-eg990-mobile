@@ -57,12 +57,6 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
       var value = item.value;
       if (value.isUserOnly && !hasUser)
         AppNavigator.navigateTo(RoutePage.login);
-      else if (item.value.id == RouteEnum.SERVICE)
-        AppNavigator.navigateTo(value.route,
-            arg: WebRouteArguments(
-              startUrl: Global.currentService,
-              hideBars: true,
-            ));
       else
         AppNavigator.navigateTo(value.route);
     }

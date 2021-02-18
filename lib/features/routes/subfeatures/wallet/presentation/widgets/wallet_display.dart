@@ -172,7 +172,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                       ),
                     ),
                     child: Image.asset(
-                      Res.walletBgIcon,
+                      Res.wlpop_titico,
                       alignment: Alignment.topLeft,
                       fit: BoxFit.none,
                       color: themeColor.walletCardIconBgColor,
@@ -203,7 +203,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset(
-                              Res.walletBgIconSmall,
+                              Res.wlpop_titico_small,
                               color: themeColor.iconColor,
                             ),
                             Padding(

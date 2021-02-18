@@ -94,7 +94,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
       title: Container(
           width: Global.device.width * 0.225,
           height: Global.APP_MENU_HEIGHT,
-          child: Image.asset(Res.iconBarLogo, scale: 2.5)),
+          child: Image.asset(Res.icon_bar_logo, scale: 2.5)),
       titleSpacing: 0,
       centerTitle: false,
       /* Appbar Title */

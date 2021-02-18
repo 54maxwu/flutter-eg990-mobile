@@ -39,7 +39,7 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
   ));
   static ScreenDrawerItem line = ScreenDrawerItem.define(RouteListItem(
     routeId: RouteEnum.LINE_QR,
-    imageName: Res.iconLine,
+    imageName: Res.icon_line,
   ));
   static ScreenDrawerItem webHome = ScreenDrawerItem.define(RouteListItem(
     routeId: RouteEnum.WEBSITE,

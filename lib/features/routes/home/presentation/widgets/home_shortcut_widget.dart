@@ -321,7 +321,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.depositFeature,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconDeposit,
+                imageUrl: Res.idxusico_dsp,
               ),
             ),
             Expanded(
@@ -329,7 +329,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.withdraw,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconWithdraw,
+                imageUrl: Res.idxusico_cash,
               ),
             ),
             Expanded(
@@ -337,14 +337,14 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createIconButton(
                 page: RoutePage.transfer,
                 isUserOnly: true,
-                imageUrl: Res.homeMemberAreaIconTransfer,
+                imageUrl: Res.idxusico_tsf,
               ),
             ),
             Expanded(
               flex: 1,
               child: _createIconButton(
                 page: RoutePage.vipLevel,
-                imageUrl: Res.homeMemberAreaIconVip,
+                imageUrl: Res.idxusico_vip,
                 isLast: true,
               ),
             ),

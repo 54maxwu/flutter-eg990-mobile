@@ -103,7 +103,7 @@ class _StoreDisplayProductsState extends State<StoreDisplayProducts> {
                             ),
                             if (product.isNewProduct)
                               Image.asset(
-                                Res.storeProductNewIcon,
+                                Res.new_product,
                                 alignment: Alignment.topLeft,
                                 fit: BoxFit.none,
                               ),
