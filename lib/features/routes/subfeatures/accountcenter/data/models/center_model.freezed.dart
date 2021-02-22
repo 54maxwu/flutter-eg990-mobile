@@ -164,6 +164,7 @@ mixin _$CenterModel {
   @JsonKey(name: 'vip_setting')
   dynamic get vipSetting;
 
+  @JsonKey(ignore: true)
   $CenterModelCopyWith<CenterModel> get copyWith;
 }
 
@@ -767,6 +768,7 @@ class _$_CenterModel implements _CenterModel {
       const DeepCollectionEquality().hash(vipOption) ^
       const DeepCollectionEquality().hash(vipSetting);
 
+  @JsonKey(ignore: true)
   @override
   _$CenterModelCopyWith<_CenterModel> get copyWith =>
       __$CenterModelCopyWithImpl<_CenterModel>(this, _$identity);
@@ -913,5 +915,6 @@ abstract class _CenterModel implements CenterModel {
   @JsonKey(name: 'vip_setting')
   dynamic get vipSetting;
   @override
+  @JsonKey(ignore: true)
   _$CenterModelCopyWith<_CenterModel> get copyWith;
 }

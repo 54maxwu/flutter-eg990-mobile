@@ -32,6 +32,7 @@ enum RouteEnum {
   VIP,
   STORE,
   SIGN,
+  MISSION,
   WEBSITE,
   LINE_QR,
 
@@ -39,7 +40,6 @@ enum RouteEnum {
   MORE,
   ROUTE_CHANGE,
   ROLLER,
-  TASK,
   COLLECT,
 
   ///
@@ -121,6 +121,8 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleRoller;
       case RouteEnum.SIGN:
         return localeStr.pageTitleSign;
+      case RouteEnum.MISSION:
+        return localeStr.pageTitleMission;
       case RouteEnum.WEBSITE:
         return localeStr.gameCategoryWeb;
       case RouteEnum.LINE_QR:
@@ -131,8 +133,6 @@ extension RouteEnumExtension on RouteEnum {
         return localeStr.pageTitleMore;
       case RouteEnum.ROUTE_CHANGE:
         return localeStr.pageTitleRouter;
-      case RouteEnum.TASK:
-        return localeStr.pageTitleTask;
       case RouteEnum.COLLECT:
         return localeStr.pageTitleCollect;
 

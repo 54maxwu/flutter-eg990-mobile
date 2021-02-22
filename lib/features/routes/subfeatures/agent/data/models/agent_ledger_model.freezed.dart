@@ -60,6 +60,7 @@ mixin _$AgentLedgerModel {
   @JsonKey(fromJson: decodeAgentLedgerData)
   List<AgentLedgerData> get data;
 
+  @JsonKey(ignore: true)
   $AgentLedgerModelCopyWith<AgentLedgerModel> get copyWith;
 }
 
@@ -262,6 +263,7 @@ class _$_AgentLedgerModel implements _AgentLedgerModel {
       const DeepCollectionEquality().hash(prevPageUrl) ^
       const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentLedgerModelCopyWith<_AgentLedgerModel> get copyWith =>
       __$AgentLedgerModelCopyWithImpl<_AgentLedgerModel>(this, _$identity);
@@ -315,6 +317,7 @@ abstract class _AgentLedgerModel implements AgentLedgerModel {
   @JsonKey(fromJson: decodeAgentLedgerData)
   List<AgentLedgerData> get data;
   @override
+  @JsonKey(ignore: true)
   _$AgentLedgerModelCopyWith<_AgentLedgerModel> get copyWith;
 }
 
@@ -356,6 +359,7 @@ mixin _$AgentLedgerData {
   @JsonKey(name: 'accountcode')
   String get account;
 
+  @JsonKey(ignore: true)
   $AgentLedgerDataCopyWith<AgentLedgerData> get copyWith;
 }
 
@@ -504,6 +508,7 @@ class _$_AgentLedgerData implements _AgentLedgerData {
       const DeepCollectionEquality().hash(withdraw) ^
       const DeepCollectionEquality().hash(account);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentLedgerDataCopyWith<_AgentLedgerData> get copyWith =>
       __$AgentLedgerDataCopyWithImpl<_AgentLedgerData>(this, _$identity);
@@ -549,5 +554,6 @@ abstract class _AgentLedgerData implements AgentLedgerData {
   @JsonKey(name: 'accountcode')
   String get account;
   @override
+  @JsonKey(ignore: true)
   _$AgentLedgerDataCopyWith<_AgentLedgerData> get copyWith;
 }

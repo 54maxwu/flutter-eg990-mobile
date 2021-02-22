@@ -44,7 +44,7 @@ class _GridPluginFavoriteState extends State<GridPluginFavorite> {
       height: 24.0 * Global.device.widthScale,
       child: IconButton(
         icon: Image.asset(
-          Res.tbico_fav_btn,
+          Res.tbico_love,
           color: (checked) ? Colors.pinkAccent : themeColor.homeFavoriteColor,
         ),
         iconSize: 18.0,

@@ -21,7 +21,7 @@ abstract class MarqueeModel with _$MarqueeModel {
         id: jsonMap['id'] as int,
         content: (jsonMap.containsKey('content')
             ? jsonMap['content']
-            : jsonMap[Global.localeJsonKey]) as String,
+            : jsonMap[Global.lang.jsonKey]) as String,
         url: jsonMap['url'] as String,
         createdAt: jsonMap['created_at'] as String,
         updatedAt: jsonMap['updated_at'] as String,

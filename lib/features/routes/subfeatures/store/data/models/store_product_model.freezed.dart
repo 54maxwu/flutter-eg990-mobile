@@ -49,6 +49,7 @@ mixin _$StoreProductModel {
   @JsonKey(name: 'new')
   String get isNew;
 
+  @JsonKey(ignore: true)
   $StoreProductModelCopyWith<StoreProductModel> get copyWith;
 }
 
@@ -206,6 +207,7 @@ class _$_StoreProductModel implements _StoreProductModel {
       const DeepCollectionEquality().hash(pic) ^
       const DeepCollectionEquality().hash(isNew);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreProductModelCopyWith<_StoreProductModel> get copyWith =>
       __$StoreProductModelCopyWithImpl<_StoreProductModel>(this, _$identity);
@@ -237,5 +239,6 @@ abstract class _StoreProductModel implements StoreProductModel {
   @JsonKey(name: 'new')
   String get isNew;
   @override
+  @JsonKey(ignore: true)
   _$StoreProductModelCopyWith<_StoreProductModel> get copyWith;
 }

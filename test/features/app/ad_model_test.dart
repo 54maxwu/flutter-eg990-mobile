@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  final List list = json.decode(fixture('ad.json'));
+  final List list = json.decode(fixture('get_ad.json'));
 
   test('test decode ad data', () {
     print('\nlist: $list\n\n');

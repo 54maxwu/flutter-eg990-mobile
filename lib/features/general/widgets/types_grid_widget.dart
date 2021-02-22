@@ -72,6 +72,7 @@ class _TypesGridWidgetState extends State<TypesGridWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (widget.types == null || widget.types.isEmpty) return SizedBox.shrink();
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -52,6 +52,7 @@ mixin _$GameModel {
   int get favorite;
   int get sort;
 
+  @JsonKey(ignore: true)
   $GameModelCopyWith<GameModel> get copyWith;
 }
 
@@ -235,6 +236,7 @@ class _$_GameModel implements _GameModel {
       const DeepCollectionEquality().hash(favorite) ^
       const DeepCollectionEquality().hash(sort);
 
+  @JsonKey(ignore: true)
   @override
   _$GameModelCopyWith<_GameModel> get copyWith =>
       __$GameModelCopyWithImpl<_GameModel>(this, _$identity);
@@ -269,5 +271,6 @@ abstract class _GameModel implements GameModel {
   @override
   int get sort;
   @override
+  @JsonKey(ignore: true)
   _$GameModelCopyWith<_GameModel> get copyWith;
 }

@@ -118,7 +118,7 @@ class _ScreenMenuBarState extends State<ScreenMenuBar> {
                     text: (page.id == RouteEnum.HOME) ? '' : page.id.title,
                     style: TextStyle(fontSize: FontSize.MESSAGE.value),
                   ),
-                  maxLines: (Global.localeCode == 'zh') ? 1 : 2,
+                  maxLines: (Global.lang.isChinese) ? 1 : 2,
                   maxFontSize: FontSize.MESSAGE.value,
                   minFontSize: FontSize.SMALLER.value,
                   textAlign: TextAlign.center,

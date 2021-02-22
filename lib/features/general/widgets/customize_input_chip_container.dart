@@ -121,7 +121,7 @@ class _CustomizeInputChipContainerState
   }
 
   Widget _createChip(String labelText, dynamic returnOnPress) {
-    if (!widget.roundChip)
+    if (!widget.roundChip) {
       return InputChip(
         visualDensity: VisualDensity.compact,
         label:
@@ -136,7 +136,7 @@ class _CustomizeInputChipContainerState
             ? widget.chipTapCall(returnOnPress)
             : {},
       );
-    else
+    } else {
       return InputChip(
         visualDensity: VisualDensity.compact,
         label: Text(
@@ -147,5 +147,6 @@ class _CustomizeInputChipContainerState
             ? widget.chipTapCall(returnOnPress)
             : {},
       );
+    }
   }
 }

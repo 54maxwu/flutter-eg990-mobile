@@ -32,6 +32,7 @@ mixin _$StoreRulesModel {
   List<StorePlatformDollar> get platformRules;
   List<StoreRuleData> get rules;
 
+  @JsonKey(ignore: true)
   $StoreRulesModelCopyWith<StoreRulesModel> get copyWith;
 }
 
@@ -134,6 +135,7 @@ class _$_StoreRulesModel implements _StoreRulesModel {
       const DeepCollectionEquality().hash(platformRules) ^
       const DeepCollectionEquality().hash(rules);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreRulesModelCopyWith<_StoreRulesModel> get copyWith =>
       __$StoreRulesModelCopyWithImpl<_StoreRulesModel>(this, _$identity);
@@ -149,6 +151,7 @@ abstract class _StoreRulesModel implements StoreRulesModel {
   @override
   List<StoreRuleData> get rules;
   @override
+  @JsonKey(ignore: true)
   _$StoreRulesModelCopyWith<_StoreRulesModel> get copyWith;
 }
 
@@ -183,6 +186,7 @@ mixin _$StoreRuleData {
   String get content;
   String get status;
 
+  @JsonKey(ignore: true)
   $StoreRuleDataCopyWith<StoreRuleData> get copyWith;
 }
 
@@ -310,6 +314,7 @@ class _$_StoreRuleData implements _StoreRuleData {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreRuleDataCopyWith<_StoreRuleData> get copyWith =>
       __$StoreRuleDataCopyWithImpl<_StoreRuleData>(this, _$identity);
@@ -332,6 +337,7 @@ abstract class _StoreRuleData implements StoreRuleData {
   @override
   String get status;
   @override
+  @JsonKey(ignore: true)
   _$StoreRuleDataCopyWith<_StoreRuleData> get copyWith;
 }
 
@@ -361,6 +367,7 @@ mixin _$StorePlatformDollar {
   @JsonKey(name: 'doller')
   num get dollar;
 
+  @JsonKey(ignore: true)
   $StorePlatformDollarCopyWith<StorePlatformDollar> get copyWith;
 }
 
@@ -465,6 +472,7 @@ class _$_StorePlatformDollar implements _StorePlatformDollar {
       const DeepCollectionEquality().hash(platform) ^
       const DeepCollectionEquality().hash(dollar);
 
+  @JsonKey(ignore: true)
   @override
   _$StorePlatformDollarCopyWith<_StorePlatformDollar> get copyWith =>
       __$StorePlatformDollarCopyWithImpl<_StorePlatformDollar>(
@@ -483,5 +491,6 @@ abstract class _StorePlatformDollar implements StorePlatformDollar {
   @JsonKey(name: 'doller')
   num get dollar;
   @override
+  @JsonKey(ignore: true)
   _$StorePlatformDollarCopyWith<_StorePlatformDollar> get copyWith;
 }

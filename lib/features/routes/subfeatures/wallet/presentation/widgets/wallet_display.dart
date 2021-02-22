@@ -101,7 +101,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
     if (_bgHeight < 442) _bgHeight = 442;
     _bgMarginBottom = Global.device.featureContentHeight - 20 - _bgHeight;
 
-    _higherBox = Global.localeCode != 'zh';
+    _higherBox = !Global.lang.isChinese;
     _innerBoxMaxHeight = (_higherBox) ? _bgHeight * 0.35 : _bgHeight * 0.325;
     _innerBoxMinHeight = _innerBoxMaxHeight - 24.0;
 
@@ -270,7 +270,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
               children: <InlineSpan>[
                 WidgetSpan(
                   child: Padding(
-                    padding: (Global.localeCode != 'zh')
+                    padding: (!Global.lang.isChinese)
                         ? EdgeInsets.only(bottom: 4.0)
                         : EdgeInsets.only(bottom: 8.0),
                     child: Text(
@@ -280,7 +280,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.localeCode != 'zh') TextSpan(text: '\n'),
+                if (!Global.lang.isChinese) TextSpan(text: '\n'),
                 WidgetSpan(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 3.0),
@@ -316,7 +316,7 @@ class _WalletDisplayState extends State<WalletDisplay> {
                     ),
                   ),
                 ),
-                if (Global.localeCode != 'zh')
+                if (!Global.lang.isChinese)
                   WidgetSpan(child: SizedBox(height: 4.0)),
               ],
             ),

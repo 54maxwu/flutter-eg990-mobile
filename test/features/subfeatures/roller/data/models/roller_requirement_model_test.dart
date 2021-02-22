@@ -11,13 +11,13 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/roller/requirements.json'));
+  final map = json.decode(fixture('subfeatures/roller/apply_requirement.json'));
   final map1 =
-      json.decode(fixture('subfeatures/roller/requirements_type.json'));
+      json.decode(fixture('subfeatures/roller/apply_requirement_type.json'));
   final map2 =
-      json.decode(fixture('subfeatures/roller/requirements_target.json'));
+      json.decode(fixture('subfeatures/roller/apply_requirement_target.json'));
   final map3 =
-      json.decode(fixture('subfeatures/roller/requirements_current.json'));
+      json.decode(fixture('subfeatures/roller/apply_requirement_current.json'));
 
   test('test roller type map to model list', () {
     print('\n');

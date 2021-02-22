@@ -53,6 +53,7 @@ mixin _$StoreExchangeForm {
   String get area;
   String get address;
 
+  @JsonKey(ignore: true)
   $StoreExchangeFormCopyWith<StoreExchangeForm> get copyWith;
 }
 
@@ -231,6 +232,7 @@ class _$_StoreExchangeForm implements _StoreExchangeForm {
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(address);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreExchangeFormCopyWith<_StoreExchangeForm> get copyWith =>
       __$StoreExchangeFormCopyWithImpl<_StoreExchangeForm>(this, _$identity);
@@ -266,5 +268,6 @@ abstract class _StoreExchangeForm implements StoreExchangeForm {
   @override
   String get address;
   @override
+  @JsonKey(ignore: true)
   _$StoreExchangeFormCopyWith<_StoreExchangeForm> get copyWith;
 }

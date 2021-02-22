@@ -1,0 +1,92 @@
+{
+  "data": {
+    "1": {
+      "transferdatetime": "2021-02-22 12:14:19",
+      "clindex": 5506,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "MG",
+      "amount": "100.00"
+    },
+    "2": {
+      "transferdatetime": "2020-12-22 11:26:19",
+      "clindex": 5465,
+      "com_from": "CQ9",
+      "com_to": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u51fa",
+      "amount": "100.00"
+    },
+    "3": {
+      "transferdatetime": "2020-12-22 11:25:01",
+      "clindex": 5464,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "CQ9",
+      "amount": "100.00"
+    },
+    "4": {
+      "transferdatetime": "2020-10-29 16:26:23",
+      "clindex": 5429,
+      "com_from": "OG",
+      "com_to": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u51fa",
+      "amount": "200.00"
+    },
+    "5": {
+      "transferdatetime": "2020-10-29 16:26:16",
+      "clindex": 5428,
+      "com_from": "MG",
+      "com_to": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u51fa",
+      "amount": "2.00"
+    },
+    "6": {
+      "transferdatetime": "2020-09-16 15:22:45",
+      "clindex": 5249,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "OG",
+      "amount": "100.00"
+    },
+    "7": {
+      "transferdatetime": "2020-08-30 14:10:22",
+      "clindex": 5225,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "OG",
+      "amount": "100.00"
+    },
+    "8": {
+      "transferdatetime": "2020-08-10 15:23:18",
+      "clindex": 5172,
+      "com_from": "CQ9",
+      "com_to": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u51fa",
+      "amount": "3,192.00"
+    },
+    "9": {
+      "transferdatetime": "2020-08-10 15:23:00",
+      "clindex": 5171,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "CQ9",
+      "amount": "3,192.00"
+    },
+    "10": {
+      "transferdatetime": "2020-08-10 14:50:40",
+      "clindex": 5170,
+      "com_from": "\u4e2d\u5fc3\u94b1\u5305",
+      "type": "\u8f6c\u5165",
+      "com_to": "MG",
+      "amount": "1.00"
+    }
+  },
+  "current_page": 1,
+  "per_page": 10,
+  "from": 1,
+  "to": 10,
+  "last_page": 17,
+  "next_page_url": "http:\/\/eg996.com\/api\/transferRecord?page=2",
+  "prev_page_url": null,
+  "total": 166
+}

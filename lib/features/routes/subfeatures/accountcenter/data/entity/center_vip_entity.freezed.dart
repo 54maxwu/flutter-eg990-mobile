@@ -96,6 +96,7 @@ mixin _$CenterVipEntity {
   int get sportGameLevel;
   int get sportGameValue;
 
+  @JsonKey(ignore: true)
   $CenterVipEntityCopyWith<CenterVipEntity> get copyWith;
 }
 
@@ -525,6 +526,7 @@ class _$_CenterVipEntity implements _CenterVipEntity {
       const DeepCollectionEquality().hash(sportGameLevel) ^
       const DeepCollectionEquality().hash(sportGameValue);
 
+  @JsonKey(ignore: true)
   @override
   _$CenterVipEntityCopyWith<_CenterVipEntity> get copyWith =>
       __$CenterVipEntityCopyWithImpl<_CenterVipEntity>(this, _$identity);
@@ -625,5 +627,6 @@ abstract class _CenterVipEntity implements CenterVipEntity {
   @override
   int get sportGameValue;
   @override
+  @JsonKey(ignore: true)
   _$CenterVipEntityCopyWith<_CenterVipEntity> get copyWith;
 }

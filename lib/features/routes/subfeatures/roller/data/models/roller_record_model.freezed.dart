@@ -54,6 +54,7 @@ mixin _$RollerRecordModel {
   String get date;
   int get count;
 
+  @JsonKey(ignore: true)
   $RollerRecordModelCopyWith<RollerRecordModel> get copyWith;
 }
 
@@ -232,6 +233,7 @@ class _$_RollerRecordModel implements _RollerRecordModel {
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(count);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerRecordModelCopyWith<_RollerRecordModel> get copyWith =>
       __$RollerRecordModelCopyWithImpl<_RollerRecordModel>(this, _$identity);
@@ -268,5 +270,6 @@ abstract class _RollerRecordModel implements RollerRecordModel {
   @override
   int get count;
   @override
+  @JsonKey(ignore: true)
   _$RollerRecordModelCopyWith<_RollerRecordModel> get copyWith;
 }

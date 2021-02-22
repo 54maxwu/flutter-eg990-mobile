@@ -8,8 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('home/marquee.json'));
-  final arrayMap = json.decode(fixture('home/marquee_array.json'));
+  final map = json.decode(fixture('home/marquee_unit.json'));
+  final arrayMap = json.decode(fixture('home/marquee.json'));
 
   final MarqueeModel marqueeModel = MarqueeModel(
     id: 2,

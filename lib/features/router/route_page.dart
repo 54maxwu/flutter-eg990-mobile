@@ -319,6 +319,14 @@ class RoutePage extends Vnum<RouteInfo> {
     route: '${FeatureScreenRoutes.walletRoute}$ROUTE_POSTFIX_SIDE',
     showDrawer: true,
     isUserOnly: true,
+  ));
+
+  static const RoutePage sideMission = const RoutePage.define(RouteInfo(
+    id: RouteEnum.MISSION,
+    route: '${FeatureScreenRoutes.missionRoute}$ROUTE_POSTFIX_SIDE',
+    webPageName: ('/mission'),
+    showDrawer: true,
+    isUserOnly: true,
     bottomNavIndex: 5,
   ));
 

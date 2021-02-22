@@ -7,11 +7,11 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/betrecord/bet_record.json'));
+  final map = json.decode(fixture('subfeatures/betrecord/get_record.json'));
   final mapNoData =
-      json.decode(fixture('subfeatures/betrecord/bet_record_no_data.json'));
+      json.decode(fixture('subfeatures/betrecord/get_record_no_data.json'));
   final mapAllPlatform =
-      json.decode(fixture('subfeatures/betrecord/bet_record_all.json'));
+      json.decode(fixture('subfeatures/betrecord/get_record_all.json'));
 
   test('test normal bet record model', () {
     BetRecordModel model = BetRecordModel.jsonToBetRecordModel(map);

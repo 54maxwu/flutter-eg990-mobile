@@ -106,8 +106,7 @@ abstract class _PointStore with Store {
         Future.value(
           _repository.getProduct().then(
                 (result) => result.fold(
-                  (failure) =>
-                      setErrorMsg(msg: failure.message, showOnce: true),
+                  (failure) => setErrorMsg(msg: failure.message),
                   (list) => products = list,
                 ),
               ),

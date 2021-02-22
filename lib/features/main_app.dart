@@ -99,7 +99,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
               //       return supp;
               //   }
               // }
-              return Locale.fromSubtags(languageCode: Global.localeCode);
+              return Locale.fromSubtags(languageCode: Global.lang.code);
             },
             localeListResolutionCallback: (deviceLocales, supportedLocales) {
               // debugPrint('device locales: $deviceLocales');
@@ -111,7 +111,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
               //     }
               //   }
               // }
-              return Locale.fromSubtags(languageCode: Global.localeCode);
+              return Locale.fromSubtags(languageCode: Global.lang.code);
             },
             theme: ThemeInterface.theme.data,
             // builder: ExtendedNavigator<ScreenRouter>(router: ScreenRouter()),

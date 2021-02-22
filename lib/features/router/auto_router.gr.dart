@@ -28,6 +28,7 @@ import '../routes/subfeatures/deals/presentation/deals_route.dart';
 import '../routes/subfeatures/deposit/presentation/deposit_route.dart';
 import '../routes/subfeatures/downloadarea/download_area_route.dart';
 import '../routes/subfeatures/message/presentation/message_route.dart';
+import '../routes/subfeatures/mission/presentation/mission_route.dart';
 import '../routes/subfeatures/notice/presentation/notice_route.dart';
 import '../routes/subfeatures/promo/presentation/promo_route.dart';
 import '../routes/subfeatures/rollback/presentation/rollback_route.dart';
@@ -200,6 +201,7 @@ class FeatureScreenRoutes {
   static const String storeRoute = '/store';
   static const String rollerRoute = '/roller';
   static const String vipLevelRoute = '/level';
+  static const String missionRoute = '/mission';
   static const String testAreaRoute = '/test-area';
   static const String templateRoute = '/template';
   static const all = <String>{
@@ -236,6 +238,7 @@ class FeatureScreenRoutes {
     storeRoute,
     rollerRoute,
     vipLevelRoute,
+    missionRoute,
     testAreaRoute,
     templateRoute,
   };
@@ -279,6 +282,7 @@ class FeatureScreenRouter extends RouterBase {
     RouteDef(FeatureScreenRoutes.storeRoute, page: StoreRoute),
     RouteDef(FeatureScreenRoutes.rollerRoute, page: RollerRoute),
     RouteDef(FeatureScreenRoutes.vipLevelRoute, page: VipLevelRoute),
+    RouteDef(FeatureScreenRoutes.missionRoute, page: MissionRoute),
     RouteDef(FeatureScreenRoutes.testAreaRoute, page: TestAreaRoute),
     RouteDef(FeatureScreenRoutes.templateRoute, page: TemplateRoute),
   ];
@@ -468,6 +472,12 @@ class FeatureScreenRouter extends RouterBase {
     VipLevelRoute: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => VipLevelRoute(),
+        settings: data,
+      );
+    },
+    MissionRoute: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => MissionRoute(),
         settings: data,
       );
     },
@@ -671,6 +681,9 @@ extension FeatureScreenRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushVipLevelRoute() =>
       push<dynamic>(FeatureScreenRoutes.vipLevelRoute);
+
+  Future<dynamic> pushMissionRoute() =>
+      push<dynamic>(FeatureScreenRoutes.missionRoute);
 
   Future<dynamic> pushTestAreaRoute() =>
       push<dynamic>(FeatureScreenRoutes.testAreaRoute);

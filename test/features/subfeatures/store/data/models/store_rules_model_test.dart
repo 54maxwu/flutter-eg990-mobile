@@ -8,8 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final ruleMap = json.decode(fixture('subfeatures/store/rules.json'));
-  final dollarMap = json.decode(fixture('subfeatures/store/dollar.json'));
+  final ruleMap = json.decode(fixture('subfeatures/store/list_rule.json'));
+  final dollarMap = json.decode(fixture('subfeatures/store/list_dollar.json'));
 
   test('test store rules model', () {
     print('\n');

@@ -49,13 +49,13 @@ class HomeDisplaySizeCalc {
     // debugPrint('available width: $availableWidth');
     // debugPrint('tab bar width: $_barMinWidth~$_barMaxWidth');
 
-    if (Global.isLocaleChinese && _barMaxWidth > 144) _barMaxWidth = 144;
-    if (!Global.isLocaleChinese && _barMaxWidth > 168) _barMaxWidth = 168;
+    if (Global.lang.isChinese && _barMaxWidth > 144) _barMaxWidth = 144;
+    if (!Global.lang.isChinese && _barMaxWidth > 168) _barMaxWidth = 168;
     if (_barMinWidth > _barMaxWidth) _barMinWidth = _barMaxWidth - 16;
     // debugPrint('adjusted tab bar width: $_barMinWidth~$_barMaxWidth');
     _barItemHeight =
         (barItemIconSize * 1.5 + 4.0) * Global.device.widthScaleHalf;
-    if (Global.localeCode != 'zh') _barItemHeight = _barItemHeight * 1.25;
+    if (!Global.lang.isChinese) _barItemHeight = _barItemHeight * 1.25;
     _barItemWidth = _barMinWidth - _barItemInset;
 
     /// Shortcut Box
@@ -63,7 +63,7 @@ class HomeDisplaySizeCalc {
     //     ? FontSize.NORMAL.value * 2.75
     //     : FontSize.NORMAL.value * 1.75;
     _shortcutMaxTextHeight =
-        (Global.localeCode != 'zh' && Global.localeCode != 'th')
+        (!Global.lang.isChinese && Global.lang.code != 'th')
             ? FontSize.NORMAL.value * 3.5
             : FontSize.NORMAL.value * 2.75;
     _shortcutMaxHeight = _shortcutMaxTextHeight +

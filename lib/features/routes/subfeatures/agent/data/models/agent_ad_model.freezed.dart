@@ -35,6 +35,7 @@ mixin _$AgentAdModel {
   String get content;
   String get status;
 
+  @JsonKey(ignore: true)
   $AgentAdModelCopyWith<AgentAdModel> get copyWith;
 }
 
@@ -147,6 +148,7 @@ class _$_AgentAdModel implements _AgentAdModel {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentAdModelCopyWith<_AgentAdModel> get copyWith =>
       __$AgentAdModelCopyWithImpl<_AgentAdModel>(this, _$identity);
@@ -165,5 +167,6 @@ abstract class _AgentAdModel implements AgentAdModel {
   @override
   String get status;
   @override
+  @JsonKey(ignore: true)
   _$AgentAdModelCopyWith<_AgentAdModel> get copyWith;
 }

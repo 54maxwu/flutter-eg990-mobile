@@ -95,7 +95,10 @@ class StoreRepositoryImpl implements StoreRepository {
     return result.fold(
       (failure) => Left(failure),
       (model) {
-        if (model.isSuccess == false) return Left(Failure.server());
+        if (model.isSuccess == false)
+          return Left((model.msg.isEmpty)
+              ? Failure.server()
+              : Failure.errorMessage(msg: model.msg));
         if (model.data != null && model.data.toString().isNotEmpty) {
           return Right(JsonUtil.decodeArrayToModel(
             model.data,

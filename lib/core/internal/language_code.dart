@@ -11,6 +11,7 @@ class LanguageCode extends Vnum<LanguageData> {
     optionString: 'CH',
     contentKey: 'content_cn',
     imageUrl: '/images/lang_chn.jpg',
+    webCode: 'zh-cn',
   ));
 
   static const LanguageCode en = const LanguageCode.define(const LanguageData(
@@ -18,6 +19,7 @@ class LanguageCode extends Vnum<LanguageData> {
     optionString: 'EN',
     contentKey: 'content_us',
     imageUrl: '/images/lang_eng.jpg',
+    webCode: 'en-us',
   ));
 
   static const LanguageCode vn = const LanguageCode.define(const LanguageData(
@@ -25,6 +27,7 @@ class LanguageCode extends Vnum<LanguageData> {
     optionString: 'VN',
     contentKey: 'content_vn',
     imageUrl: '/images/lang_vnm.jpg',
+    webCode: 'vn-us',
   ));
 
   static const LanguageCode th = const LanguageCode.define(const LanguageData(
@@ -32,6 +35,7 @@ class LanguageCode extends Vnum<LanguageData> {
     optionString: 'TH',
     contentKey: 'content_th',
     imageUrl: '/images/lang_thai.jpg',
+    webCode: 'thai',
   ));
 
   /// Used for defining cases
@@ -56,11 +60,13 @@ class LanguageData {
   final String optionString;
   final String contentKey;
   final String imageUrl;
+  final String webCode;
 
   const LanguageData({
     @required this.code,
     @required this.optionString,
     @required this.contentKey,
     @required this.imageUrl,
+    @required this.webCode,
   });
 }

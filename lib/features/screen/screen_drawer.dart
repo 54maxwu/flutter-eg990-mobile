@@ -30,19 +30,20 @@ class ScreenDrawer extends StatelessWidget {
   static final List<ScreenDrawerItem> _userMenuItems = [
     ScreenDrawerItem.member,
     ScreenDrawerItem.deposit,
-    ScreenDrawerItem.notice,
-    ScreenDrawerItem.message,
     ScreenDrawerItem.promo,
+    ScreenDrawerItem.message,
+    ScreenDrawerItem.notice,
     ScreenDrawerItem.store,
     ScreenDrawerItem.roller,
-    ScreenDrawerItem.task,
-    ScreenDrawerItem.collect,
-    ScreenDrawerItem.sign,
     ScreenDrawerItem.service,
     ScreenDrawerItem.download,
     ScreenDrawerItem.tutorial,
     ScreenDrawerItem.vip,
+    ScreenDrawerItem.sign,
+    ScreenDrawerItem.collect,
+    ScreenDrawerItem.mission,
     ScreenDrawerItem.agentAbout,
+    ScreenDrawerItem.webHome,
     ScreenDrawerItem.logout,
     ScreenDrawerItem.testUI,
     ScreenDrawerItem.test,
@@ -116,7 +117,7 @@ class ScreenDrawer extends StatelessWidget {
 
     double gridItemWidth = drawerWidth / 2;
     double gridRatio =
-        (Global.localeCode == 'zh') ? gridItemWidth / 48 : gridItemWidth / 56;
+        (Global.lang.isChinese) ? gridItemWidth / 48 : gridItemWidth / 56;
 
     return Container(
       width: drawerWidth,
@@ -281,7 +282,7 @@ class ScreenDrawer extends StatelessWidget {
                         ? localeStr.pageTitleCenter
                         : itemValue.title ?? itemValue.route?.pageTitle ?? '?',
                     style: TextStyle(
-                      fontSize: (Global.localeCode == 'zh')
+                      fontSize: (Global.lang.isChinese)
                           ? FontSize.SUBTITLE.value
                           : FontSize.NORMAL.value,
                       color: themeColor.sideMenuIconTextColor,

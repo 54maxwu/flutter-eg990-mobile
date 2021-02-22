@@ -8,7 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/roller/records.json'));
+  final map =
+      json.decode(fixture('subfeatures/roller/get_turntable_record.json'));
 
   test('test roller record map to models', () {
     print('\n');

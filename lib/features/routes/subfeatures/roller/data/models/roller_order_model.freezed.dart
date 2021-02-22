@@ -47,6 +47,7 @@ mixin _$RollerOrderModel {
   String get date;
   String get name;
 
+  @JsonKey(ignore: true)
   $RollerOrderModelCopyWith<RollerOrderModel> get copyWith;
 }
 
@@ -199,6 +200,7 @@ class _$_RollerOrderModel implements _RollerOrderModel {
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(name);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerOrderModelCopyWith<_RollerOrderModel> get copyWith =>
       __$RollerOrderModelCopyWithImpl<_RollerOrderModel>(this, _$identity);
@@ -228,5 +230,6 @@ abstract class _RollerOrderModel implements RollerOrderModel {
   @override
   String get name;
   @override
+  @JsonKey(ignore: true)
   _$RollerOrderModelCopyWith<_RollerOrderModel> get copyWith;
 }

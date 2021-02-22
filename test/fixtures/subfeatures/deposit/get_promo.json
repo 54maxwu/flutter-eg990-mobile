@@ -1,0 +1,132 @@
+{
+  "code": 0,
+  "data": {
+    "2": {
+      "31": {
+        "promoid": 31,
+        "promodesc": "\u94f6\u884c\u5165\u6b3e100%\u7ea2\u5229",
+        "min_deposit": 50,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 888,
+        "multiply": 3,
+        "dtype": "[\"2\",\"1\"]",
+        "sequence": 31,
+        "featureindex": "[\"0\",\"3\"]"
+      },
+      "63": {
+        "promoid": 63,
+        "promodesc": "VVVIP\u512a\u60e0",
+        "min_deposit": 1,
+        "type": "2",
+        "percentage": "1",
+        "max_promo_amt": 888,
+        "multiply": 18,
+        "dtype": "[\"2\",\"1\"]",
+        "sequence": 63,
+        "featureindex": "[\"0\",\"2\",\"3\",\"7\",\"8\",\"9\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"19\",\"20\",\"21\",\"22\"]"
+      },
+      "105": {
+        "promoid": 105,
+        "promodesc": "\u55e1\u55e1\u55e1",
+        "min_deposit": 10,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 500,
+        "multiply": 1,
+        "dtype": "[\"1\",\"2\"]",
+        "sequence": 105,
+        "featureindex": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]"
+      },
+      "106": {
+        "promoid": 106,
+        "promodesc": "IVY88",
+        "min_deposit": 20,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 3000,
+        "multiply": 1,
+        "dtype": "[\"1\",\"2\"]",
+        "sequence": 106,
+        "featureindex": "[\"0\",\"1\",\"2\",\"3\",\"7\",\"8\",\"9\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"19\",\"20\",\"21\",\"22\"]"
+      }
+    },
+    "1": {
+      "31": {
+        "promoid": 31,
+        "promodesc": "\u94f6\u884c\u5165\u6b3e100%\u7ea2\u5229",
+        "min_deposit": 50,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 888,
+        "multiply": 3,
+        "dtype": "[\"2\",\"1\"]",
+        "sequence": 31,
+        "featureindex": "[\"0\",\"3\"]"
+      },
+      "63": {
+        "promoid": 63,
+        "promodesc": "VVVIP\u512a\u60e0",
+        "min_deposit": 1,
+        "type": "2",
+        "percentage": "1",
+        "max_promo_amt": 888,
+        "multiply": 18,
+        "dtype": "[\"2\",\"1\"]",
+        "sequence": 63,
+        "featureindex": "[\"0\",\"2\",\"3\",\"7\",\"8\",\"9\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"19\",\"20\",\"21\",\"22\"]"
+      },
+      "105": {
+        "promoid": 105,
+        "promodesc": "\u55e1\u55e1\u55e1",
+        "min_deposit": 10,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 500,
+        "multiply": 1,
+        "dtype": "[\"1\",\"2\"]",
+        "sequence": 105,
+        "featureindex": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]"
+      },
+      "106": {
+        "promoid": 106,
+        "promodesc": "IVY88",
+        "min_deposit": 20,
+        "type": "4",
+        "percentage": "1",
+        "max_promo_amt": 3000,
+        "multiply": 1,
+        "dtype": "[\"1\",\"2\"]",
+        "sequence": 106,
+        "featureindex": "[\"0\",\"1\",\"2\",\"3\",\"7\",\"8\",\"9\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"19\",\"20\",\"21\",\"22\"]"
+      },
+      "111": {
+        "promoid": 111,
+        "promodesc": "\u9996\u5b58100\u900150%",
+        "min_deposit": 20,
+        "type": "2",
+        "percentage": "50",
+        "max_promo_amt": 500,
+        "multiply": 3,
+        "dtype": "[\"1\"]",
+        "sequence": 111,
+        "featureindex": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]"
+      }
+    },
+    "3": {
+      "112": {
+        "promoid": 112,
+        "promodesc": "\u5b8c\u6210\u9001\u5f69\u91d1",
+        "min_deposit": 1,
+        "type": "2",
+        "percentage": "1",
+        "max_promo_amt": 1,
+        "multiply": 1,
+        "dtype": "[\"3\"]",
+        "sequence": 112,
+        "featureindex": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]"
+      }
+    }
+  },
+  "msg": ""
+}

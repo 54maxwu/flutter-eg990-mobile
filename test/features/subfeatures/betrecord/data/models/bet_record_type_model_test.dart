@@ -6,10 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  List mapList =
-      json.decode(fixture('subfeatures/betrecord/bet_record_category.json'));
+  List mapList = json.decode(fixture('subfeatures/betrecord/category.json'));
   Map<String, dynamic> mapList2 =
-      json.decode(fixture('subfeatures/betrecord/bet_record_platform.json'));
+      json.decode(fixture('subfeatures/betrecord/platform_type.json'));
 
   test('test agent ad model', () {
     print('decoded map1: $mapList');

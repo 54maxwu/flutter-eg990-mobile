@@ -59,6 +59,7 @@ mixin _$RollerRequirementTarget {
   bool get valid;
   int get sort;
 
+  @JsonKey(ignore: true)
   $RollerRequirementTargetCopyWith<RollerRequirementTarget> get copyWith;
 }
 
@@ -260,6 +261,7 @@ class _$_RollerRequirementTarget implements _RollerRequirementTarget {
       const DeepCollectionEquality().hash(valid) ^
       const DeepCollectionEquality().hash(sort);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerRequirementTargetCopyWith<_RollerRequirementTarget> get copyWith =>
       __$RollerRequirementTargetCopyWithImpl<_RollerRequirementTarget>(
@@ -302,5 +304,6 @@ abstract class _RollerRequirementTarget implements RollerRequirementTarget {
   @override
   int get sort;
   @override
+  @JsonKey(ignore: true)
   _$RollerRequirementTargetCopyWith<_RollerRequirementTarget> get copyWith;
 }

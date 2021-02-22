@@ -35,6 +35,7 @@ mixin _$RollerRequirementCurrent {
   int get month;
   dynamic get key;
 
+  @JsonKey(ignore: true)
   $RollerRequirementCurrentCopyWith<RollerRequirementCurrent> get copyWith;
 }
 
@@ -150,6 +151,7 @@ class _$_RollerRequirementCurrent implements _RollerRequirementCurrent {
       const DeepCollectionEquality().hash(month) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerRequirementCurrentCopyWith<_RollerRequirementCurrent> get copyWith =>
       __$RollerRequirementCurrentCopyWithImpl<_RollerRequirementCurrent>(
@@ -172,5 +174,6 @@ abstract class _RollerRequirementCurrent implements RollerRequirementCurrent {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   _$RollerRequirementCurrentCopyWith<_RollerRequirementCurrent> get copyWith;
 }

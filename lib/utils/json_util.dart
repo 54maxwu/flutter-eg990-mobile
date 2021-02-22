@@ -67,19 +67,22 @@ class JsonUtil {
     Function(Map<String, dynamic> jsonMap) jsonToModel, {
     bool trim = true,
     String tag = debugTag,
+    bool debug = false,
   }) {
-    MyLogger.print(msg: 'start decoding array data to $T...', tag: tag);
-    MyLogger.print(
-        msg: 'data type: ${data.runtimeType}, data is List: ${data is List}',
-        tag: tag);
-
+    if (debug) {
+      MyLogger.print(msg: 'start decoding array data to $T...', tag: tag);
+      MyLogger.print(
+          msg: 'data type: ${data.runtimeType}, data is List: ${data is List}',
+          tag: tag);
+    }
     List<dynamic> list;
-    if (data is List)
+    if (data is List) {
       list = data;
-    else if (data is String)
+    } else if (data is String) {
       list = decodeArray(data, trim: trim, tag: tag);
-    else
+    } else {
       throw UnknownConditionException();
+    }
 
     // mapped decoded data to model data list
     final dataList = (list.isEmpty)

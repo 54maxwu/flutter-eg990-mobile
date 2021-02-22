@@ -117,10 +117,10 @@ class _MainAppWithFirebaseState extends State<MainAppWithFirebase>
             ],
             supportedLocales: S.delegate.supportedLocales,
             localeResolutionCallback: (deviceLocale, supportedLocales) {
-              return Locale.fromSubtags(languageCode: Global.localeCode);
+              return Locale.fromSubtags(languageCode: Global.lang.code);
             },
             localeListResolutionCallback: (deviceLocales, supportedLocales) {
-              return Locale.fromSubtags(languageCode: Global.localeCode);
+              return Locale.fromSubtags(languageCode: Global.lang.code);
             },
             theme: ThemeInterface.theme.data,
             builder: (context, child) {

@@ -22,7 +22,7 @@ class _MemberDisplayState extends State<MemberDisplay> with AfterLayoutMixin {
   List<ReactionDisposer> _disposers;
   final GlobalKey<MemberDisplayHeaderState> headerKey =
       new GlobalKey<MemberDisplayHeaderState>(debugLabel: 'header');
-  final double _gridExtent = 160.0;
+  final double _gridExtent = 128.0;
   final double _gridItemSpace = 8.0;
 
   double headerMaxHeight;

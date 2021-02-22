@@ -131,6 +131,11 @@ class IconCode {
   // static const gridVip = const IconData(0xf219, fontFamily: 'FontAwesome');
   static const gridVip = const IconData(0xe947, fontFamily: 'IconMoon');
 
+  // Icons.assignment
+  static const gridMission =
+      const IconData(0xe5b9, fontFamily: 'MaterialIcons');
+  // static const gridMission = const IconData(0xf00b, fontFamily: 'FontAwesome');
+
   // static const gridNotice = const IconData(0xf028, fontFamily: 'FontAwesome');
   static const gridNotice = const IconData(0xe940, fontFamily: 'IconMoon');
 
@@ -154,14 +159,16 @@ class IconCode {
   ///
   /// Service Page
   ///
+  // static const csService = const IconData(0xe941, fontFamily: 'IconMoon');
   static const csService = const IconData(0xf086, fontFamily: 'FontAwesome');
 
   static const csEmail = const IconData(0xf003, fontFamily: 'FontAwesome');
+  // static const csEmail = const IconData(0xe942, fontFamily: 'IconMoon');
 
   static const csPhone = const IconData(0xf095, fontFamily: 'FontAwesome');
 
-  // static const csZalo = const IconData(0xf075, fontFamily: 'FontAwesome');
-  static const csZalo = const IconData(0xe949, fontFamily: 'IconMoon');
+  static const csZalo = const IconData(0xf075, fontFamily: 'FontAwesome');
+  // static const csZalo = const IconData(0xe949, fontFamily: 'IconMoon');
 
   static const csFacebook = const IconData(0xf09a, fontFamily: 'FontAwesome');
 

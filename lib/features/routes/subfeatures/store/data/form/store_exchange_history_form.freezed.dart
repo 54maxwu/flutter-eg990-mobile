@@ -61,6 +61,7 @@ mixin _$StoreExchangeHistoryForm {
     @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $StoreExchangeHistoryFormCopyWith<StoreExchangeHistoryForm> get copyWith;
 }
 
@@ -147,6 +148,7 @@ class _$StoreExchangeHistoryInit implements StoreExchangeHistoryInit {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(page);
 
+  @JsonKey(ignore: true)
   @override
   $StoreExchangeHistoryInitCopyWith<StoreExchangeHistoryInit> get copyWith =>
       _$StoreExchangeHistoryInitCopyWithImpl<StoreExchangeHistoryInit>(
@@ -210,6 +212,7 @@ abstract class StoreExchangeHistoryInit implements StoreExchangeHistoryForm {
   @override
   int get page;
   @override
+  @JsonKey(ignore: true)
   $StoreExchangeHistoryInitCopyWith<StoreExchangeHistoryInit> get copyWith;
 }
 
@@ -285,6 +288,7 @@ class _$StoreExchangeHistoryQuery implements StoreExchangeHistoryQuery {
       const DeepCollectionEquality().hash(perPage) ^
       const DeepCollectionEquality().hash(search);
 
+  @JsonKey(ignore: true)
   @override
   $StoreExchangeHistoryQueryCopyWith<StoreExchangeHistoryQuery> get copyWith =>
       _$StoreExchangeHistoryQueryCopyWithImpl<StoreExchangeHistoryQuery>(
@@ -350,5 +354,6 @@ abstract class StoreExchangeHistoryQuery implements StoreExchangeHistoryForm {
   int get perPage;
   String get search;
   @override
+  @JsonKey(ignore: true)
   $StoreExchangeHistoryQueryCopyWith<StoreExchangeHistoryQuery> get copyWith;
 }

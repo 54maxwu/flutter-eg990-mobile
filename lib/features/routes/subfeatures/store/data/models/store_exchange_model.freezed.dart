@@ -74,6 +74,7 @@ mixin _$StoreExchangeModel {
   @JsonKey(fromJson: decodeStoreExchangeData)
   List<StoreExchangeData> get data;
 
+  @JsonKey(ignore: true)
   $StoreExchangeModelCopyWith<StoreExchangeModel> get copyWith;
 }
 
@@ -318,6 +319,7 @@ class _$_StoreExchangeModel implements _StoreExchangeModel {
       const DeepCollectionEquality().hash(prevPageUrl) ^
       const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreExchangeModelCopyWith<_StoreExchangeModel> get copyWith =>
       __$StoreExchangeModelCopyWithImpl<_StoreExchangeModel>(this, _$identity);
@@ -374,6 +376,7 @@ abstract class _StoreExchangeModel implements StoreExchangeModel {
   @JsonKey(fromJson: decodeStoreExchangeData)
   List<StoreExchangeData> get data;
   @override
+  @JsonKey(ignore: true)
   _$StoreExchangeModelCopyWith<_StoreExchangeModel> get copyWith;
 }
 
@@ -423,6 +426,7 @@ mixin _$StoreExchangeData {
   String get product;
   String get status;
 
+  @JsonKey(ignore: true)
   $StoreExchangeDataCopyWith<StoreExchangeData> get copyWith;
 }
 
@@ -611,6 +615,7 @@ class _$_StoreExchangeData implements _StoreExchangeData {
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreExchangeDataCopyWith<_StoreExchangeData> get copyWith =>
       __$StoreExchangeDataCopyWithImpl<_StoreExchangeData>(this, _$identity);
@@ -648,5 +653,6 @@ abstract class _StoreExchangeData implements StoreExchangeData {
   @override
   String get status;
   @override
+  @JsonKey(ignore: true)
   _$StoreExchangeDataCopyWith<_StoreExchangeData> get copyWith;
 }

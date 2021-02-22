@@ -164,8 +164,8 @@
   "@pageTitleMemberAgentAbout": {
     "type": "text"
   },
-  "pageTitleTask": "活跃任务",
-  "@pageTitleTask": {
+  "pageTitleMission": "活跃任务",
+  "@pageTitleMission": {
     "type": "text"
   },
   "pageTitleMore": "更多",
@@ -1804,7 +1804,7 @@
   "@depositPaymentSpinnerTitlePromo": {
     "type": "text"
   },
-  "depositPaymentSpinnerTitleBank": "支付银行",
+  "depositPaymentSpinnerTitleBank": "选择支付银行",
   "@depositPaymentSpinnerTitleBank": {
     "type": "text"
   },
@@ -1812,7 +1812,7 @@
   "@depositPaymentSpinnerTitleAccountBank": {
     "type": "text"
   },
-  "depositPaymentSpinnerTitleMethod": "充值方式",
+  "depositPaymentSpinnerTitleMethod": "选择充值方式",
   "@depositPaymentSpinnerTitleMethod": {
     "type": "text"
   },
@@ -3090,6 +3090,54 @@
   },
   "downloadHintPlatformIos": "(苹果适用)",
   "@downloadHintPlatformIos": {
+    "type": "text"
+  },
+  "missionTabDaily": "每日任务",
+  "@missionTabDaily": {
+    "type": "text"
+  },
+  "missionTabWeekly": "每周任务",
+  "@missionTabWeekly": {
+    "type": "text"
+  },
+  "missionTabMonthly": "每月任务",
+  "@missionTabMonthly": {
+    "type": "text"
+  },
+  "missionTabOnce": "特殊任务",
+  "@missionTabOnce": {
+    "type": "text"
+  },
+  "missionTabLimit": "活动任务",
+  "@missionTabLimit": {
+    "type": "text"
+  },
+  "missionTextAutoClaim": "自动派发",
+  "@missionTextAutoClaim": {
+    "type": "text"
+  },
+  "missionTextClaimed": "已领取",
+  "@missionTextClaimed": {
+    "type": "text"
+  },
+  "missionTextDetail": "任务详情",
+  "@missionTextDetail": {
+    "type": "text"
+  },
+  "missionTextRule": "活跃任务说明",
+  "@missionTextRule": {
+    "type": "text"
+  },
+  "missionTextPending": "派發中",
+  "@missionTextPending": {
+    "type": "text"
+  },
+  "missionPrizeMoney": "彩金",
+  "@missionPrizeMoney": {
+    "type": "text"
+  },
+  "missionBtnClaim": "领取",
+  "@missionBtnClaim": {
     "type": "text"
   }
 }

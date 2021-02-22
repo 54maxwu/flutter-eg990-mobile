@@ -20,7 +20,7 @@ void main() {
   );
 
   test('test transform platform to entity', () {
-    final map = json.decode(fixture('home/game_types.json'));
+    final map = json.decode(fixture('home/get_all.json'));
     final model = GameTypes.jsonToGameTypes(map);
     expect(model.categories.length, 7);
     expect(model.categories.first, categoryModel);

@@ -42,6 +42,7 @@ mixin _$AgentModel {
   String get upline;
   String get url;
 
+  @JsonKey(ignore: true)
   $AgentModelCopyWith<AgentModel> get copyWith;
 }
 
@@ -177,6 +178,7 @@ class _$_AgentModel implements _AgentModel {
       const DeepCollectionEquality().hash(upline) ^
       const DeepCollectionEquality().hash(url);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentModelCopyWith<_AgentModel> get copyWith =>
       __$AgentModelCopyWithImpl<_AgentModel>(this, _$identity);
@@ -201,5 +203,6 @@ abstract class _AgentModel implements AgentModel {
   @override
   String get url;
   @override
+  @JsonKey(ignore: true)
   _$AgentModelCopyWith<_AgentModel> get copyWith;
 }

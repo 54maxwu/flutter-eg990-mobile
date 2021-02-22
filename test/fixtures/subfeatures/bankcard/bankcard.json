@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "data": {
+    "bankaddress": "\u6e2c\u8a66\u9ede",
+    "firstname": "\u6e2c\u8a66",
+    "bankaccountno": "1234*********5678",
+    "bankprovince": "\u5317\u4eac\u5e02",
+    "bankcity": "\u623f\u5c71\u533a",
+    "bankarea": "",
+    "bankname": "\u4e2d\u56fd\u519c\u4e1a\u94f6\u884c"
+  },
+  "msg": ""
+}

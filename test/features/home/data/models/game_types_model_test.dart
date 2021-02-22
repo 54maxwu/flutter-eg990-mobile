@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('home/game_types.json'));
+  final map = json.decode(fixture('home/get_all.json'));
 
   final GameCategoryModel categoryModel =
       GameCategoryModel(type: "casino", ch: "真人");

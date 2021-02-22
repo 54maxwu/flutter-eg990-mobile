@@ -1,0 +1,124 @@
+{
+  "code": 0,
+  "data": {
+    "type": {
+      "1": {
+        "id": 1,
+        "name": "deposit",
+        "ch": "\u5145\u503c",
+        "status": "1",
+        "updated_at": "2019-07-10 21:56:43"
+      },
+      "2": {
+        "id": 2,
+        "name": "turnover",
+        "ch": "\u6d41\u6c34",
+        "status": "1",
+        "updated_at": "2019-07-10 21:56:46"
+      }
+    },
+    "target": {
+      "1": {
+        "1": {
+          "id": 1,
+          "name": "\u6bcf\u65e5\u5145\u503c",
+          "type": "1",
+          "require": 2000,
+          "count": 5,
+          "time": "day",
+          "status": "1",
+          "sort": 13,
+          "updated_at": "2019-07-11 06:02:09",
+          "vaild": true
+        },
+        "8": {
+          "id": 8,
+          "name": "\u6bcf\u65e5\u5145\u503c",
+          "type": "1",
+          "require": 500,
+          "count": 1,
+          "time": "day",
+          "status": "1",
+          "sort": 7,
+          "updated_at": "2019-07-18 04:13:25",
+          "vaild": true
+        },
+        "17": {
+          "id": 17,
+          "name": "\u6d4b\u8bd5\u4e2d(2)",
+          "type": "1",
+          "require": 50,
+          "count": 2,
+          "time": "month",
+          "status": "1",
+          "sort": 17,
+          "updated_at": "2019-09-11 17:28:32",
+          "vaild": true
+        },
+        "19": {
+          "id": 19,
+          "name": "\u6e2c\u8a66\u4e2d",
+          "type": "1",
+          "require": 10,
+          "count": 1,
+          "time": "month",
+          "status": "1",
+          "sort": 19,
+          "updated_at": "2020-07-10 10:40:43",
+          "vaild": true
+        }
+      },
+      "2": {
+        "6": {
+          "id": 6,
+          "name": "\u6bcf\u6708\u6d41\u6c34",
+          "type": "2",
+          "require": 100,
+          "count": 5,
+          "time": "week",
+          "status": "1",
+          "sort": 1,
+          "updated_at": "2019-07-12 02:56:07",
+          "vaild": true
+        },
+        "7": {
+          "id": 7,
+          "name": "\u6bcf\u5468\u6d41\u6c34",
+          "type": "2",
+          "require": 500,
+          "count": 50,
+          "time": "week",
+          "status": "1",
+          "sort": 6,
+          "updated_at": "2019-07-12 03:12:37",
+          "vaild": true
+        },
+        "13": {
+          "id": 13,
+          "name": "\u6bcf\u6708\u6d41\u6c34",
+          "type": "2",
+          "require": 600,
+          "count": 600,
+          "time": "month",
+          "status": "1",
+          "sort": 8,
+          "updated_at": "2019-08-02 05:48:11",
+          "vaild": true
+        }
+      }
+    },
+    "current": {
+      "1": {
+        "day": 0,
+        "week": 0,
+        "month": 0
+      },
+      "2": {
+        "day": 0,
+        "week": 0,
+        "month": 0
+      }
+    }
+  },
+  "msg": ""
+}

@@ -79,7 +79,7 @@ class GridViewGames extends StatelessWidget {
       @required imgSize,
       @required textHeight,
       @required twoLines}) {
-    String label = (Global.localeCode != 'zh' && game.ename != '??')
+    String label = (!Global.lang.isChinese && game.ename != '??')
         ? game.ename
         : game.cname;
     return GestureDetector(

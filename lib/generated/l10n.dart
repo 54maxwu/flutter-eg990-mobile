@@ -426,10 +426,10 @@ class S {
   }
 
   /// `Task`
-  String get pageTitleTask {
+  String get pageTitleMission {
     return Intl.message(
       'Task',
-      name: 'pageTitleTask',
+      name: 'pageTitleMission',
       desc: '',
       args: [],
     );
@@ -6920,6 +6920,126 @@ class S {
     return Intl.message(
       '(iOS Only)',
       name: 'downloadHintPlatformIos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily`
+  String get missionTabDaily {
+    return Intl.message(
+      'Daily',
+      name: 'missionTabDaily',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weekly`
+  String get missionTabWeekly {
+    return Intl.message(
+      'Weekly',
+      name: 'missionTabWeekly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly`
+  String get missionTabMonthly {
+    return Intl.message(
+      'Monthly',
+      name: 'missionTabMonthly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Special`
+  String get missionTabOnce {
+    return Intl.message(
+      'Special',
+      name: 'missionTabOnce',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Limit`
+  String get missionTabLimit {
+    return Intl.message(
+      'Limit',
+      name: 'missionTabLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto`
+  String get missionTextAutoClaim {
+    return Intl.message(
+      'Auto',
+      name: 'missionTextAutoClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Received`
+  String get missionTextClaimed {
+    return Intl.message(
+      'Received',
+      name: 'missionTextClaimed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get missionTextDetail {
+    return Intl.message(
+      'Details',
+      name: 'missionTextDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mission Description`
+  String get missionTextRule {
+    return Intl.message(
+      'Mission Description',
+      name: 'missionTextRule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distributing`
+  String get missionTextPending {
+    return Intl.message(
+      'Distributing',
+      name: 'missionTextPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jackpot`
+  String get missionPrizeMoney {
+    return Intl.message(
+      'Jackpot',
+      name: 'missionPrizeMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claim`
+  String get missionBtnClaim {
+    return Intl.message(
+      'Claim',
+      name: 'missionBtnClaim',
       desc: '',
       args: [],
     );

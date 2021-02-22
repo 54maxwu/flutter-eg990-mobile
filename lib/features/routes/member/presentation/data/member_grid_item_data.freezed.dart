@@ -45,6 +45,7 @@ mixin _$MemberGridItemData {
   Gradient Function() get createLinearGradient;
   RoutePage get route;
 
+  @JsonKey(ignore: true)
   $MemberGridItemDataCopyWith<MemberGridItemData> get copyWith;
 }
 
@@ -204,6 +205,7 @@ class _$_MemberGridItemData implements _MemberGridItemData {
       const DeepCollectionEquality().hash(createLinearGradient) ^
       const DeepCollectionEquality().hash(route);
 
+  @JsonKey(ignore: true)
   @override
   _$MemberGridItemDataCopyWith<_MemberGridItemData> get copyWith =>
       __$MemberGridItemDataCopyWithImpl<_MemberGridItemData>(this, _$identity);
@@ -231,5 +233,6 @@ abstract class _MemberGridItemData implements MemberGridItemData {
   @override
   RoutePage get route;
   @override
+  @JsonKey(ignore: true)
   _$MemberGridItemDataCopyWith<_MemberGridItemData> get copyWith;
 }

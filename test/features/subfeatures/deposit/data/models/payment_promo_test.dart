@@ -7,7 +7,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
   test('test json to model', () {
-    final map = json.decode(fixture('deposit/promo.json'));
+    final map = json.decode(fixture('deposit/get_promo.json'));
     print(map.keys);
     final model = PaymentPromo.fromJson(map);
     print(model);
@@ -15,7 +15,7 @@ void main() {
   });
 
   test('test json to model data list', () {
-    final map = json.decode(fixture('deposit/promo.json'));
+    final map = json.decode(fixture('deposit/get_promo.json'));
     PaymentPromoTypeJson model = PaymentPromo.fromJson(map);
     print(json.encode(model.local));
     var localMap = json.decode(json.encode(model.local));
@@ -30,7 +30,7 @@ void main() {
   });
 
   test('test model to data list extension', () {
-    final map = json.decode(fixture('deposit/promo.json'));
+    final map = json.decode(fixture('deposit/get_promo.json'));
     PaymentPromoTypeJson model = PaymentPromo.fromJson(map);
 
     final list = model.getDataList(true);

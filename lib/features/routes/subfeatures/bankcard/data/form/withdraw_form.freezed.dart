@@ -39,6 +39,7 @@ mixin _$WithdrawForm {
   String get type;
   int get minimum;
 
+  @JsonKey(ignore: true)
   $WithdrawFormCopyWith<WithdrawForm> get copyWith;
 }
 
@@ -159,6 +160,7 @@ class _$_WithdrawForm implements _WithdrawForm {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(minimum);
 
+  @JsonKey(ignore: true)
   @override
   _$WithdrawFormCopyWith<_WithdrawForm> get copyWith =>
       __$WithdrawFormCopyWithImpl<_WithdrawForm>(this, _$identity);
@@ -180,5 +182,6 @@ abstract class _WithdrawForm implements WithdrawForm {
   @override
   int get minimum;
   @override
+  @JsonKey(ignore: true)
   _$WithdrawFormCopyWith<_WithdrawForm> get copyWith;
 }

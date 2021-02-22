@@ -9,9 +9,10 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map1 = json.decode(fixture('subfeatures/roller/prize.json'));
-  final map2 = json.decode(fixture('subfeatures/roller/prizes.json'));
-  final map3 = json.decode(fixture('subfeatures/roller/rule.json'));
+  final map1 = json.decode(fixture('subfeatures/roller/get_prize_unit.json'));
+  final map2 = json.decode(fixture('subfeatures/roller/get_prize.json'));
+  final map3 =
+      json.decode(fixture('subfeatures/roller/get_turntable_rule.json'));
 
   test('test roller prize model with single data', () {
     print('\n');

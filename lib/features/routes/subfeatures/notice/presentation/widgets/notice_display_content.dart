@@ -21,7 +21,7 @@ class NoticeDisplayContent extends StatelessWidget {
         itemBuilder: (_, index) {
           NoticeData data = dataList[index];
           String content = '';
-          switch (Global.localeCode) {
+          switch (Global.lang.code) {
             case 'zh':
               content = data.content;
               break;
@@ -35,7 +35,7 @@ class NoticeDisplayContent extends StatelessWidget {
               content = data.contentVI;
               break;
           }
-          if (content.isEmpty && Global.localeCode != 'zh') {
+          if (content.isEmpty && !Global.lang.isChinese) {
             content = data.content ?? 'ERROR';
           }
           return Container(

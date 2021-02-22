@@ -12,7 +12,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 ///
 void main() {
   test('test json to model data list', () {
-    final map = json.decode(fixture('subfeatures/deposit/payment.json'));
+    final map = json.decode(fixture('subfeatures/deposit/get_payment.json'));
     List<PaymentType> list = decodePaymentTypes(map);
     print('payment types:$list');
     expect(list.first, isA<PaymentTypeLocalData>());

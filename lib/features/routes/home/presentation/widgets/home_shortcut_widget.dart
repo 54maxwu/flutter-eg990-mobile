@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eg990_mobile/features/event/presentation/state/event_store.dart';
 import 'package:flutter_eg990_mobile/features/exports_for_route_widget.dart';
 import 'package:flutter_eg990_mobile/features/general/widgets/cached_network_image.dart';
-import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
 import 'package:flutter_eg990_mobile/features/user/data/entity/login_status.dart';
 import 'package:flutter_eg990_mobile/features/user/login/presentation/login_route.dart';
+import 'package:flutter_eg990_mobile/res.dart';
 import 'package:flutter_eg990_mobile/utils/value_util.dart';
 
 import 'home_display_size_calc.dart';
@@ -323,7 +323,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createShortcutButton(
                 page: RoutePage.depositFeature,
                 isUserOnly: true,
-                iconData: IconCode.navDeposit,
+                imageUrl: Res.idxusico_dsp,
               ),
             ),
             Expanded(
@@ -331,7 +331,7 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createShortcutButton(
                 page: RoutePage.withdraw,
                 isUserOnly: true,
-                iconData: IconCode.gridWithdraw,
+                imageUrl: Res.idxusico_cash,
               ),
             ),
             Expanded(
@@ -339,14 +339,14 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
               child: _createShortcutButton(
                 page: RoutePage.transfer,
                 isUserOnly: true,
-                iconData: IconCode.gridTransfer,
+                imageUrl: Res.idxusico_tsf,
               ),
             ),
             Expanded(
               flex: 1,
               child: _createShortcutButton(
-                page: RoutePage.sideVipLevel,
-                iconData: IconCode.gridVip,
+                page: RoutePage.vipLevel,
+                imageUrl: Res.idxusico_vip,
                 isLast: true,
               ),
             ),
@@ -383,7 +383,9 @@ class HomeShortcutWidgetState extends State<HomeShortcutWidget> {
             child: Container(
               constraints: BoxConstraints.tight(_iconSize),
               child: (imageUrl != null)
-                  ? networkImageBuilder(imageUrl)
+                  ? (imageUrl.startsWith('assets/'))
+                      ? Image.asset(imageUrl)
+                      : networkImageBuilder(imageUrl)
                   : (iconData != null)
                       ? Icon(
                           iconData,

@@ -20,7 +20,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
   @override
   void initState() {
     _langs = LanguageCode.listAll;
-    _currentLang = Global.localeCode;
+    _currentLang = Global.lang.code;
     super.initState();
   }
 
@@ -37,14 +37,11 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Transform.scale(
-                  scale: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(36.0),
-                    child: networkImageBuilder(
-                      _langs[index].value.imageUrl,
-                      imgScale: (index == 3) ? 10.0 : 1,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(36.0),
+                  child: networkImageBuilder(
+                    _langs[index].value.imageUrl,
+                    imgScale: (index == 3) ? 10.0 : 1.0,
                   ),
                 ),
                 Padding(
@@ -81,7 +78,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
       value: _currentLang,
       onChanged: (value) {
         debugPrint('selected lang: $value');
-        if (Global.localeCode != value) {
+        if (Global.lang.code != value) {
           String newLang = value;
           try {
             sl.get<LocalStrings>()?.setLanguage(newLang);
@@ -97,7 +94,7 @@ class _ScreenMenuLangWidgetState extends State<ScreenMenuLangWidget> {
             MyLogger.error(
                 msg: 'Localize File not initialized', tag: 'LocalStrings');
           } finally {
-            Global.setLocale = newLang;
+            Global.lang.setLocale = newLang;
             if (mounted) {
               _currentLang = newLang;
             }

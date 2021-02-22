@@ -18,7 +18,7 @@ void main() {
   test(
     'should transfer model data into info data',
     () async {
-      final map = json.decode(fixture('home/banner.json'));
+      final map = json.decode(fixture('home/banner_unit.json'));
       final model = BannerModel.jsonToBannerModel(map);
       expect(model, isA<BannerModel>());
 

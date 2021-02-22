@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/store/exchange.json'));
+  final map = json.decode(fixture('subfeatures/store/list_exchange.json'));
 
   test('test store exchange model', () {
     print('\n');

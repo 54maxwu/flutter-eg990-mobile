@@ -207,18 +207,18 @@ class _HomeDisplayState extends State<HomeDisplay> {
       );
 
       /// Jump to store page with product id if provided
-      // } else if (url.startsWith('/mall/')) {
-      //   int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
-      //
-      //   if (!getAppGlobalStreams.hasUser) {
-      //     callToastInfo(localeStr.messageErrorNotLogin);
-      //     return;
-      //   }
-      //   debugPrint('url mall id: $itemId');
-      //   AppNavigator.navigateTo(
-      //     RoutePage.sideStore,
-      //     arg: (itemId > 0) ? StoreRouteArguments(showProductId: itemId) : null,
-      //   );
+    } else if (url.startsWith('/mall/')) {
+      int itemId = url.substring(url.lastIndexOf('/') + 1, url.length).strToInt;
+
+      if (!getAppGlobalStreams.hasUser) {
+        callToastInfo(localeStr.messageErrorNotLogin);
+        return;
+      }
+      debugPrint('url mall id: $itemId');
+      AppNavigator.navigateTo(
+        RoutePage.sideStore,
+        arg: (itemId > 0) ? StoreRouteArguments(showProductId: itemId) : null,
+      );
 
       /// Jump to route page if path name exist
     } else {

@@ -34,7 +34,7 @@ class MoreDialog extends StatelessWidget {
     MoreGridItem.routeChange,
     MoreGridItem.store,
     MoreGridItem.roller,
-    MoreGridItem.task,
+    MoreGridItem.mission,
     MoreGridItem.collect,
     MoreGridItem.sign,
     MoreGridItem.agentAbout,

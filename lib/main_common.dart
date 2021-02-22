@@ -15,6 +15,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'core/data/hive_actions.dart';
 import 'core/data/hive_adapters_export.dart';
 import 'core/internal/global.dart';
+import 'core/internal/language.dart';
 import 'env/config_reader.dart';
 import 'env/environment.dart';
 import 'features/main_app.dart';
@@ -73,25 +74,26 @@ Future<void> mainCommon(Environment env) async {
 
   // check app language setting
   try {
+    Global.lang ??= Language();
     Box box = await Future.value(getHiveBox(Global.CACHE_APP_DATA));
     if (box.containsKey(Global.CACHE_APP_DATA_KEY_LANG)) {
-      if (Global.lockLanguage == false) {
+      if (!Global.lang.locked) {
         // set language as user preference
-        Global.setLocale = box.get(
+        Global.lang.setLocale = box.get(
           Global.CACHE_APP_DATA_KEY_LANG,
           defaultValue: defaultLocale.value.code,
         );
-      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.localeCode) {
+      } else if (box.get(Global.CACHE_APP_DATA_KEY_LANG) != Global.lang.code) {
         // override language if language is locked and different as default
-        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
+        box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang.code);
       }
     } else {
-      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.localeCode);
+      box.put(Global.CACHE_APP_DATA_KEY_LANG, Global.lang.code);
     }
   } catch (e) {
     debugPrint('read app language setting has error!! $e');
   } finally {
-    debugPrint('app language: ${Global.localeCode}');
+    debugPrint('app language: ${Global.lang.code}');
   }
 
   // hide keyboard and wait for 500ms to get the correct viewInset

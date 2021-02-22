@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/message/message.json'));
+  final map = json.decode(fixture('subfeatures/message/station.json'));
 
   test('test message model and entity', () {
     var list = JsonUtil.decodeArrayToModel<MessageModel>(

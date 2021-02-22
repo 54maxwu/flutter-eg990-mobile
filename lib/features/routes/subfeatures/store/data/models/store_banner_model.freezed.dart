@@ -35,6 +35,7 @@ mixin _$StoreBannerModel {
   @JsonKey(name: 'end_time')
   String get expire;
 
+  @JsonKey(ignore: true)
   $StoreBannerModelCopyWith<StoreBannerModel> get copyWith;
 }
 
@@ -143,6 +144,7 @@ class _$_StoreBannerModel implements _StoreBannerModel {
       const DeepCollectionEquality().hash(pic) ^
       const DeepCollectionEquality().hash(expire);
 
+  @JsonKey(ignore: true)
   @override
   _$StoreBannerModelCopyWith<_StoreBannerModel> get copyWith =>
       __$StoreBannerModelCopyWithImpl<_StoreBannerModel>(this, _$identity);
@@ -162,5 +164,6 @@ abstract class _StoreBannerModel implements StoreBannerModel {
   @JsonKey(name: 'end_time')
   String get expire;
   @override
+  @JsonKey(ignore: true)
   _$StoreBannerModelCopyWith<_StoreBannerModel> get copyWith;
 }

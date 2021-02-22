@@ -3,7 +3,6 @@ import 'package:flutter_eg990_mobile/core/base/data_operator.dart';
 import 'package:flutter_eg990_mobile/core/error/exceptions.dart';
 import 'package:flutter_eg990_mobile/core/internal/local_strings.dart';
 import 'package:flutter_eg990_mobile/features/themes/icon_code.dart';
-import 'package:flutter_eg990_mobile/res.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:vnum/vnum.dart';

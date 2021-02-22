@@ -21,8 +21,8 @@ final BannerModel bannerModel = BannerModel(
     sort: 8);
 
 void main() {
-  final map = json.decode(fixture('home/banner.json'));
-  final rawArray = fixture('home/banner_array.json');
+  final map = json.decode(fixture('home/banner_unit.json'));
+  final rawArray = fixture('home/list_banner.json');
 
   test('test decode single banner model', () {
     print('\nmap:\n$map');

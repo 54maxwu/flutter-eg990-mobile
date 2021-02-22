@@ -3,38 +3,25 @@ import 'dart:convert' show Encoding;
 import 'package:flutter/material.dart' show kToolbarHeight;
 
 import 'device.dart';
-import 'language_code.dart';
+import 'language.dart';
 
 class Global {
   /// Device Relative
   static Device device;
 
   /// APP Language
-  static bool initLocale = false;
-
-  static bool lockLanguage = false;
-
-  static LanguageCode _locale = defaultLocale;
-
-  static String get localeJsonKey => _locale.value.contentKey;
-
-  static String get localeCode => _locale.value.code;
-
-  static bool get isLocaleChinese => _locale == LanguageCode.zh;
-
-  static set setLocale(String localeCode) =>
-      _locale = LanguageCode.getByCode(localeCode);
+  static Language lang;
 
   /// Web Service
   static const bool HAS_FLEX_ROUTE = false;
   static const String CURRENT_BASE = EG990_OFFICIAL_URL;
-  static String currentService = EG990_SERVICE_URL;
+  static String currentService = CS_SERVICE_URL;
 
-  static const String DOMAIN_NAME = "eg990.com";
+  static const String DOMAIN_NAME = "eg996.com";
   static const String EG990_TEST_URL = "";
   static const String EG990_BASE_URL = "";
-  static const String EG990_OFFICIAL_URL = "https://eg990.com/";
-  static const String EG990_SERVICE_URL = "http://vip66741.com/";
+  static const String EG990_OFFICIAL_URL = "https://eg996.com/";
+  static const String CS_SERVICE_URL = "http://vip66741.com/";
 
   /// HIVE table name
   static const String CACHED_COOKIE = 'CACHED_USER_COOKIE';

@@ -1,0 +1,72 @@
+{
+  "code": 0,
+  "data": {
+    "8": {
+      "48": {
+        "bankaccountid": 24291,
+        "amounttype": 3,
+        "amountoption": [
+          "100",
+          "200",
+          "300",
+          "400",
+          "500",
+          "600",
+          "700",
+          "800",
+          "900",
+          "1000"
+        ],
+        "pgindex": 35,
+        "gateway": 8,
+        "amount": "0.00",
+        "min": 100,
+        "max": 1000,
+        "sb": [
+          48
+        ],
+        "payment": 8,
+        "type": "\u8d2d\u5b9d\u652f\u4ed8"
+      }
+    },
+    "1": {
+      "78": {
+        "bankindex": 78,
+        "bankaccountno": "78913861315",
+        "min": 2,
+        "max": "30000.00",
+        "bankaccountid": 24517,
+        "payment": "localbank",
+        "type": "\u51b7\u6c14\u5f88\u51b7"
+      },
+      "79": {
+        "bankindex": 79,
+        "bankaccountno": "1234654789",
+        "min": 20,
+        "max": "30000.00",
+        "bankaccountid": 24519,
+        "payment": "localbank",
+        "type": "Nick"
+      },
+      "80": {
+        "bankindex": 80,
+        "bankaccountno": "1234568910",
+        "min": 10,
+        "max": 3000,
+        "bankaccountid": 24520,
+        "payment": "localbank",
+        "type": "IVY888"
+      },
+      "81": {
+        "bankindex": 81,
+        "bankaccountno": "145984",
+        "min": 20,
+        "max": 3000,
+        "bankaccountid": 24522,
+        "payment": "localbank",
+        "type": "CC"
+      }
+    }
+  },
+  "msg": ""
+}

@@ -8,7 +8,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
   Map<String, dynamic> map =
-      json.decode(fixture('subfeatures/agent/agent_commission.json'));
+      json.decode(fixture('subfeatures/agent/get_commission.json'));
 
   test('test commission ad model', () {
     print('decoded map: $map');

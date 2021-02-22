@@ -31,6 +31,7 @@ mixin _$AgentChartModel {
   String get platform;
   List<AgentChartData> get dataList;
 
+  @JsonKey(ignore: true)
   $AgentChartModelCopyWith<AgentChartModel> get copyWith;
 }
 
@@ -132,6 +133,7 @@ class _$_AgentChartModel implements _AgentChartModel {
       const DeepCollectionEquality().hash(platform) ^
       const DeepCollectionEquality().hash(dataList);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentChartModelCopyWith<_AgentChartModel> get copyWith =>
       __$AgentChartModelCopyWithImpl<_AgentChartModel>(this, _$identity);
@@ -151,6 +153,7 @@ abstract class _AgentChartModel implements AgentChartModel {
   @override
   List<AgentChartData> get dataList;
   @override
+  @JsonKey(ignore: true)
   _$AgentChartModelCopyWith<_AgentChartModel> get copyWith;
 }
 
@@ -204,6 +207,7 @@ mixin _$AgentChartData {
   num get totalWager;
   String get key;
 
+  @JsonKey(ignore: true)
   $AgentChartDataCopyWith<AgentChartData> get copyWith;
 }
 
@@ -405,6 +409,7 @@ class _$_AgentChartData implements _AgentChartData {
       const DeepCollectionEquality().hash(totalWager) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentChartDataCopyWith<_AgentChartData> get copyWith =>
       __$AgentChartDataCopyWithImpl<_AgentChartData>(this, _$identity);
@@ -470,5 +475,6 @@ abstract class _AgentChartData implements AgentChartData {
   @override
   String get key;
   @override
+  @JsonKey(ignore: true)
   _$AgentChartDataCopyWith<_AgentChartData> get copyWith;
 }

@@ -164,8 +164,8 @@
   "@pageTitleMemberAgentAbout": {
     "type": "text"
   },
-  "pageTitleTask": "Task",
-  "@pageTitleTask": {
+  "pageTitleMission": "Task",
+  "@pageTitleMission": {
     "type": "text"
   },
   "pageTitleMore": "More",
@@ -3090,6 +3090,54 @@
   },
   "downloadHintPlatformIos": "(iOS Only)",
   "@downloadHintPlatformIos": {
+    "type": "text"
+  },
+  "missionTabDaily": "Daily",
+  "@missionTabDaily": {
+    "type": "text"
+  },
+  "missionTabWeekly": "Weekly",
+  "@missionTabWeekly": {
+    "type": "text"
+  },
+  "missionTabMonthly": "Monthly",
+  "@missionTabMonthly": {
+    "type": "text"
+  },
+  "missionTabOnce": "Special",
+  "@missionTabOnce": {
+    "type": "text"
+  },
+  "missionTabLimit": "Limit",
+  "@missionTabLimit": {
+    "type": "text"
+  },
+  "missionTextAutoClaim": "Auto",
+  "@missionTextAutoClaim": {
+    "type": "text"
+  },
+  "missionTextClaimed": "Received",
+  "@missionTextClaimed": {
+    "type": "text"
+  },
+  "missionTextDetail": "Details",
+  "@missionTextDetail": {
+    "type": "text"
+  },
+  "missionTextRule": "Mission Description",
+  "@missionTextRule": {
+    "type": "text"
+  },
+  "missionTextPending": "Distributing",
+  "@missionTextPending": {
+    "type": "text"
+  },
+  "missionPrizeMoney": "Jackpot",
+  "@missionPrizeMoney": {
+    "type": "text"
+  },
+  "missionBtnClaim": "Claim",
+  "@missionBtnClaim": {
     "type": "text"
   }
 }

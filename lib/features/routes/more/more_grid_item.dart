@@ -45,8 +45,8 @@ class MoreGridItem extends Vnum<RouteListItem> {
     imageName: 'images/moreShow_lucky.png',
     route: RoutePage.sideRoller,
   ));
-  static MoreGridItem task = MoreGridItem.define(RouteListItem(
-    routeId: RouteEnum.TASK,
+  static MoreGridItem mission = MoreGridItem.define(RouteListItem(
+    routeId: RouteEnum.MISSION,
     imageName: 'images/moreShow_mission.png',
     userOnly: true,
   ));

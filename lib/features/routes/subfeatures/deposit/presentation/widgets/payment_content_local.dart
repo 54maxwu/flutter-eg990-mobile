@@ -56,7 +56,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
   int _bankSelected = -1;
   int _promoSelected = -1;
   int _methodSelected = 1;
-  int _amountVnd = 0;
+  // int _amountVnd = 0;
 
   void _validateForm() {
     final form = _formKey.currentState;
@@ -123,9 +123,9 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
 
   @override
   void initState() {
-    _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
-            _titleWidthFactor -
-        ThemeInterface.minusSize;
+    // _valueTextPadding = (Global.device.width.roundToDouble() - _fieldInset) *
+    //         _titleWidthFactor -
+    //     ThemeInterface.minusSize;
     _generateBankDataList();
     _updateSelected();
     super.initState();
@@ -160,7 +160,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ///
-            /// Bank Option
+            /// Promo Option
             ///
             if (widget.infoList != null && widget.infoList.isNotEmpty)
               Padding(
@@ -192,7 +192,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
                 padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 4.0),
                 child: Text(
                   localeStr.depositHintTextAccount,
-                  style: TextStyle(color: themeColor.defaultHintSubColor),
+                  style: TextStyle(color: themeColor.hintHighlight),
                 ),
               ),
             if (_selectedBankInfo.hasBankInfo)
@@ -278,7 +278,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             /// Method Option
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: CustomizeDropdownWidget(
                 prefixText: localeStr.depositPaymentSpinnerTitleMethod,
                 titleWidthFactor: _titleWidthFactor,
@@ -298,7 +298,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             /// Bank Option
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: CustomizeDropdownWidget(
                 prefixText: localeStr.depositPaymentSpinnerTitleAccountBank,
                 titleWidthFactor: _titleWidthFactor,
@@ -319,7 +319,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             /// Name Input Field
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: new CustomizeFieldWidget(
                 key: _nameFieldKey,
                 hint: localeStr.depositPaymentEditTitleNameHint,
@@ -341,7 +341,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             /// Account Input Field
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: new CustomizeFieldWidget(
                 key: _accountFieldKey,
                 hint: localeStr.depositPaymentEditTitleAccountHint,
@@ -366,7 +366,7 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
             /// Amount Input Field
             ///
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: new CustomizeFieldWidget(
                 key: _amountFieldKey,
                 fieldType: FieldType.Numbers,
@@ -397,22 +397,22 @@ class _PaymentContentLocalState extends State<PaymentContentLocal> {
               ),
             ),
 
-            ///
-            /// VND Amount Hint
-            ///
-            Padding(
-              padding: EdgeInsets.fromLTRB(_valueTextPadding, 8.0, 0.0, 16.0),
-              child: Text(
-                localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
-                style: TextStyle(color: themeColor.defaultHintSubColor),
-              ),
-            ),
+            // ///
+            // /// VND Amount Hint
+            // ///
+            // Padding(
+            //   padding: EdgeInsets.fromLTRB(_valueTextPadding, 8.0, 0.0, 16.0),
+            //   child: Text(
+            //     localeStr.depositPaymentEditTitleAmountHintVND(_amountVnd),
+            //     style: TextStyle(color: themeColor.defaultHintSubColor),
+            //   ),
+            // ),
 
             ///
             /// Note Input Field
             ///
             // Padding(
-            //   padding: const EdgeInsets.only(top: 8.0),
+            //   padding: const EdgeInsets.only(top: 4.0),
             //   child: new CustomizeFieldWidget(
             //     key: _noteFieldKey,
             //     hint: localeStr.depositPaymentEditTitleNote,

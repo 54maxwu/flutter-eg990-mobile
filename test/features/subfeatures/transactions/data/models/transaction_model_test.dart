@@ -7,7 +7,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final map =
-      json.decode(fixture('subfeatures/transactions/transactions.json'));
+      json.decode(fixture('subfeatures/transactions/transfer_record.json'));
 
   test('test transaction model and entity', () {
     TransactionModel model = TransactionModel.jsonToTransactionModel(map);

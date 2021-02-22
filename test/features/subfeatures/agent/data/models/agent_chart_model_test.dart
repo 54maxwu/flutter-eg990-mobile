@@ -8,7 +8,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
   Map<String, dynamic> map =
-      json.decode(fixture('subfeatures/agent/agent_chart.json'));
+      json.decode(fixture('subfeatures/agent/get_agent_report.json'));
 
   test('test agent chart model', () {
     print('decoded map: $map');

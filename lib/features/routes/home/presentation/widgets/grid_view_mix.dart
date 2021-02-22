@@ -92,7 +92,7 @@ class GridViewMixed extends StatelessWidget {
     bool favor = false;
 
     if (entity is GameEntity) {
-      label = (Global.localeCode != 'zh' && entity.ename != '??')
+      label = (!Global.lang.isChinese && entity.ename != '??')
           ? entity.ename
           : entity.cname;
       imageUrl = entity.imageUrl;

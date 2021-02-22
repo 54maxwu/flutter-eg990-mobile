@@ -48,6 +48,7 @@ mixin _$RollerPrizeModel {
   @JsonKey(name: 'alert_pic')
   int get alertPic;
 
+  @JsonKey(ignore: true)
   $RollerPrizeModelCopyWith<RollerPrizeModel> get copyWith;
 }
 
@@ -204,6 +205,7 @@ class _$_RollerPrizeModel implements _RollerPrizeModel {
       const DeepCollectionEquality().hash(alertPicUrl) ^
       const DeepCollectionEquality().hash(alertPic);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerPrizeModelCopyWith<_RollerPrizeModel> get copyWith =>
       __$RollerPrizeModelCopyWithImpl<_RollerPrizeModel>(this, _$identity);
@@ -234,5 +236,6 @@ abstract class _RollerPrizeModel implements RollerPrizeModel {
   @JsonKey(name: 'alert_pic')
   int get alertPic;
   @override
+  @JsonKey(ignore: true)
   _$RollerPrizeModelCopyWith<_RollerPrizeModel> get copyWith;
 }

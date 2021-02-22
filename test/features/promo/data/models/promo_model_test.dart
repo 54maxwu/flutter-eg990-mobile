@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final jsonStr = fixture('promo/promo.json');
+  final jsonStr = fixture('promo/get_promo.json');
 
   List<PromoEntity> transformPromoModels(List<PromoModel> data) {
     final list = data.map((model) {

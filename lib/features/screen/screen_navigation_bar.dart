@@ -119,7 +119,7 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
 
   @override
   void initState() {
-    _locale = Global.localeCode;
+    _locale = Global.lang.code;
     super.initState();
   }
 
@@ -147,9 +147,9 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
           stream: _store.loginStateStream,
           initialData: false,
           builder: (context, snapshot) {
-            if (_barWidget != null && _locale != Global.localeCode) {
+            if (_barWidget != null && _locale != Global.lang.code) {
               _barWidget = _buildWidget(snapshot.data);
-              _locale = Global.localeCode;
+              _locale = Global.lang.code;
             }
             _barWidget ??= _buildWidget(snapshot.data);
             return _barWidget;
@@ -260,14 +260,14 @@ class _ScreenNavigationBarState extends State<ScreenNavigationBar> {
               color: (highlight)
                   ? themeColor.navigationColorFocus
                   : themeColor.defaultTextColor,
-              fontSize: (Global.localeCode != 'zh')
+              fontSize: (!Global.lang.isChinese)
                   ? FontSize.SMALL.value
                   : FontSize.NORMAL.value,
             ),
-            minFontSize: (Global.localeCode != 'zh')
+            minFontSize: (!Global.lang.isChinese)
                 ? FontSize.SMALL.value - 4.0
                 : FontSize.NORMAL.value - 4.0,
-            maxFontSize: (Global.localeCode != 'zh')
+            maxFontSize: (!Global.lang.isChinese)
                 ? FontSize.SMALL.value
                 : FontSize.NORMAL.value,
             textAlign: TextAlign.center,

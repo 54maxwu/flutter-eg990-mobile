@@ -41,7 +41,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
     } catch (e) {
       MyLogger.warn(msg: 'locale file has exception: $e');
     } finally {
-      Global.initLocale = true;
+      Global.lang.init = true;
     }
 //    debugPrint('test locale res:${localeStr.pageTitleHome}');
 //    sl.get<LocalStrings>().init().then((value) {
@@ -64,7 +64,7 @@ class _MainStartupState extends State<MainStartup> with AfterLayoutMixin {
   @override
   Widget build(BuildContext context) {
     if (Global.device == null) getDeviceInfo(context);
-    if (Global.initLocale == false) registerLocale(context);
+    if (!Global.lang.init) registerLocale(context);
     return SafeArea(
       child: WillPopScope(
         onWillPop: () async {

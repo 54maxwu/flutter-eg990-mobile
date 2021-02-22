@@ -7,8 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  List mapList = json.decode(fixture('subfeatures/agent/agent_ad.json'));
-  List mapList2 = json.decode(fixture('subfeatures/agent/agent_merge_ad.json'));
+  List mapList = json.decode(fixture('subfeatures/agent/get_ads.json'));
+  List mapList2 = json.decode(fixture('subfeatures/agent/merge_ad.json'));
 
   test('test agent ad model', () {
     print('decoded map: $mapList');

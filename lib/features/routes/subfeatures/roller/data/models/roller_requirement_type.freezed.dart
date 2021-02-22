@@ -43,6 +43,7 @@ mixin _$RollerRequirementType {
   @JsonKey(name: 'updated_at')
   String get date;
 
+  @JsonKey(ignore: true)
   $RollerRequirementTypeCopyWith<RollerRequirementType> get copyWith;
 }
 
@@ -181,6 +182,7 @@ class _$_RollerRequirementType implements _RollerRequirementType {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(date);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerRequirementTypeCopyWith<_RollerRequirementType> get copyWith =>
       __$RollerRequirementTypeCopyWithImpl<_RollerRequirementType>(
@@ -207,5 +209,6 @@ abstract class _RollerRequirementType implements RollerRequirementType {
   @JsonKey(name: 'updated_at')
   String get date;
   @override
+  @JsonKey(ignore: true)
   _$RollerRequirementTypeCopyWith<_RollerRequirementType> get copyWith;
 }

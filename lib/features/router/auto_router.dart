@@ -17,6 +17,7 @@ import '../routes/subfeatures/deals/presentation/deals_route.dart';
 import '../routes/subfeatures/deposit/presentation/deposit_route.dart';
 import '../routes/subfeatures/downloadarea/download_area_route.dart';
 import '../routes/subfeatures/message/presentation/message_route.dart';
+import '../routes/subfeatures/mission/presentation/mission_route.dart';
 import '../routes/subfeatures/notice/presentation/notice_route.dart';
 import '../routes/subfeatures/promo/presentation/promo_route.dart';
 import '../routes/subfeatures/rollback/presentation/rollback_route.dart';
@@ -108,6 +109,7 @@ import '../user/register/presentation/register_route.dart';
               MaterialRoute(page: StoreRoute, path: '/store'),
               MaterialRoute(page: RollerRoute, path: '/roller'),
               MaterialRoute(page: VipLevelRoute, path: '/level'),
+              MaterialRoute(page: MissionRoute, path: '/mission'),
               MaterialRoute(page: TestAreaRoute, path: '/test-area'),
               MaterialRoute(page: TemplateRoute, path: '/template'),
             ],

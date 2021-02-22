@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map1 = json.decode(fixture('subfeatures/store/point0.json'));
-  final map2 = json.decode(fixture('subfeatures/store/point.json'));
-  final map3 = json.decode(fixture('subfeatures/store/point_str.json'));
-  final map4 = json.decode(fixture('subfeatures/store/point_error.json'));
+  final map1 = json.decode(fixture('subfeatures/store/list_point_0.json'));
+  final map2 = json.decode(fixture('subfeatures/store/list_point.json'));
+  final map3 = json.decode(fixture('subfeatures/store/list_point_str.json'));
+  final map4 = json.decode(fixture('subfeatures/store/list_point_error.json'));
 
   num retrieveValue(dynamic data) {
     var result;

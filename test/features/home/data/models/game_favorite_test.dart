@@ -8,7 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('home/favorite.json'));
+  final map = json.decode(fixture('home/get_all_favorite.json'));
 
   test('test decode favorite platforms/games', () {
     print('\nmap list:\n$map');

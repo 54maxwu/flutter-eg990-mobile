@@ -47,6 +47,7 @@ mixin _$RollerRequirementModel {
   @nullable
   bool get hasData;
 
+  @JsonKey(ignore: true)
   $RollerRequirementModelCopyWith<RollerRequirementModel> get copyWith;
 }
 
@@ -203,6 +204,7 @@ class _$_RollerRequirementModel implements _RollerRequirementModel {
       const DeepCollectionEquality().hash(current) ^
       const DeepCollectionEquality().hash(hasData);
 
+  @JsonKey(ignore: true)
   @override
   _$RollerRequirementModelCopyWith<_RollerRequirementModel> get copyWith =>
       __$RollerRequirementModelCopyWithImpl<_RollerRequirementModel>(
@@ -233,5 +235,6 @@ abstract class _RollerRequirementModel implements RollerRequirementModel {
   @nullable
   bool get hasData;
   @override
+  @JsonKey(ignore: true)
   _$RollerRequirementModelCopyWith<_RollerRequirementModel> get copyWith;
 }

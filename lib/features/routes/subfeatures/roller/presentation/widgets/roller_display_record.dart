@@ -41,8 +41,8 @@ class _RollerDisplayRecordState extends State<RollerDisplayRecord> {
   @override
   void initState() {
     double availableWidth = Global.device.width - 32;
-    double availableHeight =
-        Global.device.height * dialogHeightFactor - dialogTitleHeight;
+    // double availableHeight =
+    //     Global.device.height * dialogHeightFactor - dialogTitleHeight;
 
     // FontSize.NORMAL.value * 2 = font size * 2 line + space
     tableMinHeight = FontSize.NORMAL.value * 2.15 * 2;

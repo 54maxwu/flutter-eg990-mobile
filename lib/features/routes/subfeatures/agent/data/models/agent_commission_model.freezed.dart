@@ -54,6 +54,7 @@ mixin _$AgentCommissionModel {
   String get winLose;
   dynamic get key;
 
+  @JsonKey(ignore: true)
   $AgentCommissionModelCopyWith<AgentCommissionModel> get copyWith;
 }
 
@@ -236,6 +237,7 @@ class _$_AgentCommissionModel implements _AgentCommissionModel {
       const DeepCollectionEquality().hash(winLose) ^
       const DeepCollectionEquality().hash(key);
 
+  @JsonKey(ignore: true)
   @override
   _$AgentCommissionModelCopyWith<_AgentCommissionModel> get copyWith =>
       __$AgentCommissionModelCopyWithImpl<_AgentCommissionModel>(
@@ -273,5 +275,6 @@ abstract class _AgentCommissionModel implements AgentCommissionModel {
   @override
   dynamic get key;
   @override
+  @JsonKey(ignore: true)
   _$AgentCommissionModelCopyWith<_AgentCommissionModel> get copyWith;
 }

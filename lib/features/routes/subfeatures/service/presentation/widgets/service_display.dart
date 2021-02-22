@@ -199,12 +199,19 @@ class ServiceDisplay extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-            color: themeColor.moreGridColor,
+            color: themeColor.defaultLayeredBackgroundColor,
             borderRadius: BorderRadius.circular(8.0)),
         padding: const EdgeInsets.all(12.0),
         child: child ??
             Row(
               children: [
+                if (imgUrl != null)
+                  SizedBox(
+                      width: 42.0,
+                      height: 42.0,
+                      child: (imgUrl.startsWith('assets/'))
+                          ? Image.asset(imgUrl)
+                          : networkImageBuilder(imgUrl)),
                 if (iconData != null)
                   Icon(iconData, color: themeColor.navigationColor, size: 30),
                 if (iconData == null && imgUrl != null)
@@ -219,7 +226,7 @@ class ServiceDisplay extends StatelessWidget {
                     child: Container(
                         height: 54.0,
                         width: 2.0,
-                        color: themeColor.defaultDividerColor)),
+                        color: themeColor.navigationColorFocus)),
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -228,48 +235,59 @@ class ServiceDisplay extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(title),
+                        child: Text(
+                          title,
+                          style: TextStyle(color: themeColor.defaultTextColor),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(content),
+                        child: Text(
+                          content,
+                          style: TextStyle(color: themeColor.defaultTextColor),
+                        ),
                       ),
                     ],
                   ),
                 ),
-                RaisedButton(
-                  color: themeColor.moreGridColor,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: themeColor.navigationColor),
-                    borderRadius: new BorderRadius.circular(4.0),
-                  ),
-                  visualDensity: VisualDensity(vertical: -1.0),
-                  child: RichText(
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(
-                      text: (buttonType == _ButtonType.OPEN)
-                          ? localeStr.btnGo
-                          : localeStr.btnCopy,
-                      style: TextStyle(
-                        fontSize: FontSize.SUBTITLE.value,
-                        color: themeColor.navigationColor,
+                Container(
+                  constraints:
+                      BoxConstraints(minWidth: FontSize.SUBTITLE.value * 5),
+                  child: RaisedButton(
+                    color: themeColor.defaultLayeredBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: themeColor.buttonPrimaryColor),
+                      borderRadius: new BorderRadius.circular(4.0),
+                    ),
+                    visualDensity: VisualDensity(vertical: -1.0),
+                    child: RichText(
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        text: (buttonType == _ButtonType.OPEN)
+                            ? localeStr.btnGo
+                            : localeStr.btnCopy,
+                        style: TextStyle(
+                          fontSize: FontSize.SUBTITLE.value,
+                          color: themeColor.defaultTextColor,
+                        ),
                       ),
                     ),
+                    onPressed: () {
+                      debugPrint('button: $title, data: $data');
+                      if (buttonType == _ButtonType.COPY) {
+                        Clipboard.setData(new ClipboardData(text: data))
+                            .whenComplete(
+                                () => callToast(localeStr.messageCopy));
+                      } else {
+                        AppNavigator.navigateTo(RoutePage.serviceWeb,
+                            arg: WebRouteArguments(
+                                startUrl: data, hideHtmlBars: true));
+                      }
+                    },
                   ),
-                  onPressed: () {
-                    debugPrint('button: $title, data: $data');
-                    if (buttonType == _ButtonType.COPY) {
-                      Clipboard.setData(new ClipboardData(text: data))
-                          .whenComplete(() => callToast(localeStr.messageCopy));
-                    } else {
-                      AppNavigator.navigateTo(RoutePage.serviceWeb,
-                          arg: WebRouteArguments(
-                              startUrl: data, hideHtmlBars: true));
-                    }
-                  },
-                )
+                ),
               ],
             ),
       ),

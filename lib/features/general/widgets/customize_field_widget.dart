@@ -233,7 +233,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
 
     _currentMaxLines = widget.maxLines;
     _currentPrefixMaxLines =
-        widget.prefixTextMaxLines ?? (Global.localeCode == 'zh') ? 1 : 2;
+        widget.prefixTextMaxLines ?? (Global.lang.isChinese) ? 1 : 2;
 
     _smallWidgetHeight = ((Global.device.isIos)
             ? ThemeInterface.fieldHeight + 8
@@ -246,13 +246,8 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
 
     _fieldInset = (widget.centerFieldText)
         ? EdgeInsets.only(left: 2.0)
-        : EdgeInsets.fromLTRB(
-            8.0,
-            fieldInsetHeight,
-            8.0,
-            (Global.localeCode == 'zh')
-                ? fieldInsetHeight - 2
-                : fieldInsetHeight);
+        : EdgeInsets.fromLTRB(8.0, fieldInsetHeight, 8.0,
+            (Global.lang.isChinese) ? fieldInsetHeight - 2 : fieldInsetHeight);
 
     _updateFieldStyle();
 
@@ -303,7 +298,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
       );
     }
     _currentPrefixMaxLines =
-        widget.prefixTextMaxLines ?? (Global.localeCode == 'zh') ? 1 : 2;
+        widget.prefixTextMaxLines ?? (Global.lang.isChinese) ? 1 : 2;
     _updateFieldStyle();
     super.didUpdateWidget(oldWidget);
   }
@@ -457,7 +452,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                   style: TextStyle(
                     fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                     wordSpacing: widget.titleLetterSpacing / 2,
-                    letterSpacing: (Global.localeCode == 'zh')
+                    letterSpacing: (Global.lang.isChinese)
                         ? widget.titleLetterSpacing / 4
                         : 0 / 4,
                     color: _prefixColor,
@@ -493,7 +488,7 @@ class CustomizeFieldWidgetState extends State<CustomizeFieldWidget> {
                 fontSize: widget.prefixTextSize ?? FontSize.NORMAL.value,
                 wordSpacing: widget.titleLetterSpacing,
                 letterSpacing:
-                    (Global.localeCode == 'zh') ? widget.titleLetterSpacing : 0,
+                    (Global.lang.isChinese) ? widget.titleLetterSpacing : 0,
                 color: _prefixColor,
               ),
               children: [

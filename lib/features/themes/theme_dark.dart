@@ -703,4 +703,52 @@ class ThemeDark implements ThemeColorInterface {
 
   @override
   Color rollerTableDividerColor = Color(0xffde4d41);
+
+  ///
+  /// Mission page color
+  ///
+  @override
+  Color missionBackgroundLinear1 = Color.fromARGB(206, 0, 128, 183);
+
+  @override
+  Color missionBackgroundLinear2 = Color.fromARGB(206, 48, 206, 200);
+
+  @override
+  Color missionDialogBackgroundColor = const Color(0xcc0075a9);
+
+  @override
+  Color missionDialogTitleColor = Color(0xffffdd3a);
+
+  @override
+  Color missionDialogTextColor = Color(0xffeaeaea);
+
+  @override
+  Color missionDialogDecorColor = const Color(0xff7ecef4);
+
+  @override
+  Color missionItemSubtitleTextColor = Color(0xffffdd3a);
+
+  @override
+  Color missionItemTitleTextColor = Color(0xfff0f0f0);
+
+  @override
+  Color missionRefreshButtonColor = Color(0xff0075a9);
+
+  @override
+  Color missionRefreshButtonTextColor = Color(0xffececec);
+
+  @override
+  Color missionRuleTextColor = Color(0xffe6e6e6);
+
+  @override
+  Color missionTabColor = Color(0xff0075a9);
+
+  @override
+  Color missionTabSelectedColor = Color(0xfffff45c);
+
+  @override
+  Color missionTextColor = Color(0xffeaeaea);
+
+  @override
+  Color missionTextHighlightColor = Color(0xff47e7e8);
 }

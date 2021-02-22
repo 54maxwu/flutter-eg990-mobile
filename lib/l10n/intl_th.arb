@@ -164,8 +164,8 @@
   "@pageTitleMemberAgentAbout": {
     "type": "text"
   },
-  "pageTitleTask": "งาน",
-  "@pageTitleTask": {
+  "pageTitleMission": "งาน",
+  "@pageTitleMission": {
     "type": "text"
   },
   "pageTitleMore": "เพิ่มเติม",
@@ -3091,5 +3091,53 @@
   "downloadHintPlatformIos": "(iOS เท่านั้น)",
   "@downloadHintPlatformIos": {
     "พิมพ์": "text"
+  },
+  "missionTabDaily": "รายวัน",
+  "@missionTabDaily": {
+    "type": "text"
+  },
+  "missionTabWeekly": "รายสัปดาห์",
+  "@missionTabWeekly": {
+    "type": "text"
+  },
+  "missionTabMonthly": "รายเดือน",
+  "@missionTabMonthly": {
+    "type": "text"
+  },
+  "missionTabOnce": "พิเศษ",
+  "@missionTabOnce": {
+    "type": "text"
+  },
+  "missionTabLimit": "ขีด จำกัด",
+  "@missionTabLimit": {
+    "type": "text"
+  },
+  "missionTextAutoClaim": "อัตโนมัติ",
+  "@missionTextAutoClaim": {
+    "type": "text"
+  },
+  "missionTextClaimed": "ได้รับ",
+  "@missionTextClaimed": {
+    "type": "text"
+  },
+  "missionTextDetail": "รายละเอียด",
+  "@missionTextDetail": {
+    "type": "text"
+  },
+  "missionTextRule": "คำอธิบายภารกิจ",
+  "@missionTextRule": {
+    "type": "text"
+  },
+  "missionTextPending": "การกระจาย",
+  "@missionTextPending": {
+    "type": "text"
+  },
+  "missionPrizeMoney": "แจ็คพอต",
+  "@missionPrizeMoney": {
+    "type": "text"
+  },
+  "missionBtnClaim": "อ้างสิทธิ์",
+  "@missionBtnClaim": {
+    "type": "text"
   }
 }

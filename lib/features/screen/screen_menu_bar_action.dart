@@ -75,7 +75,7 @@ class _ScreenMenuBarActionState extends State<ScreenMenuBarAction> {
 //            SizedBox(width: 4.0),
             RaisedButton(
               child: new AutoSizeText(
-                localeStr.pageTitleRegister,
+                localeStr.pageTitleRegisterFree,
                 style: TextStyle(
                   fontSize: FontSize.NORMAL.value + 1,
                   color: themeColor.buttonTextPrimaryColor,

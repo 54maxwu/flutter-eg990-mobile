@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/store/product.json'));
+  final map = json.decode(fixture('subfeatures/store/list_product.json'));
 
   test('test store product model', () {
     print('\n');

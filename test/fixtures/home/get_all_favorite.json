@@ -1,0 +1,26 @@
+{
+  "platform": [
+    {
+      "id": 34,
+      "type": "slot",
+      "site": "fg",
+      "favorite": "1"
+    },
+    {
+      "id": 82,
+      "type": "slot",
+      "site": "va",
+      "favorite": "1"
+    }
+  ],
+  "game": [
+    {
+      "id": 5003,
+      "category": "lottery",
+      "platform": "funky",
+      "gameid": "50252",
+      "cname": "Atom",
+      "favorite": 1
+    }
+  ]
+}

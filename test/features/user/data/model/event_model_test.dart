@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('user/event/event.json'));
-  final map2 = json.decode(fixture('user/event/event_no_sign.json'));
-  final map3 = json.decode(fixture('user/event/event_signed.json'));
+  final map = json.decode(fixture('user/event/show_active.json'));
+  final map2 = json.decode(fixture('user/event/show_active_no_data.json'));
+  final map3 = json.decode(fixture('user/event/show_active_2.json'));
 
   test('test decode event data', () {
     print('\nmap: $map');

@@ -164,8 +164,8 @@
   "@pageTitleMemberAgentAbout": {
     "type": "text"
   },
-  "pageTitleTask": "Nhiệm vụ tích cực",
-  "@pageTitleTask": {
+  "pageTitleMission": "Nhiệm vụ tích cực",
+  "@pageTitleMission": {
     "type": "text"
   },
   "pageTitleMore": "Hơn",
@@ -2195,7 +2195,7 @@
   "@balanceHintText1": {
     "type": "text"
   },
-  "balanceHintText2": "2.Trong khi tham gia trò chơi này, số tiền không được ít hơn 200000 VND, số tiền này không tính phí khi chuyển.",
+  "balanceHintText2": "2.Khi không tham gia hoạt động, số tiền chuyển khoản không được dưới 1 nhân dân tệ, và không có phí xử lý chuyển khoản.",
   "@balanceHintText2": {
     "type": "text"
   },
@@ -3091,6 +3091,54 @@
   },
   "downloadHintPlatformIos": "(Chỉ dành cho iOS)",
   "@downloadHintPlatformIos": {
+    "type": "text"
+  },
+  "missionTabDaily": "Hàng ngày",
+  "@missionTabDaily": {
+    "type": "text"
+  },
+  "missionTabWeekly": "Hàng tuần",
+  "@missionTabWeekly": {
+    "type": "text"
+  },
+  "missionTabMonthly": "Hàng tháng",
+  "@missionTabMonthly": {
+    "type": "text"
+  },
+  "missionTabOnce": "Đặc biệt",
+  "@missionTabOnce": {
+    "type": "text"
+  },
+  "missionTabLimit": "Giới hạn",
+  "@missionTabLimit": {
+    "type": "text"
+  },
+  "missionTextAutoClaim": "Tự Động",
+  "@missionTextAutoClaim": {
+    "type": "text"
+  },
+  "missionTextClaimed": "Nhận",
+  "@missionTextClaimed": {
+    "type": "text"
+  },
+  "missionTextDetail": "Chi tiết",
+  "@missionTextDetail": {
+    "type": "text"
+  },
+  "missionTextRule": "Mô tả nhiệm vụ",
+  "@missionTextRule": {
+    "type": "text"
+  },
+  "missionTextPending": "Phân phối",
+  "@missionTextPending": {
+    "type": "text"
+  },
+  "missionPrizeMoney": "VÀNG",
+  "@missionPrizeMoney": {
+    "type": "text"
+  },
+  "missionBtnClaim": "Yêu cầu",
+  "@missionBtnClaim": {
     "type": "text"
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/notice/notice.json'));
+  final map = json.decode(fixture('subfeatures/notice/get_remind.json'));
 
   test('test notice model and entity', () {
     NoticeModel model = NoticeModel.jsonToNoticeModel(map);

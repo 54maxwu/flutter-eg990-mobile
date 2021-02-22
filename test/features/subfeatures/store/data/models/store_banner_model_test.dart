@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final map = json.decode(fixture('subfeatures/store/banner.json'));
+  final map = json.decode(fixture('subfeatures/store/banner_unit.json'));
 
   test('test store banner model', () {
     print('\n');

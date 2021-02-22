@@ -89,14 +89,14 @@ class ScreenDrawerItem extends Vnum<RouteListItem> {
     iconData: IconCode.gridVip,
     route: RoutePage.sideVipLevel,
   ));
+  static ScreenDrawerItem mission = ScreenDrawerItem.define(RouteListItem(
+    // imageName: 'images/aside/53.png',
+    iconData: IconCode.gridMission,
+    route: RoutePage.sideMission,
+  ));
   static ScreenDrawerItem sign = ScreenDrawerItem.define(RouteListItem(
     routeId: RouteEnum.SIGN,
     iconData: IconCode.drawerEvent,
-    userOnly: true,
-  ));
-  static ScreenDrawerItem task = ScreenDrawerItem.define(RouteListItem(
-    routeId: RouteEnum.TASK,
-    imageName: 'images/aside/53.png',
     userOnly: true,
   ));
   static ScreenDrawerItem collect = ScreenDrawerItem.define(RouteListItem(
